@@ -1,0 +1,48 @@
+@import "../../styl/config";
+
+/* ==========================================================================
+Colors
+========================================================================== */
+$background-color = #fff;
+$border-color = #e7eaec;
+
+/* ==========================================================================
+Panel
+========================================================================== */
+.panel {
+  x-clearfix();
+
+  margin-bottom: 25px;
+}
+
+.panel-header {
+  background: $background-color;
+  margin-bottom: 0;
+  min-height: 48px;
+  padding: 15px 15px 7px;
+}
+
+.panel-content {
+  x-clearfix();
+
+  background-color: $background-color;
+  border-top: 1px solid $border-color;
+  padding: 15px 20px 20px;
+  width: auto;
+}
+
+.panel-content--scroll {
+  max-height: 200px;
+  overflow: auto;
+}
+
+.panel-footer {
+  background: $background-color;
+  border-top: 1px solid $border-color;
+  font-size: 12px;
+  padding: 10px 15px;
+}
+
+.panel-footer-info { font-size: 12px; }
+
+.panel-footer-addon { float: right; }

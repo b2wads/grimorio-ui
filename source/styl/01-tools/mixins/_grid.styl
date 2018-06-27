@@ -1,0 +1,16 @@
+// Coluna do grid
+///
+x-column($columns = $columns, $p = $push, $fold = left) {
+  display: inline;
+  float: $fold;
+  padding-left: $padding-width;
+  padding-right: $padding-width;
+  width: x-gridsystem-width($columns);
+
+  if $fold == left {
+    margin-left: x-gridsystem-width($p);
+  }
+  if $fold == right {
+    margin-right: x-gridsystem-width($p);
+  }
+}

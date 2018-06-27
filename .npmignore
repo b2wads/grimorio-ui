@@ -1,0 +1,16 @@
+.idea
+coverage
+node_modules
+
+*.log
+npm-debug.log*
+
+docs/
+internals/
+source/
+.babelrc
+.editorconfig
+.eslintignore
+.eslint.js
+.gitignore
+yarn.lock

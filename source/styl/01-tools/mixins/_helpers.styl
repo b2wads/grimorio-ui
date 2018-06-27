@@ -1,0 +1,37 @@
+// Esconder texto
+///
+x-text-hide() {
+  background-color: transparent;
+  border: 0;
+  color: transparent;
+  font-size: 0;
+  text-shadow: none;
+}
+
+// Clearfix
+///
+x-clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after { clear: both; }
+}
+
+// Opacity
+///
+x-opacity(n) {
+  -khtml-opacity: n;
+  -moz-opacity: n;
+  -ms-filter: unquote('"progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')"');
+  filter: unquote('alpha(opacity=' + round(n * 100) + ')');
+  opacity: n;
+}
+
+// REM Fallback
+///
+x-rem-fallback(property, value, base-px = $base-font-size-px) {
+  {property}: 0 + value * base-px px;
+  {property}: 0 + value rem;
+}

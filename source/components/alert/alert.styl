@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+$info-background-color = #d9edf7;
+$info-border-color = #bce8f1;
+$info-color = #31708f;
+
+$success-background-color = #dff0d8;
+$success-border-color = #d6e9c6;
+$success-color = #3c763d;
+
+$warning-background-color = #fcf8e3;
+$warning-border-color = #faebcc;
+$warning-color = #8a6d3b;
+
+$danger-background-color = #f2dede;
+$danger-border-color = #ebccd1;
+$danger-color = #a94442;
+
+$dark-success-background-color = #51a351;
+$dark-success-border-color = #51a351;
+$dark-success-color = #fff;
+
+$dark-info-background-color = #2f96b4;
+$dark-info-border-color = #2f96b4;
+$dark-info-color = #fff;
+
+$dark-warning-background-color = #f89406;
+$dark-warning-border-color = #f89406;
+$dark-warning-color = #fff;
+
+$dark-danger-background-color = #bd362f;
+$dark-danger-border-color = #bd362f;
+$dark-danger-color = #fff;
+
+$close-color = #000;
+$close-shadow-color = #fff;
+
+/* ==========================================================================
+   Placeholders
+   ========================================================================== */
+$alert {
+  border-radius: 4px;
+  margin-bottom: 6px;
+  position: relative;
+  text-align: left;
+}
+
+/* ==========================================================================
+   Patterns of messages (normal)
+   ========================================================================== */
+.success {
+  @extend $alert;
+  background-color: $success-background-color;
+  border-color: $success-border-color;
+  color: $success-color;
+
+  svg {
+    path { fill: $success-color; }
+  }
+}
+
+.info {
+  @extend $alert;
+  background-color: $info-background-color;
+  border-color: $info-border-color;
+  color: $info-color;
+
+  svg {
+    path { fill: $info-color; }
+  }
+}
+
+.warning {
+  @extend $alert;
+  background-color: $warning-background-color;
+  border-color: $warning-border-color;
+  color: $warning-color;
+
+  svg {
+    path { fill: $warning-color; }
+  }
+}
+
+.danger {
+  @extend $alert;
+  background-color: $danger-background-color;
+  border-color: $danger-border-color;
+  color: $danger-color;
+
+  svg {
+    path { fill: $danger-color; }
+  }
+}
+
+/* ==========================================================================
+   Patterns of messages (dark)
+   ========================================================================== */
+.alert--dark {
+  &.success {
+    @extend $alert;
+    background-color: $dark-success-background-color;
+    border-color: $dark-success-border-color;
+    color: $dark-success-color;
+
+    svg {
+      path { fill: $dark-success-color; }
+    }
+  }
+
+  &.info {
+    @extend $alert;
+    background-color: $dark-info-background-color;
+    border-color: $dark-info-border-color;
+    color: $dark-info-color;
+
+    svg {
+      path { fill: $dark-info-color; }
+    }
+  }
+
+  &.warning {
+    @extend $alert;
+    background-color: $dark-warning-background-color;
+    border-color: $dark-warning-border-color;
+    color: $dark-warning-color;
+
+    svg {
+      path { fill: $dark-warning-color; }
+    }
+  }
+
+  &.danger {
+    @extend $alert;
+    background-color: $dark-danger-background-color;
+    border-color: $dark-danger-border-color;
+    color: $dark-danger-color;
+
+    svg {
+      path { fill: $dark-danger-color; }
+    }
+  }
+}
+
+/* ==========================================================================
+   Alert component
+   ========================================================================== */
+.headline {
+  margin: 0;
+  margin-bottom: 6px;
+}
+
+.body {
+  max-width: 40em;
+
+  p { margin: 0; }
+}
+
+.msgContainer {
+  display: inline-block;
+  padding: 10px;
+}
+
+.alert--icon {
+  .msgContainer { padding-left: 50px; }
+}
+
+.close {
+  color: $close-color;
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  margin: 5px 10px;
+  opacity: 0.2;
+  outline: 0;
+  padding: 0;
+  text-shadow: 0 1px 0 $close-shadow-color;
+}
+
+.icon {
+  float: left;
+  font-size: 18px;
+  left: 10px;
+  margin-top: -15px;
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  vertical-align: top;
+}

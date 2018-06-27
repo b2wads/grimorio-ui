@@ -1,0 +1,55 @@
+.container {
+  padding: 6px 12px;
+  position: fixed;
+  z-index: 10301;
+}
+
+.top-right {
+  right: 0;
+  text-align: right;
+  top: 0;
+}
+
+.top-left {
+  left: 0;
+  top: 0;
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+  text-align: right;
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.enter {
+  max-height: 0;
+  opacity: 0.01;
+  overflow: hidden;
+  transform: translateX(-25%);
+  transition: 0.25s ease-in;
+}
+
+.enterActive {
+  max-height: 20em;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.leave {
+  max-height: 20em;
+  opacity: 1;
+  overflow: hidden;
+  transform: translateX(0);
+  transition: 0.25s ease-out;
+}
+
+.leaveActive {
+  max-height: 0;
+  opacity: 0.01;
+  transform: translateX(25%);
+}

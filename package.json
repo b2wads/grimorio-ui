@@ -1,0 +1,133 @@
+{
+  "name": "afiliados-theme",
+  "version": "0.0.0",
+  "description": "Afiliados UI React",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "yarn build:js && yarn build:images",
+    "build:js": "NODE_ENV=production BABEL_ENV=production babel source --out-dir lib && webpack --progress --config ./internals/webpack/webpack.config.js",
+    "build:images": "NODE_ENV=production BABEL_ENV=production babel source/images --out-dir lib/images --copy-files",
+    "build:storybook": "NODE_ENV=development BABEL_ENV=development build-storybook -c ./internals/storybook -o .out",
+    "lint": "run-p lint:*",
+    "lint:styl": "stylint source/",
+    "lint:js": "eslint source/",
+    "precommit": "yarn lint",
+    "prepush": "yarn test",
+    "release": "./node_modules/.bin/release-it",
+    "storybook": "start-storybook -p 9000 -c ./internals/storybook",
+    "test": "NODE_ENV=testing BABEL_ENV=testing jest",
+    "test:tdd": "yarn test -- --watch",
+    "test:coverage": "yarn test -- --coverage --coverageDirectory=coverage"
+  },
+  "engines": {
+    "node": ">=8.9.4",
+    "npm": ">=5.6.0"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "author": "Afiliados",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "7.0.0-beta.44",
+    "@babel/core": "7.0.0-beta.44",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.44",
+    "@babel/plugin-proposal-export-default-from": "7.0.0-beta.44",
+    "@babel/plugin-proposal-export-namespace-from": "7.0.0-beta.44",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.44",
+    "@babel/preset-env": "7.0.0-beta.44",
+    "@babel/preset-react": "7.0.0-beta.44",
+    "@babel/register": "7.0.0-beta.44",
+    "@storybook/addon-actions": "3.4.1",
+    "@storybook/addon-events": "3.4.1",
+    "@storybook/addon-info": "3.4.1",
+    "@storybook/addon-knobs": "3.4.1",
+    "@storybook/addon-options": "3.4.1",
+    "@storybook/addons": "3.4.1",
+    "@storybook/react": "3.4.1",
+    "babel-core": "^7.0.0-0",
+    "babel-eslint": "7.2.3",
+    "babel-jest": "22.4.3",
+    "babel-loader": "^8.0.0-beta",
+    "babel-plugin-css-modules-transform": "1.5.0",
+    "chai": "4.1.1",
+    "child-process-es6-promise": "1.2.0",
+    "cross-env": "5.1.4",
+    "css-loader": "0.28.4",
+    "eslint": "4.19.0",
+    "eslint-config-google": "0.9.1",
+    "eslint-loader": "2.0.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-prettier": "2.3.1",
+    "eslint-plugin-react": "7.5.1",
+    "file-loader": "0.11.2",
+    "husky": "0.14.3",
+    "identity-obj-proxy": "3.0.0",
+    "imports-loader": "0.8.0",
+    "jest": "22.4.3",
+    "jest-css-modules": "1.1.0",
+    "jest-css-modules-transform": "1.0.5",
+    "jest-dot-reporter": "1.0.3",
+    "jsdom": "9.12.0",
+    "npm-run-all": "4.1.2",
+    "postcss-cssnext": "3.0.2",
+    "postcss-loader": "2.0.6",
+    "precss": "2.0.0",
+    "prettier": "1.3.1",
+    "react-test-renderer": "16.3.1",
+    "release-it": "7.3.0",
+    "rimraf": "2.6.2",
+    "style-loader": "0.17.0",
+    "stylint": "1.5.9",
+    "stylus": "0.54.5",
+    "stylus-loader": "3.0.1",
+    "svg-react-loader": "0.4.5"
+  },
+  "dependencies": {
+    "classnames": "2.2.5",
+    "extract-text-webpack-plugin": "3.0.2",
+    "immutable": "3.8.1",
+    "moment": "2.22.1",
+    "prop-types": "15.5.10",
+    "react": "16.2.0",
+    "react-css-modules": "4.7.2",
+    "react-dom": "16.2.0",
+    "react-onclickoutside": "6.7.1",
+    "react-redux": "5.0.7",
+    "react-transition-group": "2.3.0",
+    "redux": "3.7.2",
+    "redux-immutable": "4.0.0",
+    "redux-logger": "3.0.6",
+    "redux-thunk": "2.2.0",
+    "webpack": "3.5.2"
+  },
+  "peerDependencies": {
+    "moment": "2.22.1",
+    "react-onclickoutside": "6.7.1",
+    "react-transition-group": "2.3.0",
+    "svg-react-loader": "0.4.5"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|styl)$": "identity-obj-proxy",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./internals/file-transformer.js"
+    },
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "\\.(css|styl)$": "jest-css-modules-transform"
+    },
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "<rootDir>/source/**/*.test.js"
+    ],
+    "setupTestFrameworkScriptFile": "./internals/test/setup.js",
+    "coverageDirectory": ".reports/coverage",
+    "reporters": [
+      "jest-dot-reporter"
+    ],
+    "cacheDirectory": "./tmp/"
+  },
+  "publishConfig": {
+    "registry": "http://npm-private.atlas.b2w"
+  }
+}

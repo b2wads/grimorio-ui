@@ -1,0 +1,124 @@
+/* ==========================================================================
+  Variables
+  ========================================================================== */
+
+/* Colors
+   ========================================================================== */
+$success = #1ab394;
+$success-light = #dff0d8;
+$warning = #f8ac59;
+$warning-light = #fcf8e3;
+$error = #ed5565;
+$error-light = #f2dede;
+$font-color-light = #fff;
+
+/* Form Group
+   ========================================================================== */
+.form-group {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.form-group--checkbox,
+.form-group--radio {
+  [class*="form-control"] {
+    float: left;
+    margin-right: 5px;
+  }
+
+  [class*="label"] {
+    line-height: 1.7;
+    margin-bottom: 0;
+    width: auto;
+  }
+}
+
+.form-group--withoutTopLabel {
+  &.form-group--checkbox,
+  &.form-group--radio {
+    margin-bottom: 18px;
+    margin-top: 30px;
+  }
+}
+
+
+/* States
+   ========================================================================== */
+.has-success {
+  color: $success;
+
+
+  [class*="label"],
+  [class*="help-text"],
+  [class*="form-feedback"],
+  [class*="form-addon"] {
+    color: $success;
+  }
+
+  [class*="form-feedback"] { fill: $success; }
+
+  [class*="form-addon"] { background: $success-light; }
+
+  [class*="form-addon"],
+  [class*="form-field"],
+  [class*="form-control"],
+  [class*="Select-control"] {
+    border-color: $success;
+  }
+}
+
+.has-warning {
+  color: $warning;
+
+
+  [class*="label"],
+  [class*="help-text"],
+  [class*="form-feedback"],
+  [class*="form-addon"] {
+    color: $warning;
+  }
+
+  [class*="form-feedback"] { fill: $warning; }
+
+  [class*="form-addon"] { background: $warning-light; }
+
+  [class*="form-addon"],
+  [class*="form-field"],
+  [class*="form-control"],
+  [class*="Select-control"] {
+    border-color: $warning;
+  }
+}
+
+.has-error {
+  color: $error;
+
+
+  [class*="label"],
+  [class*="help-text"],
+  [class*="form-feedback"],
+  [class*="form-addon"] {
+    color: $error;
+  }
+
+  [class*="form-feedback"] { fill: $error; }
+
+  [class*="form-addon"] { background: $error-light; }
+
+  [class*="form-addon"],
+  [class*="form-field"],
+  [class*="form-control"],
+  [class*="Select-control"] {
+    border-color: $error;
+  }
+
+  [class="error"] {
+    background: $error;
+    color: $font-color-light;
+    padding: 2px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+}

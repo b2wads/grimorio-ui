@@ -1,0 +1,71 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
+  "plugins": [
+    "react",
+    "prettier",
+    "import"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "mocha": true,
+    "node": true,
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true
+  },
+  "globals": {
+    "beforeAll": true,
+    "expect": true
+  },
+  "rules": {
+    "no-debugger": "off",
+    "no-useless-escape": "off",
+    "no-case-declarations": "warn",
+    "require-jsdoc": "off",
+    "no-console": "off",
+    "max-len": "off",
+    "new-cap": "off",
+    "quote-props": ["error", "as-needed"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "jsx-quotes": ["error", "prefer-double"],
+    "react/self-closing-comp": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "comma-dangle": "off",
+    "space-after-keywords": "off",
+    "semi": "off",
+    "object-curly-spacing": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "import/first": ["error"],
+    "import/newline-after-import": ["error"],
+    "import/order": ["error", {"groups": ["builtin", "external"]}],
+    "prettier/prettier": ["error", {"trailingComma": "es5", "singleQuote": true, "printWidth": 120}],
+    "keyword-spacing": ["error", {
+      "before": true,
+      "after": true
+    }],
+    "no-multiple-empty-lines": ["error", {
+      "max": 1,
+      "maxBOF": 1,
+      "maxEOF": 1
+    }],
+    "prefer-template": "error",
+    "react/no-array-index-key": "error",
+    "prefer-destructuring": ["error", {
+      "array": true,
+      "object": true
+    }, {
+      "enforceForRenamedProperties": false
+    }]
+  }
+}

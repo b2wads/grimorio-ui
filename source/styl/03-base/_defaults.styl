@@ -1,0 +1,48 @@
+html {
+  color: $base-text-color;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  min-height: 100%;
+}
+
+body {
+  background: $base-background-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size-px;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+legend {
+  x-text-hide();
+}
+
+fieldset { border: 0; }
+
+[disabled] { cursor: not-allowed; }
+
+svg { transform: translate(0, 0); }
+
+strong { font-weight: bold; }
+
+i { font-style: italic; }
+
+p { margin: 0 0 10px; }
+
+ol,
+ul {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+a {
+  color: $base-link-color;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
