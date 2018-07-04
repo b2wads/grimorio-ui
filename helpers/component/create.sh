@@ -68,35 +68,28 @@ import styles from './$name.styl';
 
 class $capitalizeName extends PureComponent {
   render() {
-    return (
-      <div></div>
-    );
+    return <div>$capitalizeName</div>;
   }
 }
 
 export default CSSModules($capitalizeName, styles);
-
-
 EOF
 
 echo 'Created Component'
 
-touch $path/$name/$name.story.js
-cat > $path/$name/$name.story.js <<EOF
+touch $path/$name/$name.stories.js
+cat > $path/$name/$name.stories.js <<EOF
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import { withKnobs } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { withKnobs } from '@storybook/addon-knobs';
 
 import $capitalizeName from './$name-component';
 
-const stories = storiesOf('10 - $capitalizeName', module);
+const stories = storiesOf('$capitalizeName', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => (
-<$capitalizeName />
-));
-
+stories.addWithInfo('Normal', () => <$capitalizeName />);
 EOF
 
 echo 'Created Story'
@@ -121,7 +114,6 @@ describe('$capitalizeName component', () => {
     });
   });
 });
-
 EOF
 
 echo 'Created Test'
@@ -130,15 +122,27 @@ touch $path/$name/$name.styl
 cat > $path/$name/$name.styl <<EOF
 /* ==========================================================================
    Variables
-   ========================================================================== */
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
 
 /* Color
 ========================================================================== */
 
 /* ==========================================================================
-   $capitalizeName Component
-   ========================================================================== */
+   Placeholders
+========================================================================== */
+\$default {}
 
+/* ==========================================================================
+   $capitalizeName Component
+========================================================================== */
+
+/* Default
+ ================ */
+
+.default {
+  @extend \$default;
+}
 EOF
 
 echo 'Created STYL'

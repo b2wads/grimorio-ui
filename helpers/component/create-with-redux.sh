@@ -54,7 +54,6 @@ touch $path/$name/index.js
 cat > $path/$name/index.js <<EOF
 import $capitalizeName from './$name-container';
 export default $capitalizeName;
-
 EOF
 
 echo 'Created index'
@@ -81,7 +80,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)($capitalizeName);
-
 EOF
 
 echo 'Created Container'
@@ -95,15 +93,11 @@ import styles from './$name.styl';
 
 class $capitalizeName extends PureComponent {
   render() {
-    return (
-      <div></div>
-    );
+    return <div>$capitalizeName</div>/
   }
 }
 
 export default CSSModules($capitalizeName, styles);
-
-
 EOF
 
 echo 'Created Component'
@@ -129,7 +123,6 @@ export function functionName() {
     }
   }
 }
-
 EOF
 
 echo 'Created Actions'
@@ -147,7 +140,6 @@ export default (state = initialState, action) => {
       return state;
   }
 };
-
 EOF
 
 echo 'Created Reducer'
@@ -155,8 +147,8 @@ echo 'Created Reducer'
 touch $path/$name/$name.story.js
 cat > $path/$name/$name.story.js <<EOF
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import { withKnobs } from '@kadira/storybook-addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { withKnobs } from '@storybook/addon-knobs';
 
 import $capitalizeName from './$name-component';
 
@@ -164,10 +156,7 @@ const stories = storiesOf('10 - $capitalizeName', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => (
-<$capitalizeName />
-));
-
+stories.addWithInfo('Normal', () => <$capitalizeName />);
 EOF
 
 echo 'Created Story'
@@ -192,7 +181,6 @@ describe('$capitalizeName component', () => {
     });
   });
 });
-
 EOF
 
 echo 'Created Test'
@@ -201,15 +189,27 @@ touch $path/$name/$name.styl
 cat > $path/$name/$name.styl <<EOF
 /* ==========================================================================
    Variables
-   ========================================================================== */
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
 
 /* Color
 ========================================================================== */
 
 /* ==========================================================================
-   $capitalizeName Component
-   ========================================================================== */
+   Placeholders
+========================================================================== */
+\$default {}
 
+/* ==========================================================================
+   $capitalizeName Component
+========================================================================== */
+
+/* Default
+ ================ */
+
+.default {
+  @extend \$default;
+}
 EOF
 
 echo 'Created STYL'
