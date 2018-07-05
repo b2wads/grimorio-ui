@@ -96,9 +96,7 @@ echo 'Created Story'
 
 touch $path/$name/$name.spec.js
 cat > $path/$name/$name.spec.js <<EOF
-import React from 'react';
-import { shallow } from 'enzyme';
-import { expect } from 'chai';
+import '../../../internals/test/helper';
 
 import $capitalizeName from './$name-component';
 

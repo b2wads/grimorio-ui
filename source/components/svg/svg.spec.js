@@ -1,16 +1,16 @@
 import '../../../internals/test/helper';
+
 import Svg from './index';
 
 /** @test {Svg} */
-describe('Svg component', function() {
-  /** @test {Svg#render} */
+describe('Button component', () => {
+/** @test {Svg#render} */
   describe('#render', () => {
-    let instance = ReactTestUtils.renderIntoDocument(
-      <Svg />
-    );
-
-    it('Should output a svg', () => {
-      assert.isOk(ReactTestUtils.scryRenderedDOMComponentsWithTag(instance, 'svg'));
+    it('render correctly', () => {
+      const wrapper = shallow(
+        <Svg />
+      );
+      expect(wrapper.length).to.equal(1);
     });
   });
 });

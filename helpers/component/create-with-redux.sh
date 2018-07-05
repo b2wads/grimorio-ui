@@ -144,8 +144,8 @@ EOF
 
 echo 'Created Reducer'
 
-touch $path/$name/$name.story.js
-cat > $path/$name/$name.story.js <<EOF
+touch $path/$name/$name.stories.js
+cat > $path/$name/$name.stories.js <<EOF
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -161,11 +161,9 @@ EOF
 
 echo 'Created Story'
 
-touch $path/$name/$name.test.js
-cat > $path/$name/$name.test.js <<EOF
-import React from 'react';
-import { shallow } from 'enzyme';
-import { expect } from 'chai';
+touch $path/$name/$name.spec.js
+cat > $path/$name/$name.spec.js <<EOF
+import '../../../internals/test/helper';
 
 import $capitalizeName from './$name-component';
 
