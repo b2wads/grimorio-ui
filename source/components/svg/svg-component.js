@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-// import { dict } from 'tcomb';
-// import Icon from '!svg-react-loader?name=Icon!../../../node_modules/material-design-icons/alert/svg/design/ic_add_alert_24px.svg';
 
 class Svg extends PureComponent {
   constructor(props) {
@@ -11,39 +9,21 @@ class Svg extends PureComponent {
   }
 
   static defaultProps = {
-    src: 'person',
-    type: 'icon',
-    width: 24,
-    height: 24,
+    src: 'logo/acom',
   };
 
   static propTypes = {
     src: PropTypes.string,
-    type: PropTypes.oneOf(['icon', 'other']),
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     style: PropTypes.object,
   };
 
-  loadIcon(src) {
-    const req = require.context(
-      '!svg-react-loader!../../../node_modules/material-design-icons/',
-      true,
-      /\/production\/ic_.{0,}_48px\.svg$/
-    );
-
-    return req(req.keys().filter(paths => paths.includes(`${src}_48px`))[0]);
-  }
-
   pathLoader(src) {
     try {
-      if (this.props.type === 'icon') {
-        return this.loadIcon(src);
-      } else {
-        /* eslint-disable */
-        return require('!!babel-loader!svg-react-loader!../../images/svg/'+ src +'.svg');
-        /* eslint-disable */
-      }
+      /* eslint-disable */
+      return require('!!babel-loader!svg-react-loader!../../images/svg/'+ src +'.svg');
+      /* eslint-disable */
     } catch (error) {
       return false;
     }

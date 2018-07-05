@@ -52,7 +52,7 @@ echo 'Created folder'
 
 touch $path/$name/index.js
 cat > $path/$name/index.js <<EOF
-import $capitalizeName from './$name-container';
+import $capitalizeName from './$name-component';
 export default $capitalizeName;
 
 EOF
