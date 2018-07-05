@@ -17,10 +17,10 @@ stories.addWithInfo(
   `,
   () => (
     <div>
-      <Button style="primary">Primary</Button>&nbsp;
+      <Button style="primary" className="teste">Primary</Button>&nbsp;
       <Button style="dark">Dark</Button>&nbsp;
       <Button disabled>Disabled</Button>&nbsp;
-      <Button style="clean">Clean</Button>&nbsp;
+      <Button style="clean" size="small">Clean</Button>&nbsp;
     </div>
   )
 );
@@ -33,24 +33,22 @@ stories.addWithInfo('Disabled', () => (
     <Button style="dark" disabled={boolean('Disabled', false)}>
       {text('Dark', 'Dark')}
     </Button>&nbsp;
-    <Button style="clean" disabled={boolean('Disabled', false)}>
+    <Button style="clean" size="small" disabled={boolean('Disabled', false)}>
       {text('Clean', 'Clean')}
     </Button>&nbsp;
   </div>
 ));
 
-// stories.addWithInfo('Size', () => (
-//   <div>
-//     <Button size="mini">Mini</Button>&nbsp;
-//     <Button size="small">Small</Button>&nbsp;
-//     <Button>Medium</Button>&nbsp;
-//     <Button size="large">Large</Button>&nbsp;
-//     <Button style="primary" size="large">Large</Button>&nbsp;
-//     <Button style="primary">Medium</Button>&nbsp;
-//     <Button style="primary" size="small">Small</Button>&nbsp;
-//     <Button style="primary" size="mini">Mini</Button>&nbsp;
-//   </div>
-// ));
+stories.addWithInfo('Size', () => (
+  <div>
+    <Button size="small">Small</Button>&nbsp;
+    <Button>Medium</Button>&nbsp;
+    <Button size="large">Large</Button>&nbsp;
+    <Button style="dark" size="large">Large</Button>&nbsp;
+    <Button style="dark">Medium</Button>&nbsp;
+    <Button style="dark" size="small">Small</Button>&nbsp;
+  </div>
+));
 
 // stories.addWithInfo('Outline', () => (
 //   <div>
