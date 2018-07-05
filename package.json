@@ -119,7 +119,7 @@
     },
     "testEnvironment": "jsdom",
     "testMatch": [
-      "<rootDir>/source/**/*.test.js"
+      "<rootDir>/source/**/*.spec.js"
     ],
     "setupTestFrameworkScriptFile": "./internals/test/setup.js",
     "coverageDirectory": ".reports/coverage",

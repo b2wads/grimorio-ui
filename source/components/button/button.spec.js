@@ -15,8 +15,8 @@ describe('Button component', function() {
       assert.isOk(ReactTestUtils.findRenderedDOMComponentWithTag(instance, 'button'));
     });
 
-    it('Should output a button with default style', () => {
-      assert.isOk(ReactDOM.findDOMNode(instance).className.match(styles.default));
+    it('Should output a button with primary style', () => {
+      assert.isOk(ReactDOM.findDOMNode(instance).className.match(styles.primary));
     });
   });
 });
