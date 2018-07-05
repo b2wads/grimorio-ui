@@ -94,8 +94,8 @@ EOF
 
 echo 'Created Story'
 
-touch $path/$name/$name.test.js
-cat > $path/$name/$name.test.js <<EOF
+touch $path/$name/$name.spec.js
+cat > $path/$name/$name.spec.js <<EOF
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';

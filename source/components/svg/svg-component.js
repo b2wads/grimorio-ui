@@ -11,8 +11,8 @@ class Svg extends PureComponent {
   }
 
   static defaultProps = {
-    src: 'logo/acom',
-    type: 'logo',
+    src: 'person',
+    type: 'icon',
     width: 24,
     height: 24,
   };
@@ -32,16 +32,20 @@ class Svg extends PureComponent {
       /\/production\/ic_.{0,}_48px\.svg$/
     );
 
-    return req(req.keys().filter(keys => keys.includes(src))[0]);
+    return req(req.keys().filter(paths => paths.includes(`${src}_48px`))[0]);
   }
 
   pathLoader(src) {
-    if (this.props.type === 'icon') {
-      return this.loadIcon(src);
-    } else {
-      /* eslint-disable */
-      return require('!!babel-loader!svg-react-loader!../../images/svg/'+ src +'.svg');
-      /* eslint-disable */
+    try {
+      if (this.props.type === 'icon') {
+        return this.loadIcon(src);
+      } else {
+        /* eslint-disable */
+        return require('!!babel-loader!svg-react-loader!../../images/svg/'+ src +'.svg');
+        /* eslint-disable */
+      }
+    } catch (error) {
+      return false;
     }
   }
 

@@ -1,3 +1,5 @@
 **/*.story.js
 **/*.test.js
+**/*.stories.js
+**/*.spec.js
 internals/

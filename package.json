@@ -16,6 +16,7 @@
     "release": "./node_modules/.bin/release-it",
     "storybook": "start-storybook -p 9000 -c ./internals/storybook",
     "test": "NODE_ENV=testing BABEL_ENV=testing jest",
+    "test:verb": "NODE_ENV=testing BABEL_ENV=testing jest --verbose",
     "test:tdd": "yarn test -- --watch",
     "test:coverage": "yarn test -- --coverage --coverageDirectory=coverage"
   },

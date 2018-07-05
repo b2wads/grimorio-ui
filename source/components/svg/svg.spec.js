@@ -12,6 +12,5 @@ describe('Svg component', function() {
     it('Should output a svg', () => {
       assert.isOk(ReactTestUtils.scryRenderedDOMComponentsWithTag(instance, 'svg'));
     });
-
   });
 });
