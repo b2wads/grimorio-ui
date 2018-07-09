@@ -7,14 +7,8 @@ import styles from './button.styl';
 
 class Button extends PureComponent {
   static defaultProps = {
-    active: false,
     disabled: false,
-    block: false,
-    outline: false,
-    rounded: false,
-    circle: false,
-    loading: false,
-    style: 'default',
+    style: 'primary',
     size: 'medium',
     type: 'button',
     children: false,
@@ -22,48 +16,21 @@ class Button extends PureComponent {
   };
 
   static propTypes = {
-    active: PropTypes.bool,
     disabled: PropTypes.bool,
-    block: PropTypes.bool,
-    outline: PropTypes.bool,
-    rounded: PropTypes.bool,
-    circle: PropTypes.bool,
-    loading: PropTypes.bool,
     type: PropTypes.oneOf(['button', 'reset', 'submit']),
-    style: PropTypes.oneOf(['default', 'primary', 'success', 'info', 'warning', 'danger', 'transparent']),
-    size: PropTypes.oneOf(['mini', 'small', 'medium', 'large', 'none']),
+    style: PropTypes.oneOf(['primary', 'secondary', 'clean']),
+    size: PropTypes.oneOf(['small', 'medium']),
     onClick: PropTypes.func,
     children: PropTypes.any.isRequired,
     className: PropTypes.string,
   };
 
   render() {
-    const {
-      active,
-      outline,
-      rounded,
-      circle,
-      block,
-      style,
-      size,
-      disabled,
-      loading,
-      onClick,
-      children,
-      type,
-      className,
-      ...elementProps
-    } = this.props;
+    const { style, size, disabled, onClick, children, type, className, ...elementProps } = this.props;
 
     const fullClassName = classNames(className, {
       [`${styles[style]}`]: style,
       [`${styles[size]}`]: size,
-      [`${styles.block}`]: block,
-      [`${styles.outline}`]: outline,
-      [`${styles.rounded}`]: rounded,
-      [`${styles.circle}`]: circle,
-      [`${styles.active}`]: active,
-      [`${styles.loading}`]: loading,
     });
 
     if (!children) {

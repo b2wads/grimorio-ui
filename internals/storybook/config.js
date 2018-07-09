@@ -20,7 +20,7 @@ addDecorator((fn, { kind, story }) => <div className={styles.container}>
 </div>);
 
 setOptions({
-  name: 'B2W Ads Theme',
+  name: 'Afl Theme',
   url: '',
   goFullScreen: false,
   showLeftPanel: true,
@@ -31,7 +31,7 @@ setOptions({
 setAddon(infoAddon);
 
 function loadStories () {
-  const req = require.context('../../source/', true, /\.story\.js$/);
+  const req = require.context('../../source/', true, /\.stories\.js$/);
   req.keys().forEach((filename) => req(filename))
 }
 

@@ -16,6 +16,7 @@
     "release": "./node_modules/.bin/release-it",
     "storybook": "start-storybook -p 9000 -c ./internals/storybook",
     "test": "NODE_ENV=testing BABEL_ENV=testing jest",
+    "test:verb": "NODE_ENV=testing BABEL_ENV=testing jest --verbose",
     "test:tdd": "yarn test -- --watch",
     "test:coverage": "yarn test -- --coverage --coverageDirectory=coverage"
   },
@@ -54,6 +55,8 @@
     "child-process-es6-promise": "1.2.0",
     "cross-env": "5.1.4",
     "css-loader": "0.28.4",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
     "eslint": "4.19.0",
     "eslint-config-google": "0.9.1",
     "eslint-loader": "2.0.0",
@@ -87,6 +90,7 @@
     "classnames": "2.2.5",
     "extract-text-webpack-plugin": "3.0.2",
     "immutable": "3.8.1",
+    "material-design-icons": "3.0.1",
     "moment": "2.22.1",
     "prop-types": "15.5.10",
     "react": "16.2.0",
@@ -118,7 +122,7 @@
     },
     "testEnvironment": "jsdom",
     "testMatch": [
-      "<rootDir>/source/**/*.test.js"
+      "<rootDir>/source/**/*.spec.js"
     ],
     "setupTestFrameworkScriptFile": "./internals/test/setup.js",
     "coverageDirectory": ".reports/coverage",

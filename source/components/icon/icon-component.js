@@ -5,43 +5,50 @@ class Icon extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.IconPathLoader = this.IconPathLoader.bind(this);
+    this.pathLoader = this.pathLoader.bind(this);
   }
 
   static defaultProps = {
-    size: 16,
-    name: 'user',
+    name: 'person', // https://material.io/tools/icons/?style=baseline
+    size: 24,
   };
 
   static propTypes = {
     name: PropTypes.string,
-    color: PropTypes.string,
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    style: PropTypes.object,
   };
 
-  IconPathLoader(name) {
-    if (name) {
-      try {
-        /* eslint-disable */
-        return require('!!babel-loader!svg-react-loader!../../images/svg/icon/'+ name +'.svg');
-        /* eslint-enable */
-      } catch (e) {
-        return false;
-      }
+  loadIcon(src) {
+    const req = require.context(
+      '!svg-react-loader!../../../node_modules/material-design-icons/',
+      true,
+      /\/production\/ic_.{0,}_48px\.svg$/
+    );
+
+    return req(req.keys().filter(paths => paths.includes(`${src}_48px`))[0]);
+  }
+
+  pathLoader(name) {
+    try {
+      return this.loadIcon(name);
+    } catch (error) {
+      return false;
     }
   }
 
   render() {
+    const { name, ...elementProps } = this.props;
+    const Component = this.pathLoader(name);
+
     let styles = {
-      fill: this.props.color,
       verticalAlign: 'middle',
-      width: this.props.size, // CSS instead of the width attr to support non-pixel units
-      height: this.props.size, // Prevents scaling issue in IE
     };
 
-    const { name, ...elementProps } = this.props;
-    const Component = this.IconPathLoader(name);
+    if (this.props.size) {
+      // Prevents scaling issue in IE
+      styles.height = this.props.size;
+      styles.width = this.props.size;
+    }
 
     if (!Component) {
       return null;

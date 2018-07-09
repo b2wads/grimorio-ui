@@ -9,7 +9,7 @@ class Svg extends PureComponent {
   }
 
   static defaultProps = {
-    src: 'logo/acom',
+    src: 'logo/example',
   };
 
   static propTypes = {
@@ -20,12 +20,14 @@ class Svg extends PureComponent {
   };
 
   pathLoader(src) {
-    try {
-      /* eslint-disable */
-      return require('!!babel-loader!svg-react-loader!../../images/svg/'+ src +'.svg');
-      /* eslint-disable */
-    } catch (error) {
-      return false;
+    if (src) {
+      try {
+        /* eslint-disable */
+        return require('!!babel-loader!svg-react-loader!../../images/svg/'+ src +'.svg');
+        /* eslint-enable */
+      } catch (e) {
+        return false;
+      }
     }
   }
 
