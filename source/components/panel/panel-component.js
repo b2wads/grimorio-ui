@@ -9,24 +9,23 @@ class Panel extends PureComponent {
   static propTypes = {
     type: PropTypes.oneOf(['default', 'brand']),
     header: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   };
 
   static defaultProps = {
     type: 'default',
-    style: {},
   };
 
   render() {
-    const { header, children, className, type } = this.props;
+    const { header, children, className, type, ...elementProps } = this.props;
     const fullClassName = classNames(className, styles[type]);
 
     return (
-      <article style={this.props.style} className={fullClassName}>
+      <article {...elementProps} className={fullClassName}>
         <header>
-          <h1 className={styles[`${type}__header`]}>{header}</h1>
+          <h1 className={styles['header']}>{header}</h1>
         </header>
-        <div className={styles[`${type}__content`]}>
+        <div className={styles['content']}>
           {children}
         </div>
       </article>

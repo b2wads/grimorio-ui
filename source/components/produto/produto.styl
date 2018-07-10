@@ -3,35 +3,78 @@
 ========================================================================== */
 @import '../../styl/00-settings/_variables.styl';
 
-/* Color
-========================================================================== */
+$gutter-px = 8px;
 
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$social-ico {
+$_social-ico {
   border-radius: 3px;
-  margin-right: 5px;
   cursor: pointer;
+  margin-right: 5px;
 }
 
+/* Comp Base
+ ================ */
+
 $default {
-  &__tag {}
-  &__img {}
-  &__social {}
+  position: relative;
 
-  &__copy {
+  a {
+    color: $base-text-color;
+    text-decoration: none;
+  }
+
+  .tag {
+    position: absolute;
+    z-index: 1;
+  }
+
+  .img {
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .price {
+    color: $c-text-dark;
+    font-size: 28px;
+    font-weight: 400;
+    margin-top: $gutter-px;
+  }
+
+  .valid {
+    font-size: 12px;
+    margin-top: $gutter-px;
+  }
+
+  .social {
+    margin-top: $gutter-px;
+    padding-bottom: 2px;
+  }
+
+  .copy {
     margin-right: 5px;
+    transition: all 0.3s ease;
+
+    svg {
+      margin-left: 5px;
+    }
   }
 
-  &__facebook {
-    @extend $social-ico;
-    fill: $facebook;
+  .facebook {
+    @extend $_social-ico;
+    fill: $c-facebook;
   }
 
-  &__twitter {
-    @extend $social-ico;
-    fill: $twitter;
+  .twitter {
+    @extend $_social-ico;
+    fill: $c-twitter;
   }
 }
 
@@ -44,12 +87,6 @@ $default {
 
 .default {
   @extend $default;
-
-  &__name {
-    font-size: $base-font-size-px;
-  }
-  &__price {}
-  &__valid {}
 }
 
 /* Card
@@ -57,7 +94,15 @@ $default {
 
  .card {
   @extend $default;
+  text-align: center;
 
-  &__name {}
-  &__price {}
+  .name {
+    text-align: center;
+  }
+
+  .price {
+    color: $c-primary;
+    margin: 15px 0;
+    text-align: center;
+  }
 }

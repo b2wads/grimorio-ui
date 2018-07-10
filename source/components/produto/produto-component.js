@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
+import Clipboard from 'clipboard';
 
 import styles from './produto.styl';
 
@@ -9,16 +10,25 @@ import Svg from '../svg';
 import Icon from '../icon';
 import Button from '../button';
 
-import { ellipsis, shareOn } from '../../helpers';
+import { ellipsis, moneyFormat, shareOn } from '../../helpers';
 
 class Produto extends PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      linkCopied: false,
+    };
+  }
+
   static propTypes = {
-    card: PropTypes.bool,
+    type: PropTypes.oneOf(['default, card']),
+    nameLength: PropTypes.number,
   };
 
   static defaultProps = {
     className: '',
-    card: false,
+    type: 'default',
+    nameLength: 65,
   };
 
   getBrand(id) {
@@ -36,11 +46,25 @@ class Produto extends PureComponent {
     }
   }
 
+  componentWillUnmount() {
+    this.clipboard && this.clipboard.destroy();
+  }
+
+  componentDidMount() {
+    this.clipboard = new Clipboard(`.${styles['copy']}`);
+
+    this.clipboard.on('success', () => {
+      this.setState({ linkCopied: true });
+      setTimeout(() => this.setState({ linkCopied: false }), 2000);
+    });
+  }
+
   render() {
     /* eslint-disable */
     const {
       className,
-      card,
+      type,
+      nameLength,
       imagem,
       nome,
       preco_com_desconto,
@@ -53,26 +77,34 @@ class Produto extends PureComponent {
     } = this.props;
     /* eslint-disable */
 
-    const style = card ? 'card': 'default';
-    const fullClassName = classNames(className, styles[style]);
+    const { linkCopied }  = this.state;
+
+    const fullClassName = classNames(className, {
+      [styles[type]]: type,
+    });
 
     return (
       <section className={fullClassName}>
-        <div className={styles[`${style}__tag`]}>
-          <Svg width={48} height={48} src={`logo/${this.getBrand(marca)}`} />
-        </div>
-        <div className={styles[`${style}__img`]}>
-          <img src={imagem} alt={nome} />
-        </div>
-        <h1 className={styles[`${style}__name`]}>{ellipsis(nome, 72)}</h1>
-        <div className={styles[`${style}__price`]}>{preco_com_desconto}</div>
-        <div className={styles[`${style}__valid`]}>{fim}</div>
-        <div className={styles[`${style}__social`]}>
-          <Button className={styles[`${style}__copy`]} size="small">
-            Copiar Link <Icon name="link" size={18} />
+        <a href={link}>
+          <div className={styles['tag']}>
+            {type !== 'card' && <Svg width={48} height={48} src={`logo/${this.getBrand(marca)}`} />}
+          </div>
+          <div className={styles['img']}>
+            <img src={imagem} alt={nome} />
+          </div>
+          <h1 className={styles['name']}>{ellipsis(nome, nameLength)}</h1>
+          <div className={styles['price']}>{moneyFormat(preco_com_desconto)}</div>
+
+          {type !== 'card' && <div className={styles['valid']}>{`Valido até: ${fim}`}</div>}
+        </a>
+
+        <div className={styles['social']}>
+          <Button active={linkCopied} data-clipboard-text={link} className={styles['copy']} size="small">
+            {linkCopied ? 'Copiado!' : 'Copiar Link'}
+            <Icon name={linkCopied ? 'check' : 'link'} size={18} />
           </Button>
-          <Svg onClick={() => shareOn.facebook(link)} className={styles[`${style}__facebook`]} align="top" width={28} height={28} src="icon/facebook-square" />
-          <Svg onClick={() => shareOn.twitter(link)} className={styles[`${style}__twitter`]} align="top" width={28} height={28} src="icon/twitter-square" />
+          <Svg onClick={() => shareOn.facebook(link)} className={styles['facebook']} align="top" width={26} height={26} src="icon/facebook-square" />
+          <Svg onClick={() => shareOn.twitter(link)} className={styles['twitter']} align="top" width={26} height={26} src="icon/twitter-square" />
         </div>
       </section>
     );

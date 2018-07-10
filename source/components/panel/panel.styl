@@ -11,9 +11,9 @@
 ========================================================================== */
 $defaultPanel {
   @extend $drop-shadow;
-  width: 100%;
   border-radius: 2px;
   overflow: hidden;
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -27,7 +27,7 @@ $defaultPanel {
   @extend $defaultPanel;
   padding: 20px 25px;
 
-  &__header {
+  .header {
     color: $c-support;
     font-size: 18px;
   }
@@ -39,12 +39,12 @@ $defaultPanel {
 .brand {
   @extend $defaultPanel;
 
-  &__header {
-    overflow: hidden;
+  .header {
     font-size: 0;
+    overflow: hidden;
   }
 
-  &__content {
+  .content {
     padding: 10px;
   }
 }
