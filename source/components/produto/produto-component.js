@@ -10,13 +10,14 @@ import Svg from '../svg';
 import Icon from '../icon';
 import Button from '../button';
 
-import { ellipsis, moneyFormat, shareOn } from '../../helpers';
+import { ellipsis, moneyFormat, shareOn, property } from '../../helpers';
 
 class Produto extends PureComponent {
   constructor() {
     super();
     this.state = {
       linkCopied: false,
+      btnId: `-copy-${property.randomId()}`,
     };
   }
 
@@ -51,11 +52,12 @@ class Produto extends PureComponent {
   }
 
   componentDidMount() {
-    this.clipboard = new Clipboard(`.${styles['copy']}`);
+    this.clipboard = new Clipboard(`.${this.state.btnId}`);
+    console.log('>', this.state.btnId);
 
     this.clipboard.on('success', () => {
       this.setState({ linkCopied: true });
-      setTimeout(() => this.setState({ linkCopied: false }), 2000);
+      setTimeout(() => this.setState({ linkCopied: false }), 1500);
     });
   }
 
@@ -77,7 +79,7 @@ class Produto extends PureComponent {
     } = this.props;
     /* eslint-disable */
 
-    const { linkCopied }  = this.state;
+    const { linkCopied, btnId }  = this.state;
 
     const fullClassName = classNames(className, {
       [styles[type]]: type,
@@ -99,7 +101,7 @@ class Produto extends PureComponent {
         </a>
 
         <div className={styles['social']}>
-          <Button active={linkCopied} data-clipboard-text={link} className={styles['copy']} size="small">
+          <Button active={linkCopied} data-clipboard-text={link} className={classNames(styles['copy'], btnId)} size="small">
             {linkCopied ? 'Copiado!' : 'Copiar Link'}
             <Icon name={linkCopied ? 'check' : 'link'} size={18} />
           </Button>

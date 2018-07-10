@@ -8,7 +8,7 @@ import styles from './panel.styl';
 class Panel extends PureComponent {
   static propTypes = {
     type: PropTypes.oneOf(['default', 'brand']),
-    header: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    header: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   };
 
