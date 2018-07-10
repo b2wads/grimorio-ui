@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
 import Produto from './produto-component';
+import Panel from '../panel';
 
 const stories = storiesOf('Produto', module);
 
@@ -20,4 +21,8 @@ const exampleProduct = {
   link: 'https://www.americanas.com.br/produto/33446653/notebook-profissional-avell-w155-mx-intel-core-i7-16gb-geforce-mx150-1tb-15-6-fullhd',
 }
 
-stories.addWithInfo('Normal', () => <Produto {...exampleProduct} />);
+stories.addWithInfo('Normal', () => (
+  <Panel style={{width: '25%'}}>
+    <Produto {...exampleProduct} />
+  </Panel>
+));

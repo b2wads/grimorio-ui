@@ -1,2 +1,3 @@
 export * as property from './property';
-export * as shareOn from './sharer-on';
+export { shareOn } from './share-on';
+export { ellipsis } from './ellipsis';

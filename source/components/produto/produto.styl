@@ -9,10 +9,30 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
+$social-ico {
+  border-radius: 3px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
 $default {
   &__tag {}
   &__img {}
   &__social {}
+
+  &__copy {
+    margin-right: 5px;
+  }
+
+  &__facebook {
+    @extend $social-ico;
+    fill: $facebook;
+  }
+
+  &__twitter {
+    @extend $social-ico;
+    fill: $twitter;
+  }
 }
 
 /* ==========================================================================
@@ -25,7 +45,9 @@ $default {
 .default {
   @extend $default;
 
-  &__name {}
+  &__name {
+    font-size: $base-font-size-px;
+  }
   &__price {}
   &__valid {}
 }

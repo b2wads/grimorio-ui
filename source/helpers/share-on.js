@@ -12,7 +12,7 @@ const share = (shareUrl, url, name = 'share') => {
   window.open(href, name, WINDOW_SIZE);
 };
 
-export default {
+export const shareOn = {
   facebook: url => share(SHARE_URL.facebook, url, 'facebook-share'),
   twitter: url => share(SHARE_URL.twitter, url, 'facebook-share'),
 };

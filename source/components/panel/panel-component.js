@@ -14,6 +14,7 @@ class Panel extends PureComponent {
 
   static defaultProps = {
     type: 'default',
+    style: {},
   };
 
   render() {
@@ -21,7 +22,7 @@ class Panel extends PureComponent {
     const fullClassName = classNames(className, styles[type]);
 
     return (
-      <article className={fullClassName}>
+      <article style={this.props.style} className={fullClassName}>
         <header>
           <h1 className={styles[`${type}__header`]}>{header}</h1>
         </header>

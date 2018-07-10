@@ -9,6 +9,8 @@ import Svg from '../svg';
 import Icon from '../icon';
 import Button from '../button';
 
+import { ellipsis, shareOn } from '../../helpers';
+
 class Produto extends PureComponent {
   static propTypes = {
     card: PropTypes.bool,
@@ -51,26 +53,26 @@ class Produto extends PureComponent {
     } = this.props;
     /* eslint-disable */
 
-    const style = card ? styles['card'] : styles['default'];
-    const fullClassName = classNames(className, style);
+    const style = card ? 'card': 'default';
+    const fullClassName = classNames(className, styles[style]);
 
     return (
       <section className={fullClassName}>
-        <div className={`${style}__tag`}>
+        <div className={styles[`${style}__tag`]}>
           <Svg width={48} height={48} src={`logo/${this.getBrand(marca)}`} />
         </div>
-        <div className={`${style}__img`}>
+        <div className={styles[`${style}__img`]}>
           <img src={imagem} alt={nome} />
         </div>
-        <h1 className={`${style}__name`}>{nome}</h1>
-        <div className={`${style}__price`}>{preco_com_desconto}</div>
-        <div className={`${style}__valid`}>{fim}</div>
-        <div className={`${style}__social`}>
-          <Button size="small">
+        <h1 className={styles[`${style}__name`]}>{ellipsis(nome, 72)}</h1>
+        <div className={styles[`${style}__price`]}>{preco_com_desconto}</div>
+        <div className={styles[`${style}__valid`]}>{fim}</div>
+        <div className={styles[`${style}__social`]}>
+          <Button className={styles[`${style}__copy`]} size="small">
             Copiar Link <Icon name="link" size={18} />
           </Button>
-          <Svg width={32} height={32} src="icon/facebook-square" />
-          <Svg width={32} height={32} src="icon/twitter-square" />
+          <Svg onClick={() => shareOn.facebook(link)} className={styles[`${style}__facebook`]} align="top" width={28} height={28} src="icon/facebook-square" />
+          <Svg onClick={() => shareOn.twitter(link)} className={styles[`${style}__twitter`]} align="top" width={28} height={28} src="icon/twitter-square" />
         </div>
       </section>
     );
