@@ -9,9 +9,13 @@ import Product from '../product';
 const exampleProduct = {
   imagem: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
   nome: 'Notebook Profissional Avell W155 MX Intel Core i7 16GB (GeForce MX150) 1TB 15.6 FullHD',
-  preco_com_desconto: 5333.20,
+  preco_com_desconto: 6333.20,
   marca: 2,
-  inicio: '2018-07-06 00:00',
+  preco_boleto: 5333.20,
+  tipo: 'produto',
+  codigo_cupom: null,
+  regras_cupom: null,
+  fundo_destaque: 1,
   fim: '2018-07-08 23:59',
   link: 'https://www.americanas.com.br/produto/33446653/notebook-profissional-avell-w155-mx-intel-core-i7-16gb-geforce-mx150-1tb-15-6-fullhd',
 }
