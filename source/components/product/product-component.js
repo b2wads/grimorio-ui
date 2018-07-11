@@ -75,6 +75,7 @@ class Product extends PureComponent {
       // preco_boleto,
       // comissao_especial,
       // tipo,
+      ...elementProps
     } = this.props;
     /* eslint-disable */
 
@@ -85,7 +86,7 @@ class Product extends PureComponent {
     });
 
     return (
-      <section className={fullClassName}>
+      <section {...elementProps} className={fullClassName}>
         <a href={link}>
           <div className={styles['tag']}>
             {type !== 'card' && <Svg width={48} height={48} src={`logo/${this.getBrand(marca)}`} />}

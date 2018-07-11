@@ -26,12 +26,20 @@ const exampleProduct = {
 
 stories.addWithInfo('Normal', () => (
   <div>
+    <Product style={pannelSize} {...exampleProduct} />
+    &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
       <Product {...exampleProduct} />
     </Panel>
+  </div>
+));
+
+stories.addWithInfo('Brand', () => (
+  <div>
+    <Product style={pannelSizeSmall} type="card" nameLength={65} {...exampleProduct} />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel type="brand" style={pannelSizeSmall}>
-      <Product type="card" nameLength={65} {...exampleProduct} />
+    <Panel type="brand" brand="acom" style={pannelSizeSmall}>
+      <Product type="card" {...exampleProduct}></Product>
     </Panel>
   </div>
 ));

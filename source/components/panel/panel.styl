@@ -40,8 +40,16 @@ $defaultPanel {
   @extend $defaultPanel;
 
   .header {
+    align-items: center;
+    display: flex;
     font-size: 0;
     overflow: hidden;
+    padding: 15px 0;
+    justify-content: center;
+
+    &.acom { background: $c-acom; }
+    &.suba { background: $c-suba; }
+    &.shop { background: $c-shop; }
   }
 
   .content {
