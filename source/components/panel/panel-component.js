@@ -9,38 +9,43 @@ import styles from './panel.styl';
 
 class Panel extends PureComponent {
   static propTypes = {
-    brand: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf(['none', 'acom', 'suba', 'shop', 'soub'])]),
+    brand: PropTypes.oneOf([null, 'acom', 'suba', 'shop', 'soub']),
     title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   };
 
   static defaultProps = {
-    type: 'default',
-    brand: false,
+    brand: null,
     title: false,
   };
 
   renderHeader(brand, title) {
     if (brand) {
-      return <Svg src={`logo/${brand}`} height={40} width={40} />;
+      return (
+        <header className={styles[brand]}>
+          <Svg src={`logo/${brand}`} height={40} width={40} />
+        </header>
+      );
     } else {
-      return title;
+      return (
+        <header className={styles.title}>
+          {title}
+        </header>
+      );
     }
   }
 
   render() {
     const { title, children, className, brand, ...elementProps } = this.props;
-    const fullClassName = classNames(className, styles[`${brand ? 'brand' : 'default'}`]);
+    const fullClassName = classNames(className, {
+      [styles.default]: true,
+      [styles.isBrand]: brand,
+    });
 
     return (
       <article {...elementProps} className={fullClassName}>
-        {(title || brand) &&
-          <header>
-            <h1 className={`${styles['header']} ${styles[brand]}`}>
-              {this.renderHeader(brand, title)}
-            </h1>
-          </header>}
-        <div className={styles['content']}>
+        {(title || brand) && this.renderHeader(brand, title)}
+        <div className={classNames(styles.content, { [styles.isBrand]: brand })}>
           {children}
         </div>
       </article>
