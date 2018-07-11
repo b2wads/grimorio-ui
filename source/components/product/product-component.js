@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 import Clipboard from 'clipboard';
 
-import styles from './produto.styl';
+import styles from './product.styl';
 
 import Svg from '../svg';
 import Icon from '../icon';
@@ -12,7 +12,7 @@ import Button from '../button';
 
 import { ellipsis, moneyFormat, shareOn, property } from '../../helpers';
 
-class Produto extends PureComponent {
+class Product extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -29,7 +29,7 @@ class Produto extends PureComponent {
   static defaultProps = {
     className: '',
     type: 'default',
-    nameLength: 65,
+    nameLength: 75,
   };
 
   getBrand(id) {
@@ -53,7 +53,6 @@ class Produto extends PureComponent {
 
   componentDidMount() {
     this.clipboard = new Clipboard(`.${this.state.btnId}`);
-    console.log('>', this.state.btnId);
 
     this.clipboard.on('success', () => {
       this.setState({ linkCopied: true });
@@ -113,7 +112,7 @@ class Produto extends PureComponent {
   }
 }
 
-export default CSSModules(Produto, styles);
+export default CSSModules(Product, styles);
 
 /*
 - nome

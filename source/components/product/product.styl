@@ -8,38 +8,79 @@ $gutter-px = 8px;
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$_social-ico {
+$social-ico {
   border-radius: 3px;
   cursor: pointer;
   margin-right: 5px;
 }
 
-/* Comp Base
- ================ */
-
-$default {
+$default-product {
   position: relative;
 
   a {
     color: $base-text-color;
     text-decoration: none;
   }
+}
 
-  .tag {
-    position: absolute;
-    z-index: 1;
-  }
+/* ==========================================================================
+   Product Elements
+========================================================================== */
 
-  .img {
-    img {
-      height: auto;
-      width: 100%;
-    }
-  }
+.tag {
+  position: absolute;
+  z-index: 1;
+}
 
-  .name {
-    font-size: 14px;
+.img {
+  img {
+    height: auto;
+    width: 100%;
   }
+}
+
+.name {
+  font-size: 14px;
+}
+
+.valid {
+  font-size: 12px;
+  margin-top: $gutter-px;
+}
+
+.social {
+  margin-top: $gutter-px;
+  padding-bottom: 2px;
+}
+
+.copy {
+  margin-right: 5px;
+  transition: all 0.3s ease;
+
+  svg {
+    margin-left: 5px;
+  }
+}
+
+.facebook {
+  @extend $social-ico;
+  fill: $c-facebook;
+}
+
+.twitter {
+  @extend $social-ico;
+  fill: $c-twitter;
+}
+
+/* ==========================================================================
+   Product Props
+========================================================================== */
+
+/* Default
+ ================ */
+
+.default {
+  @extend $default-product;
 
   .price {
     color: $c-text-dark;
@@ -47,61 +88,18 @@ $default {
     font-weight: 400;
     margin-top: $gutter-px;
   }
-
-  .valid {
-    font-size: 12px;
-    margin-top: $gutter-px;
-  }
-
-  .social {
-    margin-top: $gutter-px;
-    padding-bottom: 2px;
-  }
-
-  .copy {
-    margin-right: 5px;
-    transition: all 0.3s ease;
-
-    svg {
-      margin-left: 5px;
-    }
-  }
-
-  .facebook {
-    @extend $_social-ico;
-    fill: $c-facebook;
-  }
-
-  .twitter {
-    @extend $_social-ico;
-    fill: $c-twitter;
-  }
-}
-
-/* ==========================================================================
-   Produto Component
-========================================================================== */
-
-/* Default
- ================ */
-
-.default {
-  @extend $default;
 }
 
 /* Card
  ================ */
 
- .card {
-  @extend $default;
+.card {
+  @extend $default-product;
   text-align: center;
-
-  .name {
-    text-align: center;
-  }
 
   .price {
     color: $c-primary;
+    font-size: 28px;
     margin: 15px 0;
     text-align: center;
   }

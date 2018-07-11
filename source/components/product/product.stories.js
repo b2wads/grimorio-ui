@@ -2,11 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import Produto from './produto-component';
+import Product from './product-component';
 import Panel from '../panel';
-import { dict } from 'tcomb';
 
-const stories = storiesOf('Produto', module);
+const stories = storiesOf('Product', module);
 
 stories.addDecorator(withKnobs);
 
@@ -28,11 +27,11 @@ const exampleProduct = {
 stories.addWithInfo('Normal', () => (
   <div>
     <Panel style={pannelSize}>
-      <Produto {...exampleProduct} />
+      <Product {...exampleProduct} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel type="brand" style={pannelSizeSmall}>
-      <Produto type="card" nameLength={55} {...exampleProduct} />
+      <Product type="card" nameLength={65} {...exampleProduct} />
     </Panel>
   </div>
 ));

@@ -1,14 +1,14 @@
 import '../../../internals/test/helper';
 
-import Produto from './produto-component';
+import Product from './product-component';
 
-/** @test {Produto} */
-describe('Produto component', () => {
-/** @test {Produto#render} */
+/** @test {Product} */
+describe('Product component', () => {
+/** @test {Product#render} */
   describe('#render', () => {
     it('render correctly', () => {
       const wrapper = shallow(
-        <Produto />
+        <Product />
       );
       expect(wrapper.length).to.equal(1);
     });

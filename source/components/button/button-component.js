@@ -31,7 +31,7 @@ class Button extends PureComponent {
     const { style, size, disabled, active, onClick, children, type, className, ...elementProps } = this.props;
     const fullClassName = classNames(className, {
       [styles[style]]: style,
-      [styles['--is-active']]: active,
+      [styles.isActive]: active,
       [styles[size]]: size,
     });
 

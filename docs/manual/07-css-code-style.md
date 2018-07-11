@@ -149,36 +149,69 @@ Not specify the drive for value `0`, except for the property `rotate`.
 }
 ```
 
-## Naming
+### Naming - CSS MODULES
 
-`blockName-elemName--modName--modVal`
+`propName isModifierName`
 
+`elementName isModifierName`
+
+`[component]_[prop||element||modifier]_[hash:base64:5]`
+
+- CSS Modules adds an unique hash to the classes. Because of that, block-element naming conventions aren't necessary.
 - Names are written in CamelCase.
-- An element name is separated from a block name by a single hyphen (-).
-- Modifiers are delimited by double hyphens (--).
-- The value of a modifier is separated from its name by a double hyphen (--).
+- The value of a modifier should start with with the verb `is` and be CamelCased.
 
-#### Block
+```
+  // <Card size="big" color="green" active>Olá</Card>
+  
+  <div className={`${style.big} ${style.green} ${style.isActive}`}>
+    <h1 className={style.header}">Card</p>
+    <p className={style.content}>Olá</p>
+  </div>
+```
 
-Encapsulates a standalone entity that is meaningful on its own. While blocks can be nested and interact with each other, semantically they remain equal; there is no precedence or hierarchy. Holistic entities without DOM representation (such as controllers or models) can be blocks as well.
 
-This style differs from the classic one in that it uses CamelCase instead of a hyphen for separating words within BEM entity names.
+#### Property Names (Prop)
 
-Ex: mainMenu
+These are the general properties of the component, usually inheriting from a common base style. Combined, they can generate different sorts of "themes" for the component.
+
+Ex: light, black, danger, large, small, slim, extended, etc.
 
 #### Element
 
-Parts of a block and have no standalone meaning. Any element is semantically tied to its block.
+These are the general elements used in the component. They can be semantically tied to the props or be detached.
 
-Ex: mainMenu-list
+Let's say perhaps the header inside a card is only red when the `danger prop` is true - then it's tied. But if the header is the same not mattering the properties, it's detached.
+
+#### tied
+```
+.danger {
+    color: red;
+    
+    .header {
+        background: red;
+    }
+}
+```
+
+#### detached
+```
+.danger {
+    color: red;
+}
+
+.header {
+    background: gray;
+}
+```
+
+Ex: header, footer, content, title, text, etc.
 
 #### Modifier
 
-Flags on blocks or elements. Use them to change appearance, behavior or state.
+Flags on props or elements. Use them to change appearance, behavior or state.
 
-Ex: mainMenu--dark
-
-**Important!** Double hyphen within the comment (--) is perceived as part of the comment and therefore its presence lead to error during document validation. [HTML5 Specification](http://www.w3.org/TR/html5/syntax.html#comments)
+Ex: isActive, isError, isHidden, etc.
 
 ### Comments
 
