@@ -36,10 +36,10 @@ class Icon extends PureComponent {
     const req = require.context(
       '!svg-react-loader!../../../node_modules/material-design-icons/',
       true,
-      /\/production\/ic_.{0,}_48px\.svg$/
+      /\/production\/ic_.{0,}_24px\.svg$/
     );
 
-    return req(req.keys().filter(paths => paths.includes(`ic_${src}_48px`))[0]);
+    return req(req.keys().filter(paths => paths.includes(`ic_${src}_24px`))[0]);
   }
 
   pathLoader(name) {

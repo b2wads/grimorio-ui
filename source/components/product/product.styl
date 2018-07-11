@@ -28,8 +28,18 @@ $default-product {
 ========================================================================== */
 
 .tag {
+  left: 0;
   position: absolute;
+  top: 0;
+  width: 100%;
   z-index: 1;
+}
+
+.destaque {
+  fill: $c-acom;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .img {
@@ -43,6 +53,19 @@ $default-product {
 
 .name {
   font-size: 14px;
+  margin-top: $gutter-px;
+}
+
+.cupom {
+  color: $c-text-dark;
+  font-size: 28px;
+  font-weight: 400;
+  margin-top: $gutter-px;
+  position: relative;
+
+  &:hover .regras {
+    opacity: 1;
+  }
 }
 
 .valid {

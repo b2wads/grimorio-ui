@@ -24,12 +24,24 @@ class Product extends PureComponent {
   static propTypes = {
     type: PropTypes.oneOf(['default, card']),
     nameLength: PropTypes.number,
+    nome: PropTypes.string,
+    preco_com_desconto: PropTypes.number,
+    preco_boleto: PropTypes.number,
+    comissao_especial: PropTypes.bool,
+    fim: PropTypes.string,
+    link: PropTypes.string,
+    imagem: PropTypes.string,
+    tipo: PropTypes.oneOf(['cupom', 'produto']),
+    codigo_cupom: PropTypes.string,
+    regras_cupom: PropTypes.string,
+    fundo_destaque: PropTypes.bool,
   };
 
   static defaultProps = {
     className: '',
     type: 'default',
     nameLength: 75,
+    tipo: 'produto',
   };
 
   getBrand(id) {
@@ -45,6 +57,23 @@ class Product extends PureComponent {
       default:
         return null;
     }
+  }
+
+  renderPrice(boleto, desconto) {
+    return (
+      <div className={styles['price']}>
+        {boleto > desconto ? moneyFormat(desconto) : moneyFormat(boleto)}
+      </div>
+    );
+  }
+
+  renderCupom(codigo, regras) {
+    return (
+      <div className={styles['cupom']}>
+        {codigo}
+        {/* <p className={styles['regras']}>{regras}</p> */}
+      </div>
+    );
   }
 
   componentWillUnmount() {
@@ -72,9 +101,11 @@ class Product extends PureComponent {
       marca,
       fim,
       link,
-      // preco_boleto,
-      // comissao_especial,
-      // tipo,
+      preco_boleto,
+      tipo,
+      codigo_cupom,
+      regras_cupom,
+      fundo_destaque,
       ...elementProps
     } = this.props;
     /* eslint-disable */
@@ -89,20 +120,27 @@ class Product extends PureComponent {
       <section {...elementProps} className={fullClassName}>
         <a href={link}>
           <div className={styles['tag']}>
-            {type !== 'card' && <Svg width={48} height={48} src={`logo/${this.getBrand(marca)}`} />}
+            {type !== 'card' ? (<Svg width={48} height={48} src={`logo/${this.getBrand(marca)}`} />) : ''}
+            {fundo_destaque ? (<Icon className={styles.destaque} size="32" name="whatshot" />) : ''}
           </div>
           <div className={styles['img']}>
-            <img src={imagem} alt={nome} />
+            <img src={tipo === 'produto'? imagem : 'http://via.placeholder.com/250x250'} alt={nome} />
           </div>
+
           <h1 className={styles['name']}>{ellipsis(nome, nameLength)}</h1>
-          <div className={styles['price']}>{moneyFormat(preco_com_desconto)}</div>
+
+          {
+            tipo === 'produto'
+              ? this.renderPrice(preco_boleto, preco_com_desconto)
+              : this.renderCupom(codigo_cupom, regras_cupom)
+          }
 
           {type !== 'card' && <div className={styles['valid']}>{`Valido até: ${fim}`}</div>}
         </a>
 
         <div className={styles['social']}>
-          <Button active={linkCopied} data-clipboard-text={link} className={classNames(styles['copy'], btnId)} size="small">
-            {linkCopied ? 'Copiado!' : 'Copiar Link'}
+          <Button active={linkCopied} data-clipboard-text={tipo === 'produto' ? link : codigo_cupom} className={classNames(styles['copy'], btnId)} size="small">
+            {linkCopied ? 'Copiado!' : `Copiar ${tipo === 'produto' ? 'Link' : 'Cupom'}`}
             <Icon name={linkCopied ? 'check' : 'link'} size={18} />
           </Button>
           <Svg onClick={() => shareOn.facebook(link)} className={styles['facebook']} align="top" width={26} height={26} src="icon/facebook-square" />
@@ -114,20 +152,3 @@ class Product extends PureComponent {
 }
 
 export default CSSModules(Product, styles);
-
-/*
-- nome
-- descricao
-- preco_original
-- preco_com_desconto
-- preco_boleto
-- comissao_especial (0,1)
-- inicio
-- fim
-- link
-- imagem
-- tipo (cupom, produto)
-- codigo_cupom
-- regras_cupom
-- fundo_destaque (0,1)
-*/
