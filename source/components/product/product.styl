@@ -4,6 +4,7 @@
 @import '../../styl/00-settings/_variables.styl';
 
 $gutter-px = 8px;
+$hot = #FF5567;
 
 /* ==========================================================================
    Placeholders
@@ -36,7 +37,7 @@ $default-product {
 }
 
 .destaque {
-  fill: #FF5567;
+  fill: $hot;
   position: absolute;
   right: 0;
 }
@@ -66,24 +67,23 @@ $default-product {
 }
 
 .regras {
-  font-size: 11px;
   display: inline-block;
-  vertical-align: middle;
+  font-size: 11px;
   margin-left: 10px;
+  vertical-align: middle;
 }
 
 .regraIcon {
-  background: rgba(0, 0, 0, 0.1);
-  color: $base-text-color;
-  padding: 2px;
-  display: inline-block;
-  vertical-align: middle;
-  width 17px;
-  height: 17px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  color: $base-text-color;
+  display: flex;
+  height: 17px;
+  justify-content: center;
+  padding: 2px;
+  vertical-align: middle;
+  width: 17px;
 }
 
 .valid {
