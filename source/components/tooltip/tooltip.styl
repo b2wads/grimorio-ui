@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$dialog {
+  background: $white;
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  width: auto;
+  word-wrap: break-word;
+}
+
+/* ==========================================================================
+   Tooltip Elements
+========================================================================== */
+
+/* ==========================================================================
+   Tooltip Props
+========================================================================== */
+
+/* Default
+ ================ */
+
+.default {
+  cursor: pointer;
+  position: relative;
+
+  &:before {
+    @extend $drop-shadow;
+    background: $white;
+    content: attr(data-ttmessage);
+    display: block;
+    max-width: 100px;
+    padding: 7px;
+    text-align: left;
+  }
+
+  &:hover:before {
+    height: auto;
+    opacity: 1;
+    padding: 7px;
+    z-index: 2;
+  }
+}
+
+.top-center:before {
+  @extend $dialog;
+  bottom: 100%;
+  margin-bottom: 7px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.top-left:before {
+  @extend $dialog;
+  bottom: 100%;
+  margin-bottom: 7px;
+  left: 0;
+}
+
+.top-right:before {
+  @extend $dialog;
+  bottom: 100%;
+  margin-bottom: 7px;
+  right: 0;
+}
+
+.bottom-center:before {
+  @extend $dialog;
+  top: 100%;
+  margin-top: 7px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.bottom-left:before {
+  @extend $dialog;
+  top: 100%;
+  margin-top: 7px;
+  left: 0;
+}
+
+.bottom-right:before {
+  @extend $dialog;
+  top: 100%;
+  margin-top: 7px;
+  right: 0;
+}
+
+.right-center:before {
+  @extend $dialog;
+  top: 50%;
+  transform: translate(0, -50%);
+  margin-left: 7px;
+  left: 100%;
+}
+
+.left-center:before {
+  @extend $dialog;
+  top: 50%;
+  transform: translate(0, -50%);
+  margin-right: 7px;
+  right: 100%;
+}
