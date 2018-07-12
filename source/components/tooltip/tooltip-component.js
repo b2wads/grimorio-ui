@@ -17,14 +17,16 @@ class Tooltip extends PureComponent {
     position: 'top',
     message: '',
     width: 'auto',
+    icon: 'info',
   };
 
   render() {
-    const { children, message, position, width, className, style, ...elementProps } = this.props;
+    const { children, message, position, width, icon, className, style, ...elementProps } = this.props;
 
     const finalClass = classNames(className, {
       [styles.default]: true,
       [styles[position]]: position,
+      [styles.block]: children,
     });
 
     const customStyle = {
@@ -34,7 +36,7 @@ class Tooltip extends PureComponent {
 
     return (
       <span {...elementProps} style={customStyle} className={finalClass} data-ttmessage={message}>
-        {children ? children : <Icon className={styles.ico} name="info" size={22} />}
+        {children ? children : <Icon name={icon} size={22} />}
       </span>
     );
   }

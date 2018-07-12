@@ -36,6 +36,15 @@ $triangle {
   transition: all 1s ease;
 }
 
+$centerX {
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+$centerY {
+  top: 50%;
+  transform: translate(0, -50%);
+}
 /* ==========================================================================
    Tooltip Elements
 ========================================================================== */
@@ -50,14 +59,15 @@ $triangle {
 .default {
   cursor: pointer;
   position: relative;
+  fill: $base-text-color;
 
   &:hover:before {
     display: block;
-    width: inherit;;
     height: auto;
     opacity: 1;
     visibility: visible;
     padding: 7px;
+    width: inherit;;
     z-index: 2;
   }
 
@@ -71,70 +81,63 @@ $triangle {
 
 .top:before {
   @extend $dialog;
+  @extend $centerX;
   bottom: calc(100% + 9px);
-  left: 50%;
-  transform: translate(-50%, 0);
 }
 
 .top:after {
   @extend $triangle;
-  content: '▼';
+  @extend $centerX;
   bottom: calc(100% - 3px);
-  left: 50%;
-  transform: translate(-50%, 0);
+  content: '▼';
   text-shadow: 0px 2px 2px rgba(0, 0, 0, .15);
 }
 
 .bottom:before {
   @extend $dialog;
+  @extend $centerX;
   top: calc(100% + 9px);
-  left: 50%;
-  transform: translate(-50%, 0);
 }
 
 .bottom:after {
   @extend $triangle;
+  @extend $centerX;
   content: '▲';
-  top: calc(100% - 3px);
-  left: 50%;
-  transform: translate(-50%, 0);
   text-shadow: 0px -1.5px 1px rgba(0, 0, 0, .15);
+  top: calc(100% - 3px);
 }
 
 
 .right:before {
   @extend $dialog;
-  top: 50%;
-  transform: translate(0, -50%);
-  margin-left: 7px;
-  left: calc(100% + 2px);
+  @extend $centerY;
+  left: calc(100% + 14px);
 }
 
 .right:after {
   @extend $triangle;
+  @extend $centerY;
   content: '◀';
-  top: 50%;
-  transform: translate(0, -55%);
   left: 100%;
+  padding-left: 3px;
   text-shadow: -2px 0px 1px rgba(0, 0, 0, .15);
 }
 
 .left:before {
   @extend $dialog;
-  top: 50%;
-  transform: translate(0, -50%);
-  right: calc(100% + 9px);
+  @extend $centerY;
+  right: calc(100% + 14px);
 }
 
 .left:after {
   @extend $triangle;
+  @extend $centerY;
   content: '▶';
-  top: 50%;
-  transform: translate(0, -55%);
+  padding-right: 3px;
   right: 100%;
   text-shadow: 2px 0px 1px rgba(0, 0, 0, .15);
 }
 
-.ico {
-  fill: $base-text-color;
+.block {
+  display: inline-block;
 }
