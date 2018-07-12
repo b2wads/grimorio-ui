@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 import Clipboard from 'clipboard';
+import moment from 'moment';
 
 import styles from './product.styl';
 
@@ -143,7 +144,8 @@ class Product extends PureComponent {
             : this.renderCupom(codigo_cupom, regras_cupom)
         }
 
-        {type !== 'card' && <div className={styles['valid']}>{`Valido até: ${fim}`}</div>}
+        {type !== 'card' && <div className={styles['valid']}>{`Valido até: ${moment(fim).format('DD/MM/YYYY H:mm')}`}</div>}
+
         <div className={styles['social']}>
           <Button active={linkCopied} data-clipboard-text={tipo === 'produto' ? link : codigo_cupom} className={classNames(styles['copy'], btnId)} size="small">
             {linkCopied ? 'Copiado!' : `Copiar ${tipo === 'produto' ? 'Link' : 'Cupom'}`}
