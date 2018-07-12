@@ -6,36 +6,18 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$dialog {
-  @extend $drop-shadow;
-  font-size: 12px;
-  border-radius: 2px;
-  content: attr(data-ttmessage);
-  background: $white;
-  height: 0;
-  opacity: 0;
-  padding: 0;
-  visibility: hidden;
-  display: none;
-  position: absolute;
-  width: auto;
-  word-wrap: break-word;
-  transition: all 1s ease;
-  text-shadow: none;
-}
-
 $triangle {
   color: $white;
-  height: 0;
-  opacity: 0;
-  padding: 0;
-  display: none;
-  position: absolute;
-  width: auto;
-  word-wrap: break-word;
-  font-size: 15px;
-  text-align: left;
-  transition: all 1s ease;
+	display: none;
+	font-size: 15px;
+	height: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	text-align: left;
+	transition: all 1s ease;
+	width: auto;
+	word-wrap: break-word;
 }
 
 $centerX {
@@ -51,25 +33,21 @@ $centerY {
    Tooltip Elements
 ========================================================================== */
 
-/* ==========================================================================
-   Tooltip Props
-========================================================================== */
-
-/* Default
+/* wrapper
  ================ */
 
-.default {
+.wrapper {
   cursor: pointer;
-  position: relative;
-  fill: $base-text-color;
-  display: inline;
+	display: inline;
+	fill: $base-text-color;
+	position: relative;
 
   &:hover .dialog {
     display: block;
     height: auto;
     opacity: 1;
-    visibility: visible;
     padding: 7px;
+    visibility: visible;
     z-index: 2;
   }
 
@@ -82,68 +60,80 @@ $centerY {
 }
 
 .dialog {
-  @extend $dialog;
+  @extend $drop-shadow;
+	background: $white;
+	border-radius: 2px;
+	display: none;
+	font-size: 12px;
+	height: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	text-shadow: none;
+	transition: all 1s ease;
+	visibility: hidden;
+	width: auto;
+	word-wrap: break-word;
 }
 
+/* ==========================================================================
+   Tooltip Props
+========================================================================== */
+
+.block {
+  display: inline-block;
+}
 
 .top {
   @extend $centerX;
   bottom: calc(100% + 9px);
-}
 
-.top.dialog:after {
-  @extend $triangle;
-  @extend $centerX;
-  top: calc(100% - 7px);
-  content: '▼';
-  text-shadow: 0px 2px 2px rgba(0, 0, 0, .15);
+  &:after {
+    @extend $centerX;
+    @extend $triangle;
+    content: '▼';
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+    top: calc(100% - 7px);
+  }
 }
 
 .bottom {
-  @extend $dialog;
   @extend $centerX;
   top: calc(100% + 9px);
-}
 
-.bottom.dialog:after {
-  @extend $triangle;
-  @extend $centerX;
-  content: '▲';
-  text-shadow: 0px -1.5px 1px rgba(0, 0, 0, .15);
-  bottom: calc(100% - 4px);
+  &:after {
+    @extend $centerX;
+    @extend $triangle;
+    bottom: calc(100% - 4px);
+    content: '▲';
+    text-shadow: 0 -1.5px 1px rgba(0, 0, 0, 0.15);
+  }
 }
-
 
 .right {
-  @extend $dialog;
   @extend $centerY;
   left: calc(100% + 14px);
-}
 
-.right.dialog:after {
-  @extend $triangle;
-  @extend $centerY;
-  content: '◀';
-  right: 100%;
-  padding-left: 3px;
-  text-shadow: -2px 0px 1px rgba(0, 0, 0, .15);
+  &:after {
+    @extend $centerY;
+    @extend $triangle;
+    content: '◀';
+    padding-left: 3px;
+    right: 100%;
+    text-shadow: -2px 0 1px rgba(0, 0, 0, 0.15);
+  }
 }
 
 .left {
-  @extend $dialog;
   @extend $centerY;
   right: calc(100% + 14px);
-}
 
-.left.dialog:after {
-  @extend $triangle;
-  @extend $centerY;
-  content: '▶';
-  padding-right: 3px;
-  left: 100%;
-  text-shadow: 2px 0px 1px rgba(0, 0, 0, .15);
-}
-
-.block {
-  display: inline-block;
+  &:after {
+    @extend $centerY;
+    @extend $triangle;
+    content: '▶';
+    left: 100%;
+    padding-right: 3px;
+    text-shadow: 2px 0 1px rgba(0, 0, 0, 0.15);
+  }
 }

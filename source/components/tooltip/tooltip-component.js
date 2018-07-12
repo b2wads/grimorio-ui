@@ -9,13 +9,12 @@ import Icon from '../icon';
 class Tooltip extends PureComponent {
   static propTypes = {
     direction: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
-    message: PropTypes.string,
+    message: PropTypes.string.isRequired,
     width: PropTypes.string,
   };
 
   static defaultProps = {
     position: 'top',
-    message: '',
     width: 'auto',
     icon: 'info',
   };
@@ -23,8 +22,7 @@ class Tooltip extends PureComponent {
   render() {
     const { children, message, position, width, icon, className, ...elementProps } = this.props;
 
-    const finalClass = classNames(className, {
-      [styles.default]: true,
+    const finalClass = classNames(className, styles.wrapper, {
       [styles.block]: children,
     });
 
