@@ -7,13 +7,33 @@
    Placeholders
 ========================================================================== */
 $dialog {
+  @extend $drop-shadow;
+  content: attr(data-ttmessage);
   background: $white;
   height: 0;
   opacity: 0;
   padding: 0;
+  visibility: hidden;
+  display: none;
   position: absolute;
   width: auto;
   word-wrap: break-word;
+  transition: all 1s ease;
+  text-shadow: none;
+}
+
+$triangle {
+  color: $white;
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  width: auto;
+  word-wrap: break-word;
+  font-size: 15px;
+  text-align: left;
+  transition: all 1s ease;
 }
 
 /* ==========================================================================
@@ -31,80 +51,90 @@ $dialog {
   cursor: pointer;
   position: relative;
 
-  &:before {
-    @extend $drop-shadow;
-    background: $white;
-    content: attr(data-ttmessage);
-    display: block;
-    max-width: 100px;
-    padding: 7px;
-    text-align: left;
-  }
-
   &:hover:before {
+    display: block;
+    width: inherit;;
     height: auto;
     opacity: 1;
+    visibility: visible;
     padding: 7px;
+    z-index: 2;
+  }
+
+  &:hover:after {
+    display: block;
+    height: auto;
+    opacity: 1;
     z-index: 2;
   }
 }
 
-.top-center:before {
+.top:before {
   @extend $dialog;
-  bottom: 100%;
-  margin-bottom: 7px;
+  bottom: calc(100% + 9px);
   left: 50%;
   transform: translate(-50%, 0);
 }
 
-.top-left:before {
-  @extend $dialog;
-  bottom: 100%;
-  margin-bottom: 7px;
-  left: 0;
+.top:after {
+  @extend $triangle;
+  content: '▼';
+  bottom: calc(100% - 3px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, .15);
 }
 
-.top-right:before {
+.bottom:before {
   @extend $dialog;
-  bottom: 100%;
-  margin-bottom: 7px;
-  right: 0;
-}
-
-.bottom-center:before {
-  @extend $dialog;
-  top: 100%;
-  margin-top: 7px;
+  top: calc(100% + 9px);
   left: 50%;
   transform: translate(-50%, 0);
 }
 
-.bottom-left:before {
-  @extend $dialog;
-  top: 100%;
-  margin-top: 7px;
-  left: 0;
+.bottom:after {
+  @extend $triangle;
+  content: '▲';
+  top: calc(100% - 3px);
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-shadow: 0px -1.5px 1px rgba(0, 0, 0, .15);
 }
 
-.bottom-right:before {
-  @extend $dialog;
-  top: 100%;
-  margin-top: 7px;
-  right: 0;
-}
 
-.right-center:before {
+.right:before {
   @extend $dialog;
   top: 50%;
   transform: translate(0, -50%);
   margin-left: 7px;
-  left: 100%;
+  left: calc(100% + 2px);
 }
 
-.left-center:before {
+.right:after {
+  @extend $triangle;
+  content: '◀';
+  top: 50%;
+  transform: translate(0, -55%);
+  left: 100%;
+  text-shadow: -2px 0px 1px rgba(0, 0, 0, .15);
+}
+
+.left:before {
   @extend $dialog;
   top: 50%;
   transform: translate(0, -50%);
-  margin-right: 7px;
+  right: calc(100% + 9px);
+}
+
+.left:after {
+  @extend $triangle;
+  content: '▶';
+  top: 50%;
+  transform: translate(0, -55%);
   right: 100%;
+  text-shadow: 2px 0px 1px rgba(0, 0, 0, .15);
+}
+
+.ico {
+  fill: $base-text-color;
 }

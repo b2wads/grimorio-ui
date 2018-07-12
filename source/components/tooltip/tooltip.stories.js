@@ -10,19 +10,15 @@ const stories = storiesOf('Tooltip', module);
 stories.addDecorator(withKnobs);
 
 stories.addWithInfo('Normal', () => (
-  <div style={{ textAlign: 'center'}}>
-    <Tooltip message="Tooltip">top center >>>>>>>>>></Tooltip>
+  <div style={{ paddingLeft: '20%'}}>
+    <Tooltip message="Tooltip" />
     <br/><br/>
-    <Tooltip message="Tooltip" align="left">top left >>>>>>>>>></Tooltip>
+    <Tooltip message="Tooltip" position="bottom">Bottom</Tooltip>
     <br/><br/>
-    <Tooltip message="Tooltip" align="right">top right >>>>>>>>>></Tooltip>
+    <Tooltip position="bottom" width="450px" message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" />
     <br/><br/>
-    <Tooltip message="Tooltip" direction="bottom">bottom center >>>>>>>>>></Tooltip>
+    <Tooltip message="Tooltip" position="left" />
     <br/><br/>
-    <Tooltip message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s" direction="bottom">bottom center Lipsum >>>>>>>>>></Tooltip>
-    <br/><br/>
-    <Tooltip message="Tooltip" direction="right">right center >>>>>>>>>></Tooltip>
-    <br/><br/>
-    <Tooltip message="Tooltip" direction="left">left center >>>>>>>>>></Tooltip>
+    <Tooltip message="Tooltip" position="right" />
   </div>
 ));

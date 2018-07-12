@@ -4,36 +4,37 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import styles from './tooltip.styl';
-
-// import Panel from '../panel';
+import Icon from '../icon';
 
 class Tooltip extends PureComponent {
   static propTypes = {
     direction: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
-    align: PropTypes.oneOf(['left', 'center', 'bottom']),
     message: PropTypes.string,
     width: PropTypes.string,
   };
 
   static defaultProps = {
-    direction: 'top',
-    align: 'center',
+    position: 'top',
     message: '',
-    width: '150',
-    height: '50',
+    width: 'auto',
   };
 
   render() {
-    const { children, message, direction, align, className, ...elementProps } = this.props;
+    const { children, message, position, width, className, style, ...elementProps } = this.props;
 
     const finalClass = classNames(className, {
       [styles.default]: true,
-      [styles[`${direction}-${align}`]]: align,
+      [styles[position]]: position,
     });
 
+    const customStyle = {
+      ...style,
+      width,
+    };
+
     return (
-      <span {...elementProps} className={finalClass} data-ttmessage={message}>
-        {children}
+      <span {...elementProps} style={customStyle} className={finalClass} data-ttmessage={message}>
+        {children ? children : <Icon className={styles.ico} name="info" size={22} />}
       </span>
     );
   }
