@@ -1,4 +1,4 @@
-# Commits
+# JavaScript Code Style
 
 ## Summary
 
@@ -10,28 +10,15 @@
 6. [CSS (code style)](./06-css-code-style.md)
 7. [Javascript (code style)](./07-javascript-code-style.md)
 
-## Commit Message Regex
+## Rules
 
-`(feat||fix|docs|style|refactor|test|chore)\(.*\)\:.*\`
+[Rules in ESLint](http://eslint.org/docs/rules/)
 
-## Prefix
+## Comments
 
-- feat
-- fix
-- docs
-- style
-- refactor
-- test
-- chore
+### Referencies
 
-and add `:`
-
-## Message
-
-Lowercase letters
-
-## Example
-
-feat: organization of items
+- [ESDoc](https://esdoc.org/tags.html)
+- [JSDuck](https://github.com/senchalabs/jsduck/wiki)
 
 **[⬆ back to the top](#summary)**
