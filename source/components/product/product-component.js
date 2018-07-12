@@ -24,7 +24,7 @@ class Product extends PureComponent {
   }
 
   static propTypes = {
-    type: PropTypes.oneOf(['default, card']),
+    type: PropTypes.oneOf(['default', 'card']),
     nameLength: PropTypes.number,
     nome: PropTypes.string,
     preco_com_desconto: PropTypes.number,
@@ -36,7 +36,7 @@ class Product extends PureComponent {
     tipo: PropTypes.oneOf(['cupom', 'produto']),
     codigo_cupom: PropTypes.string,
     regras_cupom: PropTypes.string,
-    fundo_destaque: PropTypes.bool,
+    fundo_destaque: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   };
 
   static defaultProps = {
