@@ -36,13 +36,14 @@ $default-product {
 }
 
 .destaque {
-  fill: $c-acom;
+  fill: #FF5567;
   position: absolute;
   right: 0;
-  top: 10px;
 }
 
 .img {
+  margin-top: $gutter-px;
+
   img {
     display: block;
     margin: 0 auto;
@@ -62,10 +63,27 @@ $default-product {
   font-weight: 400;
   margin-top: $gutter-px;
   position: relative;
+}
 
-  &:hover .regras {
-    opacity: 1;
-  }
+.regras {
+  font-size: 11px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.regraIcon {
+  background: rgba(0, 0, 0, 0.1);
+  color: $base-text-color;
+  padding: 2px;
+  display: inline-block;
+  vertical-align: middle;
+  width 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .valid {

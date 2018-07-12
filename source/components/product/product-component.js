@@ -9,6 +9,7 @@ import styles from './product.styl';
 import Svg from '../svg';
 import Icon from '../icon';
 import Button from '../button';
+import Tooltip from '../tooltip';
 
 import { ellipsis, moneyFormat, shareOn, property } from '../../helpers';
 
@@ -69,9 +70,11 @@ class Product extends PureComponent {
 
   renderCupom(codigo, regras) {
     return (
-      <div className={styles['cupom']}>
+      <div className={styles.cupom}>
         {codigo}
-        {/* <p className={styles['regras']}>{regras}</p> */}
+        <Tooltip className={styles.regras} width="220px" message={regras}>
+          <span className={styles.regraIcon}>?</span>
+        </Tooltip>
       </div>
     );
   }
@@ -118,26 +121,29 @@ class Product extends PureComponent {
 
     return (
       <section {...elementProps} className={fullClassName}>
-        <a href={link}>
-          <div className={styles['tag']}>
-            {type !== 'card' ? (<Svg width={48} height={48} src={`logo/${this.getBrand(marca)}`} />) : ''}
-            {fundo_destaque ? (<Icon className={styles.destaque} size="32" name="whatshot" />) : ''}
-          </div>
-          <div className={styles['img']}>
+        <div className={styles['tag']}>
+          {type !== 'card' ? (<Svg width={48} height={48} src={`logo/${this.getBrand(marca)}`} />) : ''}
+          {fundo_destaque ? (<Icon className={styles.destaque} size="32" name="whatshot" />) : ''}
+        </div>
+        <div className={styles['img']}>
+          <a href={link}>
             <img src={tipo === 'produto'? imagem : 'http://via.placeholder.com/250x250'} alt={nome} />
-          </div>
+          </a>
+        </div>
 
-          <h1 className={styles['name']}>{ellipsis(nome, nameLength)}</h1>
+        <h1 className={styles['name']}>
+          <a href={link}>
+            {ellipsis(nome, nameLength)}
+          </a>
+        </h1>
 
-          {
-            tipo === 'produto'
-              ? this.renderPrice(preco_boleto, preco_com_desconto)
-              : this.renderCupom(codigo_cupom, regras_cupom)
-          }
+        {
+          tipo === 'produto'
+            ? this.renderPrice(preco_boleto, preco_com_desconto)
+            : this.renderCupom(codigo_cupom, regras_cupom)
+        }
 
-          {type !== 'card' && <div className={styles['valid']}>{`Valido até: ${fim}`}</div>}
-        </a>
-
+        {type !== 'card' && <div className={styles['valid']}>{`Valido até: ${fim}`}</div>}
         <div className={styles['social']}>
           <Button active={linkCopied} data-clipboard-text={tipo === 'produto' ? link : codigo_cupom} className={classNames(styles['copy'], btnId)} size="small">
             {linkCopied ? 'Copiado!' : `Copiar ${tipo === 'produto' ? 'Link' : 'Cupom'}`}

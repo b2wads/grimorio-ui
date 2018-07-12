@@ -8,6 +8,8 @@
 ========================================================================== */
 $dialog {
   @extend $drop-shadow;
+  font-size: 12px;
+  border-radius: 2px;
   content: attr(data-ttmessage);
   background: $white;
   height: 0;
@@ -60,18 +62,18 @@ $centerY {
   cursor: pointer;
   position: relative;
   fill: $base-text-color;
+  display: inline;
 
-  &:hover:before {
+  &:hover .dialog {
     display: block;
     height: auto;
     opacity: 1;
     visibility: visible;
     padding: 7px;
-    width: inherit;;
     z-index: 2;
   }
 
-  &:hover:after {
+  &:hover .dialog:after {
     display: block;
     height: auto;
     opacity: 1;
@@ -79,62 +81,66 @@ $centerY {
   }
 }
 
-.top:before {
+.dialog {
   @extend $dialog;
+}
+
+
+.top {
   @extend $centerX;
   bottom: calc(100% + 9px);
 }
 
-.top:after {
+.top.dialog:after {
   @extend $triangle;
   @extend $centerX;
-  bottom: calc(100% - 3px);
+  top: calc(100% - 7px);
   content: '▼';
   text-shadow: 0px 2px 2px rgba(0, 0, 0, .15);
 }
 
-.bottom:before {
+.bottom {
   @extend $dialog;
   @extend $centerX;
   top: calc(100% + 9px);
 }
 
-.bottom:after {
+.bottom.dialog:after {
   @extend $triangle;
   @extend $centerX;
   content: '▲';
   text-shadow: 0px -1.5px 1px rgba(0, 0, 0, .15);
-  top: calc(100% - 3px);
+  bottom: calc(100% - 4px);
 }
 
 
-.right:before {
+.right {
   @extend $dialog;
   @extend $centerY;
   left: calc(100% + 14px);
 }
 
-.right:after {
+.right.dialog:after {
   @extend $triangle;
   @extend $centerY;
   content: '◀';
-  left: 100%;
+  right: 100%;
   padding-left: 3px;
   text-shadow: -2px 0px 1px rgba(0, 0, 0, .15);
 }
 
-.left:before {
+.left {
   @extend $dialog;
   @extend $centerY;
   right: calc(100% + 14px);
 }
 
-.left:after {
+.left.dialog:after {
   @extend $triangle;
   @extend $centerY;
   content: '▶';
   padding-right: 3px;
-  right: 100%;
+  left: 100%;
   text-shadow: 2px 0px 1px rgba(0, 0, 0, .15);
 }
 

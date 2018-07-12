@@ -9,8 +9,7 @@ const stories = storiesOf('Product', module);
 
 stories.addDecorator(withKnobs);
 
-const pannelSize = {width: '25%', display: 'inline-block', verticalAlign: 'top'};
-const pannelSizeSmall = {width: '20%', display: 'inline-block', verticalAlign: 'top'};
+const pannelSize = {width: '20%', display: 'inline-block', verticalAlign: 'top'};
 
 const exampleProduct = {
   imagem: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
@@ -42,20 +41,24 @@ const exampleCupom = {
 
 stories.addWithInfo('Normal', () => (
   <div>
-    <Panel style={pannelSizeSmall}>
+    <Panel style={pannelSize}>
       <Product {...exampleCupom} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
-      <Product {...exampleProduct} />
+      <Product nameLength={58} {...exampleProduct} />
     </Panel>
   </div>
 ));
 
 stories.addWithInfo('Brand', () => (
   <div>
-    <Panel type="brand" brand="acom" style={pannelSizeSmall}>
-      <Product type="card" {...exampleProduct} />
+    <Panel type="brand" brand="acom" style={pannelSize}>
+      <Product nameLength={60} type="card" {...exampleProduct} />
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel type="brand" brand="suba" style={pannelSize}>
+      <Product type="card" {...exampleCupom} />
     </Panel>
   </div>
 ));

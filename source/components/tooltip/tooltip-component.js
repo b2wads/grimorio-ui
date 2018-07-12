@@ -21,22 +21,23 @@ class Tooltip extends PureComponent {
   };
 
   render() {
-    const { children, message, position, width, icon, className, style, ...elementProps } = this.props;
+    const { children, message, position, width, icon, className, ...elementProps } = this.props;
 
     const finalClass = classNames(className, {
       [styles.default]: true,
-      [styles[position]]: position,
       [styles.block]: children,
     });
 
     const customStyle = {
-      ...style,
       width,
     };
 
     return (
-      <span {...elementProps} style={customStyle} className={finalClass} data-ttmessage={message}>
-        {children ? children : <Icon name={icon} size={22} />}
+      <span {...elementProps} className={finalClass}>
+        {children ? children : <Icon name={icon} size={19} />}
+        <span style={customStyle} className={classNames(styles.dialog, { [styles[position]]: position })}>
+          {message}
+        </span>
       </span>
     );
   }
