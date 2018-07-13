@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, object } from '@storybook/addon-knobs';
 
 import Product from './product-component';
 import Panel from '../panel';
@@ -9,7 +9,7 @@ const stories = storiesOf('Product', module);
 
 stories.addDecorator(withKnobs);
 
-const pannelSize = { flexBasis: '20%' };
+const pannelSize = { flexBasis: '20%', minWidth: '250px', };
 
 const exampleProduct = {
   img: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
@@ -54,11 +54,11 @@ const exampleCupom = {
 stories.addWithInfo('Default', () => (
   <div style={{ display: 'flex' }}>
     <Panel style={pannelSize}>
-      <Product nameLength={58} data={exampleProduct} />
+      <Product nameLength={58} data={object('Product', exampleProduct)} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
-      <Product btnText="Pegar Cupom" data={exampleCupom} />
+      <Product btnText="Pegar Cupom" data={object('Cupom', exampleCupom)} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
@@ -73,11 +73,11 @@ delete exampleProduct.expires;
 stories.addWithInfo('Card', () => (
   <div style={{ display: 'flex' }}>
     <Panel type="brand" brand="acom" style={pannelSize}>
-      <Product nameLength={60} type="card" data={exampleProduct} />
+      <Product nameLength={60} type="card" data={object('Product', exampleProduct)} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel type="brand" brand="suba" style={pannelSize}>
-      <Product type="card" data={exampleCupom} />
+      <Product type="card" data={object('Cupom', exampleCupom)} />
     </Panel>
   </div>
 ));

@@ -6,6 +6,8 @@ import Panel from './panel-component';
 import Button from '../button';
 import Product from '../product';
 
+const pannelSize = { flexBasis: '20%', minWidth: '250px', };
+
 const exampleProduct = {
   img: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
   name: 'Notebook Profissional Avell W155 MX Intel Core i7 16GB (GeForce MX150) 1TB 15.6 FullHD',
@@ -42,16 +44,16 @@ stories.addWithInfo('Default', () => (
 ));
 
 stories.addWithInfo('Brand', () => (
-  <div style={{ width: '60%', display: 'flex' }}>
-    <Panel brand="suba">
+  <div style={{ display: 'flex' }}>
+    <Panel brand="suba" style={pannelSize}>
       <Product type="card" data={exampleProduct}></Product>
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel brand="acom">
+    <Panel brand="acom" style={pannelSize}>
       <Product type="card" data={exampleProduct}></Product>
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel brand="shop">
+    <Panel brand="shop" style={pannelSize}>
       <Product type="card" data={exampleProduct}></Product>
     </Panel>
   </div>
