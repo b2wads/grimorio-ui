@@ -7,18 +7,22 @@ import Button from '../button';
 import Product from '../product';
 
 const exampleProduct = {
-  imagem: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
-  nome: 'Notebook Profissional Avell W155 MX Intel Core i7 16GB (GeForce MX150) 1TB 15.6 FullHD',
-  preco_com_desconto: 6333.20,
-  marca: 2,
-  preco_boleto: 5333.20,
-  tipo: 'produto',
-  codigo_cupom: null,
-  regras_cupom: null,
-  fundo_destaque: 1,
-  fim: '2018-07-08 23:59',
+  img: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
+  name: 'Notebook Profissional Avell W155 MX Intel Core i7 16GB (GeForce MX150) 1TB 15.6 FullHD',
+  tags: [
+    {
+      name: 'brand',
+      value: 'acom',
+    },
+    {
+      name: 'highlight',
+      value: true,
+    }
+  ],
+  price: 5333.20,
+  expires: '2018-07-08 23:59',
   link: 'https://www.americanas.com.br/produto/33446653/notebook-profissional-avell-w155-mx-intel-core-i7-16gb-geforce-mx150-1tb-15-6-fullhd',
-}
+};
 
 const stories = storiesOf('Panel', module);
 
@@ -39,16 +43,16 @@ stories.addWithInfo('Default', () => (
 
 stories.addWithInfo('Brand', () => (
   <div style={{ width: '60%', display: 'flex' }}>
-    <Panel type="brand" brand="suba">
-      <Product type="card" {...exampleProduct}></Product>
+    <Panel brand="suba">
+      <Product type="card" data={exampleProduct}></Product>
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel type="brand" brand="acom">
-      <Product type="card" {...exampleProduct}></Product>
+    <Panel brand="acom">
+      <Product type="card" data={exampleProduct}></Product>
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel type="brand" brand="shop">
-      <Product type="card" {...exampleProduct}></Product>
+    <Panel brand="shop">
+      <Product type="card" data={exampleProduct}></Product>
     </Panel>
   </div>
 ));

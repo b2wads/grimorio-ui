@@ -16,6 +16,7 @@ $social-ico {
 }
 
 $default-product {
+  min-width: 200px;
   position: relative;
 
   a {
@@ -58,15 +59,8 @@ $default-product {
   margin-top: $gutter-px;
 }
 
-.cupom {
-  color: $c-text-dark;
-  font-size: 28px;
-  font-weight: 400;
-  margin-top: $gutter-px;
-  position: relative;
-}
-
 .regras {
+  color: $base-text-color;
   display: inline-block;
   font-size: 11px;
   margin-left: 10px;
@@ -131,6 +125,14 @@ $default-product {
     font-weight: 400;
     margin-top: $gutter-px;
   }
+
+  .cupom {
+    color: $c-text-dark;
+    font-size: 28px;
+    font-weight: 400;
+    margin-top: $gutter-px;
+    position: relative;
+  }
 }
 
 /* Card
@@ -146,4 +148,12 @@ $default-product {
     margin: 15px 0;
     text-align: center;
   }
+
+  .cupom {
+    color: $c-primary;
+    font-size: 28px;
+    margin: 15px 0;
+    position: relative;
+  }
+
 }

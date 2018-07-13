@@ -9,56 +9,75 @@ const stories = storiesOf('Product', module);
 
 stories.addDecorator(withKnobs);
 
-const pannelSize = {width: '20%', display: 'inline-block', verticalAlign: 'top'};
+const pannelSize = { flexBasis: '20%' };
 
 const exampleProduct = {
-  imagem: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
-  nome: 'Notebook Profissional Avell W155 MX Intel Core i7 16GB (GeForce MX150) 1TB 15.6 FullHD',
-  preco_com_desconto: 6333.20,
-  marca: 2,
-  preco_boleto: 5333.20,
-  tipo: 'produto',
-  codigo_cupom: null,
-  regras_cupom: null,
-  fundo_destaque: 1,
-  fim: '2018-07-08 23:59',
+  img: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
+  name: 'Notebook Profissional Avell W155 MX Intel Core i7 16GB (GeForce MX150) 1TB 15.6 FullHD',
+  tags: [
+    {
+      name: 'brand',
+      value: 'acom',
+    },
+    {
+      name: 'highlight',
+      value: true,
+    }
+  ],
+  price: 5333.20,
+  expires: '2018-07-08 23:59',
   link: 'https://www.americanas.com.br/produto/33446653/notebook-profissional-avell-w155-mx-intel-core-i7-16gb-geforce-mx150-1tb-15-6-fullhd',
-}
+};
 
 const exampleCupom = {
-  imagem: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
-  nome: '10% com o cupom ALO10',
-  preco_com_desconto: 6333.20,
-  marca: 2,
-  preco_boleto: 5333.20,
-  tipo: 'cupom',
-  codigo_cupom: 'ALO10',
-  regras_cupom: 'Confira as regras no site https://www.americanas.com.br/hotsite/regras-do-site',
-  fundo_destaque: 0,
-  fim: '2018-07-08 23:59',
-  link: 'https://www.americanas.com.br/produto/33446653/notebook-profissional-avell-w155-mx-intel-core-i7-16gb-geforce-mx150-1tb-15-6-fullhd',
-}
+  img: 'http://via.placeholder.com/250x250',
+  name: '10% com o cupom ALO10',
+  tags: [
+    {
+      name: 'brand',
+      value: 'shop',
+    },
+    {
+      name: 'highlight',
+      value: true,
+    }
+  ],
+  cupom: {
+    codigo: 'ALO10',
+    regras: 'Confira as regras no site https://www.americanas.com.br/hotsite/regras-do-site',
+  },
+  expires: '2018-07-08 23:59',
+  copy: 'ALO10',
+  link: 'http://www.americanas.com.br/categoria/celulares-e-smartphones/f/tag-tag_alo10_acom?opn=AFLACOM&epar=b2wafiliados&franq=AFL-03-101718'
+};
 
-stories.addWithInfo('Normal', () => (
-  <div>
+stories.addWithInfo('Default', () => (
+  <div style={{ display: 'flex' }}>
     <Panel style={pannelSize}>
-      <Product {...exampleCupom} />
+      <Product nameLength={58} data={exampleProduct} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
-      <Product nameLength={58} {...exampleProduct} />
+      <Product btnText="Pegar Cupom" data={exampleCupom} />
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel style={pannelSize}>
+      <Product />
     </Panel>
   </div>
 ));
 
-stories.addWithInfo('Brand', () => (
-  <div>
+delete exampleCupom.expires;
+delete exampleProduct.expires;
+
+stories.addWithInfo('Card', () => (
+  <div style={{ display: 'flex' }}>
     <Panel type="brand" brand="acom" style={pannelSize}>
-      <Product nameLength={60} type="card" {...exampleProduct} />
+      <Product nameLength={60} type="card" data={exampleProduct} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel type="brand" brand="suba" style={pannelSize}>
-      <Product type="card" {...exampleCupom} />
+      <Product type="card" data={exampleCupom} />
     </Panel>
   </div>
 ));
