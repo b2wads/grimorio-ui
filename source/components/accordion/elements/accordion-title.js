@@ -29,15 +29,15 @@ class AccordionTitle extends PureComponent {
   }
 
   render() {
-    const { active, className, content, icon, children } = this.props;
+    const { active, className, content, children } = this.props;
     const classes = classNames(styles.title, className, {
       [`${styles.isActive}`]: active,
     });
+
     return (
       <div className={classes} onClick={this.handleClick}>
-        {icon && <Icon name={icon} />}
         {children ? children : content}
-        <Icon name={active ? 'keyboard_arrow_up' : 'keyboard_arrow_down'} />
+        <Icon size={18} name={active ? 'keyboard_arrow_up' : 'keyboard_arrow_down'} />
       </div>
     );
   }
