@@ -8,7 +8,7 @@ describe('Tooltip component', () => {
   describe('#render', () => {
     it('render correctly', () => {
       const wrapper = shallow(
-        <Tooltip />
+        <Tooltip message="hello" />
       );
       expect(wrapper.length).to.equal(1);
     });

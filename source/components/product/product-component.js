@@ -111,7 +111,7 @@ class Product extends PureComponent {
   render() {
     const { linkCopied, btnId } = this.state;
     const { className, type, nameLength, btnText, ...elementProps } = this.props;
-    const { tags, img, name, info, expires, link, copyValue } = this.props.data;
+    const { img, name, info, expires, link, copyValue } = this.props.data;
 
     const fullClassName = classNames(className, {
       [styles[type]]: type,
@@ -124,7 +124,7 @@ class Product extends PureComponent {
     return (
       <section {...elementProps} className={fullClassName}>
         <div className={styles.tag}>
-          {this.renderTags(tags, type)}
+          {this.renderTags()}
         </div>
 
         <div className={styles.img}>
