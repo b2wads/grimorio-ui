@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
-import styles from './sidebar.styl';
+import styles from '../sidebar.styl';
 
-class Sidebar extends PureComponent {
+class SidebarContent extends PureComponent {
   static propTypes = {
     children: PropTypes.element.isRequired,
   };
 
   render() {
     const { children, className } = this.props;
-    const classes = classNames(styles.sidebar, className);
+    const classes = classNames(styles.content, className);
 
     return (
       <div className={classes}>
@@ -22,4 +22,4 @@ class Sidebar extends PureComponent {
   }
 }
 
-export default CSSModules(Sidebar, styles);
+export default CSSModules(SidebarContent, styles);

@@ -1,15 +1,42 @@
-.title {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+$c-light = #fff;
+$c-text = #a4a3a3;
 
-  &.isActive {
 
-  }
-}
+.iconLeft { margin-right: 22px }
+.iconRight { float: right; }
+
+.title { clear: both; }
 
 .content {
   display: none;
 
   &.isActive { display: block; }
+}
+
+.menu {
+  .title {
+    border-left: 2px solid transparent;
+    color: $c-text;
+    font-size: 14px;
+    line-height: 1.2;
+    padding: 15px 26px 15px 24px;
+
+    &.isActive {
+      border-left-color: $c-primary-dark;
+      color: $c-light;
+    }
+  }
+
+  .content {
+    color: $c-text;
+    font-size: 14px;
+
+    [class*="_menuItem"] {
+      padding: 15px 26px 15px 64px;
+    }
+  }
 }

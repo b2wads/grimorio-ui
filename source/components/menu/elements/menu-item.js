@@ -12,6 +12,8 @@ import styles from '../menu.styl';
 class MenuItem extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   static propTypes = {
@@ -19,9 +21,18 @@ class MenuItem extends PureComponent {
     children: PropTypes.node,
     className: PropTypes.string,
     icon: PropTypes.string,
+    key: PropTypes.string,
     name: PropTypes.string,
+    link: PropTypes.string,
     onClick: PropTypes.func,
   };
+
+  handleClick(e) {
+    const { handleClick, link } = this.props;
+    if (handleClick) {
+      handleClick(e, link);
+    }
+  }
 
   render() {
     const { active, className, content, icon, items, children } = this.props;
@@ -30,8 +41,8 @@ class MenuItem extends PureComponent {
     });
 
     return (
-      <li className={classes}>
-        {icon && <Icon name={icon} />}
+      <li className={classes} onClick={this.handleClick}>
+        {icon && <Icon size={16} name={icon} />}
         {children ? children : content}
         {items && <Menu items={items} />}
       </li>

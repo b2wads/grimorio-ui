@@ -30,6 +30,7 @@ class Accordion extends PureComponent {
     defaultActiveIndex: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
     onTitleClick: PropTypes.func,
     exclusive: PropTypes.bool,
+    type: PropTypes.oneOf(['menu']),
     panels: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.any,
@@ -68,11 +69,13 @@ class Accordion extends PureComponent {
   }
 
   render() {
-    const { className, panels, children, ...rest } = this.props;
+    const { className, panels, children, type, ...rest } = this.props;
 
-    const classes = classNames(styles.accordion, className);
+    const classes = classNames(styles.accordion, className, {
+      [styles[type]]: type,
+    });
 
-    if (children) return children;
+    if (children) return <div className={classes} {...rest}>{children}</div>;
 
     return (
       <ul className={classes} {...rest}>
