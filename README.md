@@ -1,4 +1,4 @@
-# B2W Ads Theme
+# AFL Theme
 
 ## Prerequisites
 
@@ -41,6 +41,7 @@ yarn add afiliados-theme
 }
 ```
 
+```bash
 // import the CSS
 
 // ex: layout.js
@@ -61,6 +62,7 @@ import { Alert } from 'afiliados-theme';
   loader: 'style!css',
   include: path.resolve(__dirname, "../../node_modules/afiliados-theme/dist/")
 }
+```
 
 ## Install
 
@@ -156,10 +158,15 @@ Questions and answers
 1. [Git Flow](./docs/manual/01-git-flow.md)
 2. [Commits](./docs/manual/02-commits.md)
 3. [Architecture](./docs/manual/03-architecture.md)
-4. [Dependencies](./docs/manual/04-dependencies.md)
-5. [Technologies](./docs/manual/05-technologies.md)
-6. [Identation (code style)](./docs/manual/06-identation-code-style.md)
-7. [CSS (code style)](./docs/manual/07-css-code-style.md)
-8. [Javascript (code style)](./docs/manual/08-javascript-code-style.md)
+4. [Technologies](./docs/manual/04-technologies.md)
+5. [Identation (code style)](./docs/manual/05-identation-code-style.md)
+6. [CSS (code style)](./docs/manual/06-css-code-style.md)
+7. [Javascript (code style)](./docs/manual/07-javascript-code-style.md)
+
+
+## Support
+
+0. [Introduction](./docs/support/00-introduction.md)
+1. [Redux](./docs/support/01-redux.md)
 
 **[⬆ back to the top](#prerequisites)**

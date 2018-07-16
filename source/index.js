@@ -4,7 +4,4 @@ import Panel from './components/panel';
 import Svg from './components/svg';
 import Product from './components/product';
 
-import * as uiReducers from './reducers';
-import * as uiActions from './actions';
-
-export { Button, Icon, Panel, Svg, Product, uiReducers, uiActions };
+export { Button, Icon, Panel, Svg, Product };

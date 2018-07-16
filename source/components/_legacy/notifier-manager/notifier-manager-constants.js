@@ -1,2 +1,0 @@
-export const NOTIFIER_SHOW = 'NOTIFIER_SHOW';
-export const NOTIFIER_HIDE = 'NOTIFIER_HIDE';
