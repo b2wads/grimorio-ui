@@ -28,79 +28,67 @@ class Product extends PureComponent {
     nameLength: PropTypes.number,
     btnText: PropTypes.string,
     data: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      img: PropTypes.string.isRequired,
+      info: PropTypes.shape({
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        rules: PropTypes.string,
+      }).isRequired,
+      expires: PropTypes.string,
+      copyValue: PropTypes.string,
       tags: PropTypes.arrayOf(
         PropTypes.shape({
-          name: PropTypes.string,
+          type: PropTypes.string,
           value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
         })
       ),
-      img: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number,
-      cupom: PropTypes.shape({
-        codigo: PropTypes.string,
-        regras: PropTypes.string,
-      }),
-      expires: PropTypes.string,
-      link: PropTypes.string.isRequired,
-      copy: PropTypes.string,
     }),
   };
 
   static defaultProps = {
-    className: '',
     type: 'default',
     nameLength: 75,
     btnText: 'Copiar Link',
     data: {},
   };
 
-  renderPrice() {
-    const { price } = this.props.data;
+  share(type, link) {
+    return () => shareOn[type](link);
+  }
 
-    if (!price) {
-      return false;
+  renderInfo() {
+    const { info } = this.props.data;
+
+    if (!info) {
+      return null;
     }
 
     return (
-      <div className={styles.price}>
-        {moneyFormat(price)}
+      <div className={styles.info}>
+        {typeof info.value === 'number' ? moneyFormat(info.value) : info.value}
+        {info.rules &&
+          <Tooltip className={styles.rules} width="220px" message={info.rules}>
+            <span className={styles.rulesIcon}>?</span>
+          </Tooltip>}
       </div>
     );
-  }
-
-  renderCupom() {
-    const { cupom } = this.props.data;
-
-    if (!cupom) {
-      return false;
-    } else if (cupom.hasOwnProperty('codigo')) {
-      return (
-        <div className={styles.cupom}>
-          {cupom.codigo}
-          {cupom.regras &&
-            <Tooltip className={styles.regras} width="220px" message={cupom.regras}>
-              <span className={styles.regraIcon}>?</span>
-            </Tooltip>}
-        </div>
-      );
-    }
   }
 
   renderTags() {
     const { tags } = this.props.data;
 
     if (!tags) {
-      return false;
+      return null;
     }
 
     return tags.map(tag => {
-      const key = `${tag.name}-${tag.value}`;
-      switch (tag.name) {
+      const key = `${tag.type}-${tag.value}`;
+      switch (tag.type) {
         case 'brand':
-          return this.props.type !== 'card' && <Svg key={key} width={48} height={48} src={`logo/${tag.value}`} />;
+          return <Svg key={key} width={48} height={48} src={`logo/${tag.value}`} />;
         case 'highlight':
-          return <Icon key={key} className={styles.destaque} size="32" name="whatshot" />;
+          return tag.value && <Icon key={key} className={styles.tagHighlight} size="32" name="whatshot" />;
         default:
           return '';
       }
@@ -123,13 +111,13 @@ class Product extends PureComponent {
   render() {
     const { linkCopied, btnId } = this.state;
     const { className, type, nameLength, btnText, ...elementProps } = this.props;
-    const { tags, img, name, price, cupom, expires, link, copy } = this.props.data;
+    const { tags, img, name, info, expires, link, copyValue } = this.props.data;
 
     const fullClassName = classNames(className, {
       [styles[type]]: type,
     });
 
-    if (!img || !name || !link || (!price && !cupom)) {
+    if (!img || !name || !link || !info) {
       return null;
     }
 
@@ -151,19 +139,17 @@ class Product extends PureComponent {
           </a>
         </h1>
 
-        {this.renderPrice(price)}
-
-        {this.renderCupom(cupom)}
+        {this.renderInfo()}
 
         {expires &&
-          <div className={styles.valid}>
+          <div className={styles.expires}>
             {`Valido até: ${moment(expires).format('DD/MM/YYYY H:mm')}`}
           </div>}
 
         <div className={styles.social}>
           <Button
             active={linkCopied}
-            data-clipboard-text={copy ? copy : link}
+            data-clipboard-text={copyValue ? copyValue : link}
             className={classNames(styles.copy, btnId)}
             size="small"
           >
@@ -171,7 +157,7 @@ class Product extends PureComponent {
             <Icon name={linkCopied ? 'check' : 'link'} size={18} />
           </Button>
           <Svg
-            onClick={() => shareOn.facebook(link)}
+            onClick={this.share('facebook', link)}
             className={styles.facebook}
             align="top"
             width={26}
@@ -179,7 +165,7 @@ class Product extends PureComponent {
             src="icon/facebook-square"
           />
           <Svg
-            onClick={() => shareOn.twitter(link)}
+            onClick={this.share('twitter', link)}
             className={styles.twitter}
             align="top"
             width={26}
