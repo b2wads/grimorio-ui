@@ -53,7 +53,7 @@ const exampleCupom = {
   ],
 };
 
-const exampleCupomCard = {...exampleCupom, expires: null};
+const exampleCupomCard = {...exampleCupom, expires: null, tags: []};
 const exampleProductCard = {...exampleProduct, expires: null, tags: [{type: 'highlight', value: true}]};
 
 stories.addWithInfo('Default', () => (
