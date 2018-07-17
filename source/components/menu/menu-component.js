@@ -27,10 +27,11 @@ class Menu extends PureComponent {
   };
 
   render() {
-    const { className, items, children, type, theme, ...rest } = this.props;
+    const { className, items, children, type, theme, open, ...rest } = this.props;
     const classes = classNames(styles.menu, className, {
       [styles[type]]: type,
       [styles[theme]]: theme,
+      [styles.closed]: open === false,
     });
 
     return (

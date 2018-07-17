@@ -2,12 +2,11 @@
    Variables
 ========================================================================== */
 @import '../../styl/00-settings/_variables.styl';
-$c-shadow = rgba(0,0,0,0.15);
+$c-shadow = rgba(0, 0, 0, 0.15);
 
 
 /* Default
  ================ */
-
 .sidebar {
   background-color: $c-support-dark;
   height: 100%;
@@ -25,6 +24,21 @@ $c-shadow = rgba(0,0,0,0.15);
   overflow: hidden;
 }
 
-.content {
-  padding-top: 35px;
+.content { padding-top: 35px; }
+
+.toggle {
+  background-color: $c-support;
+  border: 0;
+  border-radius: 0 50% 50% 0;
+  cursor: pointer;
+  height: 30px;
+  outline: none;
+  padding: 0;
+  position: absolute;
+  right: -30px;
+  width: 30px;
 }
+
+.toggleIcon { fill: $white; }
+
+.closed { width: 60px; }

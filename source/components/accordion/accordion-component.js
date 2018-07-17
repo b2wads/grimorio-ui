@@ -87,6 +87,7 @@ class Accordion extends PureComponent {
     const classes = classNames(styles.accordion, className, {
       [styles[this.props.type]]: this.props.type,
       [styles[this.props.theme]]: this.props.theme,
+      [styles.closed]: this.props.open === false,
     });
 
     const ElementType = as ? as : 'ul';

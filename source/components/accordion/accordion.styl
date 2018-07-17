@@ -67,3 +67,19 @@ $c-text = #a4a3a3;
 
   .content { padding: 0; }
 }
+
+/* Closed
+ ================ */
+.closed {
+  .iconLeft { margin-right: 0 }
+
+  .title {
+    font-size: 0;
+
+    &.isActive {
+      font-size: initial;
+
+      .iconLeft { margin-right: 22px }
+    }
+  }
+}

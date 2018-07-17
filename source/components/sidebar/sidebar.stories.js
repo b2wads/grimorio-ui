@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
-import { withKnobs, number } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
+import { withState } from '@dump247/storybook-state';
 
 import Sidebar from './index';
 import SidebarLogotype from './elements/sidebar-logotype';
@@ -20,27 +21,26 @@ const stories = storiesOf('Sidebar', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Default', () => {
-  const activeIndex = number('activeIndex', -1);
+stories.addWithInfo('Default', withState({ open: true, active: -1 })(({ store }) => {
 
   return (
-    <div>
-      <Sidebar>
+    <div style={{ height: 800 }}>
+      <Sidebar onClick={(e, open) => store.set({ open })}>
         <SidebarLogotype>
-          <Svg width={188} height={58} src="logo/afiliados" />
+          { store.state.open ? <Svg width={188} height={58} src="logo/afiliados" /> : ''}
         </SidebarLogotype>
         <SidebarContent>
-          <Accordion type="accordionMenu" as={Menu}>
-            <MenuItem active={activeIndex === 0}>
+          <Accordion type="accordionMenu" as={Menu} {...store.state}>
+            <MenuItem active={store.state.active === 0}>
               <AccordionTitle
-                active={activeIndex === 0}
+                active={store.state.active === 0}
                 index={0}
-                onClick={action('clicked!!')}
+                onClick={() => store.set({ active: 0 })}
                 icon="dashboard"
               >
                 Dashboard
               </AccordionTitle>
-              <AccordionContent active={activeIndex === 0}>
+              <AccordionContent active={store.state.active === 0}>
                 <Menu>
                   <MenuItem link="/default" handleClick={action('default')}> Default</MenuItem>
                   <MenuItem link="/ecommerce" handleClick={action('ecommerce')}>eCommerce</MenuItem>
@@ -48,16 +48,16 @@ stories.addWithInfo('Default', () => {
                 </Menu>
               </AccordionContent>
             </MenuItem>
-            <MenuItem active={activeIndex === 1}>
+            <MenuItem active={store.state.active === 1}>
               <AccordionTitle
-                active={activeIndex === 1}
+                active={store.state.active === 1}
                 index={1}
-                onClick={action('clicked!!')}
+                onClick={() => store.set({ active: 1 })}
                 icon="insert_chart"
               >
                 Charts
               </AccordionTitle>
-              <AccordionContent active={activeIndex === 1}>
+              <AccordionContent active={store.state.active === 1}>
                 <Menu>
                   <MenuItem link="/test" handleClick={action('test')}>Test</MenuItem>
                 </Menu>
@@ -68,4 +68,4 @@ stories.addWithInfo('Default', () => {
       </Sidebar>
     </div>
   );
-});
+}));
