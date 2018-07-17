@@ -22,7 +22,7 @@ class Menu extends PureComponent {
     children: PropTypes.node,
     className: PropTypes.string,
     items: PropTypes.array,
-    type: PropTypes.oneOf(['accordion']),
+    type: PropTypes.oneOf(['accordionMenu']),
     theme: PropTypes.oneOf(['default', 'dark']),
   };
 

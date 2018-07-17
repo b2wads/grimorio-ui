@@ -2,7 +2,6 @@
    Variables
 ========================================================================== */
 @import '../../styl/00-settings/_variables.styl';
-$c-light = #fff;
 $c-text = #a4a3a3;
 
 /* Default
@@ -38,25 +37,27 @@ $c-text = #a4a3a3;
  ================ */
 .dark {
   .title {
+    &:hover,
     &.isActive {
-      color: $c-light;
+      color: $white;
 
-      .iconLeft, .iconRight { fill: $c-light; }
+      .iconLeft, .iconRight { fill: $white; }
     }
   }
 
   .content {
-    color: $c-light;
+    color: $white;
   }
 }
 
 /* Menu Type
  ================ */
-.menu {
+.accordionMenu {
   .title {
     border-left: 2px solid transparent;
     padding: 15px 26px 15px 24px;
 
+    &:hover,
     &.isActive {
       border-left-color: $c-primary-dark;
     }

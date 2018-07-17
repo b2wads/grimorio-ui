@@ -6,6 +6,7 @@ $c-text = #a4a3a3;
 
 /* Default
 ================ */
+.menu { margin: 0; }
 
 .iconLeft {
   fill: $c-text;
@@ -15,8 +16,10 @@ $c-text = #a4a3a3;
 .menuItem {
   color: $c-text;
   cursor: pointer;
+  display: inline-block;
   font-size: 14px;
   line-height: 1.2;
+  width: 100%;
 
   &.isActive {
     background-color: $c-support;
@@ -33,12 +36,17 @@ $c-text = #a4a3a3;
 
 /* Accordion Type
  ================ */
-.accordion {
+.accordionMenu {
   .menuItem .menu {
     padding: 0;
+    padding-bottom: 10px;
 
     & .menuItem {
-      padding: 15px 26px 15px 64px;
+      padding: 10px 26px 10px 64px;
+
+      &:hover { color: $white; }
+
+      & .menu { padding-bottom: 0; }
     }
   }
 }

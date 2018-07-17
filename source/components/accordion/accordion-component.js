@@ -31,7 +31,7 @@ class Accordion extends PureComponent {
     defaultActiveIndex: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
     onTitleClick: PropTypes.func,
     exclusive: PropTypes.bool,
-    type: PropTypes.oneOf(['menu']),
+    type: PropTypes.oneOf(['accordionMenu']),
     theme: PropTypes.oneOf(['default', 'dark']),
     panels: PropTypes.arrayOf(
       PropTypes.shape({
@@ -70,27 +70,31 @@ class Accordion extends PureComponent {
     if (this.props.onTitleClick) this.props.onTitleClick(e, titleProps);
   }
 
+  renderPanels(panels) {
+    return panels.map((panel, index) => (
+      <AccordionPanel
+        active={this.isIndexActive(index)}
+        index={index}
+        onTitleClick={this.handleTitleClick}
+        content={panel}
+      />
+    ));
+  }
+
   render() {
-    const { className, panels, children, type, theme, ...rest } = this.props;
+    const { className, panels, children, as, ...rest } = this.props;
 
     const classes = classNames(styles.accordion, className, {
-      [styles[type]]: type,
-      [styles[theme]]: theme,
+      [styles[this.props.type]]: this.props.type,
+      [styles[this.props.theme]]: this.props.theme,
     });
 
-    if (children) return <div className={classes} {...rest}>{children}</div>;
+    const ElementType = as ? as : 'ul';
 
     return (
-      <ul className={classes} {...rest}>
-        {panels.map((panel, index) => (
-          <AccordionPanel
-            active={this.isIndexActive(index)}
-            index={index}
-            onTitleClick={this.handleTitleClick}
-            content={panel}
-          />
-        ))}
-      </ul>
+      <ElementType className={classes} {...rest}>
+        {children ? children : this.renderPanels(panels)}
+      </ElementType>
     );
   }
 }

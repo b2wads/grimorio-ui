@@ -27,44 +27,42 @@ stories.addWithInfo('Default', () => {
     <div>
       <Sidebar>
         <SidebarLogotype>
-          <Svg width={188} height={58} src="logo/acom" />
+          <Svg width={188} height={58} src="logo/afiliados" />
         </SidebarLogotype>
         <SidebarContent>
-          <Accordion type="menu">
-            <Menu type="accordion">
-              <MenuItem active={activeIndex === 0}>
-                <AccordionTitle
-                  active={activeIndex === 0}
-                  index={0}
-                  onClick={action('clicked!!')}
-                  icon="dashboard"
-                >
-                  Dashboard
-                </AccordionTitle>
-                <AccordionContent active={activeIndex === 0}>
-                  <Menu>
-                    <MenuItem link="/default" handleClick={action('default')}> Default</MenuItem>
-                    <MenuItem link="/ecommerce" handleClick={action('ecommerce')}>eCommerce</MenuItem>
-                    <MenuItem link="/news-portal" handleClick={action('news-portal')}>News Portal</MenuItem>
-                  </Menu>
-                </AccordionContent>
-              </MenuItem>
-              <MenuItem active={activeIndex === 1}>
-                <AccordionTitle
-                  active={activeIndex === 1}
-                  index={1}
-                  onClick={action('clicked!!')}
-                  icon="insert_chart"
-                >
-                  Charts
-                </AccordionTitle>
-                <AccordionContent active={activeIndex === 1}>
-                  <Menu>
-                    <MenuItem link="/test" handleClick={action('test')}>Test</MenuItem>
-                  </Menu>
-                </AccordionContent>
-              </MenuItem>
-            </Menu>
+          <Accordion type="accordionMenu" as={Menu}>
+            <MenuItem active={activeIndex === 0}>
+              <AccordionTitle
+                active={activeIndex === 0}
+                index={0}
+                onClick={action('clicked!!')}
+                icon="dashboard"
+              >
+                Dashboard
+              </AccordionTitle>
+              <AccordionContent active={activeIndex === 0}>
+                <Menu>
+                  <MenuItem link="/default" handleClick={action('default')}> Default</MenuItem>
+                  <MenuItem link="/ecommerce" handleClick={action('ecommerce')}>eCommerce</MenuItem>
+                  <MenuItem link="/news-portal" handleClick={action('news-portal')}>News Portal</MenuItem>
+                </Menu>
+              </AccordionContent>
+            </MenuItem>
+            <MenuItem active={activeIndex === 1}>
+              <AccordionTitle
+                active={activeIndex === 1}
+                index={1}
+                onClick={action('clicked!!')}
+                icon="insert_chart"
+              >
+                Charts
+              </AccordionTitle>
+              <AccordionContent active={activeIndex === 1}>
+                <Menu>
+                  <MenuItem link="/test" handleClick={action('test')}>Test</MenuItem>
+                </Menu>
+              </AccordionContent>
+            </MenuItem>
           </Accordion>
         </SidebarContent>
       </Sidebar>
