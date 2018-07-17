@@ -54,5 +54,9 @@ stories.addWithInfo('Brand', () => (
     <Panel brand="shop" style={pannelSize}>
       <Product type="card" data={exampleProduct}></Product>
     </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel brand="soub" style={pannelSize}>
+      <Product type="card" data={exampleProduct}></Product>
+    </Panel>
   </div>
 ));
