@@ -23,7 +23,7 @@ class Panel extends PureComponent {
     if (brand) {
       return (
         <header className={styles[brand]}>
-          <Svg src={`logo/${brand}`} height={40} width={40} />
+          <Svg src={`logo/${brand}-white`} />
         </header>
       );
     } else {

@@ -12,7 +12,7 @@ import Icon from '../icon';
 import Button from '../button';
 import Tooltip from '../tooltip';
 
-import { ellipsis, moneyFormat, shareOn, property } from '../../helpers';
+import { moneyFormat, shareOn, property } from '../../helpers';
 
 class Product extends PureComponent {
   constructor() {
@@ -25,7 +25,6 @@ class Product extends PureComponent {
 
   static propTypes = {
     type: PropTypes.oneOf(['default', 'card']),
-    nameLength: PropTypes.number,
     btnText: PropTypes.string,
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -48,7 +47,6 @@ class Product extends PureComponent {
 
   static defaultProps = {
     type: 'default',
-    nameLength: 75,
     btnText: 'Copiar Link',
     data: {},
   };
@@ -88,7 +86,7 @@ class Product extends PureComponent {
         case 'brand':
           return <Svg key={key} width={48} height={48} src={`logo/${tag.value}`} />;
         case 'highlight':
-          return tag.value && <Icon key={key} className={styles.tagHighlight} size="32" name="whatshot" />;
+          return tag.value && <Svg key={key} className={styles.tagHighlight} width={32} height={32} src="flame" />;
         default:
           return '';
       }
@@ -110,14 +108,14 @@ class Product extends PureComponent {
 
   render() {
     const { linkCopied, btnId } = this.state;
-    const { className, type, nameLength, btnText, ...elementProps } = this.props;
+    const { className, type, btnText, ...elementProps } = this.props;
     const { img, name, info, expires, link, copyValue } = this.props.data;
 
     const fullClassName = classNames(className, {
       [styles[type]]: type,
     });
 
-    if (!img || !name || !link || !info) {
+    if (!name || !link || !info) {
       return null;
     }
 
@@ -129,13 +127,13 @@ class Product extends PureComponent {
 
         <div className={styles.img}>
           <a href={link}>
-            <img src={img} alt={name} />
+            {img ? <img src={img} alt={name} /> : <Svg src="cupom" />}
           </a>
         </div>
 
-        <h1 className={styles.name}>
+        <h1 className={classNames(styles.name, { [styles.isShort]: name.length < 31 })}>
           <a href={link}>
-            {ellipsis(name, nameLength)}
+            {name}
           </a>
         </h1>
 

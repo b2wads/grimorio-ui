@@ -47,18 +47,35 @@ $default-product {
 .img {
   margin-top: $gutter-px;
 
-  img {
+  img,
+  svg {
     display: block;
+    height: 200px;
     margin: 0 auto;
-    max-height: 200px;
     width: auto;
+  }
+
+  svg {
+    padding: 30px;
   }
 }
 
 .name {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
   font-size: 14px;
+  height: 33px;
   margin-top: $gutter-px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   word-wrap: break-word;
+
+  &.isShort {
+    align-items: center;
+    display: flex;
+    justify-content: left;
+  }
 }
 
 .rules {
@@ -141,5 +158,9 @@ $default-product {
     font-size: 28px;
     margin: 15px 0;
     text-align: center;
+  }
+
+  .isShort {
+    justify-content: center;
   }
 }

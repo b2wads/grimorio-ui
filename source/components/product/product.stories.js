@@ -32,7 +32,6 @@ const exampleProduct = {
 };
 
 const exampleCupom = {
-  img: 'http://via.placeholder.com/250x250',
   name: '10% com o cupom ALO10',
   info: {
     value: 'ALO10',
@@ -59,7 +58,7 @@ const exampleProductCard = {...exampleProduct, expires: null, tags: [{type: 'hig
 stories.addWithInfo('Default', () => (
   <div style={{ display: 'flex' }}>
     <Panel style={pannelSize}>
-      <Product nameLength={58} data={object('Product', exampleProduct)} />
+      <Product data={object('Product', exampleProduct)} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
@@ -75,7 +74,7 @@ stories.addWithInfo('Default', () => (
 stories.addWithInfo('Card', () => (
   <div style={{ display: 'flex' }}>
     <Panel type="brand" brand="acom" style={pannelSize}>
-      <Product nameLength={60} type="card" data={object('Product', exampleProductCard)} />
+      <Product type="card" data={object('Product', exampleProductCard)} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel type="brand" brand="suba" style={pannelSize}>

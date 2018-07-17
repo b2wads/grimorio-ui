@@ -14,7 +14,13 @@ $brandHeader {
   font-size: 0;
   overflow: hidden;
   padding: 15px 0;
+  height: 60px;
   justify-content: center;
+
+  svg {
+    fill: $white;
+    width: auto;
+  }
 }
 
 /* ==========================================================================
@@ -49,19 +55,23 @@ $brandHeader {
 .acom {
   @extend $brandHeader;
   background: $c-acom;
+  svg { height: 22px; }
 }
 
 .suba {
   @extend $brandHeader;
   background: $c-suba;
+  svg { height: 28px; }
 }
 
 .shop {
   @extend $brandHeader;
   background: $c-shop;
+  svg { height: 30px; }
 }
 
 .soub {
   @extend $brandHeader;
   background: $c-soub;
+  svg { height: 35px; }
 }
