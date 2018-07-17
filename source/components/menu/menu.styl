@@ -4,20 +4,41 @@
 @import '../../styl/00-settings/_variables.styl';
 $c-text = #a4a3a3;
 
+/* Default
+================ */
+
+.iconLeft {
+  fill: $c-text;
+  margin-right: 10px;
+}
 
 .menuItem {
   color: $c-text;
   cursor: pointer;
+  font-size: 14px;
+  line-height: 1.2;
 
   &.isActive {
     background-color: $c-support;
   }
+
+  & .menu {
+    padding: 10px;
+  }
 }
-
-/* Light
-================ */
-
-
 
 /* Dark
 ================ */
+
+
+/* Accordion Type
+ ================ */
+.accordion {
+  .menuItem .menu {
+    padding: 0;
+
+    & .menuItem {
+      padding: 15px 26px 15px 64px;
+    }
+  }
+}

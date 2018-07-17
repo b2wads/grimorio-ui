@@ -29,6 +29,10 @@ class AccordionTitle extends PureComponent {
     this.props.onClick(e, this.props);
   }
 
+  getIconName() {
+    return this.props.active ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+  }
+
   render() {
     const { active, className, content, icon, children } = this.props;
     const classes = classNames(styles.title, className, {
@@ -37,14 +41,9 @@ class AccordionTitle extends PureComponent {
 
     return (
       <div className={classes} onClick={this.handleClick}>
-        <Icon className={styles.iconLeft} size={16} name={icon} color={active === 1 ? '#fff' : '#a4a3a3'} />
+        <Icon className={styles.iconLeft} size={16} name={icon} />
         {children ? children : content}
-        <Icon
-          className={styles.iconRight}
-          color={active ? '#fff' : '#a4a3a3'}
-          size={18}
-          name={active ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
-        />
+        <Icon className={styles.iconRight} size={18} name={this.getIconName()} />
       </div>
     );
   }

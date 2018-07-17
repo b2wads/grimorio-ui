@@ -42,7 +42,7 @@ class MenuItem extends PureComponent {
 
     return (
       <li className={classes} onClick={this.handleClick}>
-        {icon && <Icon size={16} name={icon} />}
+        {icon && <Icon size={16} name={icon} className={styles.iconLeft} />}
         {children ? children : content}
         {items && <Menu items={items} />}
       </li>

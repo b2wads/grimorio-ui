@@ -19,6 +19,7 @@ class Accordion extends PureComponent {
   }
 
   static defaultProps = {
+    theme: 'default',
     exclusive: true,
     panels: [],
   };
@@ -31,6 +32,7 @@ class Accordion extends PureComponent {
     onTitleClick: PropTypes.func,
     exclusive: PropTypes.bool,
     type: PropTypes.oneOf(['menu']),
+    theme: PropTypes.oneOf(['default', 'dark']),
     panels: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.any,
@@ -69,10 +71,11 @@ class Accordion extends PureComponent {
   }
 
   render() {
-    const { className, panels, children, type, ...rest } = this.props;
+    const { className, panels, children, type, theme, ...rest } = this.props;
 
     const classes = classNames(styles.accordion, className, {
       [styles[type]]: type,
+      [styles[theme]]: theme,
     });
 
     if (children) return <div className={classes} {...rest}>{children}</div>;

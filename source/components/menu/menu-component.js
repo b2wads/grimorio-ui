@@ -14,6 +14,7 @@ class Menu extends PureComponent {
   }
 
   static defaultProps = {
+    theme: 'default',
     items: [],
   };
 
@@ -21,12 +22,16 @@ class Menu extends PureComponent {
     children: PropTypes.node,
     className: PropTypes.string,
     items: PropTypes.array,
+    type: PropTypes.oneOf(['accordion']),
+    theme: PropTypes.oneOf(['default', 'dark']),
   };
 
   render() {
-    const { className, items, children, ...rest } = this.props;
-
-    const classes = classNames(styles.menu, className);
+    const { className, items, children, type, theme, ...rest } = this.props;
+    const classes = classNames(styles.menu, className, {
+      [styles[type]]: type,
+      [styles[theme]]: theme,
+    });
 
     return (
       <ul className={classes} {...rest}>

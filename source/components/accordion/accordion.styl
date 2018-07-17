@@ -5,38 +5,64 @@
 $c-light = #fff;
 $c-text = #a4a3a3;
 
+/* Default
+ ================ */
+.iconLeft {
+  fill: $c-text;
+  margin-right: 10px;
+}
 
-.iconLeft { margin-right: 22px }
-.iconRight { float: right; }
+.iconRight {
+  fill: $c-text;
+  float: right;
+}
 
-.title { clear: both; }
+.title {
+  clear: both;
+  color: $c-text;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.2;
+}
 
 .content {
+  color: $c-text;
   display: none;
+  font-size: 14px;
+  padding: 10px;
 
   &.isActive { display: block; }
 }
 
-.menu {
+/* Dark Theme
+ ================ */
+.dark {
   .title {
-    border-left: 2px solid transparent;
-    color: $c-text;
-    font-size: 14px;
-    line-height: 1.2;
-    padding: 15px 26px 15px 24px;
-
     &.isActive {
-      border-left-color: $c-primary-dark;
       color: $c-light;
+
+      .iconLeft, .iconRight { fill: $c-light; }
     }
   }
 
   .content {
-    color: $c-text;
-    font-size: 14px;
+    color: $c-light;
+  }
+}
 
-    [class*="_menuItem"] {
-      padding: 15px 26px 15px 64px;
+/* Menu Type
+ ================ */
+.menu {
+  .title {
+    border-left: 2px solid transparent;
+    padding: 15px 26px 15px 24px;
+
+    &.isActive {
+      border-left-color: $c-primary-dark;
     }
   }
+
+  .iconLeft { margin-right: 22px }
+
+  .content { padding: 0; }
 }

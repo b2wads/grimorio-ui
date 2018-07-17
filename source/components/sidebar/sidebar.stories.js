@@ -31,7 +31,7 @@ stories.addWithInfo('Default', () => {
         </SidebarLogotype>
         <SidebarContent>
           <Accordion type="menu">
-            <Menu>
+            <Menu type="accordion">
               <MenuItem active={activeIndex === 0}>
                 <AccordionTitle
                   active={activeIndex === 0}
