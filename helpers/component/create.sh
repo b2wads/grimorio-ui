@@ -53,8 +53,8 @@ echo 'Created folder'
 touch $path/$name/index.js
 cat > $path/$name/index.js <<EOF
 import $capitalizeName from './$name-component';
-export default $capitalizeName;
 
+export default $capitalizeName;
 EOF
 
 echo 'Created index'
@@ -62,11 +62,15 @@ echo 'Created index'
 touch $path/$name/$name-component.js
 cat > $path/$name/$name-component.js <<EOF
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 
 import styles from './$name.styl';
 
 class $capitalizeName extends PureComponent {
+  static propTypes = {};
+  static defaultProps = {};
+
   render() {
     return <div>$capitalizeName</div>;
   }
@@ -123,16 +127,17 @@ cat > $path/$name/$name.styl <<EOF
 ========================================================================== */
 @import '../../styl/00-settings/_variables.styl';
 
-/* Color
-========================================================================== */
-
 /* ==========================================================================
    Placeholders
 ========================================================================== */
 \$default {}
 
 /* ==========================================================================
-   $capitalizeName Component
+   $capitalizeName Elements
+========================================================================== */
+
+/* ==========================================================================
+   $capitalizeName Props
 ========================================================================== */
 
 /* Default

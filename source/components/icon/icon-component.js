@@ -11,21 +11,35 @@ class Icon extends PureComponent {
   static defaultProps = {
     name: 'person', // https://material.io/tools/icons/?style=baseline
     size: 24,
+    align: 'middle',
   };
 
   static propTypes = {
     name: PropTypes.string,
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    align: PropTypes.oneOf([
+      'baseline',
+      'length',
+      'sub',
+      'super',
+      'top',
+      'text-top',
+      'middle',
+      'bottom',
+      'text-bottom',
+      'initial',
+      'inherit',
+    ]),
   };
 
   loadIcon(src) {
     const req = require.context(
       '!svg-react-loader!../../../node_modules/material-design-icons/',
       true,
-      /\/production\/ic_.{0,}_48px\.svg$/
+      /\/production\/ic_.{0,}_24px\.svg$/
     );
 
-    return req(req.keys().filter(paths => paths.includes(`${src}_48px`))[0]);
+    return req(req.keys().filter(paths => paths.includes(`ic_${src}_24px`))[0]);
   }
 
   pathLoader(name) {
@@ -41,7 +55,7 @@ class Icon extends PureComponent {
     const Component = this.pathLoader(name);
 
     let styles = {
-      verticalAlign: 'middle',
+      verticalAlign: this.props.align,
     };
 
     if (this.props.size) {

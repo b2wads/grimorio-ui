@@ -13,10 +13,12 @@ class Button extends PureComponent {
     type: 'button',
     children: false,
     className: undefined,
+    active: false,
   };
 
   static propTypes = {
     disabled: PropTypes.bool,
+    active: PropTypes.bool,
     type: PropTypes.oneOf(['button', 'reset', 'submit']),
     style: PropTypes.oneOf(['primary', 'secondary', 'clean']),
     size: PropTypes.oneOf(['small', 'medium']),
@@ -26,11 +28,11 @@ class Button extends PureComponent {
   };
 
   render() {
-    const { style, size, disabled, onClick, children, type, className, ...elementProps } = this.props;
-
+    const { style, size, disabled, active, onClick, children, type, className, ...elementProps } = this.props;
     const fullClassName = classNames(className, {
-      [`${styles[style]}`]: style,
-      [`${styles[size]}`]: size,
+      [styles[style]]: style,
+      [styles.isActive]: active,
+      [styles[size]]: size,
     });
 
     if (!children) {

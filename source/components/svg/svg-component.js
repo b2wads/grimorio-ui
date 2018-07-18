@@ -10,12 +10,26 @@ class Svg extends PureComponent {
 
   static defaultProps = {
     src: 'logo/acom',
+    align: 'middle',
   };
 
   static propTypes = {
     src: PropTypes.string,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    align: PropTypes.oneOf([
+      'baseline',
+      'length',
+      'sub',
+      'super',
+      'top',
+      'text-top',
+      'middle',
+      'bottom',
+      'text-bottom',
+      'initial',
+      'inherit',
+    ]),
     style: PropTypes.object,
   };
 
@@ -31,7 +45,7 @@ class Svg extends PureComponent {
 
   render() {
     let styles = {
-      verticalAlign: 'middle',
+      verticalAlign: this.props.align,
     };
 
     if (this.props.width) {

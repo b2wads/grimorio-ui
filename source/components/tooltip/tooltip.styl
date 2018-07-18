@@ -1,0 +1,139 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$triangle {
+  color: $white;
+	display: none;
+	font-size: 15px;
+	height: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	text-align: left;
+	transition: all 1s ease;
+	width: auto;
+	word-wrap: break-word;
+}
+
+$centerX {
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+$centerY {
+  top: 50%;
+  transform: translate(0, -50%);
+}
+/* ==========================================================================
+   Tooltip Elements
+========================================================================== */
+
+/* wrapper
+ ================ */
+
+.wrapper {
+  cursor: pointer;
+	display: inline;
+	fill: $base-text-color;
+	position: relative;
+
+  &:hover .dialog {
+    display: block;
+    height: auto;
+    opacity: 1;
+    padding: 7px;
+    visibility: visible;
+    z-index: 2;
+  }
+
+  &:hover .dialog:after {
+    display: block;
+    height: auto;
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+.dialog {
+  @extend $drop-shadow;
+	background: $white;
+	border-radius: 2px;
+	display: none;
+	font-size: 12px;
+	height: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	text-shadow: none;
+	transition: all 1s ease;
+	visibility: hidden;
+	width: auto;
+	word-wrap: break-word;
+}
+
+/* ==========================================================================
+   Tooltip Props
+========================================================================== */
+
+.block {
+  display: inline-block;
+}
+
+.top {
+  @extend $centerX;
+  bottom: calc(100% + 9px);
+
+  &:after {
+    @extend $centerX;
+    @extend $triangle;
+    content: '▼';
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+    top: calc(100% - 7px);
+  }
+}
+
+.bottom {
+  @extend $centerX;
+  top: calc(100% + 9px);
+
+  &:after {
+    @extend $centerX;
+    @extend $triangle;
+    bottom: calc(100% - 4px);
+    content: '▲';
+    text-shadow: 0 -1.5px 1px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.right {
+  @extend $centerY;
+  left: calc(100% + 14px);
+
+  &:after {
+    @extend $centerY;
+    @extend $triangle;
+    content: '◀';
+    padding-left: 3px;
+    right: 100%;
+    text-shadow: -2px 0 1px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.left {
+  @extend $centerY;
+  right: calc(100% + 14px);
+
+  &:after {
+    @extend $centerY;
+    @extend $triangle;
+    content: '▶';
+    left: 100%;
+    padding-right: 3px;
+    text-shadow: 2px 0 1px rgba(0, 0, 0, 0.15);
+  }
+}

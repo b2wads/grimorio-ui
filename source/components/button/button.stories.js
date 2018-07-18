@@ -46,6 +46,20 @@ stories.addWithInfo('Disabled', () => (
   </div>
 ));
 
+stories.addWithInfo('States', () => (
+  <div>
+    <Button style="primary">
+      Normal
+    </Button>&nbsp;
+    <Button style="primary" disabled>
+      Disabled
+    </Button>&nbsp;
+    <Button style="primary" active>
+      Active
+    </Button>
+  </div>
+));
+
 stories.addWithInfo('Size', () => (
   <div>
     <Button size="small">Small</Button>&nbsp;

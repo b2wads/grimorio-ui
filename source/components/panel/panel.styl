@@ -2,20 +2,26 @@
    Variables
 ========================================================================== */
 @import '../../styl/00-settings/_variables.styl';
-
-/* Color
-========================================================================== */
-
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$defaultPanel {
-  @extend $drop-shadow;
-  width: 100%;
-  border-radius: 2px;
+
+$brandHeader {
+  align-items: center;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  display: flex;
+  font-size: 0;
+  height: 60px;
+  justify-content: center;
   overflow: hidden;
+  padding: 15px 0;
 }
 
+$brandLogo {
+  fill: $white;
+  width: auto;
+}
 /* ==========================================================================
    Panel Component
 ========================================================================== */
@@ -24,27 +30,64 @@ $defaultPanel {
  ================ */
 
 .default {
-  @extend $defaultPanel;
-  padding: 20px 25px;
+  @extend $drop-shadow;
+  border-radius: 2px;
+  padding: 25px 20px;
+  width: 100%;
 
-  &__header {
-    color: $c-support;
-    font-size: 18px;
+  &.isBrand {
+    padding: 0;
   }
+}
+
+.content.isBrand {
+  padding: 0 10px 10px;
+}
+
+.title {
+  color: $c-support;
+  font-size: 18px;
 }
 
 /* Brand
  ================ */
+.acom {
+  @extend $brandHeader;
+  background: $c-acom;
 
-.brand {
-  @extend $defaultPanel;
-
-  &__header {
-    overflow: hidden;
-    font-size: 0;
+  .brandLogo {
+    @extend $brandLogo;
+    height: 22px;
   }
+}
 
-  &__content {
-    padding: 10px;
+.suba {
+  @extend $brandHeader;
+  background: $c-suba;
+
+  .brandLogo {
+    @extend $brandLogo;
+    height: 28px;
+  }
+}
+
+.shop {
+  @extend $brandHeader;
+  background: $c-shop;
+
+  .brandLogo {
+    @extend $brandLogo;
+    height: 30px;
+    stroke: $white;
+  }
+}
+
+.soub {
+  @extend $brandHeader;
+  background: $c-soub;
+
+  .brandLogo {
+    @extend $brandLogo;
+    height: 35px;
   }
 }

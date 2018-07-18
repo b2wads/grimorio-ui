@@ -3,29 +3,49 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
+import Svg from '../svg';
+
 import styles from './panel.styl';
 
 class Panel extends PureComponent {
   static propTypes = {
-    type: PropTypes.oneOf(['default', 'brand']),
-    header: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
-    children: PropTypes.element.isRequired,
+    brand: PropTypes.oneOf([null, 'acom', 'suba', 'shop', 'soub']),
+    title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   };
 
   static defaultProps = {
-    type: 'default',
+    brand: null,
+    title: false,
   };
 
+  renderHeader(brand, title) {
+    if (brand) {
+      return (
+        <header className={styles[brand]}>
+          <Svg className={styles.brandLogo} src={`logo/${brand}-full`} />
+        </header>
+      );
+    } else {
+      return (
+        <header className={styles.title}>
+          {title}
+        </header>
+      );
+    }
+  }
+
   render() {
-    const { header, children, className, type } = this.props;
-    const fullClassName = classNames(className, styles[type]);
+    const { title, children, className, brand, ...elementProps } = this.props;
+    const fullClassName = classNames(className, {
+      [styles.default]: true,
+      [styles.isBrand]: brand,
+    });
 
     return (
-      <article className={fullClassName}>
-        <header>
-          <h1 className={styles[`${type}__header`]}>{header}</h1>
-        </header>
-        <div className={styles[`${type}__content`]}>
+      <article {...elementProps} className={fullClassName}>
+        {(title || brand) && this.renderHeader(brand, title)}
+        <div className={classNames(styles.content, { [styles.isBrand]: brand })}>
           {children}
         </div>
       </article>

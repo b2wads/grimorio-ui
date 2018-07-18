@@ -1,0 +1,170 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+$gutter-px = 8px;
+$hot = #FF5567;
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$social-ico {
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+$default-product {
+  min-width: 200px;
+  position: relative;
+
+  a {
+    color: $base-text-color;
+    text-decoration: none;
+  }
+}
+
+$img {
+  display: block;
+  height: 200px;
+  margin: 0 auto;
+  width: auto;
+}
+
+/* ==========================================================================
+   Product Elements
+========================================================================== */
+
+.tag {
+  left: 0;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.tagHighlight {
+  fill: $hot;
+  position: absolute;
+  right: 0;
+}
+
+.imgWrapper {
+  margin-top: $gutter-px;
+}
+
+.imgCustom {
+  @extend $img;
+}
+
+.imgDefault {
+  @extend $img;
+  padding: 30px;
+}
+
+.name {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  font-size: 14px;
+  height: 33px;
+  margin-top: $gutter-px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+
+  &.isShort {
+    align-items: center;
+    display: flex;
+    justify-content: left;
+  }
+}
+
+.rules {
+  color: $base-text-color;
+  display: inline-block;
+  font-size: 11px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.rulesIcon {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  color: $base-text-color;
+  display: flex;
+  height: 17px;
+  justify-content: center;
+  padding: 2px;
+  vertical-align: middle;
+  width: 17px;
+}
+
+.expires {
+  font-size: 12px;
+  margin-top: $gutter-px;
+}
+
+.social {
+  margin-top: $gutter-px;
+  padding-bottom: 2px;
+}
+
+.copy {
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+.copyIcon {
+  margin-left: 5px;
+}
+
+.facebook {
+  @extend $social-ico;
+  fill: $c-facebook;
+}
+
+.twitter {
+  @extend $social-ico;
+  fill: $c-twitter;
+}
+
+/* ==========================================================================
+   Product Props
+========================================================================== */
+
+/* Default
+ ================ */
+
+.default {
+  @extend $default-product;
+
+  .info {
+    color: $c-text-dark;
+    font-size: 28px;
+    font-weight: 400;
+    margin-top: $gutter-px;
+  }
+}
+
+/* Card
+ ================ */
+
+.card {
+  @extend $default-product;
+  text-align: center;
+
+  .info {
+    color: $c-primary;
+    font-size: 28px;
+    margin: 15px 0;
+    text-align: center;
+  }
+
+  .isShort {
+    justify-content: center;
+  }
+}
