@@ -38,7 +38,10 @@ $c-text = #a4a3a3;
  ================ */
 .accordionMenu {
   &.closed {
-    .menuItem.isActive { width: 290px }
+    .menuItem.isActive {
+      transition: width 0.3s ease-in-out;
+      width: 290px;
+    }
     .menuItem .menu .menuItem { width: 100%; }
   }
 

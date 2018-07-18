@@ -1,6 +1,7 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
-import { withKnobs, boolean, number, select } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
+import { withKnobs, boolean, select } from '@storybook/addon-knobs';
+import { withState } from '@dump247/storybook-state';
 
 import Accordion from './index';
 import AccordionTitle from './elements/accordion-title';
@@ -41,24 +42,34 @@ stories.addWithInfo(
 
 stories.addWithInfo(
   'Manual',``,
-  () => {
-    const activeIndex = number('activeIndex', -1);
+  withState({ active: -1 })(({ store }) => {
+    const getActive = (index) => {
+      return store.state.active === index;
+    }
+
+    const handleClick = (e, titleProps) => {
+      const { index } = titleProps;
+      const { active } = store.state;
+      const newIndex = active === index ? -1 : index;
+
+      store.set({ active: newIndex });
+    }
 
     return (
       <Accordion>
         <AccordionTitle
-          active={activeIndex === 0}
+          active={getActive(0)}
           index={0}
-          onClick={action('clicked!!')}
+          onClick={handleClick}
         >Um --</AccordionTitle>
-        <AccordionContent active={activeIndex === 0}>primeiro conteudo --</AccordionContent>
+        <AccordionContent active={getActive(0)}>primeiro conteudo --</AccordionContent>
         <AccordionTitle
-          active={activeIndex === 1}
+          active={getActive(1)}
           index={1}
-          onClick={action('clicked!!')}
+          onClick={handleClick}
         >Dois --</AccordionTitle>
-        <AccordionContent active={activeIndex === 1}>segundo conteudo --</AccordionContent>
+        <AccordionContent active={getActive(1)}>segundo conteudo --</AccordionContent>
       </Accordion>
     )
   }
-);
+));
