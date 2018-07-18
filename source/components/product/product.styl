@@ -25,6 +25,13 @@ $default-product {
   }
 }
 
+$img {
+  display: block;
+  height: 200px;
+  margin: 0 auto;
+  width: auto;
+}
+
 /* ==========================================================================
    Product Elements
 ========================================================================== */
@@ -44,20 +51,17 @@ $default-product {
   right: 0;
 }
 
-.img {
+.imgWrapper {
   margin-top: $gutter-px;
+}
 
-  img,
-  svg {
-    display: block;
-    height: 200px;
-    margin: 0 auto;
-    width: auto;
-  }
+.imgCustom {
+  @extend $img;
+}
 
-  svg {
-    padding: 30px;
-  }
+.imgDefault {
+  @extend $img;
+  padding: 30px;
 }
 
 .name {
@@ -112,10 +116,10 @@ $default-product {
 .copy {
   margin-right: 5px;
   transition: all 0.3s ease;
+}
 
-  svg {
-    margin-left: 5px;
-  }
+.copyIcon {
+  margin-left: 5px;
 }
 
 .facebook {

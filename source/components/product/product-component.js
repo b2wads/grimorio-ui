@@ -125,9 +125,11 @@ class Product extends PureComponent {
           {this.renderTags()}
         </div>
 
-        <div className={styles.img}>
+        <div className={styles.imgWrapper}>
           <a href={link}>
-            {img ? <img src={img} alt={name} /> : <Svg src="cupom" />}
+            {img
+              ? <img className={styles.imgCustom} src={img} alt={name} />
+              : <Svg className={styles.imgDefault} src="cupom" />}
           </a>
         </div>
 
@@ -152,7 +154,7 @@ class Product extends PureComponent {
             size="small"
           >
             {linkCopied ? 'Copiado!' : btnText}
-            <Icon name={linkCopied ? 'check' : 'link'} size={18} />
+            <Icon className={styles.copyIcon} name={linkCopied ? 'check' : 'link'} size={18} />
           </Button>
           <Svg
             onClick={this.share('facebook', link)}
