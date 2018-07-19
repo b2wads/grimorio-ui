@@ -3,18 +3,12 @@ import { storiesOf, action } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
-import Sidebar from './index';
-import SidebarLogotype from './elements/sidebar-logotype';
-import SidebarContent from './elements/sidebar-content';
+import Sidebar, { SidebarLogotype, SidebarContent } from './index';
 
 import Svg from '../svg';
 
-import Menu from '../menu';
-import MenuItem from '../menu/elements//menu-item';
-
-import Accordion from '../accordion';
-import AccordionTitle from '../accordion/elements/accordion-title';
-import AccordionContent from '../accordion/elements/accordion-content';
+import Menu, { MenuItem } from '../menu';
+import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
 
 
 const stories = storiesOf('Sidebar', module);
@@ -38,7 +32,7 @@ stories.addWithInfo('Default', withState({ open: true, active: -1 })(({ store })
     <div style={{ height: 800 }}>
       <Sidebar onClick={(e, open) => store.set({ open, active: !open ? -1 : store.state.active })}>
         <SidebarLogotype>
-          { store.state.open ? <Svg width={188} height={58} src="logo/afiliados" /> : <Svg width={30} src="logo/afiliados-icon" />}
+          { store.state.open ? <Svg width={188} height={58} src="logo/afiliados" /> : <Svg width={24} src="logo/afiliados-icon" />}
         </SidebarLogotype>
         <SidebarContent>
           <Accordion type="accordionMenu" exclusive={false} as={Menu} {...store.state}>

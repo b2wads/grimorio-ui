@@ -26,11 +26,18 @@ $c-text = #a4a3a3;
 
 .content {
   color: $c-text;
-  display: none;
-  font-size: 14px;
-  padding: 10px;
+  font-size: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  transition: max-height 0.3s ease, font-size 0.2s ease, padding 0.3s ease;
 
-  &.isActive { display: block; }
+  &.isActive {
+    font-size: 14px;
+    max-height: 300px; // para funcionar o efeito de transição
+    padding: 10px;
+    transition: max-height 0.3s ease;
+  }
 }
 
 /* Dark Theme
@@ -56,6 +63,7 @@ $c-text = #a4a3a3;
   .title {
     border-left: 2px solid transparent;
     padding: 15px 26px 15px 24px;
+    transition: font-size 0.3s ease;
 
     &:hover,
     &.isActive {
@@ -66,22 +74,32 @@ $c-text = #a4a3a3;
   .iconLeft { margin-right: 22px }
 
   .content { padding: 0; }
-}
 
-/* Closed
- ================ */
-.closed {
-  .iconLeft { margin-right: 0 }
+  &.closed {
+    .iconLeft { margin-right: 0 }
 
-  .title {
-    font-size: 0;
-    padding: 15px 10px 15px 10px;
-
-    &.isActive {
-      font-size: initial;
+    .title {
+      font-size: 0;
+      padding: 15px 10px 15px 10px;
       transition: font-size 0.5s ease;
 
-      .iconLeft { margin-right: 22px }
+      &.isActive {
+        font-size: 14px;
+        transition: font-size 0.5s ease;
+
+        .iconLeft { margin-right: 22px }
+      }
+    }
+
+    .content {
+      display: block;
+      overflow: hidden;
+      width: 0;
+
+      &.isActive {
+        transition: width 0.3s ease;
+        width: 100%;
+      }
     }
   }
 }

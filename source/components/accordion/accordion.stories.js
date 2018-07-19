@@ -3,9 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
-import Accordion from './index';
-import AccordionTitle from './elements/accordion-title';
-import AccordionContent from './elements/accordion-content';
+import Accordion, { AccordionTitle, AccordionContent } from './index';
 
 const stories = storiesOf('Accordion', module);
 
