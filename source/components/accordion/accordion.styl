@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+$c-text = #a4a3a3;
+
+/* Default
+ ================ */
+.iconLeft {
+  fill: $c-text;
+  margin-right: 10px;
+}
+
+.iconRight {
+  fill: $c-text;
+  float: right;
+}
+
+.title {
+  clear: both;
+  color: $c-text;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.content {
+  color: $c-text;
+  font-size: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  transition: max-height 0.3s ease, font-size 0.2s ease, padding 0.3s ease;
+
+  &.isActive {
+    font-size: 14px;
+    max-height: 300px; // para funcionar o efeito de transição
+    padding: 10px;
+    transition: max-height 0.3s ease;
+  }
+}
+
+/* Dark Theme
+ ================ */
+.dark {
+  .title {
+    &:hover,
+    &.isActive {
+      color: $white;
+
+      .iconLeft, .iconRight { fill: $white; }
+    }
+  }
+
+  .content {
+    color: $white;
+  }
+}
+
+/* Menu Type
+ ================ */
+.accordionMenu {
+  .title {
+    border-left: 2px solid transparent;
+    padding: 15px 26px 15px 24px;
+    transition: font-size 0.3s ease;
+
+    &:hover,
+    &.isActive {
+      border-left-color: $c-primary-dark;
+    }
+  }
+
+  .iconLeft { margin-right: 22px }
+
+  .content { padding: 0; }
+
+  &.closed {
+    .iconLeft { margin-right: 0 }
+
+    .title {
+      font-size: 0;
+      padding: 15px 10px 15px 10px;
+      transition: font-size 0.5s ease;
+
+      &.isActive {
+        font-size: 14px;
+        transition: font-size 0.5s ease;
+
+        .iconLeft { margin-right: 22px }
+      }
+    }
+
+    .content {
+      display: block;
+      overflow: hidden;
+      width: 0;
+
+      &.isActive {
+        transition: width 0.3s ease;
+        width: 100%;
+      }
+    }
+  }
+}

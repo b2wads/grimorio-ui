@@ -16,6 +16,7 @@ class Icon extends PureComponent {
 
   static propTypes = {
     name: PropTypes.string,
+    color: PropTypes.string,
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     align: PropTypes.oneOf([
       'baseline',
@@ -30,6 +31,7 @@ class Icon extends PureComponent {
       'initial',
       'inherit',
     ]),
+    style: PropTypes.object,
   };
 
   loadIcon(src) {
@@ -51,17 +53,18 @@ class Icon extends PureComponent {
   }
 
   render() {
-    const { name, ...elementProps } = this.props;
+    const { name, size, ...elementProps } = this.props;
     const Component = this.pathLoader(name);
 
     let styles = {
+      fill: this.props.color,
       verticalAlign: this.props.align,
     };
 
-    if (this.props.size) {
+    if (size) {
       // Prevents scaling issue in IE
-      styles.height = this.props.size;
-      styles.width = this.props.size;
+      styles.height = size;
+      styles.width = size;
     }
 
     if (!Component) {
