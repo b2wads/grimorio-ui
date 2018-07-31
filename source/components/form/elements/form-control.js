@@ -11,6 +11,10 @@ class FormControl extends PureComponent {
   constructor(props, context) {
     super(props, context);
 
+    this.state = {
+      value: props.value,
+    };
+
     this.type = this.props.type;
     this.hasTypeProperty = this.type !== 'select' && this.type !== 'textarea';
 
@@ -131,7 +135,6 @@ class FormControl extends PureComponent {
       disabled,
       children,
       name,
-      value,
       onMask,
       placeholder,
       inputClassName,
@@ -157,11 +160,14 @@ class FormControl extends PureComponent {
       tagType = type;
     }
 
-    let newValue;
+    let handleChange;
     if (onMask) {
-      newValue = onMask(value);
+      handleChange = e => {
+        this.setState({ value: onMask(e.target.value) });
+        onChange(e);
+      };
     } else {
-      newValue = value;
+      handleChange = onChange;
     }
 
     return (
@@ -171,12 +177,12 @@ class FormControl extends PureComponent {
         className={componentClass}
         placeholder={placeholder}
         id={controlId}
-        onChange={onChange}
+        onChange={handleChange}
         onFocus={onFocus}
         onBlur={onBlur}
         disabled={disabled}
         name={name}
-        value={newValue}
+        value={this.state.value}
         {...rest}
       >
         {children}

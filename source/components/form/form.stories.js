@@ -5,6 +5,8 @@ import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import Button from '../button';
 import Icon from '../icon';
 
+import { fieldsMask } from '../../helpers/mask';
+
 import Form, { FormGroup, FormLabel, FormControl, FormActions, FormHelpText, FormControlLabel } from './index';
 
 const stories = storiesOf('Form', module);
@@ -227,3 +229,22 @@ stories.addWithInfo('On blur', () => (
   </div>
 ));
 
+stories.addWithInfo('On Mask', () => {
+  const handleMask = value => {
+    return fieldsMask({ type: 'number' }, value);
+  }
+  return (
+    <FormControl
+      placeholder="Digite um nome"
+      onMask={handleMask}
+      validation={[{
+          rule: 'required',
+          message: 'Campo obrigatório'
+        }, {
+          rule: 'number',
+          message: 'Deve ser um número'
+        }]
+      }
+    />
+  );
+});
