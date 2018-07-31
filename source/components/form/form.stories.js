@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@storybook/react';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withState } from '@dump247/storybook-state';
 
 import Button from '../button';
 import Icon from '../icon';
@@ -237,14 +238,50 @@ stories.addWithInfo('On Mask', () => {
     <FormControl
       placeholder="Digite um nome"
       onMask={handleMask}
-      validation={[{
-          rule: 'required',
-          message: 'Campo obrigatório'
-        }, {
-          rule: 'number',
-          message: 'Deve ser um número'
-        }]
-      }
     />
   );
 });
+
+
+stories.addWithInfo('On Validation', withState({ status: undefined, message: undefined })(({ store }) => {
+  const handleValidate = validation => {
+    store.set({ status: validation.validationState, message: validation.errorMessage });
+  }
+
+  return (
+    <div>
+      <FormGroup validationState={store.state.status}>
+        <FormControlLabel
+          label="Nome"
+          placeholder="Digite um nome"
+          onValidate={handleValidate}
+          validate={[{
+              rule: 'required',
+              message: 'Campo obrigatório'
+            }, {
+              rule: 'letter',
+              message: 'Deve ser apenas letras'
+            }]
+          }
+        />
+        {store.state.message && <span className="error">{store.state.message}</span>}
+      </FormGroup>
+      <FormGroup validationState={store.state.status}>
+        <FormLabel>Nome:</FormLabel>
+        <FormControl
+          placeholder="Digite um nome"
+          onValidate={handleValidate}
+          validate={[{
+              rule: 'required',
+              message: 'Campo obrigatório'
+            }, {
+              rule: 'letter',
+              message: 'Deve ser apenas letras'
+            }]
+          }
+        />
+        {store.state.message && <span className="error">{store.state.message}</span>}
+      </FormGroup>
+    </div>
+  );
+}));

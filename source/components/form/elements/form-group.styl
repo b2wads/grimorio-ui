@@ -10,7 +10,7 @@ $success = #1ab394;
 $success-light = #dff0d8;
 $warning = #f8ac59;
 $warning-light = #fcf8e3;
-$error = #ed5565;
+$error = #f44336;
 $error-light = #f2dede;
 $font-color-light = #fff;
 
@@ -61,7 +61,6 @@ $font-color-light = #fff;
 .has-success {
   color: $success;
 
-  [class*="label"],
   [class*="help-text"],
   [class*="form-feedback"],
   [class*="form-addon"] {
@@ -83,8 +82,6 @@ $font-color-light = #fff;
 .has-warning {
   color: $warning;
 
-
-  [class*="label"],
   [class*="help-text"],
   [class*="form-feedback"],
   [class*="form-addon"] {
@@ -106,7 +103,6 @@ $font-color-light = #fff;
 .has-error {
   color: $error;
 
-  [class*="label"],
   [class*="help-text"],
   [class*="form-feedback"],
   [class*="form-addon"] {
@@ -125,12 +121,9 @@ $font-color-light = #fff;
   }
 
   [class="error"] {
-    background: $error;
-    color: $font-color-light;
-    padding: 2px 5px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
+    color: #f44336$error;
+    padding: 5px 0;
+    display: block;
+    font-size: 12px;
   }
 }

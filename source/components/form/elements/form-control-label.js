@@ -31,7 +31,7 @@ class FormControlLabel extends PureComponent {
   }
 
   render() {
-    const { label, placeholder } = this.props;
+    const { label, placeholder, ...rest } = this.props;
 
     const fullClassName = classNames(styles.label, {
       [styles.isActive]: this.state.active,
@@ -45,6 +45,7 @@ class FormControlLabel extends PureComponent {
           inputClassName={styles.formControl}
           onBlur={this.handleLabel}
           onFocus={this.handleLabel}
+          {...rest}
         />
       </div>
     );

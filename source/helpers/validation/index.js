@@ -1,11 +1,10 @@
 import requiredValidation from './required';
-import { datetimeValidation, startDateWithEndDateValidation, afterToday } from './datetime';
-import oneRequiredValidation from './one-required';
+import { datetimeValidation, afterToday } from './datetime';
 import numberValidation from './number';
 import { alphaNumericValidation, letterValidation } from './string';
 import { minLengthValidation, maxLengthValidation } from './length';
 
-export const fieldsValidation = (value, validation, schema, methods) => {
+export const fieldsValidation = (value, validation) => {
   let validationAndMessage = {
     validationState: undefined,
     errorMessage: undefined,
@@ -30,31 +29,11 @@ export const fieldsValidation = (value, validation, schema, methods) => {
       }
 
       if (validationItem.rule === 'number' && validated(validationAndMessage)) {
-        let child = undefined;
-        if (value && value.constructor === Array && value.length > 0) {
-          if (value[0].constructor === Object) {
-            const [item] = value;
-            if (item.id) {
-              child = 'id';
-            }
-            if (item.value) {
-              child = 'value';
-            }
-          }
-        }
-        validationAndMessage = numberValidation(value, validationItem.message, child);
+        validationAndMessage = numberValidation(value, validationItem.message);
       }
 
       if (validationItem.rule === 'datetime' && validated(validationAndMessage)) {
         validationAndMessage = datetimeValidation(value, validationItem.message);
-      }
-
-      if (validationItem.rule === 'oneRequired' && validated(validationAndMessage)) {
-        validationAndMessage = oneRequiredValidation(value, methods, validationItem, schema);
-      }
-
-      if (validationItem.rule === 'startDateWithEndDate' && validated(validationAndMessage)) {
-        validationAndMessage = startDateWithEndDateValidation(value, methods, validationItem, schema);
       }
 
       if (validationItem.rule === 'afterToday' && validated(validationAndMessage)) {

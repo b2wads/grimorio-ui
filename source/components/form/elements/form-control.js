@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import CSSModules from 'react-css-modules';
 // components
 import Icon from '../../icon';
+import { fieldsValidation } from '../../../helpers/validation';
 // styles
 import styles from './form-control.styl';
 
@@ -138,6 +139,8 @@ class FormControl extends PureComponent {
       onMask,
       placeholder,
       inputClassName,
+      validate,
+      onValidate,
       ...rest
     } = this.props;
     const form = this.context.$form;
@@ -160,14 +163,16 @@ class FormControl extends PureComponent {
       tagType = type;
     }
 
-    let handleChange;
-    if (onMask) {
+    let handleChange = onChange;
+    if (onMask || validate) {
       handleChange = e => {
-        this.setState({ value: onMask(e.target.value) });
+        this.setState({ value: onMask ? onMask(e.target.value) : e.target.value }, () => {
+          if (validate) {
+            onValidate(fieldsValidation(this.state.value, this.props.validate));
+          }
+        });
         onChange(e);
       };
-    } else {
-      handleChange = onChange;
     }
 
     return (

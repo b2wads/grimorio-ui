@@ -27,6 +27,13 @@ class FormLabel extends PureComponent {
     $formGroup: PropTypes.object,
   };
 
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    if (this.context.formGroup !== nextContext.formGroup) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
     const { addon, children, className, ...elementProps } = this.props;
 
@@ -35,9 +42,13 @@ class FormLabel extends PureComponent {
     const formStyleType = (form && form.styleType) || undefined;
     const formGroup = this.context.$formGroup;
     const controlId = (formGroup && formGroup.controlId) || undefined;
+    const validationState = (formGroup && formGroup.validationState) || undefined;
+
+    console.log(formGroup, '<<<<< vformGroup');
 
     const fullClassName = classNames(className, styles.label, {
       [styles['label--horizontal']]: formStyleType === 'horizontal',
+      [styles[`label--${validationState}`]]: validationState,
     });
 
     if (!addon && !children) {
