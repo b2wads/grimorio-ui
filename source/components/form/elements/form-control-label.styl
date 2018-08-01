@@ -9,6 +9,10 @@
 $label-color = #999;
 $label-color-active = #999;
 
+$success = #1ab394;
+$warning = #f8ac59;
+$error = #f44336;
+
 /* ==========================================================================
    Form Label Component
    ========================================================================== */
@@ -26,7 +30,6 @@ $label-color-active = #999;
   pointer-events: none;
 }
 
-.formControl:focus + .isActive,
 .isActive {
   color: $c-primary;
   font-size: 12px;
@@ -35,3 +38,7 @@ $label-color-active = #999;
   left: 0;
   transition: all 0.125s ease;
 }
+
+.has-success.label { color: $success; }
+.has-warning.label { color: $warning; }
+.has-error.label { color: $error; }

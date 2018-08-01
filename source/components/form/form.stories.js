@@ -243,9 +243,13 @@ stories.addWithInfo('On Mask', () => {
 });
 
 
-stories.addWithInfo('On Validation', withState({ status: undefined, message: undefined })(({ store }) => {
+stories.addWithInfo('On Validation', withState({ status: undefined, message: undefined, status2: undefined, message2: undefined })(({ store }) => {
   const handleValidate = validation => {
     store.set({ status: validation.validationState, message: validation.errorMessage });
+  }
+
+  const handleValidateTwo = validation => {
+    store.set({ status2: validation.validationState, message2: validation.errorMessage });
   }
 
   return (
@@ -264,13 +268,13 @@ stories.addWithInfo('On Validation', withState({ status: undefined, message: und
             }]
           }
         />
-        {store.state.message && <span className="error">{store.state.message}</span>}
+        {store.state.message && <FormHelpText>{store.state.message}</FormHelpText>}
       </FormGroup>
-      <FormGroup validationState={store.state.status}>
+      <FormGroup validationState={store.state.status2}>
         <FormLabel>Nome:</FormLabel>
         <FormControl
           placeholder="Digite um nome"
-          onValidate={handleValidate}
+          onValidate={handleValidateTwo}
           validate={[{
               rule: 'required',
               message: 'Campo obrigatório'
@@ -280,7 +284,7 @@ stories.addWithInfo('On Validation', withState({ status: undefined, message: und
             }]
           }
         />
-        {store.state.message && <span className="error">{store.state.message}</span>}
+        <FormHelpText>{store.state.message2 ? store.state.message2 : 'Seja uma pessoa gentil e escreva aqui'}</FormHelpText>
       </FormGroup>
     </div>
   );

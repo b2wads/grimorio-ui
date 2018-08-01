@@ -13,15 +13,20 @@ class FormControlLabel extends PureComponent {
   constructor(props, context) {
     super(props, context);
 
-    this.handleLabel = this.handleLabel.bind(this);
     this.state = {
       active: false,
     };
+
+    this.handleLabel = this.handleLabel.bind(this);
   }
 
   static propTypes = {
     label: PropTypes.string,
     placeholder: PropTypes.string,
+  };
+
+  static contextTypes = {
+    $formGroup: PropTypes.object,
   };
 
   handleLabel(event) {
@@ -33,16 +38,25 @@ class FormControlLabel extends PureComponent {
   render() {
     const { label, placeholder, ...rest } = this.props;
 
-    const fullClassName = classNames(styles.label, {
+    // context
+    const formGroup = this.context.$formGroup;
+    const validationState = (formGroup && formGroup.validationState) || undefined;
+
+    const labelClasses = classNames(styles.label, {
       [styles.isActive]: this.state.active,
+      [styles[`has-${validationState}`]]: validationState,
+    });
+
+    const inputClasses = classNames(styles.formControl, {
+      [styles[`has-${validationState}`]]: validationState,
     });
 
     return (
       <div className={styles.labelWrapper}>
-        <FormLabel className={fullClassName} onClick={this.handleLabel}>{label}</FormLabel>
+        <FormLabel className={labelClasses} onClick={this.handleLabel}>{label}</FormLabel>
         <FormControl
           placeholder={this.state.active ? placeholder : ''}
-          inputClassName={styles.formControl}
+          inputClassName={inputClasses}
           onBlur={this.handleLabel}
           onFocus={this.handleLabel}
           {...rest}

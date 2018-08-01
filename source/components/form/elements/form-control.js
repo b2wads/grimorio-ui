@@ -167,11 +167,14 @@ class FormControl extends PureComponent {
     if (onMask || validate) {
       handleChange = e => {
         this.setState({ value: onMask ? onMask(e.target.value) : e.target.value }, () => {
-          if (validate) {
+          if (validate && onValidate) {
             onValidate(fieldsValidation(this.state.value, this.props.validate));
           }
         });
-        onChange(e);
+
+        if (onChange) {
+          onChange(e);
+        }
       };
     }
 
@@ -207,6 +210,7 @@ class FormControl extends PureComponent {
     const addonClass = classNames(className, styles['form-addon'], {
       [styles['form-addon--withItens']]: addonBefore || addonAfter || feedback,
       [styles['form-addon--horizontal']]: formStyleType === 'horizontal',
+      [styles[`has-${validationState}`]]: validationState,
     });
     // internal components
     const generateAddonBefore = this.addonRender('before', addonBefore);

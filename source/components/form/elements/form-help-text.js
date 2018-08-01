@@ -6,6 +6,10 @@ import CSSModules from 'react-css-modules';
 import styles from './form-help-text.styl';
 
 class HelpText extends PureComponent {
+  constructor(props, context) {
+    super(props, context);
+  }
+
   static defaultProps = {
     children: false,
     className: undefined,
@@ -16,15 +20,35 @@ class HelpText extends PureComponent {
     className: PropTypes.string,
   };
 
+  static contextTypes = {
+    $formGroup: PropTypes.object,
+  };
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return true;
+  }
+
   render() {
     const { children, className, ...elementProps } = this.props;
+
+    // context
+    const formGroup = this.context.$formGroup;
+    const validationState = (formGroup && formGroup.validationState) || undefined;
+
+    const classes = classNames(
+      styles['help-text'],
+      {
+        [styles[`has-${validationState}`]]: validationState,
+      },
+      className
+    );
 
     if (!children) {
       return null;
     }
 
     return (
-      <span {...elementProps} className={classNames(className, styles['help-text'])}>
+      <span {...elementProps} className={classes}>
         {children}
       </span>
     );

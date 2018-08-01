@@ -3,6 +3,12 @@
 /* ==========================================================================
   Variables
   ========================================================================== */
+$success = #1ab394;
+$success-light = #dff0d8;
+$warning = #f8ac59;
+$warning-light = #fcf8e3;
+$error = #f44336;
+$error-light = #f2dede;
 
 /* Border color
    ========================================================================== */
@@ -172,4 +178,53 @@ $addon {
   top: 0;
   width: 28px;
   z-index: 2;
+}
+
+
+.has-success {
+  &.form-addon,
+  & .form-feedback {
+    color: $success;
+  }
+
+  & .form-feedback { fill: $success; }
+  & .form-addon {
+    background: $success-light;
+    border-color: $success;
+  }
+
+  & .form-field,
+  & .form-control { border-color: $success; }
+}
+
+.has-warning {
+  &.form-addon,
+  & .form-feedback {
+    color: $warning;
+  }
+
+  & .form-feedback { fill: $warning; }
+  & .form-addon {
+    background: $warning-light;
+    border-color: $warning;
+  }
+
+  & .form-field,
+  & .form-control { border-color: $warning; }
+}
+
+.has-error {
+  &.form-addon,
+  & .form-feedback {
+    color: $error;
+  }
+
+  & .form-feedback { fill: $error; }
+  & .form-addon {
+    background: $error-light;
+    border-color: $error;
+  }
+
+  & .form-field,
+  & .form-control { border-color: $error; }
 }
