@@ -52,7 +52,6 @@ describe('Validation afterToday', () => {
   });
 
   it('should have parameter VALUE as afterToday in PT-BR format', () => {
-    console.log(afterToday('31/01/2017', {message:'error message'}))
     expect(afterToday('31/01/2017', {message:'error message'})).to.deep.equal({
       validationState: 'error',
       errorMessage: 'error message'
