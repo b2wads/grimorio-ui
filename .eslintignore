@@ -3,3 +3,4 @@
 **/*.stories.js
 **/*.spec.js
 internals/
+source/vendor/

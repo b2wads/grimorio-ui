@@ -7,7 +7,6 @@ npm-debug.log*
 
 docs/
 internals/
-source/
 .babelrc
 .editorconfig
 .eslintignore

@@ -4,9 +4,11 @@
   "description": "Afiliados UI React",
   "main": "lib/index.js",
   "scripts": {
-    "build": "yarn build:js && yarn build:images",
+    "vendor": "./node_modules/.bin/cpy node_modules/material-design-icons source/vendor/material-design-icons",
+    "build": "yarn build:icon && yarn build:images && yarn build:js",
     "build:js": "NODE_ENV=production BABEL_ENV=production babel source --out-dir lib && webpack --progress --config ./internals/webpack/webpack.config.js",
     "build:images": "NODE_ENV=production BABEL_ENV=production babel source/images --out-dir lib/images --copy-files",
+    "build:icon": "./node_modules/.bin/cpy node_modules/material-design-icons lib/vendor/material-design-icons",
     "build:storybook": "NODE_ENV=development BABEL_ENV=development build-storybook -c ./internals/storybook -o .out",
     "lint": "run-p lint:*",
     "lint:styl": "stylint source/",
@@ -90,6 +92,7 @@
   "dependencies": {
     "classnames": "2.2.5",
     "clipboard": "2.0.1",
+    "cpy-cli": "2.0.0",
     "extract-text-webpack-plugin": "3.0.2",
     "immutable": "3.8.1",
     "material-design-icons": "3.0.1",
@@ -97,7 +100,7 @@
     "prop-types": "15.5.10",
     "react": "16.2.0",
     "react-css-modules": "4.7.2",
-    "react-dom": "16.2.0",
+    "react-dom": "16.2.1",
     "react-onclickoutside": "6.7.1",
     "react-redux": "5.0.7",
     "react-transition-group": "2.3.0",
@@ -108,11 +111,11 @@
     "webpack": "3.5.2"
   },
   "peerDependencies": {
+    "material-design-icons": "3.0.1",
     "moment": "2.22.1",
     "react-onclickoutside": "6.7.1",
     "react-transition-group": "2.3.0",
-    "svg-react-loader": "0.4.5",
-    "material-design-icons": "3.0.1"
+    "svg-react-loader": "0.4.5"
   },
   "jest": {
     "moduleNameMapper": {
@@ -133,8 +136,5 @@
       "jest-dot-reporter"
     ],
     "cacheDirectory": "./tmp/"
-  },
-  "publishConfig": {
-    "registry": "http://npm-private.atlas.b2w"
   }
 }
