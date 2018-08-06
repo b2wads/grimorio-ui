@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSModules from 'react-css-modules';
 // styles
 import styles from './form-label.styl';
 
-class FormLabel extends PureComponent {
+class FormLabel extends Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -40,10 +40,12 @@ class FormLabel extends PureComponent {
     const formGroup = this.context.$formGroup;
     const controlId = (formGroup && formGroup.controlId) || undefined;
     const validationState = (formGroup && formGroup.validationState) || undefined;
+    const isCheckboxOrRadio = (formGroup && formGroup.isCheckboxOrRadio) || undefined;
 
     const classes = classNames(className, styles.label, {
-      [styles['label--horizontal']]: formStyleType === 'horizontal',
+      [styles.isHorizontal]: formStyleType === 'horizontal',
       [styles[`has-${validationState}`]]: validationState,
+      [styles.isCheckboxOrRadio]: isCheckboxOrRadio,
     });
 
     if (!addon && !children) {

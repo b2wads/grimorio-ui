@@ -4,7 +4,7 @@
   "description": "Afiliados UI React",
   "main": "lib/index.js",
   "scripts": {
-    "vendor:icons": "./node_modules/.bin/cpy node_modules/material-design-icons/**/*.svg source/vendor/material-design-icons",
+    "vendor:icons": "./node_modules/.bin/cpy node_modules/material-design-icons/**/*_24px.svg source/vendor/material-design-icons",
     "build": "yarn build:vendor && yarn build:images && yarn build:js",
     "build:js": "NODE_ENV=production BABEL_ENV=production babel source --out-dir lib && webpack --progress --config ./internals/webpack/webpack.config.js",
     "build:images": "NODE_ENV=production BABEL_ENV=production babel source/images --out-dir lib/images --copy-files",

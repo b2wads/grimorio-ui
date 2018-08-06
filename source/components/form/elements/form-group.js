@@ -39,13 +39,14 @@ class FormGroup extends PureComponent {
   };
 
   getChildContext() {
-    const { controlId, validationState } = this.props;
+    const { controlId, validationState, style } = this.props;
     const id = controlId ? controlId : randomId();
 
     return {
       $formGroup: {
         controlId: id,
         validationState,
+        isCheckboxOrRadio: style === 'checkbox' || style === 'radio',
       },
     };
   }

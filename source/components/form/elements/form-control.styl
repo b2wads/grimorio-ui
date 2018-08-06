@@ -3,31 +3,28 @@
 /* ==========================================================================
   Variables
   ========================================================================== */
-$success = #1ab394;
-$success-light = #dff0d8;
-$warning = #f8ac59;
-$warning-light = #fcf8e3;
-$error = #f44336;
-$error-light = #f2dede;
+$c-success-light = lightness($c-success);
+$c-warning-light = lightness($c-warning);
+$c-error-light = lightness($c-error);
 
 /* Border color
    ========================================================================== */
-$border-color = #ccc;
+$c-border = #ccc;
 
 /* Field
    ========================================================================== */
 $default-background = #fff;
-$default-color = #333;
+$c-default = #333;
 
 $disabled = #ccc;
-$disabled-color = #999;
-$disabled-color-light = #b4b5b5;
+$c-disabled = #999;
+$c-disabled-light = #b4b5b5;
 
 /* Addon
    ========================================================================== */
-$addon-background-color = #18a689;
-$addon-border-color = #18a689;
-$addon-color = #fff;
+$c-addon-background = #18a689;
+$c-addon-border = #18a689;
+$c-addon = #fff;
 
 /* ==========================================================================
   Placeholders
@@ -36,8 +33,8 @@ $addon-color = #fff;
 /* Field (text || select || textarea )
 ========================================================================== */
 $field {
-  border: none;
-  border-bottom: 1px solid $border-color;
+  border: 0;
+  border-bottom: 1px solid $c-border;
   display: block;
   font-size: 16px;
   height: 28px;
@@ -52,7 +49,7 @@ $field {
 
   &:disabled {
     background: $disabled;
-    color: $disabled-color;
+    color: $c-disabled;
   }
 }
 
@@ -66,10 +63,10 @@ $radioCheckbox {
 /* addon
 ========================================================================== */
 $addon {
-  background: $addon-background-color;
+  background: $c-addon-background;
   border: none;
-  border-bottom: 1px solid $addon-border-color;
-  color: $addon-color;
+  border-bottom: 1px solid $c-addon-border;
+  color: $c-addon;
   display: table-cell;
   font-size: 14px;
   font-weight: 400;
@@ -96,7 +93,7 @@ $addon {
 .form-field {
   @extend $field;
 
-  color: $default-color;
+  color: $c-default;
 }
 
 .form-field--select {
@@ -158,7 +155,7 @@ $addon {
 .form-addon--disabled {
   background: $disabled;
   border-color: $disabled;
-  color: $disabled-color-light;
+  color: $c-disabled-light;
 }
 
 .form-addon--horizontal {
@@ -180,51 +177,61 @@ $addon {
   z-index: 2;
 }
 
+/* Checkbox or radio
+   ========================================================================== */
+.isCheckboxOrRadio {
+  & .form-control {
+    float: left;
+    margin-right: 5px;
+  }
+}
 
+/* Validations
+   ========================================================================== */
 .has-success {
   &.form-addon,
   & .form-feedback {
-    color: $success;
+    color: $c-success;
   }
 
-  & .form-feedback { fill: $success; }
+  & .form-feedback { fill: $c-success; }
   & .form-addon {
-    background: $success-light;
-    border-color: $success;
+    background: $c-success-light;
+    border-color: $c-success;
   }
 
   & .form-field,
-  & .form-control { border-color: $success; }
+  & .form-control { border-color: $c-success; }
 }
 
 .has-warning {
   &.form-addon,
   & .form-feedback {
-    color: $warning;
+    color: $c-warning;
   }
 
-  & .form-feedback { fill: $warning; }
+  & .form-feedback { fill: $c-warning; }
   & .form-addon {
-    background: $warning-light;
-    border-color: $warning;
+    background: $c-warning-light;
+    border-color: $c-warning;
   }
 
   & .form-field,
-  & .form-control { border-color: $warning; }
+  & .form-control { border-color: $c-warning; }
 }
 
 .has-error {
   &.form-addon,
   & .form-feedback {
-    color: $error;
+    color: $c-error;
   }
 
-  & .form-feedback { fill: $error; }
+  & .form-feedback { fill: $c-error; }
   & .form-addon {
-    background: $error-light;
-    border-color: $error;
+    background: $c-error-light;
+    border-color: $c-error;
   }
 
   & .form-field,
-  & .form-control { border-color: $error; }
+  & .form-control { border-color: $c-error; }
 }

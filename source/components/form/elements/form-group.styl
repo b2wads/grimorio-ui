@@ -1,38 +1,10 @@
 @import "../../../styl/config";
 
-/* ==========================================================================
-  Variables
-  ========================================================================== */
-
-/* Color
-   ========================================================================== */
-$success = #1ab394;
-$success-light = #dff0d8;
-$warning = #f8ac59;
-$warning-light = #fcf8e3;
-$error = #f44336;
-$error-light = #f2dede;
-$font-color-light = #fff;
-
 /* Form Group
    ========================================================================== */
 .form-group {
   margin-bottom: 10px;
   position: relative;
-}
-
-.form-group--checkbox,
-.form-group--radio {
-  [class*="form-control"] {
-    float: left;
-    margin-right: 5px;
-  }
-
-  [class*="label"] {
-    line-height: 1.7;
-    margin-bottom: 0;
-    width: auto;
-  }
 }
 
 .form-group--withoutTopLabel {
@@ -58,6 +30,6 @@ $font-color-light = #fff;
 
 /* States
    ========================================================================== */
-.has-success { color: $success; }
-.has-warning { color: $warning; }
-.has-error { color: $error; }
+.has-success { color: $c-success; }
+.has-warning { color: $c-warning; }
+.has-error { color: $c-error; }

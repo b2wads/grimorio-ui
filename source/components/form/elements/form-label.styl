@@ -6,19 +6,15 @@
 
 /* Color
    ========================================================================== */
-$label-color = #333;
-$success = #1ab394;
-$warning = #f8ac59;
-$error = #f44336;
+$c-label = #333;
 
 /* ==========================================================================
    Form Label Component
    ========================================================================== */
 .label {
-  color: $label-color;
+  color: $c-label;
   display: inline-block;
   font-size: 13px;
-  font-weight: 700;
   margin-bottom: 5px;
   max-width: 100%;
   width: 100%;
@@ -26,7 +22,7 @@ $error = #f44336;
 
 .label-addon { float: right; }
 
-.label--horizontal {
+.isHorizontal {
   x-column(3);
 
   margin-bottom: 0;
@@ -34,6 +30,12 @@ $error = #f44336;
   text-align: right;
 }
 
-.has-success { color: $success; }
-.has-warning { color: $warning; }
-.has-error { color: $error; }
+.isCheckboxOrRadio {
+  line-height: 1.7;
+  margin-bottom: 0;
+  width: auto;
+}
+
+.has-success { color: $c-success; }
+.has-warning { color: $c-warning; }
+.has-error { color: $c-error; }

@@ -205,12 +205,15 @@ class FormControl extends PureComponent {
     const formStyleType = (form && form.styleType) || undefined;
     const formGroup = this.context.$formGroup;
     const controlId = (formGroup && formGroup.controlId) || undefined;
-    const validationState = formGroup && formGroup.validationState;
+    const validationState = (formGroup && formGroup.validationState) || undefined;
+    const isCheckboxOrRadio = (formGroup && formGroup.isCheckboxOrRadio) || undefined;
+
     // styles
     const addonClass = classNames(className, styles['form-addon'], {
       [styles['form-addon--withItens']]: addonBefore || addonAfter || feedback,
       [styles['form-addon--horizontal']]: formStyleType === 'horizontal',
       [styles[`has-${validationState}`]]: validationState,
+      [styles.isCheckboxOrRadio]: isCheckboxOrRadio,
     });
     // internal components
     const generateAddonBefore = this.addonRender('before', addonBefore);
