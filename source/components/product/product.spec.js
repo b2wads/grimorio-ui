@@ -30,7 +30,7 @@ describe('Product component', () => {
       const wrapper = shallow(
         <Product data={exampleProduct} />
       );
-      expect(wrapper.find('section')).to.have.length(1);
+      expect(wrapper.find('section')).toHaveLength(1);
     });
   });
 
@@ -40,7 +40,7 @@ describe('Product component', () => {
       const wrapper = shallow(
         <Product />
       );
-      expect(wrapper.type()).to.equal(null);
+      expect(wrapper.type()).toEqual(null);
     });
   });
 });

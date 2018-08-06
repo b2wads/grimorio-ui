@@ -1,4 +1,5 @@
-import { expect } from 'chai';
+import '../../../internals/test/helper';
+
 import { fieldsValidation } from './index';
 
 const methods = {
@@ -45,7 +46,7 @@ const schema = [{
 /** @test {Validation#fieldsValidation} */
 describe('Validation Fields Validation', () => {
   it('should have parameters VALUE as String, VALIDATION as Object, SCHEMA as Object and METHODS as Object', () => {
-    expect(fieldsValidation('test', validation, schema, methods)).to.deep.equal({
+    expect(fieldsValidation('test', validation, schema, methods)).toEqual({
       validationState: 'success',
       errorMessage: undefined
     });

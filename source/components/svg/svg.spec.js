@@ -10,7 +10,7 @@ describe('Button component', () => {
       const wrapper = shallow(
         <Svg />
       );
-      expect(wrapper.length).to.equal(1);
+      expect(wrapper.length).toEqual(1);
     });
   });
 });
