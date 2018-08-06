@@ -118,6 +118,7 @@
     "svg-react-loader": "0.4.5"
   },
   "jest": {
+    "testURL": "http://localhost",
     "moduleNameMapper": {
       "\\.(css|styl)$": "identity-obj-proxy",
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./internals/file-transformer.js"
