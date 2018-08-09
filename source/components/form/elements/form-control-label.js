@@ -29,6 +29,12 @@ class FormControlLabel extends PureComponent {
     $formGroup: PropTypes.object,
   };
 
+  componentDidMount() {
+    if (this.props.value !== undefined && this.props.value !== null && this.props.value !== '') {
+      this.setState({ active: true });
+    }
+  }
+
   handleLabel(event) {
     if (event && event.target.value === '') {
       this.setState({ active: !this.state.active });

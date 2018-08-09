@@ -68,7 +68,6 @@ import { Alert } from 'afiliados-theme';
 
 ```bash
 yarn // or yarn install
-yarn vendor
 ```
 
 ## Usage
@@ -96,7 +95,6 @@ yarn test
 ## Build
 
 ```bash
-yarn vendor:icons
 yarn build
 ```
 

@@ -14,31 +14,47 @@ const stories = storiesOf('Form', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => (
-  <div>
-    <Form onSubmit={ ()=>{} }>
-      <FormGroup>
-        <FormLabel>Example of label</FormLabel>
-        <FormControl placeholder="Form, FormGroup and input" />
-        <FormHelpText>text</FormHelpText>
-      </FormGroup>
-      <FormActions>
-        <Button>Cancelar</Button>
-        <Button style="primary">Enviar</Button>
-      </FormActions>
-    </Form>
-    <Form onSubmit={ ()=>{} }>
-      <FormGroup>
-        <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" />
-        <FormHelpText>text</FormHelpText>
-      </FormGroup>
-      <FormActions>
-        <Button>Cancelar</Button>
-        <Button style="primary">Enviar</Button>
-      </FormActions>
-    </Form>
-  </div>
-));
+stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({ store }) => {
+  const handleChange = event => {
+    store.set({ input: event.target.value });
+  }
+
+  return (
+    <div>
+      <Form onSubmit={ ()=>{} }>
+        <FormGroup>
+          <FormLabel>Example of label</FormLabel>
+          <FormControl placeholder="Form, FormGroup and input" />
+          <FormHelpText>text</FormHelpText>
+        </FormGroup>
+        <FormActions>
+          <Button>Cancelar</Button>
+          <Button style="primary">Enviar</Button>
+        </FormActions>
+      </Form>
+      <Form onSubmit={ ()=>{} }>
+        <FormGroup>
+          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" />
+          <FormHelpText>text</FormHelpText>
+        </FormGroup>
+        <FormActions>
+          <Button>Cancelar</Button>
+          <Button style="primary">Enviar</Button>
+        </FormActions>
+      </Form>
+      <Form onSubmit={ ()=>{} }>
+        <FormGroup>
+          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" value={store.state.input} onChange={handleChange} />
+          <FormHelpText>text</FormHelpText>
+        </FormGroup>
+        <FormActions>
+          <Button>Cancelar</Button>
+          <Button style="primary">Enviar</Button>
+        </FormActions>
+      </Form>
+    </div>
+  );
+}));
 
 stories.addWithInfo('Inline', () => (
   <Form onSubmit={ ()=>{} } styleType='inline'>
