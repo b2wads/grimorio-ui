@@ -1,6 +1,6 @@
 {
   "name": "afiliados-theme",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Afiliados UI React",
   "main": "lib/index.js",
   "scripts": {

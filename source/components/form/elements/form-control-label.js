@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSModules from 'react-css-modules';
@@ -9,12 +9,14 @@ import FormLabel from './form-label';
 // styles
 import styles from './form-control-label.styl';
 
-class FormControlLabel extends PureComponent {
+class FormControlLabel extends Component {
   constructor(props, context) {
     super(props, context);
 
+    const hasValue = props.value !== undefined && props.value !== null && props.value !== '';
+
     this.state = {
-      active: false,
+      active: hasValue ? true : false,
     };
 
     this.handleLabel = this.handleLabel.bind(this);
@@ -28,12 +30,6 @@ class FormControlLabel extends PureComponent {
   static contextTypes = {
     $formGroup: PropTypes.object,
   };
-
-  componentDidMount() {
-    if (this.props.value !== undefined && this.props.value !== null && this.props.value !== '') {
-      this.setState({ active: true });
-    }
-  }
 
   handleLabel(event) {
     if (event && event.target.value === '') {
