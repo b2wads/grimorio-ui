@@ -1,0 +1,41 @@
+@import "../../../styl/config";
+
+/* ==========================================================================
+  Variables
+  ========================================================================== */
+
+/* Color
+   ========================================================================== */
+$c-label = #999;
+
+/* ==========================================================================
+   Form Label Component
+   ========================================================================== */
+.labelWrapper { position: relative }
+
+.label {
+  color: $c-label;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  left: 6px;
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.isActive {
+  color: $c-primary;
+  font-size: 12px;
+  font-weight: 700;
+  left: 0;
+  top: -1.5rem;
+  transition: all 0.125s ease;
+}
+
+.formControl { margin-top: 20px; }
+
+.has-success.label { color: $c-success; }
+.has-warning.label { color: $c-warning; }
+.has-error.label { color: $c-error; }

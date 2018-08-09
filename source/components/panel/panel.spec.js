@@ -12,7 +12,7 @@ describe('Panel component', () => {
           <p>Content</p>
         </Panel>
       );
-      expect(wrapper.length).to.equal(1);
+      expect(wrapper.length).toEqual(1);
     });
   });
 });

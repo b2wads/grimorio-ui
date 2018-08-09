@@ -12,7 +12,7 @@ describe('Sidebar component', () => {
           <p>Content</p>
         </Sidebar>
       );
-      expect(wrapper.length).to.equal(1);
+      expect(wrapper.length).toEqual(1);
     });
   });
 });

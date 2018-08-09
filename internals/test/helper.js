@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactShallowRenderer from 'react-test-renderer/shallow';
-import { assert, expect } from 'chai';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount, render } from 'enzyme';
@@ -13,8 +12,6 @@ Object.assign(global, {
   React,
   ReactDOM,
   ReactTestUtils,
-  assert,
-  expect,
   shallow,
   mount,
   render

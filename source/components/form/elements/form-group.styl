@@ -1,0 +1,35 @@
+@import "../../../styl/config";
+
+/* Form Group
+   ========================================================================== */
+.form-group {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.form-group--withoutTopLabel {
+  &.form-group--checkbox,
+  &.form-group--radio {
+    margin-bottom: 18px;
+    margin-top: 30px;
+  }
+}
+
+// horizontal
+.form-group--horizontal {
+  x-clearfix();
+
+  max-width: 100%;
+}
+
+// inline
+.form-group--inline {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+/* States
+   ========================================================================== */
+.has-success { color: $c-success; }
+.has-warning { color: $c-warning; }
+.has-error { color: $c-error; }

@@ -1,0 +1,237 @@
+@import "../../../styl/config";
+
+/* ==========================================================================
+  Variables
+  ========================================================================== */
+$c-success-light = lightness($c-success);
+$c-warning-light = lightness($c-warning);
+$c-error-light = lightness($c-error);
+
+/* Border color
+   ========================================================================== */
+$c-border = #ccc;
+
+/* Field
+   ========================================================================== */
+$default-background = #fff;
+$c-default = #333;
+
+$disabled = #ccc;
+$c-disabled = #999;
+$c-disabled-light = #b4b5b5;
+
+/* Addon
+   ========================================================================== */
+$c-addon-background = #18a689;
+$c-addon-border = #18a689;
+$c-addon = #fff;
+
+/* ==========================================================================
+  Placeholders
+  ========================================================================== */
+
+/* Field (text || select || textarea )
+========================================================================== */
+$field {
+  border: 0;
+  border-bottom: 1px solid $c-border;
+  display: block;
+  font-size: 16px;
+  height: 28px;
+  line-height: 1;
+  outline: 0;
+  padding: 6px;
+  width: 100%;
+
+  &:focus {
+    border-color: $c-primary;
+  }
+
+  &:disabled {
+    background: $disabled;
+    color: $c-disabled;
+  }
+}
+
+/* Radio and checkbox
+========================================================================== */
+$radioCheckbox {
+  margin: 3px 0 0;
+  width: auto;
+}
+
+/* addon
+========================================================================== */
+$addon {
+  background: $c-addon-background;
+  border: none;
+  border-bottom: 1px solid $c-addon-border;
+  color: $c-addon;
+  display: table-cell;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  padding: 3px 6px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 1%;
+
+  [class*="button"] {
+    margin: -6px -10px;
+    padding: 6px 10px;
+    outline: none;
+  }
+ }
+
+/* ==========================================================================
+   Form Control Component
+   ========================================================================== */
+
+/* Form field
+   ========================================================================== */
+.form-field {
+  @extend $field;
+
+  color: $c-default;
+}
+
+.form-field--select {
+  @extend $field;
+
+  background: $default-background;
+}
+
+.form-field--radio {
+  @extend $radioCheckbox;
+
+  background: $default-background;
+}
+
+.form-field--checkbox {
+  @extend $radioCheckbox;
+
+  background: $default-background;
+}
+
+.form-field--textarea {
+  @extend $field;
+
+  height: 200px;
+}
+
+.form-field--horizontal {
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Form addon
+   ========================================================================== */
+.form-addon { background: none; }
+
+.form-addon--withItens {
+  border-collapse: separate;
+  display: table;
+  position: relative;
+  width: 100%;
+}
+
+.form-addon-before {
+  @extend $addon;
+
+  border-bottom-right-radius: 0;
+  border-right: 0;
+  border-top-right-radius: 0;
+}
+
+.form-addon-after {
+  @extend $addon;
+
+  border-bottom-left-radius: 0;
+  border-left: 0;
+  border-top-left-radius: 0;
+}
+
+.form-addon--disabled {
+  background: $disabled;
+  border-color: $disabled;
+  color: $c-disabled-light;
+}
+
+.form-addon--horizontal {
+  x-column(9);
+}
+
+/* Feedback
+   ========================================================================== */
+.form-feedback {
+  display: block;
+  height: 28px;
+  line-height: 28px;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 28px;
+  z-index: 2;
+}
+
+/* Checkbox or radio
+   ========================================================================== */
+.isCheckboxOrRadio {
+  & .form-control {
+    float: left;
+    margin-right: 5px;
+  }
+}
+
+/* Validations
+   ========================================================================== */
+.has-success {
+  &.form-addon,
+  & .form-feedback {
+    color: $c-success;
+  }
+
+  & .form-feedback { fill: $c-success; }
+  & .form-addon {
+    background: $c-success-light;
+    border-color: $c-success;
+  }
+
+  & .form-field,
+  & .form-control { border-color: $c-success; }
+}
+
+.has-warning {
+  &.form-addon,
+  & .form-feedback {
+    color: $c-warning;
+  }
+
+  & .form-feedback { fill: $c-warning; }
+  & .form-addon {
+    background: $c-warning-light;
+    border-color: $c-warning;
+  }
+
+  & .form-field,
+  & .form-control { border-color: $c-warning; }
+}
+
+.has-error {
+  &.form-addon,
+  & .form-feedback {
+    color: $c-error;
+  }
+
+  & .form-feedback { fill: $c-error; }
+  & .form-addon {
+    background: $c-error-light;
+    border-color: $c-error;
+  }
+
+  & .form-field,
+  & .form-control { border-color: $c-error; }
+}

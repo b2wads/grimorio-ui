@@ -10,7 +10,7 @@ describe('Menu component', () => {
       const wrapper = shallow(
         <Menu />
       );
-      expect(wrapper.length).to.equal(1);
+      expect(wrapper.length).toEqual(1);
     });
   });
 });

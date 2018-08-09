@@ -10,7 +10,7 @@ describe('Tooltip component', () => {
       const wrapper = shallow(
         <Tooltip message="hello" />
       );
-      expect(wrapper.length).to.equal(1);
+      expect(wrapper.length).toEqual(1);
     });
   });
 });

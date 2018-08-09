@@ -87,6 +87,23 @@ $button {
   }
 }
 
+/* None
+================ */
+.transparent {
+  @extend $button;
+
+  background: none;
+  border: 0;
+
+  &.outline {
+    background: none;
+  }
+
+  &:hover {
+    background: none;
+  }
+}
+
 /* SIZES
  ==================================================== */
 
@@ -104,3 +121,17 @@ $button {
 
 /* Large
 ================ */
+
+/* None
+================ */
+.none {
+  line-height: 1;
+  padding: 0;
+}
+
+/* Block
+ ========================================================================== */
+.block {
+  display: block;
+  width: 100%;
+}

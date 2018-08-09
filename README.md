@@ -92,6 +92,12 @@ yarn lint
 yarn test
 ```
 
+## Build
+
+```bash
+yarn build
+```
+
 ## Release
 
 ```bash
