@@ -13,7 +13,9 @@ class FormControlLabel extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const hasValue = props.value !== undefined && props.value !== null && props.value !== '';
+    const hasValue =
+      (props.value !== undefined && props.value !== null && props.value !== '') ||
+      (props.defaultValue !== undefined && props.defaultValue !== null && props.defaultValue !== '');
 
     this.state = {
       active: hasValue ? true : false,
