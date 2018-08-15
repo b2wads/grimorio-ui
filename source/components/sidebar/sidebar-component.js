@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Icon from '../icon';
+import Svg from '../svg';
 
 import styles from './sidebar.styl';
 
@@ -30,6 +31,8 @@ class Sidebar extends PureComponent {
     return this.state.open ? 'keyboard_arrow_left' : 'keyboard_arrow_right';
   }
 
+  getLogotype() {}
+
   render() {
     const { children, className, onClick } = this.props;
     const classes = classNames(styles.sidebar, className, {
@@ -42,7 +45,16 @@ class Sidebar extends PureComponent {
           <button className={styles.toggle} type="button" onClick={this.handleToggle}>
             <Icon className={styles.toggleIcon} name={this.getIconName()} />
           </button>}
-        {children}
+
+        <div className={styles.logotype}>
+          {this.state.open
+            ? <Svg width={188} height={58} src="logo/afiliados" />
+            : <Svg width={24} src="logo/afiliados-icon" />}
+        </div>
+
+        <nav className={styles.content}>
+          {children}
+        </nav>
       </div>
     );
   }
