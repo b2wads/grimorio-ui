@@ -20,3 +20,8 @@ tmp/
 
 # Vendor
 source/vendor/
+
+# Package
+afiliados-theme-*.tgz
+lib/
+dist/

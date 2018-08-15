@@ -3,6 +3,9 @@ import Icon from './components/icon';
 import Panel from './components/panel';
 import Svg from './components/svg';
 import Product from './components/product';
+import Menu, { MenuItem } from './components/menu';
+import Accordion, { AccordionTitle, AccordionContent } from './components/accordion';
+import Sidebar, { SidebarLogotype, SidebarContent } from './components/sidebar';
 import Form, {
   FormGroup,
   FormControl,
@@ -25,4 +28,12 @@ export {
   FormActions,
   FormControlLabel,
   FormHelpText,
+  Accordion,
+  AccordionTitle,
+  AccordionContent,
+  Menu,
+  MenuItem,
+  Sidebar,
+  SidebarLogotype,
+  SidebarContent,
 };
