@@ -45,12 +45,18 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
       <Form onSubmit={ ()=>{} }>
         <FormGroup>
           <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" value={store.state.input} onChange={handleChange} />
-          <FormHelpText>text</FormHelpText>
+          <FormHelpText>Tem valor default controlado</FormHelpText>
         </FormGroup>
         <FormActions>
           <Button>Cancelar</Button>
           <Button style="primary">Enviar</Button>
         </FormActions>
+      </Form>
+      <Form>
+        <FormGroup>
+          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Tem valor default, porém não é controlado</FormHelpText>
+        </FormGroup>
       </Form>
     </div>
   );
