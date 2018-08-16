@@ -5,7 +5,8 @@ import Svg from './components/svg';
 import Product from './components/product';
 import Menu, { MenuItem } from './components/menu';
 import Accordion, { AccordionTitle, AccordionContent } from './components/accordion';
-import Sidebar, { SidebarLogotype, SidebarContent } from './components/sidebar';
+import Sidebar from './components/sidebar';
+import Header from './components/header';
 import Form, {
   FormGroup,
   FormControl,
@@ -34,6 +35,5 @@ export {
   Menu,
   MenuItem,
   Sidebar,
-  SidebarLogotype,
-  SidebarContent,
+  Header,
 };
