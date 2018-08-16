@@ -8,9 +8,9 @@ describe('Header component', () => {
   describe('#render', () => {
     it('render correctly', () => {
       const wrapper = shallow(
-        <Header />
+        <Header user="teste@teste.com" onLogout={() => {}} />
       );
-      expect(wrapper.length).to.equal(1);
+      expect(wrapper.length).toEqual(1);
     });
   });
 });
