@@ -68,6 +68,7 @@ $c-text = #a4a3a3;
     &:hover,
     &.isActive {
       border-left-color: $c-primary-dark;
+      transition: font-size 0.3s ease;
     }
   }
 
@@ -81,25 +82,25 @@ $c-text = #a4a3a3;
     .title {
       font-size: 0;
       padding: 15px 10px 15px 10px;
-      transition: font-size 0.5s ease;
-
-      &.isActive {
-        font-size: 14px;
-        transition: font-size 0.5s ease;
-
-        .iconLeft { margin-right: 22px }
-      }
+      transition: none;
     }
+
+    .title.isActive {
+      font-size: 14px;
+      transition: font-size 0.5s ease;
+    }
+
+    .title.isActive .iconLeft { margin-right: 22px }
 
     .content {
       display: block;
       overflow: hidden;
       width: 0;
+    }
 
-      &.isActive {
-        transition: width 0.3s ease;
-        width: 100%;
-      }
+    .content.isActive {
+      transition: width 0.3s ease;
+      width: 100%;
     }
   }
 }

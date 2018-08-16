@@ -19,6 +19,7 @@ class Sidebar extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.element.isRequired,
+    toggleBtn: PropTypes.element,
   };
 
   handleToggle(e) {
@@ -26,12 +27,6 @@ class Sidebar extends PureComponent {
       this.props.onClick(e, this.state.open);
     });
   }
-
-  getIconName() {
-    return this.state.open ? 'keyboard_arrow_left' : 'keyboard_arrow_right';
-  }
-
-  getLogotype() {}
 
   render() {
     const { children, className, onClick } = this.props;
@@ -43,7 +38,7 @@ class Sidebar extends PureComponent {
       <div className={classes}>
         {onClick &&
           <button className={styles.toggle} type="button" onClick={this.handleToggle}>
-            <Icon className={styles.toggleIcon} name={this.getIconName()} />
+            <Icon className={styles.toggleIcon} name="menu" />
           </button>}
 
         <div className={styles.logotype}>
@@ -53,6 +48,9 @@ class Sidebar extends PureComponent {
         </div>
 
         <nav className={styles.content}>
+          <span className={classNames(styles.contentTitle, { [styles.isNavClosed]: this.state.open === false })}>
+            Menu
+          </span>
           {children}
         </nav>
       </div>
