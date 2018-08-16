@@ -19,7 +19,6 @@ class Sidebar extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.element.isRequired,
-    toggleBtn: PropTypes.element,
   };
 
   handleToggle(e) {
