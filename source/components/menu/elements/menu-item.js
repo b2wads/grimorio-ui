@@ -25,6 +25,7 @@ class MenuItem extends PureComponent {
     name: PropTypes.string,
     link: PropTypes.string,
     onClick: PropTypes.func,
+    isNotAccordeon: PropTypes.bool,
   };
 
   handleClick(e) {
@@ -35,9 +36,10 @@ class MenuItem extends PureComponent {
   }
 
   render() {
-    const { active, className, content, icon, items, children } = this.props;
+    const { active, className, content, icon, items, isNotAccordeon, children } = this.props;
     const classes = classNames(styles.menuItem, className, {
-      [`${styles.isActive}`]: active,
+      [styles.isActive]: active,
+      [styles.isNotAccordeon]: isNotAccordeon,
     });
 
     return (

@@ -15,7 +15,7 @@ const stories = storiesOf('Sidebar', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Default', withState({ open: true, active: -1 })(({ store }) => {
+stories.addWithInfo('Default', withState({ open: true, active: 0 })(({ store }) => {
   const getActive = (index) => {
     return store.state.active === index;
   }
@@ -32,16 +32,19 @@ stories.addWithInfo('Default', withState({ open: true, active: -1 })(({ store })
     <div style={{ height: 800 }}>
       <Sidebar onClick={(e, open) => store.set({ open, active: !open ? -1 : store.state.active })}>
         <Accordion type="accordionMenu" exclusive={false} as={Menu} {...store.state}>
-          <MenuItem active={getActive(0)}>
+          <MenuItem active={getActive(0)} isNotAccordeon icon="dashboard">
+            Dashboard
+          </MenuItem>
+          <MenuItem active={getActive(1)}>
             <AccordionTitle
-              active={getActive(0)}
-              index={0}
+              active={getActive(1)}
+              index={1}
               onClick={handleClick}
-              icon="dashboard"
+              icon="shop"
             >
-              Dashboard
+              Promoções
             </AccordionTitle>
-            <AccordionContent active={getActive(0)}>
+            <AccordionContent active={getActive(1)}>
               <Menu>
                 <MenuItem link="/default" handleClick={action('default')}> Default</MenuItem>
                 <MenuItem link="/ecommerce" handleClick={action('ecommerce')}>eCommerce</MenuItem>
@@ -49,16 +52,16 @@ stories.addWithInfo('Default', withState({ open: true, active: -1 })(({ store })
               </Menu>
             </AccordionContent>
           </MenuItem>
-          <MenuItem active={getActive(1)}>
+          <MenuItem active={getActive(2)}>
             <AccordionTitle
-              active={getActive(1)}
-              index={1}
+              active={getActive(2)}
+              index={2}
               onClick={handleClick}
               icon="insert_chart"
             >
               Charts
             </AccordionTitle>
-            <AccordionContent active={getActive(1)}>
+            <AccordionContent active={getActive(2)}>
               <Menu>
                 <MenuItem link="/test" handleClick={action('test')}>Test</MenuItem>
               </Menu>
