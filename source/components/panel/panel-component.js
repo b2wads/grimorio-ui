@@ -9,14 +9,17 @@ import styles from './panel.styl';
 
 class Panel extends PureComponent {
   static propTypes = {
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
     brand: PropTypes.oneOf([null, 'acom', 'suba', 'shop', 'soub']),
     title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+    contentClassName: PropTypes.string,
   };
 
   static defaultProps = {
     brand: null,
     title: false,
+    size: 'medium',
   };
 
   renderHeader(brand, title) {
@@ -36,16 +39,17 @@ class Panel extends PureComponent {
   }
 
   render() {
-    const { title, children, className, brand, ...elementProps } = this.props;
+    const { title, children, className, brand, size, contentClassName, ...elementProps } = this.props;
     const fullClassName = classNames(className, {
       [styles.default]: true,
       [styles.isBrand]: brand,
+      [styles[size]]: size,
     });
 
     return (
       <article {...elementProps} className={fullClassName}>
         {(title || brand) && this.renderHeader(brand, title)}
-        <div className={classNames(styles.content, { [styles.isBrand]: brand })}>
+        <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
           {children}
         </div>
       </article>
