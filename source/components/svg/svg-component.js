@@ -36,7 +36,7 @@ class Svg extends PureComponent {
   pathLoader(src) {
     try {
       /* eslint-disable */
-      return require('!!babel-loader!svg-react-loader!../../images/svg/'+ src +'.svg');
+      return require('!!svg-react-loader!../../images/svg/'+ src +'.svg');
       /* eslint-disable */
     } catch (error) {
       return false;
