@@ -7,6 +7,8 @@ import Menu, { MenuItem } from './components/menu';
 import Accordion, { AccordionTitle, AccordionContent } from './components/accordion';
 import Sidebar from './components/sidebar';
 import Header from './components/header';
+import InfoCard from './components/info-card';
+import PageTitle from './components/page-title';
 import Form, {
   FormGroup,
   FormControl,
@@ -36,4 +38,6 @@ export {
   MenuItem,
   Sidebar,
   Header,
+  InfoCard,
+  PageTitle,
 };

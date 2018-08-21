@@ -15,7 +15,7 @@ const stories = storiesOf('Sidebar', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Default', withState({ open: true, active: 0 })(({ store }) => {
+stories.addWithInfo('Default', withState({ open: false, active: -1 })(({ store }) => {
   const getActive = (index) => {
     return store.state.active === index;
   }
@@ -30,9 +30,9 @@ stories.addWithInfo('Default', withState({ open: true, active: 0 })(({ store }) 
 
   return (
     <div style={{ height: 800 }}>
-      <Sidebar onClick={(e, open) => store.set({ open, active: !open ? -1 : store.state.active })}>
+      <Sidebar open={store.state.open} onClick={(e, open) => store.set({ open: !store.state.open, active: !open ? -1 : store.state.active })}>
         <Accordion type="accordionMenu" exclusive={false} as={Menu} {...store.state}>
-          <MenuItem active={getActive(0)} isNotAccordion icon="dashboard">
+          <MenuItem title="Dashboard" active={getActive(0)} isNotAccordion icon="dashboard">
             Dashboard
           </MenuItem>
           <MenuItem active={getActive(1)}>
