@@ -6,7 +6,9 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$default {}
+$default {
+  width: auto;
+}
 
 /* ==========================================================================
    InfoCard Elements
@@ -21,4 +23,20 @@ $default {}
 
 .default {
   @extend $default;
+}
+
+.info {
+  color: $c-primary;
+  display: block;
+  font-size: 28px;
+  margin-top: 15px;
+}
+
+.symbol {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.tagline {
+  font-size: 12px;
 }

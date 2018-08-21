@@ -1,4 +1,4 @@
-export const moneyFormat = (int, deconstructed = false) => {
+export const moneyFormat = (int, symbol = true) => {
   const rx = /(\d)(?=(\d{3})+\,)/g;
 
   if (typeof int !== 'number') {
@@ -7,14 +7,10 @@ export const moneyFormat = (int, deconstructed = false) => {
 
   const num = `${int.toFixed(2)}`;
   const formatted = num.replace('.', ',').replace(rx, '$1.');
-  const valuePieces = formatted.split(',');
 
-  if (!deconstructed) {
+  if (symbol) {
     return `R$ ${formatted}`;
   } else {
-    return {
-      int: valuePieces[0],
-      cent: valuePieces[1],
-    };
+    return formatted;
   }
 };
