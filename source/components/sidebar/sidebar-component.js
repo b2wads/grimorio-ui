@@ -38,8 +38,6 @@ class Sidebar extends PureComponent {
       [styles.closed]: openNav === false,
     });
 
-    console.log('>>', open, openNav);
-
     return (
       <div className={classes}>
         {onClick &&
