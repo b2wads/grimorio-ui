@@ -165,7 +165,7 @@ stories.addWithInfo('Knobs', () => (
 stories.addWithInfo('Disabled', () => (
   <div>
     <FormControl placeholder="Digite um nome" disabled />
-    <FormControl type="email" placeholder="Digire o seu e-mail" disabled />
+    <FormControl type="email" placeholder="Digite o seu e-mail" disabled />
     <FormControl type="radio" disabled />
     <FormControl type="checkbox" disabled />
     <FormControl type="select" disabled>
