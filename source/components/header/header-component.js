@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
+import classNames from 'classnames';
 
 import styles from './header.styl';
 import Button from '../button';
@@ -26,9 +27,10 @@ class Header extends PureComponent {
   }
 
   render() {
-    const { user, onLogout, select } = this.props;
+    const { user, onLogout, select, className, ...elementProps } = this.props;
+    const fullClassName = classNames(className, styles.header);
     return (
-      <header className={styles.header}>
+      <header className={fullClassName} {...elementProps}>
         <Button className={styles.headerUser} style="clean" modifier="inverted" size="small">
           <Icon className={styles.iconLeft} name="person" size="18" />
           {user}

@@ -113,7 +113,7 @@ class FormControl extends PureComponent {
 
     if (this.props.addonColor) {
       style.color = this.props.addonColor;
-      style.color = this.props.addonColor;
+      style.fill = this.props.addonColor;
     }
 
     return (
