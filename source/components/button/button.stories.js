@@ -28,6 +28,11 @@ stories.addWithInfo(
       <Button style="clean" size="small">
         Clean Icon <Icon size={18} />
       </Button>&nbsp;
+      <span style={{background: 'lightgray'}}>
+        <Button style="clean" modifier="inverted" size="small">
+          Clean Inverted
+        </Button>&nbsp;
+      </span>
     </div>
   )
 );

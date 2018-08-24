@@ -13,10 +13,8 @@ class FormControlLabel extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const hasValue = props.value !== undefined && props.value !== null && props.value !== '';
-
     this.state = {
-      active: hasValue ? true : false,
+      active: this.hasValue(props) ? true : false,
     };
 
     this.handleLabel = this.handleLabel.bind(this);
@@ -31,9 +29,22 @@ class FormControlLabel extends Component {
     $formGroup: PropTypes.object,
   };
 
+  hasValue(props) {
+    return (
+      (props.value !== undefined && props.value !== null && props.value !== '') ||
+      (props.defaultValue !== undefined && props.defaultValue !== null && props.defaultValue !== '')
+    );
+  }
+
   handleLabel(event) {
     if (event && event.target.value === '') {
       this.setState({ active: !this.state.active });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!this.hasValue(prevProps) && this.hasValue(this.props)) {
+      this.setState({ active: true });
     }
   }
 

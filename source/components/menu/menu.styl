@@ -37,24 +37,43 @@ $c-text = #a4a3a3;
 /* Accordion Type
  ================ */
 .accordionMenu {
+  .menuItem.isNotAccordion {
+    border-left: 2px solid transparent;
+    padding: 15px 26px 15px 24px;
+    transition: font-size 0.3s ease;
+
+    &:hover,
+    &.isActive {
+      border-left-color: $c-primary-dark;
+      transition: font-size 0.3s ease;
+    }
+
+    .iconLeft { margin-right: 22px }
+  }
+
   &.closed {
     .menuItem {
       transition: width 0.1s ease;
+    }
 
-      .menu .menuItem {
-        font-size: 0;
-        width: 100%;
-      }
+    .menuItem.isNotAccordion {
+      font-size: 0;
+      padding: 15px 10px;
+    }
+
+    .menuItem .menu .menuItem {
+      font-size: 0;
+      width: 100%;
     }
 
     .menuItem.isActive {
       transition: width 0.3s ease-in-out;
       width: 290px;
+    }
 
-      .menu .menuItem {
-        font-size: 14px;
-        transition: font-size 0.5s ease;
-      }
+    .menuItem.isActive .menu .menuItem {
+      font-size: 14px;
+      transition: font-size 0.5s ease;
     }
   }
 
@@ -62,12 +81,11 @@ $c-text = #a4a3a3;
     padding: 0;
     padding-bottom: 10px;
 
-    & .menuItem {
+    .menuItem {
       padding: 10px 26px 10px 64px;
-
       &:hover { color: $white; }
-
-      & .menu { padding-bottom: 0; }
     }
+
+    .menuItem .menu { padding-bottom: 0; }
   }
 }

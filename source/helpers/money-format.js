@@ -1,4 +1,4 @@
-export const moneyFormat = int => {
+export const moneyFormat = (int, symbol = true) => {
   const rx = /(\d)(?=(\d{3})+\,)/g;
 
   if (typeof int !== 'number') {
@@ -6,5 +6,11 @@ export const moneyFormat = int => {
   }
 
   const num = `${int.toFixed(2)}`;
-  return `R$ ${num.replace('.', ',').replace(rx, '$1.')}`;
+  const formatted = num.replace('.', ',').replace(rx, '$1.');
+
+  if (symbol) {
+    return `R$ ${formatted}`;
+  } else {
+    return formatted;
+  }
 };

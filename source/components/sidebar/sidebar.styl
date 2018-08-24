@@ -3,6 +3,7 @@
 ========================================================================== */
 @import '../../styl/00-settings/_variables.styl';
 $c-shadow = rgba(0, 0, 0, 0.15);
+$c-menu-text = #3F5D79;
 
 
 /* Default
@@ -26,19 +27,33 @@ $c-shadow = rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
-.content { padding-top: 35px; }
+.content { padding-top: 20px; }
+
+.contentTitle {
+  color: $c-menu-text;
+  display: block;
+  margin-bottom: 12px;
+  padding-left: 27px;
+  text-transform: uppercase;
+  font-size: 13px;
+
+  &.isNavClosed {
+    padding-left: 12px;
+  }
+}
 
 .toggle {
-  background-color: $c-support;
+  background-color: $c-primary;
   border: 0;
-  border-radius: 0 50% 50% 0;
   cursor: pointer;
   height: 30px;
-  outline: none;
+  outline: 0;
   padding: 0;
   position: absolute;
-  right: -30px;
-  width: 30px;
+  right: -50px;
+  text-align: right;
+  top: 22px;
+  width: 50px;
 }
 
 .toggleIcon { fill: $white; }

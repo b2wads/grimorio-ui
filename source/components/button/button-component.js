@@ -22,6 +22,7 @@ class Button extends PureComponent {
     block: PropTypes.bool,
     type: PropTypes.oneOf(['button', 'reset', 'submit']),
     style: PropTypes.oneOf(['primary', 'secondary', 'clean', 'transparent']),
+    modifier: PropTypes.oneOf(['inverted']),
     size: PropTypes.oneOf(['small', 'medium', 'none']),
     onClick: PropTypes.func,
     children: PropTypes.any.isRequired,
@@ -29,9 +30,23 @@ class Button extends PureComponent {
   };
 
   render() {
-    const { style, size, disabled, active, onClick, children, type, className, block, ...elementProps } = this.props;
+    const {
+      style,
+      modifier,
+      size,
+      disabled,
+      active,
+      onClick,
+      children,
+      type,
+      className,
+      block,
+      ...elementProps
+    } = this.props;
+
     const fullClassName = classNames(className, {
       [styles[style]]: style,
+      [styles[modifier]]: modifier,
       [styles.isActive]: active,
       [styles[size]]: size,
       [styles.block]: block,

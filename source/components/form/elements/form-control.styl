@@ -16,7 +16,7 @@ $c-border = #ccc;
 $default-background = #fff;
 $c-default = #333;
 
-$disabled = #ccc;
+$disabled = lighten($c-secondary, 60%);
 $c-disabled = #999;
 $c-disabled-light = #b4b5b5;
 
@@ -49,6 +49,8 @@ $field {
 
   &:disabled {
     background: $disabled;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     color: $c-disabled;
   }
 }

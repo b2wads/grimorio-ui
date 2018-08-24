@@ -83,6 +83,11 @@ const baseConfig = {
         use: {
           loader: 'file-loader'
         }
+      },
+      {
+        test: /\.svg$/,
+        exclude: /node_modules/,
+        loader: 'svg-react-loader',
       }
     ]
   },

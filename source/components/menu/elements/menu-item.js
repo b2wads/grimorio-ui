@@ -25,6 +25,8 @@ class MenuItem extends PureComponent {
     name: PropTypes.string,
     link: PropTypes.string,
     onClick: PropTypes.func,
+    isNotAccordion: PropTypes.bool,
+    title: PropTypes.string,
   };
 
   handleClick(e) {
@@ -35,13 +37,14 @@ class MenuItem extends PureComponent {
   }
 
   render() {
-    const { active, className, content, icon, items, children } = this.props;
+    const { active, className, content, icon, items, isNotAccordion, title, children } = this.props;
     const classes = classNames(styles.menuItem, className, {
-      [`${styles.isActive}`]: active,
+      [styles.isActive]: active,
+      [styles.isNotAccordion]: isNotAccordion,
     });
 
     return (
-      <li className={classes} onClick={this.handleClick}>
+      <li title={title || ''} className={classes} onClick={this.handleClick}>
         {icon && <Icon size={16} name={icon} className={styles.iconLeft} />}
         {children ? children : content}
         {items && <Menu items={items} />}
