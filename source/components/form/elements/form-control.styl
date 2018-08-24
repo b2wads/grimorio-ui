@@ -23,8 +23,8 @@ $c-disabled-light = #b4b5b5;
 /* Addon
    ========================================================================== */
 $c-addon-background = #18a689;
-$c-addon-border = #18a689;
-$c-addon = #fff;
+$c-addon-border = $c-border;
+$c-addon = $c-primary;
 
 /* ==========================================================================
   Placeholders
@@ -35,12 +35,14 @@ $c-addon = #fff;
 $field {
   border: 0;
   border-bottom: 1px solid $c-border;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
   display: block;
   font-size: 16px;
-  height: 28px;
-  line-height: 1;
+  height: 35px;
   outline: 0;
-  padding: 6px;
+  padding-top: 3px;
+  text-indent: 5px;
   width: 100%;
 
   &:focus {
@@ -49,8 +51,6 @@ $field {
 
   &:disabled {
     background: $disabled;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
     color: $c-disabled;
   }
 }
@@ -65,19 +65,21 @@ $radioCheckbox {
 /* addon
 ========================================================================== */
 $addon {
-  background: $c-addon-background;
-  border: none;
-  border-bottom: 1px solid $c-addon-border;
+  border: 0;
+  bottom: 7px;
   color: $c-addon;
-  display: table-cell;
+  display: block;
+  fill: $c-addon;
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
+  overflow: hidden;
   padding: 3px 6px;
+  position: absolute;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
-  width: 1%;
+  width: 35px;
 
   [class*="button"] {
     margin: -6px -10px;
@@ -96,6 +98,13 @@ $addon {
   @extend $field;
 
   color: $c-default;
+}
+
+.form-field--outline {
+  @extend $field;
+
+  border: 1px solid $c-border;
+  border-radius: 3px;
 }
 
 .form-field--select {
@@ -144,6 +153,11 @@ $addon {
   border-bottom-right-radius: 0;
   border-right: 0;
   border-top-right-radius: 0;
+  left: 0;
+
+  & ~ .form-field {
+    padding-left: 35px;
+  }
 }
 
 .form-addon-after {
@@ -152,6 +166,11 @@ $addon {
   border-bottom-left-radius: 0;
   border-left: 0;
   border-top-left-radius: 0;
+  right: 0;
+
+  & ~ .form-field {
+    padding-right: 35px;
+  }
 }
 
 .form-addon--disabled {

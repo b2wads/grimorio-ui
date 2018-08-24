@@ -31,6 +31,7 @@ class FormControl extends PureComponent {
     onBlur: () => {},
     feedback: false,
     type: 'text',
+    outline: false,
   };
 
   static propTypes = {
@@ -47,6 +48,7 @@ class FormControl extends PureComponent {
     addonAfter: PropTypes.node,
     addonBefore: PropTypes.node,
     feedback: PropTypes.bool,
+    outline: PropTypes.bool,
     type: PropTypes.oneOf([
       'text',
       'password',
@@ -110,7 +112,8 @@ class FormControl extends PureComponent {
     const style = {};
 
     if (this.props.addonColor) {
-      style.backgroundColor = this.props.addonColor;
+      style.color = this.props.addonColor;
+      style.color = this.props.addonColor;
     }
 
     return (
@@ -141,6 +144,7 @@ class FormControl extends PureComponent {
       inputClassName,
       validate,
       onValidate,
+      outline,
       ...rest
     } = this.props;
     const form = this.context.$form;
@@ -154,6 +158,7 @@ class FormControl extends PureComponent {
         [styles['form-field--textarea']]: type === 'textarea',
         [styles['form-field--select']]: type === 'select',
         [styles['form-field--horizontal']]: formStyleType === 'horizontal',
+        [styles['form-field--outline']]: outline,
       },
       inputClassName
     );
@@ -225,8 +230,8 @@ class FormControl extends PureComponent {
     return (
       <div className={addonClass}>
         {generateAddonBefore}
-        {generateComponent}
         {generateAddonAfter}
+        {generateComponent}
         {generateFeedback}
       </div>
     );

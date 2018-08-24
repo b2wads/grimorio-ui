@@ -57,6 +57,11 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
           <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
           <FormHelpText>Tem valor default, porém não é controlado</FormHelpText>
         </FormGroup>
+        <br/>
+        <FormGroup>
+          <FormControlLabel outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Versão outline!</FormHelpText>
+        </FormGroup>
       </Form>
     </div>
   );
@@ -183,7 +188,7 @@ stories.addWithInfo('Addon before', () => (
     <br /><br />
     <FormControl type="password" placeholder="Digite um valor" addonBefore={
       <Button style="transparent" size="none">
-        <Icon className="search" color="#fff" size={20} />
+        <Icon className="search" size={20} />
       </Button>
     } />
   </div>
@@ -195,7 +200,7 @@ stories.addWithInfo('Addon after', () => (
     <br /><br />
     <FormControl type="password" placeholder="Digite um valor" addonAfter={
       <Button style="transparent" size="none">
-        <Icon className="search" color="#fff" size={20} />
+        <Icon className="search" size={20} />
       </Button>
     } />
   </div>
