@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$icon {
+  fill: $base-text-color;
+  margin: 0 2px;
+}
+
+$item {
+  text-transform: capitalize;
+  color: $c-primary;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   Breadcrumb Elements
+========================================================================== */
+.list {
+  align-items: center;
+  display: flex;
+}
+
+.icon {
+  @extend $icon;
+}
+
+.iconHome {
+  @extend $icon;
+  margin-left: 0;
+  margin-right: 5px;
+  margin-top: -1px;
+}
+
+.itemWrap {
+  display: flex;
+}
+
+.item {
+  @extend $item;
+}
+
+.itemCurrent {
+  @extend $item;
+  color: $base-text-color;
+  cursor: inherit;
+}
+
+/* ==========================================================================
+   Breadcrumb Props
+========================================================================== */
+
+/* Default
+ ================ */
