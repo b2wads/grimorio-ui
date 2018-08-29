@@ -4,6 +4,8 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Option from './elements/option';
+import { FormControlLabel } from '../form';
+import Icon from '../icon';
 
 import styles from './select.styl';
 
@@ -11,26 +13,43 @@ class Select extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      selectedName: this.props.initialValue,
+      selectedName: null,
       selectedValue: null,
       open: false,
     };
 
     this.onSelectItem = this.onSelectItem.bind(this);
+    this.verifyClickOutside = this.verifyClickOutside.bind(this);
   }
 
   static propTypes = {
     items: PropTypes.array,
-    initialValue: PropTypes.string,
+    label: PropTypes.string,
     onSelect: PropTypes.func,
     type: PropTypes.oneOf(['select', 'dropdown']),
+    dropDownButton: PropTypes.element,
+    position: PropTypes.oneOf(['top', 'bottom']),
   };
 
   static defaultProps = {
     items: [],
-    initialValue: 'Selecione',
     type: 'select',
+    position: 'top',
   };
+
+  componentWillMount() {
+    document.addEventListener('click', this.verifyClickOutside, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.verifyClickOutside, false);
+  }
+
+  verifyClickOutside(e) {
+    if (!this.selectWrap.contains(e.target)) {
+      this.setState({ open: false });
+    }
+  }
 
   onSelectItem({ name, value }) {
     return () => {
@@ -65,20 +84,48 @@ class Select extends PureComponent {
     });
   }
 
+  renderButton() {
+    const { type, label, dropDownButton } = this.props;
+    const { selectedName } = this.state;
+
+    if (type === 'select') {
+      return (
+        <span className={styles.button}>
+          <FormControlLabel label={label} type="text" value={selectedName} onClick={this.toggleOptions()} />
+          <Icon className={styles.icon} name="arrow_drop_down" size={20} />
+        </span>
+      );
+    } else if (type === 'dropdown') {
+      return (
+        <span className={styles.button} onClick={this.toggleOptions()}>
+          {dropDownButton}
+          <Icon className={styles.icon} name="arrow_drop_down" size={20} />
+        </span>
+      );
+    }
+  }
+
   render() {
-    const { items } = this.props;
-    const { selectedName, selectedValue, open } = this.state;
+    const { items, position, className, ...elementProps } = this.props;
+    const { selectedValue, open } = this.state;
+    const menuStyle = classNames(styles.menu, {
+      [styles.isOpen]: open,
+      [styles.isBottom]: position === 'bottom',
+    });
 
     return (
-      <div>
-        <span className={styles.button} onClick={this.toggleOptions()}>
-          {selectedName}
-        </span>
+      <div ref={el => (this.selectWrap = el)} className={classNames(styles.selectWrap, className)} {...elementProps}>
+        {this.renderButton()}
 
-        <ul className={classNames(styles.menu, { [styles.isOpen]: open })}>
+        <ul className={menuStyle}>
           {items.length
             ? items.map(option => (
-                <Option selected={selectedValue === option.value} onSelect={this.onSelectItem} value={option.value}>
+                <Option
+                  icon={option.icon}
+                  selected={selectedValue === option.value}
+                  onSelect={this.onSelectItem}
+                  value={option.value}
+                >
                   {option.name}
                 </Option>
               ))

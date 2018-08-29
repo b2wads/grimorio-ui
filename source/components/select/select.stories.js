@@ -8,19 +8,27 @@ const stories = storiesOf('Select', module);
 
 stories.addDecorator(withKnobs);
 
-const items = [
+const items = [1,2,3,4,5,6,7,8,9].map(item => ({
+  name: `Opção ${item}`,
+  value: `value-${item}`,
+}));
+
+const itemsIcon = [
   {
-    name: 'Opção 1',
-    value: 'val1'
+    name: 'Opção 3',
+    value: 'home',
+    icon: 'home',
   },
   {
-    name: 'Opção 2',
-    value: 'val2'
+    name: 'Opção 4',
+    value: 'person',
+    icon: 'person',
   }
-]
+];
 
 stories.addWithInfo('Select', () => {
   return <Select
+    label="Opções"
     initialValue="Escolha suas Opções"
     onSelect={data => console.log(data)}
     items={items}
@@ -30,15 +38,15 @@ stories.addWithInfo('Select', () => {
 stories.addWithInfo('Dropdown', () => {
   return <Select
     type="dropdown"
-    initialValue="Escolha suas Opções"
-    onSelect={({ name }) => alert(name)}
-    items={items}
+    dropDownButton={<span>Hello</span>}
+    onSelect={({ value }) => alert(value)}
+    items={itemsIcon}
   />
 });
 
 stories.addWithInfo('Manual', () => {
   return <Select
-    initialValue="Select Manual"
+    label="Opções Manuais"
     onSelect={data => console.log(data)}
   >
     <Select.Option value="val1">Manual Option One</Select.Option>

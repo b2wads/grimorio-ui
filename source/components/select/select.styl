@@ -6,8 +6,19 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$options {
-  display: none;
+$menu {
+  @extend $drop-shadow;
+  background: $white;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  padding: 8px 0;
+  transform: scaleY(0);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 /* ==========================================================================
@@ -21,16 +32,55 @@ $options {
 /* Default
  ================ */
 
+.selectWrap {
+  position: relative;
+}
+
+.button {
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+
+.icon {
+  fill: $c-text;
+  position: absolute;
+  right: 0;
+  top: 7px;
+  z-index: 1;
+}
+
+.input {
+  padding-right: 15px;
+}
+
 .menu {
-  @extend $options;
+  @extend $menu;
+
+  &.isBottom {
+    bottom: 0;
+    top: inherit;
+  }
 
   &.isOpen {
-    display: block;
+    transform: scaleY(1);
+    opacity: 1;
+    transition: opacity 0.5s ease;
   }
 }
 
 .option {
+  color: $c-text;
+  cursor: pointer;
+  display: flex;
+  fill: $c-text;
+  padding: 10px 16px;
+
+  &:hover {
+    background: $c-support-light;
+  }
+
   &.isSelected {
-    background: #eee;
+    background: $c-support-light;
   }
 }
