@@ -23,11 +23,11 @@ class FormControlLabel extends Component {
   static propTypes = {
     label: PropTypes.string,
     placeholder: PropTypes.string,
-    shouldFireOnBlur: PropTypes.bool,
+    activeLabel: PropTypes.bool,
   };
 
   static defaultProps = {
-    shouldFireOnBlur: true,
+    activeLabel: null,
   };
 
   static contextTypes = {
@@ -54,14 +54,14 @@ class FormControlLabel extends Component {
   }
 
   render() {
-    const { label, placeholder, shouldFireOnBlur, ...rest } = this.props;
+    const { label, placeholder, activeLabel, ...rest } = this.props;
 
     // context
     const formGroup = this.context.$formGroup;
     const validationState = (formGroup && formGroup.validationState) || undefined;
 
     const labelClasses = classNames(styles.label, {
-      [styles.isActive]: this.state.active,
+      [styles.isActive]: activeLabel === null ? this.state.active : activeLabel,
       [styles[`has-${validationState}`]]: validationState,
     });
 
@@ -75,7 +75,7 @@ class FormControlLabel extends Component {
         <FormControl
           placeholder={this.state.active ? placeholder : ''}
           inputClassName={inputClasses}
-          onBlur={shouldFireOnBlur && this.handleLabel}
+          onBlur={this.handleLabel}
           onFocus={this.handleLabel}
           {...rest}
         />

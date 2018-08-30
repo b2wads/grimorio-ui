@@ -16,6 +16,7 @@ class Select extends PureComponent {
       selectedName: null,
       selectedValue: null,
       menuOpen: false,
+      activeLabel: false,
     };
 
     this.onSelectItem = this.onSelectItem.bind(this);
@@ -53,8 +54,14 @@ class Select extends PureComponent {
   }
 
   verifyClickOutside(e) {
+    const { selectedName } = this.state;
+
     if (!this.selectWrap.contains(e.target)) {
-      this.setState({ menuOpen: false });
+      this.setState({
+        menuOpen: false,
+        activeLabel: selectedName ? true : false,
+      });
+
       this.props.onClickOutside(this.state.menuOpen);
     }
   }
@@ -68,6 +75,7 @@ class Select extends PureComponent {
       };
 
       if (this.props.type === 'select') {
+        selectedState.activeLabel = true;
         selectedState.selectedName = name;
         selectedState.selectedValue = value;
       }
@@ -77,9 +85,11 @@ class Select extends PureComponent {
   }
 
   toggleOptions() {
+    const { menuOpen } = this.state;
     return () =>
       this.setState({
-        menuOpen: !this.state.menuOpen,
+        activeLabel: true,
+        menuOpen: !menuOpen,
       });
   }
 
@@ -96,13 +106,13 @@ class Select extends PureComponent {
 
   renderButton() {
     const { type, label, dropDownButton } = this.props;
-    const { selectedName } = this.state;
+    const { selectedName, activeLabel } = this.state;
 
     if (type === 'select') {
       return (
         <span className={styles.button}>
           <FormControlLabel
-            shouldFireOnBlur={false}
+            activeLabel={activeLabel}
             label={label}
             type="text"
             value={selectedName}
