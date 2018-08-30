@@ -4,10 +4,11 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Option from './elements/option';
-import { FormControlLabel, FormControl } from '../form';
+import { FormControlLabel } from '../form';
 import Icon from '../icon';
 
 import styles from './select.styl';
+import formControlStyle from '../form/elements/form-control.styl';
 
 class Select extends PureComponent {
   constructor(props) {
@@ -108,7 +109,7 @@ class Select extends PureComponent {
   }
 
   renderButton() {
-    const { type, label, placeholder, menuButton, disabled } = this.props;
+    const { type, label, placeholder, menuButton, disabled, ...rest } = this.props;
     const { selectedName, activeLabel } = this.state;
 
     if (type === 'select' && label) {
@@ -121,6 +122,7 @@ class Select extends PureComponent {
             value={selectedName}
             onClick={this.toggleOptions()}
             disabled={disabled}
+            {...rest}
           />
           <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
         </span>
@@ -128,13 +130,9 @@ class Select extends PureComponent {
     } else if (type === 'select') {
       return (
         <span className={styles.button}>
-          <FormControl
-            type="text"
-            placeholder={placeholder || ''}
-            value={selectedName}
-            onClick={this.toggleOptions()}
-            disabled={disabled}
-          />
+          <div onClick={this.toggleOptions()} className={formControlStyle['form-field--select']}>
+            {selectedName || placeholder}
+          </div>
           <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
         </span>
       );

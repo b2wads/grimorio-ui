@@ -65,7 +65,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
         </FormGroup>
         <br/>
         <FormGroup>
-          <FormControlLabel onChange={data => console.log(data)} label="Nome" type="select">
+          <FormControlLabel outline onChange={data => console.log(data)} label="Nome" type="select">
             <Option value="a">a</Option>
             <Option value="b">b</Option>
           </FormControlLabel>
