@@ -15,7 +15,7 @@ class Select extends PureComponent {
     this.state = {
       selectedName: null,
       selectedValue: null,
-      open: false,
+      menuOpen: false,
     };
 
     this.onSelectItem = this.onSelectItem.bind(this);
@@ -29,32 +29,42 @@ class Select extends PureComponent {
     type: PropTypes.oneOf(['select', 'dropdown']),
     dropDownButton: PropTypes.element,
     position: PropTypes.oneOf(['top', 'bottom']),
+    open: PropTypes.bool,
+    closeOnClickOutside: PropTypes.bool,
+    onClickOutside: PropTypes.func,
   };
 
   static defaultProps = {
     items: [],
     type: 'select',
     position: 'top',
+    open: null,
+    closeOnClickOutside: true,
   };
 
   componentWillMount() {
-    document.addEventListener('click', this.verifyClickOutside, false);
+    const { closeOnClickOutside } = this.props;
+    closeOnClickOutside && document.addEventListener('click', this.verifyClickOutside, false);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.verifyClickOutside, false);
+    const { closeOnClickOutside } = this.props;
+    closeOnClickOutside && document.removeEventListener('click', this.verifyClickOutside, false);
   }
 
   verifyClickOutside(e) {
     if (!this.selectWrap.contains(e.target)) {
-      this.setState({ open: false });
+      this.setState({ menuOpen: false });
+      this.props.onClickOutside(this.state.menuOpen);
     }
   }
 
   onSelectItem({ name, value }) {
+    const { menuOpen } = this.state;
+
     return () => {
       const selectedState = {
-        open: !this.state.open,
+        menuOpen: !menuOpen,
       };
 
       if (this.props.type === 'select') {
@@ -62,14 +72,14 @@ class Select extends PureComponent {
         selectedState.selectedValue = value;
       }
 
-      this.setState(selectedState, this.props.onSelect({ name, value }));
+      this.setState(selectedState, this.props.onSelect({ name, value }, menuOpen));
     };
   }
 
   toggleOptions() {
     return () =>
       this.setState({
-        open: !this.state.open,
+        menuOpen: !this.state.menuOpen,
       });
   }
 
@@ -91,25 +101,30 @@ class Select extends PureComponent {
     if (type === 'select') {
       return (
         <span className={styles.button}>
-          <FormControlLabel label={label} type="text" value={selectedName} onClick={this.toggleOptions()} />
-          <Icon className={styles.icon} name="arrow_drop_down" size={20} />
+          <FormControlLabel
+            shouldFireOnBlur={false}
+            label={label}
+            type="text"
+            value={selectedName}
+            onClick={this.toggleOptions()}
+          />
+          <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
         </span>
       );
     } else if (type === 'dropdown') {
       return (
         <span className={styles.button} onClick={this.toggleOptions()}>
           {dropDownButton}
-          <Icon className={styles.icon} name="arrow_drop_down" size={20} />
         </span>
       );
     }
   }
 
   render() {
-    const { items, position, className, ...elementProps } = this.props;
-    const { selectedValue, open } = this.state;
+    const { items, position, open, className, ...elementProps } = this.props;
+    const { selectedValue, menuOpen } = this.state;
     const menuStyle = classNames(styles.menu, {
-      [styles.isOpen]: open,
+      [styles.isOpen]: open !== null ? open : menuOpen,
       [styles.isBottom]: position === 'bottom',
     });
 

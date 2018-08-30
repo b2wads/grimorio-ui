@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { withState } from '@dump247/storybook-state';
 
 import Select from './index';
 
@@ -44,12 +45,28 @@ stories.addWithInfo('Dropdown', () => {
   />
 });
 
-stories.addWithInfo('Manual', () => {
+const manualState = {
+  manualOpen: false,
+};
+
+stories.addWithInfo('Manual', withState(manualState)(({ store }) => {
+  const updateMenu = menuState => {
+    store.set({ manualOpen: menuState });
+  };
+
   return <Select
     label="Opções Manuais"
-    onSelect={data => console.log(data)}
+    onSelect={(data, menu) => {
+      console.log(data, menu);
+      updateMenu(menu);
+    }}
+    onClickOutside={menu => {
+      console.log('click outside');
+      updateMenu(menu);
+    }}
+    open={store.manualOpen}
   >
     <Select.Option value="val1">Manual Option One</Select.Option>
     <Select.Option value="val2">Manual Option Two</Select.Option>
   </Select>
-});
+}));

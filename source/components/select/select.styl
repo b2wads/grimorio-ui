@@ -42,11 +42,11 @@ $menu {
   position: relative;
 }
 
-.icon {
+.arrow {
   fill: $c-text;
   position: absolute;
   right: 0;
-  top: 7px;
+  top: 10px;
   z-index: 1;
 }
 
@@ -70,6 +70,7 @@ $menu {
 }
 
 .option {
+  align-items: center;
   color: $c-text;
   cursor: pointer;
   display: flex;
@@ -83,4 +84,8 @@ $menu {
   &.isSelected {
     background: $c-support-light;
   }
+}
+
+.optionIcon {
+  margin-right: 5px;
 }

@@ -23,6 +23,11 @@ class FormControlLabel extends Component {
   static propTypes = {
     label: PropTypes.string,
     placeholder: PropTypes.string,
+    shouldFireOnBlur: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    shouldFireOnBlur: true,
   };
 
   static contextTypes = {
@@ -49,7 +54,7 @@ class FormControlLabel extends Component {
   }
 
   render() {
-    const { label, placeholder, ...rest } = this.props;
+    const { label, placeholder, shouldFireOnBlur, ...rest } = this.props;
 
     // context
     const formGroup = this.context.$formGroup;
@@ -70,7 +75,7 @@ class FormControlLabel extends Component {
         <FormControl
           placeholder={this.state.active ? placeholder : ''}
           inputClassName={inputClasses}
-          onBlur={this.handleLabel}
+          onBlur={shouldFireOnBlur && this.handleLabel}
           onFocus={this.handleLabel}
           {...rest}
         />

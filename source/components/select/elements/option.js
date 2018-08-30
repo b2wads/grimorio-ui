@@ -12,7 +12,7 @@ const Option = ({ value, icon, onSelect, selected, children }) => {
       className={classNames(styles.option, { [styles.isSelected]: selected })}
       onClick={onSelect({ name: children, value })}
     >
-      {icon && <Icon size="16" name={icon} />}
+      {icon && <Icon className={styles.optionIcon} size="18" name={icon} />}
       {children}
     </li>
   );
