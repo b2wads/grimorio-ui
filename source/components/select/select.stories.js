@@ -4,6 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import Select from './index';
+import Button from '../button';
 
 const stories = storiesOf('Select', module);
 
@@ -27,19 +28,44 @@ const itemsIcon = [
   }
 ];
 
-stories.addWithInfo('Select', () => {
+stories.addWithInfo('Select with Label', () => {
   return <Select
     label="Opções"
-    initialValue="Escolha suas Opções"
     onSelect={data => console.log(data)}
     items={items}
   />
 });
 
-stories.addWithInfo('Dropdown', () => {
+stories.addWithInfo('Select without Label', () => {
   return <Select
-    type="dropdown"
-    dropDownButton={<span>Hello</span>}
+    placeholder="Opções"
+    onSelect={data => console.log(data)}
+    items={items}
+  />
+});
+
+stories.addWithInfo('Select disabled', () => {
+  return <Select
+    placeholder="Opções"
+    disabled
+    onSelect={data => console.log(data)}
+    items={items}
+  />
+});
+
+stories.addWithInfo('Select - Options Bottom', () => {
+  return <Select
+    label="Opções"
+    position="bottom"
+    onSelect={data => console.log(data)}
+    items={items}
+  />
+});
+
+stories.addWithInfo('Menu', () => {
+  return <Select
+    type="menu"
+    menuButton={<Button>Open Menu</Button>}
     onSelect={({ value }) => alert(value)}
     items={itemsIcon}
   />

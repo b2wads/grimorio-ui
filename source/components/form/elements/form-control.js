@@ -5,6 +5,9 @@ import CSSModules from 'react-css-modules';
 // components
 import Icon from '../../icon';
 import { fieldsValidation } from '../../../helpers/validation';
+
+import Select from '../../select';
+
 // styles
 import styles from './form-control.styl';
 
@@ -52,7 +55,6 @@ class FormControl extends PureComponent {
     type: PropTypes.oneOf([
       'text',
       'password',
-      'select',
       'textarea',
       'radio',
       'checkbox',
@@ -149,7 +151,7 @@ class FormControl extends PureComponent {
     } = this.props;
     const form = this.context.$form;
     const formStyleType = (form && form.styleType) || undefined;
-    const isClassDefault = ['radio', 'checkbox', 'textarea', 'select'].indexOf(type) < 0;
+    const isClassDefault = ['radio', 'checkbox', 'textarea'].indexOf(type) < 0;
     const componentClass = classNames(
       {
         [styles['form-field']]: isClassDefault,
@@ -183,24 +185,38 @@ class FormControl extends PureComponent {
       };
     }
 
-    return (
-      <Component
-        type={tagType}
-        ref={getRef}
-        className={componentClass}
-        placeholder={placeholder}
-        id={controlId}
-        onChange={handleChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        disabled={disabled}
-        name={name}
-        value={this.state.value}
-        {...rest}
-      >
-        {children}
-      </Component>
-    );
+    if (type === 'select') {
+      return (
+        <Select
+          className={componentClass}
+          disabled={disabled}
+          placeholder={placeholder}
+          onSelect={handleChange}
+          {...rest}
+        >
+          {children}
+        </Select>
+      );
+    } else {
+      return (
+        <Component
+          type={tagType}
+          ref={getRef}
+          className={componentClass}
+          placeholder={placeholder}
+          id={controlId}
+          onChange={handleChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          disabled={disabled}
+          name={name}
+          value={this.state.value}
+          {...rest}
+        >
+          {children}
+        </Component>
+      );
+    }
   }
 
   render() {
@@ -237,5 +253,7 @@ class FormControl extends PureComponent {
     );
   }
 }
+
+FormControl.Option = Select.Option;
 
 export default CSSModules(FormControl, styles);

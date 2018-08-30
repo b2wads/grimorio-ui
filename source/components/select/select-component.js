@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Option from './elements/option';
-import { FormControlLabel } from '../form';
+import { FormControlLabel, FormControl } from '../form';
 import Icon from '../icon';
 
 import styles from './select.styl';
@@ -26,13 +26,15 @@ class Select extends PureComponent {
   static propTypes = {
     items: PropTypes.array,
     label: PropTypes.string,
+    placeholder: PropTypes.string,
     onSelect: PropTypes.func,
-    type: PropTypes.oneOf(['select', 'dropdown']),
-    dropDownButton: PropTypes.element,
+    type: PropTypes.oneOf(['select', 'menu']),
+    menuButton: PropTypes.element,
     position: PropTypes.oneOf(['top', 'bottom']),
     open: PropTypes.bool,
     closeOnClickOutside: PropTypes.bool,
     onClickOutside: PropTypes.func,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -41,6 +43,7 @@ class Select extends PureComponent {
     position: 'top',
     open: null,
     closeOnClickOutside: true,
+    disabled: false,
   };
 
   componentWillMount() {
@@ -105,10 +108,10 @@ class Select extends PureComponent {
   }
 
   renderButton() {
-    const { type, label, dropDownButton } = this.props;
+    const { type, label, placeholder, menuButton, disabled } = this.props;
     const { selectedName, activeLabel } = this.state;
 
-    if (type === 'select') {
+    if (type === 'select' && label) {
       return (
         <span className={styles.button}>
           <FormControlLabel
@@ -117,14 +120,28 @@ class Select extends PureComponent {
             type="text"
             value={selectedName}
             onClick={this.toggleOptions()}
+            disabled={disabled}
           />
           <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
         </span>
       );
-    } else if (type === 'dropdown') {
+    } else if (type === 'select') {
+      return (
+        <span className={styles.button}>
+          <FormControl
+            type="text"
+            placeholder={placeholder || ''}
+            value={selectedName}
+            onClick={this.toggleOptions()}
+            disabled={disabled}
+          />
+          <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
+        </span>
+      );
+    } else if (type === 'menu') {
       return (
         <span className={styles.button} onClick={this.toggleOptions()}>
-          {dropDownButton}
+          {menuButton}
         </span>
       );
     }

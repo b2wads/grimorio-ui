@@ -6,6 +6,8 @@ import CSSModules from 'react-css-modules';
 import FormControl from './form-control';
 import FormLabel from './form-label';
 
+import Select from '../../select';
+
 // styles
 import styles from './form-control-label.styl';
 
@@ -54,7 +56,7 @@ class FormControlLabel extends Component {
   }
 
   render() {
-    const { label, placeholder, activeLabel, ...rest } = this.props;
+    const { label, placeholder, activeLabel, onChange, type, children, ...rest } = this.props;
 
     // context
     const formGroup = this.context.$formGroup;
@@ -69,19 +71,29 @@ class FormControlLabel extends Component {
       [styles[`has-${validationState}`]]: validationState,
     });
 
-    return (
-      <div className={styles.labelWrapper}>
-        <FormLabel className={labelClasses} onClick={this.handleLabel}>{label}</FormLabel>
-        <FormControl
-          placeholder={this.state.active ? placeholder : ''}
-          inputClassName={inputClasses}
-          onBlur={this.handleLabel}
-          onFocus={this.handleLabel}
-          {...rest}
-        />
-      </div>
-    );
+    if (type === 'select') {
+      return (
+        <Select label={label} onSelect={onChange} {...rest}>
+          {children}
+        </Select>
+      );
+    } else {
+      return (
+        <div className={styles.labelWrapper}>
+          <FormLabel className={labelClasses} onClick={this.handleLabel}>{label}</FormLabel>
+          <FormControl
+            placeholder={this.state.active ? placeholder : ''}
+            inputClassName={inputClasses}
+            onBlur={this.handleLabel}
+            onFocus={this.handleLabel}
+            {...rest}
+          />
+        </div>
+      );
+    }
   }
 }
+
+FormControlLabel.Option = Select.Option;
 
 export default CSSModules(FormControlLabel, styles);
