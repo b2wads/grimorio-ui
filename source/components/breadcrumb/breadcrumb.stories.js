@@ -17,3 +17,19 @@ stories.addWithInfo('Normal', () => {
     />
   );
 });
+
+stories.addWithInfo('No Home', () => {
+  return (
+    <div>
+      <Breadcrumb
+        onItemClick={path => console.log(path)}
+        path="department/category/my-amazing-category"
+      />
+
+      <Breadcrumb
+        onItemClick={path => console.log(path)}
+        path="department"
+      />
+    </div>
+  );
+});

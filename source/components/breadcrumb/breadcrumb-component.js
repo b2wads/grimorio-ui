@@ -16,7 +16,6 @@ class Breadcrumb extends PureComponent {
 
   static defaultProps = {
     path: '/',
-    home: 'home',
   };
 
   generatePageList() {
@@ -49,12 +48,19 @@ class Breadcrumb extends PureComponent {
     const { onItemClick } = this.props;
 
     return list.map((item, index) => {
-      if (index === 0) {
+      if (index === 0 && list.length > 1) {
         return (
           <div className={styles.itemWrap}>
             <Icon align="unset" size="16" className={styles.iconHome} name="home" />
             <span className={styles.item} onClick={() => onItemClick(item.path)}>{item.name}</span>
             <Icon size="17" className={styles.icon} name="keyboard_arrow_right" />
+          </div>
+        );
+      } else if (index === list.length - 1 && list.length === 1) {
+        return (
+          <div className={styles.itemWrap}>
+            <Icon align="unset" size="16" className={styles.iconHome} name="home" />
+            <span className={styles.itemCurrent}>{item.name}</span>
           </div>
         );
       } else if (index === list.length - 1) {

@@ -9,6 +9,8 @@ import Sidebar from './components/sidebar';
 import Header from './components/header';
 import InfoCard from './components/info-card';
 import PageTitle from './components/page-title';
+import Breadcrumb from './components/breadcrumb';
+import Select from './components/select';
 import Form, {
   FormGroup,
   FormControl,
@@ -40,4 +42,6 @@ export {
   Header,
   InfoCard,
   PageTitle,
+  Breadcrumb,
+  Select,
 };
