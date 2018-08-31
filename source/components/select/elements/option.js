@@ -23,7 +23,7 @@ Option.propTypes = {
   icon: PropTypes.string,
   onSelect: PropTypes.func,
   selected: PropTypes.bool,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 export default Option;

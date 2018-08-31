@@ -36,6 +36,15 @@ stories.addWithInfo('Select with Label', () => {
   />
 });
 
+stories.addWithInfo('Select with defaultValue', () => {
+  return <Select
+    label="Opções"
+    onSelect={data => console.log(data)}
+    defaultValue="value-7"
+    items={items}
+  />
+});
+
 stories.addWithInfo('Select without Label', () => {
   return <Select
     placeholder="Opções"
@@ -45,12 +54,38 @@ stories.addWithInfo('Select without Label', () => {
 });
 
 stories.addWithInfo('Select disabled', () => {
-  return <Select
-    placeholder="Opções"
-    disabled
-    onSelect={data => console.log(data)}
-    items={items}
-  />
+  return <div>
+    <Select
+      disabled
+      placeholder="Opções"
+      onSelect={data => console.log(data)}
+      items={items}
+    />
+    <br/>
+    <Select
+      disabled
+      label="Opções"
+      onSelect={data => console.log(data)}
+      items={items}
+    />
+    <br/>
+    <Select
+      disabled
+      placeholder="Opções"
+      defaultValue="value-4"
+      onSelect={data => console.log(data)}
+      items={items}
+    />
+    <br/>
+    <br/>
+    <Select
+      disabled
+      label="Opções"
+      onSelect={data => console.log(data)}
+      defaultValue="value-7"
+      items={items}
+    />
+  </div>
 });
 
 stories.addWithInfo('Select - Options Bottom', () => {
@@ -73,6 +108,7 @@ stories.addWithInfo('Menu', () => {
 
 const manualState = {
   manualOpen: false,
+  value: 'val2',
 };
 
 stories.addWithInfo('Manual', withState(manualState)(({ store }) => {
@@ -80,17 +116,23 @@ stories.addWithInfo('Manual', withState(manualState)(({ store }) => {
     store.set({ manualOpen: menuState });
   };
 
+  const updateValue = value => {
+    store.set({ value });
+  };
+
   return <Select
     label="Opções Manuais"
     onSelect={(data, menu) => {
       console.log(data, menu);
       updateMenu(menu);
+      updateValue(data.value);
     }}
     onClickOutside={menu => {
       console.log('click outside');
       updateMenu(menu);
     }}
     open={store.manualOpen}
+    defaultValue="val2"
   >
     <Select.Option value="val1">Manual Option One</Select.Option>
     <Select.Option value="val2">Manual Option Two</Select.Option>

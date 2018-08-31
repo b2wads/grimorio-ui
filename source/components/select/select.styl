@@ -3,6 +3,12 @@
 ========================================================================== */
 @import '../../styl/00-settings/_variables.styl';
 
+$placeholder = #999;
+$c-border = #ccc;
+$c-label = #999;
+$disabled = lighten($c-secondary, 60%);
+$c-disabled = #999;
+
 /* ==========================================================================
    Placeholders
 ========================================================================== */
@@ -19,6 +25,19 @@ $menu {
   top: 0;
   width: 100%;
   z-index: 2;
+}
+
+$field {
+  border: 0;
+  border-bottom: 1px solid $c-border;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  display: block;
+  font-size: 16px;
+  height: 35px;
+  outline: 0;
+  text-indent: 5px;
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -51,7 +70,47 @@ $menu {
 }
 
 .input {
+  @extend $field;
+  line-height: 1;
   padding-right: 15px;
+  padding-top: 10px;
+
+  &.isPlaceholder {
+    color: $placeholder;
+  }
+
+  &.isActive {
+    border-color: $c-primary;
+  }
+
+  &.isDisabled {
+    background: $disabled;
+    border-color: $c-border;
+    color: $c-disabled;
+    cursor: not-allowed;
+  }
+}
+
+.labelWrapper { position: relative }
+
+.label {
+  color: $c-label;
+  font-size: 16px;
+  font-weight: 400;
+  left: 5px;
+  line-height: 1;
+  pointer-events: none;
+  position: absolute;
+  top: 10px;
+  transition: all 0.25s ease;
+
+  &.isActive {
+    color: $c-primary;
+    font-size: 12px;
+    font-weight: 700;
+    top: -1.5rem;
+    transition: all 0.125s ease;
+  }
 }
 
 .menu {

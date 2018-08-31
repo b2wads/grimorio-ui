@@ -4,20 +4,18 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Option from './elements/option';
-import { FormControlLabel } from '../form';
 import Icon from '../icon';
 
 import styles from './select.styl';
-import formControlStyle from '../form/elements/form-control.styl';
 
 class Select extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      selectedName: null,
-      selectedValue: null,
+      selectedName: this.getDefaultValue() ? this.getDefaultValue()['name'] : null,
+      selectedValue: this.getDefaultValue() ? this.getDefaultValue()['value'] : null,
       menuOpen: false,
-      activeLabel: false,
+      activeLabel: !!this.props.defaultValue,
     };
 
     this.onSelectItem = this.onSelectItem.bind(this);
@@ -36,6 +34,7 @@ class Select extends PureComponent {
     closeOnClickOutside: PropTypes.bool,
     onClickOutside: PropTypes.func,
     disabled: PropTypes.bool,
+    defaultValue: PropTypes.string,
   };
 
   static defaultProps = {
@@ -57,6 +56,26 @@ class Select extends PureComponent {
     closeOnClickOutside && document.removeEventListener('click', this.verifyClickOutside, false);
   }
 
+  getDefaultValue() {
+    const { items, defaultValue, children } = this.props;
+    const childrenItems = React.Children.toArray(children);
+    let currentOption = [];
+    let currentOptionValues = {};
+
+    if (childrenItems.length) {
+      currentOption = childrenItems.filter(child => child.props.value === defaultValue);
+      currentOptionValues = {
+        value: currentOption.length ? currentOption[0].props.value : null,
+        name: currentOption.length ? currentOption[0].props.children : null,
+      };
+    } else if (items.length) {
+      currentOption = items.filter(option => option.value === defaultValue);
+      [currentOptionValues] = currentOption;
+    }
+
+    return currentOption.length ? currentOptionValues : false;
+  }
+
   verifyClickOutside(e) {
     const { selectedName } = this.state;
 
@@ -66,7 +85,7 @@ class Select extends PureComponent {
         activeLabel: selectedName ? true : false,
       });
 
-      this.props.onClickOutside(this.state.menuOpen);
+      this.props.onClickOutside && this.props.onClickOutside(this.state.menuOpen);
     }
   }
 
@@ -90,7 +109,9 @@ class Select extends PureComponent {
 
   toggleOptions() {
     const { menuOpen } = this.state;
+    const { disabled } = this.props;
     return () =>
+      !disabled &&
       this.setState({
         activeLabel: true,
         menuOpen: !menuOpen,
@@ -108,40 +129,48 @@ class Select extends PureComponent {
     });
   }
 
-  renderButton() {
-    const { type, label, placeholder, menuButton, disabled, ...rest } = this.props;
+  renderInput() {
     const { selectedName, activeLabel } = this.state;
+    const { placeholder, disabled } = this.props;
+    const fieldClasses = classNames(styles.input, {
+      [styles.isPlaceholder]: !selectedName,
+      [styles.isActive]: activeLabel,
+      [styles.isDisabled]: disabled,
+    });
+
+    return (
+      <div onClick={this.toggleOptions()} className={fieldClasses}>
+        {selectedName || placeholder}
+      </div>
+    );
+  }
+
+  renderButton() {
+    const { type, label, menuButton } = this.props;
+    const { activeLabel } = this.state;
+    const labelClasses = classNames(styles.label, {
+      [styles.isActive]: activeLabel,
+    });
 
     if (type === 'select' && label) {
       return (
-        <span className={styles.button}>
-          <FormControlLabel
-            activeLabel={activeLabel}
-            label={label}
-            type="text"
-            value={selectedName}
-            onClick={this.toggleOptions()}
-            disabled={disabled}
-            {...rest}
-          />
+        <React.Fragment>
+          <div className={styles.labelWrapper}>
+            <span className={labelClasses}>{label}</span>
+            {this.renderInput()}
+          </div>
           <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
-        </span>
+        </React.Fragment>
       );
     } else if (type === 'select') {
       return (
-        <span className={styles.button}>
-          <div onClick={this.toggleOptions()} className={formControlStyle['form-field--select']}>
-            {selectedName || placeholder}
-          </div>
+        <React.Fragment>
+          {this.renderInput()}
           <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
-        </span>
+        </React.Fragment>
       );
     } else if (type === 'menu') {
-      return (
-        <span className={styles.button} onClick={this.toggleOptions()}>
-          {menuButton}
-        </span>
-      );
+      return menuButton;
     }
   }
 
@@ -155,12 +184,15 @@ class Select extends PureComponent {
 
     return (
       <div ref={el => (this.selectWrap = el)} className={classNames(styles.selectWrap, className)} {...elementProps}>
-        {this.renderButton()}
+        <span onClick={this.toggleOptions()} className={styles.button}>
+          {this.renderButton()}
+        </span>
 
         <ul className={menuStyle}>
           {items.length
             ? items.map(option => (
                 <Option
+                  key={option.value}
                   icon={option.icon}
                   selected={selectedValue === option.value}
                   onSelect={this.onSelectItem}
