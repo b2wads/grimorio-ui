@@ -20,6 +20,14 @@ import Form, {
   FormHelpText,
 } from './components/form';
 
+// HELPERS
+import { fieldsValidation } from './helpers/validation';
+import { fieldsMask, masks } from './helpers/mask';
+
+export const validation = fieldsValidation;
+export const mask = fieldsMask;
+export const maskPattens = masks;
+
 export {
   Button,
   Icon,

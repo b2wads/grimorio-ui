@@ -87,6 +87,7 @@ class FormControlLabel extends Component {
             onBlur={this.handleLabel}
             onFocus={this.handleLabel}
             onChange={onChange}
+            type={type}
             {...rest}
           />
         </div>
