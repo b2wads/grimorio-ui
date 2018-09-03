@@ -1,6 +1,6 @@
 import Select from './select-component';
-import Option from './elements/option';
+import SelectOption from './elements/select-option';
 
-Select.Option = Option;
+export { SelectOption };
 
 export default Select;

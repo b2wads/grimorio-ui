@@ -254,6 +254,4 @@ class FormControl extends PureComponent {
   }
 }
 
-FormControl.Option = Select.Option;
-
 export default CSSModules(FormControl, styles);

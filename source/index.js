@@ -10,7 +10,7 @@ import Header from './components/header';
 import InfoCard from './components/info-card';
 import PageTitle from './components/page-title';
 import Breadcrumb from './components/breadcrumb';
-import Select from './components/select';
+import Select, { SelectOption } from './components/select';
 import Form, {
   FormGroup,
   FormControl,
@@ -52,4 +52,5 @@ export {
   PageTitle,
   Breadcrumb,
   Select,
+  SelectOption,
 };

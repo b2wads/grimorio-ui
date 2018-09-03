@@ -96,6 +96,4 @@ class FormControlLabel extends Component {
   }
 }
 
-FormControlLabel.Option = Select.Option;
-
 export default CSSModules(FormControlLabel, styles);

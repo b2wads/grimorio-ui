@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
-import Option from './elements/option';
+import SelectOption from './elements/select-option';
 import Icon from '../icon';
 
 import styles from './select.styl';
@@ -120,7 +120,7 @@ class Select extends PureComponent {
 
   renderChildren() {
     return React.Children.map(this.props.children, child => {
-      if (child.type.prototype === Option.prototype) {
+      if (child.type.prototype === SelectOption.prototype) {
         return React.cloneElement(child, {
           onSelect: this.onSelectItem,
           selected: this.state.selectedValue === child.props.value,
@@ -191,7 +191,7 @@ class Select extends PureComponent {
         <ul className={menuStyle}>
           {items.length
             ? items.map(option => (
-                <Option
+                <SelectOption
                   key={option.value}
                   icon={option.icon}
                   selected={selectedValue === option.value}
@@ -199,7 +199,7 @@ class Select extends PureComponent {
                   value={option.value}
                 >
                   {option.name}
-                </Option>
+                </SelectOption>
               ))
             : this.renderChildren()}
         </ul>

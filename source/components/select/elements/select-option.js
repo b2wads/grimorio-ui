@@ -6,7 +6,7 @@ import Icon from '../../icon';
 
 import styles from '../select.styl';
 
-const Option = ({ value, icon, onSelect, selected, children }) => {
+const SelectOption = ({ value, icon, onSelect, selected, children }) => {
   return (
     <li
       className={classNames(styles.option, { [styles.isSelected]: selected })}
@@ -26,4 +26,4 @@ Option.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
-export default Option;
+export default SelectOption;
