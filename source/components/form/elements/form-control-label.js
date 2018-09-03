@@ -86,6 +86,7 @@ class FormControlLabel extends Component {
             inputClassName={inputClasses}
             onBlur={this.handleLabel}
             onFocus={this.handleLabel}
+            onChange={onChange}
             {...rest}
           />
         </div>
