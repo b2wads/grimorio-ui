@@ -43,7 +43,7 @@ class Header extends PureComponent {
     return (
       <header className={fullClassName} {...elementProps}>
         <Button className={styles.headerUser} style="clean" modifier="inverted" size="small">
-          <Select type="menu" menuButton={this.renderButton()} onSelect={onSelect} items={items} />
+          <Select type="menu" position="under" menuButton={this.renderButton()} onSelect={onSelect} items={items} />
         </Button>
 
         <Button className={styles.headerLogout} style="clean" modifier="inverted" size="small" onClick={onLogout}>

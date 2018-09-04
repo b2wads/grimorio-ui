@@ -20,7 +20,7 @@ class Select extends PureComponent {
 
     this.onSelectItem = this.onSelectItem.bind(this);
     this.verifyClickOutside = this.verifyClickOutside.bind(this);
-    this.selectWrap = null;
+    this.selectWrap = '';
   }
 
   static propTypes = {
