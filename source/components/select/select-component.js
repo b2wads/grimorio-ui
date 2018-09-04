@@ -30,7 +30,8 @@ class Select extends PureComponent {
     onSelect: PropTypes.func,
     type: PropTypes.oneOf(['select', 'menu']),
     menuButton: PropTypes.element,
-    position: PropTypes.oneOf(['top', 'bottom']),
+    position: PropTypes.oneOf(['top', 'bottom', 'under']),
+    height: PropTypes.string,
     open: PropTypes.bool,
     closeOnClickOutside: PropTypes.bool,
     onClickOutside: PropTypes.func,
@@ -45,6 +46,7 @@ class Select extends PureComponent {
     open: null,
     closeOnClickOutside: true,
     disabled: false,
+    height: 'inherit',
   };
 
   componentWillMount() {
@@ -174,11 +176,13 @@ class Select extends PureComponent {
   }
 
   render() {
-    const { items, position, open, className, ...elementProps } = this.props;
+    const { items, position, open, height, className, ...elementProps } = this.props;
     const { selectedValue, menuOpen } = this.state;
     const menuStyle = classNames(styles.menu, {
       [styles.isOpen]: open !== null ? open : menuOpen,
       [styles.isBottom]: position === 'bottom',
+      [styles.isUnder]: position === 'under',
+      [styles.isScroll]: height !== 'inherit',
     });
 
     return (
@@ -187,7 +191,7 @@ class Select extends PureComponent {
           {this.renderButton()}
         </span>
 
-        <ul className={menuStyle}>
+        <ul style={{ height }} className={menuStyle}>
           {items.length
             ? items.map(option => (
                 <SelectOption

@@ -10,7 +10,7 @@ const stories = storiesOf('Select', module);
 
 stories.addDecorator(withKnobs);
 
-const items = [1,2,3,4,5,6,7,8,9].map(item => ({
+const items = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(item => ({
   name: `Opção ${item}`,
   value: `value-${item}`,
 }));
@@ -33,6 +33,7 @@ stories.addWithInfo('Select with Label', () => {
     label="Opções"
     onSelect={data => console.log(data)}
     items={items}
+    height="200px"
   />
 });
 
@@ -100,6 +101,7 @@ stories.addWithInfo('Select - Options Bottom', () => {
 stories.addWithInfo('Menu', () => {
   return <Select
     type="menu"
+    position="under"
     menuButton={<Button>Open Menu</Button>}
     onSelect={({ value }) => alert(value)}
     items={itemsIcon}

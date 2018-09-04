@@ -117,9 +117,17 @@ $field {
 .menu {
   @extend $menu;
 
+  &.isUnder {
+    top: calc(100% + 5px);
+  }
+
   &.isBottom {
     bottom: 0;
     top: inherit;
+  }
+
+  &.isScroll {
+    overflow-y: scroll;
   }
 
   &.isOpen {
