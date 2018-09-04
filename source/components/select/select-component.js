@@ -20,6 +20,7 @@ class Select extends PureComponent {
 
     this.onSelectItem = this.onSelectItem.bind(this);
     this.verifyClickOutside = this.verifyClickOutside.bind(this);
+    this.selectWrap = null;
   }
 
   static propTypes = {
@@ -120,12 +121,10 @@ class Select extends PureComponent {
 
   renderChildren() {
     return React.Children.map(this.props.children, child => {
-      if (child.type.prototype === SelectOption.prototype) {
-        return React.cloneElement(child, {
-          onSelect: this.onSelectItem,
-          selected: this.state.selectedValue === child.props.value,
-        });
-      }
+      return React.cloneElement(child, {
+        onSelect: this.onSelectItem,
+        selected: this.state.selectedValue === child.props.value,
+      });
     });
   }
 

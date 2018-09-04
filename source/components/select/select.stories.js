@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
-import Select from './index';
+import Select, { SelectOption } from './index';
 import Button from '../button';
 
 const stories = storiesOf('Select', module);
@@ -134,7 +134,7 @@ stories.addWithInfo('Manual', withState(manualState)(({ store }) => {
     open={store.manualOpen}
     defaultValue="val2"
   >
-    <Select.Option value="val1">Manual Option One</Select.Option>
-    <Select.Option value="val2">Manual Option Two</Select.Option>
+    <SelectOption value="val1">Manual Option One</SelectOption>
+    <SelectOption value="val2">Manual Option Two</SelectOption>
   </Select>
 }));
