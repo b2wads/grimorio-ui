@@ -90,12 +90,18 @@ stories.addWithInfo('Select disabled', () => {
 });
 
 stories.addWithInfo('Select - Options Bottom', () => {
-  return <Select
-    label="Opções"
-    position="bottom"
-    onSelect={data => console.log(data)}
-    items={items}
-  />
+  return <div>
+    <br/>
+    <br/>
+    <br/>
+    <Select
+      label="Opções"
+      position="bottom"
+      onSelect={data => console.log(data)}
+      height="150px"
+      items={items}
+    />
+  </div>
 });
 
 stories.addWithInfo('Menu', () => {

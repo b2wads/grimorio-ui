@@ -16,11 +16,12 @@ class Select extends PureComponent {
       selectedValue: this.getDefaultValue() ? this.getDefaultValue()['value'] : null,
       menuOpen: false,
       activeLabel: !!this.props.defaultValue,
+      childItems: [],
     };
 
     this.onSelectItem = this.onSelectItem.bind(this);
     this.verifyClickOutside = this.verifyClickOutside.bind(this);
-    this.selectWrap = '';
+    this.selectWrap = null;
   }
 
   static propTypes = {
@@ -50,7 +51,8 @@ class Select extends PureComponent {
   };
 
   componentWillMount() {
-    const { closeOnClickOutside } = this.props;
+    const { closeOnClickOutside, items } = this.props;
+    !items.length && this.getChildren();
     closeOnClickOutside && document.addEventListener('click', this.verifyClickOutside, false);
   }
 
@@ -82,7 +84,7 @@ class Select extends PureComponent {
   verifyClickOutside(e) {
     const { selectedName } = this.state;
 
-    if (!this.selectWrap.contains(e.target)) {
+    if (this.selectWrap && !this.selectWrap.contains(e.target)) {
       this.setState({
         menuOpen: false,
         activeLabel: selectedName ? true : false,
@@ -113,6 +115,7 @@ class Select extends PureComponent {
   toggleOptions() {
     const { menuOpen } = this.state;
     const { disabled } = this.props;
+    this.list && (this.list.scrollTop = 0);
     return () =>
       !disabled &&
       this.setState({
@@ -121,13 +124,27 @@ class Select extends PureComponent {
       });
   }
 
-  renderChildren() {
-    return React.Children.map(this.props.children, child => {
-      return React.cloneElement(child, {
-        onSelect: this.onSelectItem,
-        selected: this.state.selectedValue === child.props.value,
+  getChildren() {
+    let childItems = [];
+
+    React.Children.forEach(this.props.children, child => {
+      childItems.push({
+        value: child.props.value,
+        icon: child.props.icon,
+        name: child.props.children,
       });
     });
+
+    !this.state.childItems.length && this.setState({ childItems });
+  }
+
+  sortItems(items, value) {
+    return items.reduce((acc, item) => {
+      if (item.value === value) {
+        return [item, ...acc];
+      }
+      return [...acc, item];
+    }, []);
   }
 
   renderInput() {
@@ -177,7 +194,10 @@ class Select extends PureComponent {
 
   render() {
     const { items, position, open, height, className, ...elementProps } = this.props;
-    const { selectedValue, menuOpen } = this.state;
+    const { selectedValue, menuOpen, childItems } = this.state;
+    const renderItems = items.length ? items : childItems;
+    const sortedItems = this.sortItems(renderItems, selectedValue);
+
     const menuStyle = classNames(styles.menu, {
       [styles.isOpen]: open !== null ? open : menuOpen,
       [styles.isBottom]: position === 'bottom',
@@ -191,20 +211,18 @@ class Select extends PureComponent {
           {this.renderButton()}
         </span>
 
-        <ul style={{ height }} className={menuStyle}>
-          {items.length
-            ? items.map(option => (
-                <SelectOption
-                  key={option.value}
-                  icon={option.icon}
-                  selected={selectedValue === option.value}
-                  onSelect={this.onSelectItem}
-                  value={option.value}
-                >
-                  {option.name}
-                </SelectOption>
-              ))
-            : this.renderChildren()}
+        <ul ref={list => (this.list = list)} style={{ height }} className={menuStyle}>
+          {sortedItems.map(option => (
+            <SelectOption
+              key={option.value}
+              icon={option.icon}
+              selected={selectedValue === option.value}
+              onSelect={this.onSelectItem}
+              value={option.value}
+            >
+              {option.name}
+            </SelectOption>
+          ))}
         </ul>
       </div>
     );
