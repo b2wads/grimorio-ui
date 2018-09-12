@@ -17,6 +17,7 @@ class FormControl extends PureComponent {
 
     this.state = {
       value: props.value,
+      checked: false,
     };
 
     this.type = this.props.type;
@@ -136,11 +137,13 @@ class FormControl extends PureComponent {
     const {
       getRef,
       onChange,
+      onClick,
       onFocus,
       onBlur,
       disabled,
       children,
       name,
+      id,
       onMask,
       placeholder,
       inputClassName,
@@ -197,6 +200,41 @@ class FormControl extends PureComponent {
           {children}
         </Select>
       );
+    } else if (['radio', 'checkbox'].indexOf(type) !== -1) {
+      const handleClick = e => {
+        this.setState({ checked: e.target.checked });
+
+        if (onClick) {
+          onClick(e);
+        }
+      };
+
+      return (
+        <div className={componentClass}>
+          <Component
+            type={tagType}
+            ref={getRef}
+            placeholder={placeholder}
+            id={id}
+            onChange={handleChange}
+            onClick={handleClick}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            disabled={disabled}
+            name={name}
+            value={this.state.value}
+            checked={this.state.checked}
+            {...rest}
+          />
+          <label className={classNames(styles.fakeInput, { [styles.isDisabled]: disabled })} htmlFor={id}>
+            {type === 'checkbox' &&
+              <Icon
+                className={classNames(styles.checkIcon, { [styles.isChecked]: this.state.checked })}
+                name="check"
+              />}
+          </label>
+        </div>
+      );
     } else {
       return (
         <Component
@@ -207,6 +245,7 @@ class FormControl extends PureComponent {
           id={controlId}
           onChange={handleChange}
           onFocus={onFocus}
+          onClick={onClick}
           onBlur={onBlur}
           disabled={disabled}
           name={name}

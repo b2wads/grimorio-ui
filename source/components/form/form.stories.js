@@ -71,6 +71,22 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
           </FormControlLabel>
           <FormHelpText>Select!</FormHelpText>
         </FormGroup>
+
+        <FormGroup>
+          <label htmlFor="check">Checkbox!</label>
+          <FormControl type="checkbox" id="check" value="1" />
+        </FormGroup>
+
+        <FormGroup>
+          <label htmlFor="radio">Radio!</label>
+          <FormControl type="radio" name="test" id="radio" value="1" />
+
+          <label htmlFor="radio2">Radio2!</label>
+          <FormControl type="radio" name="test" id="radio2" value="2" />
+
+          <label htmlFor="radio3">Radio3!</label>
+          <FormControl type="radio" name="test" id="radio3" value="3" />
+        </FormGroup>
       </Form>
     </div>
   );
