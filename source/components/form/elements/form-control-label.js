@@ -26,6 +26,7 @@ class FormControlLabel extends Component {
     label: PropTypes.string,
     placeholder: PropTypes.string,
     activeLabel: PropTypes.bool,
+    onBlur: PropTypes.func,
   };
 
   static defaultProps = {
@@ -47,6 +48,7 @@ class FormControlLabel extends Component {
     if (event && event.target.value === '') {
       this.setState({ active: !this.state.active });
     }
+    this.props.onBlur && this.props.onBlur(event);
   }
 
   componentDidUpdate(prevProps) {
@@ -84,11 +86,11 @@ class FormControlLabel extends Component {
           <FormControl
             placeholder={this.state.active ? placeholder : ''}
             inputClassName={inputClasses}
-            onBlur={this.handleLabel}
             onFocus={this.handleLabel}
             onChange={onChange}
             type={type}
             {...rest}
+            onBlur={this.handleLabel}
           />
         </div>
       );
