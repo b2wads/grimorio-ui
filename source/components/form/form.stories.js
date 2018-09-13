@@ -74,7 +74,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
 
         <FormGroup>
           <label htmlFor="check">Checkbox!</label>
-          <FormControl type="checkbox" id="check" value="1" />
+          <FormControl defaultChecked={true} type="checkbox" id="check" value="1" />
         </FormGroup>
 
         <FormGroup>

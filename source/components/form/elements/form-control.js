@@ -17,7 +17,7 @@ class FormControl extends PureComponent {
 
     this.state = {
       value: props.value,
-      checked: false,
+      checked: props.checked || props.defaultChecked,
     };
 
     this.type = this.props.type;
@@ -49,6 +49,7 @@ class FormControl extends PureComponent {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
+    checked: PropTypes.bool,
     addonAfter: PropTypes.node,
     addonBefore: PropTypes.node,
     feedback: PropTypes.bool,
