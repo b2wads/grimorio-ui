@@ -74,11 +74,10 @@ class Select extends PureComponent {
   componentDidUpdate(prevProps) {
     const { value } = this.props;
     if (this.props.value !== prevProps.value) {
-      this.getSelectedValue(value) &&
-        this.setState({
-          selectedName: this.getSelectedValue(value)['name'],
-          selectedValue: this.getSelectedValue(value)['value'],
-        });
+      this.setState({
+        selectedName: this.getSelectedValue(value) ? this.getSelectedValue(value)['name'] : null,
+        selectedValue: this.getSelectedValue(value) ? this.getSelectedValue(value)['value'] : null,
+      });
     }
   }
 
