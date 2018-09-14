@@ -69,6 +69,8 @@ stories.addWithInfo('Size', () => (
   <div>
     <Button size="small">Small</Button>&nbsp;
     <Button>Medium</Button>&nbsp;
+    <Button size="large">Large</Button>&nbsp;
+    <Button style="secondary" size="large">Large</Button>&nbsp;
     <Button style="secondary">Medium</Button>&nbsp;
     <Button style="secondary" size="small">Small</Button>&nbsp;
   </div>

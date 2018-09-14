@@ -12,8 +12,8 @@ class Select extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      selectedName: this.getDefaultValue() ? this.getDefaultValue()['name'] : null,
-      selectedValue: this.getDefaultValue() ? this.getDefaultValue()['value'] : null,
+      selectedName: null,
+      selectedValue: null,
       menuOpen: false,
       activeLabel: !!this.props.defaultValue,
       childItems: [],
@@ -38,6 +38,7 @@ class Select extends PureComponent {
     onClickOutside: PropTypes.func,
     disabled: PropTypes.bool,
     defaultValue: PropTypes.string,
+    value: PropTypes.string,
   };
 
   static defaultProps = {
@@ -61,22 +62,35 @@ class Select extends PureComponent {
     closeOnClickOutside && document.removeEventListener('click', this.verifyClickOutside, false);
   }
 
-  getDefaultValue() {
-    const { items, defaultValue, children } = this.props;
-    const childrenItems = React.Children.toArray(children);
+  componentDidMount() {
+    const { defaultValue } = this.props;
+    this.getSelectedValue(defaultValue) &&
+      this.setState({
+        selectedName: this.getSelectedValue(defaultValue)['name'],
+        selectedValue: this.getSelectedValue(defaultValue)['value'],
+      });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { value } = this.props;
+    if (this.props.value !== prevProps.value) {
+      this.getSelectedValue(value) &&
+        this.setState({
+          selectedName: this.getSelectedValue(value)['name'],
+          selectedValue: this.getSelectedValue(value)['value'],
+        });
+    }
+  }
+
+  getSelectedValue(selectedValue) {
+    const { items } = this.props;
+    const { childItems } = this.state;
     let currentOption = [];
     let currentOptionValues = {};
+    const selectItems = items.length ? items : childItems;
 
-    if (childrenItems.length) {
-      currentOption = childrenItems.filter(child => child.props.value === defaultValue);
-      currentOptionValues = {
-        value: currentOption.length ? currentOption[0].props.value : null,
-        name: currentOption.length ? currentOption[0].props.children : null,
-      };
-    } else if (items.length) {
-      currentOption = items.filter(option => option.value === defaultValue);
-      [currentOptionValues] = currentOption;
-    }
+    currentOption = selectItems.filter(option => option.value === selectedValue);
+    [currentOptionValues] = currentOption;
 
     return currentOption.length ? currentOptionValues : false;
   }
@@ -95,11 +109,9 @@ class Select extends PureComponent {
   }
 
   onSelectItem({ name, value }) {
-    const { menuOpen } = this.state;
-
     return () => {
       const selectedState = {
-        menuOpen: !menuOpen,
+        menuOpen: false,
       };
 
       if (this.props.type === 'select') {
@@ -108,7 +120,7 @@ class Select extends PureComponent {
         selectedState.selectedValue = value;
       }
 
-      this.setState(selectedState, this.props.onSelect({ name, value }, menuOpen));
+      this.setState(selectedState, this.props.onSelect({ name, value }, false));
     };
   }
 
@@ -151,7 +163,7 @@ class Select extends PureComponent {
     const { selectedName, activeLabel } = this.state;
     const { placeholder, disabled } = this.props;
     const fieldClasses = classNames(styles.input, {
-      [styles.isPlaceholder]: !selectedName,
+      [styles.isPlaceholder]: selectedName === null,
       [styles.isActive]: activeLabel,
       [styles.isDisabled]: disabled,
     });

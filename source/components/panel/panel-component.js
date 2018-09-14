@@ -14,6 +14,7 @@ class Panel extends PureComponent {
     title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     contentClassName: PropTypes.string,
+    footer: PropTypes.element,
   };
 
   static defaultProps = {
@@ -38,20 +39,35 @@ class Panel extends PureComponent {
     }
   }
 
+  renderFooter(footer, size) {
+    if (footer) {
+      return (
+        <footer className={classNames(styles.footer, { [styles[size]]: size })}>
+          {footer}
+        </footer>
+      );
+    }
+  }
+
   render() {
-    const { title, children, className, brand, size, contentClassName, ...elementProps } = this.props;
+    const { title, children, className, brand, size, footer, contentClassName, ...elementProps } = this.props;
     const fullClassName = classNames(className, {
       [styles.default]: true,
-      [styles.isBrand]: brand,
+    });
+    const wrapperClass = classNames(styles.wrapper, {
       [styles[size]]: size,
+      [styles.isBrand]: brand,
     });
 
     return (
       <article {...elementProps} className={fullClassName}>
-        {(title || brand) && this.renderHeader(brand, title)}
-        <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
-          {children}
+        <div className={wrapperClass}>
+          {(title || brand) && this.renderHeader(brand, title)}
+          <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
+            {children}
+          </div>
         </div>
+        {this.renderFooter(footer, size)}
       </article>
     );
   }

@@ -51,16 +51,40 @@ $brandLogo {
 
 /* Size
  ================ */
-.small {
-  padding: 20px 15px;
+.wrapper {
+  &.small {
+    padding: 20px 15px;
+  }
+
+  &.medium {
+    padding: 25px 20px;
+  }
+
+  &.large {
+    padding: 30px 25px;
+  }
+
+  &.isBrand {
+    padding: 0;
+  }
 }
 
-.medium {
-  padding: 25px 20px;
-}
+/* Footer
+ ================ */
+.footer {
+  border-top: 1px solid $c-secondary;
 
-.large {
-  padding: 30px 25px;
+  &.small {
+    padding: 15px;
+  }
+
+  &.medium {
+    padding: 20px;
+  }
+
+  &.large {
+    padding: 25px;
+  }
 }
 
 /* Brand
