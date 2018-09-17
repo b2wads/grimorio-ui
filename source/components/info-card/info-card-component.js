@@ -12,7 +12,7 @@ import Panel from '../panel';
 class InfoCard extends PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     tagline: PropTypes.string,
     type: PropTypes.oneOf(['alphanum', 'money']),
   };

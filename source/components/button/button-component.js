@@ -23,7 +23,7 @@ class Button extends PureComponent {
     type: PropTypes.oneOf(['button', 'reset', 'submit']),
     style: PropTypes.oneOf(['primary', 'secondary', 'clean', 'transparent']),
     modifier: PropTypes.oneOf(['inverted']),
-    size: PropTypes.oneOf(['small', 'medium', 'none']),
+    size: PropTypes.oneOf(['small', 'medium', 'large', 'none']),
     onClick: PropTypes.func,
     children: PropTypes.any.isRequired,
     className: PropTypes.string,

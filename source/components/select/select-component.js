@@ -48,7 +48,7 @@ class Select extends PureComponent {
     open: null,
     closeOnClickOutside: true,
     disabled: false,
-    height: 'inherit',
+    height: 'auto',
     value: false,
   };
 
@@ -218,7 +218,7 @@ class Select extends PureComponent {
       [styles.isOpen]: open !== null ? open : menuOpen,
       [styles.isBottom]: position === 'bottom',
       [styles.isUnder]: position === 'under',
-      [styles.isScroll]: height !== 'inherit',
+      [styles.isScroll]: height !== 'auto',
     });
 
     return (

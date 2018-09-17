@@ -14,7 +14,7 @@ class Header extends PureComponent {
     items: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        value: PropTypes.oneOf([PropTypes.string, PropTypes.number]).isRequired,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
         icon: PropTypes.string.isRequired,
       })
     ).isRequired,

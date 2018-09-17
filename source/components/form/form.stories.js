@@ -65,7 +65,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
         </FormGroup>
         <br/>
         <FormGroup>
-          <FormControlLabel outline onChange={data => console.log(data)} label="Nome" type="select">
+          <FormControlLabel onChange={data => console.log(data)} label="Nome" type="select">
             <SelectOption value="a">a</SelectOption>
             <SelectOption value="b">b</SelectOption>
           </FormControlLabel>
@@ -186,8 +186,8 @@ stories.addWithInfo('Knobs', () => (
       onChange={action('change')}
       onBlur={action('blur')}
     >
-      <SelectOption value="a">a</SelectOption>
-      <SelectOption value="b">b</SelectOption>
+      <SelectOption value="a">Nome a</SelectOption>
+      <SelectOption value="b">Nome b</SelectOption>
     </FormControl>
   </div>
 ));
@@ -200,7 +200,7 @@ stories.addWithInfo('Disabled', () => (
     <FormControl type="checkbox" disabled />
     <FormControl type="select" placeholder="Selecione" disabled>
       <SelectOption value="a">a</SelectOption>
-      <SelectOption value="a">a</SelectOption>
+      <SelectOption value="b">b</SelectOption>
     </FormControl>
     <FormControl type="textarea" disabled />
   </div>

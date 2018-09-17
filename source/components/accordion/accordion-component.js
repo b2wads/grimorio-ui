@@ -7,6 +7,8 @@ import styles from './accordion.styl';
 
 import AccordionPanel from './elements/accordion-panel';
 
+import { uniqueId } from '../../helpers';
+
 class Accordion extends PureComponent {
   constructor(props) {
     super(props);
@@ -31,7 +33,7 @@ class Accordion extends PureComponent {
     defaultActiveIndex: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
     onTitleClick: PropTypes.func,
     exclusive: PropTypes.bool,
-    type: PropTypes.oneOf(['accordionMenu']),
+    type: PropTypes.oneOf(['default', 'accordionMenu']),
     theme: PropTypes.oneOf(['default', 'dark']),
     panels: PropTypes.arrayOf(
       PropTypes.shape({
@@ -73,6 +75,7 @@ class Accordion extends PureComponent {
   renderPanels(panels) {
     return panels.map((panel, index) => (
       <AccordionPanel
+        key={uniqueId()}
         active={this.isIndexActive(index)}
         index={index}
         onTitleClick={this.handleTitleClick}
@@ -83,6 +86,7 @@ class Accordion extends PureComponent {
 
   render() {
     const { className, panels, children, as, ...rest } = this.props;
+    delete rest.exclusive;
 
     const classes = classNames(styles.accordion, className, {
       [styles[this.props.type]]: this.props.type,

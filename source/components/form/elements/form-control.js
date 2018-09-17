@@ -74,6 +74,7 @@ class FormControl extends PureComponent {
       'date',
       'datetime',
       'color',
+      'select',
     ]),
   };
 
@@ -153,6 +154,11 @@ class FormControl extends PureComponent {
       outline,
       ...rest
     } = this.props;
+
+    delete rest.addonBefore;
+    delete rest.addonAfter;
+    delete rest.feedback;
+
     const form = this.context.$form;
     const formStyleType = (form && form.styleType) || undefined;
     const isClassDefault = ['radio', 'checkbox', 'textarea'].indexOf(type) < 0;

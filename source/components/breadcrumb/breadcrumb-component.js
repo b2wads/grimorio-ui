@@ -44,13 +44,11 @@ class Breadcrumb extends PureComponent {
     return pageList;
   }
 
-  renderItems(list) {
-    const { onItemClick } = this.props;
-
+  renderItems(list, onItemClick) {
     return list.map((item, index) => {
       if (index === 0 && list.length > 1) {
         return (
-          <div className={styles.itemWrap}>
+          <div key={item.path} className={styles.itemWrap}>
             <Icon align="unset" size="16" className={styles.iconHome} name="home" />
             <span className={styles.item} onClick={() => onItemClick(item.path)}>{item.name}</span>
             <Icon size="17" className={styles.icon} name="keyboard_arrow_right" />
@@ -58,21 +56,21 @@ class Breadcrumb extends PureComponent {
         );
       } else if (index === list.length - 1 && list.length === 1) {
         return (
-          <div className={styles.itemWrap}>
+          <div key={item.path} className={styles.itemWrap}>
             <Icon align="unset" size="16" className={styles.iconHome} name="home" />
             <span className={styles.itemCurrent}>{item.name}</span>
           </div>
         );
       } else if (index === list.length - 1) {
         return (
-          <div className={styles.itemCurrent}>
+          <div key={item.path} className={styles.itemCurrent}>
             <span>{item.name}</span>
           </div>
         );
       }
 
       return (
-        <div className={styles.itemWrap}>
+        <div key={item.path} className={styles.itemWrap}>
           <span className={styles.item} onClick={() => onItemClick(item.path)}>{item.name}</span>
           <Icon size="17" className={styles.icon} name="keyboard_arrow_right" />
         </div>
@@ -82,10 +80,10 @@ class Breadcrumb extends PureComponent {
 
   render() {
     const list = this.generatePageList();
-    const { className, ...elementProps } = this.props;
+    const { className, onItemClick, ...elementProps } = this.props;
     return (
       <div className={classNames(className, styles.list)} {...elementProps}>
-        {this.renderItems(list)}
+        {this.renderItems(list, onItemClick)}
       </div>
     );
   }
