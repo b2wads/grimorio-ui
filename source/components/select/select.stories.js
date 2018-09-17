@@ -37,6 +37,19 @@ stories.addWithInfo('Select with Label', () => {
   />
 });
 
+stories.addWithInfo('Controled', withState({ value: 'value-1' })(({ store }) => {
+  const changeValue = ({ value }) => {
+    store.set({ value });
+  }
+  return <Select
+    label="Opções"
+    onSelect={changeValue}
+    items={items}
+    height="200px"
+    value={store.state.value}
+  />
+}));
+
 stories.addWithInfo('Select with defaultValue', () => {
   return <Select
     label="Opções"

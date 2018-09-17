@@ -15,7 +15,7 @@ class Select extends PureComponent {
       selectedName: null,
       selectedValue: null,
       menuOpen: false,
-      activeLabel: !!this.props.defaultValue,
+      activeLabel: !!props.value || !!props.defaultValue,
       childItems: [],
     };
 
@@ -38,7 +38,7 @@ class Select extends PureComponent {
     onClickOutside: PropTypes.func,
     disabled: PropTypes.bool,
     defaultValue: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   };
 
   static defaultProps = {
@@ -49,6 +49,7 @@ class Select extends PureComponent {
     closeOnClickOutside: true,
     disabled: false,
     height: 'inherit',
+    value: false,
   };
 
   componentWillMount() {
@@ -63,11 +64,12 @@ class Select extends PureComponent {
   }
 
   componentDidMount() {
-    const { defaultValue } = this.props;
-    this.getSelectedValue(defaultValue) &&
+    const { defaultValue, value } = this.props;
+    const initialValue = value || defaultValue;
+    this.getSelectedValue(initialValue) &&
       this.setState({
-        selectedName: this.getSelectedValue(defaultValue)['name'],
-        selectedValue: this.getSelectedValue(defaultValue)['value'],
+        selectedName: this.getSelectedValue(initialValue)['name'],
+        selectedValue: this.getSelectedValue(initialValue)['value'],
       });
   }
 
@@ -84,12 +86,10 @@ class Select extends PureComponent {
   getSelectedValue(selectedValue) {
     const { items } = this.props;
     const { childItems } = this.state;
-    let currentOption = [];
-    let currentOptionValues = {};
     const selectItems = items.length ? items : childItems;
 
-    currentOption = selectItems.filter(option => option.value === selectedValue);
-    [currentOptionValues] = currentOption;
+    const currentOption = selectItems.filter(option => option.value === selectedValue);
+    const [currentOptionValues] = currentOption;
 
     return currentOption.length ? currentOptionValues : false;
   }
@@ -113,7 +113,7 @@ class Select extends PureComponent {
         menuOpen: false,
       };
 
-      if (this.props.type === 'select') {
+      if (this.props.type === 'select' && this.props.value === false) {
         selectedState.activeLabel = true;
         selectedState.selectedName = name;
         selectedState.selectedValue = value;
@@ -174,8 +174,7 @@ class Select extends PureComponent {
     );
   }
 
-  renderButton() {
-    const { type, label, menuButton } = this.props;
+  renderButton(type, label, menuButton) {
     const { activeLabel } = this.state;
     const labelClasses = classNames(styles.label, {
       [styles.isActive]: activeLabel,
@@ -203,8 +202,14 @@ class Select extends PureComponent {
     }
   }
 
+  cleanProps(elementProps) {
+    delete elementProps.closeOnClickOutside;
+    delete elementProps.onClickOutside;
+    return elementProps;
+  }
+
   render() {
-    const { items, position, open, height, className, ...elementProps } = this.props;
+    const { items, position, open, height, className, type, label, menuButton, ...elementProps } = this.props;
     const { selectedValue, menuOpen, childItems } = this.state;
     const renderItems = items.length ? items : childItems;
     const sortedItems = this.sortItems(renderItems, selectedValue);
@@ -217,9 +222,13 @@ class Select extends PureComponent {
     });
 
     return (
-      <div ref={el => (this.selectWrap = el)} className={classNames(styles.selectWrap, className)} {...elementProps}>
+      <div
+        ref={el => (this.selectWrap = el)}
+        className={classNames(styles.selectWrap, className)}
+        {...this.cleanProps(elementProps)}
+      >
         <span onClick={this.toggleOptions()} className={styles.button}>
-          {this.renderButton()}
+          {this.renderButton(type, label, menuButton)}
         </span>
 
         <ul ref={list => (this.list = list)} style={{ height }} className={menuStyle}>
