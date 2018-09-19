@@ -8,16 +8,9 @@ import Select, { SelectOption } from '../../select';
 
 import styles from '../table-panel.styl';
 
-// "_meta": {
-//   "count": 27,
-//   "limit": 10,
-//   "offset": 0
-// }
-
 class Pager extends PureComponent {
   render() {
     const { length, count, offset, limit, onClickNext, onClickPrev, onLimitChange } = this.props;
-
     return (
       <Fragment>
         <div className={styles.perpage}>

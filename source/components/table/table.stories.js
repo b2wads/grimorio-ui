@@ -81,7 +81,7 @@ stories.addWithInfo('Scroll', () => {
 });
 
 
-stories.addWithInfo('With async Data', withState({ data: undefined })(({ store }) => {
+stories.addWithInfo('With async Data', withState({ data: null })(({ store }) => {
   fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json())
     .then(res => {

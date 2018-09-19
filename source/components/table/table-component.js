@@ -8,13 +8,6 @@ import styles from './table.styl';
 import { uniqueId } from '../../helpers';
 
 class Table extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: props.data,
-    };
-  }
-
   static propTypes = {
     type: PropTypes.oneOf(['default', 'panel']),
     layout: PropTypes.oneOf(['auto', 'fixed']),
@@ -39,6 +32,7 @@ class Table extends PureComponent {
   };
 
   static defaultProps = {
+    data: null,
     layout: 'auto',
     type: 'default',
     notFoundMessage: 'Nenhum resultado encontrado :(',
