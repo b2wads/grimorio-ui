@@ -19,6 +19,9 @@ import Form, {
   FormControlLabel,
   FormHelpText,
 } from './components/form';
+import Table from './components/table';
+import TablePanel from './components/table-panel';
+import Loader from './components/loader';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -53,4 +56,7 @@ export {
   Breadcrumb,
   Select,
   SelectOption,
+  Table,
+  TablePanel,
+  Loader,
 };
