@@ -15,6 +15,7 @@ class TablePanel extends PureComponent {
     title: PropTypes.string,
     actions: PropTypes.element,
     pager: PropTypes.bool,
+    perpage: PropTypes.bool,
     loading: PropTypes.bool,
     onClickPrev: PropTypes.func,
     onClickNext: PropTypes.func,
@@ -28,6 +29,7 @@ class TablePanel extends PureComponent {
 
   static defaultProps = {
     pager: false,
+    perpage: false,
     loading: false,
     onClickPrev: () => {},
     onClickNext: () => {},
@@ -36,11 +38,12 @@ class TablePanel extends PureComponent {
 
   // TO-DO: Select Item Column
 
-  renderFooter(data, pager, meta, onClickPrev, onClickNext, onLimitChange) {
+  renderFooter(data, pager, meta, onClickPrev, onClickNext, perpage, onLimitChange) {
     return pager
       ? <div className={styles.footer}>
           <Pager
             {...meta}
+            perpage={perpage}
             length={data ? data.length : 0}
             onLimitChange={onLimitChange}
             onClickPrev={onClickPrev}
@@ -76,10 +79,11 @@ class TablePanel extends PureComponent {
       meta,
       onClickPrev,
       onClickNext,
+      perpage,
       onLimitChange,
       ...rest
     } = this.props;
-    const Footer = this.renderFooter(data, pager, meta, onClickPrev, onClickNext, onLimitChange);
+    const Footer = this.renderFooter(data, pager, meta, onClickPrev, onClickNext, perpage, onLimitChange);
 
     return (
       <Panel size="no-padding" className={styles.wrap} footer={Footer}>

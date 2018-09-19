@@ -74,6 +74,7 @@ stories.addWithInfo('Normal', () => {
       schema={schema}
       data={simpledata}
       pager
+      perpage
       meta={meta}
     />
   );
@@ -85,27 +86,25 @@ const _meta = {
   offset: 0,
 };
 
-stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, loading: true, })(({ store }) => {
+stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, loading: null, })(({ store }) => {
   const getNames = (offset, type = 'add') => {
     store.set({ loading: true });
     fetch(`https://randomuser.me/api/?results=${store.state.meta.limit}`)
     .then(res => res.json())
     .then(res => {
-      setTimeout(() => {
-        store.set({
-          data: res.results,
-          loading: false,
-          meta: {
-            count: 30,
-            limit: 10,
-            offset: type === 'add' ? offset + store.state.meta.offset : store.state.meta.offset - offset,
-          },
-        });
-      }, 1000);
+      store.set({
+        data: res.results,
+        loading: false,
+        meta: {
+          count: 30,
+          limit: 10,
+          offset: type === 'add' ? offset + store.state.meta.offset : store.state.meta.offset - offset,
+        },
+      });
     });
   };
 
-  store.state.data === null && getNames(0);
+  store.state.data === null && store.state.loading === null && getNames(0);
 
   return (
     <TablePanel
