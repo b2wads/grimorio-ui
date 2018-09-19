@@ -4,7 +4,6 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import Table from './table-component';
-import Panel from '../panel';
 import Button from '../button';
 
 const stories = storiesOf('Table', module);
@@ -71,7 +70,7 @@ stories.addWithInfo('Normal', () => {
 
 stories.addWithInfo('Fixed', () => {
   return (
-    <Table type="fixed" schema={schema} data={simpledata} />
+    <Table layout="fixed" schema={schema} data={simpledata} />
   );
 });
 
@@ -82,16 +81,12 @@ stories.addWithInfo('Scroll', () => {
 });
 
 
-stories.addWithInfo('With Data and Panel', withState({ data: undefined })(({ store }) => {
+stories.addWithInfo('With async Data', withState({ data: undefined })(({ store }) => {
   fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json())
     .then(res => {
       !store.state.data && store.set({ data: res.results });
     });
 
-  return (
-    <Panel>
-      <Table schema={schema} data={store.state.data} />
-    </Panel>
-  );
+  return <Table schema={schema} data={store.state.data} />
 }));

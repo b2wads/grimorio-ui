@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+$foterSpacing = 5%;
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$section {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+$footerSection {
+  margin-right: $foterSpacing;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+$pagerIcon {
+  fill: $c-text;
+
+  &.isDisabled {
+    fill: darken($c-support-light, 5%);
+  }
+}
+
+/* ==========================================================================
+   TablePanel Elements
+========================================================================== */
+
+.header {
+  @extend $section;
+  align-items: center;
+  display: flex;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  justify-content: space-between;
+}
+
+.title {
+  color: $c-text-dark;
+  font-size: 21px;
+}
+
+.footer {
+  @extend $section;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.perpage {
+  @extend $footerSection;
+  align-items: center;
+  display: flex;
+}
+
+.showing {
+  @extend $footerSection;
+}
+
+.nav {
+  @extend $footerSection;
+}
+
+.pagerLeft {
+  @extend $pagerIcon;
+  margin-right: 15px;
+}
+
+.pagerRight {
+  @extend $pagerIcon;
+}
+
+.select {
+  color: $c-text;
+  font-size: 14px;
+  width: 120px;
+}

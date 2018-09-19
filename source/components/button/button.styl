@@ -25,7 +25,7 @@ $button {
   &:disabled:hover {
     background: $c-back-disabled;
     color: lighten($c-text, 25%);
-    cursor: inherit;
+    cursor: not-allowed;
   }
 }
 
@@ -95,15 +95,13 @@ $button {
 ================ */
 .transparent {
   @extend $button;
-
   background: none;
   border: 0;
 
-  &.outline {
-    background: none;
-  }
-
-  &:hover {
+  &.outline,
+  &:hover,
+  &:disabled,
+  &:hover:disabled {
     background: none;
   }
 }

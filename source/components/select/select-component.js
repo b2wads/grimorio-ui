@@ -37,8 +37,8 @@ class Select extends PureComponent {
     closeOnClickOutside: PropTypes.bool,
     onClickOutside: PropTypes.func,
     disabled: PropTypes.bool,
-    defaultValue: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   };
 
   static defaultProps = {

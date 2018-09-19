@@ -9,7 +9,7 @@ import styles from './panel.styl';
 
 class Panel extends PureComponent {
   static propTypes = {
-    size: PropTypes.oneOf(['small', 'medium', 'large']),
+    size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
     brand: PropTypes.oneOf([null, 'acom', 'suba', 'shop', 'soub']),
     title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,

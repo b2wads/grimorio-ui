@@ -16,7 +16,8 @@ class Table extends PureComponent {
   }
 
   static propTypes = {
-    type: PropTypes.oneOf(['auto', 'fixed']),
+    type: PropTypes.oneOf(['default', 'panel']),
+    layout: PropTypes.oneOf(['auto', 'fixed']),
     schema: PropTypes.objectOf(
       PropTypes.shape({
         title: PropTypes.string,
@@ -27,9 +28,9 @@ class Table extends PureComponent {
         render: PropTypes.func,
       })
     ).isRequired,
-    data: PropTypes.oneOf([PropTypes.array, PropTypes.arrayOf(PropTypes.object)]),
-    notFoundMessage: PropTypes.oneOf([PropTypes.string, PropTypes.element]),
-    loadingMessage: PropTypes.oneOf([PropTypes.string, PropTypes.element]),
+    data: PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(PropTypes.object)]),
+    notFoundMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    loadingMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     tableClassName: PropTypes.string,
     scrollY: PropTypes.bool,
     scrollX: PropTypes.bool,
@@ -38,7 +39,8 @@ class Table extends PureComponent {
   };
 
   static defaultProps = {
-    type: 'auto',
+    layout: 'auto',
+    type: 'default',
     notFoundMessage: 'Nenhum resultado encontrado :(',
     loadingMessage: 'Loading...',
   };
@@ -89,9 +91,7 @@ class Table extends PureComponent {
     );
   }
 
-  verifyResults(data, schema) {
-    const { loadingMessage, notFoundMessage } = this.props;
-
+  verifyResults(data, schema, loadingMessage, notFoundMessage) {
     if (!Array.isArray(data)) {
       return this.renderEmptyResults(loadingMessage, schema);
     } else if (data.length === 0) {
@@ -102,13 +102,30 @@ class Table extends PureComponent {
   }
 
   render() {
-    const { data, schema, type, tableClassName, className, scrollY, scrollX, width, height, ...rest } = this.props;
+    const {
+      data,
+      schema,
+      type,
+      layout,
+      tableClassName,
+      className,
+      scrollY,
+      scrollX,
+      width,
+      height,
+      loadingMessage,
+      notFoundMessage,
+      ...rest
+    } = this.props;
+
     const tableClass = classNames(tableClassName, styles.table, {
-      [styles.isFixed]: type === 'fixed',
+      [styles.isFixed]: layout === 'fixed',
     });
+
     const wrapClass = classNames(styles.wrap, className, {
       [styles.isScrollY]: scrollY,
       [styles.isScrollX]: scrollX,
+      [styles.panel]: type === 'panel',
     });
 
     const wrapSizes = {
@@ -124,7 +141,7 @@ class Table extends PureComponent {
           </thead>
 
           <tbody className={styles.tableBody}>
-            {this.verifyResults(data, schema)}
+            {this.verifyResults(data, schema, loadingMessage, notFoundMessage)}
           </tbody>
         </table>
       </div>

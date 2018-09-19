@@ -22,17 +22,25 @@ $row {
 
 $cell {
   overflow: hidden;
-  padding: 10px 20px;
+  padding: 10px 15px;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &:first-child {
+    padding-left: 25px;
+  }
+
+  &:last-child {
+    padding-right: 25px;
+  }
 }
 
 /* ==========================================================================
    Table Elements
 ========================================================================== */
 .wrap {
+  overflow: auto;
   position: static;
-  width: 100%;
 
   &.isScrollY {
    overflow-y: scroll;
@@ -69,4 +77,17 @@ $cell {
   @extend $cell;
   font-size: $base-font-size-px;
   font-weight: bold;
+}
+
+/* ==========================================================================
+   Type
+========================================================================== */
+.panel {
+  .row {
+    @extend $row;
+
+    &:last-child {
+      border: 0;
+    }
+  }
 }
