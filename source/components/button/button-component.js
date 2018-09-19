@@ -29,6 +29,8 @@ class Button extends PureComponent {
     className: PropTypes.string,
   };
 
+  // TO-DO Button with loader
+
   render() {
     const {
       style,

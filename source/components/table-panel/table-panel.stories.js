@@ -105,13 +105,13 @@ stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, load
     });
   };
 
-  !store.state.data && getNames(0);
+  store.state.data === null && getNames(0);
 
   return (
     <TablePanel
       title="Jogo da Idade"
       layout="fixed"
-      actions={<Button onClick={getNames}>Trocar nomes</Button>}
+      actions={<Button onClick={() => getNames(0)}>Trocar nomes</Button>}
       schema={schema}
       data={store.state.data}
       pager
