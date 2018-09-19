@@ -10,7 +10,12 @@ const stories = storiesOf('Loader', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => <Loader />);
+stories.addWithInfo('Normal', () => <div>
+  <Loader />
+  <div style={{ background: 'gray', display: 'inline-block', padding: '10px' }}>
+    <Loader color="secondary" />
+  </div>
+</div>);
 
 stories.addWithInfo('Full', () => <Panel>
   <p>Conteúdo</p>
@@ -18,4 +23,4 @@ stories.addWithInfo('Full', () => <Panel>
   <Loader type="full" />
 </Panel>);
 
-stories.addWithInfo('Full Page', () => <Loader type="full-page" />);
+stories.addWithInfo('Full Page', () => <Loader background="black" color="secondary" type="full-page" />);
