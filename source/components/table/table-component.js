@@ -21,6 +21,12 @@ class Table extends PureComponent {
         render: PropTypes.func,
       })
     ).isRequired,
+    specialCase: PropTypes.arrayOf(
+      PropTypes.shape({
+        className: PropTypes.string,
+        case: PropTypes.func,
+      })
+    ),
     data: PropTypes.oneOfType([PropTypes.array, PropTypes.arrayOf(PropTypes.object)]),
     notFoundMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     loadingMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
@@ -56,9 +62,21 @@ class Table extends PureComponent {
     );
   }
 
-  renderRow(data, schema) {
+  generateSpecialStyle(specialCase, row) {
+    return specialCase
+      ? specialCase.reduce((acc, obj) => {
+          acc = {
+            ...acc,
+            [obj.className]: obj.case(row),
+          };
+          return acc;
+        }, {})
+      : {};
+  }
+
+  renderRow(data, schema, specialCase) {
     return data.map(infoRow => (
-      <tr key={uniqueId()} className={styles.row}>
+      <tr key={uniqueId()} className={classNames(styles.row, this.generateSpecialStyle(specialCase, infoRow))}>
         {Object.keys(schema).map(key => {
           const currentSchema = schema[key];
           return (
@@ -85,13 +103,13 @@ class Table extends PureComponent {
     );
   }
 
-  verifyResults(data, schema, loadingMessage, notFoundMessage) {
+  verifyResults(data, schema, loadingMessage, notFoundMessage, specialCase) {
     if (!Array.isArray(data)) {
       return this.renderEmptyResults(loadingMessage, schema);
     } else if (data.length === 0) {
       return this.renderEmptyResults(notFoundMessage, schema);
     } else {
-      return this.renderRow(data, schema);
+      return this.renderRow(data, schema, specialCase);
     }
   }
 
@@ -109,6 +127,7 @@ class Table extends PureComponent {
       height,
       loadingMessage,
       notFoundMessage,
+      specialCase,
       ...rest
     } = this.props;
 
@@ -135,7 +154,7 @@ class Table extends PureComponent {
           </thead>
 
           <tbody className={styles.tableBody}>
-            {this.verifyResults(data, schema, loadingMessage, notFoundMessage)}
+            {this.verifyResults(data, schema, loadingMessage, notFoundMessage, specialCase)}
           </tbody>
         </table>
       </div>

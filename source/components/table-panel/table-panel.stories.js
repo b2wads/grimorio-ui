@@ -16,10 +16,10 @@ const simpledata = [
     dob: { age: '45' },
   },
   {
-    name: { first: 'Fulano', last: 'da Silva' },
-    gender: 'male',
-    email: 'fulano123@teste.com',
-    dob: { age: '45' },
+    name: { first: 'Fulana', last: 'da Silva' },
+    gender: 'female',
+    email: 'fulana456@teste.com',
+    dob: { age: '56' },
   },
   {
     name: { first: 'Fulano', last: 'da Silva' },
@@ -77,6 +77,39 @@ stories.addWithInfo('Normal', () => {
       perpage
       meta={meta}
     />
+  );
+});
+
+stories.addWithInfo('Special Case', () => {
+  const special = [
+    {
+      className: 'mail',
+      case: info => info.email === 'fulana456@teste.com',
+    },
+    {
+      className: 'male',
+      case: info => info.gender === 'male',
+    },
+  ];
+
+  return (
+    <div>
+      <style dangerouslySetInnerHTML={{__html: `
+        .mail { background: darkseagreen; color: white; }
+        .male { background: cornflowerblue; color: white }
+      `}} />
+
+     <TablePanel
+        title="Jogo da Idade"
+        actions={<Button>Trocar nomes</Button>}
+        schema={schema}
+        data={simpledata}
+        pager
+        perpage
+        meta={meta}
+        specialCase={special}
+      />
+    </div>
   );
 });
 

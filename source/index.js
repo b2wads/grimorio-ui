@@ -19,6 +19,7 @@ import Form, {
   FormControlLabel,
   FormHelpText,
 } from './components/form';
+import Modal from './components/modal';
 import Table from './components/table';
 import TablePanel from './components/table-panel';
 import Loader from './components/loader';
@@ -59,4 +60,5 @@ export {
   Table,
   TablePanel,
   Loader,
+  Modal,
 };

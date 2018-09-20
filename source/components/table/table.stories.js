@@ -18,10 +18,10 @@ const simpledata = [
     dob: { age: '45' },
   },
   {
-    name: { first: 'Fulano', last: 'da Silva' },
-    gender: 'male',
-    email: 'fulano123@teste.com',
-    dob: { age: '45' },
+    name: { first: 'Fulana', last: 'da Silva' },
+    gender: 'female',
+    email: 'fulana456@teste.com',
+    dob: { age: '56' },
   },
   {
     name: { first: 'Fulano', last: 'da Silva' },
@@ -71,6 +71,30 @@ stories.addWithInfo('Normal', () => {
 stories.addWithInfo('Fixed', () => {
   return (
     <Table layout="fixed" schema={schema} data={simpledata} />
+  );
+});
+
+stories.addWithInfo('Special Case', () => {
+  const special = [
+    {
+      className: 'mail',
+      case: info => info.email === 'fulana456@teste.com',
+    },
+    {
+      className: 'male',
+      case: info => info.gender === 'male',
+    },
+  ];
+
+  return (
+    <div>
+      <style dangerouslySetInnerHTML={{__html: `
+        .mail { background: darkseagreen; color: white; }
+        .male { background: cornflowerblue; color: white }
+      `}} />
+
+      <Table layout="fixed" schema={schema} specialCase={special} data={simpledata} />
+    </div>
   );
 });
 
