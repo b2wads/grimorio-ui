@@ -48,6 +48,39 @@ $modal {
   padding: 30px;
 }
 
+.base {
+  padding: 0 25px;
+  text-align: center;
+}
+
+.imageWrap {
+  .icon {
+    fill: $c-primary;
+  }
+
+  .icon.fail {
+    fill: $c-error;
+  }
+}
+
+.message {
+  color: $c-text-dark;
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+.actions {
+  margin-top: 15px;
+
+  .button:first-child {
+    margin-right: 5px;
+  }
+
+  .button:last-child {
+    margin-left: 5px;
+  }
+}
+
 .overlay {
   background: $black;
   height: 100%;
