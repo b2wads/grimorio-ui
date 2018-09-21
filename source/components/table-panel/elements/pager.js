@@ -23,6 +23,11 @@ class Pager extends PureComponent {
 
   render() {
     const { length, count, offset, limit, onClickNext, onClickPrev, perpage, onLimitChange } = this.props;
+
+    if (count === undefined || !limit === undefined || perpage === undefined) {
+      return null;
+    }
+
     return (
       <Fragment>
         {perpage && this.renderPerPage(limit, onLimitChange)}
