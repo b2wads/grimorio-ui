@@ -17,6 +17,13 @@ stories.addWithInfo('Normal', () => <div>
   </div>
 </div>);
 
+stories.addWithInfo('Size', () => <div>
+  <Loader size="20px" />
+  <Loader size="40px" />
+  <Loader size="60px" />
+  <Loader size="80px" />
+</div>);
+
 stories.addWithInfo('Full', () => <Panel>
   <p>Conteúdo</p>
   <Button>Continuar</Button>
