@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+$c-divisor = #DFDFDF;
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$table {
+  width: 100%;
+}
+
+$row {
+  border-bottom: 1px solid $c-divisor;
+
+  &.isSelected {
+    background: $c-secondary;
+  }
+}
+
+$cell {
+  overflow: hidden;
+  padding: 10px 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:first-child {
+    padding-left: 25px;
+  }
+
+  &:last-child {
+    padding-right: 25px;
+  }
+}
+
+/* ==========================================================================
+   Table Elements
+========================================================================== */
+.wrap {
+  overflow: auto;
+  position: static;
+
+  &.isScrollY {
+   overflow-y: scroll;
+  }
+
+  &.isScrollX {
+   overflow-x: scroll;
+  }
+}
+
+.table {
+  @extend $table;
+  table-layout: auto;
+
+  &.isFixed {
+    table-layout: fixed;
+  }
+}
+
+.row {
+  @extend $row;
+}
+
+.rowHead {
+  @extend $row;
+}
+
+.cell {
+  @extend $cell;
+  font-size:$base-font-size-px;
+}
+
+.cellHead {
+  @extend $cell;
+  font-size: $base-font-size-px;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   Type
+========================================================================== */
+.panel {
+  .row {
+    @extend $row;
+
+    &:last-child {
+      border: 0;
+    }
+  }
+}

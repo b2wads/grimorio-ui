@@ -21,6 +21,7 @@ describe('Mask', () => {
     it('should have contain only letters and numbers', () => {
       expect(alphaNumericMask('122tes21t')).toEqual('122tes21t');
       expect(alphaNumericMask('122t%%%es21t#')).toEqual('122tes21t');
+      expect(alphaNumericMask('122t%%%es21t#ABC')).toEqual('122tes21tABC');
       expect(alphaNumericMask('___________')).toEqual('');
     });
   });

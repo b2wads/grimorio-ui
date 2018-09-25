@@ -9,6 +9,7 @@ import Icon from '../icon';
 import { fieldsMask } from '../../helpers/mask';
 
 import Form, { FormGroup, FormLabel, FormControl, FormActions, FormHelpText, FormControlLabel } from './index';
+import { SelectOption } from '../select';
 
 const stories = storiesOf('Form', module);
 
@@ -61,6 +62,30 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
         <FormGroup>
           <FormControlLabel outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
           <FormHelpText>Versão outline!</FormHelpText>
+        </FormGroup>
+        <br/>
+        <FormGroup>
+          <FormControlLabel onChange={data => console.log(data)} label="Nome" type="select">
+            <SelectOption value="a">a</SelectOption>
+            <SelectOption value="b">b</SelectOption>
+          </FormControlLabel>
+          <FormHelpText>Select!</FormHelpText>
+        </FormGroup>
+
+        <FormGroup>
+          <label htmlFor="check">Checkbox!</label>
+          <FormControl defaultChecked={true} type="checkbox" id="check" value="1" />
+        </FormGroup>
+
+        <FormGroup>
+          <label htmlFor="radio">Radio!</label>
+          <FormControl type="radio" name="test" id="radio" value="1" />
+
+          <label htmlFor="radio2">Radio2!</label>
+          <FormControl type="radio" name="test" id="radio2" value="2" />
+
+          <label htmlFor="radio3">Radio3!</label>
+          <FormControl type="radio" name="test" id="radio3" value="3" />
         </FormGroup>
       </Form>
     </div>
@@ -156,13 +181,13 @@ stories.addWithInfo('Knobs', () => (
     <br /><br /><br /><br />
     <FormControl
       type="select"
+      placeholder="Selecione"
       onFocus={action('focus')}
       onChange={action('change')}
       onBlur={action('blur')}
     >
-      <option value="">Selecione</option>
-      <option value="a">a</option>
-      <option value="b">b</option>
+      <SelectOption value="a">Nome a</SelectOption>
+      <SelectOption value="b">Nome b</SelectOption>
     </FormControl>
   </div>
 ));
@@ -173,10 +198,9 @@ stories.addWithInfo('Disabled', () => (
     <FormControl type="email" placeholder="Digite o seu e-mail" disabled />
     <FormControl type="radio" disabled />
     <FormControl type="checkbox" disabled />
-    <FormControl type="select" disabled>
-      <option value="">Selecione</option>
-      <option value="a">a</option>
-      <option value="b">b</option>
+    <FormControl type="select" placeholder="Selecione" disabled>
+      <SelectOption value="a">a</SelectOption>
+      <SelectOption value="b">b</SelectOption>
     </FormControl>
     <FormControl type="textarea" disabled />
   </div>
@@ -217,10 +241,9 @@ stories.addWithInfo('On focus', () => (
     <FormControl placeholder="Digite um nome" onFocus={action('focus')} />
     <FormControl type="radio" onFocus={action('focus')} />
     <FormControl type="checkbox" onFocus={action('focus')} />
-    <FormControl type="select" onFocus={action('focus')}>
-      <option value="">Selecione</option>
-      <option value="a">a</option>
-      <option value="b">b</option>
+    <FormControl type="select" placeholder="Selecione" onFocus={action('focus')}>
+      <SelectOption value="a">a</SelectOption>
+      <SelectOption value="b">b</SelectOption>
     </FormControl>
 
     <FormControl type="textarea" onFocus={action('focus')} />
@@ -232,10 +255,9 @@ stories.addWithInfo('On change', () => (
     <FormControl placeholder="Digite um nome" onChange={action('change')} />
     <FormControl type="radio" onChange={action('change')} />
     <FormControl type="checkbox" onChange={action('change')} />
-    <FormControl type="select" onChange={action('change')}>
-      <option value="">Selecione</option>
-      <option value="a">a</option>
-      <option value="b">b</option>
+    <FormControl type="select" placeholder="selecione" onChange={action('change')}>
+      <SelectOption value="a">a</SelectOption>
+      <SelectOption value="b">b</SelectOption>
     </FormControl>
 
     <FormControl type="textarea" onChange={action('change')} />
@@ -247,10 +269,9 @@ stories.addWithInfo('On blur', () => (
     <FormControl placeholder="Digite um nome" onBlur={action('blur')} />
     <FormControl type="radio" onBlur={action('blur')} />
     <FormControl type="checkbox" onBlur={action('blur')} />
-    <FormControl type="select" onBlur={action('blur')}>
-      <option value="">Selecione</option>
-      <option value="a">a</option>
-      <option value="b">b</option>
+    <FormControl type="select" placeholder="selecione" onBlur={action('blur')}>
+      <SelectOption value="a">a</SelectOption>
+      <SelectOption value="b">b</SelectOption>
     </FormControl>
 
     <FormControl type="textarea" onBlur={action('blur')} />

@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+$wrap {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+
+  &.isWhite {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  &.isBlack {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ==========================================================================
+   Loader Elements
+========================================================================== */
+
+.wrap {
+  display: inline-block;
+
+  &.isFull {
+    @extend $wrap;
+    position: absolute;
+  }
+
+  &.isFullPage {
+    @extend $wrap;
+    position: fixed;
+  }
+}
+
+.spinner {
+  animation: spinner 0.6s linear infinite;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: block;
+  height: 40px;
+  width: 40px;
+}
+
+.primary {
+  border: 3px solid $c-secondary;
+  border-top-color: $c-primary;
+}
+
+.secondary {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: $white;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}

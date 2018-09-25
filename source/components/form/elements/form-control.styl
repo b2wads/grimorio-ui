@@ -10,6 +10,7 @@ $c-error-light = lightness($c-error);
 /* Border color
    ========================================================================== */
 $c-border = #ccc;
+$c-check-border = #7F7F7F;
 
 /* Field
    ========================================================================== */
@@ -58,8 +59,19 @@ $field {
 /* Radio and checkbox
 ========================================================================== */
 $radioCheckbox {
-  margin: 3px 0 0;
-  width: auto;
+  align-items: center;
+  border: 2px solid $c-check-border;
+  cursor: pointer;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  transition: all 0.3s ease;
+  width: 20px;
+
+  &.isDisabled {
+    background: $disabled;
+    cursor: not-allowed;
+  }
 }
 
 /* addon
@@ -109,20 +121,65 @@ $addon {
 
 .form-field--select {
   @extend $field;
-
   background: $default-background;
+  border: 0;
+  color: $c-default;
 }
 
 .form-field--radio {
-  @extend $radioCheckbox;
-
   background: $default-background;
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  .fakeInput {
+    @extend $radioCheckbox;
+    border-radius: 50%;
+    color: $c-support-dark;
+  }
+
+  input[type="radio"]:checked ~ .fakeInput {
+    border-color: $c-support-dark;
+  }
+
+  input[type="radio"]:checked ~ .fakeInput:before {
+    content: '';
+    display: block;
+    width: 10px;
+    height 10px;
+    border-radius: 50%;
+    background: $c-support-dark;
+    transition: all .3s ease;
+  }
 }
 
 .form-field--checkbox {
-  @extend $radioCheckbox;
-
   background: $default-background;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .fakeInput {
+    @extend $radioCheckbox;
+    border-radius: 3px;
+  }
+
+  .checkIcon {
+    display: none;
+    fill: $white;
+  }
+
+  .checkIcon.isChecked {
+    display: block;
+  }
+
+  input[type="checkbox"]:checked ~ .fakeInput {
+    background: $c-support-dark;
+    border-color: $c-support-dark;
+    transition: all .3s ease;
+  }
 }
 
 .form-field--textarea {

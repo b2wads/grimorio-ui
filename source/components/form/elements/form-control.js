@@ -5,6 +5,9 @@ import CSSModules from 'react-css-modules';
 // components
 import Icon from '../../icon';
 import { fieldsValidation } from '../../../helpers/validation';
+
+import Select from '../../select';
+
 // styles
 import styles from './form-control.styl';
 
@@ -14,6 +17,7 @@ class FormControl extends PureComponent {
 
     this.state = {
       value: props.value,
+      checked: props.checked || props.defaultChecked,
     };
 
     this.type = this.props.type;
@@ -45,6 +49,7 @@ class FormControl extends PureComponent {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
+    checked: PropTypes.bool,
     addonAfter: PropTypes.node,
     addonBefore: PropTypes.node,
     feedback: PropTypes.bool,
@@ -52,7 +57,6 @@ class FormControl extends PureComponent {
     type: PropTypes.oneOf([
       'text',
       'password',
-      'select',
       'textarea',
       'radio',
       'checkbox',
@@ -70,6 +74,7 @@ class FormControl extends PureComponent {
       'date',
       'datetime',
       'color',
+      'select',
     ]),
   };
 
@@ -134,11 +139,13 @@ class FormControl extends PureComponent {
     const {
       getRef,
       onChange,
+      onClick,
       onFocus,
       onBlur,
       disabled,
       children,
       name,
+      id,
       onMask,
       placeholder,
       inputClassName,
@@ -147,9 +154,14 @@ class FormControl extends PureComponent {
       outline,
       ...rest
     } = this.props;
+
+    delete rest.addonBefore;
+    delete rest.addonAfter;
+    delete rest.feedback;
+
     const form = this.context.$form;
     const formStyleType = (form && form.styleType) || undefined;
-    const isClassDefault = ['radio', 'checkbox', 'textarea', 'select'].indexOf(type) < 0;
+    const isClassDefault = ['radio', 'checkbox', 'textarea'].indexOf(type) < 0;
     const componentClass = classNames(
       {
         [styles['form-field']]: isClassDefault,
@@ -183,24 +195,74 @@ class FormControl extends PureComponent {
       };
     }
 
-    return (
-      <Component
-        type={tagType}
-        ref={getRef}
-        className={componentClass}
-        placeholder={placeholder}
-        id={controlId}
-        onChange={handleChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        disabled={disabled}
-        name={name}
-        value={this.state.value}
-        {...rest}
-      >
-        {children}
-      </Component>
-    );
+    if (type === 'select') {
+      return (
+        <Select
+          className={componentClass}
+          disabled={disabled}
+          placeholder={placeholder}
+          onSelect={handleChange}
+          {...rest}
+        >
+          {children}
+        </Select>
+      );
+    } else if (['radio', 'checkbox'].indexOf(type) !== -1) {
+      const handleClick = e => {
+        this.setState({ checked: e.target.checked });
+
+        if (onClick) {
+          onClick(e);
+        }
+      };
+
+      return (
+        <div className={componentClass}>
+          <Component
+            type={tagType}
+            ref={getRef}
+            placeholder={placeholder}
+            id={id}
+            onChange={handleChange}
+            onClick={handleClick}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            disabled={disabled}
+            name={name}
+            value={this.state.value}
+            checked={this.state.checked}
+            {...rest}
+          />
+          <label className={classNames(styles.fakeInput, { [styles.isDisabled]: disabled })} htmlFor={id}>
+            {type === 'checkbox' &&
+              <Icon
+                className={classNames(styles.checkIcon, { [styles.isChecked]: this.state.checked })}
+                name="check"
+              />}
+          </label>
+        </div>
+      );
+    } else {
+      return (
+        <Component
+          type={tagType}
+          ref={getRef}
+          className={componentClass}
+          placeholder={placeholder}
+          id={controlId}
+          onChange={handleChange}
+          onFocus={onFocus}
+          onClick={onClick}
+          onBlur={onBlur}
+          disabled={disabled}
+          name={name}
+          value={this.state.value}
+          {...rest}
+        >
+          {children}
+        </Component>
+      );
+    }
   }
 
   render() {

@@ -23,6 +23,7 @@ stories.addWithInfo(
         <Icon size={18} /> Primary Icon
       </Button>&nbsp;
       <Button style="secondary">Secondary</Button>&nbsp;
+      <Button style="outline">Outline</Button>&nbsp;
       <Button disabled>Disabled</Button>&nbsp;
       <Button style="clean" size="small">Clean</Button>&nbsp;
       <Button style="clean" size="small">
@@ -69,6 +70,8 @@ stories.addWithInfo('Size', () => (
   <div>
     <Button size="small">Small</Button>&nbsp;
     <Button>Medium</Button>&nbsp;
+    <Button size="large">Large</Button>&nbsp;
+    <Button style="secondary" size="large">Large</Button>&nbsp;
     <Button style="secondary">Medium</Button>&nbsp;
     <Button style="secondary" size="small">Small</Button>&nbsp;
   </div>

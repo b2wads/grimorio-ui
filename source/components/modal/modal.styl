@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$modal {
+  background: $white;
+  border-radius: 2px;
+  left: 50%;
+  min-width: 300px;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease;
+  visibility: hidden;
+  z-index: 101;
+
+  &.isOpen {
+    opacity: 1;
+    transition: all 0.5s ease;
+    visibility: visible;
+  }
+}
+
+/* ==========================================================================
+   Modal Elements
+========================================================================== */
+
+.wrap {}
+
+.modal {
+  @extend $modal;
+}
+
+.close {
+  cursor: pointer;
+  fill: $c-text;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.content {
+  padding: 30px;
+}
+
+.base {
+  padding: 0 25px;
+  text-align: center;
+}
+
+.imageWrap {
+  .icon {
+    fill: $c-primary;
+  }
+
+  .icon.fail {
+    fill: $c-error;
+  }
+}
+
+.message {
+  color: $c-text-dark;
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+.actions {
+  margin-top: 15px;
+
+  .button:first-child {
+    margin-right: 5px;
+  }
+
+  .button:last-child {
+    margin-left: 5px;
+  }
+}
+
+.overlay {
+  background: $black;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  transition: all 0.5s ease;
+  visibility: hidden;
+  width: 100%;
+  z-index: 100;
+
+  &.isOpen {
+    opacity: 0.6;
+    transition: all 0.5s ease;
+    visibility: visible;
+  }
+}

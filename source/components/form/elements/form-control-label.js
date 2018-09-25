@@ -6,6 +6,8 @@ import CSSModules from 'react-css-modules';
 import FormControl from './form-control';
 import FormLabel from './form-label';
 
+import Select from '../../select';
+
 // styles
 import styles from './form-control-label.styl';
 
@@ -23,6 +25,12 @@ class FormControlLabel extends Component {
   static propTypes = {
     label: PropTypes.string,
     placeholder: PropTypes.string,
+    activeLabel: PropTypes.bool,
+    onBlur: PropTypes.func,
+  };
+
+  static defaultProps = {
+    activeLabel: null,
   };
 
   static contextTypes = {
@@ -40,6 +48,7 @@ class FormControlLabel extends Component {
     if (event && event.target.value === '') {
       this.setState({ active: !this.state.active });
     }
+    this.props.onBlur && this.props.onBlur(event);
   }
 
   componentDidUpdate(prevProps) {
@@ -49,14 +58,14 @@ class FormControlLabel extends Component {
   }
 
   render() {
-    const { label, placeholder, ...rest } = this.props;
+    const { label, placeholder, activeLabel, onChange, type, children, ...rest } = this.props;
 
     // context
     const formGroup = this.context.$formGroup;
     const validationState = (formGroup && formGroup.validationState) || undefined;
 
     const labelClasses = classNames(styles.label, {
-      [styles.isActive]: this.state.active,
+      [styles.isActive]: activeLabel === null ? this.state.active : activeLabel,
       [styles[`has-${validationState}`]]: validationState,
     });
 
@@ -64,18 +73,28 @@ class FormControlLabel extends Component {
       [styles[`has-${validationState}`]]: validationState,
     });
 
-    return (
-      <div className={styles.labelWrapper}>
-        <FormLabel className={labelClasses} onClick={this.handleLabel}>{label}</FormLabel>
-        <FormControl
-          placeholder={this.state.active ? placeholder : ''}
-          inputClassName={inputClasses}
-          onBlur={this.handleLabel}
-          onFocus={this.handleLabel}
-          {...rest}
-        />
-      </div>
-    );
+    if (type === 'select') {
+      return (
+        <Select className={inputClasses} label={label} onSelect={onChange} {...rest}>
+          {children}
+        </Select>
+      );
+    } else {
+      return (
+        <div className={styles.labelWrapper}>
+          <FormLabel className={labelClasses} onClick={this.handleLabel}>{label}</FormLabel>
+          <FormControl
+            placeholder={this.state.active ? placeholder : ''}
+            inputClassName={inputClasses}
+            onFocus={this.handleLabel}
+            onChange={onChange}
+            type={type}
+            {...rest}
+            onBlur={this.handleLabel}
+          />
+        </div>
+      );
+    }
   }
 }
 

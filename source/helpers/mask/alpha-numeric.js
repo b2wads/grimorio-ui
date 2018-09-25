@@ -10,7 +10,7 @@ const alphaNumericMask = value => {
     return false;
   }
 
-  return value.replace(/[^a-z0-9 ]+/g, '');
+  return value.replace(/[^a-zA-Z0-9 ]+/g, '');
 };
 
 export default alphaNumericMask;

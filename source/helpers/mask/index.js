@@ -4,7 +4,17 @@ import { numberMask, thousandMask, percentageMask } from './number';
 import alphaNumericMask from './alpha-numeric';
 import alphaMask from './alpha';
 
-export const fieldsMask = (mask, value) => {
+export const masks = {
+  datetime: '99/99/9999 99:99',
+  date: '99/99/9999',
+  time: '99:99:99',
+  cep: '99999-999',
+  cpf: '999.999.999-99',
+  cnpj: '99.999.999/9999-99',
+  phone: '(99) 99999-9999',
+};
+
+export const fieldsMask = (mask = { type: 'alphanumeric', value: null }, value) => {
   if (!value) {
     return '';
   }
@@ -14,6 +24,20 @@ export const fieldsMask = (mask, value) => {
   }
 
   switch (mask.type) {
+    case 'cnpj':
+      return patternMask(masks.cnpj, value);
+    case 'cpf':
+      return patternMask(masks.cpf, value);
+    case 'time':
+      return patternMask(masks.time, value);
+    case 'date':
+      return patternMask(masks.date, value);
+    case 'datetime':
+      return patternMask(masks.datetime, value);
+    case 'cep':
+      return patternMask(masks.cep, value);
+    case 'phone':
+      return patternMask(masks.phone, value);
     case 'pattern':
       return patternMask(mask.value, value);
     case 'money':
@@ -29,13 +53,4 @@ export const fieldsMask = (mask, value) => {
     case 'percentage':
       return percentageMask(value);
   }
-};
-
-export const masks = {
-  datetime: '##/##/#### ##:##',
-  date: '##/##/####',
-  time: '##:##:##',
-  cep: '#####-###',
-  cpf: '###.###.###-##',
-  cnpj: '##.###.###/####-##',
 };

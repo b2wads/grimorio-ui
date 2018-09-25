@@ -9,6 +9,8 @@ import Sidebar from './components/sidebar';
 import Header from './components/header';
 import InfoCard from './components/info-card';
 import PageTitle from './components/page-title';
+import Breadcrumb from './components/breadcrumb';
+import Select, { SelectOption } from './components/select';
 import Form, {
   FormGroup,
   FormControl,
@@ -17,6 +19,18 @@ import Form, {
   FormControlLabel,
   FormHelpText,
 } from './components/form';
+import Modal from './components/modal';
+import Table from './components/table';
+import TablePanel from './components/table-panel';
+import Loader from './components/loader';
+
+// HELPERS
+import { fieldsValidation } from './helpers/validation';
+import { fieldsMask, masks } from './helpers/mask';
+
+export const validation = fieldsValidation;
+export const mask = fieldsMask;
+export const maskPattens = masks;
 
 export {
   Button,
@@ -40,4 +54,11 @@ export {
   Header,
   InfoCard,
   PageTitle,
+  Breadcrumb,
+  Select,
+  SelectOption,
+  Table,
+  TablePanel,
+  Loader,
+  Modal,
 };

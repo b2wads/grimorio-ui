@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+$c-input = #333;
+$placeholder = #999;
+$c-border = #ccc;
+$c-label = #999;
+$disabled = lighten($c-secondary, 60%);
+$c-disabled = #999;
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$menu {
+  @extend $drop-shadow;
+  background: $white;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  padding: 8px 0;
+  transform: scaleY(0);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+$field {
+  border: 0;
+  border-bottom: 1px solid $c-border;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: inherit;
+  display: block;
+  font-size: inherit;
+  height: 35px;
+  outline: 0;
+  text-indent: 5px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Select Elements
+========================================================================== */
+
+/* ==========================================================================
+   Select Props
+========================================================================== */
+
+/* Default
+ ================ */
+
+.selectWrap {
+  position: relative;
+}
+
+.button {
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+
+.arrow {
+  fill: $c-text;
+  position: absolute;
+  right: 0;
+  top: 8px;
+  z-index: 1;
+}
+
+.input {
+  @extend $field;
+  font-size: inherit;
+  line-height: 1;
+  padding-right: 15px;
+  padding-top: 10px;
+
+  &.isPlaceholder {
+    color: $placeholder;
+  }
+
+  &.isActive {}
+
+  &.isDisabled {
+    background: $disabled;
+    border-color: $c-border;
+    color: $c-disabled;
+    cursor: not-allowed;
+  }
+}
+
+.labelWrapper { position: relative }
+
+.label {
+  color: $c-label;
+  font-size: 16px;
+  font-weight: 400;
+  left: 5px;
+  line-height: 1;
+  pointer-events: none;
+  position: absolute;
+  top: 10px;
+  transition: all 0.25s ease;
+
+  &.isActive {
+    color: $c-primary;
+    font-size: 12px;
+    font-weight: 700;
+    top: -1.5rem;
+    transition: all 0.125s ease;
+  }
+}
+
+.menu {
+  @extend $menu;
+
+  &.isUnder {
+    top: calc(100% + 5px);
+  }
+
+  &.isBottom {
+    bottom: 0;
+    top: inherit;
+  }
+
+  &.isScroll {
+    overflow-y: scroll;
+  }
+
+  &.isOpen {
+    transform: scaleY(1);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+}
+
+.option {
+  align-items: center;
+  color: $c-text;
+  cursor: pointer;
+  display: flex;
+  fill: $c-text;
+  padding: 10px 16px;
+
+  &:hover {
+    background: $c-support-light;
+  }
+
+  &.isSelected {
+    background: darken($c-support-light, 5%);
+  }
+}
+
+.optionIcon {
+  margin-right: 5px;
+}

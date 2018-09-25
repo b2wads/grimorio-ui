@@ -30,6 +30,7 @@ class Icon extends PureComponent {
       'text-bottom',
       'initial',
       'inherit',
+      'unset',
     ]),
     style: PropTypes.object,
   };

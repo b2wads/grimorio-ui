@@ -6,35 +6,44 @@ import classNames from 'classnames';
 import styles from './header.styl';
 import Button from '../button';
 import Icon from '../icon';
+import Select from '../select';
 
 class Header extends PureComponent {
   static propTypes = {
     user: PropTypes.string.isRequired,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        icon: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    onSelect: PropTypes.func,
     onLogout: PropTypes.func.isRequired,
-    select: PropTypes.element,
   };
+
   static defaultProps = {};
 
-  renderSelect(select) {
-    if (select) {
-      return (
-        <React.Fragment>
-          <Icon className={styles.iconRight} name="keyboard_arrow_down" size="18" />
-          <span>Select</span>
-        </React.Fragment>
-      );
-    }
+  renderButton() {
+    const { user } = this.props;
+
+    return (
+      <React.Fragment>
+        <Icon className={styles.iconLeft} name="person" size="18" />
+        {user}
+        <Icon className={styles.iconRight} name="arrow_drop_down" size="20" />
+      </React.Fragment>
+    );
   }
 
   render() {
-    const { user, onLogout, select, className, ...elementProps } = this.props;
+    const { onLogout, items, onSelect, className, ...elementProps } = this.props;
     const fullClassName = classNames(className, styles.header);
+
     return (
       <header className={fullClassName} {...elementProps}>
         <Button className={styles.headerUser} style="clean" modifier="inverted" size="small">
-          <Icon className={styles.iconLeft} name="person" size="18" />
-          {user}
-          {this.renderSelect(select)}
+          <Select type="menu" position="under" menuButton={this.renderButton()} onSelect={onSelect} items={items} />
         </Button>
 
         <Button className={styles.headerLogout} style="clean" modifier="inverted" size="small" onClick={onLogout}>
