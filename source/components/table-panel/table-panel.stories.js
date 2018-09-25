@@ -75,7 +75,7 @@ stories.addWithInfo('Normal', () => {
       data={simpledata}
       pager
       perpage
-      meta={meta}
+      meta={{}}
     />
   );
 });

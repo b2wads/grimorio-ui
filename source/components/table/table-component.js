@@ -96,7 +96,7 @@ class Table extends PureComponent {
   renderEmptyResults(message, schema) {
     return (
       <tr>
-        <td colSpan={schema.length} className={styles.cell}>
+        <td colSpan={Object.keys(schema).length} className={styles.cell}>
           {message}
         </td>
       </tr>

@@ -70,6 +70,8 @@ $modal {
 }
 
 .actions {
+  display: flex;
+  justify-content: center;
   margin-top: 15px;
 
   .button:first-child {
@@ -78,6 +80,18 @@ $modal {
 
   .button:last-child {
     margin-left: 5px;
+  }
+}
+
+.actions.isReverse {
+  flex-direction: row-reverse;
+
+  .button:first-child {
+    margin-left: 5px;
+  }
+
+  .button:last-child {
+    margin-right: 5px;
   }
 }
 

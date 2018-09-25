@@ -10,16 +10,18 @@ class Loader extends PureComponent {
     type: PropTypes.oneOf(['default', 'full', 'full-page']),
     color: PropTypes.oneOf(['primary', 'secondary']),
     background: PropTypes.oneOf(['white', 'black']),
+    size: PropTypes.string,
   };
 
   static defaultProps = {
     type: 'default',
     color: 'primary',
     background: 'white',
+    size: '40px',
   };
 
   render() {
-    const { type, color, background, className, ...rest } = this.props;
+    const { type, color, background, size, className, ...rest } = this.props;
     const wrapClass = classNames(styles.wrap, className, {
       [styles.isFull]: type === 'full',
       [styles.isFullPage]: type === 'full-page',
@@ -31,9 +33,14 @@ class Loader extends PureComponent {
       [styles[color]]: color,
     });
 
+    const spinnerSize = {
+      width: size,
+      height: size,
+    };
+
     return (
       <div className={wrapClass} {...rest}>
-        <span className={spinnerClass} />
+        <span style={spinnerSize} className={spinnerClass} />
       </div>
     );
   }

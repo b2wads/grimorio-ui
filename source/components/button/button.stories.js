@@ -6,6 +6,7 @@ import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import Button from './index';
 
 import Icon from '../icon';
+import Loader from '../loader';
 
 const stories = storiesOf('Button', module);
 
@@ -74,6 +75,17 @@ stories.addWithInfo('Size', () => (
     <Button style="secondary" size="large">Large</Button>&nbsp;
     <Button style="secondary">Medium</Button>&nbsp;
     <Button style="secondary" size="small">Small</Button>&nbsp;
+  </div>
+));
+
+stories.addWithInfo('Loading', () => (
+  <div>
+    <Button loading={true} style="primary">
+      <Loader style={{ marginRight: '7px' }} size="17px" color="secondary" /> Primary
+    </Button>&nbsp;
+    <Button loading={true} style="clean" size="small">
+      <Loader style={{ marginRight: '7px' }} size="17px" /> Clean Small
+    </Button>&nbsp;
   </div>
 ));
 

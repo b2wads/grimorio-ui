@@ -48,6 +48,7 @@ stories.addWithInfo('Types', withState({ success: false, fail: false, confirm: f
         message="Você abriu o modal com sucesso!"
         open={store.state.success}
         showButton
+        confirmButtonText="Yaaay"
         onClose={closeModal('success')}
       />
     </div>

@@ -96,7 +96,7 @@ class Modal extends PureComponent {
           {message}
         </div>
 
-        <div className={styles.actions}>
+        <div className={classNames(styles.actions, { [styles.isReverse]: confirmInverted })}>
           <Button className={styles.button} style={!confirmInverted ? 'outline' : 'primary'} onClick={onClose}>
             {cancelButtonText}
           </Button>
