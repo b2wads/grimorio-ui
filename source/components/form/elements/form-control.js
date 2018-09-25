@@ -28,8 +28,6 @@ class FormControl extends PureComponent {
 
   static defaultProps = {
     disabled: false,
-    addonBefore: false,
-    addonAfter: false,
     onChange: () => {},
     onFocus: () => {},
     onBlur: () => {},
@@ -50,8 +48,6 @@ class FormControl extends PureComponent {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     checked: PropTypes.bool,
-    addonAfter: PropTypes.node,
-    addonBefore: PropTypes.node,
     feedback: PropTypes.bool,
     outline: PropTypes.bool,
     type: PropTypes.oneOf([
@@ -109,29 +105,20 @@ class FormControl extends PureComponent {
     );
   }
 
-  addonRender(type, children) {
-    if (!type || !children) {
-      return null;
+  valueModifier(event, onMask, onChange, validate, onValidate) {
+    const { value } = event.target;
+
+    const validation = () => {
+      if (validate && onValidate) {
+        onValidate(fieldsValidation(this.state.value, this.props.validate));
+      }
+    };
+
+    this.setState({ value: onMask ? onMask(value) : value }, validation());
+
+    if (onChange) {
+      onChange(event);
     }
-
-    const style = {};
-
-    if (this.props.addonColor) {
-      style.color = this.props.addonColor;
-      style.fill = this.props.addonColor;
-    }
-
-    return (
-      <span
-        onClick={!this.props.disabled ? this.props.onFocus : ''}
-        className={classNames(styles[`form-addon-${type}`], {
-          [styles['form-addon--disabled']]: this.props.disabled,
-        })}
-        style={style}
-      >
-        {children}
-      </span>
-    );
   }
 
   componentRender(controlId, type) {
@@ -155,10 +142,6 @@ class FormControl extends PureComponent {
       ...rest
     } = this.props;
 
-    delete rest.addonBefore;
-    delete rest.addonAfter;
-    delete rest.feedback;
-
     const form = this.context.$form;
     const formStyleType = (form && form.styleType) || undefined;
     const isClassDefault = ['radio', 'checkbox', 'textarea'].indexOf(type) < 0;
@@ -174,26 +157,12 @@ class FormControl extends PureComponent {
       },
       inputClassName
     );
-    let tagType;
-    // Has type property
-    if (this.hasTypeProperty) {
-      tagType = type;
-    }
 
-    let handleChange = onChange;
-    if (onMask || validate) {
-      handleChange = e => {
-        this.setState({ value: onMask ? onMask(e.target.value) : e.target.value }, () => {
-          if (validate && onValidate) {
-            onValidate(fieldsValidation(this.state.value, this.props.validate));
-          }
-        });
+    const handleChange = onMask || validate
+      ? e => this.valueModifier(e, onMask, onChange, validate, onValidate)
+      : onChange;
 
-        if (onChange) {
-          onChange(e);
-        }
-      };
-    }
+    delete rest.feedback;
 
     if (type === 'select') {
       return (
@@ -219,7 +188,7 @@ class FormControl extends PureComponent {
       return (
         <div className={componentClass}>
           <Component
-            type={tagType}
+            type={type}
             ref={getRef}
             placeholder={placeholder}
             id={id}
@@ -245,7 +214,7 @@ class FormControl extends PureComponent {
     } else {
       return (
         <Component
-          type={tagType}
+          type={type}
           ref={getRef}
           className={componentClass}
           placeholder={placeholder}
@@ -282,17 +251,15 @@ class FormControl extends PureComponent {
       [styles[`has-${validationState}`]]: validationState,
       [styles.isCheckboxOrRadio]: isCheckboxOrRadio,
     });
+
     // internal components
-    const generateAddonBefore = this.addonRender('before', addonBefore);
-    const generateAddonAfter = this.addonRender('after', addonAfter);
     const generateFeedback = FormControl.feedbackRender(validationState, feedback, addonAfter);
+
     // component
     const generateComponent = this.componentRender(controlId, type);
 
     return (
       <div className={addonClass}>
-        {generateAddonBefore}
-        {generateAddonAfter}
         {generateComponent}
         {generateFeedback}
       </div>

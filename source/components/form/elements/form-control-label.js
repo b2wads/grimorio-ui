@@ -52,8 +52,8 @@ class FormControlLabel extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!this.hasValue(prevProps) && this.hasValue(this.props)) {
-      this.setState({ active: true });
+    if (this.hasValue(prevProps) !== this.hasValue(this.props)) {
+      this.setState({ active: this.hasValue(this.props) });
     }
   }
 

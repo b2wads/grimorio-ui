@@ -11,7 +11,6 @@ class Form extends PureComponent {
   }
 
   static defaultProps = {
-    onSubmit: false,
     styleType: 'form',
     className: undefined,
   };

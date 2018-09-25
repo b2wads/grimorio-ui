@@ -4,7 +4,6 @@ import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import Button from '../button';
-import Icon from '../icon';
 
 import { fieldsMask } from '../../helpers/mask';
 
@@ -18,6 +17,10 @@ stories.addDecorator(withKnobs);
 stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({ store }) => {
   const handleChange = event => {
     store.set({ input: event.target.value });
+  }
+
+  const change = () => {
+    store.set({ input: '' });
   }
 
   return (
@@ -44,6 +47,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
         </FormActions>
       </Form>
       <Form onSubmit={ ()=>{} }>
+        <Button onClick={change}>Deixar vazio!</Button>
         <FormGroup>
           <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" value={store.state.input} onChange={handleChange} />
           <FormHelpText>Tem valor default controlado</FormHelpText>
@@ -151,15 +155,15 @@ stories.addWithInfo('With validation', () => (
   <div>
     <FormGroup validationState="success">
       <FormLabel>Nome:</FormLabel>
-      <FormControl addonBefore="@"  placeholder="Form group with input" feedback />
+      <FormControl  placeholder="Form group with input" feedback />
     </FormGroup>
     <FormGroup validationState="warning">
       <FormLabel>Nome:</FormLabel>
-      <FormControl addonBefore="@"   placeholder="Form group with input" feedback />
+      <FormControl placeholder="Form group with input" feedback />
     </FormGroup>
     <FormGroup validationState="error">
       <FormLabel>Nome:</FormLabel>
-      <FormControl addonBefore="@"  placeholder="Form group with input" feedback />
+      <FormControl  placeholder="Form group with input" feedback />
       <span className="error">testte</span>
     </FormGroup>
   </div>
@@ -170,8 +174,6 @@ stories.addWithInfo('Knobs', () => (
   <div>
     <FormControl
       type={text('Type', 'text')}
-      addonBefore={text('Addon Before', '@')}
-      addonAfter={text('Addon After', '.00')}
       placeholder={text('Placeholder', 'Digite algo')}
       disabled={boolean('Disabled', false)}
       onFocus={action('focus')}
@@ -203,30 +205,6 @@ stories.addWithInfo('Disabled', () => (
       <SelectOption value="b">b</SelectOption>
     </FormControl>
     <FormControl type="textarea" disabled />
-  </div>
-));
-
-stories.addWithInfo('Addon before', () => (
-  <div>
-    <FormControl type="password" placeholder="Digite um nome"  addonBefore={<FormControl type="radio" />} />
-    <br /><br />
-    <FormControl type="password" placeholder="Digite um valor" addonBefore={
-      <Button style="transparent" size="none">
-        <Icon className="search" size={20} />
-      </Button>
-    } />
-  </div>
-));
-
-stories.addWithInfo('Addon after', () => (
-  <div>
-    <FormControl type="password" placeholder="Digite um valor" addonAfter=".00" />
-    <br /><br />
-    <FormControl type="password" placeholder="Digite um valor" addonAfter={
-      <Button style="transparent" size="none">
-        <Icon className="search" size={20} />
-      </Button>
-    } />
   </div>
 ));
 
