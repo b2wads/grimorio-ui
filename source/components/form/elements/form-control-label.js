@@ -16,10 +16,12 @@ class FormControlLabel extends Component {
     super(props, context);
 
     this.state = {
-      active: this.hasValue(props) ? true : false,
+      focused: false,
+      active: this.verifyPropsValue(props),
     };
 
-    this.handleLabel = this.handleLabel.bind(this);
+    this.onFocusLabel = this.onFocusLabel.bind(this);
+    this.onBlurLabel = this.onBlurLabel.bind(this);
   }
 
   static propTypes = {
@@ -37,23 +39,29 @@ class FormControlLabel extends Component {
     $formGroup: PropTypes.object,
   };
 
-  hasValue(props) {
-    return (
-      (props.value !== undefined && props.value !== null && props.value !== '') ||
-      (props.defaultValue !== undefined && props.defaultValue !== null && props.defaultValue !== '')
-    );
+  verifyPropsValue(props) {
+    return this.hasValue(props.value) || this.hasValue(props.defaultValue);
   }
 
-  handleLabel(event) {
-    if (event && event.target.value === '') {
-      this.setState({ active: !this.state.active });
-    }
+  hasValue(value) {
+    return value !== undefined && value !== null && value !== '';
+  }
+
+  onBlurLabel(event) {
+    const value = event && event.target.value;
+    this.setState({ active: this.hasValue(value), focused: false });
+
     this.props.onBlur && this.props.onBlur(event);
   }
 
+  onFocusLabel(event) {
+    this.setState({ active: true, focused: true });
+    this.props.onFocus && this.props.onFocus(event);
+  }
+
   componentDidUpdate(prevProps) {
-    if (this.hasValue(prevProps) !== this.hasValue(this.props)) {
-      this.setState({ active: this.hasValue(this.props) });
+    if (prevProps.value !== this.props.value && !this.state.focused) {
+      this.setState({ active: this.hasValue(this.props.value) });
     }
   }
 
@@ -82,15 +90,15 @@ class FormControlLabel extends Component {
     } else {
       return (
         <div className={styles.labelWrapper}>
-          <FormLabel className={labelClasses} onClick={this.handleLabel}>{label}</FormLabel>
+          <FormLabel className={labelClasses}>{label}</FormLabel>
           <FormControl
             placeholder={this.state.active ? placeholder : ''}
             inputClassName={inputClasses}
-            onFocus={this.handleLabel}
             onChange={onChange}
             type={type}
             {...rest}
-            onBlur={this.handleLabel}
+            onFocus={this.onFocusLabel}
+            onBlur={this.onBlurLabel}
           />
         </div>
       );
