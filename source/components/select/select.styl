@@ -75,8 +75,11 @@ $field {
   @extend $field;
   font-size: inherit;
   line-height: 1;
+  overflow: hidden;
   padding-right: 15px;
   padding-top: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &.isPlaceholder {
     color: $placeholder;
@@ -138,12 +141,11 @@ $field {
 }
 
 .option {
-  align-items: center;
   color: $c-text;
   cursor: pointer;
-  display: flex;
   fill: $c-text;
   padding: 10px 16px;
+  // word-wrap: break-word;
 
   &:hover {
     background: $c-support-light;
@@ -156,4 +158,10 @@ $field {
 
 .optionIcon {
   margin-right: 5px;
+}
+
+.optionContent {
+  display: inline-block;
+  vertical-align: middle;
+  word-break: break-all;
 }

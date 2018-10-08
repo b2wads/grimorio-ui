@@ -3,12 +3,12 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 72.7 112" style="enable-background:new 0 0 72.7 112;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#989FA3;}
-	.st1{fill:#64C0B9;}
+	.afl-ico-logo0{fill:#989FA3;}
+	.afl-ico-logo1{fill:#00b8ad;}
 </style>
 <g>
-	<polygon class="st0" points="72.7,48.1 0,10.6 0,0 72.7,37.5 	"/>
-	<polygon class="st0" points="31.3,60.8 0,76.8 0,88.5 31.3,71.9 	"/>
-	<polygon class="st1" points="0,24.2 0,35.1 64.1,68.2 0,101.4 0,111.9 72.7,75.3 72.7,61.8 	"/>
+	<polygon class="afl-ico-logo0" points="72.7,48.1 0,10.6 0,0 72.7,37.5 	"/>
+	<polygon class="afl-ico-logo0" points="31.3,60.8 0,76.8 0,88.5 31.3,71.9 	"/>
+	<polygon class="afl-ico-logo1" points="0,24.2 0,35.1 64.1,68.2 0,101.4 0,111.9 72.7,75.3 72.7,61.8 	"/>
 </g>
 </svg>

@@ -154,8 +154,9 @@ stories.addWithInfo('Manual', withState(manualState)(({ store }) => {
     }}
     open={store.manualOpen}
     defaultValue="val2"
+    style={{ width: '170px' }}
   >
-    <SelectOption value="val1">Manual Option One</SelectOption>
+    <SelectOption value="val1">Manual Option One xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxx</SelectOption>
     <SelectOption value="val2">Manual Option Two</SelectOption>
   </Select>
 }));
