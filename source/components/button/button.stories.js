@@ -91,11 +91,12 @@ stories.addWithInfo('With icon', () => (
     <Button iconLeft="person" style="primary">
       Primary Medium
     </Button>&nbsp;
-    <Button style="secondary" size="small" iconRight="link" >
+    <Button style="secondary" size="small" iconRight="insert_link" >
       Secondary Small
     </Button>&nbsp;
     <Button style="clean" iconLeft="person" iconRight="keyboard_arrow_down" size="small">
       Clean Small
     </Button>&nbsp;
+    <Button iconLeft="person" style="outline">Outline</Button>&nbsp;
   </div>
 ));

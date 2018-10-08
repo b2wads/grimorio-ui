@@ -105,6 +105,12 @@ class FormControl extends PureComponent {
     );
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.checked !== this.props.checked) {
+      this.setState({ checked: this.props.checked });
+    }
+  }
+
   valueModifier(event, onMask, onChange, validate, onValidate) {
     const { value } = event.target;
 
@@ -178,7 +184,7 @@ class FormControl extends PureComponent {
       );
     } else if (['radio', 'checkbox'].indexOf(type) !== -1) {
       const handleClick = e => {
-        this.setState({ checked: e.target.checked });
+        this.setState({ checked: type === 'radio' ? e.target.checked : !this.state.checked });
 
         if (onClick) {
           onClick(e);
@@ -202,7 +208,13 @@ class FormControl extends PureComponent {
             checked={this.state.checked}
             {...rest}
           />
-          <label className={classNames(styles.fakeInput, { [styles.isDisabled]: disabled })} htmlFor={id}>
+          <label
+            className={classNames(styles.fakeInput, {
+              [styles.isDisabled]: disabled,
+              [styles.isActive]: this.state.checked,
+            })}
+            htmlFor={id}
+          >
             {type === 'checkbox' &&
               <Icon
                 className={classNames(styles.checkIcon, { [styles.isChecked]: this.state.checked })}

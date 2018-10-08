@@ -14,13 +14,29 @@ const stories = storiesOf('Form', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({ store }) => {
+stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
   const handleChange = event => {
     store.set({ input: event.target.value });
   }
 
   const change = () => {
     store.set({ input: '' });
+  }
+
+  const changeCheck = () => {
+    store.set({ check: [1, 2] });
+  }
+
+  const toggleCheck = id => {
+    let check = store.state.check;
+
+    if (store.state.check.includes(id)) {
+      check = store.state.check.filter(chosen => chosen !== id);
+    } else {
+      check.push(id);
+    }
+
+    store.set({ check });
   }
 
   return (
@@ -76,18 +92,24 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
           <FormHelpText>Select!</FormHelpText>
         </FormGroup>
 
+        <Button onClick={changeCheck}>Marcar Checkboxes</Button>
         <FormGroup>
           <label htmlFor="check">Checkbox!</label>
-          <FormControl defaultChecked={true} type="checkbox" id="check" value="1" />
+          <FormControl onChange={() => toggleCheck(1)} checked={store.state.check.includes(1)} type="checkbox" id="check" value="1" />
+        </FormGroup>
+
+        <FormGroup>
+          <label htmlFor="check2">Checkbox2!</label>
+          <FormControl onChange={() => toggleCheck(2)} checked={store.state.check.includes(2)} type="checkbox" id="check2" value="2" />
         </FormGroup>
 
         <FormGroup>
           <label htmlFor="radio">Radio!</label>
           <FormControl type="radio" name="test" id="radio" value="1" />
-
+          <br/>
           <label htmlFor="radio2">Radio2!</label>
           <FormControl type="radio" name="test" id="radio2" value="2" />
-
+          <br/>
           <label htmlFor="radio3">Radio3!</label>
           <FormControl type="radio" name="test" id="radio3" value="3" />
         </FormGroup>
