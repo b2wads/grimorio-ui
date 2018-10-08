@@ -17,7 +17,6 @@ class FormControl extends PureComponent {
 
     this.state = {
       value: props.value,
-      checked: props.checked || props.defaultChecked,
     };
 
     this.type = this.props.type;
@@ -105,12 +104,6 @@ class FormControl extends PureComponent {
     );
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.checked !== this.props.checked) {
-      this.setState({ checked: this.props.checked });
-    }
-  }
-
   valueModifier(event, onMask, onChange, validate, onValidate) {
     const { value } = event.target;
 
@@ -132,7 +125,6 @@ class FormControl extends PureComponent {
     const {
       getRef,
       onChange,
-      onClick,
       onFocus,
       onBlur,
       disabled,
@@ -183,14 +175,6 @@ class FormControl extends PureComponent {
         </Select>
       );
     } else if (['radio', 'checkbox'].indexOf(type) !== -1) {
-      const handleClick = e => {
-        this.setState({ checked: type === 'radio' ? e.target.checked : !this.state.checked });
-
-        if (onClick) {
-          onClick(e);
-        }
-      };
-
       return (
         <div className={componentClass}>
           <Component
@@ -199,25 +183,23 @@ class FormControl extends PureComponent {
             placeholder={placeholder}
             id={id}
             onChange={handleChange}
-            onClick={handleClick}
             onFocus={onFocus}
             onBlur={onBlur}
             disabled={disabled}
             name={name}
             value={this.state.value}
-            checked={this.state.checked}
             {...rest}
           />
           <label
             className={classNames(styles.fakeInput, {
               [styles.isDisabled]: disabled,
-              [styles.isActive]: this.state.checked,
+              [styles.isActive]: this.props.checked,
             })}
             htmlFor={id}
           >
             {type === 'checkbox' &&
               <Icon
-                className={classNames(styles.checkIcon, { [styles.isChecked]: this.state.checked })}
+                className={classNames(styles.checkIcon, { [styles.isChecked]: this.props.checked })}
                 name="check"
               />}
           </label>
@@ -233,7 +215,6 @@ class FormControl extends PureComponent {
           id={controlId}
           onChange={handleChange}
           onFocus={onFocus}
-          onClick={onClick}
           onBlur={onBlur}
           disabled={disabled}
           name={name}
