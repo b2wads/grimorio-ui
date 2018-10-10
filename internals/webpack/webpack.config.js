@@ -77,6 +77,10 @@ const baseConfig = {
         }),
       },
       {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
         test: /\.(jpe?g|jpg|gif|ico|png|woff|woff2|eot|ttf)$/,
         include: path.resolve(__dirname, '../../source/'),
         exclude: /(node_modules)/,
