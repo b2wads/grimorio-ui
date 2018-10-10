@@ -67,6 +67,7 @@ class DatePicker extends PureComponent {
 
   render() {
     const { startDate, endDate, focusedInput } = this.state;
+    const { className, ...rest } = this.props;
     const labelClasses = classNames(styles.label, {
       [styles.isActive]: this.hasDates() || focusedInput,
     });
@@ -76,7 +77,7 @@ class DatePicker extends PureComponent {
     });
 
     return (
-      <div ref={el => (this.calendarWrap = el)}>
+      <div className={classNames(styles.wrap, className)} ref={el => (this.calendarWrap = el)} {...rest}>
         <div className={styles.labelWrapper}>
           <span className={labelClasses}>{this.props.label}</span>
           <div onClick={this.toggleCalendar} className={styles.input}>
