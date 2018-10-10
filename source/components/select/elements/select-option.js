@@ -14,7 +14,7 @@ class SelectOption extends PureComponent {
         onClick={onSelect({ name: children, value })}
       >
         {icon && <Icon className={styles.optionIcon} size="18" name={icon} />}
-        {children}
+        <span className={styles.optionContent}>{children}</span>
       </li>
     );
   }

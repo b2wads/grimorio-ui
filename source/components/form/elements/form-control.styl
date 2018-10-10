@@ -65,7 +65,7 @@ $radioCheckbox {
   display: flex;
   height: 20px;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   width: 20px;
 
   &.isDisabled {
@@ -150,7 +150,7 @@ $addon {
     height 10px;
     border-radius: 50%;
     background: $c-support-dark;
-    transition: all .3s ease;
+    transition: all 0.2s ease;
   }
 }
 
@@ -164,6 +164,12 @@ $addon {
   .fakeInput {
     @extend $radioCheckbox;
     border-radius: 3px;
+
+    &.isActive {
+      background: $c-support-dark;
+      border-color: $c-support-dark;
+      transition: all 0.2s ease;
+    }
   }
 
   .checkIcon {
@@ -173,12 +179,6 @@ $addon {
 
   .checkIcon.isChecked {
     display: block;
-  }
-
-  input[type="checkbox"]:checked ~ .fakeInput {
-    background: $c-support-dark;
-    border-color: $c-support-dark;
-    transition: all .3s ease;
   }
 }
 

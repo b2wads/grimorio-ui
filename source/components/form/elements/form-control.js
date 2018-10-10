@@ -17,7 +17,6 @@ class FormControl extends PureComponent {
 
     this.state = {
       value: props.value,
-      checked: props.checked || props.defaultChecked,
     };
 
     this.type = this.props.type;
@@ -28,8 +27,6 @@ class FormControl extends PureComponent {
 
   static defaultProps = {
     disabled: false,
-    addonBefore: false,
-    addonAfter: false,
     onChange: () => {},
     onFocus: () => {},
     onBlur: () => {},
@@ -50,8 +47,6 @@ class FormControl extends PureComponent {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     checked: PropTypes.bool,
-    addonAfter: PropTypes.node,
-    addonBefore: PropTypes.node,
     feedback: PropTypes.bool,
     outline: PropTypes.bool,
     type: PropTypes.oneOf([
@@ -109,29 +104,20 @@ class FormControl extends PureComponent {
     );
   }
 
-  addonRender(type, children) {
-    if (!type || !children) {
-      return null;
+  valueModifier(event, onMask, onChange, validate, onValidate) {
+    const { value } = event.target;
+
+    const validation = () => {
+      if (validate && onValidate) {
+        onValidate(fieldsValidation(this.state.value, this.props.validate));
+      }
+    };
+
+    this.setState({ value: onMask ? onMask(value) : value }, validation());
+
+    if (onChange) {
+      onChange(event);
     }
-
-    const style = {};
-
-    if (this.props.addonColor) {
-      style.color = this.props.addonColor;
-      style.fill = this.props.addonColor;
-    }
-
-    return (
-      <span
-        onClick={!this.props.disabled ? this.props.onFocus : ''}
-        className={classNames(styles[`form-addon-${type}`], {
-          [styles['form-addon--disabled']]: this.props.disabled,
-        })}
-        style={style}
-      >
-        {children}
-      </span>
-    );
   }
 
   componentRender(controlId, type) {
@@ -139,7 +125,6 @@ class FormControl extends PureComponent {
     const {
       getRef,
       onChange,
-      onClick,
       onFocus,
       onBlur,
       disabled,
@@ -154,10 +139,6 @@ class FormControl extends PureComponent {
       outline,
       ...rest
     } = this.props;
-
-    delete rest.addonBefore;
-    delete rest.addonAfter;
-    delete rest.feedback;
 
     const form = this.context.$form;
     const formStyleType = (form && form.styleType) || undefined;
@@ -174,26 +155,12 @@ class FormControl extends PureComponent {
       },
       inputClassName
     );
-    let tagType;
-    // Has type property
-    if (this.hasTypeProperty) {
-      tagType = type;
-    }
 
-    let handleChange = onChange;
-    if (onMask || validate) {
-      handleChange = e => {
-        this.setState({ value: onMask ? onMask(e.target.value) : e.target.value }, () => {
-          if (validate && onValidate) {
-            onValidate(fieldsValidation(this.state.value, this.props.validate));
-          }
-        });
+    const handleChange = onMask || validate
+      ? e => this.valueModifier(e, onMask, onChange, validate, onValidate)
+      : onChange;
 
-        if (onChange) {
-          onChange(e);
-        }
-      };
-    }
+    delete rest.feedback;
 
     if (type === 'select') {
       return (
@@ -208,35 +175,31 @@ class FormControl extends PureComponent {
         </Select>
       );
     } else if (['radio', 'checkbox'].indexOf(type) !== -1) {
-      const handleClick = e => {
-        this.setState({ checked: e.target.checked });
-
-        if (onClick) {
-          onClick(e);
-        }
-      };
-
       return (
         <div className={componentClass}>
           <Component
-            type={tagType}
+            type={type}
             ref={getRef}
             placeholder={placeholder}
             id={id}
             onChange={handleChange}
-            onClick={handleClick}
             onFocus={onFocus}
             onBlur={onBlur}
             disabled={disabled}
             name={name}
             value={this.state.value}
-            checked={this.state.checked}
             {...rest}
           />
-          <label className={classNames(styles.fakeInput, { [styles.isDisabled]: disabled })} htmlFor={id}>
+          <label
+            className={classNames(styles.fakeInput, {
+              [styles.isDisabled]: disabled,
+              [styles.isActive]: this.props.checked,
+            })}
+            htmlFor={id}
+          >
             {type === 'checkbox' &&
               <Icon
-                className={classNames(styles.checkIcon, { [styles.isChecked]: this.state.checked })}
+                className={classNames(styles.checkIcon, { [styles.isChecked]: this.props.checked })}
                 name="check"
               />}
           </label>
@@ -245,14 +208,13 @@ class FormControl extends PureComponent {
     } else {
       return (
         <Component
-          type={tagType}
+          type={type}
           ref={getRef}
           className={componentClass}
           placeholder={placeholder}
           id={controlId}
           onChange={handleChange}
           onFocus={onFocus}
-          onClick={onClick}
           onBlur={onBlur}
           disabled={disabled}
           name={name}
@@ -282,17 +244,15 @@ class FormControl extends PureComponent {
       [styles[`has-${validationState}`]]: validationState,
       [styles.isCheckboxOrRadio]: isCheckboxOrRadio,
     });
+
     // internal components
-    const generateAddonBefore = this.addonRender('before', addonBefore);
-    const generateAddonAfter = this.addonRender('after', addonAfter);
     const generateFeedback = FormControl.feedbackRender(validationState, feedback, addonAfter);
+
     // component
     const generateComponent = this.componentRender(controlId, type);
 
     return (
       <div className={addonClass}>
-        {generateAddonBefore}
-        {generateAddonAfter}
         {generateComponent}
         {generateFeedback}
       </div>

@@ -8,7 +8,6 @@ import moment from 'moment';
 import styles from './product.styl';
 
 import Svg from '../svg';
-import Icon from '../icon';
 import Button from '../button';
 import Tooltip from '../tooltip';
 
@@ -152,9 +151,9 @@ class Product extends PureComponent {
             data-clipboard-text={copyValue ? copyValue : link}
             className={classNames(styles.copy, btnId)}
             size="small"
+            iconRight={linkCopied ? 'check' : 'insert_link'}
           >
             {linkCopied ? 'Copiado!' : btnText}
-            <Icon className={styles.copyIcon} name={linkCopied ? 'check' : 'link'} size={18} />
           </Button>
           <Svg
             onClick={this.share('facebook', link)}

@@ -4,7 +4,6 @@ import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import Button from '../button';
-import Icon from '../icon';
 
 import { fieldsMask } from '../../helpers/mask';
 
@@ -15,9 +14,29 @@ const stories = storiesOf('Form', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({ store }) => {
+stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
   const handleChange = event => {
     store.set({ input: event.target.value });
+  }
+
+  const change = () => {
+    store.set({ input: '' });
+  }
+
+  const changeCheck = () => {
+    store.set({ check: [1, 2] });
+  }
+
+  const toggleCheck = id => {
+    let check = store.state.check;
+
+    if (store.state.check.includes(id)) {
+      check = store.state.check.filter(chosen => chosen !== id);
+    } else {
+      check.push(id);
+    }
+
+    store.set({ check });
   }
 
   return (
@@ -44,6 +63,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
         </FormActions>
       </Form>
       <Form onSubmit={ ()=>{} }>
+        <Button onClick={change}>Deixar vazio!</Button>
         <FormGroup>
           <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" value={store.state.input} onChange={handleChange} />
           <FormHelpText>Tem valor default controlado</FormHelpText>
@@ -72,18 +92,24 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default' })(({
           <FormHelpText>Select!</FormHelpText>
         </FormGroup>
 
+        <Button onClick={changeCheck}>Marcar Checkboxes</Button>
         <FormGroup>
           <label htmlFor="check">Checkbox!</label>
-          <FormControl defaultChecked={true} type="checkbox" id="check" value="1" />
+          <FormControl onChange={() => toggleCheck(1)} checked={store.state.check.includes(1)} type="checkbox" id="check" value="1" />
+        </FormGroup>
+
+        <FormGroup>
+          <label htmlFor="check2">Checkbox2!</label>
+          <FormControl onChange={() => toggleCheck(2)} checked={store.state.check.includes(2)} type="checkbox" id="check2" value="2" />
         </FormGroup>
 
         <FormGroup>
           <label htmlFor="radio">Radio!</label>
           <FormControl type="radio" name="test" id="radio" value="1" />
-
+          <br/>
           <label htmlFor="radio2">Radio2!</label>
           <FormControl type="radio" name="test" id="radio2" value="2" />
-
+          <br/>
           <label htmlFor="radio3">Radio3!</label>
           <FormControl type="radio" name="test" id="radio3" value="3" />
         </FormGroup>
@@ -151,15 +177,15 @@ stories.addWithInfo('With validation', () => (
   <div>
     <FormGroup validationState="success">
       <FormLabel>Nome:</FormLabel>
-      <FormControl addonBefore="@"  placeholder="Form group with input" feedback />
+      <FormControl  placeholder="Form group with input" feedback />
     </FormGroup>
     <FormGroup validationState="warning">
       <FormLabel>Nome:</FormLabel>
-      <FormControl addonBefore="@"   placeholder="Form group with input" feedback />
+      <FormControl placeholder="Form group with input" feedback />
     </FormGroup>
     <FormGroup validationState="error">
       <FormLabel>Nome:</FormLabel>
-      <FormControl addonBefore="@"  placeholder="Form group with input" feedback />
+      <FormControl  placeholder="Form group with input" feedback />
       <span className="error">testte</span>
     </FormGroup>
   </div>
@@ -170,8 +196,6 @@ stories.addWithInfo('Knobs', () => (
   <div>
     <FormControl
       type={text('Type', 'text')}
-      addonBefore={text('Addon Before', '@')}
-      addonAfter={text('Addon After', '.00')}
       placeholder={text('Placeholder', 'Digite algo')}
       disabled={boolean('Disabled', false)}
       onFocus={action('focus')}
@@ -203,30 +227,6 @@ stories.addWithInfo('Disabled', () => (
       <SelectOption value="b">b</SelectOption>
     </FormControl>
     <FormControl type="textarea" disabled />
-  </div>
-));
-
-stories.addWithInfo('Addon before', () => (
-  <div>
-    <FormControl type="password" placeholder="Digite um nome"  addonBefore={<FormControl type="radio" />} />
-    <br /><br />
-    <FormControl type="password" placeholder="Digite um valor" addonBefore={
-      <Button style="transparent" size="none">
-        <Icon className="search" size={20} />
-      </Button>
-    } />
-  </div>
-));
-
-stories.addWithInfo('Addon after', () => (
-  <div>
-    <FormControl type="password" placeholder="Digite um valor" addonAfter=".00" />
-    <br /><br />
-    <FormControl type="password" placeholder="Digite um valor" addonAfter={
-      <Button style="transparent" size="none">
-        <Icon className="search" size={20} />
-      </Button>
-    } />
   </div>
 ));
 

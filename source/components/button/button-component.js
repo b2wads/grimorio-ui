@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
+import Loader from '../loader';
+import Icon from '../icon';
+
 // styles
 import styles from './button.styl';
 
@@ -18,6 +21,9 @@ class Button extends PureComponent {
     onClick: PropTypes.func,
     children: PropTypes.any.isRequired,
     className: PropTypes.string,
+    loading: PropTypes.bool,
+    iconLeft: PropTypes.string,
+    iconRight: PropTypes.string,
   };
 
   static defaultProps = {
@@ -25,11 +31,19 @@ class Button extends PureComponent {
     style: 'primary',
     size: 'medium',
     type: 'button',
-    loading: false,
     children: false,
     className: undefined,
     active: false,
   };
+
+  getLoaderColor() {
+    const { style } = this.props;
+    if (['primary', 'secondary'].indexOf(style) !== -1) {
+      return 'secondary';
+    } else {
+      return 'primary';
+    }
+  }
 
   render() {
     const {
@@ -43,6 +57,9 @@ class Button extends PureComponent {
       type,
       className,
       block,
+      iconLeft,
+      iconRight,
+      loading,
       ...elementProps
     } = this.props;
 
@@ -60,7 +77,10 @@ class Button extends PureComponent {
 
     return (
       <button {...elementProps} type={type} className={fullClassName} onClick={onClick} disabled={disabled}>
+        {iconLeft && <Icon className={styles.iconLeft} size={18} name={iconLeft} />}
         {children}
+        {loading && <Loader className={styles.btnLoad} size="17px" color={this.getLoaderColor()} />}
+        {iconRight && <Icon className={styles.iconRight} size={18} name={iconRight} />}
       </button>
     );
   }

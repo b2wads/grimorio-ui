@@ -15,6 +15,7 @@ class Panel extends PureComponent {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     contentClassName: PropTypes.string,
     footer: PropTypes.element,
+    footerClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -39,10 +40,10 @@ class Panel extends PureComponent {
     }
   }
 
-  renderFooter(footer, size) {
+  renderFooter(footer, size, footerClassName) {
     if (footer) {
       return (
-        <footer className={classNames(styles.footer, { [styles[size]]: size })}>
+        <footer className={classNames(styles.footer, { [styles[size]]: size }, footerClassName)}>
           {footer}
         </footer>
       );
@@ -50,10 +51,22 @@ class Panel extends PureComponent {
   }
 
   render() {
-    const { title, children, className, brand, size, footer, contentClassName, ...elementProps } = this.props;
+    const {
+      title,
+      children,
+      className,
+      brand,
+      size,
+      footer,
+      contentClassName,
+      footerClassName,
+      ...elementProps
+    } = this.props;
+
     const fullClassName = classNames(className, {
       [styles.default]: true,
     });
+
     const wrapperClass = classNames(styles.wrapper, {
       [styles[size]]: size,
       [styles.isBrand]: brand,
@@ -67,7 +80,7 @@ class Panel extends PureComponent {
             {children}
           </div>
         </div>
-        {this.renderFooter(footer, size)}
+        {this.renderFooter(footer, size, footerClassName)}
       </article>
     );
   }

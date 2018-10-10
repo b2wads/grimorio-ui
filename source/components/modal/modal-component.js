@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Icon from '../icon';
+import Svg from '../svg';
 import Button from '../button';
 
 import styles from './modal.styl';
@@ -63,11 +64,9 @@ class Modal extends PureComponent {
     return (
       <div className={styles.base}>
         <div className={styles.imageWrap}>
-          <Icon
-            size="55px"
-            className={classNames(styles.icon, { [styles.fail]: type === 'fail' })}
-            name={type === 'success' ? 'check_circle' : 'warning'}
-          />
+          {type === 'success'
+            ? <Svg src="success" width="70px" height="70px" />
+            : <Svg src="fail" width="50px" height="50px" />}
         </div>
 
         <div className={styles.message}>
@@ -89,7 +88,7 @@ class Modal extends PureComponent {
     return (
       <div className={styles.base}>
         <div className={styles.imageWrap}>
-          <Icon size="55px" className={classNames(styles.icon, styles.fail)} name="warning" />
+          <Svg src="fail" width="50px" height="50px" />
         </div>
 
         <div className={styles.message}>
