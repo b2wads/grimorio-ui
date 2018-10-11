@@ -33,3 +33,24 @@ stories.addWithInfo('Default Values', () => {
     </div>
   );
 });
+
+stories.addWithInfo('Align', () => {
+  return (
+    <div>
+      <DatePicker
+        align="left"
+        label="Align Calendar Left"
+        onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
+      />
+
+      <br/>
+      <br/>
+
+      <DatePicker
+        align="right"
+        label="Align Calendar Right"
+        onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
+      />
+    </div>
+  );
+});

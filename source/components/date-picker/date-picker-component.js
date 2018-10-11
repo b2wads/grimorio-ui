@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
@@ -11,7 +11,7 @@ import Icon from '../icon';
 
 import styles from './date-picker.styl';
 
-class DatePicker extends PureComponent {
+class DatePicker extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -30,12 +30,18 @@ class DatePicker extends PureComponent {
     defaultStartDate: PropTypes.instanceOf(moment),
     defaultEndDate: PropTypes.instanceOf(moment),
     label: PropTypes.string,
+    align: PropTypes.oneOf(['left', 'right']),
   };
 
   static defaultProps = {
     onChange: () => {},
     label: 'Data',
+    align: 'left',
   };
+
+  shouldComponenteUpdate() {
+    return false;
+  }
 
   componentWillMount() {
     document.addEventListener('click', this.verifyClickOutside, false);
@@ -67,13 +73,14 @@ class DatePicker extends PureComponent {
 
   render() {
     const { startDate, endDate, focusedInput } = this.state;
-    const { className, ...rest } = this.props;
+    const { className, align, ...rest } = this.props;
     const labelClasses = classNames(styles.label, {
       [styles.isActive]: this.hasDates() || focusedInput,
     });
 
     const calendarClasses = classNames(styles.calendar, {
       [styles.isActive]: focusedInput,
+      [styles[align]]: align,
     });
 
     return (
