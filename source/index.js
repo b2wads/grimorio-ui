@@ -24,6 +24,7 @@ import Table from './components/table';
 import TablePanel from './components/table-panel';
 import Loader from './components/loader';
 import DatePicker from './components/date-picker';
+import Tooltip from './components/tooltip';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -63,4 +64,5 @@ export {
   Loader,
   Modal,
   DatePicker,
+  Tooltip,
 };
