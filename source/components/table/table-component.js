@@ -52,11 +52,13 @@ class Table extends PureComponent {
           const currentSchema = schema[key];
           const headClass = classNames(styles.cellHead, currentSchema.className);
 
-          return (
-            <th width={currentSchema.width} key={uniqueId()} className={headClass}>
-              {currentSchema.renderHead ? currentSchema.renderHead(currentSchema) : currentSchema.title}
-            </th>
-          );
+          if (Object.keys(currentSchema).length) {
+            return (
+              <th width={currentSchema.width} key={uniqueId()} className={headClass}>
+                {currentSchema.renderHead ? currentSchema.renderHead(currentSchema) : currentSchema.title}
+              </th>
+            );
+          }
         })}
       </tr>
     );
@@ -79,15 +81,17 @@ class Table extends PureComponent {
       <tr key={uniqueId()} className={classNames(styles.row, this.generateSpecialStyle(specialCase, infoRow))}>
         {Object.keys(schema).map(key => {
           const currentSchema = schema[key];
-          return (
-            <td
-              width={currentSchema.width}
-              key={uniqueId()}
-              className={classNames(styles.cell, currentSchema.className)}
-            >
-              {currentSchema.render ? currentSchema.render(infoRow) : infoRow[key]}
-            </td>
-          );
+          if (Object.keys(currentSchema).length) {
+            return (
+              <td
+                width={currentSchema.width}
+                key={uniqueId()}
+                className={classNames(styles.cell, currentSchema.className)}
+              >
+                {currentSchema.render ? currentSchema.render(infoRow) : infoRow[key]}
+              </td>
+            );
+          }
         })}
       </tr>
     ));
