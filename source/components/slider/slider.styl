@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$default {}
+
+/* ==========================================================================
+   Slider Elements
+========================================================================== */
+
+/* ==========================================================================
+   Slider Props
+========================================================================== */
+
+/* Default
+ ================ */
+.wrapper {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.slide {}
+
+.slide.current.next {
+  animation: slideleft 0.5s forwards;
+}
+
+.slide.current.prev {
+  animation: slideright 0.5s forwards;
+}
+
+@keyframes slideleft {
+  0% { transform: translateX(50%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes slideright {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  width: 100%;
+
+  button {
+    background: none;
+    border: 1px solid gray;
+    border-radius: 2px;
+    color: gray;
+    height: 37px;
+    width: 39px;
+
+    &:hover {
+      box-shadow: 1px 1px 8px -3px gray;
+      color: gray;
+    }
+
+    &:active {
+      box-shadow: 1px 1px 8px -2px gray;
+    }
+  }
+
+  button:last-child {
+    margin-left: 10px;
+  }
+
+  button:focus {
+    outline: 0;
+  }
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  width: 100%;
+
+  li {
+    background: gray;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0;
+    height: 7px;
+    margin-right: 3px;
+    width: 7px;
+  }
+
+  li:last-child {
+    margin: 0;
+  }
+
+  li.active {
+    background: red;
+  }
+}
