@@ -3,10 +3,13 @@
 ========================================================================== */
 @import '../../styl/00-settings/_variables.styl';
 
-/* ==========================================================================
-   Placeholders
-========================================================================== */
-$default {}
+$social-ico {
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+$c-newlink = #767676;
 
 /* ==========================================================================
    LinkGenerator Elements
@@ -14,19 +17,95 @@ $default {}
 
 .field {
   margin-bottom: 25px;
+  position: relative;
 }
 
 .row {
   padding-top: 15px;
 }
 
-/* ==========================================================================
-   LinkGenerator Props
-========================================================================== */
+.iconResultWrap {
+  text-align: center;
+}
 
-/* Default
- ================ */
+.iconResult {
+  margin-bottom: 15px;
+}
 
-.default {
-  @extend $default;
+.text {
+  margin-bottom: 25px;
+}
+
+.title {
+  color: $c-support;
+  font-size: 21px;
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+
+.textResult {
+  margin-bottom: 15px;
+}
+
+.sendWrap {
+  text-align: right;
+}
+
+.fieldCopy:disabled{
+  background: none;
+  color: $c-primary;
+  cursor: text;
+  padding-left: 20px;
+}
+
+.fieldIcon {
+  bottom: 8px;
+  fill: $c-text;
+  left: 0;
+  position: absolute;
+}
+
+.social {
+  margin-top: $gutter-px;
+  padding-bottom: 2px;
+}
+
+.copy {
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+.newLink {
+  background: $c-newlink;
+  margin-right: 5px;
+
+  &:hover {
+    background: lighten($c-newlink, 5%);
+  }
+}
+
+.copyIcon {
+  margin-left: 5px;
+}
+
+.facebook {
+  @extend $social-ico;
+  fill: $c-facebook;
+}
+
+.twitter {
+  @extend $social-ico;
+  fill: $c-twitter;
+}
+
+.feedback {
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+.feedbackIcon {
+  fill: $c-primary;
+  margin-right: 3px;
 }

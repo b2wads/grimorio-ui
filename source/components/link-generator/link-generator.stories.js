@@ -10,7 +10,7 @@ stories.addDecorator(withKnobs);
 
 stories.addWithInfo('Generate', () => (
         <LinkGenerator
-            onGenerateClick={res => console.log(res)}
+            onGenerate={res => console.log(res)}
             sites={[{value: 1, name: 'site 1'}]}
         />
     )
@@ -19,8 +19,9 @@ stories.addWithInfo('Generate', () => (
 stories.addWithInfo('Finish', () => (
     <LinkGenerator
         stage="finished"
-        onGenerateClick={res => console.log(res)}
+        linkGenerated="https://youtu.be/RySHDUU2juM"
+        onGenerate={res => console.log(res)}
         sites={[{value: 1, name: 'site 1'}]}
     />
-)
+  )
 );
