@@ -6,7 +6,31 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$default {}
+$c-activeDot = #767676;
+$c-arrow = #A8A7A8;
+
+$arrowBtn {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 1;
+
+  svg {
+    fill: $c-arrow;
+  }
+
+  &:hover {}
+
+  &:active {}
+
+  &:focus {
+    outline: 0;
+  }
+}
 
 /* ==========================================================================
    Slider Elements
@@ -25,14 +49,21 @@ $default {}
   overflow: hidden;
 }
 
-.slide {}
-
-.slide.current.next {
-  animation: slideleft 0.5s forwards;
+.content {
+  position: relative;
+  padding: 0 25px;
 }
 
-.slide.current.prev {
-  animation: slideright 0.5s forwards;
+.slide {}
+
+.currentSlide {
+  &.next {
+    animation: slideleft 0.5s forwards;
+  }
+
+  &.prev {
+    animation: slideright 0.5s forwards;
+  }
 }
 
 @keyframes slideleft {
@@ -45,60 +76,52 @@ $default {}
   100% { transform: translateX(0%); }
 }
 
-.btn {
+.arrow {
   display: flex;
   justify-content: center;
   padding: 0;
   width: 100%;
+}
 
-  button {
-    background: none;
-    border: 1px solid gray;
-    border-radius: 2px;
-    color: gray;
-    height: 37px;
-    width: 39px;
+.arrowLeft {
+  @extend $arrowBtn;
+  left: -7px;
+}
 
-    &:hover {
-      box-shadow: 1px 1px 8px -3px gray;
-      color: gray;
-    }
-
-    &:active {
-      box-shadow: 1px 1px 8px -2px gray;
-    }
-  }
-
-  button:last-child {
-    margin-left: 10px;
-  }
-
-  button:focus {
-    outline: 0;
-  }
+.arrowRight {
+  @extend $arrowBtn;
+  right: -7px;
 }
 
 .dots {
+  bottom: 0;
   display: flex;
   justify-content: center;
-  padding: 0;
+  left: 0;
+  margin-bottom: 0;
+  padding: 7px 0;
+  position: absolute;
   width: 100%;
 
-  li {
-    background: gray;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 0;
-    height: 7px;
-    margin-right: 3px;
-    width: 7px;
+  &.hasDotsBackground {
+    background: rgba(255, 255, 255, 0.4);
   }
+}
 
-  li:last-child {
+.dotsBtn {
+  background: $white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0;
+  height: 13px;
+  margin-right: 8px;
+  width: 13px;
+
+  &:last-child {
     margin: 0;
   }
 
-  li.active {
-    background: red;
+  &.isActive {
+    background: $c-activeDot;
   }
 }

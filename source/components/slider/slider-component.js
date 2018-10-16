@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
+import { uniqueId } from '../../helpers';
+
+import Icon from '../icon';
+
 import styles from './slider.styl';
 
 class Slider extends PureComponent {
@@ -21,7 +25,10 @@ class Slider extends PureComponent {
   static propTypes = {
     children: PropTypes.array,
     className: PropTypes.string,
+    dotsClassName: PropTypes.string,
+    arrowClassName: PropTypes.string,
     dots: PropTypes.bool,
+    dotsBackground: PropTypes.bool,
     arrows: PropTypes.bool,
     autoplay: PropTypes.bool,
     delay: PropTypes.number,
@@ -29,10 +36,16 @@ class Slider extends PureComponent {
 
   static defaultProps = {
     delay: 5000,
+    autoplay: false,
   };
 
   componentDidMount() {
     this.setLoop();
+  }
+
+  componentWillUnmount() {
+    const { loop } = this.state;
+    clearInterval(loop);
   }
 
   setLoop() {
@@ -84,59 +97,69 @@ class Slider extends PureComponent {
     this.setLoop();
   }
 
-  renderChildren(val) {
+  renderChildren(current) {
     const { command } = this.state;
-    return React.Children.map(this.props.children, (child, i) => {
-      if (val === i) {
+
+    return React.Children.map(this.props.children, (child, index) => {
+      if (current === index) {
         return React.cloneElement(child, {
-          className: classNames(styles.slide, styles.current, styles[command]),
+          className: classNames(styles.currentSlide, styles[command], child.props.className),
         });
       }
     });
   }
 
-  renderArrows() {
+  renderArrows(arrowClassName) {
     return (
-      <div className={styles.btn}>
-        <button onClick={() => this.prevSlide()}>
-          --
+      <div className={classNames(styles.arrow, arrowClassName)}>
+        <button className={styles.arrowLeft} onClick={() => this.prevSlide()}>
+          <Icon size="32px" name="navigate_before" />
         </button>
 
-        <button onClick={() => this.nextSlide(true)}>
-          &gt;
+        <button className={styles.arrowRight} onClick={() => this.nextSlide(true)}>
+          <Icon size="32px" name="navigate_next" />
         </button>
       </div>
     );
   }
 
-  renderDots(children) {
+  renderDots(children, dotsClassName, dotsBackground) {
     const { current } = this.state;
     return (
-      <ul className={styles.dots}>
-        {children.map((_, i) => (
-          <li className={classNames(styles.dot, { [styles.active]: current === i })} onClick={this.goTo(i)}>
-            {i + 1}
+      <ul className={classNames(styles.dots, dotsClassName, { [styles.hasDotsBackground]: dotsBackground })}>
+        {children.map((_, index) => (
+          <li
+            className={classNames(styles.dotsBtn, { [styles.isActive]: current === index })}
+            onClick={this.goTo(index)}
+            key={uniqueId()}
+          >
+            {index + 1}
           </li>
         ))}
       </ul>
     );
   }
 
+  cleanRest(rest) {
+    delete rest.autoplay;
+    delete rest.delay;
+
+    return rest;
+  }
+
   render() {
     const { current } = this.state;
-    const { children, dots, arrows, className } = this.props;
+    const { children, dots, arrows, className, dotsClassName, arrowClassName, dotsBackground, ...rest } = this.props;
+    const sliderClass = classNames(styles.content, className);
 
     return (
-      <div className={`slider__content ${!className ? '' : className}`}>
-
+      <div className={sliderClass} {...this.cleanRest(rest)}>
         <div className={styles.wrapper}>
           {this.renderChildren(current)}
         </div>
 
-        {dots && this.renderDots(children)}
-
-        {arrows && this.renderArrows()}
-
+        {dots && this.renderDots(children, dotsClassName, dotsBackground)}
+        {arrows && this.renderArrows(arrowClassName)}
       </div>
     );
   }

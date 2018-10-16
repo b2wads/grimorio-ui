@@ -8,12 +8,42 @@ const stories = storiesOf('Slider', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => (
+const style = {
+  width: '100%',
+  background: 'firebrick',
+  color: '#fff',
+  fontSize: '22px',
+  textAlign: 'center',
+  padding: '50px 0',
+};
+
+stories.addWithInfo('Arrow Dots', () => (
   <div>
     <Slider arrows dots>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
+      <div style={style}>1</div>
+      <div style={style}>2</div>
+      <div style={style}>3</div>
+    </Slider>
+  </div>
+));
+
+stories.addWithInfo('Dots Back', () => (
+  <div>
+    <Slider dots dotsBackground>
+      <div style={style}>1</div>
+      <div style={style}>2</div>
+      <div style={style}>3</div>
+      <div style={style}>4</div>
+      <div style={style}>5</div>
+    </Slider>
+  </div>
+));
+
+stories.addWithInfo('Autoplay', () => (
+  <div>
+    <Slider dots autoplay delay={2500}>
+      <div style={style}>1</div>
+      <div style={style}>2</div>
     </Slider>
   </div>
 ));
