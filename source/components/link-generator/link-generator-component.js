@@ -21,11 +21,12 @@ class LinkGenerator extends PureComponent {
       site: props.defaultSite,
       link: null,
       linkGenerated: props.linkGenerated,
-      linkCopied: true,
+      linkCopied: false,
       btnId: uniqueId('copy'),
     };
 
     this.onGenerateClick = this.onGenerateClick.bind(this);
+    this.onCleanClick = this.onCleanClick.bind(this);
     this.handleChangeSite = this.handleChangeSite.bind(this);
     this.handleChangeLink = this.handleChangeLink.bind(this);
   }
@@ -152,7 +153,7 @@ class LinkGenerator extends PureComponent {
             </Button>}
 
           {linkCopied &&
-            <Button size="small" iconRight="autorenew" className={styles.newLink}>
+            <Button size="small" iconRight="autorenew" className={styles.newLink} onClick={this.onCleanClick}>
               Novo link
             </Button>}
 
