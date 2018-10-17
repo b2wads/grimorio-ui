@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import Clipboard from 'clipboard';
@@ -196,12 +196,12 @@ class LinkGenerator extends PureComponent {
   }
 
   render() {
-    const { stage } = this.props;
+    const { stage, className } = this.props;
     return (
-      <Fragment>
+      <div className={className}>
         {stage === 'generate' && this.renderGenerate()}
         {stage === 'finished' && this.renderFinish()}
-      </Fragment>
+      </div>
     );
   }
 }
