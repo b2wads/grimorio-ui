@@ -39,6 +39,7 @@ class LinkGenerator extends PureComponent {
     loading: PropTypes.bool,
     defaultSite: PropTypes.string,
     linkGenerated: PropTypes.string,
+    text: PropTypes.string,
   };
 
   static defaultProps = {
@@ -98,15 +99,13 @@ class LinkGenerator extends PureComponent {
   }
 
   renderGenerate() {
-    const { sites, loading } = this.props;
+    const { sites, text, loading } = this.props;
 
     return (
       <Panel title="Gerador de links" contentClassName={styles.row}>
         <Form onSubmit={this.onGenerateClick}>
           <div className={styles.text}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec in porta sapien. Maecenas congue quis ipsum vel vestibulum.
-            Vestibulum suscipit, dolor sit amet aliquet dictum, nisi lectus sagittis massa.
+            {text}
           </div>
           <FormGroup className={styles.field}>
             <FormControlLabel

@@ -17,14 +17,16 @@ stories.addDecorator(withKnobs);
 
 stories.addWithInfo('Generate', () => (
     <LinkGenerator
-        onGenerate={res => console.log(res)}
-        sites={sites}
+      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in porta sapien. Maecenas congue quis ipsum vel vestibulum. Vestibulum suscipit, dolor sit amet aliquet dictum, nisi lectus sagittis massa."
+      onGenerate={res => console.log(res)}
+      sites={sites}
     />
   )
 );
 
 stories.addWithInfo('Finish', () => (
     <LinkGenerator
+      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in porta sapien. Maecenas congue quis ipsum vel vestibulum. Vestibulum suscipit, dolor sit amet aliquet dictum, nisi lectus sagittis massa."
       stage="finished"
       linkGenerated="https://youtu.be/RySHDUU2juM"
       onGenerate={res => console.log(res)}
@@ -59,6 +61,7 @@ stories.addWithInfo('Functional', withState(initialState)(({ store }) => {
   return (
     <div>
       <LinkGenerator
+        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in porta sapien. Maecenas congue quis ipsum vel vestibulum. Vestibulum suscipit, dolor sit amet aliquet dictum, nisi lectus sagittis massa."
         stage={store.state.stage}
         loading={store.state.loading}
         linkGenerated={store.state.linkGenerated}
