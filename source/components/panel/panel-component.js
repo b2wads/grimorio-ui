@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Svg from '../svg';
+import Loader from '../loader';
 
 import styles from './panel.styl';
 
@@ -16,12 +17,14 @@ class Panel extends PureComponent {
     contentClassName: PropTypes.string,
     footer: PropTypes.element,
     footerClassName: PropTypes.string,
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     brand: null,
     title: false,
     size: 'medium',
+    loading: false,
   };
 
   renderHeader(brand, title) {
@@ -60,6 +63,7 @@ class Panel extends PureComponent {
       footer,
       contentClassName,
       footerClassName,
+      loading,
       ...elementProps
     } = this.props;
 
@@ -76,9 +80,11 @@ class Panel extends PureComponent {
       <article {...elementProps} className={fullClassName}>
         <div className={wrapperClass}>
           {(title || brand) && this.renderHeader(brand, title)}
-          <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
-            {children}
-          </div>
+          {loading && <Loader size="32px" className={styles.loader} />}
+          {!loading &&
+            <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
+              {children}
+            </div>}
         </div>
         {this.renderFooter(footer, size, footerClassName)}
       </article>

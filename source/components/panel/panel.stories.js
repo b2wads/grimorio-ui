@@ -49,6 +49,14 @@ stories.addWithInfo('With Footer', () => (
   </div>
 ));
 
+stories.addWithInfo('Loading', () => (
+  <div style={{ width: '25%' }}>
+    <Panel title="Title" loading={true} footer={<Button size="large">Cadastrar Site</Button>}>
+      <p>Content</p>
+    </Panel>
+  </div>
+));
+
 stories.addWithInfo('With Brand', () => (
   <div style={{ display: 'flex' }}>
     <Panel brand="suba" style={pannelSize}>
