@@ -150,7 +150,9 @@ class Slider extends PureComponent {
   render() {
     const { current } = this.state;
     const { children, dots, arrows, className, dotsClassName, arrowClassName, dotsBackground, ...rest } = this.props;
-    const sliderClass = classNames(styles.content, className);
+    const sliderClass = classNames(styles.content, className, {
+      [styles.withArrow]: arrows,
+    });
 
     return (
       <div className={sliderClass} {...this.cleanRest(rest)}>

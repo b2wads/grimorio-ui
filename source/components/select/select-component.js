@@ -39,6 +39,8 @@ class Select extends PureComponent {
     disabled: PropTypes.bool,
     defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+    inputClassName: PropTypes.string,
+    sortItems: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -50,6 +52,7 @@ class Select extends PureComponent {
     disabled: false,
     height: 'auto',
     value: false,
+    sortItems: true,
   };
 
   componentWillMount() {
@@ -160,8 +163,8 @@ class Select extends PureComponent {
 
   renderInput() {
     const { selectedName, activeLabel } = this.state;
-    const { placeholder, disabled } = this.props;
-    const fieldClasses = classNames(styles.input, {
+    const { placeholder, disabled, inputClassName } = this.props;
+    const fieldClasses = classNames(styles.input, inputClassName, {
       [styles.isPlaceholder]: selectedName === null,
       [styles.isActive]: activeLabel,
       [styles.isDisabled]: disabled,
@@ -209,10 +212,21 @@ class Select extends PureComponent {
   }
 
   render() {
-    const { items, position, open, height, className, type, label, menuButton, ...elementProps } = this.props;
+    const {
+      items,
+      position,
+      open,
+      height,
+      className,
+      type,
+      label,
+      menuButton,
+      sortItems,
+      ...elementProps
+    } = this.props;
     const { selectedValue, menuOpen, childItems } = this.state;
     const renderItems = items.length ? items : childItems;
-    const sortedItems = this.sortItems(renderItems, selectedValue);
+    const sortedItems = sortItems ? this.sortItems(renderItems, selectedValue) : renderItems;
 
     const menuStyle = classNames(styles.menu, {
       [styles.isOpen]: open !== null ? open : menuOpen,
