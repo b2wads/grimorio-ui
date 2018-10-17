@@ -16,19 +16,19 @@ const sites = [1,2,3,4,5,].map(item => ({
 stories.addDecorator(withKnobs);
 
 stories.addWithInfo('Generate', () => (
-        <LinkGenerator
-            onGenerate={res => console.log(res)}
-            sites={sites}
-        />
-    )
+    <LinkGenerator
+        onGenerate={res => console.log(res)}
+        sites={sites}
+    />
+  )
 );
 
 stories.addWithInfo('Finish', () => (
     <LinkGenerator
-        stage="finished"
-        linkGenerated="https://youtu.be/RySHDUU2juM"
-        onGenerate={res => console.log(res)}
-        sites={sites}
+      stage="finished"
+      linkGenerated="https://youtu.be/RySHDUU2juM"
+      onGenerate={res => console.log(res)}
+      sites={sites}
     />
   )
 );
@@ -42,25 +42,6 @@ const initialState = {
 stories.addWithInfo('Functional', withState(initialState)(({ store }) => {
   const generateLink = ({ site, link }) => {
     store.set({ loading: true });
-    // fetch('https://api.rebrandly.com/v1/links', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     destination : 'https://www.youtube.com/channel/UCHK4HD0ltu1-I212icLPt3g',
-    //     domain: { fullName: 'rebrand.ly' },
-    //   }),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'apikey': '001a12f58f954bd4ac11a4ba4623b953',
-    //   }
-    // })
-    // .then(res => res.json())
-    // .then(res => {
-    //   store.set({
-    //     stage: 'finished',
-    //     loading: false,
-    //     linkGenerated: res.shortUrl,
-    //   })
-    // });
 
     setTimeout(() => {
       store.set({

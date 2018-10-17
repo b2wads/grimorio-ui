@@ -8,7 +8,7 @@ import Panel from '../panel';
 import Button from '../button';
 import Icon from '../icon';
 import Svg from '../svg';
-import { FormGroup, FormControlLabel, FormControl } from '../form';
+import Form, { FormGroup, FormControlLabel, FormControl } from '../form';
 
 import { shareOn, uniqueId } from '../../helpers';
 
@@ -58,7 +58,8 @@ class LinkGenerator extends PureComponent {
     });
   }
 
-  onGenerateClick() {
+  onGenerateClick(e) {
+    e.preventDefault();
     const { site, link } = this.state;
     this.props.onGenerate({ site, link });
   }
@@ -86,39 +87,51 @@ class LinkGenerator extends PureComponent {
     return () => shareOn[type](link);
   }
 
+  isValidUrl(url) {
+    const rx = /^((https?:\/\/)www\.(americanas|submarino|shoptime|soubarato)\.com\.br\/)[a-z-0-9.]{2,}/;
+    return rx.test(url);
+  }
+
+  shouldShareLink() {
+    const { site, link } = this.state;
+    return site !== null && this.isValidUrl(link);
+  }
+
   renderGenerate() {
     const { sites, loading } = this.props;
 
     return (
       <Panel title="Gerador de links" contentClassName={styles.row}>
-        <div className={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec in porta sapien. Maecenas congue quis ipsum vel vestibulum.
-          Vestibulum suscipit, dolor sit amet aliquet dictum, nisi lectus sagittis massa.
-        </div>
-        <FormGroup className={styles.field}>
-          <FormControlLabel
-            type="select"
-            value={this.state.site}
-            items={sites}
-            label="Site"
-            onSelect={this.handleChangeSite}
-          />
-        </FormGroup>
+        <Form onSubmit={this.onGenerateClick}>
+          <div className={styles.text}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Donec in porta sapien. Maecenas congue quis ipsum vel vestibulum.
+            Vestibulum suscipit, dolor sit amet aliquet dictum, nisi lectus sagittis massa.
+          </div>
+          <FormGroup className={styles.field}>
+            <FormControlLabel
+              type="select"
+              value={this.state.site}
+              items={sites}
+              label="Site"
+              onSelect={this.handleChangeSite}
+            />
+          </FormGroup>
 
-        <FormGroup className={styles.field}>
-          <FormControlLabel
-            label="Link da Oferta"
-            placeholder="www.americanas.com.br/oferta"
-            onChange={this.handleChangeLink}
-          />
-        </FormGroup>
+          <FormGroup className={styles.field}>
+            <FormControlLabel
+              label="Link da Oferta"
+              placeholder="www.americanas.com.br/oferta"
+              onChange={this.handleChangeLink}
+            />
+          </FormGroup>
 
-        <div className={styles.sendWrap}>
-          <Button loading={loading} onClick={this.onGenerateClick}>
-            Gerar Link
-          </Button>
-        </div>
+          <div className={styles.sendWrap}>
+            <Button disabled={!this.shouldShareLink()} type="submit" loading={loading}>
+              Gerar Link
+            </Button>
+          </div>
+        </Form>
       </Panel>
     );
   }
