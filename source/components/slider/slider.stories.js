@@ -47,3 +47,16 @@ stories.addWithInfo('Autoplay', () => (
     </Slider>
   </div>
 ));
+
+stories.addWithInfo('Slides To Show', () => (
+  <div>
+    <Slider dots autoplay delay={2500} slidesToShow={2}>
+      <div style={style}>1</div>
+      <div style={style}>2</div>
+      <div style={style}>3</div>
+      <div style={style}>4</div>
+      <div style={style}>5</div>
+      <div style={style}>6</div>
+    </Slider>
+  </div>
+));

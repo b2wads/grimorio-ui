@@ -32,11 +32,14 @@ class Slider extends PureComponent {
     arrows: PropTypes.bool,
     autoplay: PropTypes.bool,
     delay: PropTypes.number,
+    slidesToShow: PropTypes.number,
+    slideClassName: PropTypes.string,
   };
 
   static defaultProps = {
     delay: 5000,
     autoplay: false,
+    slidesToShow: 1,
   };
 
   componentDidMount() {
@@ -69,9 +72,10 @@ class Slider extends PureComponent {
 
   nextSlide(clear) {
     const { current, loop } = this.state;
-    const { children } = this.props;
+    const { children, slidesToShow } = this.props;
+    const childrenLen = children.length / slidesToShow;
 
-    if (current + 1 < children.length) {
+    if (current + 1 < childrenLen) {
       this.setState({ current: current + 1, command: 'next' });
     } else {
       this.setState({ current: 0, command: 'next' });
@@ -85,22 +89,39 @@ class Slider extends PureComponent {
 
   prevSlide() {
     const { current, loop } = this.state;
-    const { children } = this.props;
+    const { children, slidesToShow } = this.props;
+    const childrenLen = children.length / slidesToShow;
     clearInterval(loop);
 
     if (current !== 0) {
       this.setState({ current: current - 1, command: 'prev' });
     } else {
-      this.setState({ current: children.length - 1, command: 'prev' });
+      this.setState({ current: childrenLen - 1, command: 'prev' });
     }
 
     this.setLoop();
   }
 
+  divideChildContent(children) {
+    const { slidesToShow, slideClassName } = this.props;
+
+    return React.Children.map(children, (_, index) => {
+      const indexPlus = index + 1;
+      if (indexPlus % slidesToShow === 0) {
+        return (
+          <div className={classNames(styles.slide, slideClassName)}>
+            {children.slice(indexPlus - slidesToShow, indexPlus)}
+          </div>
+        );
+      }
+    });
+  }
+
   renderChildren(current) {
     const { command } = this.state;
+    const dividedChildren = this.divideChildContent(this.props.children);
 
-    return React.Children.map(this.props.children, (child, index) => {
+    return React.Children.map(dividedChildren, (child, index) => {
       if (current === index) {
         return React.cloneElement(child, {
           className: classNames(styles.currentSlide, styles[command], child.props.className),
@@ -127,7 +148,7 @@ class Slider extends PureComponent {
     const { current } = this.state;
     return (
       <ul className={classNames(styles.dots, dotsClassName, { [styles.hasDotsBackground]: dotsBackground })}>
-        {children.map((_, index) => (
+        {this.divideChildContent(children).map((_, index) => (
           <li
             className={classNames(styles.dotsBtn, { [styles.isActive]: current === index })}
             onClick={this.goTo(index)}
