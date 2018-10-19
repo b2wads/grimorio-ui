@@ -14,11 +14,14 @@ class Sidebar extends PureComponent {
 
     this.state = { open: true };
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleLogoClick = this.handleLogoClick.bind(this);
   }
 
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.element.isRequired,
+    onClick: PropTypes.func,
+    onLogoClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -29,6 +32,10 @@ class Sidebar extends PureComponent {
     this.setState({ open: !this.state.open }, () => {
       this.props.onClick(e, this.state.open);
     });
+  }
+
+  handleLogoClick(e) {
+    this.props.onLogoClick();
   }
 
   render() {
@@ -47,8 +54,8 @@ class Sidebar extends PureComponent {
 
         <div className={styles.logotype}>
           {openNav
-            ? <Svg width={188} height={58} src="logo/afiliados" />
-            : <Svg width={24} src="logo/afiliados-icon" />}
+            ? <Svg onClick={this.handleLogoClick} width={188} height={58} src="logo/afiliados" />
+            : <Svg onClick={this.handleLogoClick} width={24} src="logo/afiliados-icon" />}
         </div>
 
         <nav className={styles.content}>

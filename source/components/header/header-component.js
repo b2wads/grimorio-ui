@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
@@ -8,7 +8,7 @@ import Button from '../button';
 import Icon from '../icon';
 import Select from '../select';
 
-class Header extends PureComponent {
+class Header extends Component {
   static propTypes = {
     user: PropTypes.string.isRequired,
     items: PropTypes.arrayOf(
@@ -23,6 +23,10 @@ class Header extends PureComponent {
   };
 
   static defaultProps = {};
+
+  shouldComponentUpdate() {
+    return false;
+  }
 
   renderButton() {
     const { user } = this.props;

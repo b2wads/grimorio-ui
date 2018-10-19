@@ -30,7 +30,7 @@ stories.addWithInfo('Default', withState({ open: false, active: -1 })(({ store }
 
   return (
     <div style={{ height: 800 }}>
-      <Sidebar open={store.state.open} onClick={(e, open) => store.set({ open: !store.state.open, active: !open ? -1 : store.state.active })}>
+      <Sidebar open={store.state.open} onLogoClick={() => alert('logo!')} onClick={(e, open) => store.set({ open: !store.state.open, active: !open ? -1 : store.state.active })}>
         <Accordion type="accordionMenu" exclusive={false} as={Menu} {...store.state}>
           <MenuItem title="Dashboard" active={getActive(0)} isNotAccordion icon="dashboard">
             Dashboard
