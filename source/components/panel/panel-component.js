@@ -12,7 +12,7 @@ class Panel extends PureComponent {
   static propTypes = {
     size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
     brand: PropTypes.oneOf([null, 'acom', 'suba', 'shop', 'soub']),
-    title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.element]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     contentClassName: PropTypes.string,
     footer: PropTypes.element,

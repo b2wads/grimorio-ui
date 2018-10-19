@@ -9,28 +9,34 @@ import Select, { SelectOption } from '../../select';
 import styles from '../table-panel.styl';
 
 class Pager extends PureComponent {
-  renderPerPage(limit, onLimitChange) {
+  renderPerPage(limit, onLimitChange, limitList) {
     return (
       <div className={styles.perpage}>
-        <Select className={styles.select} onSelect={({ value }) => onLimitChange(value)} defaultValue={limit}>
-          <SelectOption value={10}>10 por página</SelectOption>
-          <SelectOption value={25}>25 por página</SelectOption>
-          <SelectOption value={50}>50 por página</SelectOption>
+        <Select
+          sortItems={false}
+          className={styles.select}
+          onSelect={({ value }) => onLimitChange(value)}
+          defaultValue={limit}
+        >
+          {limitList.map(limitVal => (
+            <SelectOption value={limitVal}>
+              {`${limitVal} por página`}
+            </SelectOption>
+          ))}
         </Select>
       </div>
     );
   }
 
   render() {
-    const { length, count, offset, limit, onClickNext, onClickPrev, perpage, onLimitChange } = this.props;
-
+    const { length, count, offset, limit, onClickNext, onClickPrev, perpage, onLimitChange, limitList } = this.props;
     if (count === undefined || !limit === undefined || perpage === undefined) {
       return null;
     }
 
     return (
       <Fragment>
-        {perpage && this.renderPerPage(limit, onLimitChange)}
+        {perpage && this.renderPerPage(limit, onLimitChange, limitList)}
 
         <div className={styles.showing}>
           {offset} - {offset + length} de {count}

@@ -24,10 +24,6 @@ class Header extends Component {
 
   static defaultProps = {};
 
-  shouldComponentUpdate() {
-    return false;
-  }
-
   renderButton() {
     const { user } = this.props;
 

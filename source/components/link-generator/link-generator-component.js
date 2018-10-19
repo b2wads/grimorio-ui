@@ -89,7 +89,7 @@ class LinkGenerator extends PureComponent {
   }
 
   isValidUrl(url) {
-    const rx = /^((https?:\/\/)www\.(americanas|submarino|shoptime|soubarato)\.com\.br\/)[a-z-0-9.]{2,}/;
+    const rx = /^((https?:\/\/)?(www\.)?(americanas|submarino|shoptime|soubarato)\.com\.br\/)[a-z-0-9.]{2,}/;
     return rx.test(url);
   }
 
@@ -120,7 +120,7 @@ class LinkGenerator extends PureComponent {
           <FormGroup className={styles.field}>
             <FormControlLabel
               label="Link da Oferta"
-              placeholder="www.americanas.com.br/oferta"
+              placeholder="Insira aqui seu link de oferta"
               onChange={this.handleChangeLink}
             />
           </FormGroup>

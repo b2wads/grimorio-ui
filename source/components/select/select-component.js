@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
@@ -8,7 +8,7 @@ import Icon from '../icon';
 
 import styles from './select.styl';
 
-class Select extends PureComponent {
+class Select extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,6 +54,15 @@ class Select extends PureComponent {
     value: false,
     sortItems: true,
   };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextState.menuOpen !== this.state.menuOpen ||
+      nextState.selectedValue !== this.props.selectedValue ||
+      nextProps.items.length !== this.props.items.length ||
+      nextProps.open !== this.props.open
+    );
+  }
 
   componentWillMount() {
     const { closeOnClickOutside, items } = this.props;
