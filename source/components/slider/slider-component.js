@@ -34,6 +34,7 @@ class Slider extends PureComponent {
     delay: PropTypes.number,
     slidesToShow: PropTypes.number,
     slideClassName: PropTypes.string,
+    wrapperClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -170,14 +171,24 @@ class Slider extends PureComponent {
 
   render() {
     const { current } = this.state;
-    const { children, dots, arrows, className, dotsClassName, arrowClassName, dotsBackground, ...rest } = this.props;
+    const {
+      children,
+      dots,
+      arrows,
+      className,
+      dotsClassName,
+      arrowClassName,
+      dotsBackground,
+      wrapperClassName,
+      ...rest
+    } = this.props;
     const sliderClass = classNames(styles.content, className, {
       [styles.withArrow]: arrows,
     });
 
     return (
       <div className={sliderClass} {...this.cleanRest(rest)}>
-        <div className={styles.wrapper}>
+        <div className={classNames(styles.wrapper, wrapperClassName)}>
           {this.renderChildren(current)}
         </div>
 
