@@ -156,7 +156,7 @@ class Product extends PureComponent {
             {linkCopied ? 'Copiado!' : btnText}
           </Button>
           <Svg
-            onClick={this.share('facebook', link)}
+            onClick={this.share('facebook', copyValue ? copyValue : link)}
             className={styles.facebook}
             align="top"
             width={26}
@@ -164,7 +164,7 @@ class Product extends PureComponent {
             src="icon/facebook-square"
           />
           <Svg
-            onClick={this.share('twitter', link)}
+            onClick={this.share('twitter', copyValue ? copyValue.replace(/&/g, '%26') : link)}
             className={styles.twitter}
             align="top"
             width={26}
