@@ -154,7 +154,7 @@ class LinkGenerator extends PureComponent {
         </FormGroup>
 
         <div className={styles.social}>
-          {!linkCopied &&
+          <div className={styles.share}>
             <Button
               data-clipboard-text={linkGenerated}
               className={classNames(styles.copy, btnId)}
@@ -162,29 +162,29 @@ class LinkGenerator extends PureComponent {
               iconRight="insert_link"
             >
               Copiar Link
-            </Button>}
+            </Button>
 
-          {linkCopied &&
-            <Button size="small" iconRight="autorenew" className={styles.newLink} onClick={this.onCleanClick}>
-              Novo link
-            </Button>}
+            <Svg
+              onClick={this.share('facebook', linkGenerated)}
+              className={styles.facebook}
+              align="top"
+              width={26}
+              height={26}
+              src="icon/facebook-square"
+            />
+            <Svg
+              onClick={this.share('twitter', linkGenerated)}
+              className={styles.twitter}
+              align="top"
+              width={26}
+              height={26}
+              src="icon/twitter-square"
+            />
+          </div>
 
-          <Svg
-            onClick={this.share('facebook', linkGenerated)}
-            className={styles.facebook}
-            align="top"
-            width={26}
-            height={26}
-            src="icon/facebook-square"
-          />
-          <Svg
-            onClick={this.share('twitter', linkGenerated)}
-            className={styles.twitter}
-            align="top"
-            width={26}
-            height={26}
-            src="icon/twitter-square"
-          />
+          <Button size="small" iconRight="autorenew" className={styles.newLink} onClick={this.onCleanClick}>
+            Novo link
+          </Button>
         </div>
         {linkCopied &&
           <span className={styles.feedback}>
