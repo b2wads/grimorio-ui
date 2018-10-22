@@ -118,11 +118,7 @@ class LinkGenerator extends PureComponent {
           </FormGroup>
 
           <FormGroup className={styles.field}>
-            <FormControlLabel
-              label="Link da Oferta"
-              placeholder="Insira aqui seu link de oferta"
-              onChange={this.handleChangeLink}
-            />
+            <FormControlLabel label="Link da Oferta" placeholder="Link da Oferta" onChange={this.handleChangeLink} />
           </FormGroup>
 
           <div className={styles.sendWrap}>
