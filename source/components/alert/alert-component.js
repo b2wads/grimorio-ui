@@ -1,0 +1,67 @@
+import React, { PureComponent, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import CSSModules from 'react-css-modules';
+import classNames from 'classnames';
+
+import Icon from '../icon';
+import Button from '../button';
+
+import styles from './alert.styl';
+
+class Alert extends PureComponent {
+  static propTypes = {
+    type: PropTypes.oneOf(['danger', 'warning', 'success', 'info']),
+    content: PropTypes.string,
+    title: PropTypes.string,
+    action: PropTypes.bool,
+    actionText: PropTypes.string,
+    onClick: PropTypes.func,
+    overlay: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    type: 'info',
+    action: true,
+    overlay: false,
+    actionText: 'Okay',
+  };
+
+  renderIcon(type) {
+    const icons = {
+      danger: 'warning',
+      warning: 'error_outline',
+      info: 'info',
+      success: 'check',
+    };
+
+    return <Icon size="28px" name={icons[type]} />;
+  }
+
+  render() {
+    const { type, title, content, children, action, actionText, overlay, onClick, ...rest } = this.props;
+    const alertClassName = classNames(styles.alertWrap, {
+      [styles[type]]: type,
+    });
+
+    return (
+      <Fragment>
+        <div className={alertClassName} {...rest}>
+          <div className={styles.icon}>{this.renderIcon(type)}</div>
+          <div className={styles.content}>
+            <div className={styles.text}>
+              <h3 className={styles.title}>{title}</h3>
+              {children ? children : content}
+            </div>
+            {action &&
+              <Button className={styles.action} onClick={onClick}>
+                {actionText}
+              </Button>}
+          </div>
+        </div>
+        {overlay && <div className={styles.overlay} />}
+      </Fragment>
+    );
+  }
+}
+
+export default CSSModules(Alert, styles);

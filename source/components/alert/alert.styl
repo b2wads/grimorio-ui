@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+// 'danger', 'warning', 'success', 'info'
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$c-warning = #F1B200;
+$c-danger = #ff5144;
+$c-success = $c-primary;
+$c-info = #666;
+
+/* ==========================================================================
+   Alerts Elements
+========================================================================== */
+.alertWrap {
+  @extend $drop-shadow;
+  background: $white;
+  border-radius: 2px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  z-index: 99991;
+}
+
+.icon {
+  align-items: center;
+  display: flex;
+  fill: $white;
+  justify-content: center;
+  width: 70px;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  padding: 10px 15px;
+  width: calc(100% - 70px);
+  justify-content: space-between;
+}
+
+.text {
+  padding-right: 15px;
+  width: 100%;
+}
+
+.action {
+  min-width: 140px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 7px;
+}
+
+.overlay {
+  background: $black;
+  height: 100%;
+  left: 0;
+  opacity: 0.6;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* ==========================================================================
+   Alerts Props
+========================================================================== */
+.danger {
+  .icon {
+    background: $c-danger;
+  }
+
+  .title {
+    color: $c-danger;
+  }
+}
+.warning {
+  .icon {
+    background: $c-warning;
+  }
+
+  .title {
+    color: $c-warning;
+  }
+}
+.success {
+  .icon {
+    background: $c-success;
+  }
+
+  .title {
+    color: $c-success;
+  }
+}
+
+.info {
+  .icon {
+    background: $c-info;
+  }
+
+  .title {
+    color: $c-info;
+  }
+}
+
