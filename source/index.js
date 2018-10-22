@@ -27,6 +27,7 @@ import DatePicker from './components/date-picker';
 import Tooltip from './components/tooltip';
 import Slider from './components/slider';
 import LinkGenerator from './components/link-generator';
+import Alert from './components/alert';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -69,4 +70,5 @@ export {
   Tooltip,
   LinkGenerator,
   Slider,
+  Alert,
 };
