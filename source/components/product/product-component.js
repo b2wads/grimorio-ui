@@ -125,7 +125,7 @@ class Product extends PureComponent {
         </div>
 
         <div className={styles.imgWrapper}>
-          <a href={link}>
+          <a target="_blank" href={link}>
             {img
               ? <img className={styles.imgCustom} src={img} alt={name} />
               : <Svg className={styles.imgDefault} src="cupom" />}

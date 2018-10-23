@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
@@ -8,7 +8,7 @@ import Button from '../button';
 import Icon from '../icon';
 import Select from '../select';
 
-class Header extends Component {
+class Header extends PureComponent {
   static propTypes = {
     user: PropTypes.string.isRequired,
     items: PropTypes.arrayOf(
