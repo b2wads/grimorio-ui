@@ -17,7 +17,7 @@ $modal {
   transform: translate(-50%, -50%);
   transition: all 0.5s ease;
   visibility: hidden;
-  z-index: 99991;
+  z-index: $z-upmax;
 
   &.isOpen {
     opacity: 1;
@@ -97,7 +97,7 @@ $modal {
   transition: all 0.5s ease;
   visibility: hidden;
   width: 100%;
-  z-index: 9999;
+  z-index: $z-upmin;
 
   &.isOpen {
     opacity: 0.6;
