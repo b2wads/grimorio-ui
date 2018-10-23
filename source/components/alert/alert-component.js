@@ -41,6 +41,7 @@ class Alert extends PureComponent {
     const { type, title, content, children, action, actionText, overlay, onClick, className, ...rest } = this.props;
     const alertClassName = classNames(styles.alertWrap, className, {
       [styles[type]]: type,
+      [styles.isOverlay]: overlay,
     });
 
     return (

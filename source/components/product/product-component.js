@@ -142,7 +142,7 @@ class Product extends PureComponent {
 
         {expires &&
           <div className={styles.expires}>
-            {`Valido até: ${moment(expires).format('DD/MM/YYYY H:mm')}`}
+            {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
           </div>}
 
         <div className={styles.social}>

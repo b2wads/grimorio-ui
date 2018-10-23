@@ -15,7 +15,7 @@ stories.addWithInfo('Normal', () =>
       title="Granger Danger"
       content="Nullam iaculis laoreet felis et dapibus. Nunc convallis purus ac arcu pharetra faucibus."
       actionText="Resolva já"
-      onClick={() => alert('resolvido')}
+      onClick={() => window.open('https://youtu.be/OwLVKIMamhA?t=115', '_blank')}
     />
     <br/>
     <Alert

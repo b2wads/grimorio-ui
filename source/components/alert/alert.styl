@@ -22,7 +22,10 @@ $c-info = #666;
   display: flex;
   overflow: hidden;
   position: relative;
-  z-index: $z-upmax;
+
+  &.isOverlay {
+    z-index: $z-upmax;
+  }
 }
 
 .icon {
