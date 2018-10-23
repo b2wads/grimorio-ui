@@ -58,7 +58,8 @@ class Select extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextState.menuOpen !== this.state.menuOpen ||
-      nextState.selectedValue !== this.props.selectedValue ||
+      nextState.selectedValue !== this.state.selectedValue ||
+      nextProps.value !== this.props.value ||
       nextProps.items.length !== this.props.items.length ||
       nextProps.open !== this.props.open
     );
