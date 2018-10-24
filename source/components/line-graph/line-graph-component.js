@@ -15,6 +15,8 @@ class LineGraph extends PureComponent {
       chart: null,
       legend: null,
     };
+
+    this.canvas = null;
   }
 
   static propTypes = {
@@ -42,7 +44,7 @@ class LineGraph extends PureComponent {
 
   componentDidMount() {
     const { options, datasets } = this.props;
-    const chart = new Chart(document.getElementById('myChart'), {
+    const chart = new Chart(this.canvas, {
       type: 'line',
       data: {
         datasets,
@@ -89,7 +91,7 @@ class LineGraph extends PureComponent {
     return (
       <Panel title={title}>
         <div className={chartClass} {...rest}>
-          <canvas id="myChart" />
+          <canvas ref={canvas => (this.canvas = canvas)} />
         </div>
         <div className={styles.legend}>
           {this.state.legend}
