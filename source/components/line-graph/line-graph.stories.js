@@ -3,6 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import moment from 'moment';
 
+moment.locale('pt-br');
+
 import LineGraph from './line-graph-component';
 
 const stories = storiesOf('LineGraph', module);
@@ -102,6 +104,24 @@ const data = [
   }
 ];
 
+const not = [
+  {
+    date: "2018-10-01",
+    revenue: 20000,
+    amount: 100
+  },
+  {
+    date: "2018-10-02",
+    revenue: 30000,
+    amount: 200
+  },
+  {
+    date: "2018-10-03",
+    revenue: 80000,
+    amount: 300
+  },
+];
+
 const transformData = data => {
   return data.map(info => ({
     x: moment(`${info.date}T00:00:00`),
@@ -116,7 +136,10 @@ const options = {
         type: 'time',
         time: {
           unit: 'day',
-          unitStepSize: 2
+          unitStepSize: 2,
+          displayFormats: {
+            day: 'D/M',
+          }
         }
       }
     ]
@@ -126,12 +149,19 @@ const options = {
 stories.addWithInfo('Normal', () =>
     <LineGraph
       title="Pedidos!"
-      style={{ height: '500px' }}
+      style={{ height: '400px' }}
       datasets={[
         {
           data: transformData(data),
           label: 'Faturados',
           borderColor: '#00b8ad',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+        {
+          data: transformData(not),
+          label: 'Not',
+          borderColor: 'red',
           pointHoverBackgroundColor: '#fff',
           fill: false,
         },

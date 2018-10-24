@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import Chart from 'chart.js';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
+import classNames from 'classnames';
 
 import Panel from '../panel';
 
@@ -10,21 +11,24 @@ import styles from './line-graph.styl';
 class LineGraph extends PureComponent {
   constructor() {
     super();
-    this.chart = null;
+    this.state = {
+      chart: null,
+      legend: null,
+    };
   }
 
   static propTypes = {
     options: PropTypes.object,
     datasets: PropTypes.array,
-    scales: PropTypes.object,
   };
 
   static defaultProps = {
     datasets: [],
+    options: {},
   };
 
   componentWillMount() {
-    console.log('>>', Chart.defaults.global.elements.point);
+    Chart.defaults.global.legend.display = false;
     Chart.defaults.global.elements.point = {
       ...Chart.defaults.global.elements.point,
       radius: 5,
@@ -38,7 +42,7 @@ class LineGraph extends PureComponent {
 
   componentDidMount() {
     const { options, datasets } = this.props;
-    this.chart = new Chart(document.getElementById('myChart'), {
+    const chart = new Chart(document.getElementById('myChart'), {
       type: 'line',
       data: {
         datasets,
@@ -56,26 +60,40 @@ class LineGraph extends PureComponent {
           bodyFontColor: '#777',
           footerFontColor: '#777',
         },
+        legendCallback: chart => {
+          return chart.data.datasets.map(set => {
+            const { label, borderColor } = set;
+            return (
+              <div className={styles.legendItem}>
+                <span className={styles.legendSquare} style={{ background: borderColor }} />
+                <span className={styles.legendText}>{label}</span>
+              </div>
+            );
+          });
+        },
         ...options,
       },
     });
+
+    const legend = chart.generateLegend();
+    this.setState({ chart, legend });
   }
 
   componentWillUnmount() {
-    this.chart && this.chart.destroy();
-  }
-
-  getItem(data, tooltipItem, chartData) {
-    const [{ index }] = tooltipItem;
-    const item = chartData[index];
-    return item;
+    this.state.chart && this.state.chart.destroy();
   }
 
   render() {
-    const { title, ...rest } = this.props;
+    const { title, className, ...rest } = this.props;
+    const chartClass = classNames(className, styles.chart);
     return (
       <Panel title={title}>
-        <canvas id="myChart" {...rest} />
+        <div className={chartClass} {...rest}>
+          <canvas id="myChart" />
+        </div>
+        <div className={styles.legend}>
+          {this.state.legend}
+        </div>
       </Panel>
     );
   }
