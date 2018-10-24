@@ -21,7 +21,7 @@ class DatePicker extends Component {
     };
 
     this.toggleCalendar = this.toggleCalendar.bind(this);
-    this.verifyClickOutside = this.verifyClickOutside.bind(this);
+    this.outsiteClick = this.outsiteClick.bind(this);
     moment.locale('pt-br');
   }
 
@@ -31,30 +31,24 @@ class DatePicker extends Component {
     defaultEndDate: PropTypes.instanceOf(moment),
     label: PropTypes.string,
     align: PropTypes.oneOf(['left', 'right']),
+    monthsToShow: PropTypes.number,
+    noNavButtons: PropTypes.bool,
   };
 
   static defaultProps = {
     onChange: () => {},
     label: 'Data',
     align: 'left',
+    monthsToShow: 2,
+    noNavButtons: true,
   };
 
   shouldComponenteUpdate() {
     return false;
   }
 
-  componentWillMount() {
-    document.addEventListener('click', this.verifyClickOutside, false);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.verifyClickOutside, false);
-  }
-
-  verifyClickOutside(e) {
-    if (this.calendarWrap && !this.calendarWrap.contains(e.target)) {
-      this.setState({ focusedInput: null });
-    }
+  outsiteClick(e) {
+    this.setState({ focusedInput: null });
   }
 
   toggleCalendar() {
@@ -67,13 +61,23 @@ class DatePicker extends Component {
   }
 
   changeDate({ startDate, endDate }) {
-    this.props.onChange({ startDate, endDate });
-    this.setState({ startDate, endDate });
+    let valueEndDate = null;
+
+    if (this.state.focusedInput === 'endDate') {
+      valueEndDate = endDate;
+    }
+
+    this.props.onChange({ startDate, endDate: valueEndDate });
+    this.setState({ startDate, endDate: valueEndDate });
+  }
+
+  initialMonth() {
+    return moment().subtract(1, 'month');
   }
 
   render() {
     const { startDate, endDate, focusedInput } = this.state;
-    const { className, align, ...rest } = this.props;
+    const { className, align, monthsToShow, noNavButtons, ...rest } = this.props;
     const labelClasses = classNames(styles.label, {
       [styles.isActive]: this.hasDates() || focusedInput,
     });
@@ -84,7 +88,7 @@ class DatePicker extends Component {
     });
 
     return (
-      <div className={classNames(styles.wrap, className)} ref={el => (this.calendarWrap = el)} {...rest}>
+      <div className={classNames(styles.wrap, className)} {...rest}>
         <div className={styles.labelWrapper}>
           <span className={labelClasses}>{this.props.label}</span>
           <div onClick={this.toggleCalendar} className={styles.input}>
@@ -104,7 +108,10 @@ class DatePicker extends Component {
             focusedInput={this.state.focusedInput}
             onFocusChange={focusedInput => this.setState({ focusedInput })}
             hideKeyboardShortcutsPanel
-            numberOfMonths={2}
+            numberOfMonths={monthsToShow}
+            initialVisibleMonth={this.initialMonth}
+            onOutsideClick={this.outsiteClick}
+            noNavButtons={noNavButtons}
           />
         </div>
       </div>
