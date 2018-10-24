@@ -22,12 +22,16 @@ class LineGraph extends PureComponent {
   static propTypes = {
     options: PropTypes.object,
     datasets: PropTypes.array,
+    data: PropTypes.array,
   };
 
   static defaultProps = {
+    data: [],
     datasets: [],
     options: {},
   };
+
+  static chart = null;
 
   componentWillMount() {
     Chart.defaults.global.legend.display = false;
@@ -36,15 +40,18 @@ class LineGraph extends PureComponent {
       radius: 5,
       backgroundColor: '#fff',
       borderWidth: 2,
-      hoverRadius: 6,
+      hoverRadius: 5,
       hoverBorderWidth: 2,
       hoverBackgroundColor: '#fff',
     };
   }
 
-  componentDidMount() {
+  generateChart() {
     const { options, datasets } = this.props;
-    const chart = new Chart(this.canvas, {
+
+    this.chart && this.chart.destroy();
+
+    return new Chart(this.canvas, {
       type: 'line',
       data: {
         datasets,
@@ -53,9 +60,7 @@ class LineGraph extends PureComponent {
         maintainAspectRatio: false,
         tooltips: {
           cornerRadius: 2,
-          yAlign: 'bottom',
-          xAlign: 'center',
-          borderColor: 'rgba(0,0,0,0.15)',
+          borderColor: 'rgba(0,0,0,0.08)',
           borderWidth: 2,
           backgroundColor: '#fff',
           titleFontColor: '#777',
@@ -76,18 +81,33 @@ class LineGraph extends PureComponent {
         ...options,
       },
     });
+  }
 
-    const legend = chart.generateLegend();
-    this.setState({ chart, legend });
+  componentDidMount() {
+    this.chart = this.generateChart();
+
+    const legend = this.chart.generateLegend();
+    !this.state.legend && this.setState({ legend });
   }
 
   componentWillUnmount() {
-    this.state.chart && this.state.chart.destroy();
+    this.chart && this.chart.destroy();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { datasets } = this.props;
+    this.chart = this.generateChart();
+
+    if (prevProps.datasets !== datasets) {
+      const legend = this.chart.generateLegend();
+      this.setState({ legend });
+    }
   }
 
   render() {
     const { title, className, ...rest } = this.props;
     const chartClass = classNames(className, styles.chart);
+
     return (
       <Panel title={title}>
         <div className={chartClass} {...rest}>

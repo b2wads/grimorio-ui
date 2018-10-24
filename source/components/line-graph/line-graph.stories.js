@@ -1,11 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { withState } from '@dump247/storybook-state';
 import moment from 'moment';
 
 moment.locale('pt-br');
 
 import LineGraph from './line-graph-component';
+import Button from '../button';
 
 const stories = storiesOf('LineGraph', module);
 
@@ -104,7 +106,7 @@ const data = [
   }
 ];
 
-const not = [
+const other = [
   {
     date: "2018-10-01",
     revenue: 20000,
@@ -118,6 +120,29 @@ const not = [
   {
     date: "2018-10-03",
     revenue: 80000,
+    amount: 300
+  },
+];
+
+const otherTranformed = [
+  {
+    date: "2018-10-01",
+    revenue: 50000,
+    amount: 100
+  },
+  {
+    date: "2018-10-02",
+    revenue: 70000,
+    amount: 200
+  },
+  {
+    date: "2018-10-03",
+    revenue: 100000,
+    amount: 300
+  },
+  {
+    date: "2018-10-04",
+    revenue: 100000,
     amount: 300
   },
 ];
@@ -159,8 +184,8 @@ stories.addWithInfo('Normal', () =>
           fill: false,
         },
         {
-          data: transformData(not),
-          label: 'Not',
+          data: transformData(other),
+          label: 'Other',
           borderColor: 'red',
           pointHoverBackgroundColor: '#fff',
           fill: false,
@@ -169,3 +194,28 @@ stories.addWithInfo('Normal', () =>
       options={options}
     />
 );
+
+stories.addWithInfo('With changing data', withState({ data: other, label: 'teste 1' })(({ store }) => {
+  return <div>
+    <Button onClick={() => { store.set({ data: otherTranformed, label: 'teste 2' }) }}>
+      Change
+    </Button>
+    <br/>
+    <br/>
+    <br/>
+    <LineGraph
+      title="Pedidos!"
+      style={{ height: '400px' }}
+      datasets={[
+        {
+          data: transformData(store.state.data),
+          label: store.state.label,
+          borderColor: '#00b8ad',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+      ]}
+      options={options}
+    />
+  </div>
+}));
