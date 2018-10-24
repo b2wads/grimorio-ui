@@ -195,15 +195,23 @@ stories.addWithInfo('Normal', () =>
     />
 );
 
-stories.addWithInfo('With changing data', withState({ data: other, label: 'teste 1' })(({ store }) => {
+stories.addWithInfo('With changing data', withState({ loading: false, data: other, label: 'teste 1' })(({ store }) => {
+  const change = () => {
+    store.set({ loading: true })
+    setTimeout(() => {
+      store.set({ data: otherTranformed, label: 'teste 2', loading: false })
+    }, 1500)
+  };
+
   return <div>
-    <Button onClick={() => { store.set({ data: otherTranformed, label: 'teste 2' }) }}>
+    <Button onClick={change}>
       Change
     </Button>
     <br/>
     <br/>
     <br/>
     <LineGraph
+      loading={store.state.loading}
       title="Pedidos!"
       style={{ height: '400px' }}
       datasets={[

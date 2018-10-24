@@ -5,6 +5,7 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Panel from '../panel';
+import Loader from '../loader';
 
 import styles from './line-graph.styl';
 
@@ -23,12 +24,14 @@ class LineGraph extends PureComponent {
     options: PropTypes.object,
     datasets: PropTypes.array,
     data: PropTypes.array,
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     data: [],
     datasets: [],
     options: {},
+    loading: false,
   };
 
   static chart = null;
@@ -105,11 +108,12 @@ class LineGraph extends PureComponent {
   }
 
   render() {
-    const { title, className, ...rest } = this.props;
+    const { title, loading, className, ...rest } = this.props;
     const chartClass = classNames(className, styles.chart);
 
     return (
-      <Panel title={title}>
+      <Panel className={styles.panel} title={title}>
+        {loading && <Loader type="full" />}
         <div className={chartClass} {...rest}>
           <canvas ref={canvas => (this.canvas = canvas)} />
         </div>
