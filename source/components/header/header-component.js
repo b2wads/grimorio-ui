@@ -37,13 +37,15 @@ class Header extends PureComponent {
   }
 
   render() {
-    const { onLogout, items, onSelect, className, ...elementProps } = this.props;
+    const { onLogout, items, onSelect, className, user, ...elementProps } = this.props;
     const fullClassName = classNames(className, styles.header);
 
     return (
       <header className={fullClassName} {...elementProps}>
         <Button className={styles.headerUser} style="clean" modifier="inverted" size="small">
-          <Select type="menu" position="under" menuButton={this.renderButton()} onSelect={onSelect} items={items} />
+          {items
+            ? <Select type="menu" position="under" menuButton={this.renderButton()} onSelect={onSelect} items={items} />
+            : <span> <Icon className={styles.iconLeft} name="person" size="18" /> {user} </span>}
         </Button>
 
         <Button className={styles.headerLogout} style="clean" modifier="inverted" size="small" onClick={onLogout}>
