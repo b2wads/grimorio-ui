@@ -74,7 +74,7 @@ class LineGraph extends PureComponent {
           return chart.data.datasets.map(set => {
             const { label, borderColor } = set;
             return (
-              <div className={styles.legendItem}>
+              <div key={label} className={styles.legendItem}>
                 <span className={styles.legendSquare} style={{ background: borderColor }} />
                 <span className={styles.legendText}>{label}</span>
               </div>

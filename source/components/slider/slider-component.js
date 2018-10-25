@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
-import { uniqueId } from '../../helpers';
+import { uniqueId, ommit } from '../../helpers';
 
 import Icon from '../icon';
 
@@ -161,13 +161,6 @@ class Slider extends PureComponent {
     );
   }
 
-  cleanRest(rest) {
-    delete rest.autoplay;
-    delete rest.delay;
-
-    return rest;
-  }
-
   render() {
     const { current } = this.state;
     const {
@@ -186,7 +179,7 @@ class Slider extends PureComponent {
     });
 
     return (
-      <div className={sliderClass} {...this.cleanRest(rest)}>
+      <div className={sliderClass} {...ommit(rest, ['autoplay', 'delays'])}>
         <div className={classNames(styles.wrapper, wrapperClassName)}>
           {this.renderChildren(current)}
         </div>

@@ -57,6 +57,14 @@ stories.addWithInfo('Loading', () => (
   </div>
 ));
 
+stories.addWithInfo('Error', () => (
+  <div style={{ width: '25%' }}>
+    <Panel title="Title" error={true} onTryAgain={() => alert('try again')}>
+      <p>Content</p>
+    </Panel>
+  </div>
+));
+
 stories.addWithInfo('With Brand', () => (
   <div style={{ display: 'flex' }}>
     <Panel brand="suba" style={pannelSize}>

@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import SelectOption from './elements/select-option';
 import Icon from '../icon';
 
+import { ommit } from '../../helpers';
+
 import styles from './select.styl';
 
 class Select extends Component {
@@ -215,12 +217,6 @@ class Select extends Component {
     }
   }
 
-  cleanProps(elementProps) {
-    delete elementProps.closeOnClickOutside;
-    delete elementProps.onClickOutside;
-    return elementProps;
-  }
-
   render() {
     const {
       items,
@@ -249,7 +245,7 @@ class Select extends Component {
       <div
         ref={el => (this.selectWrap = el)}
         className={classNames(styles.selectWrap, className)}
-        {...this.cleanProps(elementProps)}
+        {...ommit(elementProps, ['closeOnClickOutside', 'onClickOutside'])}
       >
         <span onClick={this.toggleOptions()} className={styles.button}>
           {this.renderButton(type, label, menuButton)}
