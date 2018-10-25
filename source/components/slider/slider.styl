@@ -55,9 +55,17 @@ $arrowBtn {
   }
 }
 
-.slide {}
+.slide {
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
 
 .currentSlide {
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+
   &.next {
     animation: slideleft 0.5s forwards;
   }

@@ -32,7 +32,6 @@ class DatePicker extends Component {
     label: PropTypes.string,
     align: PropTypes.oneOf(['left', 'right']),
     monthsToShow: PropTypes.number,
-    noNavButtons: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -40,15 +39,19 @@ class DatePicker extends Component {
     label: 'Data',
     align: 'left',
     monthsToShow: 2,
-    noNavButtons: true,
   };
 
   shouldComponenteUpdate() {
     return false;
   }
 
-  outsiteClick(e) {
-    this.setState({ focusedInput: null });
+  outsiteClick() {
+    let resetDates = {};
+    if (!this.hasDates()) {
+      resetDates = { startDate: null, endDate: null };
+    }
+
+    this.setState({ focusedInput: null, ...resetDates });
   }
 
   toggleCalendar() {
@@ -75,9 +78,17 @@ class DatePicker extends Component {
     return moment().subtract(1, 'month');
   }
 
+  noNavButtons() {
+    if (this.state.focusedInput === 'endDate') {
+      return true;
+    }
+
+    return false;
+  }
+
   render() {
     const { startDate, endDate, focusedInput } = this.state;
-    const { className, align, monthsToShow, noNavButtons, ...rest } = this.props;
+    const { className, align, monthsToShow, ...rest } = this.props;
     const labelClasses = classNames(styles.label, {
       [styles.isActive]: this.hasDates() || focusedInput,
     });
@@ -109,9 +120,8 @@ class DatePicker extends Component {
             onFocusChange={focusedInput => this.setState({ focusedInput })}
             hideKeyboardShortcutsPanel
             numberOfMonths={monthsToShow}
-            initialVisibleMonth={this.initialMonth}
             onOutsideClick={this.outsiteClick}
-            noNavButtons={noNavButtons}
+            noNavButtons={this.noNavButtons()}
           />
         </div>
       </div>

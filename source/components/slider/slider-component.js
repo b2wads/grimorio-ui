@@ -123,11 +123,10 @@ class Slider extends PureComponent {
     const dividedChildren = this.divideChildContent(this.props.children);
 
     return React.Children.map(dividedChildren, (child, index) => {
-      if (current === index) {
-        return React.cloneElement(child, {
-          className: classNames(styles.currentSlide, styles[command], child.props.className),
-        });
-      }
+      const isCurrent = classNames({ [styles.currentSlide]: current === index });
+      return React.cloneElement(child, {
+        className: classNames(isCurrent, styles[command], child.props.className),
+      });
     });
   }
 

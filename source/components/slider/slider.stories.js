@@ -42,8 +42,9 @@ stories.addWithInfo('Dots Back', () => (
 stories.addWithInfo('Autoplay', () => (
   <div>
     <Slider dots autoplay delay={2500}>
-      <div style={style}>1</div>
-      <div style={style}>2</div>
+      <img style={{ width: '100%', height: 'auto' }} src="https://picsum.photos/1020/420" />
+      <img style={{ width: '100%', height: 'auto' }} src="https://picsum.photos/1020/420?random" />
+      <img style={{ width: '100%', height: 'auto' }} src="https://picsum.photos/1020/420?random" />
     </Slider>
   </div>
 ));

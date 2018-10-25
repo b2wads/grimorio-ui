@@ -9097,9 +9097,9 @@ react-css-modules@4.7.2:
     lodash "^4.16.6"
     object-unfreeze "^1.1.0"
 
-react-dates@18.1.0:
-  version "18.1.0"
-  resolved "https://registry.yarnpkg.com/react-dates/-/react-dates-18.1.0.tgz#85deabb78ae13aff833355d2f35dc5db922dd79c"
+react-dates@18.1.1:
+  version "18.1.1"
+  resolved "https://registry.yarnpkg.com/react-dates/-/react-dates-18.1.1.tgz#174c4e5de14d0c22d7c4a3294ba1ab618aaebb26"
   dependencies:
     airbnb-prop-types "^2.10.0"
     consolidated-events "^1.1.1 || ^2.0.0"
