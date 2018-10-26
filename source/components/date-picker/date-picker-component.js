@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
-import { DayPickerRangeController } from 'react-dates';
+import { DayPickerRangeController, isInclusivelyAfterDay } from 'react-dates';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -22,6 +22,7 @@ class DatePicker extends Component {
 
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.outsiteClick = this.outsiteClick.bind(this);
+    this.isOutsideRange = this.isOutsideRange.bind(this);
     moment.locale('pt-br');
   }
 
@@ -86,6 +87,10 @@ class DatePicker extends Component {
     return false;
   }
 
+  isOutsideRange(day) {
+    return isInclusivelyAfterDay(day, moment().add(1, 'day'));
+  }
+
   render() {
     const { startDate, endDate, focusedInput } = this.state;
     const { className, align, monthsToShow, ...rest } = this.props;
@@ -122,6 +127,9 @@ class DatePicker extends Component {
             numberOfMonths={monthsToShow}
             onOutsideClick={this.outsiteClick}
             noNavButtons={this.noNavButtons()}
+            isOutsideRange={this.isOutsideRange}
+            minimumNights={0}
+            initialVisibleMonth={this.initialMonth}
           />
         </div>
       </div>

@@ -16,7 +16,7 @@ $social-ico {
 }
 
 $default-product {
-  min-width: 200px;
+  min-width: 175px;
   position: relative;
 
   a {
@@ -116,6 +116,10 @@ $img {
 .copy {
   margin-right: 5px;
   transition: all 0.3s ease;
+
+  @media screen and (max-width: 1375px) {
+    svg { display: none; }
+  }
 }
 
 .copyIcon {
