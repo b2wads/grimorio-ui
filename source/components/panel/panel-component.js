@@ -5,9 +5,6 @@ import classNames from 'classnames';
 
 import Svg from '../svg';
 import Loader from '../loader';
-import Button from '../button';
-
-import { ommit } from '../../helpers';
 
 import styles from './panel.styl';
 
@@ -21,9 +18,6 @@ class Panel extends PureComponent {
     footer: PropTypes.element,
     footerClassName: PropTypes.string,
     loading: PropTypes.bool,
-    error: PropTypes.bool,
-    errorMessage: PropTypes.string,
-    onTryAgain: PropTypes.func,
   };
 
   static defaultProps = {
@@ -31,21 +25,7 @@ class Panel extends PureComponent {
     title: false,
     size: 'medium',
     loading: false,
-    error: false,
-    errorMessage: 'Ops, algo deu errado :(',
   };
-
-  renderError() {
-    const { errorMessage, onTryAgain } = this.props;
-    return (
-      <div className={styles.error}>
-        <p>{errorMessage}</p>
-        <Button onClick={onTryAgain} iconRight="autorenew">
-          Tentar de novo
-        </Button>
-      </div>
-    );
-  }
 
   renderHeader(brand, title) {
     if (brand) {
@@ -84,7 +64,6 @@ class Panel extends PureComponent {
       contentClassName,
       footerClassName,
       loading,
-      error,
       ...rest
     } = this.props;
 
@@ -98,13 +77,11 @@ class Panel extends PureComponent {
     });
 
     return (
-      <article {...ommit(rest, ['errorMessage'])} className={fullClassName}>
+      <article {...rest} className={fullClassName}>
         <div className={wrapperClass}>
           {(title || brand) && this.renderHeader(brand, title)}
           {loading && <Loader size="32px" className={styles.loader} />}
-          {error && this.renderError()}
           {!loading &&
-            !error &&
             <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
               {children}
             </div>}
