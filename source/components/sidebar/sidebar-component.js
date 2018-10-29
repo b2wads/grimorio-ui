@@ -39,7 +39,7 @@ class Sidebar extends PureComponent {
   }
 
   render() {
-    const { children, className, onClick, open } = this.props;
+    const { children, className, onClick, open, isAdmin } = this.props;
     const openNav = open === null ? this.state.open : open;
     const classes = classNames(styles.sidebar, className, {
       [styles.closed]: openNav === false,
@@ -51,11 +51,10 @@ class Sidebar extends PureComponent {
           <button className={styles.toggle} type="button" onClick={this.handleToggle}>
             <Icon className={styles.toggleIcon} name="menu" />
           </button>}
-
         <div className={styles.logotype}>
           {openNav
-            ? <Svg onClick={this.handleLogoClick} width={188} height={58} src="logo/afiliados" />
-            : <Svg onClick={this.handleLogoClick} width={24} src="logo/afiliados-icon" />}
+            ? <Svg width={188} height={58} src={isAdmin ? 'logo/afiliados-admin' : 'logo/afiliados'} />
+            : <Svg width={24} src="logo/afiliados-icon" />}
         </div>
 
         <nav className={styles.content}>
