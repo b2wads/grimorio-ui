@@ -61,18 +61,30 @@ $c-text = #a4a3a3;
  ================ */
 .accordionMenu {
   .title {
+    border-bottom: 1px solid transparent;
     border-left: 2px solid transparent;
+    color: $white;
     padding: 15px 26px 15px 24px;
     transition: font-size 0.3s ease;
 
     &:hover,
     &.isActive {
+      background: lighten($c-support, 3%);
       border-left-color: $c-primary-dark;
       transition: font-size 0.3s ease;
     }
+
+    &.isActive {
+      border-bottom-color: rgba(0, 0, 0, 0.1);
+    }
   }
 
-  .iconLeft { margin-right: 22px }
+  .iconLeft {
+    fill: $white;
+    margin-right: 22px;
+  }
+
+  .iconRight { fill: $white; }
 
   .content { padding: 0; }
 

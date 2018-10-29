@@ -37,18 +37,27 @@ $c-text = #a4a3a3;
 /* Accordion Type
  ================ */
 .accordionMenu {
+  .menuItem {
+    color: $white;
+  }
+
   .menuItem.isNotAccordion {
     border-left: 2px solid transparent;
+    color: $white;
     padding: 15px 26px 15px 24px;
     transition: font-size 0.3s ease;
 
     &:hover,
     &.isActive {
+      background: lighten($c-support, 3%);
       border-left-color: $c-primary-dark;
       transition: font-size 0.3s ease;
     }
 
-    .iconLeft { margin-right: 22px }
+    .iconLeft {
+      fill: $white;
+      margin-right: 22px;
+    }
   }
 
   &.closed {

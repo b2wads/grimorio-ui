@@ -6,50 +6,40 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$headerItem {
-  font-size: 14px;
-}
 
 /* ==========================================================================
-   Header Elements
+   LineGraph Elements
 ========================================================================== */
-
-.header {
-  align-items: center;
-  background: $c-primary;
-  display: flex;
-  height: 74px;
-  justify-content: flex-end;
-  padding: 0 20px;
-  width: 100%;
-}
 
 /* ==========================================================================
-   Header Props
+   LineGraph Props
 ========================================================================== */
 
-/* headerItem
+/* Default
  ================ */
 
-.headerUser {
-  @extend $headerItem;
-  text-align: left;
-
-  .iconLeft {
-    margin-right: 5px;
-  }
-
-  .iconRight {
-    margin-left: 2px;
-  }
+.panel {
+  position: relative;
 }
 
-.headerLogout {
-  @extend $headerItem;
-
-  .iconRight {
-    margin-left: 5px;
-  }
+.chart {
+  margin-top: 35px;
 }
 
+.legend {
+  display: flex;
+  margin-top: 25px;
+  padding-left: 15px;
+}
 
+.legendItem {
+  display: flex;
+  margin-right: 10px;
+}
+
+.legendSquare {
+  display: block;
+  height: 15px;
+  margin-right: 5px;
+  width: 15px;
+}

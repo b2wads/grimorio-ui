@@ -125,7 +125,7 @@ class Product extends PureComponent {
         </div>
 
         <div className={styles.imgWrapper}>
-          <a href={link}>
+          <a target="_blank" href={link}>
             {img
               ? <img className={styles.imgCustom} src={img} alt={name} />
               : <Svg className={styles.imgDefault} src="cupom" />}
@@ -142,7 +142,7 @@ class Product extends PureComponent {
 
         {expires &&
           <div className={styles.expires}>
-            {`Valido até: ${moment(expires).format('DD/MM/YYYY H:mm')}`}
+            {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
           </div>}
 
         <div className={styles.social}>
@@ -156,7 +156,7 @@ class Product extends PureComponent {
             {linkCopied ? 'Copiado!' : btnText}
           </Button>
           <Svg
-            onClick={this.share('facebook', link)}
+            onClick={this.share('facebook', copyValue ? copyValue : link)}
             className={styles.facebook}
             align="top"
             width={26}
@@ -164,7 +164,7 @@ class Product extends PureComponent {
             src="icon/facebook-square"
           />
           <Svg
-            onClick={this.share('twitter', link)}
+            onClick={this.share('twitter', copyValue ? copyValue.replace(/&/g, '%26') : link)}
             className={styles.twitter}
             align="top"
             width={26}

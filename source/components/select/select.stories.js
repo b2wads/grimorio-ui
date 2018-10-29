@@ -34,6 +34,7 @@ stories.addWithInfo('Select with Label', () => {
     onSelect={data => console.log(data)}
     items={items}
     height="200px"
+    sortItems={false}
   />
 });
 

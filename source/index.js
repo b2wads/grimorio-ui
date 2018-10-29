@@ -23,6 +23,12 @@ import Modal from './components/modal';
 import Table from './components/table';
 import TablePanel from './components/table-panel';
 import Loader from './components/loader';
+import DatePicker from './components/date-picker';
+import Tooltip from './components/tooltip';
+import Slider from './components/slider';
+import LinkGenerator from './components/link-generator';
+import Alert from './components/alert';
+import LineGraph from './components/line-graph';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -61,4 +67,10 @@ export {
   TablePanel,
   Loader,
   Modal,
+  DatePicker,
+  Tooltip,
+  LinkGenerator,
+  Slider,
+  Alert,
+  LineGraph,
 };

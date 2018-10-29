@@ -16,7 +16,7 @@ $social-ico {
 }
 
 $default-product {
-  min-width: 200px;
+  min-width: 175px;
   position: relative;
 
   a {
@@ -27,7 +27,7 @@ $default-product {
 
 $img {
   display: block;
-  height: 200px;
+  height: 150px;
   margin: 0 auto;
   width: auto;
 }
@@ -86,7 +86,7 @@ $img {
   color: $base-text-color;
   display: inline-block;
   font-size: 11px;
-  margin-left: 10px;
+  margin-left: 4px;
   vertical-align: middle;
 }
 
@@ -116,6 +116,10 @@ $img {
 .copy {
   margin-right: 5px;
   transition: all 0.3s ease;
+
+  @media screen and (max-width: 1375px) {
+    svg { display: none; }
+  }
 }
 
 .copyIcon {
@@ -144,7 +148,7 @@ $img {
 
   .info {
     color: $c-text-dark;
-    font-size: 28px;
+    font-size: 21px;
     font-weight: 400;
     margin-top: $gutter-px;
   }
@@ -159,7 +163,7 @@ $img {
 
   .info {
     color: $c-primary;
-    font-size: 28px;
+    font-size: 21px;
     margin: 15px 0;
     text-align: center;
   }

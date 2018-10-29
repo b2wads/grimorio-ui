@@ -39,6 +39,7 @@ const schema = {
     className: null,
     render: info => info.name.first,
   },
+  empty: {},
   surname: {
     title: 'Sobrenome',
     headClassName: null,

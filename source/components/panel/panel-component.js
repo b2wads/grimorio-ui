@@ -4,6 +4,10 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Svg from '../svg';
+import Loader from '../loader';
+import Button from '../button';
+
+import { ommit } from '../../helpers';
 
 import styles from './panel.styl';
 
@@ -11,18 +15,37 @@ class Panel extends PureComponent {
   static propTypes = {
     size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
     brand: PropTypes.oneOf([null, 'acom', 'suba', 'shop', 'soub']),
-    title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.element]),
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     contentClassName: PropTypes.string,
     footer: PropTypes.element,
     footerClassName: PropTypes.string,
+    loading: PropTypes.bool,
+    error: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    onTryAgain: PropTypes.func,
   };
 
   static defaultProps = {
     brand: null,
     title: false,
     size: 'medium',
+    loading: false,
+    error: false,
+    errorMessage: 'Ops, algo deu errado :(',
   };
+
+  renderError() {
+    const { errorMessage, onTryAgain } = this.props;
+    return (
+      <div className={styles.error}>
+        <p>{errorMessage}</p>
+        <Button onClick={onTryAgain} iconRight="autorenew">
+          Tentar de novo
+        </Button>
+      </div>
+    );
+  }
 
   renderHeader(brand, title) {
     if (brand) {
@@ -60,7 +83,9 @@ class Panel extends PureComponent {
       footer,
       contentClassName,
       footerClassName,
-      ...elementProps
+      loading,
+      error,
+      ...rest
     } = this.props;
 
     const fullClassName = classNames(className, {
@@ -73,12 +98,16 @@ class Panel extends PureComponent {
     });
 
     return (
-      <article {...elementProps} className={fullClassName}>
+      <article {...ommit(rest, ['errorMessage'])} className={fullClassName}>
         <div className={wrapperClass}>
           {(title || brand) && this.renderHeader(brand, title)}
-          <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
-            {children}
-          </div>
+          {loading && <Loader size="32px" className={styles.loader} />}
+          {error && this.renderError()}
+          {!loading &&
+            !error &&
+            <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
+              {children}
+            </div>}
         </div>
         {this.renderFooter(footer, size, footerClassName)}
       </article>

@@ -17,9 +17,11 @@ class TablePanel extends PureComponent {
     pager: PropTypes.bool,
     perpage: PropTypes.bool,
     loading: PropTypes.bool,
+    error: PropTypes.bool,
     onClickPrev: PropTypes.func,
     onClickNext: PropTypes.func,
     onLimitChange: PropTypes.func,
+    limitList: PropTypes.array,
     meta: PropTypes.shape({
       count: PropTypes.number,
       limit: PropTypes.number,
@@ -31,6 +33,8 @@ class TablePanel extends PureComponent {
     pager: false,
     perpage: false,
     loading: false,
+    error: false,
+    limitList: [10, 30, 50],
     onClickPrev: () => {},
     onClickNext: () => {},
     onLimitChange: value => {},
@@ -38,7 +42,7 @@ class TablePanel extends PureComponent {
 
   // TO-DO: Select Item Column
 
-  renderFooter(data, pager, meta, onClickPrev, onClickNext, perpage, onLimitChange) {
+  renderFooter(data, pager, meta, onClickPrev, onClickNext, perpage, onLimitChange, limitList) {
     return pager
       ? <div className={styles.footer}>
           <Pager
@@ -46,6 +50,7 @@ class TablePanel extends PureComponent {
             perpage={perpage}
             length={data ? data.length : 0}
             onLimitChange={onLimitChange}
+            limitList={limitList}
             onClickPrev={onClickPrev}
             onClickNext={onClickNext}
           />
@@ -81,12 +86,14 @@ class TablePanel extends PureComponent {
       onClickNext,
       perpage,
       onLimitChange,
+      limitList,
+      error,
       ...rest
     } = this.props;
-    const Footer = this.renderFooter(data, pager, meta, onClickPrev, onClickNext, perpage, onLimitChange);
+    const Footer = this.renderFooter(data, pager, meta, onClickPrev, onClickNext, perpage, onLimitChange, limitList);
 
     return (
-      <Panel size="no-padding" className={styles.wrap} footer={Footer}>
+      <Panel error={error} size="no-padding" className={styles.wrap} footer={Footer}>
         {loading && <Loader type="full" />}
         {this.renderHeader(title, actions)}
         <Table loadingMessage="" type="panel" schema={schema} data={data} {...rest} />

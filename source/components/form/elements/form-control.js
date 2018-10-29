@@ -5,6 +5,7 @@ import CSSModules from 'react-css-modules';
 // components
 import Icon from '../../icon';
 import { fieldsValidation } from '../../../helpers/validation';
+import { ommit } from '../../../helpers';
 
 import Select from '../../select';
 
@@ -160,8 +161,6 @@ class FormControl extends PureComponent {
       ? e => this.valueModifier(e, onMask, onChange, validate, onValidate)
       : onChange;
 
-    delete rest.feedback;
-
     if (type === 'select') {
       return (
         <Select
@@ -169,7 +168,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           placeholder={placeholder}
           onSelect={handleChange}
-          {...rest}
+          {...ommit(rest, ['feedback'])}
         >
           {children}
         </Select>
