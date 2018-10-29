@@ -53,8 +53,13 @@ class Sidebar extends PureComponent {
           </button>}
         <div className={styles.logotype}>
           {openNav
-            ? <Svg width={188} height={58} src={isAdmin ? 'logo/afiliados-admin' : 'logo/afiliados'} />
-            : <Svg width={24} src="logo/afiliados-icon" />}
+            ? <Svg
+                onClick={this.handleLogoClick}
+                width={188}
+                height={58}
+                src={isAdmin ? 'logo/afiliados-admin' : 'logo/afiliados'}
+              />
+            : <Svg onClick={this.handleLogoClick} width={24} src="logo/afiliados-icon" />}
         </div>
 
         <nav className={styles.content}>
