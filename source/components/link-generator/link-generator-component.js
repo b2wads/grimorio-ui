@@ -89,13 +89,13 @@ class LinkGenerator extends PureComponent {
   }
 
   isValidUrl(url) {
-    const rx = /^((https?:\/\/)?(www\.)?(americanas|submarino|shoptime|soubarato)\.com\.br\/)[a-z-0-9.]{2,}/;
+    const rx = /^((https?:\/\/)?(www\.)?(americanas|submarino|shoptime|soubarato)\.com\.br)[a-z-0-9.\/]{0,}/;
     return rx.test(url);
   }
 
   shouldShareLink() {
     const { site, link } = this.state;
-    return site !== null && this.isValidUrl(link);
+    return site !== null && site !== undefined && this.isValidUrl(link);
   }
 
   renderGenerate() {
