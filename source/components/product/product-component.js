@@ -34,7 +34,7 @@ class Product extends PureComponent {
         rules: PropTypes.string,
       }).isRequired,
       expires: PropTypes.string,
-      copyValue: PropTypes.string,
+      copyValue: PropTypes.string.isRequired,
       tags: PropTypes.arrayOf(
         PropTypes.shape({
           type: PropTypes.string,
@@ -148,7 +148,7 @@ class Product extends PureComponent {
         <div className={styles.social}>
           <Button
             active={linkCopied}
-            data-clipboard-text={copyValue ? copyValue : link}
+            data-clipboard-text={copyValue}
             className={classNames(styles.copy, btnId)}
             size="small"
             iconRight={linkCopied ? 'check' : 'insert_link'}
@@ -156,7 +156,7 @@ class Product extends PureComponent {
             {linkCopied ? 'Copiado!' : btnText}
           </Button>
           <Svg
-            onClick={this.share('facebook', copyValue ? copyValue : link)}
+            onClick={this.share('facebook', encodeURIComponent(copyValue))}
             className={styles.facebook}
             align="top"
             width={26}
@@ -164,7 +164,7 @@ class Product extends PureComponent {
             src="icon/facebook-square"
           />
           <Svg
-            onClick={this.share('twitter', copyValue ? copyValue.replace(/&/g, '%26') : link)}
+            onClick={this.share('twitter', encodeURIComponent(copyValue))}
             className={styles.twitter}
             align="top"
             width={26}
