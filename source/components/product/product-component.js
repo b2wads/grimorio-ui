@@ -12,14 +12,14 @@ import Icon from '../icon';
 import Button from '../button';
 import Tooltip from '../tooltip';
 
-import { moneyFormat, shareOn, property } from '../../helpers';
+import { moneyFormat, shareOn, uniqueId } from '../../helpers';
 
 class Product extends PureComponent {
   constructor() {
     super();
     this.state = {
       linkCopied: false,
-      btnId: `-copy-${property.randomId()}`,
+      btnId: uniqueId('copybtn'),
     };
   }
 
