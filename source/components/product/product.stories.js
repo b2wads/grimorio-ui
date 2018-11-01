@@ -18,6 +18,7 @@ const exampleProduct = {
     value: 5333.20,
   },
   expires: '2018-10-31T23:59:00.000Z',
+  copyValue: 'http://www.americanas.com.br/categoria/celulares-e-smartphones/f/tag-tag_alo10_acom?opn=AFLACOM&epar=b2wafiliados&franq=AFL-03-101718',
   link: 'https://www.americanas.com.br/produto/33446653/notebook-profissional-avell-w155-mx-intel-core-i7-16gb-geforce-mx150-1tb-15-6-fullhd',
   tags: [
     {
@@ -40,6 +41,7 @@ const exampleCupom = {
   expires: '2018-10-31T23:59:00.000Z',
   copy: 'ALO10',
   link: 'http://www.americanas.com.br/categoria/celulares-e-smartphones/f/tag-tag_alo10_acom?opn=AFLACOM&epar=b2wafiliados&franq=AFL-03-101718',
+  copyValue: 'http://www.americanas.com.br/categoria/celulares-e-smartphones/f/tag-tag_alo10_acom?opn=AFLACOM&epar=b2wafiliados&franq=AFL-03-101718',
   tags: [
     {
       type: 'brand',
@@ -62,7 +64,7 @@ stories.addWithInfo('Default', () => (
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
-      <Product btnText="Pegar Cupom" data={object('Cupom', exampleCupom)} />
+      <Product onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Cupom', exampleCupom)} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>

@@ -8,6 +8,7 @@ import moment from 'moment';
 import styles from './product.styl';
 
 import Svg from '../svg';
+import Icon from '../icon';
 import Button from '../button';
 import Tooltip from '../tooltip';
 
@@ -25,6 +26,8 @@ class Product extends PureComponent {
   static propTypes = {
     type: PropTypes.oneOf(['default', 'card']),
     btnText: PropTypes.string,
+    onCopy: PropTypes.func,
+    copyLoading: PropTypes.bool,
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
@@ -48,6 +51,8 @@ class Product extends PureComponent {
     type: 'default',
     btnText: 'Copiar Link',
     data: {},
+    onCopy: value => value,
+    copyLoading: false,
   };
 
   share(type, link) {
@@ -97,7 +102,11 @@ class Product extends PureComponent {
   }
 
   componentDidMount() {
-    this.clipboard = new Clipboard(`.${this.state.btnId}`);
+    const { data, onCopy } = this.props;
+
+    this.clipboard = new Clipboard(`.${this.state.btnId}`, {
+      text: () => onCopy(data.copyValue),
+    });
 
     this.clipboard.on('success', () => {
       this.setState({ linkCopied: true });
@@ -107,7 +116,7 @@ class Product extends PureComponent {
 
   render() {
     const { linkCopied, btnId } = this.state;
-    const { className, type, btnText, ...elementProps } = this.props;
+    const { className, type, btnText, copyLoading, ...elementProps } = this.props;
     const { img, name, info, expires, link, copyValue } = this.props.data;
 
     const fullClassName = classNames(className, {
@@ -146,14 +155,12 @@ class Product extends PureComponent {
           </div>}
 
         <div className={styles.social}>
-          <Button
-            active={linkCopied}
-            data-clipboard-text={copyValue}
-            className={classNames(styles.copy, btnId)}
-            size="small"
-            iconRight={linkCopied ? 'check' : 'insert_link'}
-          >
-            {linkCopied ? 'Copiado!' : btnText}
+          <Button active={linkCopied} className={classNames(styles.copy, btnId)} size="small">
+            {copyLoading && 'Gerando...'}
+            {linkCopied && 'Copiado!'}
+            {!linkCopied && !copyLoading && btnText}
+            {!copyLoading &&
+              <Icon className={styles.iconRight} size={18} name={linkCopied ? 'check' : 'insert_link'} />}
           </Button>
           <Svg
             onClick={this.share('facebook', encodeURIComponent(copyValue))}
