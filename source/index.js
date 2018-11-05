@@ -1,4 +1,5 @@
 import Button from './components/button';
+import ButtonUpload from './components/button-upload';
 import Icon from './components/icon';
 import Panel from './components/panel';
 import Svg from './components/svg';
@@ -41,6 +42,7 @@ export const maskPattens = masks;
 
 export {
   Button,
+  ButtonUpload,
   Icon,
   Panel,
   Svg,
