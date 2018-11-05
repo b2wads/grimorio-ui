@@ -3,26 +3,33 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 
 import Button from '../button';
+import Icon from '../icon';
 
 // styles
 import styles from './button-upload.styl';
 
 class ButtonUpload extends PureComponent {
-  static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    btnText: PropTypes.string,
-  };
-
-  static defaultProps = {
-    btnText: 'Upload',
-  };
-
   constructor(props) {
     super(props);
     this.state = {
       list: [],
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    btnText: PropTypes.string,
+    disabled: PropTypes.bool,
+    limit: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  };
+
+  static defaultProps = {
+    btnText: 'Upload',
+    disabled: false,
+    limit: false,
+  };
 
   convertToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -39,41 +46,58 @@ class ButtonUpload extends PureComponent {
     });
   }
 
-  handleChange(files) {
-    this.setState({ list: [...this.state.list, ...files] }, () => {
+  handleChange(event) {
+    const { files } = event.target;
+    let fileArr = [...files];
+
+    if (this.props.limit) {
+      const spaceLeft = this.props.limit - this.state.list.length;
+      fileArr = fileArr.splice(0, spaceLeft);
+    }
+
+    this.setState({ list: [...this.state.list, ...fileArr] }, () => {
       this.returnData();
     });
   }
 
   removeImage(index) {
-    this.setState({ list: this.state.list.filter((_, i) => i !== index) }, () => {
-      this.returnData();
-    });
+    const list = this.state.list.filter((_, i) => i !== index);
+    return () => {
+      this.setState({ list }, () => {
+        this.returnData();
+      });
+    };
+  }
+
+  renderTags() {
+    return this.state.list.map((el, index) => (
+      <div key={el.name} className={styles.tags}>
+        {el.name}
+        <Icon onClick={this.removeImage(index)} size="20" name="close" />
+      </div>
+    ));
   }
 
   render() {
-    const { disabled, btnText, ...rest } = this.props;
+    const { disabled, btnText, limit, ...rest } = this.props;
+    const hasMaxFiles = this.state.list.length === limit;
 
     return (
       <div {...rest}>
-        <Button iconLeft="publish" className={styles.button}>
+        <Button disabled={disabled || hasMaxFiles} iconLeft="publish" className={styles.button}>
           {btnText}
           <input
             className={styles.file}
             type="file"
-            onChange={e => this.handleChange(e.target.files)}
-            disabled={disabled}
+            onChange={this.handleChange}
+            disabled={disabled || hasMaxFiles}
             multiple
             accept="image/png"
           />
         </Button>
+
         <div className={styles.holdTags}>
-          {this.state.list.map((el, index) => (
-            <div key={el.name} className={styles.tags}>
-              {el.name}
-              <Icon onClick={e => this.removeImage(index)} size="20" name="close" />
-            </div>
-          ))}
+          {this.renderTags()}
         </div>
       </div>
     );
