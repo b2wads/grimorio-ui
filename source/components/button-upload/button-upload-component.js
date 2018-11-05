@@ -12,7 +12,7 @@ class ButtonUpload extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
+      list: props.defaultFiles || [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,13 +22,16 @@ class ButtonUpload extends PureComponent {
     onChange: PropTypes.func.isRequired,
     btnText: PropTypes.string,
     disabled: PropTypes.bool,
+    loading: PropTypes.bool,
     limit: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+    defaultFiles: PropTypes.array,
   };
 
   static defaultProps = {
     btnText: 'Upload',
     disabled: false,
     limit: false,
+    loading: false,
   };
 
   convertToBase64(file) {
@@ -42,7 +45,7 @@ class ButtonUpload extends PureComponent {
 
   returnData() {
     Promise.all(this.state.list.map(el => this.convertToBase64(el))).then(data => {
-      this.props.onChange(data);
+      this.props.onChange(data, this.state.list);
     });
   }
 
@@ -79,12 +82,12 @@ class ButtonUpload extends PureComponent {
   }
 
   render() {
-    const { disabled, btnText, limit, ...rest } = this.props;
+    const { disabled, btnText, limit, loading, ...rest } = this.props;
     const hasMaxFiles = this.state.list.length === limit;
 
     return (
       <div {...rest}>
-        <Button disabled={disabled || hasMaxFiles} iconLeft="publish" className={styles.button}>
+        <Button loading={loading} disabled={disabled || hasMaxFiles} iconLeft="publish" className={styles.button}>
           {btnText}
           <input
             className={styles.file}

@@ -12,10 +12,10 @@ stories.addWithInfo(
   `,
   () => (
     <div>
-      <ButtonUpload onChange={data => console.log('images: ', data)} />
+      <ButtonUpload onChange={(data, list) => console.log('images: ', data, 'list:', list)} />
     </div>
   )
 );
 
 
-stories.addWithInfo('With Limit', () => <ButtonUpload btnText="Apenas 2 imagens" limit={2} onChange={data => console.log('images: ', data)} />);
+stories.addWithInfo('With Limit', () => <ButtonUpload btnText="Apenas 2 imagens" limit={2} onChange={(data, list) => console.log('images: ', data, 'list:', list)} />);
