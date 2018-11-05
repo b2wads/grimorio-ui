@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 
 import Button from '../button';
-import Icon from '../icon';
 
 // styles
 import styles from './button-upload.styl';
@@ -11,6 +10,11 @@ import styles from './button-upload.styl';
 class ButtonUpload extends PureComponent {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
+    btnText: PropTypes.string,
+  };
+
+  static defaultProps = {
+    btnText: 'Upload',
   };
 
   constructor(props) {
@@ -35,8 +39,8 @@ class ButtonUpload extends PureComponent {
     });
   }
 
-  handleChange(el) {
-    this.setState({ list: [...this.state.list, el] }, () => {
+  handleChange(files) {
+    this.setState({ list: [...this.state.list, ...files] }, () => {
       this.returnData();
     });
   }
@@ -48,17 +52,18 @@ class ButtonUpload extends PureComponent {
   }
 
   render() {
-    const { disabled } = this.props;
+    const { disabled, btnText, ...rest } = this.props;
 
     return (
-      <div>
-        <Button className="primary">
-          <Icon size="20" name="publish" />
-          Upload
+      <div {...rest}>
+        <Button iconLeft="publish" className={styles.button}>
+          {btnText}
           <input
+            className={styles.file}
             type="file"
-            onChange={e => this.handleChange(e.target.files[0])}
+            onChange={e => this.handleChange(e.target.files)}
             disabled={disabled}
+            multiple
             accept="image/png"
           />
         </Button>
