@@ -45,6 +45,7 @@ class LinkGenerator extends PureComponent {
   static defaultProps = {
     stage: 'generate',
     loading: false,
+    sites: [],
   };
 
   componentWillUnmount() {
