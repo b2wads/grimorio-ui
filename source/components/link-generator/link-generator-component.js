@@ -114,6 +114,7 @@ class LinkGenerator extends PureComponent {
               items={sites}
               label="Site"
               onSelect={this.handleChangeSite}
+              height={sites.length > 7 ? '400px' : 'auto'}
             />
           </FormGroup>
 
