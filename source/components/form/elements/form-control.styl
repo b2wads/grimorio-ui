@@ -68,9 +68,12 @@ $radioCheckbox {
   transition: all 0.2s ease;
   width: 20px;
 
-  &.isDisabled {
+  &.isDisabled,
+  &.isDisabled.isActive {
     background: $disabled;
+    border-color: darken($disabled, 25%);
     cursor: not-allowed;
+    svg { fill: darken($disabled, 25%); }
   }
 }
 
@@ -151,6 +154,18 @@ $addon {
     border-radius: 50%;
     background: $c-support-dark;
     transition: all 0.2s ease;
+  }
+
+  input[type="radio"]:disabled {
+    &:checked ~ .fakeInput {
+      border-color: darken($disabled, 25%);
+      background: $disabled;
+      cursor: not-allowed;
+    }
+
+    &:checked ~ .fakeInput:before {
+      background: darken($disabled, 25%);
+    }
   }
 }
 
