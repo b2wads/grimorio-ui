@@ -16,10 +16,13 @@ class TablePanel extends PureComponent {
     title: PropTypes.string,
     actions: PropTypes.element,
     pager: PropTypes.bool,
+    hasFirstLast: PropTypes.bool,
     perpage: PropTypes.bool,
     loading: PropTypes.bool,
     onClickPrev: PropTypes.func,
     onClickNext: PropTypes.func,
+    onClickFirst: PropTypes.func,
+    onClickLast: PropTypes.func,
     onLimitChange: PropTypes.func,
     limitList: PropTypes.array,
     meta: PropTypes.shape({
@@ -35,18 +38,33 @@ class TablePanel extends PureComponent {
 
   static defaultProps = {
     pager: false,
+    hasFirstLast: false,
     perpage: false,
     loading: false,
     error: false,
     limitList: [10, 30, 50],
     onClickPrev: () => {},
     onClickNext: () => {},
+    onClickFirst: () => {},
+    onClickLast: () => {},
     onLimitChange: value => {},
   };
 
   // TO-DO: Select Item Column
 
-  renderFooter(data, pager, meta, onClickPrev, onClickNext, perpage, onLimitChange, limitList) {
+  renderFooter(
+    data,
+    pager,
+    hasFirstLast,
+    meta,
+    onClickPrev,
+    onClickNext,
+    onClickFirst,
+    onClickLast,
+    perpage,
+    onLimitChange,
+    limitList
+  ) {
     return pager
       ? <div className={styles.footer}>
           <Pager
@@ -57,6 +75,9 @@ class TablePanel extends PureComponent {
             limitList={limitList}
             onClickPrev={onClickPrev}
             onClickNext={onClickNext}
+            onClickFirst={onClickFirst}
+            onClickLast={onClickLast}
+            hasFirstLast={hasFirstLast}
           />
         </div>
       : false;
@@ -85,9 +106,12 @@ class TablePanel extends PureComponent {
       loading,
       data,
       pager,
+      hasFirstLast,
       meta,
       onClickPrev,
       onClickNext,
+      onClickFirst,
+      onClickLast,
       perpage,
       onLimitChange,
       limitList,
@@ -97,7 +121,20 @@ class TablePanel extends PureComponent {
       errorBtnText,
       ...rest
     } = this.props;
-    const Footer = this.renderFooter(data, pager, meta, onClickPrev, onClickNext, perpage, onLimitChange, limitList);
+
+    const Footer = this.renderFooter(
+      data,
+      pager,
+      hasFirstLast,
+      meta,
+      onClickPrev,
+      onClickNext,
+      onClickFirst,
+      onClickLast,
+      perpage,
+      onLimitChange,
+      limitList
+    );
 
     return (
       <Panel size="no-padding" className={styles.wrap} footer={Footer}>
