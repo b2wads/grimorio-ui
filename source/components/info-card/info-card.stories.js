@@ -14,3 +14,9 @@ stories.addWithInfo('Normal', () => (
     <InfoCard title="Pedidos Colocados" tagline="fevereiro" value={50} />
   </div>
 ));
+
+stories.addWithInfo('Error', () => (
+  <div style={{ display: 'flex' }}>
+    <InfoCard error tagline="fevereiro" value={50} title="Pedidos Faturados" />
+  </div>
+));

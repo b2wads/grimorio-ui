@@ -30,6 +30,7 @@ import Slider from './components/slider';
 import LinkGenerator from './components/link-generator';
 import Alert from './components/alert';
 import LineGraph from './components/line-graph';
+import Error from './components/error';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -75,4 +76,5 @@ export {
   Slider,
   Alert,
   LineGraph,
+  Error,
 };

@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules';
 
 import Panel from '../panel';
 import Loader from '../loader';
+import Error from '../error';
 import Table from '../table';
 
 import Pager from './elements/pager';
@@ -17,7 +18,6 @@ class TablePanel extends PureComponent {
     pager: PropTypes.bool,
     perpage: PropTypes.bool,
     loading: PropTypes.bool,
-    error: PropTypes.bool,
     onClickPrev: PropTypes.func,
     onClickNext: PropTypes.func,
     onLimitChange: PropTypes.func,
@@ -27,6 +27,10 @@ class TablePanel extends PureComponent {
       limit: PropTypes.number,
       offset: PropTypes.number,
     }),
+    error: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    onErrorClick: PropTypes.func,
+    errorBtnText: PropTypes.string,
   };
 
   static defaultProps = {
@@ -88,15 +92,26 @@ class TablePanel extends PureComponent {
       onLimitChange,
       limitList,
       error,
+      onErrorClick,
+      errorMessage,
+      errorBtnText,
       ...rest
     } = this.props;
     const Footer = this.renderFooter(data, pager, meta, onClickPrev, onClickNext, perpage, onLimitChange, limitList);
 
     return (
-      <Panel error={error} size="no-padding" className={styles.wrap} footer={Footer}>
+      <Panel size="no-padding" className={styles.wrap} footer={Footer}>
         {loading && <Loader type="full" />}
         {this.renderHeader(title, actions)}
-        <Table loadingMessage="" type="panel" schema={schema} data={data} {...rest} />
+        {error &&
+          <Error
+            className={styles.error}
+            hasButton
+            onErrorClick={onErrorClick}
+            errorMessage={errorMessage}
+            errorBtnText={errorBtnText}
+          />}
+        {!error && <Table type="panel" schema={schema} data={data} {...rest} />}
       </Panel>
     );
   }

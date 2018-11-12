@@ -28,6 +28,7 @@
     "expect": true
   },
   "rules": {
+    "linebreak-style": "off",
     "no-debugger": "off",
     "no-useless-escape": "off",
     "no-case-declarations": "warn",

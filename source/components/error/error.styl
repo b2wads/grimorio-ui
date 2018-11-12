@@ -8,53 +8,33 @@
 ========================================================================== */
 
 /* ==========================================================================
-   LineGraph Elements
+   Error Elements
 ========================================================================== */
 
 /* ==========================================================================
-   LineGraph Props
+   Error Props
 ========================================================================== */
 
 /* Default
  ================ */
 
-.panel {
-  position: relative;
-}
+.wrap {
+  padding: 15px 0;
 
-.header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
-
-.chart {
-  margin-top: 35px;
-}
-
-.legend {
-  display: flex;
-  margin-top: 25px;
-  padding-left: 15px;
+  &.isOutline {
+    border: 1px solid $c-secondary;
+    border-radius: 2px;
+    display: inline-block;
+    padding: 15px;
+  }
 }
 
 .title {
-  color: $c-text-dark;
-  font-size: 21px;
+  color: $c-text;
+  font-size: 15px;
+  margin: 0;
 }
 
-.error {
-  padding-left: 0;
-}
-
-.legendItem {
-  display: flex;
-  margin-right: 10px;
-}
-
-.legendSquare {
-  display: block;
-  height: 15px;
-  margin-right: 5px;
-  width: 15px;
+.btn {
+  margin-top: 10px;
 }

@@ -80,6 +80,26 @@ stories.addWithInfo('Normal', () => {
   );
 });
 
+stories.addWithInfo('Error', () => {
+  return (
+    <TablePanel
+      error
+      errorMessage="Algo deu errado na busca desses dados :("
+      title="Jogo da Idade"
+      actions={<Button>Trocar nomes</Button>}
+      schema={schema}
+      data={[]}
+      pager
+      perpage
+      meta={{
+        count: 0,
+        limit: 10,
+        offset: 0,
+      }}
+    />
+  );
+});
+
 stories.addWithInfo('Special Case', () => {
   const special = [
     {
