@@ -167,9 +167,12 @@ stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, load
       schema={schema}
       data={store.state.data}
       pager
+      hasFirstLast
       loading={store.state.loading}
       onClickNext={() => getNames(10)}
       onClickPrev={() => getNames(10, 'remove')}
+      onClickFirst={() => getNames(20, 'remove')}
+      onClickLast={() => getNames(20)}
       meta={store.state.meta}
     />
   );

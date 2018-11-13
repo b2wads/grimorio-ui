@@ -220,8 +220,8 @@ stories.addWithInfo('Disabled', () => (
   <div>
     <FormControl placeholder="Digite um nome" disabled />
     <FormControl type="email" placeholder="Digite o seu e-mail" disabled />
-    <FormControl type="radio" disabled />
-    <FormControl type="checkbox" disabled />
+    <FormControl type="radio" checked={true} disabled />
+    <FormControl type="checkbox" checked={true} disabled />
     <FormControl type="select" placeholder="Selecione" disabled>
       <SelectOption value="a">a</SelectOption>
       <SelectOption value="b">b</SelectOption>

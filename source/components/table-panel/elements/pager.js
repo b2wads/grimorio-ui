@@ -28,8 +28,41 @@ class Pager extends PureComponent {
     );
   }
 
+  renderBtn(type) {
+    const { onClickNext, onClickPrev, onClickFirst, onClickLast, offset, length, count } = this.props;
+    const className = type === 'prev' ? styles.pagerLeft : styles.pager;
+    const btn = {
+      first: {
+        icon: 'first_page',
+        disabled: offset === 0,
+        onClick: onClickFirst,
+      },
+      prev: {
+        icon: 'navigate_before',
+        disabled: offset === 0,
+        onClick: onClickPrev,
+      },
+      next: {
+        icon: 'navigate_next',
+        disabled: offset + length === count,
+        onClick: onClickNext,
+      },
+      last: {
+        icon: 'last_page',
+        disabled: offset + length === count,
+        onClick: onClickLast,
+      },
+    };
+
+    return (
+      <Button style="transparent" size="none" disabled={btn[type].disabled} onClick={btn[type].onClick}>
+        <Icon name={btn[type].icon} className={classNames(className, { [styles.isDisabled]: btn[type].disabled })} />
+      </Button>
+    );
+  }
+
   render() {
-    const { length, count, offset, limit, onClickNext, onClickPrev, perpage, onLimitChange, limitList } = this.props;
+    const { length, count, offset, limit, perpage, hasFirstLast, onLimitChange, limitList } = this.props;
     if (count === undefined || !limit === undefined || perpage === undefined) {
       return null;
     }
@@ -43,30 +76,10 @@ class Pager extends PureComponent {
         </div>
 
         <div className={styles.nav}>
-          <Button
-            className={styles.buttonPrev}
-            style="transparent"
-            size="none"
-            disabled={offset === 0}
-            onClick={onClickPrev}
-          >
-            <Icon
-              className={classNames(styles.pagerLeft, { [styles.isDisabled]: offset === 0 })}
-              name="navigate_before"
-            />
-          </Button>
-          <Button
-            className={styles.buttonNext}
-            style="transparent"
-            size="none"
-            disabled={offset + length === count}
-            onClick={onClickNext}
-          >
-            <Icon
-              className={classNames(styles.pagerRight, { [styles.isDisabled]: offset + length === count })}
-              name="navigate_next"
-            />
-          </Button>
+          {hasFirstLast && this.renderBtn('first')}
+          {this.renderBtn('prev')}
+          {this.renderBtn('next')}
+          {hasFirstLast && this.renderBtn('last')}
         </div>
       </Fragment>
     );
