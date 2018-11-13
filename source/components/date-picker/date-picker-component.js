@@ -23,6 +23,7 @@ class DatePicker extends Component {
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.outsiteClick = this.outsiteClick.bind(this);
     this.isOutsideRange = this.isOutsideRange.bind(this);
+    this.initialMonth = this.initialMonth.bind(this);
     moment.locale('pt-br');
   }
 
@@ -33,6 +34,7 @@ class DatePicker extends Component {
     label: PropTypes.string,
     align: PropTypes.oneOf(['left', 'right']),
     monthsToShow: PropTypes.number,
+    initialMonth: PropTypes.instanceOf(moment),
   };
 
   static defaultProps = {
@@ -40,6 +42,7 @@ class DatePicker extends Component {
     label: 'Data',
     align: 'left',
     monthsToShow: 2,
+    initialMonth: moment().subtract(1, 'month'),
   };
 
   shouldComponenteUpdate() {
@@ -76,7 +79,7 @@ class DatePicker extends Component {
   }
 
   initialMonth() {
-    return moment().subtract(1, 'month');
+    return this.props.initialMonth;
   }
 
   noNavButtons() {
