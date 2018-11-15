@@ -104,7 +104,9 @@ $button {
   &.outline,
   &:hover,
   &:disabled,
-  &:hover:disabled {
+  &:disabled:not(.isLoading)
+  &:hover:disabled,
+  &:hover:disabled:not(.isLoading) {
     background: none;
   }
 }
