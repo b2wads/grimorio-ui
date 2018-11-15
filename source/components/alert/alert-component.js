@@ -14,6 +14,7 @@ class Alert extends PureComponent {
     content: PropTypes.string,
     title: PropTypes.string,
     action: PropTypes.bool,
+    close: PropTypes.bool,
     actionText: PropTypes.string,
     onClick: PropTypes.func,
     overlay: PropTypes.bool,
@@ -22,6 +23,7 @@ class Alert extends PureComponent {
   static defaultProps = {
     type: 'info',
     action: true,
+    close: false,
     overlay: false,
     actionText: 'Okay',
   };
@@ -38,7 +40,20 @@ class Alert extends PureComponent {
   }
 
   render() {
-    const { type, title, content, children, action, actionText, overlay, onClick, className, ...rest } = this.props;
+    const {
+      type,
+      title,
+      content,
+      children,
+      action,
+      close,
+      actionText,
+      overlay,
+      onClick,
+      className,
+      ...rest
+    } = this.props;
+
     const alertClassName = classNames(styles.alertWrap, className, {
       [styles[type]]: type,
       [styles.isOverlay]: overlay,
@@ -57,6 +72,7 @@ class Alert extends PureComponent {
               <Button className={styles.action} onClick={onClick}>
                 {actionText}
               </Button>}
+            {close && <Icon name="close" className={styles.close} onClick={onClick} />}
           </div>
         </div>
         {overlay && <div className={styles.overlay} />}

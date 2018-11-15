@@ -21,6 +21,7 @@ stories.addWithInfo('Normal', () =>
     <Alert
       type="warning"
       title="Warning"
+      action={false}
       content="Nullam iaculis laoreet felis et dapibus. Nunc convallis purus ac arcu pharetra faucibus."
       onClick={() => alert('é')}
     />
@@ -35,9 +36,12 @@ stories.addWithInfo('Normal', () =>
     <Alert
       type="info"
       title="Aqui tem informação!!!!"
-      content="Nullam iaculis laoreet felis et dapibus. Nunc convallis purus ac arcu pharetra faucibus."
+      action={false}
+      close
       onClick={() => alert('Solta vinheta, Simone!')}
-    />
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget lacus congue, blandit ex vel, malesuada nulla. Pellentesque consequat accumsan velit, sit amet porttitor nibh tempor non. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam interdum laoreet viverra. Duis tempor, ligula nec molestie fermentum, tellus lorem rutrum tortor, vel condimentum tellus nisl vel dolor. Pellentesque ultrices, nisi non vestibulum feugiat, urna ex ultricies lorem, non maximus dui nisi quis lectus. Praesent porttitor in magna sit amet eleifend. Sed consectetur mi vel cursus facilisis.
+    </Alert>
   </div>
 );
 
