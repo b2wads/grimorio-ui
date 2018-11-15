@@ -106,28 +106,42 @@ class Slider extends PureComponent {
   divideChildContent(children) {
     const { slidesToShow, slideClassName } = this.props;
 
-    return React.Children.map(children, (_, index) => {
-      const indexPlus = index + 1;
-      if (indexPlus % slidesToShow === 0) {
-        return (
-          <div className={classNames(styles.slide, slideClassName)}>
-            {children.slice(indexPlus - slidesToShow, indexPlus)}
-          </div>
-        );
-      }
-    });
+    if (!Array.isArray(children)) {
+      return (
+        <div className={classNames(styles.slide, slideClassName)}>
+          {children}
+        </div>
+      );
+    } else {
+      return React.Children.map(children, (_, index) => {
+        const indexPlus = index + 1;
+        if (indexPlus % slidesToShow === 0) {
+          return (
+            <div className={classNames(styles.slide, slideClassName)}>
+              {children.slice(indexPlus - slidesToShow, indexPlus)}
+            </div>
+          );
+        }
+      });
+    }
   }
 
   renderChildren(current) {
     const { command } = this.state;
     const dividedChildren = this.divideChildContent(this.props.children);
 
-    return React.Children.map(dividedChildren, (child, index) => {
-      const isCurrent = classNames({ [styles.currentSlide]: current === index });
-      return React.cloneElement(child, {
-        className: classNames(isCurrent, styles[command], child.props.className),
+    if (!Array.isArray(dividedChildren)) {
+      return React.cloneElement(dividedChildren, {
+        className: classNames(styles.currentSlide, styles[command], dividedChildren.props.className),
       });
-    });
+    } else {
+      return React.Children.map(dividedChildren, (child, index) => {
+        const isCurrent = classNames({ [styles.currentSlide]: current === index });
+        return React.cloneElement(child, {
+          className: classNames(isCurrent, styles[command], child.props.className),
+        });
+      });
+    }
   }
 
   renderArrows(arrowClassName) {
@@ -184,8 +198,8 @@ class Slider extends PureComponent {
           {this.renderChildren(current)}
         </div>
 
-        {dots && this.renderDots(children, dotsClassName, dotsBackground)}
-        {arrows && this.renderArrows(arrowClassName)}
+        {dots && children.length > 1 && this.renderDots(children, dotsClassName, dotsBackground)}
+        {arrows && children.length > 1 && this.renderArrows(arrowClassName)}
       </div>
     );
   }

@@ -21,8 +21,6 @@ stories.addWithInfo('Arrow Dots', () => (
   <div>
     <Slider arrows dots>
       <div style={style}>1</div>
-      <div style={style}>2</div>
-      <div style={style}>3</div>
     </Slider>
   </div>
 ));
@@ -58,6 +56,14 @@ stories.addWithInfo('Slides To Show', () => (
       <div style={style}>4</div>
       <div style={style}>5</div>
       <div style={style}>6</div>
+    </Slider>
+  </div>
+));
+
+stories.addWithInfo('Single Slide', () => (
+  <div>
+    <Slider>
+      <div style={style}>Single</div>
     </Slider>
   </div>
 ));
