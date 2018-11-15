@@ -77,7 +77,7 @@ stories.addWithInfo('Size', () => (
 
 stories.addWithInfo('Loading', () => (
   <div>
-    <Button loading style="primary">
+    <Button onClick={() => alert('btn is disabled while loading')} loading style="primary">
       Primary
     </Button>&nbsp;
     <Button loading style="clean" size="small">

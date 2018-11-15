@@ -69,6 +69,7 @@ class Button extends PureComponent {
       [styles.isActive]: active,
       [styles[size]]: size,
       [styles.block]: block,
+      [styles.isLoading]: loading,
     });
 
     if (!children) {
@@ -76,7 +77,7 @@ class Button extends PureComponent {
     }
 
     return (
-      <button {...elementProps} type={type} className={fullClassName} onClick={onClick} disabled={disabled}>
+      <button {...elementProps} type={type} className={fullClassName} onClick={onClick} disabled={loading || disabled}>
         {iconLeft && <Icon className={styles.iconLeft} size={18} name={iconLeft} />}
         {children}
         {loading && <Loader className={styles.btnLoad} size="17px" color={this.getLoaderColor()} />}
