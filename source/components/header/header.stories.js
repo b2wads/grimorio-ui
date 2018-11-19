@@ -22,10 +22,18 @@ const itemsIcon = [
 stories.addDecorator(withKnobs);
 
 stories.addWithInfo('Normal', () =>
-<Header
-  user="ana@ana.com"
-  onSelect={({value}) => alert(value)}
-  onLogout={() => alert('Logout!')}
-  items={itemsIcon}
+  <Header
+    user="ana@ana.com"
+    onSelect={({value}) => alert(value)}
+    onLogout={() => alert('Logout!')}
+    items={itemsIcon}
+    />
+);
+
+stories.addWithInfo('Mobile', () =>
+  <Header
+    isMobile
+    onLogout={() => alert('Logout!')}
+    onLogoClick={() => alert('logo!')}
   />
 );

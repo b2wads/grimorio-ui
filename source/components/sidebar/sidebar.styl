@@ -15,6 +15,16 @@ $c-menu-text = #3F5D79;
   top: 0;
   transition: width 0.3s ease;
   width: 290px;
+
+  &.isMobile {
+    left: -290px;
+    transition: left 0.3s ease;
+  }
+
+  &.isMobile.isMobileOpen {
+    left: 0;
+    z-index: 9999;
+  }
 }
 
 .logotype {
@@ -44,7 +54,7 @@ $c-menu-text = #3F5D79;
 }
 
 .toggle {
-  background-color: $c-primary;
+  background-color: transparent;
   border: 0;
   cursor: pointer;
   height: 30px;
