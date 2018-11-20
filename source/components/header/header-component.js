@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import styles from './header.styl';
 import Button from '../button';
@@ -52,7 +52,7 @@ class Header extends PureComponent {
 
   render() {
     const { onLogout, items, onSelect, className, user, isMobile, ...elementProps } = this.props;
-    const fullClassName = classNames(className, styles.header, {
+    const fullClassName = cx(className, styles.header, {
       [styles.isMobile]: isMobile,
     });
 
@@ -74,7 +74,13 @@ class Header extends PureComponent {
         {isMobile &&
           <Svg className={styles.logo} onClick={this.handleLogoClick} width={188} height={58} src="logo/afiliados" />}
 
-        <Button className={styles.headerLogout} style="clean" modifier="inverted" size="small" onClick={onLogout}>
+        <Button
+          className={cx(styles.headerLogout, { [styles.isMobile]: isMobile })}
+          style="clean"
+          modifier="inverted"
+          size="small"
+          onClick={onLogout}
+        >
           {!isMobile && 'Logout'}
           <Icon className={styles.iconRight} size="18" name="exit_to_app" />
         </Button>
