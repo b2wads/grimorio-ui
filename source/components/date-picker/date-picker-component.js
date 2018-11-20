@@ -5,7 +5,7 @@ import 'react-dates/initialize';
 import { DayPickerRangeController, isInclusivelyAfterDay } from 'react-dates';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import Icon from '../icon';
 
@@ -35,6 +35,8 @@ class DatePicker extends Component {
     align: PropTypes.oneOf(['left', 'right']),
     monthsToShow: PropTypes.number,
     initialMonth: PropTypes.instanceOf(moment),
+    isMobile: PropTypes.bool,
+    range: PropTypes.number,
   };
 
   static defaultProps = {
@@ -42,7 +44,9 @@ class DatePicker extends Component {
     label: 'Data',
     align: 'left',
     monthsToShow: 2,
+    range: 2,
     initialMonth: moment().subtract(1, 'month'),
+    isMobile: false,
   };
 
   shouldComponenteUpdate() {
@@ -82,32 +86,32 @@ class DatePicker extends Component {
     return this.props.initialMonth;
   }
 
-  noNavButtons() {
+  isOutsideRange(day) {
+    const { range } = this.props;
+    let endIsOutside = false;
+
     if (this.state.focusedInput === 'endDate') {
-      return true;
+      endIsOutside = day.isAfter(moment(this.state.startDate).add(range, 'months'));
     }
 
-    return false;
-  }
-
-  isOutsideRange(day) {
-    return isInclusivelyAfterDay(day, moment().add(1, 'day'));
+    return endIsOutside || isInclusivelyAfterDay(day, moment().add(1, 'day'));
   }
 
   render() {
     const { startDate, endDate, focusedInput } = this.state;
-    const { className, align, monthsToShow, ...rest } = this.props;
-    const labelClasses = classNames(styles.label, {
+    const { className, align, monthsToShow, isMobile, ...rest } = this.props;
+    const labelClasses = cx(styles.label, {
       [styles.isActive]: this.hasDates() || focusedInput,
     });
 
-    const calendarClasses = classNames(styles.calendar, {
+    const calendarClasses = cx(styles.calendar, {
       [styles.isActive]: focusedInput,
       [styles[align]]: align,
+      [styles.isMobile]: isMobile,
     });
 
     return (
-      <div className={classNames(styles.wrap, className)} {...rest}>
+      <div className={cx(styles.wrap, className)} {...rest}>
         <div className={styles.labelWrapper}>
           <span className={labelClasses}>{this.props.label}</span>
           <div onClick={this.toggleCalendar} className={styles.input}>
@@ -127,14 +131,15 @@ class DatePicker extends Component {
             focusedInput={this.state.focusedInput}
             onFocusChange={focusedInput => this.setState({ focusedInput })}
             hideKeyboardShortcutsPanel
-            numberOfMonths={monthsToShow}
+            numberOfMonths={isMobile ? 1 : monthsToShow}
             onOutsideClick={this.outsiteClick}
-            noNavButtons={this.noNavButtons()}
             isOutsideRange={this.isOutsideRange}
             minimumNights={0}
             initialVisibleMonth={this.initialMonth}
           />
         </div>
+
+        {isMobile && <div className={cx(styles.overlay, { [styles.isOpen]: focusedInput })} />}
       </div>
     );
   }

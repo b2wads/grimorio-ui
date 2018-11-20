@@ -112,4 +112,19 @@ $field {
     visibility: visible;
     z-index: 1;
   }
+
+  &.isMobile {
+    left: 50%;
+    right: inherit;
+    position: fixed;
+    top: 70px;
+    bottom: inherit;
+    transform: translate(-50%, 0);
+    width: auto;
+    z-index: $z-upmax;
+  }
+}
+
+.overlay {
+  @extend $overlay;
 }

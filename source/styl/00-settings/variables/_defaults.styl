@@ -43,6 +43,25 @@ $drop-shadow {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.15);
 }
 
+$overlay {
+  background: $black;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  transition: all 0.5s ease;
+  visibility: hidden;
+  width: 100%;
+  z-index: $z-upmin;
+
+  &.isOpen {
+    opacity: 0.6;
+    transition: all 0.5s ease;
+    visibility: visible;
+  }
+}
+
 // status
 $c-success = $c-primary;
 $c-warning = #f8ac59;

@@ -181,20 +181,5 @@ $field {
 }
 
 .overlay {
-  background: $black;
-  height: 100%;
-  left: 0;
-  opacity: 0;
-  position: fixed;
-  top: 0;
-  transition: all 0.5s ease;
-  visibility: hidden;
-  width: 100%;
-  z-index: $z-upmin;
-
-  &.isOpen {
-    opacity: 0.6;
-    transition: all 0.5s ease;
-    visibility: visible;
-  }
+  @extend $overlay;
 }
