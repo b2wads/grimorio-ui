@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
@@ -43,7 +43,7 @@ class Sidebar extends PureComponent {
     });
   }
 
-  handleLogoClick(e) {
+  handleLogoClick() {
     this.props.onLogoClick();
   }
 
@@ -58,30 +58,37 @@ class Sidebar extends PureComponent {
     });
 
     return (
-      <div className={classes}>
-        {onClick &&
-          <button className={styles.toggle} type="button" onClick={this.handleToggle}>
-            <Icon className={styles.toggleIcon} name="menu" />
-          </button>}
-        {!isMobile &&
-          <div className={styles.logotype}>
-            {openNav
-              ? <Svg
-                  onClick={this.handleLogoClick}
-                  width={188}
-                  height={58}
-                  src={isAdmin ? 'logo/afiliados-admin' : 'logo/afiliados'}
-                />
-              : <Svg onClick={this.handleLogoClick} width={24} src="logo/afiliados-icon" />}
-          </div>}
+      <Fragment>
+        <div className={classes}>
+          {onClick &&
+            <button className={styles.toggle} type="button" onClick={this.handleToggle}>
+              <Icon className={styles.toggleIcon} name="menu" />
+            </button>}
+          {!isMobile &&
+            <div className={styles.logotype}>
+              {openNav
+                ? <Svg
+                    onClick={this.handleLogoClick}
+                    width={188}
+                    height={58}
+                    src={isAdmin ? 'logo/afiliados-admin' : 'logo/afiliados'}
+                  />
+                : <Svg onClick={this.handleLogoClick} width={24} src="logo/afiliados-icon" />}
+            </div>}
 
-        <nav className={styles.content}>
-          <span className={classNames(styles.contentTitle, { [styles.isNavClosed]: openNav === false })}>
-            Menu
-          </span>
-          {children}
-        </nav>
-      </div>
+          <nav className={styles.content}>
+            <span className={classNames(styles.contentTitle, { [styles.isNavClosed]: openNav === false })}>
+              Menu
+            </span>
+            {children}
+          </nav>
+        </div>
+        {isMobile &&
+          <div
+            onClick={this.handleToggle}
+            className={classNames(styles.overlay, { [styles.isOpen]: openNavMobile })}
+          />}
+      </Fragment>
     );
   }
 }
