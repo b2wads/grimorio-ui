@@ -80,6 +80,25 @@ stories.addWithInfo('Normal', () => {
   );
 });
 
+stories.addWithInfo('Scroll', () => {
+  return (
+    <TablePanel
+      scrollY
+      scrollX
+      width="500px"
+      height="150px"
+      title="Jogo da Idade"
+      actions={<Button>Trocar nomes</Button>}
+      schema={schema}
+      data={simpledata}
+      pager
+      perpage
+      meta={{}}
+      fixed
+    />
+  );
+});
+
 stories.addWithInfo('Error', () => {
   return (
     <TablePanel

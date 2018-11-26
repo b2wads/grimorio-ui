@@ -10,7 +10,7 @@ const stories = storiesOf('Select', module);
 
 stories.addDecorator(withKnobs);
 
-const items = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(item => ({
+const items = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map(item => ({
   name: `Opção ${item}`,
   value: `value-${item}`,
 }));
@@ -34,6 +34,16 @@ stories.addWithInfo('Select with Label', () => {
     onSelect={data => console.log(data)}
     items={items}
     height="200px"
+    sortItems={false}
+  />
+});
+
+stories.addWithInfo('Select Mobile', () => {
+  return <Select
+    isMobile
+    label="Opções"
+    onSelect={data => console.log(data)}
+    items={items}
     sortItems={false}
   />
 });
@@ -109,6 +119,7 @@ stories.addWithInfo('Select - Options Bottom', () => {
     <br/>
     <br/>
     <Select
+      isMobile
       label="Opções"
       position="bottom"
       onSelect={data => console.log(data)}

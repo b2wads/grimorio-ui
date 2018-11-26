@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import SelectOption from './elements/select-option';
 import Icon from '../icon';
@@ -23,6 +23,7 @@ class Select extends Component {
 
     this.onSelectItem = this.onSelectItem.bind(this);
     this.verifyClickOutside = this.verifyClickOutside.bind(this);
+    this.closeSelect = this.closeSelect.bind(this);
     this.selectWrap = null;
   }
 
@@ -43,6 +44,7 @@ class Select extends Component {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
     inputClassName: PropTypes.string,
     sortItems: PropTypes.bool,
+    isMobile: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -55,6 +57,7 @@ class Select extends Component {
     height: 'auto',
     value: false,
     sortItems: true,
+    isMobile: false,
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -110,16 +113,19 @@ class Select extends Component {
   }
 
   verifyClickOutside(e) {
-    const { selectedName } = this.state;
-
     if (this.selectWrap && !this.selectWrap.contains(e.target)) {
-      this.setState({
-        menuOpen: false,
-        activeLabel: selectedName ? true : false,
-      });
-
+      this.closeSelect();
       this.props.onClickOutside && this.props.onClickOutside(this.state.menuOpen);
     }
+  }
+
+  closeSelect() {
+    const { selectedName } = this.state;
+
+    this.setState({
+      menuOpen: false,
+      activeLabel: selectedName ? true : false,
+    });
   }
 
   onSelectItem({ name, value }) {
@@ -139,14 +145,13 @@ class Select extends Component {
   }
 
   toggleOptions() {
-    const { menuOpen } = this.state;
     const { disabled } = this.props;
     this.list && (this.list.scrollTop = 0);
     return () =>
       !disabled &&
       this.setState({
         activeLabel: true,
-        menuOpen: !menuOpen,
+        menuOpen: true,
       });
   }
 
@@ -176,7 +181,7 @@ class Select extends Component {
   renderInput() {
     const { selectedName, activeLabel } = this.state;
     const { placeholder, disabled, inputClassName } = this.props;
-    const fieldClasses = classNames(styles.input, inputClassName, {
+    const fieldClasses = cx(styles.input, inputClassName, {
       [styles.isPlaceholder]: selectedName === null,
       [styles.isActive]: activeLabel,
       [styles.isDisabled]: disabled,
@@ -191,7 +196,7 @@ class Select extends Component {
 
   renderButton(type, label, menuButton) {
     const { activeLabel } = this.state;
-    const labelClasses = classNames(styles.label, {
+    const labelClasses = cx(styles.label, {
       [styles.isActive]: activeLabel,
     });
 
@@ -228,23 +233,26 @@ class Select extends Component {
       label,
       menuButton,
       sortItems,
+      isMobile,
       ...elementProps
     } = this.props;
     const { selectedValue, menuOpen, childItems } = this.state;
+    const isOpen = open !== null ? open : menuOpen;
     const renderItems = items.length ? items : childItems;
     const sortedItems = sortItems ? this.sortItems(renderItems, selectedValue) : renderItems;
 
-    const menuStyle = classNames(styles.menu, {
-      [styles.isOpen]: open !== null ? open : menuOpen,
+    const menuStyle = cx(styles.menu, {
+      [styles.isOpen]: isOpen,
       [styles.isBottom]: position === 'bottom',
       [styles.isUnder]: position === 'under',
       [styles.isScroll]: height !== 'auto',
+      [styles.isMobile]: isMobile,
     });
 
     return (
       <div
         ref={el => (this.selectWrap = el)}
-        className={classNames(styles.selectWrap, className)}
+        className={cx(styles.selectWrap, className)}
         {...ommit(elementProps, ['closeOnClickOutside', 'onClickOutside'])}
       >
         <span onClick={this.toggleOptions()} className={styles.button}>
@@ -264,6 +272,8 @@ class Select extends Component {
             </SelectOption>
           ))}
         </ul>
+
+        {isMobile && <div onClick={this.closeSelect} className={cx(styles.overlay, { [styles.isOpen]: isOpen })} />}
       </div>
     );
   }

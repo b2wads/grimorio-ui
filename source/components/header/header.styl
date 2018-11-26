@@ -21,7 +21,17 @@ $headerItem {
   height: 74px;
   justify-content: flex-end;
   padding: 0 20px;
+  position: relative;
   width: 100%;
+
+  &.isMobile {
+    background-color: $c-support-dark;
+  }
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
 }
 
 /* ==========================================================================
@@ -49,6 +59,13 @@ $headerItem {
 
   .iconRight {
     margin-left: 5px;
+  }
+
+  &.isMobile {
+    padding: 0;
+    position: absolute;
+    right: 20px;
+    top: 28px;
   }
 }
 

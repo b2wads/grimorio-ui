@@ -23,6 +23,18 @@ stories.addWithInfo('Normal', () => {
   );
 });
 
+stories.addWithInfo('Mobile', () => {
+  return (
+    <div>
+      <DatePicker
+        isMobile
+        onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
+      />
+    </div>
+  );
+});
+
+
 stories.addWithInfo('Default Values', () => {
   return (
     <div>

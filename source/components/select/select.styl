@@ -26,7 +26,7 @@ $menu {
   top: 0;
   user-select: none;
   width: 100%;
-  z-index: $z-upmax;
+  z-index: -1;
 }
 
 $field {
@@ -139,6 +139,18 @@ $field {
     transform: scaleY(1);
     opacity: 1;
     transition: opacity 0.5s ease;
+    z-index: $z-upmax;
+  }
+
+  &.isMobile {
+    border-radius: 2px;
+    left: 50%;
+    max-height: calc(100vh - 140px);
+    overflow-y: scroll;
+    position: fixed;
+    top: 70px;
+    transform: translate(-50%, 0);
+    width: 90%;
   }
 }
 
@@ -166,4 +178,8 @@ $field {
   display: inline-block;
   vertical-align: middle;
   word-break: break-all;
+}
+
+.overlay {
+  @extend $overlay;
 }
