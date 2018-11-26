@@ -54,9 +54,13 @@ class DatePicker extends Component {
   }
 
   outsiteClick() {
+    const { startDate, endDate } = this.state;
     let resetDates = {};
-    if (!this.hasDates()) {
+
+    if (!startDate) {
       resetDates = { startDate: null, endDate: null };
+    } else if (!endDate) {
+      resetDates = { startDate, endDate: startDate };
     }
 
     this.setState({ focusedInput: null, ...resetDates });
