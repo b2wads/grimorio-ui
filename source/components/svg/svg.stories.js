@@ -17,5 +17,7 @@ stories.addWithInfo('All', () => (
     <Svg width={150} height={50} src="logo/afiliados" />
     <Svg width={50} height={50} src="flame" />
     <Svg width={50} height={50} src="cupom" />
+    <Svg width={150} height={150} src="logo/suba-full-color" />
+    <Svg width={150} height={150} src="logo/shop-full-color" />
   </div>
 ));

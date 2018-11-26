@@ -82,5 +82,13 @@ stories.addWithInfo('Card', () => (
     <Panel type="brand" brand="suba" style={pannelSize}>
       <Product type="card" btnText="Copiar Cupom" data={object('Cupom', exampleCupomCard)} />
     </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel type="brand" brand="shop" style={pannelSize}>
+      <Product type="card" btnText="Copiar Cupom" data={object('Cupom', exampleCupomCard)} />
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel type="brand" brand="soub" style={pannelSize}>
+      <Product type="card" btnText="Copiar Cupom" data={object('Cupom', exampleCupomCard)} />
+    </Panel>
   </div>
 ));
