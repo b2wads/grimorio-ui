@@ -75,7 +75,7 @@ $c-text = #a4a3a3;
       width: 100%;
     }
 
-    .menuItem.isActive {
+    .menuItem.isActive:not(.isNotAccordion ) {
       transition: width 0.3s ease-in-out;
       width: 290px;
     }
@@ -91,7 +91,10 @@ $c-text = #a4a3a3;
     padding-bottom: 10px;
 
     .menuItem {
+      color: $c-text;
       padding: 10px 26px 10px 64px;
+
+      &.isActive { color: $white; }
       &:hover { color: $white; }
     }
 
