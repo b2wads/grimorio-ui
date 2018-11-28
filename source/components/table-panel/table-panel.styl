@@ -90,6 +90,8 @@ $pagerIcon {
 
 .nav {
   @extend $footerSection;
+  align-items: center;
+  display: flex;
 }
 
 .pager {
@@ -99,6 +101,28 @@ $pagerIcon {
 .pagerLeft {
   @extend $pagerIcon;
   margin-right: 15px;
+}
+
+.pagesWrap {
+  display: flex;
+  margin-right: 15px;
+  text-align: center;
+}
+
+.number {
+  color: $c-text;
+  display: block;
+  font-size: 14px;
+  margin-right: 7px;
+
+  &:hover,
+  &.isActive {
+    text-decoration: underline;
+  }
+
+  &:last-child {
+    margin: 0;
+  }
 }
 
 .select {

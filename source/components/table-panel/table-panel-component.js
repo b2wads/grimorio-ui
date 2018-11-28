@@ -17,12 +17,14 @@ class TablePanel extends PureComponent {
     actions: PropTypes.element,
     pager: PropTypes.bool,
     hasFirstLast: PropTypes.bool,
+    hasPagination: PropTypes.bool,
     perpage: PropTypes.bool,
     loading: PropTypes.bool,
     onClickPrev: PropTypes.func,
     onClickNext: PropTypes.func,
     onClickFirst: PropTypes.func,
     onClickLast: PropTypes.func,
+    onClickPage: PropTypes.func,
     onLimitChange: PropTypes.func,
     limitList: PropTypes.array,
     meta: PropTypes.shape({
@@ -40,6 +42,7 @@ class TablePanel extends PureComponent {
     pager: false,
     hasFirstLast: false,
     perpage: false,
+    hasPagination: false,
     loading: false,
     error: false,
     limitList: [10, 30, 50],
@@ -47,6 +50,7 @@ class TablePanel extends PureComponent {
     onClickNext: () => {},
     onClickFirst: () => {},
     onClickLast: () => {},
+    onClickPage: () => {},
     onLimitChange: value => {},
   };
 
@@ -61,9 +65,11 @@ class TablePanel extends PureComponent {
     onClickNext,
     onClickFirst,
     onClickLast,
+    onClickPage,
     perpage,
     onLimitChange,
-    limitList
+    limitList,
+    hasPagination
   ) {
     return pager
       ? <div className={styles.footer}>
@@ -77,7 +83,9 @@ class TablePanel extends PureComponent {
             onClickNext={onClickNext}
             onClickFirst={onClickFirst}
             onClickLast={onClickLast}
+            onClickPage={onClickPage}
             hasFirstLast={hasFirstLast}
+            hasPagination={hasPagination}
           />
         </div>
       : false;
@@ -107,11 +115,13 @@ class TablePanel extends PureComponent {
       data,
       pager,
       hasFirstLast,
+      hasPagination,
       meta,
       onClickPrev,
       onClickNext,
       onClickFirst,
       onClickLast,
+      onClickPage,
       perpage,
       onLimitChange,
       limitList,
@@ -131,9 +141,11 @@ class TablePanel extends PureComponent {
       onClickNext,
       onClickFirst,
       onClickLast,
+      onClickPage,
       perpage,
       onLimitChange,
-      limitList
+      limitList,
+      hasPagination
     );
 
     return (

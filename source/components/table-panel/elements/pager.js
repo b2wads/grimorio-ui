@@ -1,12 +1,14 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import Icon from '../../icon';
 import Button from '../../button';
 import Select, { SelectOption } from '../../select';
 
 import styles from '../table-panel.styl';
+
+import { getPageRange } from '../../../helpers';
 
 class Pager extends PureComponent {
   renderPerPage(limit, onLimitChange, limitList) {
@@ -28,8 +30,8 @@ class Pager extends PureComponent {
     );
   }
 
-  renderBtn(type) {
-    const { onClickNext, onClickPrev, onClickFirst, onClickLast, offset, length, count } = this.props;
+  renderBtn(type, number = false, currentPage = 1) {
+    const { onClickNext, onClickPrev, onClickFirst, onClickLast, onClickPage, offset, length, count } = this.props;
     const className = type === 'prev' ? styles.pagerLeft : styles.pager;
     const btn = {
       first: {
@@ -52,20 +54,39 @@ class Pager extends PureComponent {
         disabled: offset + length === count,
         onClick: onClickLast,
       },
+      goto: {
+        onClick: () => onClickPage(number),
+        disabled: false,
+      },
     };
 
+    const goToStyles = cx(styles.btn, {
+      [styles.number]: type === 'goto',
+      [styles.isActive]: currentPage === number,
+    });
+
     return (
-      <Button style="transparent" size="none" disabled={btn[type].disabled} onClick={btn[type].onClick}>
-        <Icon name={btn[type].icon} className={classNames(className, { [styles.isDisabled]: btn[type].disabled })} />
+      <Button
+        className={goToStyles}
+        style="transparent"
+        size="none"
+        disabled={btn[type].disabled}
+        onClick={btn[type].onClick}
+      >
+        {number
+          ? number
+          : <Icon name={btn[type].icon} className={cx(className, { [styles.isDisabled]: btn[type].disabled })} />}
       </Button>
     );
   }
 
   render() {
-    const { length, count, offset, limit, perpage, hasFirstLast, onLimitChange, limitList } = this.props;
+    const { length, count, offset, limit, perpage, hasFirstLast, hasPagination, onLimitChange, limitList } = this.props;
     if (count === undefined || !limit === undefined || perpage === undefined) {
       return null;
     }
+
+    const { range, currentPage } = getPageRange({ count, offset, limit });
 
     return (
       <Fragment>
@@ -78,6 +99,10 @@ class Pager extends PureComponent {
         <div className={styles.nav}>
           {hasFirstLast && this.renderBtn('first')}
           {this.renderBtn('prev')}
+          {hasPagination &&
+            <div className={styles.pagesWrap}>
+              {range.map(number => this.renderBtn('goto', number, currentPage))}
+            </div>}
           {this.renderBtn('next')}
           {hasFirstLast && this.renderBtn('last')}
         </div>

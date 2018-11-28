@@ -153,27 +153,31 @@ stories.addWithInfo('Special Case', () => {
 });
 
 const _meta = {
-  count: 30,
+  count: 110,
   limit: 10,
   offset: 0,
 };
 
 stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, loading: null, })(({ store }) => {
   const getNames = (offset, type = 'add') => {
+    let off =  type === 'add' ? offset + store.state.meta.offset : store.state.meta.offset - offset;
+    off = type === 'pagination' ? (offset - 1) * store.state.meta.limit : off;
+
     store.set({ loading: true });
+
     fetch(`https://randomuser.me/api/?results=${store.state.meta.limit}`)
-    .then(res => res.json())
-    .then(res => {
-      store.set({
-        data: res.results,
-        loading: false,
-        meta: {
-          count: 30,
-          limit: 10,
-          offset: type === 'add' ? offset + store.state.meta.offset : store.state.meta.offset - offset,
-        },
+      .then(res => res.json())
+      .then(res => {
+        store.set({
+          data: res.results,
+          loading: false,
+          meta: {
+            count: 110,
+            limit: 10,
+            offset: off,
+          },
+        });
       });
-    });
   };
 
   store.state.data === null && store.state.loading === null && getNames(0);
@@ -187,11 +191,13 @@ stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, load
       data={store.state.data}
       pager
       hasFirstLast
+      hasPagination
       loading={store.state.loading}
       onClickNext={() => getNames(10)}
       onClickPrev={() => getNames(10, 'remove')}
-      onClickFirst={() => getNames(20, 'remove')}
-      onClickLast={() => getNames(20)}
+      onClickFirst={() => getNames(100, 'remove')}
+      onClickLast={() => getNames(100)}
+      onClickPage={number => getNames(number, 'pagination')}
       meta={store.state.meta}
     />
   );
