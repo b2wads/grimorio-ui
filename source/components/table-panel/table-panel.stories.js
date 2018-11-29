@@ -159,9 +159,14 @@ const _meta = {
 };
 
 stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, loading: null, })(({ store }) => {
-  const getNames = (offset, type = 'add') => {
-    let off =  type === 'add' ? offset + store.state.meta.offset : store.state.meta.offset - offset;
-    off = type === 'pagination' ? (offset - 1) * store.state.meta.limit : off;
+  const getNames = (type, value = 0) => {
+    const typeOffset = {
+      prev: store.state.meta.offset - store.state.meta.limit,
+      next:  store.state.meta.limit + store.state.meta.offset,
+      first: 0,
+      last: store.state.meta.count - store.state.meta.limit,
+      number: (value - 1) * store.state.meta.limit,
+    };
 
     store.set({ loading: true });
 
@@ -174,13 +179,13 @@ stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, load
           meta: {
             count: 110,
             limit: 10,
-            offset: off,
+            offset: typeOffset[type],
           },
         });
       });
   };
 
-  store.state.data === null && store.state.loading === null && getNames(0);
+  store.state.data === null && store.state.loading === null && getNames('first');
 
   return (
     <TablePanel
@@ -193,11 +198,7 @@ stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, load
       hasFirstLast
       hasPagination
       loading={store.state.loading}
-      onClickNext={() => getNames(10)}
-      onClickPrev={() => getNames(10, 'remove')}
-      onClickFirst={() => getNames(100, 'remove')}
-      onClickLast={() => getNames(100)}
-      onClickPage={number => getNames(number, 'pagination')}
+      onClickPagination={(type, value) => getNames(type, value)}
       meta={store.state.meta}
     />
   );

@@ -8,8 +8,6 @@ import Select, { SelectOption } from '../../select';
 
 import styles from '../table-panel.styl';
 
-import { getPageRange } from '../../../helpers';
-
 class Pager extends PureComponent {
   renderPerPage(limit, onLimitChange, limitList) {
     return (
@@ -30,32 +28,75 @@ class Pager extends PureComponent {
     );
   }
 
-  renderBtn(type, number = false, currentPage = 1) {
-    const { onClickNext, onClickPrev, onClickFirst, onClickLast, onClickPage, offset, length, count } = this.props;
+  mapPaginationObject(start, end, currentPage) {
+    const range = [];
+
+    for (let i = start; i < end + 1; ++i) {
+      range.push(i);
+    }
+
+    return {
+      range,
+      currentPage,
+    };
+  }
+
+  getPageRange({ offset, limit, count }) {
+    const currentPage = Math.ceil(offset / limit) + 1;
+    const maxPages = Math.ceil(count / limit);
+    let start = 1;
+    let end = 10;
+
+    if (maxPages <= 10) {
+      // less than 10 total pages, then show all
+      start = 1;
+      end = maxPages;
+
+      return this.mapPaginationObject(start, end, currentPage);
+    }
+
+    // more than 10 total pages
+    if (currentPage <= 6) {
+      start = 1;
+      end = 10;
+    } else if (currentPage + 4 >= maxPages) {
+      start = maxPages - 9;
+      end = maxPages;
+    } else {
+      start = currentPage - 5;
+      end = currentPage + 4;
+    }
+
+    return this.mapPaginationObject(start, end, currentPage);
+  }
+
+  renderPaginationBtn(type, number = false, currentPage = 1) {
+    const { onClickPagination, offset, length, count } = this.props;
+
     const className = type === 'prev' ? styles.pagerLeft : styles.pager;
     const btn = {
       first: {
         icon: 'first_page',
         disabled: offset === 0,
-        onClick: onClickFirst,
+        onClick: () => onClickPagination('first'),
       },
       prev: {
         icon: 'navigate_before',
         disabled: offset === 0,
-        onClick: onClickPrev,
+        onClick: () => onClickPagination('prev'),
       },
       next: {
         icon: 'navigate_next',
         disabled: offset + length === count,
-        onClick: onClickNext,
+        onClick: () => onClickPagination('next'),
       },
       last: {
         icon: 'last_page',
         disabled: offset + length === count,
-        onClick: onClickLast,
+        onClick: () => onClickPagination('last'),
       },
       goto: {
-        onClick: () => onClickPage(number),
+        onClick: () => onClickPagination('number', number),
         disabled: false,
       },
     };
@@ -86,7 +127,7 @@ class Pager extends PureComponent {
       return null;
     }
 
-    const { range, currentPage } = getPageRange({ count, offset, limit });
+    const { range, currentPage } = this.getPageRange({ count, offset, limit });
 
     return (
       <Fragment>
@@ -97,14 +138,14 @@ class Pager extends PureComponent {
         </div>
 
         <div className={styles.nav}>
-          {hasFirstLast && this.renderBtn('first')}
-          {this.renderBtn('prev')}
+          {hasFirstLast && this.renderPaginationBtn('first')}
+          {this.renderPaginationBtn('prev')}
           {hasPagination &&
             <div className={styles.pagesWrap}>
-              {range.map(number => this.renderBtn('goto', number, currentPage))}
+              {range.map(number => this.renderPaginationBtn('goto', number, currentPage))}
             </div>}
-          {this.renderBtn('next')}
-          {hasFirstLast && this.renderBtn('last')}
+          {this.renderPaginationBtn('next')}
+          {hasFirstLast && this.renderPaginationBtn('last')}
         </div>
       </Fragment>
     );

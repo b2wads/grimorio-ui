@@ -20,11 +20,7 @@ class TablePanel extends PureComponent {
     hasPagination: PropTypes.bool,
     perpage: PropTypes.bool,
     loading: PropTypes.bool,
-    onClickPrev: PropTypes.func,
-    onClickNext: PropTypes.func,
-    onClickFirst: PropTypes.func,
-    onClickLast: PropTypes.func,
-    onClickPage: PropTypes.func,
+    onClickPagination: PropTypes.func,
     onLimitChange: PropTypes.func,
     limitList: PropTypes.array,
     meta: PropTypes.shape({
@@ -46,31 +42,13 @@ class TablePanel extends PureComponent {
     loading: false,
     error: false,
     limitList: [10, 30, 50],
-    onClickPrev: () => {},
-    onClickNext: () => {},
-    onClickFirst: () => {},
-    onClickLast: () => {},
-    onClickPage: () => {},
+    onClickPagination: (type, value) => {},
     onLimitChange: value => {},
   };
 
   // TO-DO: Select Item Column
 
-  renderFooter(
-    data,
-    pager,
-    hasFirstLast,
-    meta,
-    onClickPrev,
-    onClickNext,
-    onClickFirst,
-    onClickLast,
-    onClickPage,
-    perpage,
-    onLimitChange,
-    limitList,
-    hasPagination
-  ) {
+  renderFooter(data, pager, hasFirstLast, meta, perpage, onLimitChange, limitList, hasPagination, onClickPagination) {
     return pager
       ? <div className={styles.footer}>
           <Pager
@@ -79,11 +57,7 @@ class TablePanel extends PureComponent {
             length={data ? data.length : 0}
             onLimitChange={onLimitChange}
             limitList={limitList}
-            onClickPrev={onClickPrev}
-            onClickNext={onClickNext}
-            onClickFirst={onClickFirst}
-            onClickLast={onClickLast}
-            onClickPage={onClickPage}
+            onClickPagination={onClickPagination}
             hasFirstLast={hasFirstLast}
             hasPagination={hasPagination}
           />
@@ -117,11 +91,7 @@ class TablePanel extends PureComponent {
       hasFirstLast,
       hasPagination,
       meta,
-      onClickPrev,
-      onClickNext,
-      onClickFirst,
-      onClickLast,
-      onClickPage,
+      onClickPagination,
       perpage,
       onLimitChange,
       limitList,
@@ -137,15 +107,11 @@ class TablePanel extends PureComponent {
       pager,
       hasFirstLast,
       meta,
-      onClickPrev,
-      onClickNext,
-      onClickFirst,
-      onClickLast,
-      onClickPage,
       perpage,
       onLimitChange,
       limitList,
-      hasPagination
+      hasPagination,
+      onClickPagination
     );
 
     return (
