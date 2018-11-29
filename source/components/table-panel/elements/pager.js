@@ -9,9 +9,9 @@ import Select, { SelectOption } from '../../select';
 import styles from '../table-panel.styl';
 
 class Pager extends PureComponent {
-  renderPerPage(limit, onLimitChange, limitList) {
+  renderPerPage(limit, onLimitChange, limitList, isMobile) {
     return (
-      <div className={styles.perpage}>
+      <div className={cx(styles.perpage, { [styles.isMobile]: isMobile })}>
         <Select
           sortItems={false}
           className={styles.select}
@@ -122,7 +122,19 @@ class Pager extends PureComponent {
   }
 
   render() {
-    const { length, count, offset, limit, perpage, hasFirstLast, hasPagination, onLimitChange, limitList } = this.props;
+    const {
+      length,
+      count,
+      offset,
+      limit,
+      perpage,
+      hasFirstLast,
+      hasPagination,
+      onLimitChange,
+      limitList,
+      isMobile,
+    } = this.props;
+
     if (count === undefined || !limit === undefined || perpage === undefined) {
       return null;
     }
@@ -131,13 +143,13 @@ class Pager extends PureComponent {
 
     return (
       <Fragment>
-        {perpage && this.renderPerPage(limit, onLimitChange, limitList)}
+        {perpage && this.renderPerPage(limit, onLimitChange, limitList, isMobile)}
 
-        <div className={styles.showing}>
+        <div className={cx(styles.showing, { [styles.isMobile]: isMobile })}>
           {offset} - {offset + length} de {count}
         </div>
 
-        <div className={styles.nav}>
+        <div className={cx(styles.nav, { [styles.isMobile]: isMobile })}>
           {hasFirstLast && this.renderPaginationBtn('first')}
           {this.renderPaginationBtn('prev')}
           {hasPagination &&

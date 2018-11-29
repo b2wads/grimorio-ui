@@ -76,22 +76,44 @@ $pagerIcon {
   justify-content: flex-end;
   padding-bottom: 15px;
   padding-top: 15px;
+
+  &.isMobile {
+    flex-wrap: wrap;
+  }
 }
 
 .perpage {
   @extend $footerSection;
   align-items: center;
   display: flex;
+
+  &.isMobile {
+    margin: 0;
+    margin-bottom: 10px;
+    width: 100%;
+  }
 }
 
 .showing {
   @extend $footerSection;
+
+  &.isMobile {
+    margin: 0;
+    margin-bottom: 10px;
+    width: 100%;
+  }
 }
 
 .nav {
   @extend $footerSection;
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
+
+  &.isMobile {
+    margin: 0;
+    width: 100%;
+  }
 }
 
 .pager {

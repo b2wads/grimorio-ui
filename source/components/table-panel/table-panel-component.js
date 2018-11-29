@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
+import cx from 'classnames';
 
 import Panel from '../panel';
 import Loader from '../loader';
@@ -13,6 +14,7 @@ import styles from './table-panel.styl';
 
 class TablePanel extends PureComponent {
   static propTypes = {
+    isMobile: PropTypes.bool,
     title: PropTypes.string,
     actions: PropTypes.element,
     pager: PropTypes.bool,
@@ -44,13 +46,25 @@ class TablePanel extends PureComponent {
     limitList: [10, 30, 50],
     onClickPagination: (type, value) => {},
     onLimitChange: value => {},
+    isMobile: false,
   };
 
   // TO-DO: Select Item Column
 
-  renderFooter(data, pager, hasFirstLast, meta, perpage, onLimitChange, limitList, hasPagination, onClickPagination) {
+  renderFooter(
+    data,
+    pager,
+    hasFirstLast,
+    meta,
+    perpage,
+    onLimitChange,
+    limitList,
+    hasPagination,
+    onClickPagination,
+    isMobile
+  ) {
     return pager
-      ? <div className={styles.footer}>
+      ? <div className={cx(styles.footer, { [styles.isMobile]: isMobile })}>
           <Pager
             {...meta}
             perpage={perpage}
@@ -60,6 +74,7 @@ class TablePanel extends PureComponent {
             onClickPagination={onClickPagination}
             hasFirstLast={hasFirstLast}
             hasPagination={hasPagination}
+            isMobile={isMobile}
           />
         </div>
       : false;
@@ -99,6 +114,7 @@ class TablePanel extends PureComponent {
       onErrorClick,
       errorMessage,
       errorBtnText,
+      isMobile,
       ...rest
     } = this.props;
 
@@ -111,7 +127,8 @@ class TablePanel extends PureComponent {
       onLimitChange,
       limitList,
       hasPagination,
-      onClickPagination
+      onClickPagination,
+      isMobile
     );
 
     return (

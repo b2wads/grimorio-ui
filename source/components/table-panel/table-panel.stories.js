@@ -197,6 +197,7 @@ stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, load
       pager
       hasFirstLast
       hasPagination
+      perpage
       loading={store.state.loading}
       onClickPagination={(type, value) => getNames(type, value)}
       meta={store.state.meta}
