@@ -25,6 +25,8 @@ class DatePicker extends Component {
     this.outsiteClick = this.outsiteClick.bind(this);
     this.isOutsideRange = this.isOutsideRange.bind(this);
     this.initialMonth = this.initialMonth.bind(this);
+
+    moment.locale('pt-br');
   }
 
   static propTypes = {
