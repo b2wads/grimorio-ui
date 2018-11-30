@@ -1,5 +1,6 @@
 {
   "name": "afiliados-theme",
+  "sideEffects": false,
   "version": "1.0.1",
   "description": "Afiliados UI React",
   "main": "lib/index.js",
@@ -100,7 +101,8 @@
     "stylint": "1.5.9",
     "stylus": "0.54.5",
     "stylus-loader": "3.0.1",
-    "svg-react-loader": "0.4.5"
+    "svg-react-loader": "0.4.5",
+    "webpack-bundle-analyzer": "3.0.3"
   },
   "dependencies": {
     "chart.js": "2.7.3",
@@ -112,7 +114,7 @@
     "prop-types": "15.5.10",
     "react": "16.3.1",
     "react-css-modules": "4.7.2",
-    "react-dates": "18.1.1",
+    "react-dates": "18.2.2",
     "react-dom": "16.3.3",
     "webpack": "3.5.2"
   },
