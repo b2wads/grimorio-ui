@@ -63,6 +63,7 @@ class DatePicker extends Component {
       resetDates = { startDate: null, endDate: null };
     } else if (!endDate) {
       resetDates = { startDate, endDate: startDate };
+      this.props.onChange(resetDates);
     }
 
     this.setState({ focusedInput: null, ...resetDates });
