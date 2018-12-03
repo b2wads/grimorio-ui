@@ -39,8 +39,8 @@ stories.addWithInfo('Default Values', () => {
   return (
     <div>
       <DatePicker
-        defaultStartDate={moment()}
-        defaultEndDate={moment().add('7', 'd')}
+        defaultStartDate={moment().subtract(7, 'days')}
+        defaultEndDate={moment()}
         onChange={({ startDate, endDate }) => printDates(startDate, endDate)} />
     </div>
   );

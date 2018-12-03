@@ -153,30 +153,39 @@ stories.addWithInfo('Special Case', () => {
 });
 
 const _meta = {
-  count: 30,
+  count: 110,
   limit: 10,
   offset: 0,
 };
 
 stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, loading: null, })(({ store }) => {
-  const getNames = (offset, type = 'add') => {
+  const getNames = (type, value = 0) => {
+    const typeOffset = {
+      prev: store.state.meta.offset - store.state.meta.limit,
+      next:  store.state.meta.limit + store.state.meta.offset,
+      first: 0,
+      last: store.state.meta.count - store.state.meta.limit,
+      number: (value - 1) * store.state.meta.limit,
+    };
+
     store.set({ loading: true });
+
     fetch(`https://randomuser.me/api/?results=${store.state.meta.limit}`)
-    .then(res => res.json())
-    .then(res => {
-      store.set({
-        data: res.results,
-        loading: false,
-        meta: {
-          count: 30,
-          limit: 10,
-          offset: type === 'add' ? offset + store.state.meta.offset : store.state.meta.offset - offset,
-        },
+      .then(res => res.json())
+      .then(res => {
+        store.set({
+          data: res.results,
+          loading: false,
+          meta: {
+            count: 110,
+            limit: 10,
+            offset: typeOffset[type],
+          },
+        });
       });
-    });
   };
 
-  store.state.data === null && store.state.loading === null && getNames(0);
+  store.state.data === null && store.state.loading === null && getNames('first');
 
   return (
     <TablePanel
@@ -187,11 +196,10 @@ stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, load
       data={store.state.data}
       pager
       hasFirstLast
+      hasPagination
+      perpage
       loading={store.state.loading}
-      onClickNext={() => getNames(10)}
-      onClickPrev={() => getNames(10, 'remove')}
-      onClickFirst={() => getNames(20, 'remove')}
-      onClickLast={() => getNames(20)}
+      onClickPagination={(type, value) => getNames(type, value)}
       meta={store.state.meta}
     />
   );

@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const path = require('path');
 
 const baseConfig = {
@@ -112,7 +113,8 @@ const baseConfig = {
     }),
     new ExtractTextPlugin(`[name].min.css`, {
       allowChunks: true
-    })
+    }),
+    new BundleAnalyzerPlugin(),
   ],
 
   devtool: 'eval'

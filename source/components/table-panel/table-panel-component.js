@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
+import cx from 'classnames';
 
 import Panel from '../panel';
 import Loader from '../loader';
@@ -13,16 +14,15 @@ import styles from './table-panel.styl';
 
 class TablePanel extends PureComponent {
   static propTypes = {
+    isMobile: PropTypes.bool,
     title: PropTypes.string,
     actions: PropTypes.element,
     pager: PropTypes.bool,
     hasFirstLast: PropTypes.bool,
+    hasPagination: PropTypes.bool,
     perpage: PropTypes.bool,
     loading: PropTypes.bool,
-    onClickPrev: PropTypes.func,
-    onClickNext: PropTypes.func,
-    onClickFirst: PropTypes.func,
-    onClickLast: PropTypes.func,
+    onClickPagination: PropTypes.func,
     onLimitChange: PropTypes.func,
     limitList: PropTypes.array,
     meta: PropTypes.shape({
@@ -40,14 +40,13 @@ class TablePanel extends PureComponent {
     pager: false,
     hasFirstLast: false,
     perpage: false,
+    hasPagination: false,
     loading: false,
     error: false,
     limitList: [10, 30, 50],
-    onClickPrev: () => {},
-    onClickNext: () => {},
-    onClickFirst: () => {},
-    onClickLast: () => {},
+    onClickPagination: (type, value) => {},
     onLimitChange: value => {},
+    isMobile: false,
   };
 
   // TO-DO: Select Item Column
@@ -57,27 +56,25 @@ class TablePanel extends PureComponent {
     pager,
     hasFirstLast,
     meta,
-    onClickPrev,
-    onClickNext,
-    onClickFirst,
-    onClickLast,
     perpage,
     onLimitChange,
-    limitList
+    limitList,
+    hasPagination,
+    onClickPagination,
+    isMobile
   ) {
     return pager
-      ? <div className={styles.footer}>
+      ? <div className={cx(styles.footer, { [styles.isMobile]: isMobile })}>
           <Pager
             {...meta}
             perpage={perpage}
             length={data ? data.length : 0}
             onLimitChange={onLimitChange}
             limitList={limitList}
-            onClickPrev={onClickPrev}
-            onClickNext={onClickNext}
-            onClickFirst={onClickFirst}
-            onClickLast={onClickLast}
+            onClickPagination={onClickPagination}
             hasFirstLast={hasFirstLast}
+            hasPagination={hasPagination}
+            isMobile={isMobile}
           />
         </div>
       : false;
@@ -107,11 +104,9 @@ class TablePanel extends PureComponent {
       data,
       pager,
       hasFirstLast,
+      hasPagination,
       meta,
-      onClickPrev,
-      onClickNext,
-      onClickFirst,
-      onClickLast,
+      onClickPagination,
       perpage,
       onLimitChange,
       limitList,
@@ -119,6 +114,7 @@ class TablePanel extends PureComponent {
       onErrorClick,
       errorMessage,
       errorBtnText,
+      isMobile,
       ...rest
     } = this.props;
 
@@ -127,13 +123,12 @@ class TablePanel extends PureComponent {
       pager,
       hasFirstLast,
       meta,
-      onClickPrev,
-      onClickNext,
-      onClickFirst,
-      onClickLast,
       perpage,
       onLimitChange,
-      limitList
+      limitList,
+      hasPagination,
+      onClickPagination,
+      isMobile
     );
 
     return (

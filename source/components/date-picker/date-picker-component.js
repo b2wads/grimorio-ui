@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
-import { DayPickerRangeController, isInclusivelyAfterDay } from 'react-dates';
+import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeController';
+import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -24,6 +25,7 @@ class DatePicker extends Component {
     this.outsiteClick = this.outsiteClick.bind(this);
     this.isOutsideRange = this.isOutsideRange.bind(this);
     this.initialMonth = this.initialMonth.bind(this);
+
     moment.locale('pt-br');
   }
 
@@ -61,6 +63,7 @@ class DatePicker extends Component {
       resetDates = { startDate: null, endDate: null };
     } else if (!endDate) {
       resetDates = { startDate, endDate: startDate };
+      this.props.onChange(resetDates);
     }
 
     this.setState({ focusedInput: null, ...resetDates });
