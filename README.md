@@ -29,15 +29,15 @@
 
 ## In the your project
 ```bash
-npm install --save afiliados-theme
+npm install --save bitservices-theme
 // or
-yarn add afiliados-theme
+yarn add bitservices-theme
 ```
 
 ```bash
 // package.json
 "dependencies": {
-  "afiliados-theme": "vX.X.X"
+  "bitservices-theme": "vX.X.X"
 }
 ```
 
@@ -45,10 +45,10 @@ yarn add afiliados-theme
 // import the CSS
 
 // ex: layout.js
-import '[node_modules path]/afiliados-theme/dist/afiliados-theme.min.css';
+import '[node_modules path]/bitservices-theme/dist/bitservices-theme.min.css';
 
 // component.js
-import { Alert } from 'afiliados-theme';
+import { Alert } from 'bitservices-theme';
 
 // webpack
 {
@@ -60,7 +60,7 @@ import { Alert } from 'afiliados-theme';
 {
   test: /\.css/,
   loader: 'style!css',
-  include: path.resolve(__dirname, "../../node_modules/afiliados-theme/dist/")
+  include: path.resolve(__dirname, "../../node_modules/bitservices-theme/dist/")
 }
 ```
 

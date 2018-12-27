@@ -1,8 +1,8 @@
 {
-  "name": "afiliados-theme",
+  "name": "bitservices-theme",
   "sideEffects": false,
   "version": "3.0.1",
-  "description": "Afiliados UI React",
+  "description": "Bitservices UI React",
   "main": "lib/index.js",
   "scripts": {
     "cp:package": "rm ../afiliados-webapp/packages/bitservices-theme-*.tgz && ./node_modules/.bin/cpy bitservices-theme-*.tgz ../afiliados-webapp/packages/",
@@ -34,7 +34,7 @@
   "directories": {
     "doc": "docs"
   },
-  "author": "Afiliados",
+  "author": "Bitservices",
   "contributors": [
     "Ana Azevedo <ana.fazevedo@b2wdigital.com> (http://)",
     "Deborah Miranda <dmiranda@b2wdigital.com> (http://)",

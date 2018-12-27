@@ -22,6 +22,6 @@ tmp/
 source/vendor/
 
 # Package
-afiliados-theme-*.tgz
+bitservices-theme-*.tgz
 lib/
 dist/

@@ -5,7 +5,7 @@ const path = require('path');
 
 const baseConfig = {
   entry: {
-    'afiliados-theme': './source/index.js',
+    'bitservices-theme': './source/index.js',
   },
 
   output: {
