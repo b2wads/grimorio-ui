@@ -114,7 +114,9 @@ const baseConfig = {
     new ExtractTextPlugin(`[name].min.css`, {
       allowChunks: true
     }),
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+    }),
   ],
 
   devtool: 'eval'

@@ -1,13 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
+
+import styles from './icon.styl';
 
 class Icon extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.pathLoader = this.pathLoader.bind(this);
-  }
-
   static defaultProps = {
     name: 'person', // https://material.io/tools/icons/?style=baseline
     size: 24,
@@ -35,36 +32,24 @@ class Icon extends PureComponent {
     style: PropTypes.object,
   };
 
-  pathLoader(name) {
-    try {
-      /* eslint-disable */
-      return require('!!svg-react-loader!../../vendor/material-design-icons/ic_'+ name +'_24px.svg');
-      /* eslint-disable */
-    } catch (error) {
-      return false;
-    }
-  }
-
   render() {
-    const { name, size, ...elementProps } = this.props;
-    const Component = this.pathLoader(name);
+    const { name, size, className, ...elementProps } = this.props;
 
-    let styles = {
-      fill: this.props.color,
+    let custom = {
+      color: this.props.color,
       verticalAlign: this.props.align,
     };
 
     if (size) {
       // Prevents scaling issue in IE
-      styles.height = size;
-      styles.width = size;
+      custom.fontSize = `${size}px`;
     }
 
-    if (!Component) {
-      return null;
-    }
-
-    return <Component style={styles} {...elementProps} />;
+    return (
+      <i style={custom} className={cx('material-icons', styles.icon, className)} {...elementProps}>
+        {name}
+      </i>
+    );
   }
 }
 

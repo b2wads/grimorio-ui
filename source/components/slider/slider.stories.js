@@ -21,6 +21,8 @@ stories.addWithInfo('Arrow Dots', () => (
   <div>
     <Slider arrows dots>
       <div style={style}>1</div>
+      <div style={style}>2</div>
+      <div style={style}>3</div>
     </Slider>
   </div>
 ));
