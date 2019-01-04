@@ -73,7 +73,7 @@ $radioCheckbox {
     background: $disabled;
     border-color: darken($disabled, 25%);
     cursor: not-allowed;
-    svg { fill: darken($disabled, 25%); }
+    i { color: darken($disabled, 25%); }
   }
 }
 
@@ -188,8 +188,8 @@ $addon {
   }
 
   .checkIcon {
+    color: $white;
     display: none;
-    fill: $white;
   }
 
   .checkIcon.isChecked {
@@ -287,7 +287,6 @@ $addon {
     color: $c-success;
   }
 
-  & .form-feedback { fill: $c-success; }
   & .form-addon {
     background: $c-success-light;
     border-color: $c-success;
@@ -303,7 +302,6 @@ $addon {
     color: $c-warning;
   }
 
-  & .form-feedback { fill: $c-warning; }
   & .form-addon {
     background: $c-warning-light;
     border-color: $c-warning;
@@ -319,7 +317,6 @@ $addon {
     color: $c-error;
   }
 
-  & .form-feedback { fill: $c-error; }
   & .form-addon {
     background: $c-error-light;
     border-color: $c-error;
