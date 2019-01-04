@@ -21,7 +21,8 @@ stories.addWithInfo(
         Primary Icon
       </Button>&nbsp;
       <Button style="secondary">Secondary</Button>&nbsp;
-      <Button style="outline" iconRight="person">Outline</Button>&nbsp;
+      <Button style="outline">Outline</Button>&nbsp;
+      <Button style="outlinePrimary">OutlinePrimary</Button>&nbsp;
       <Button disabled>Disabled</Button>&nbsp;
       <Button style="clean" size="small">Clean</Button>&nbsp;
       <Button style="clean" iconRight="person" size="small">

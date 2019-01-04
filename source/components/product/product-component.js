@@ -2,17 +2,15 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
-import Clipboard from 'clipboard';
 import moment from 'moment';
 
 import styles from './product.styl';
 
 import Svg from '../svg';
-import Icon from '../icon';
 import Button from '../button';
 import Tooltip from '../tooltip';
 
-import { moneyFormat, shareOn, uniqueId } from '../../helpers';
+import { moneyFormat, shareOn, uniqueId, copyToClipboard } from '../../helpers';
 
 class Product extends PureComponent {
   constructor() {
@@ -21,6 +19,8 @@ class Product extends PureComponent {
       linkCopied: false,
       btnId: uniqueId('copybtn'),
     };
+
+    this.handleCopy = this.handleCopy.bind(this);
   }
 
   static propTypes = {
@@ -28,6 +28,7 @@ class Product extends PureComponent {
     btnText: PropTypes.string,
     onCopy: PropTypes.func,
     copyLoading: PropTypes.bool,
+    stage: PropTypes.oneOf(['generate', 'copy']),
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
@@ -50,6 +51,7 @@ class Product extends PureComponent {
   static defaultProps = {
     type: 'default',
     btnText: 'Copiar Link',
+    stage: 'generate',
     data: {},
     onCopy: value => value,
     copyLoading: false,
@@ -97,26 +99,49 @@ class Product extends PureComponent {
     });
   }
 
-  componentWillUnmount() {
-    this.clipboard && this.clipboard.destroy();
+  handleCopy() {
+    const { linkValue } = this.props;
+    copyToClipboard(linkValue);
+    this.setState({ linkCopied: true });
+    setTimeout(() => {
+      this.setState({ linkCopied: false });
+    }, 2000);
   }
 
-  componentDidMount() {
-    const { data, onCopy } = this.props;
+  renderGenerateButton() {
+    const { copyLoading, onGenerate } = this.props;
+    return (
+      <Button
+        size="small"
+        className={styles.copy}
+        onClick={onGenerate}
+        loading={copyLoading}
+        iconRight={!copyLoading && 'insert_link'}
+        style="outlinePrimary"
+      >
+        Gerar Link
+      </Button>
+    );
+  }
 
-    this.clipboard = new Clipboard(`.${this.state.btnId}`, {
-      text: () => onCopy(data.copyValue),
-    });
-
-    this.clipboard.on('success', () => {
-      this.setState({ linkCopied: true });
-      setTimeout(() => this.setState({ linkCopied: false }), 1500);
-    });
+  renderCopyButton() {
+    const { btnText } = this.props;
+    const { linkCopied } = this.state;
+    return (
+      <Button
+        size="small"
+        className={styles.copy}
+        onClick={this.handleCopy}
+        iconRight={linkCopied ? 'check' : 'insert_link'}
+      >
+        {linkCopied && 'Copiado!'}
+        {!linkCopied && btnText}
+      </Button>
+    );
   }
 
   render() {
-    const { linkCopied, btnId } = this.state;
-    const { className, type, btnText, copyLoading, ...elementProps } = this.props;
+    const { className, type, stage, ...elementProps } = this.props;
     const { img, name, info, expires, link, copyValue } = this.props.data;
 
     const fullClassName = classNames(className, {
@@ -155,13 +180,7 @@ class Product extends PureComponent {
           </div>}
 
         <div className={styles.social}>
-          <Button active={linkCopied} className={classNames(styles.copy, btnId)} size="small">
-            {copyLoading && 'Gerando...'}
-            {linkCopied && 'Copiado!'}
-            {!linkCopied && !copyLoading && btnText}
-            {!copyLoading &&
-              <Icon className={styles.iconRight} size={18} name={linkCopied ? 'check' : 'insert_link'} />}
-          </Button>
+          {stage === 'generate' ? this.renderGenerateButton() : this.renderCopyButton()}
           <Svg
             onClick={this.share('facebook', encodeURIComponent(copyValue))}
             className={styles.facebook}

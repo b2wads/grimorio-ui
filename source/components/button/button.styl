@@ -104,7 +104,8 @@ $button {
 /* Outline
 ================ */
 
-.outline {
+.outline,
+.outlinePrimary {
   @extend $button;
   background: none;
   border: 1px solid $c-gray-1;
@@ -118,6 +119,23 @@ $button {
   &.isActive {
     background: $c-gray-1;
     color: $white;
+  }
+}
+
+/* Outline Primary
+================ */
+
+.outlinePrimary {
+  border: 1px solid $c-primary;
+  color: $c-primary;
+
+  path {
+    fill: $c-primary;
+  }
+
+  &:hover,
+  &.isActive {
+    background: $c-primary;
   }
 }
 

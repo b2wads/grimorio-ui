@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, object } from '@storybook/addon-knobs';
+import { withState } from '@dump247/storybook-state';
 
 import Product from './product-component';
 import Panel from '../panel';
@@ -9,7 +10,7 @@ const stories = storiesOf('Product', module);
 
 stories.addDecorator(withKnobs);
 
-const pannelSize = { flexBasis: '20%', minWidth: '250px', };
+const pannelSize = { flexBasis: '30%', minWidth: '250px', };
 
 const exampleProduct = {
   img: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
@@ -92,3 +93,37 @@ stories.addWithInfo('Card', () => (
     </Panel>
   </div>
 ));
+
+stories.addWithInfo('Generate', withState({ loading: false, data: null, stage: 'generate' })(({ store }) => {
+  const generateLink = link => {
+    store.set({ loading: true });
+
+    fetch('https://randomuser.me/api/?results=1')
+      .then(res => res.json())
+      .then(res => {
+        store.set({ loading: false, data: res.results[0].name.first, stage: 'copy' });
+      });
+  }
+
+  return (
+    <div style={{ display: 'flex' }}>
+      <Panel style={pannelSize}>
+        <Product
+          data={object('Product', exampleProduct)}
+          copyLoading={store.state.loading}
+          onGenerate={data => generateLink(data)}
+          linkValue={store.state.data}
+          stage={store.state.stage}
+        />
+      </Panel>
+
+      <Panel style={pannelSize}>
+        <Product
+          data={object('Product', exampleProduct)}
+          copyLoading={false}
+          onGenerate={data => console.log(data)}
+        />
+      </Panel>
+    </div>
+  )
+}));
