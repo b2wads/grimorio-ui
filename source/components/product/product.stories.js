@@ -94,7 +94,7 @@ stories.addWithInfo('Card', () => (
   </div>
 ));
 
-stories.addWithInfo('Generate', withState({ loading: false, data: null, stage: 'generate' })(({ store }) => {
+stories.addWithInfo('Functional', withState({ loading: false, data: null, stage: 'generate' })(({ store }) => {
   const generateLink = link => {
     store.set({ loading: true });
 
