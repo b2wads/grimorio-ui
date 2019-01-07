@@ -101,11 +101,15 @@ class Product extends PureComponent {
 
   handleCopy() {
     const { linkValue } = this.props;
-    copyToClipboard(linkValue);
-    this.setState({ linkCopied: true });
-    setTimeout(() => {
-      this.setState({ linkCopied: false });
-    }, 2000);
+    copyToClipboard({
+      value: linkValue,
+      success: () => {
+        this.setState({ linkCopied: true });
+        setTimeout(() => {
+          this.setState({ linkCopied: false });
+        }, 2000);
+      },
+    });
   }
 
   renderGenerateButton() {
