@@ -117,7 +117,8 @@ class Product extends PureComponent {
         onClick={onGenerate}
         loading={copyLoading}
         iconRight={!copyLoading && 'insert_link'}
-        style="outlinePrimary"
+        style="primary"
+        modifier="outline"
       >
         Gerar Link
       </Button>

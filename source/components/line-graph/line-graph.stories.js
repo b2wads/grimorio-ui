@@ -175,8 +175,8 @@ stories.addWithInfo('Normal', () =>
     <LineGraph
       title="Pedidos!"
       style={{ height: '400px' }}
-      actions={<Button onClick={() => alert('export!')} style="outline">Export</Button>}
       accordion
+      actions={<Button onClick={() => alert('export!')} style="variant" modifier="outline">Export</Button>}
       datasets={[
         {
           data: transformData(data),
