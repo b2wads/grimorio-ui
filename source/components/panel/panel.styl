@@ -48,10 +48,6 @@ $brandLogo {
   }
 }
 
-.content.isBrand {
-  padding: 0 10px 10px;
-}
-
 .title {
   color: $c-support;
   font-size: 21px;
@@ -60,6 +56,8 @@ $brandLogo {
 /* Size
  ================ */
 .wrapper {
+  transition: max-height 0.5s ease;
+
   &.small {
     padding: 20px 15px;
   }
@@ -77,10 +75,26 @@ $brandLogo {
   }
 }
 
+.content {
+  opacity: 1;
+  transition: all 0.3s ease;
+
+  &.isBrand {
+    padding: 0 10px 10px;
+  }
+
+  &.isClosed {
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+}
+
 /* Footer
  ================ */
 .footer {
   border-top: 1px solid $c-secondary;
+  display: block;
 
   &.small {
     padding: 15px;
@@ -92,6 +106,10 @@ $brandLogo {
 
   &.large {
     padding: 25px;
+  }
+
+  &.isClosed {
+    display: none;
   }
 }
 
