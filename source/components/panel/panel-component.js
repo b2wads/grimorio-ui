@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import Svg from '../svg';
 import Loader from '../loader';
@@ -9,6 +9,16 @@ import Loader from '../loader';
 import styles from './panel.styl';
 
 class Panel extends PureComponent {
+  constructor(props) {
+    super();
+    this.state = {
+      open: props.open,
+      height: null,
+    };
+
+    this.toggleTitle = this.toggleTitle.bind(this);
+  }
+
   static propTypes = {
     size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
     brand: PropTypes.oneOf([null, 'acom', 'suba', 'shop', 'soub']),
@@ -18,6 +28,7 @@ class Panel extends PureComponent {
     footer: PropTypes.element,
     footerClassName: PropTypes.string,
     loading: PropTypes.bool,
+    open: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -25,6 +36,7 @@ class Panel extends PureComponent {
     title: false,
     size: 'medium',
     loading: false,
+    open: true,
   };
 
   renderHeader(brand, title) {
@@ -44,13 +56,32 @@ class Panel extends PureComponent {
   }
 
   renderFooter(footer, size, footerClassName) {
+    const className = cx(styles.footer, footerClassName, {
+      [styles[size]]: size,
+      [styles.isClosed]: !this.state.open,
+    });
+
     if (footer) {
       return (
-        <footer className={classNames(styles.footer, { [styles[size]]: size }, footerClassName)}>
+        <footer className={className}>
           {footer}
         </footer>
       );
     }
+  }
+
+  toggleTitle() {
+    this.setState({
+      open: !this.state.open,
+      height: this.content.scrollHeight,
+    });
+  }
+
+  componentDidMount() {
+    this.state.height === null &&
+      this.setState({
+        height: this.content.scrollHeight,
+      });
   }
 
   render() {
@@ -67,14 +98,23 @@ class Panel extends PureComponent {
       ...rest
     } = this.props;
 
-    const fullClassName = classNames(className, {
+    const fullClassName = cx(className, {
       [styles.default]: true,
     });
 
-    const wrapperClass = classNames(styles.wrapper, {
+    const wrapperClass = cx(styles.wrapper, {
       [styles[size]]: size,
       [styles.isBrand]: brand,
     });
+
+    const contentClass = cx(styles.content, contentClassName, {
+      [styles.isBrand]: brand,
+      [styles.isClosed]: !this.state.open,
+    });
+
+    let style = {
+      maxHeight: this.state.open ? this.state.height : `0px`,
+    };
 
     return (
       <article {...rest} className={fullClassName}>
@@ -82,7 +122,7 @@ class Panel extends PureComponent {
           {(title || brand) && this.renderHeader(brand, title)}
           {loading && <Loader size="32px" className={styles.loader} />}
           {!loading &&
-            <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
+            <div ref={content => (this.content = content)} className={contentClass} style={style}>
               {children}
             </div>}
         </div>

@@ -34,7 +34,7 @@ stories.addWithInfo('Default', () => (
       Simple Panel
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel title="Title">
+    <Panel title="Title" open={false}>
       <p>Content</p>
       <Button>Send</Button>
     </Panel>
