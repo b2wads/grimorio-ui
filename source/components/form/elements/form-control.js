@@ -198,6 +198,7 @@ class FormControl extends PureComponent {
           >
             {type === 'checkbox' &&
               <Icon
+                size={16}
                 className={classNames(styles.checkIcon, { [styles.isChecked]: this.props.checked })}
                 name="check"
               />}
