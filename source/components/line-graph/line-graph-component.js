@@ -31,6 +31,8 @@ class LineGraph extends PureComponent {
     errorMessage: PropTypes.string,
     onErrorClick: PropTypes.func,
     errorBtnText: PropTypes.string,
+    accordion: PropTypes.bool,
+    open: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -39,6 +41,8 @@ class LineGraph extends PureComponent {
     options: {},
     loading: false,
     error: false,
+    accordion: false,
+    open: true,
   };
 
   static chart = null;
@@ -136,11 +140,23 @@ class LineGraph extends PureComponent {
   }
 
   render() {
-    const { title, loading, className, actions, error, onErrorClick, errorMessage, errorBtnText, ...rest } = this.props;
+    const {
+      title,
+      loading,
+      className,
+      actions,
+      error,
+      onErrorClick,
+      errorMessage,
+      errorBtnText,
+      accordion,
+      open,
+      ...rest
+    } = this.props;
     const chartClass = classNames(className, styles.chart);
 
     return (
-      <Panel className={styles.panel} title={this.renderHeader(title, actions)}>
+      <Panel className={styles.panel} title={this.renderHeader(title, actions)} accordion={accordion} open={open}>
         {loading && <Loader type="full" />}
         {error &&
           <Error
