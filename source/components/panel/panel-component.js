@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 
 import Svg from '../svg';
+import Icon from '../icon';
 import Loader from '../loader';
 
 import styles from './panel.styl';
@@ -28,7 +29,9 @@ class Panel extends PureComponent {
     footer: PropTypes.element,
     footerClassName: PropTypes.string,
     loading: PropTypes.bool,
+    accordion: PropTypes.bool,
     open: PropTypes.bool,
+    onAccordionClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -36,10 +39,27 @@ class Panel extends PureComponent {
     title: false,
     size: 'medium',
     loading: false,
+    accordion: false,
     open: true,
   };
 
-  renderHeader(brand, title) {
+  componentDidUpdate(prevProps) {
+    if (this.props.open !== prevProps.open) {
+      this.setState({ open: this.props.open });
+    }
+  }
+
+  renderIcon(open) {
+    return (
+      <Icon
+        onClick={this.toggleTitle}
+        className={styles.arrow}
+        name={open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
+      />
+    );
+  }
+
+  renderHeader(brand, title, accordion, open) {
     if (brand) {
       return (
         <header className={styles[brand]}>
@@ -48,8 +68,9 @@ class Panel extends PureComponent {
       );
     } else {
       return (
-        <header className={styles.title}>
+        <header className={cx(styles.title, { [styles.isAccordion]: accordion })}>
           {title}
+          {accordion && this.renderIcon(open)}
         </header>
       );
     }
@@ -71,10 +92,13 @@ class Panel extends PureComponent {
   }
 
   toggleTitle() {
+    const { onAccordionClick } = this.props;
     this.setState({
       open: !this.state.open,
       height: this.content.scrollHeight,
     });
+
+    onAccordionClick();
   }
 
   componentDidMount() {
@@ -85,6 +109,7 @@ class Panel extends PureComponent {
   }
 
   render() {
+    const { open, height } = this.state;
     const {
       title,
       children,
@@ -95,6 +120,7 @@ class Panel extends PureComponent {
       contentClassName,
       footerClassName,
       loading,
+      accordion,
       ...rest
     } = this.props;
 
@@ -109,17 +135,17 @@ class Panel extends PureComponent {
 
     const contentClass = cx(styles.content, contentClassName, {
       [styles.isBrand]: brand,
-      [styles.isClosed]: !this.state.open,
+      [styles.isClosed]: !open,
     });
 
     let style = {
-      maxHeight: this.state.open ? this.state.height : `0px`,
+      maxHeight: open ? height : `0px`,
     };
 
     return (
       <article {...rest} className={fullClassName}>
         <div className={wrapperClass}>
-          {(title || brand) && this.renderHeader(brand, title)}
+          {(title || brand) && this.renderHeader(brand, title, accordion, open)}
           {loading && <Loader size="32px" className={styles.loader} />}
           {!loading &&
             <div ref={content => (this.content = content)} className={contentClass} style={style}>
