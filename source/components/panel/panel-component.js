@@ -43,6 +43,13 @@ class Panel extends PureComponent {
     open: true,
   };
 
+  componentDidMount() {
+    this.state.height === null &&
+      this.setState({
+        height: this.content.scrollHeight,
+      });
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.open !== prevProps.open) {
       this.setState({ open: this.props.open });
@@ -101,13 +108,6 @@ class Panel extends PureComponent {
     onAccordionClick();
   }
 
-  componentDidMount() {
-    this.state.height === null &&
-      this.setState({
-        height: this.content.scrollHeight,
-      });
-  }
-
   render() {
     const { open, height } = this.state;
     const {
@@ -138,7 +138,7 @@ class Panel extends PureComponent {
       [styles.isClosed]: !open,
     });
 
-    let style = {
+    const style = {
       maxHeight: open ? height : `0px`,
     };
 
