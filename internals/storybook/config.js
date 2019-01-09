@@ -4,7 +4,7 @@ import { configure, setAddon, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 
 import "../../source/styl/style.styl";
-import styles from "../../source/styl/07-pages/storybook.styl";
+import styles from "../../source/styl/03-pages/storybook.styl";
 
 addDecorator((fn, { kind, story }) => <div className={styles.container}>
   <header className={styles.header}>
