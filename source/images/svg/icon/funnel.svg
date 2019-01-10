@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_funil</title>
+    <desc>Created with Sketch.</desc>
+    <g id="fluxo-principal" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="07_produto_indisponivel" transform="translate(-18.000000, -182.000000)" fill="#343333">
+            <g id="Left-Navigation" transform="translate(-2.000000, 62.000000)">
+                <g id="menu_normal" transform="translate(0.000000, 106.000000)">
+                    <g id="icon_funil" transform="translate(20.000000, 14.000000)">
+                        <g id="_ionicons_svg_ios-funnel">
+                            <path d="M0,1.10222672 C0,1.36639676 0.0865384615,1.62145749 0.242307692,1.81730769 L6.82788462,10.0065789 C6.98365385,10.2024291 7.07019231,10.4574899 7.07019231,10.7216599 L7.07019231,15.5951417 C7.07019231,16.0506073 7.32548077,16.451417 7.70192308,16.597166 L10.0817308,17.4989879 C10.4971154,17.6584008 10.9298077,17.3031377 10.9298077,16.8021255 L10.9298077,10.7171053 C10.9298077,10.4529352 11.0163462,10.1978745 11.1721154,10.0020243 L17.7576923,1.81275304 C17.9134615,1.61690283 18,1.36184211 18,1.09767206 C18,0.514676113 17.5846154,0.0409919028 17.0740385,0.0409919028 L0.925961538,0.0409919028 C0.415384615,0.0455465587 0,0.519230769 0,1.10222672 Z" id="Path"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
