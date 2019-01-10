@@ -66,7 +66,8 @@ class Select extends Component {
       nextState.selectedValue !== this.state.selectedValue ||
       nextProps.value !== this.props.value ||
       nextProps.items.length !== this.props.items.length ||
-      nextProps.open !== this.props.open
+      nextProps.open !== this.props.open ||
+      nextProps.disabled !== this.props.disabled
     );
   }
 
