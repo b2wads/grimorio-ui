@@ -36,7 +36,7 @@ const exampleProduct = {
 const exampleCupom = {
   name: '10% com o cupom ALO10',
   info: {
-    value: 'ALO10',
+    value: 'ALO10', //16
     rules: 'Confira as regras no site https://www.americanas.com.br/hotsite/regras-do-site',
   },
   expires: '2018-10-31T23:59:00.000Z',
@@ -55,8 +55,27 @@ const exampleCupom = {
   ],
 };
 
-const exampleCupomCard = {...exampleCupom, expires: null, tags: []};
-const exampleProductCard = {...exampleProduct, expires: null, tags: [{type: 'highlight', value: true}]};
+const exampleCat = {
+  name: '10% com em telefonia',
+  info: {},
+  expires: '2018-10-31T23:59:00.000Z',
+  link: 'http://www.americanas.com.br/categoria/celulares-e-smartphones/f/tag-tag_alo10_acom?opn=AFLACOM&epar=b2wafiliados&franq=AFL-03-101718',
+  copyValue: 'http://www.americanas.com.br/categoria/celulares-e-smartphones/f/tag-tag_alo10_acom?opn=AFLACOM&epar=b2wafiliados&franq=AFL-03-101718',
+  tags: [
+    {
+      type: 'brand',
+      value: 'shop',
+    },
+    {
+      type: 'highlight',
+      value: true,
+    }
+  ],
+};
+
+const exampleCupomCard = {...exampleCupom, tags: []};
+const exampleProductCard = {...exampleProduct, tags: [{type: 'highlight', value: true}]};
+const exampleCategoryCard = {...exampleCat, tags: [{type: 'highlight', value: true}]};
 
 stories.addWithInfo('Default', () => (
   <div style={{ display: 'flex' }}>
@@ -66,6 +85,10 @@ stories.addWithInfo('Default', () => (
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
       <Product onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Cupom', exampleCupom)} />
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel style={pannelSize}>
+      <Product onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Categoria', exampleCat)} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
@@ -89,7 +112,7 @@ stories.addWithInfo('Card', () => (
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel type="brand" brand="soub" style={pannelSize}>
-      <Product type="card" btnText="Copiar Cupom" data={object('Cupom', exampleCupomCard)} />
+      <Product type="card" btnText="Copiar Cupom" data={object('Categoria', exampleCategoryCard)} />
     </Panel>
   </div>
 ));

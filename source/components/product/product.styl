@@ -36,6 +36,10 @@ $img {
    Product Elements
 ========================================================================== */
 
+.wrapper {
+  position: relative;
+}
+
 .tag {
   left: 0;
   position: absolute;
@@ -103,6 +107,12 @@ $img {
   width: 17px;
 }
 
+.footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
 .expires {
   font-size: 12px;
   margin-top: $gutter-px;
@@ -156,6 +166,10 @@ $img {
     font-weight: 400;
     margin-top: $gutter-px;
   }
+
+  &.wrapper {
+    height: 280px;
+  }
 }
 
 /* Card
@@ -164,6 +178,10 @@ $img {
 .card {
   @extend $default-product;
   text-align: center;
+
+  &.wrapper {
+    height: 290px;
+  }
 
   .info {
     color: $c-primary;
@@ -175,4 +193,8 @@ $img {
   .isShort {
     justify-content: center;
   }
+}
+
+.info.isBig {
+  font-size: 16px;
 }

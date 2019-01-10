@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 import moment from 'moment';
 
 import styles from './product.styl';
@@ -69,7 +69,7 @@ class Product extends PureComponent {
     }
 
     return (
-      <div className={styles.info}>
+      <div className={cx(styles.info, { [styles.isBig]: info.value && info.value.length > 11 })}>
         {typeof info.value === 'number' ? moneyFormat(info.value) : info.value}
         {info.rules &&
           <Tooltip className={styles.rules} width="220px" message={info.rules}>
@@ -149,7 +149,7 @@ class Product extends PureComponent {
     const { className, type, stage, ...elementProps } = this.props;
     const { img, name, info, expires, link, copyValue } = this.props.data;
 
-    const fullClassName = classNames(className, {
+    const fullClassName = cx(className, styles.wrapper, {
       [styles[type]]: type,
     });
 
@@ -171,7 +171,7 @@ class Product extends PureComponent {
           </a>
         </div>
 
-        <h1 className={classNames(styles.name, { [styles.isShort]: name.length < 31 })}>
+        <h1 className={cx(styles.name, { [styles.isShort]: name.length < 31 })}>
           <a href={link}>
             {name}
           </a>
@@ -179,29 +179,31 @@ class Product extends PureComponent {
 
         {this.renderInfo()}
 
-        {expires &&
-          <div className={styles.expires}>
-            {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
-          </div>}
+        <div className={styles.footer}>
+          {expires &&
+            <div className={styles.expires}>
+              {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
+            </div>}
 
-        <div className={styles.social}>
-          {stage === 'generate' ? this.renderGenerateButton() : this.renderCopyButton()}
-          <Svg
-            onClick={this.share('facebook', encodeURIComponent(copyValue))}
-            className={styles.facebook}
-            align="top"
-            width={26}
-            height={26}
-            src="icon/facebook-square"
-          />
-          <Svg
-            onClick={this.share('twitter', encodeURIComponent(copyValue))}
-            className={styles.twitter}
-            align="top"
-            width={26}
-            height={26}
-            src="icon/twitter-square"
-          />
+          <div className={styles.social}>
+            {stage === 'generate' ? this.renderGenerateButton() : this.renderCopyButton()}
+            <Svg
+              onClick={this.share('facebook', encodeURIComponent(copyValue))}
+              className={styles.facebook}
+              align="top"
+              width={26}
+              height={26}
+              src="icon/facebook-square"
+            />
+            <Svg
+              onClick={this.share('twitter', encodeURIComponent(copyValue))}
+              className={styles.twitter}
+              align="top"
+              width={26}
+              height={26}
+              src="icon/twitter-square"
+            />
+          </div>
         </div>
       </section>
     );
