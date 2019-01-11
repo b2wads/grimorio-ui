@@ -27,7 +27,9 @@ class Product extends PureComponent {
     type: PropTypes.oneOf(['default', 'card']),
     btnText: PropTypes.string,
     onCopy: PropTypes.func,
-    copyLoading: PropTypes.bool,
+    onGenerate: PropTypes.func,
+    generateLoading: PropTypes.bool,
+    copyValue: PropTypes.string.isRequired,
     stage: PropTypes.oneOf(['generate', 'copy']),
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -38,7 +40,6 @@ class Product extends PureComponent {
         rules: PropTypes.string,
       }).isRequired,
       expires: PropTypes.string,
-      copyValue: PropTypes.string.isRequired,
       tags: PropTypes.arrayOf(
         PropTypes.shape({
           type: PropTypes.string,
@@ -54,7 +55,8 @@ class Product extends PureComponent {
     stage: 'generate',
     data: {},
     onCopy: value => value,
-    copyLoading: false,
+    generateLoading: false,
+    copyValue: null,
   };
 
   share(type, link) {
@@ -100,10 +102,11 @@ class Product extends PureComponent {
   }
 
   handleCopy() {
-    const { linkValue } = this.props;
+    const { copyValue, onCopy } = this.props;
     copyToClipboard({
-      value: linkValue,
+      value: copyValue,
       success: () => {
+        onCopy(copyValue);
         this.setState({ linkCopied: true });
         setTimeout(() => {
           this.setState({ linkCopied: false });
@@ -113,14 +116,14 @@ class Product extends PureComponent {
   }
 
   renderGenerateButton() {
-    const { copyLoading, onGenerate } = this.props;
+    const { generateLoading, onGenerate } = this.props;
     return (
       <Button
         size="small"
         className={styles.copy}
         onClick={onGenerate}
-        loading={copyLoading}
-        iconRight={!copyLoading && 'insert_link'}
+        loading={generateLoading}
+        iconRight={!generateLoading && 'insert_link'}
         style="primary"
         modifier="outline"
       >
@@ -146,8 +149,8 @@ class Product extends PureComponent {
   }
 
   render() {
-    const { className, type, stage, ...elementProps } = this.props;
-    const { img, name, info, expires, link, copyValue } = this.props.data;
+    const { className, type, stage, copyValue, ...elementProps } = this.props;
+    const { img, name, info, expires, link } = this.props.data;
 
     const fullClassName = cx(className, styles.wrapper, {
       [styles[type]]: type,
@@ -164,7 +167,7 @@ class Product extends PureComponent {
         </div>
 
         <div className={styles.imgWrapper}>
-          <a target="_blank" href={link}>
+          <a target="_blank" href={copyValue || link}>
             {img
               ? <img className={styles.imgCustom} src={img} alt={name} />
               : <Svg className={styles.imgDefault} src="cupom" />}
@@ -172,7 +175,7 @@ class Product extends PureComponent {
         </div>
 
         <h1 className={cx(styles.name, { [styles.isShort]: name.length < 31 })}>
-          <a href={link}>
+          <a href={copyValue || link}>
             {name}
           </a>
         </h1>
@@ -188,7 +191,7 @@ class Product extends PureComponent {
           <div className={styles.social}>
             {stage === 'generate' ? this.renderGenerateButton() : this.renderCopyButton()}
             <Svg
-              onClick={this.share('facebook', encodeURIComponent(copyValue))}
+              onClick={this.share('facebook', encodeURIComponent(copyValue || link))}
               className={styles.facebook}
               align="top"
               width={26}
@@ -196,7 +199,7 @@ class Product extends PureComponent {
               src="icon/facebook-square"
             />
             <Svg
-              onClick={this.share('twitter', encodeURIComponent(copyValue))}
+              onClick={this.share('twitter', encodeURIComponent(copyValue || link))}
               className={styles.twitter}
               align="top"
               width={26}
