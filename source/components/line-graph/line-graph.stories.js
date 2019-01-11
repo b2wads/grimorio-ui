@@ -203,7 +203,7 @@ stories.addWithInfo('Error', () =>
       error
       onErrorClick={() => alert('try again!')}
       style={{ height: '400px' }}
-      actions={<Button color="outline">Export</Button>}
+      actions={<Button color="variant" modifier="outline">Export</Button>}
       datasets={[]}
       options={options}
     />
