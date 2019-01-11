@@ -176,7 +176,7 @@ stories.addWithInfo('Normal', () =>
       title="Pedidos!"
       style={{ height: '400px' }}
       accordion
-      actions={<Button onClick={() => alert('export!')} style="variant" modifier="outline">Export</Button>}
+      actions={<Button onClick={() => alert('export!')} color="variant" modifier="outline">Export</Button>}
       datasets={[
         {
           data: transformData(data),
@@ -203,7 +203,7 @@ stories.addWithInfo('Error', () =>
       error
       onErrorClick={() => alert('try again!')}
       style={{ height: '400px' }}
-      actions={<Button style="outline">Export</Button>}
+      actions={<Button color="outline">Export</Button>}
       datasets={[]}
       options={options}
     />

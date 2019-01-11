@@ -59,7 +59,7 @@ class Header extends PureComponent {
     return (
       <header className={fullClassName} {...elementProps}>
         {!isMobile &&
-          <Button className={styles.headerUser} style="clean" modifier="inverted" size="small">
+          <Button className={styles.headerUser} color="clean" modifier="inverted" size="small">
             {items
               ? <Select
                   type="menu"
@@ -76,7 +76,7 @@ class Header extends PureComponent {
 
         <Button
           className={cx(styles.headerLogout, { [styles.isMobile]: isMobile })}
-          style="clean"
+          color="clean"
           modifier="inverted"
           size="small"
           onClick={onLogout}

@@ -109,7 +109,7 @@ class Pager extends PureComponent {
     return (
       <Button
         className={goToStyles}
-        style="transparent"
+        color="transparent"
         size="none"
         disabled={btn[type].disabled}
         onClick={btn[type].onClick}
