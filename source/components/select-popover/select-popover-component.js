@@ -32,6 +32,7 @@ class SelectPopover extends React.Component {
       isOpen: true,
       prevOptions: { ...options },
       nextOptions: { ...options },
+      touched: false,
     };
 
     this.toggleIsOpen = this.toggleIsOpen.bind(this);
@@ -65,7 +66,7 @@ class SelectPopover extends React.Component {
     const options = { ...nextOptions };
 
     options[key] = !options[key];
-    this.setState({ nextOptions: options });
+    this.setState({ nextOptions: options, touched: true });
   }
 
   checkAll() {
@@ -74,7 +75,7 @@ class SelectPopover extends React.Component {
       options[key] = true;
     });
 
-    this.setState({ nextOptions: options });
+    this.setState({ nextOptions: options, touched: true });
   }
 
   uncheckAll() {
@@ -83,7 +84,7 @@ class SelectPopover extends React.Component {
       options[key] = false;
     });
 
-    this.setState({ nextOptions: options });
+    this.setState({ nextOptions: options, touched: true });
   }
 
   submit() {
@@ -91,18 +92,18 @@ class SelectPopover extends React.Component {
     const { nextOptions } = this.state;
 
     onSubmit({ ...nextOptions });
-    this.setState({ prevOptions: { ...nextOptions }, isOpen: false });
+    this.setState({ prevOptions: { ...nextOptions }, isOpen: false, touched: false });
   }
 
   dismiss() {
     const { prevOptions } = this.state;
 
-    this.setState({ nextOptions: { ...prevOptions }, isOpen: false });
+    this.setState({ nextOptions: { ...prevOptions }, isOpen: false, touched: false });
   }
 
   isValid() {
-    const { nextOptions } = this.state;
-    return !Object.values(nextOptions).filter(obj => obj === true).length;
+    const { nextOptions, touched } = this.state;
+    return !!touched && !!Object.values(nextOptions).filter(obj => obj === true).length;
   }
 
   render() {
@@ -135,7 +136,7 @@ class SelectPopover extends React.Component {
               ))}
             <footer className={styles.formActions}>
               <Button style="outline" size="medium" onClick={this.dismiss}>Cancelar</Button>
-              <Button size="medium" onClick={this.submit} disabled={this.isValid()}>Aplicar</Button>
+              <Button size="medium" onClick={this.submit} disabled={!this.isValid()}>Aplicar</Button>
             </footer>
           </section>
         </div>
