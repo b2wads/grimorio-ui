@@ -34,6 +34,7 @@ class TablePanel extends PureComponent {
     errorMessage: PropTypes.string,
     onErrorClick: PropTypes.func,
     errorBtnText: PropTypes.string,
+    headerSeparator: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -47,6 +48,7 @@ class TablePanel extends PureComponent {
     onClickPagination: (type, value) => {},
     onLimitChange: value => {},
     isMobile: false,
+    headerSeparator: false,
   };
 
   // TO-DO: Select Item Column
@@ -80,9 +82,9 @@ class TablePanel extends PureComponent {
       : false;
   }
 
-  renderHeader(title, actions) {
+  renderHeader(title, actions, hasSeparator) {
     return (
-      <div className={styles.header}>
+      <div className={cx(styles.header, { [styles['header--underlined']]: hasSeparator })}>
         {title &&
           <h2 className={styles.title}>
             {title}
@@ -115,6 +117,7 @@ class TablePanel extends PureComponent {
       errorMessage,
       errorBtnText,
       isMobile,
+      headerSeparator,
       ...rest
     } = this.props;
 
@@ -134,7 +137,7 @@ class TablePanel extends PureComponent {
     return (
       <Panel size="no-padding" className={styles.wrap} footer={Footer}>
         {loading && <Loader type="full" />}
-        {this.renderHeader(title, actions)}
+        {this.renderHeader(title, actions, headerSeparator)}
         {error &&
           <Error
             className={styles.error}

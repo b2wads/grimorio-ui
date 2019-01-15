@@ -80,6 +80,21 @@ stories.addWithInfo('Normal', () => {
   );
 });
 
+stories.addWithInfo('With header separator', () => {
+  return (
+    <TablePanel
+      title="Jogo da Idade"
+      actions={<Button>Trocar nomes</Button>}
+      schema={schema}
+      data={simpledata}
+      pager
+      perpage
+      headerSeparator
+      meta={{}}
+    />
+  );
+});
+
 stories.addWithInfo('Scroll', () => {
   return (
     <TablePanel
