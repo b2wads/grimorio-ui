@@ -105,7 +105,7 @@ class SelectPopover extends React.Component {
 
   isValid() {
     const { nextOptions, touched } = this.state;
-    return !!touched && !!Object.values(nextOptions).filter(obj => obj === true).length;
+    return touched && !!Object.values(nextOptions).filter(obj => obj === true).length;
   }
 
   render() {
