@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+@import '../../styl/00-settings/_variables.styl';
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$default {}
+
+/* ==========================================================================
+   SelectPopover Elements
+========================================================================== */
+
+.popoverSelectContainer {
+  display: flex;
+  flex-direction: column;
+  width: 245px;
+  padding: 24px;
+
+  p {
+    font-weight: bold;
+  }
+
+  & > * {
+    user-select: none;
+  }
+}
+
+.selectDeselectAll {
+  cursor: pointer;
+  text-decoration: underline;
+  margin-bottom: 8px;
+}
+
+.form {
+  margin-top: 4px;
+}
+
+.formItem {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.formActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 16px;
+}
+
+.checkbox {
+  display: inline-block;
+}
+
+.checkboxLabel {
+  margin-left: 10px;
+}
+
+/* ==========================================================================
+   SelectPopover Props
+========================================================================== */
+
+/* Default
+ ================ */
+
+.default {
+  @extend $default;
+}
