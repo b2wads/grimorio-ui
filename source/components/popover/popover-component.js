@@ -10,13 +10,12 @@ class Popover extends React.PureComponent {
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     isOpen: PropTypes.bool,
-    component: PropTypes.node,
+    component: PropTypes.node.isRequired,
   };
   static defaultProps = {
     onOpen: () => '',
     onClose: () => '',
     isOpen: false,
-    component: null,
   };
 
   render() {
