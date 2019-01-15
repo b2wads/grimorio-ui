@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
+import { has } from 'lodash';
 
 import Popover from '../popover';
 import Button from '../button';
@@ -11,8 +12,9 @@ class SelectPopover extends React.Component {
   static propTypes = {
     options: PropTypes.arrayOf(
       PropTypes.shape({
-        key: PropTypes.string,
-        label: PropTypes.string,
+        key: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        checked: PropTypes.bool,
       })
     ).isRequired,
     onSubmit: PropTypes.func,
@@ -47,7 +49,7 @@ class SelectPopover extends React.Component {
   generateOptions(optionsArray) {
     const options = {};
     optionsArray.forEach(obj => {
-      options[obj.key] = true;
+      options[obj.key] = has(obj, 'checked') ? obj.checked : true;
     });
 
     return options;

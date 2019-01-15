@@ -13,8 +13,14 @@ stories.addDecorator(withKnobs);
 stories.addWithInfo('Normal', () => {
   const options = [
     {
+      key: 'name',
+      label: 'Nome',
+      checked: true,
+    },
+    {
       key: 'likes',
       label: 'Favoritos',
+      checked: false,
     },
     {
       key: 'store',
