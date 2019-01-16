@@ -111,7 +111,7 @@ class Panel extends PureComponent {
       height: this.content ? this.content.scrollHeight : null,
     });
 
-    onAccordionClick();
+    onAccordionClick && onAccordionClick();
   }
 
   render() {
