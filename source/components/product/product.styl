@@ -1,7 +1,7 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-@import '../../styl/00-settings/_variables.styl';
+@import '../../styl/config';
 
 $gutter-px = 8px;
 $hot = #FF5567;
@@ -35,6 +35,10 @@ $img {
 /* ==========================================================================
    Product Elements
 ========================================================================== */
+
+.wrapper {
+  position: relative;
+}
 
 .tag {
   left: 0;
@@ -103,6 +107,12 @@ $img {
   width: 17px;
 }
 
+.footer {
+  bottom: 10px;
+  position: absolute;
+  width: 100%;
+}
+
 .expires {
   font-size: 12px;
   margin-top: $gutter-px;
@@ -118,7 +128,7 @@ $img {
   transition: all 0.3s ease;
 
   @media screen and (max-width: 1375px) {
-    svg { display: none; }
+    i { display: none; }
   }
 }
 
@@ -156,6 +166,10 @@ $img {
     font-weight: 400;
     margin-top: $gutter-px;
   }
+
+  &.wrapper {
+    height: 300px;
+  }
 }
 
 /* Card
@@ -164,6 +178,10 @@ $img {
 .card {
   @extend $default-product;
   text-align: center;
+
+  &.wrapper {
+    height: 310px;
+  }
 
   .info {
     color: $c-primary;
@@ -175,4 +193,8 @@ $img {
   .isShort {
     justify-content: center;
   }
+}
+
+.info.isBig {
+  font-size: 16px;
 }

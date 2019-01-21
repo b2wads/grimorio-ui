@@ -49,7 +49,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', chec
         </FormGroup>
         <FormActions>
           <Button>Cancelar</Button>
-          <Button style="primary">Enviar</Button>
+          <Button color="primary">Enviar</Button>
         </FormActions>
       </Form>
       <Form onSubmit={ ()=>{} }>
@@ -59,7 +59,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', chec
         </FormGroup>
         <FormActions>
           <Button>Cancelar</Button>
-          <Button style="primary">Enviar</Button>
+          <Button color="primary">Enviar</Button>
         </FormActions>
       </Form>
       <Form onSubmit={ ()=>{} }>
@@ -70,7 +70,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', chec
         </FormGroup>
         <FormActions>
           <Button>Cancelar</Button>
-          <Button style="primary">Enviar</Button>
+          <Button color="primary">Enviar</Button>
         </FormActions>
       </Form>
       <Form>
@@ -128,7 +128,7 @@ stories.addWithInfo('Inline', () => (
     </FormGroup>
     <FormActions>
       <Button>Cancelar</Button>
-      <Button style="primary">Enviar</Button>
+      <Button color="primary">Enviar</Button>
     </FormActions>
   </Form>
 ));
@@ -145,7 +145,7 @@ stories.addWithInfo('Horizontal', () => (
     </FormGroup>
     <FormActions>
       <Button>Cancelar</Button>
-      <Button style="primary">Enviar</Button>
+      <Button color="primary">Enviar</Button>
     </FormActions>
   </Form>
 ));

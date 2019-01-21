@@ -1,14 +1,25 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import Svg from '../svg';
+import Icon from '../icon';
 import Loader from '../loader';
 
 import styles from './panel.styl';
 
 class Panel extends PureComponent {
+  constructor(props) {
+    super();
+    this.state = {
+      open: props.open,
+      height: null,
+    };
+
+    this.toggleTitle = this.toggleTitle.bind(this);
+  }
+
   static propTypes = {
     size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
     brand: PropTypes.oneOf([null, 'acom', 'suba', 'shop', 'soub']),
@@ -18,6 +29,9 @@ class Panel extends PureComponent {
     footer: PropTypes.element,
     footerClassName: PropTypes.string,
     loading: PropTypes.bool,
+    accordion: PropTypes.bool,
+    open: PropTypes.bool,
+    onAccordionClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -25,9 +39,40 @@ class Panel extends PureComponent {
     title: false,
     size: 'medium',
     loading: false,
+    accordion: false,
+    open: true,
   };
 
-  renderHeader(brand, title) {
+  componentDidMount() {
+    this.state.height === null &&
+      this.setState({
+        height: this.content ? this.content.scrollHeight : null,
+      });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const height = this.content ? this.content.scrollHeight : null;
+
+    if (this.props.open !== prevProps.open) {
+      this.setState({ open: this.props.open });
+    }
+
+    if (prevState.height !== height) {
+      this.setState({ height });
+    }
+  }
+
+  renderIcon(open) {
+    return (
+      <Icon
+        onClick={this.toggleTitle}
+        className={styles.arrow}
+        name={open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
+      />
+    );
+  }
+
+  renderHeader(brand, title, accordion, open) {
     if (brand) {
       return (
         <header className={styles[brand]}>
@@ -36,24 +81,41 @@ class Panel extends PureComponent {
       );
     } else {
       return (
-        <header className={styles.title}>
+        <header className={cx(styles.title, { [styles.isAccordion]: accordion })}>
           {title}
+          {accordion && this.renderIcon(open)}
         </header>
       );
     }
   }
 
   renderFooter(footer, size, footerClassName) {
+    const className = cx(styles.footer, footerClassName, {
+      [styles[size]]: size,
+      [styles.isClosed]: !this.state.open,
+    });
+
     if (footer) {
       return (
-        <footer className={classNames(styles.footer, { [styles[size]]: size }, footerClassName)}>
+        <footer className={className}>
           {footer}
         </footer>
       );
     }
   }
 
+  toggleTitle() {
+    const { onAccordionClick } = this.props;
+    this.setState({
+      open: !this.state.open,
+      height: this.content ? this.content.scrollHeight : null,
+    });
+
+    onAccordionClick && onAccordionClick();
+  }
+
   render() {
+    const { open, height } = this.state;
     const {
       title,
       children,
@@ -64,25 +126,39 @@ class Panel extends PureComponent {
       contentClassName,
       footerClassName,
       loading,
+      accordion,
       ...rest
     } = this.props;
 
-    const fullClassName = classNames(className, {
+    const fullClassName = cx(className, {
       [styles.default]: true,
     });
 
-    const wrapperClass = classNames(styles.wrapper, {
+    const wrapperClass = cx(styles.wrapper, {
       [styles[size]]: size,
       [styles.isBrand]: brand,
     });
 
+    const contentClass = cx(styles.content, contentClassName, {
+      [styles.isBrand]: brand,
+      [styles.isClosed]: !open,
+    });
+
+    let style = {};
+
+    if (accordion) {
+      style = {
+        maxHeight: open ? height : `0px`,
+      };
+    }
+
     return (
       <article {...rest} className={fullClassName}>
         <div className={wrapperClass}>
-          {(title || brand) && this.renderHeader(brand, title)}
+          {(title || brand) && this.renderHeader(brand, title, accordion, open)}
           {loading && <Loader size="32px" className={styles.loader} />}
           {!loading &&
-            <div className={classNames(styles.content, contentClassName, { [styles.isBrand]: brand })}>
+            <div ref={content => (this.content = content)} className={contentClass} style={style}>
               {children}
             </div>}
         </div>

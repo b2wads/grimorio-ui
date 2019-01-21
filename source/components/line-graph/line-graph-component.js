@@ -2,43 +2,32 @@ import React, { PureComponent, Fragment } from 'react';
 import Chart from 'chart.js';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 
-import Panel from '../panel';
-import Loader from '../loader';
 import Error from '../error';
+import Loader from '../loader';
 
 import styles from './line-graph.styl';
 
 class LineGraph extends PureComponent {
   constructor() {
     super();
+
     this.state = {
-      chart: null,
       legend: null,
     };
 
-    this.canvas = null;
+    this.canvas = React.createRef();
   }
 
   static propTypes = {
     options: PropTypes.object,
     datasets: PropTypes.array,
-    data: PropTypes.array,
-    actions: PropTypes.element,
     loading: PropTypes.bool,
     error: PropTypes.bool,
     errorMessage: PropTypes.string,
     onErrorClick: PropTypes.func,
     errorBtnText: PropTypes.string,
-  };
-
-  static defaultProps = {
-    data: [],
-    datasets: [],
-    options: {},
-    loading: false,
-    error: false,
   };
 
   static chart = null;
@@ -56,14 +45,16 @@ class LineGraph extends PureComponent {
     };
   }
 
-  generateChart() {
+  componentDidMount() {
     const { options, datasets, error } = this.props;
 
-    this.chart && this.chart.destroy();
+    if (!this.canvas || !this.canvas.current) {
+      return null;
+    }
 
-    return (
+    this.chart =
       !error &&
-      new Chart(this.canvas, {
+      new Chart(this.canvas.current, {
         type: 'line',
         data: {
           datasets,
@@ -92,13 +83,7 @@ class LineGraph extends PureComponent {
           },
           ...options,
         },
-      })
-    );
-  }
-
-  componentDidMount() {
-    const { error } = this.props;
-    this.chart = this.generateChart();
+      });
 
     if (!error) {
       const legend = this.chart.generateLegend();
@@ -106,60 +91,51 @@ class LineGraph extends PureComponent {
     }
   }
 
-  componentWillUnmount() {
-    this.chart && this.chart.destroy();
-  }
-
   componentDidUpdate(prevProps) {
     const { datasets, error } = this.props;
-    this.chart = this.generateChart();
 
     if (prevProps.datasets !== datasets && !error) {
+      this.chart.data.datasets = datasets;
+
       const legend = this.chart.generateLegend();
       this.setState({ legend });
+
+      this.chart.update();
     }
   }
 
-  renderHeader(title, actions) {
+  renderError() {
+    const { onErrorClick, errorMessage, errorBtnText } = this.props;
+
     return (
-      <div className={styles.header}>
-        {title &&
-          <h2 className={styles.title}>
-            {title}
-          </h2>}
-        {actions &&
-          <div className={styles.actions}>
-            {actions}
-          </div>}
-      </div>
+      <Error
+        hasButton
+        className={styles.error}
+        onErrorClick={onErrorClick}
+        errorMessage={errorMessage}
+        errorBtnText={errorBtnText}
+      />
     );
   }
 
   render() {
-    const { title, loading, className, actions, error, onErrorClick, errorMessage, errorBtnText, ...rest } = this.props;
-    const chartClass = classNames(className, styles.chart);
+    const { className, error, loading, ...rest } = this.props;
+    const chartClass = cx(className, styles.chart);
 
     return (
-      <Panel className={styles.panel} title={this.renderHeader(title, actions)}>
+      <div className={styles.chartWrap}>
         {loading && <Loader type="full" />}
-        {error &&
-          <Error
-            className={styles.error}
-            hasButton
-            onErrorClick={onErrorClick}
-            errorMessage={errorMessage}
-            errorBtnText={errorBtnText}
-          />}
-        {!error &&
-          <Fragment>
-            <div className={chartClass} {...rest}>
-              <canvas ref={canvas => (this.canvas = canvas)} />
-            </div>
-            <div className={styles.legend}>
-              {this.state.legend}
-            </div>
-          </Fragment>}
-      </Panel>
+        {error
+          ? this.renderError()
+          : <Fragment>
+              <div className={chartClass} {...rest}>
+                <canvas ref={this.canvas} />
+              </div>
+              <div className={styles.legend}>
+                {this.state.legend}
+              </div>
+            </Fragment>}
+      </div>
     );
   }
 }

@@ -3,4 +3,4 @@ export * from './general';
 export { shareOn } from './share-on';
 export { ellipsis } from './ellipsis';
 export { moneyFormat } from './money-format';
-export { withContext } from './with-context';
+export { copyToClipboard } from './copy-to-clipboard';

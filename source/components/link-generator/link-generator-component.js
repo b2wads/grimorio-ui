@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import Clipboard from 'clipboard';
-import classNames from 'classnames';
 
 import Panel from '../panel';
 import Button from '../button';
@@ -10,7 +8,7 @@ import Icon from '../icon';
 import Svg from '../svg';
 import Form, { FormGroup, FormControlLabel, FormControl } from '../form';
 
-import { shareOn, uniqueId } from '../../helpers';
+import { shareOn, uniqueId, copyToClipboard } from '../../helpers';
 
 import styles from './link-generator.styl';
 
@@ -29,6 +27,7 @@ class LinkGenerator extends PureComponent {
     this.onCleanClick = this.onCleanClick.bind(this);
     this.handleChangeSite = this.handleChangeSite.bind(this);
     this.handleChangeLink = this.handleChangeLink.bind(this);
+    this.copyLink = this.copyLink.bind(this);
   }
 
   static propTypes = {
@@ -47,18 +46,6 @@ class LinkGenerator extends PureComponent {
     loading: false,
     sites: [],
   };
-
-  componentWillUnmount() {
-    this.clipboard && this.clipboard.destroy();
-  }
-
-  componentDidMount() {
-    this.clipboard = new Clipboard(`.${this.state.btnId}`);
-
-    this.clipboard.on('success', () => {
-      this.setState({ linkCopied: true });
-    });
-  }
 
   onGenerateClick(e) {
     e.preventDefault();
@@ -83,6 +70,14 @@ class LinkGenerator extends PureComponent {
 
   handleChangeSite({ value }) {
     this.setState({ site: value });
+  }
+
+  copyLink() {
+    const { linkGenerated } = this.props;
+    copyToClipboard({
+      value: linkGenerated,
+      success: this.setState({ linkCopied: true }),
+    });
   }
 
   share(type, link) {
@@ -135,7 +130,7 @@ class LinkGenerator extends PureComponent {
 
   renderFinish() {
     const { linkGenerated } = this.props;
-    const { linkCopied, btnId } = this.state;
+    const { linkCopied } = this.state;
 
     return (
       <Panel>
@@ -153,12 +148,7 @@ class LinkGenerator extends PureComponent {
 
         <div className={styles.social}>
           <div className={styles.share}>
-            <Button
-              data-clipboard-text={linkGenerated}
-              className={classNames(styles.copy, btnId)}
-              size="small"
-              iconRight="insert_link"
-            >
+            <Button className={styles.copy} size="small" iconRight="insert_link" onClick={this.copyLink}>
               Copiar Link
             </Button>
 

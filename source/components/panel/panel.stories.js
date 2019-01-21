@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { boolean } from '@storybook/addon-knobs';
 
 import Panel from './panel-component';
 import Button from '../button';
@@ -52,6 +53,19 @@ stories.addWithInfo('With Footer', () => (
 stories.addWithInfo('Loading', () => (
   <div style={{ width: '25%' }}>
     <Panel title="Title" loading={true} footer={<Button size="large">Cadastrar Site</Button>}>
+      <p>Content</p>
+    </Panel>
+  </div>
+));
+
+stories.addWithInfo('Accordion', () => (
+  <div style={{ width: '25%' }}>
+    <Panel
+      title="Title"
+      footer={<Button size="large">Cadastrar Site</Button>}
+      accordion
+      open={boolean('Open', true, 'accordion')}
+    >
       <p>Content</p>
     </Panel>
   </div>

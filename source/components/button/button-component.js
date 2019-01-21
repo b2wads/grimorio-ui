@@ -15,8 +15,8 @@ class Button extends PureComponent {
     active: PropTypes.bool,
     block: PropTypes.bool,
     type: PropTypes.oneOf(['button', 'reset', 'submit']),
-    style: PropTypes.oneOf(['primary', 'secondary', 'clean', 'outline', 'transparent']),
-    modifier: PropTypes.oneOf(['inverted']),
+    color: PropTypes.oneOf(['primary', 'secondary', 'variant', 'clean', 'transparent']),
+    modifier: PropTypes.oneOf(['inverted', 'outline']),
     size: PropTypes.oneOf(['small', 'medium', 'large', 'none']),
     onClick: PropTypes.func,
     children: PropTypes.any.isRequired,
@@ -28,7 +28,7 @@ class Button extends PureComponent {
 
   static defaultProps = {
     disabled: false,
-    style: 'primary',
+    color: 'primary',
     size: 'medium',
     type: 'button',
     children: false,
@@ -37,17 +37,17 @@ class Button extends PureComponent {
   };
 
   getLoaderColor() {
-    const { style } = this.props;
-    if (['primary', 'secondary'].indexOf(style) !== -1) {
-      return 'secondary';
-    } else {
+    const { color, modifier } = this.props;
+    if (modifier === 'outline' || ['clean', 'transparent'].includes(color)) {
       return 'primary';
+    } else {
+      return 'secondary';
     }
   }
 
   render() {
     const {
-      style,
+      color,
       modifier,
       size,
       disabled,
@@ -64,7 +64,7 @@ class Button extends PureComponent {
     } = this.props;
 
     const fullClassName = classNames(className, {
-      [styles[style]]: style,
+      [styles[color]]: color,
       [styles[modifier]]: modifier,
       [styles.isActive]: active,
       [styles[size]]: size,

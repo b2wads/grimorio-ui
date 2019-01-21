@@ -1,3 +1,5 @@
+import './styl/style.styl';
+
 import Button from './components/button';
 import ButtonUpload from './components/button-upload';
 import Icon from './components/icon';

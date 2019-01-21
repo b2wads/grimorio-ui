@@ -7,7 +7,7 @@ describe('Panel component', () => {
 /** @test {Panel#render} */
   describe('#render', () => {
     it('render correctly', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <Panel header="Title">
           <p>Content</p>
         </Panel>

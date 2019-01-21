@@ -1,7 +1,7 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-@import '../../styl/00-settings/_variables.styl';
+@import '../../styl/config';
 /* ==========================================================================
    Placeholders
 ========================================================================== */
@@ -48,13 +48,20 @@ $brandLogo {
   }
 }
 
-.content.isBrand {
-  padding: 0 10px 10px;
-}
-
 .title {
   color: $c-support;
   font-size: 21px;
+
+  &.isAccordion {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.arrow {
+  margin-left: 10px;
 }
 
 /* Size
@@ -77,10 +84,26 @@ $brandLogo {
   }
 }
 
+.content {
+  opacity: 1;
+  transition: all 0.3s ease;
+
+  &.isBrand {
+    padding: 0 10px 10px;
+  }
+
+  &.isClosed {
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+}
+
 /* Footer
  ================ */
 .footer {
   border-top: 1px solid $c-secondary;
+  display: block;
 
   &.small {
     padding: 15px;
@@ -92,6 +115,10 @@ $brandLogo {
 
   &.large {
     padding: 25px;
+  }
+
+  &.isClosed {
+    display: none;
   }
 }
 

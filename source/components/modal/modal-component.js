@@ -96,10 +96,20 @@ class Modal extends PureComponent {
         </div>
 
         <div className={classNames(styles.actions, { [styles.isReverse]: confirmInverted })}>
-          <Button className={styles.button} style={!confirmInverted ? 'outline' : 'primary'} onClick={onClose}>
+          <Button
+            className={styles.button}
+            color={!confirmInverted ? 'variant' : 'primary'}
+            modifier={!confirmInverted ? 'outline' : null}
+            onClick={onClose}
+          >
             {cancelButtonText}
           </Button>
-          <Button className={styles.button} style={confirmInverted ? 'outline' : 'primary'} onClick={onConfirm}>
+          <Button
+            className={styles.button}
+            color={confirmInverted ? 'variant' : 'primary'}
+            modifier={confirmInverted ? 'outline' : null}
+            onClick={onConfirm}
+          >
             {confirmButtonText}
           </Button>
         </div>

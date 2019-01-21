@@ -1,7 +1,7 @@
 {
   "name": "afiliados-theme",
   "sideEffects": false,
-  "version": "2.0.1",
+  "version": "3.0.1",
   "description": "Afiliados UI React",
   "main": "lib/index.js",
   "scripts": {
@@ -103,7 +103,6 @@
   "dependencies": {
     "chart.js": "2.7.3",
     "classnames": "2.2.5",
-    "clipboard": "2.0.1",
     "cpy-cli": "2.0.0",
     "extract-text-webpack-plugin": "3.0.2",
     "moment": "2.22.1",
