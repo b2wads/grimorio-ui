@@ -8,6 +8,7 @@ moment.locale('pt-br');
 
 import LineGraph from './line-graph-component';
 import Button from '../button';
+import Panel from '../panel';
 
 const stories = storiesOf('LineGraph', module);
 
@@ -172,29 +173,30 @@ const options = {
 };
 
 stories.addWithInfo('Normal', () =>
-    <LineGraph
-      title="Pedidos!"
-      style={{ height: '400px' }}
-      accordion
-      actions={<Button onClick={() => alert('export!')} color="variant" modifier="outline">Export</Button>}
-      datasets={[
-        {
-          data: transformData(data),
-          label: 'Faturados',
-          borderColor: '#00b8ad',
-          pointHoverBackgroundColor: '#fff',
-          fill: false,
-        },
-        {
-          data: transformData(other),
-          label: 'Other',
-          borderColor: 'red',
-          pointHoverBackgroundColor: '#fff',
-          fill: false,
-        },
-      ]}
-      options={options}
-    />
+    <Panel title="Normal" accordion>
+      <LineGraph
+        title="Pedidos!"
+        style={{ height: '400px' }}
+        accordion
+        datasets={[
+          {
+            data: transformData(data),
+            label: 'Faturados',
+            borderColor: '#00b8ad',
+            pointHoverBackgroundColor: '#fff',
+            fill: false,
+          },
+          {
+            data: transformData(other),
+            label: 'Other',
+            borderColor: 'red',
+            pointHoverBackgroundColor: '#fff',
+            fill: false,
+          },
+        ]}
+        options={options}
+      />
+    </Panel>
 );
 
 stories.addWithInfo('Error', () =>
@@ -224,20 +226,23 @@ stories.addWithInfo('With changing data', withState({ loading: false, data: othe
     <br/>
     <br/>
     <br/>
-    <LineGraph
-      loading={store.state.loading}
-      title="Pedidos!"
-      style={{ height: '400px' }}
-      datasets={[
-        {
-          data: transformData(store.state.data),
-          label: store.state.label,
-          borderColor: '#00b8ad',
-          pointHoverBackgroundColor: '#fff',
-          fill: false,
-        },
-      ]}
-      options={options}
-    />
+
+    <Panel title="Changing Data" accordion>
+      <LineGraph
+        loading={store.state.loading}
+        title="Pedidos!"
+        style={{ height: '400px' }}
+        datasets={[
+          {
+            data: transformData(store.state.data),
+            label: store.state.label,
+            borderColor: '#00b8ad',
+            pointHoverBackgroundColor: '#fff',
+            fill: false,
+          },
+        ]}
+        options={options}
+      />
+    </Panel>
   </div>
 }));
