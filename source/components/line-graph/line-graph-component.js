@@ -109,8 +109,8 @@ class LineGraph extends PureComponent {
 
     return (
       <Error
-        className={styles.error}
         hasButton
+        className={styles.error}
         onErrorClick={onErrorClick}
         errorMessage={errorMessage}
         errorBtnText={errorBtnText}

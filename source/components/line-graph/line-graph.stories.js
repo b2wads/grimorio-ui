@@ -178,7 +178,6 @@ stories.addWithInfo('Normal', () =>
         title="Pedidos!"
         style={{ height: '400px' }}
         accordion
-        actions={<Button onClick={() => alert('export!')} color="variant" modifier="outline">Export</Button>}
         datasets={[
           {
             data: transformData(data),
