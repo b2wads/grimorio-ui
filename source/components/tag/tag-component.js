@@ -8,10 +8,6 @@ import styles from './tag.styl';
 import Icon from '../icon';
 
 class Tag extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   static propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(['primary', 'secondary']),
