@@ -18,9 +18,10 @@ class SelectPopover extends React.Component {
       })
     ).isRequired,
     onSubmit: PropTypes.func,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     component: PropTypes.node.isRequired,
     position: PropTypes.oneOf(['bottomRight', 'bottomLeft', 'topRight', 'topLeft']),
+    header: PropTypes.string,
   };
   static defaultProps = {
     onSubmit: () => {},
@@ -111,15 +112,16 @@ class SelectPopover extends React.Component {
   }
 
   render() {
-    const { component, title, options, position } = this.props;
+    const { component, title, options, position, header } = this.props;
     return (
       <Popover
         component={React.cloneElement(component, { onClick: this.toggleIsOpen })}
         isOpen={this.state.isOpen}
         position={position}
       >
-        <div className={styles.popoverSelectContainer}>
-          <p>{title}</p>
+        {header && <div className={styles.selectPopoverHeader}><h2>{header}</h2></div>}
+        <div className={styles.selectPopoverContent}>
+          {title && <p>{title}</p>}
           <span className={styles.selectDeselectAll} onClick={this.checkAll}>Marcar todas</span>
           <span className={styles.selectDeselectAll} onClick={this.uncheckAll}>Desmarcar todas</span>
           <section className={styles.form}>

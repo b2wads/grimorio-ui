@@ -105,3 +105,32 @@ stories.addWithInfo('Open in different positions', () => {
     </React.Fragment>
   )
 });
+
+stories.addWithInfo('With Header', () => {
+  const options = [
+    {
+      key: 'name',
+      label: 'Nome',
+      checked: true,
+    },
+    {
+      key: 'likes',
+      label: 'Favoritos',
+      checked: false,
+    },
+  ];
+
+  const submit = (e) => {
+    action('form submitted');
+    console.log(e);
+  }
+
+  return (
+    <SelectPopover
+      component={<Button>Select</Button>}
+      header="Colunas"
+      options={options}
+      onSubmit={submit}
+    />
+  )
+});
