@@ -20,15 +20,34 @@ $default {}
 .popover {
   @extend $drop-shadow;
   position: absolute;
-  top: 100%;
-  left: 0;
   background-color: #FFF;
   border: 1px solid lightgrey;
+  z-index: 5;
 }
 
 /* ==========================================================================
    Popover Props
 ========================================================================== */
+
+.bottomRight {
+  top: 100%;
+  left: 0;
+}
+
+.bottomLeft {
+  top: 100%;
+  right: 0;
+}
+
+.topRight {
+  bottom: 100%;
+  left: 0;
+}
+
+.topLeft {
+  bottom: 100%;
+  right: 0;
+}
 
 /* Default
  ================ */

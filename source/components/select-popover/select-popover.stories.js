@@ -42,3 +42,66 @@ stories.addWithInfo('Normal', () => {
     />
   )
 });
+
+stories.addWithInfo('Open in different positions', () => {
+  const options = [
+    {
+      key: 'name',
+      label: 'Nome',
+      checked: true,
+    },
+    {
+      key: 'likes',
+      label: 'Favoritos',
+      checked: false,
+    },
+    {
+      key: 'store',
+      label: 'Loja',
+    },
+  ];
+
+  const submit = (e) => {
+    action('form submitted');
+    console.log(e);
+  }
+
+  return (
+    <React.Fragment>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <SelectPopover
+          component={<Button>Select</Button>}
+          title="Escolha as colunas visíveis"
+          options={options}
+          onSubmit={submit}
+          position="bottomRight"
+        />
+        <SelectPopover
+          component={<Button>Select</Button>}
+          title="Escolha as colunas visíveis"
+          options={options}
+          onSubmit={submit}
+          position="bottomLeft"
+        />
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <SelectPopover
+          component={<Button>Select</Button>}
+          title="Escolha as colunas visíveis"
+          options={options}
+          onSubmit={submit}
+          position="topRight"
+        />
+        <SelectPopover
+          component={<Button>Select</Button>}
+          title="Escolha as colunas visíveis"
+          options={options}
+          onSubmit={submit}
+          position="topLeft"
+        />
+      </div>
+
+    </React.Fragment>
+  )
+});

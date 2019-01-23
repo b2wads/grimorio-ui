@@ -11,20 +11,26 @@ class Popover extends React.PureComponent {
     onClose: PropTypes.func,
     isOpen: PropTypes.bool,
     component: PropTypes.node.isRequired,
+    position: PropTypes.oneOf(['bottomRight', 'bottomLeft', 'topRight', 'topLeft']),
   };
   static defaultProps = {
     onOpen: () => '',
     onClose: () => '',
     isOpen: false,
+    position: 'bottomRight',
   };
 
   render() {
-    const { children, component, isOpen } = this.props;
+    const { children, component, isOpen, position } = this.props;
     return (
-      <div className={cx(styles.popoverContainer)}>
+      <div className={styles.popoverContainer}>
         {component}
         {isOpen &&
-          <div className={cx(styles.popover)}>
+          <div
+            className={cx(styles.popover, {
+              [styles[position]]: position,
+            })}
+          >
             {children}
           </div>}
       </div>

@@ -20,9 +20,11 @@ class SelectPopover extends React.Component {
     onSubmit: PropTypes.func,
     title: PropTypes.string.isRequired,
     component: PropTypes.node.isRequired,
+    position: PropTypes.oneOf(['bottomRight', 'bottomLeft', 'topRight', 'topLeft']),
   };
   static defaultProps = {
     onSubmit: () => {},
+    position: 'bottomRight',
   };
 
   constructor(props) {
@@ -31,7 +33,7 @@ class SelectPopover extends React.Component {
     const options = this.generateOptions(props.options);
 
     this.state = {
-      isOpen: true,
+      isOpen: false,
       prevOptions: { ...options },
       nextOptions: { ...options },
       touched: false,
@@ -109,9 +111,13 @@ class SelectPopover extends React.Component {
   }
 
   render() {
-    const { component, title, options } = this.props;
+    const { component, title, options, position } = this.props;
     return (
-      <Popover component={React.cloneElement(component, { onClick: this.toggleIsOpen })} isOpen={this.state.isOpen}>
+      <Popover
+        component={React.cloneElement(component, { onClick: this.toggleIsOpen })}
+        isOpen={this.state.isOpen}
+        position={position}
+      >
         <div className={styles.popoverSelectContainer}>
           <p>{title}</p>
           <span className={styles.selectDeselectAll} onClick={this.checkAll}>Marcar todas</span>
