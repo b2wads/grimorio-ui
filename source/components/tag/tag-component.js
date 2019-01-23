@@ -11,26 +11,26 @@ class Tag extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(['primary', 'secondary']),
-    closable: PropTypes.bool,
+    fixed: PropTypes.bool,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   };
 
   static defaultProps = {
     color: 'primary',
     className: '',
-    closable: true,
+    fixed: false,
   };
 
   render() {
-    const { children, className, color, closable } = this.props;
+    const { children, className, color, fixed } = this.props;
     const fullClassName = cx(className, styles.tag, {
-      [styles.closable]: closable,
+      [styles.fixed]: fixed,
       [styles[color]]: color,
     });
     return (
       <div className={fullClassName}>
         {children}
-        {closable && <Icon className={styles.icon} name="close" size={14} />}
+        {!fixed && <Icon className={styles.icon} name="close" size={14} />}
       </div>
     );
   }
