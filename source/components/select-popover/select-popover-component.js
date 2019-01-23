@@ -137,7 +137,7 @@ class SelectPopover extends React.Component {
                 </div>
               ))}
             <footer className={styles.formActions}>
-              <Button style="outline" size="medium" onClick={this.dismiss}>Cancelar</Button>
+              <Button color="variant" modifier="outline" size="medium" onClick={this.dismiss}>Cancelar</Button>
               <Button size="medium" onClick={this.submit} disabled={!this.isValid()}>Aplicar</Button>
             </footer>
           </section>
