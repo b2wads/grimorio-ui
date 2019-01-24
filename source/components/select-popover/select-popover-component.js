@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import { has } from 'lodash';
+import { has, sortBy, isEqual } from 'lodash';
 
 import Popover from '../popover';
 import Button from '../button';
@@ -31,7 +31,7 @@ class SelectPopover extends React.Component {
   constructor(props) {
     super(props);
 
-    const options = this.generateOptions(props.options);
+    const options = this.generateOptions([...props.options]);
 
     this.state = {
       isOpen: false,
@@ -56,6 +56,20 @@ class SelectPopover extends React.Component {
     });
 
     return options;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!isEqual(sortBy(prevProps.options), sortBy(this.props.options))) {
+      const options = this.generateOptions(this.props.options);
+      Object.keys(options).forEach(key => {
+        options[key] = has(this.state.nextOptions, key) ? this.state.nextOptions[key] : options[key];
+      });
+
+      this.setState({
+        prevOptions: { ...options },
+        nextOptions: { ...options },
+      });
+    }
   }
 
   toggleIsOpen() {
