@@ -3,6 +3,7 @@
 ========================================================================== */
 @import '../../styl/config';
 $foterSpacing = 5%;
+$c-divisor = #DFDFDF;
 
 /* ==========================================================================
    Placeholders
@@ -26,6 +27,10 @@ $pagerIcon {
   &.isDisabled {
     color: darken($c-support-light, 5%);
   }
+}
+
+$row {
+  border-bottom: 1px solid $c-divisor;
 }
 
 /* ==========================================================================
@@ -62,6 +67,10 @@ $pagerIcon {
   padding-bottom: 15px;
   padding-top: 15px;
   justify-content: space-between;
+
+  &--underlined {
+    @extend $row;
+  }
 }
 
 .title {

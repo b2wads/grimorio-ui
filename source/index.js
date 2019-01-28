@@ -33,6 +33,8 @@ import LinkGenerator from './components/link-generator';
 import Alert from './components/alert';
 import LineGraph from './components/line-graph';
 import Error from './components/error';
+import Popover from './components/popover';
+import SelectPopover from './components/select-popover';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -79,4 +81,6 @@ export {
   Alert,
   LineGraph,
   Error,
+  Popover,
+  SelectPopover,
 };
