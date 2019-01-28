@@ -22,13 +22,13 @@ class Tag extends PureComponent {
   };
 
   render() {
-    const { children, className, color, fixed } = this.props;
+    const { children, className, color, fixed, ...rest } = this.props;
     const fullClassName = cx(className, styles.tag, {
       [styles.fixed]: fixed,
       [styles[color]]: color,
     });
     return (
-      <div className={fullClassName}>
+      <div className={fullClassName} {...rest}>
         {children}
         {!fixed && <Icon className={styles.icon} name="close" size={14} />}
       </div>
