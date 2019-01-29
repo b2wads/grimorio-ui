@@ -30,7 +30,7 @@ stories.addWithInfo('Normal', () => {
   ];
 
   const submit = (e) => {
-    action('form submitted');
+    action('form submitted')();
     console.log(e);
   }
 
@@ -63,7 +63,7 @@ stories.addWithInfo('Open in different positions', () => {
   ];
 
   const submit = (e) => {
-    action('form submitted');
+    action('form submitted')();
     console.log(e);
   }
 
@@ -122,7 +122,7 @@ stories.addWithInfo('With Header', () => {
   ];
 
   const submit = (e) => {
-    action('form submitted');
+    action('form submitted')();
     console.log(e);
   }
 
@@ -175,7 +175,7 @@ stories.addWithInfo('Dynamic options', withState(initialState)(({ store }) => {
   ]
 
   const submit = (e) => {
-    action('form submitted');
+    action('form submitted')();
     console.log(e);
   }
 
