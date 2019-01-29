@@ -132,6 +132,7 @@ class SelectPopover extends React.Component {
         actionComponent={React.cloneElement(component, { onClick: this.toggleIsOpen })}
         isOpen={this.state.isOpen}
         position={position}
+        onDismiss={this.dismiss}
       >
         {header && <div className={styles.selectPopoverHeader}><h2>{header}</h2></div>}
         <div className={styles.selectPopoverContent}>
