@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, ReactiveVar } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { action, configureActions } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 
 import Popover from './popover-component';
@@ -28,6 +29,32 @@ stories.addWithInfo('Normal', withState(initialState)(({ store }) => {
         Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
       </div>
     </Popover>
+  )
+}));
+
+stories.addWithInfo('On Dismiss', withState(initialState)(({ store }) => {
+  const StubButton = () => {
+    const { isPopoverOpen } = store.state;
+    return (
+      <Button onClick={() => store.set({ isPopoverOpen: !isPopoverOpen })}>Popover for this button</Button>
+    );
+  };
+
+  const onDismiss = () => {
+    store.set({ isPopoverOpen: false });
+    action('Popover dismissed.')();
+  }
+
+  return (
+    <React.Fragment>
+      <h3>Click outsite to dismiss the Popover</h3>
+      <br />
+      <Popover actionComponent={<StubButton />} isOpen={store.state.isPopoverOpen} onDismiss={onDismiss}>
+        <div style={{ width: '300px' }}>
+          Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
+        </div>
+      </Popover>
+    </React.Fragment>
   )
 }));
 
