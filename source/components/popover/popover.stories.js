@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, ReactiveVar } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { action, configureActions } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 
 import Popover from './popover-component';
@@ -23,11 +24,37 @@ stories.addWithInfo('Normal', withState(initialState)(({ store }) => {
   };
 
   return (
-    <Popover component={<StubButton />} isOpen={store.state.isPopoverOpen} position="topRight">
+    <Popover actionComponent={<StubButton />} isOpen={store.state.isPopoverOpen}>
       <div style={{ width: '300px' }}>
         Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
       </div>
     </Popover>
+  )
+}));
+
+stories.addWithInfo('On Dismiss', withState(initialState)(({ store }) => {
+  const StubButton = () => {
+    const { isPopoverOpen } = store.state;
+    return (
+      <Button onClick={() => store.set({ isPopoverOpen: !isPopoverOpen })}>Popover for this button</Button>
+    );
+  };
+
+  const onDismiss = () => {
+    store.set({ isPopoverOpen: false });
+    action('Popover dismissed.')();
+  }
+
+  return (
+    <React.Fragment>
+      <h3>Click outsite to dismiss the Popover</h3>
+      <br />
+      <Popover actionComponent={<StubButton />} isOpen={store.state.isPopoverOpen} onDismiss={onDismiss}>
+        <div style={{ width: '300px' }}>
+          Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
+        </div>
+      </Popover>
+    </React.Fragment>
   )
 }));
 
@@ -49,13 +76,13 @@ stories.addWithInfo('Open in different positions', withState(anotherInitialState
   return (
     <React.Fragment>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Popover component={<StubButton popoverName="first" title="Popover bottomRight" />} isOpen={store.state["first"]}>
+        <Popover actionComponent={<StubButton popoverName="first" title="Popover bottomRight" />} isOpen={store.state["first"]}>
           <div style={{ width: '300px' }}>
             Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
           </div>
         </Popover>
 
-        <Popover component={<StubButton popoverName="second" title="Popover bottomLeft" />} isOpen={store.state["second"]} position="bottomLeft">
+        <Popover actionComponent={<StubButton popoverName="second" title="Popover bottomLeft" />} isOpen={store.state["second"]} position="bottomLeft">
           <div style={{ width: '300px' }}>
             Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
           </div>
@@ -63,13 +90,13 @@ stories.addWithInfo('Open in different positions', withState(anotherInitialState
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px' }}>
-        <Popover component={<StubButton popoverName="third" title="Popover topRight" />} isOpen={store.state["third"]} position="topRight">
+        <Popover actionComponent={<StubButton popoverName="third" title="Popover topRight" />} isOpen={store.state["third"]} position="topRight">
           <div style={{ width: '300px' }}>
             Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
           </div>
         </Popover>
 
-        <Popover component={<StubButton popoverName="fourth" title="Popover topLeft" />} isOpen={store.state["fourth"]} position="topLeft">
+        <Popover actionComponent={<StubButton popoverName="fourth" title="Popover topLeft" />} isOpen={store.state["fourth"]} position="topLeft">
           <div style={{ width: '300px' }}>
             Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
           </div>
