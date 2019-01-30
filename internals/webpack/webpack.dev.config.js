@@ -77,7 +77,7 @@ const baseConfig = {
               sourceMap: true,
               import: [
                 path.resolve(__dirname, '../../source/styl/00-settings/_variables.styl'),
-                path.resolve(__dirname, `../../source/styl/00-settings/_${process.env.THEME}.styl`),
+                path.resolve(__dirname, `../../source/styl/00-settings/_${process.env.THEME_ENV}.styl`),
               ],
             },
           },
@@ -98,7 +98,7 @@ const baseConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: 'development',
-        THEME: 'afiliados',
+        THEME_ENV: 'afiliados',
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
