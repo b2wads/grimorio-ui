@@ -1,4 +1,4 @@
-# AFL Theme
+# BITSERVICE THEME
 
 ## Prerequisites
 
@@ -75,7 +75,7 @@ yarn // or yarn install
 ## UI components (storybook)
 
 ```bash
-yarn storybook
+THEME=afiliados yarn storybook
 // http://localhost:9000
 ```
 

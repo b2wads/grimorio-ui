@@ -73,7 +73,15 @@ const baseConfig = {
                 }
               }
             },
-            'stylus-loader'
+            {
+              loader: 'stylus-loader',
+              options: {
+                import: [
+                  path.resolve(__dirname, '../../source/styl/00-settings/_variables.styl'),
+                  path.resolve(__dirname, `../../source/styl/00-settings/_${process.env.THEME}.styl`),
+                ],
+              },
+            },
           ]
         }),
       },
@@ -100,7 +108,8 @@ const baseConfig = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: 'production'
+        NODE_ENV: 'production',
+        THEME: 'afiliados',
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
