@@ -5,13 +5,11 @@
   "description": "Bitservices UI React",
   "main": "lib/index.js",
   "scripts": {
-    "cp:package": "rm ../afiliados-webapp/packages/bitservices-theme-*.tgz && ./node_modules/.bin/cpy bitservices-theme-*.tgz ../afiliados-webapp/packages/",
-    "cp:package:admin": "rm ../afiliados-webapp/packages/bitservices-theme-*.tgz && ./node_modules/.bin/cpy bitservices-theme-*.tgz ../afiliados-admin-webapp/packages/",
+    "cp:pack": "rm ../$APP/packages/bitservices-theme-*.tgz && ./node_modules/.bin/cpy bitservices-theme-*.tgz ../$APP/packages/",
+    "pack:build": "yarn build && yarn pack --filename bitservices-theme-${npm_package_version}.$THEME_ENV.tgz",
+    "pack:full": "rm -f ./bitservices-theme-**.tgz && yarn pack:build",
     "build": "yarn build:images && yarn build:js",
-    "rmpack": "rm -f ./bitservices-theme-**.tgz",
-    "pack:build": "yarn build && yarn pack --filename bitservices-theme-$THEME-v$npm_package_version.tgz",
-    "pack:full": "yarn rmpack && yarn pack:build",
-    "build:js": "./node_modules/.bin/cross-env THEME_ENV=$THEME NODE_ENV=production BABEL_ENV=production babel source --out-dir lib && webpack --progress --config ./internals/webpack/webpack.config.js",
+    "build:js": "./node_modules/.bin/cross-env THEME_ENV=$THEME_ENV NODE_ENV=production BABEL_ENV=production babel source --out-dir lib && webpack --progress --config ./internals/webpack/webpack.config.js",
     "build:images": "./node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=production babel source/images --out-dir lib/images --copy-files",
     "lint": "run-p lint:*",
     "lint:styl": "stylint source/",
@@ -19,12 +17,11 @@
     "precommit": "yarn lint",
     "prepush": "yarn test",
     "release": "./node_modules/.bin/release-it",
-    "storybook": "./node_modules/.bin/cross-env THEME_ENV=$THEME start-storybook -p 9000 -c ./internals/storybook",
+    "storybook": "./node_modules/.bin/cross-env THEME_ENV=$THEME_ENV start-storybook -p 9000 -c ./internals/storybook",
     "test": "./node_modules/.bin/cross-env NODE_ENV=testing BABEL_ENV=testing jest",
     "test:verb": "./node_modules/.bin/cross-env NODE_ENV=testing BABEL_ENV=testing jest --verbose",
     "test:tdd": "yarn test -- --watch",
-    "test:coverage": "yarn test -- --coverage --coverageDirectory=coverage",
-    "pack:sieve": "yarn pack --filename bitservices-theme-${npm_package_version}.sieve.tgz"
+    "test:coverage": "yarn test -- --coverage --coverageDirectory=coverage"
   },
   "engines": {
     "node": ">=8.9.4",
