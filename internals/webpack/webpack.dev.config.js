@@ -75,10 +75,7 @@ const baseConfig = {
             loader: 'stylus-loader',
             options: {
               sourceMap: true,
-              import: [
-                path.resolve(__dirname, '../../source/styl/00-settings/_variables.styl'),
-                path.resolve(__dirname, `../../source/styl/00-settings/_${process.env.THEME_ENV}.styl`),
-              ],
+              import: path.resolve(__dirname, `../../source/styl/00-settings/_${process.env.THEME_ENV}.styl`),
             },
           },
         ]
