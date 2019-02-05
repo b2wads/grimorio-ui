@@ -1,4 +1,4 @@
-# AFL Theme
+# BITSERVICE THEME
 
 ## Prerequisites
 
@@ -74,16 +74,17 @@ yarn // or yarn install
 
 ## UI components (storybook)
 
+http://localhost:9000
+
 ```bash
-yarn storybook
-// http://localhost:9000
+THEME_ENV=afiliados yarn storybook
 ```
 
 ## Lint
+[Rules in ESLint](http://eslint.org/docs/rules/)
 
 ```bash
 yarn lint
-//[Rules in ESLint](http://eslint.org/docs/rules/)
 ```
 
 ## Tests
@@ -92,10 +93,23 @@ yarn lint
 yarn test
 ```
 
-## Build
+## Build and Pack
+Caso não exista nenhum pacote já criado, usar esse comando:
 
 ```bash
-yarn build
+THEME_ENV=afiliados yarn pack:build
+```
+E caso já exista um pacote gerado:
+
+```bash
+THEME_ENV=afiliados yarn pack:full
+```
+
+## Copy
+Remove o pacote antigo do repositório `APP` e copia o novo
+
+```bash
+APP=afiliados-webapp yarn cp:pack
 ```
 
 ## Release

@@ -74,9 +74,10 @@ const baseConfig = {
           {
             loader: 'stylus-loader',
             options: {
-              sourceMap: true
-            }
-          }
+              sourceMap: true,
+              import: path.resolve(__dirname, `../../source/styl/00-settings/_${process.env.THEME_ENV}.styl`),
+            },
+          },
         ]
       },
       {
@@ -93,7 +94,8 @@ const baseConfig = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: 'development'
+        NODE_ENV: 'development',
+        THEME_ENV: 'afiliados',
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),

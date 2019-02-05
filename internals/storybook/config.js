@@ -20,7 +20,7 @@ addDecorator((fn, { kind, story }) => <div className={styles.container}>
 </div>);
 
 setOptions({
-  name: 'Afl Theme',
+  name: 'BitService Theme',
   url: '',
   goFullScreen: false,
   showLeftPanel: true,
