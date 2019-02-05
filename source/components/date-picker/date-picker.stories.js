@@ -23,6 +23,18 @@ stories.addWithInfo('Normal', () => {
   );
 });
 
+stories.addWithInfo('Single Day', () => {
+  return (
+    <div>
+      <DatePicker
+        singleDay
+        monthsToShow={1}
+        onChange={(dates) => console.log('single date:', dates)}
+      />
+    </div>
+  );
+});
+
 stories.addWithInfo('Mobile', () => {
   return (
     <div>
