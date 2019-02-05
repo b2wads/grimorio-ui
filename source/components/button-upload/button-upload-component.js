@@ -25,6 +25,8 @@ class ButtonUpload extends PureComponent {
     loading: PropTypes.bool,
     limit: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     defaultFiles: PropTypes.array,
+    formatWhiteList: PropTypes.array,
+    accept: PropTypes.string,
   };
 
   static defaultProps = {
@@ -32,6 +34,7 @@ class ButtonUpload extends PureComponent {
     disabled: false,
     limit: false,
     loading: false,
+    formatWhiteList: ['.png', '.jpg', '.jpeg', '.pdf'],
   };
 
   convertToBase64(file) {
@@ -58,6 +61,16 @@ class ButtonUpload extends PureComponent {
       fileArr = fileArr.splice(0, spaceLeft);
     }
 
+    fileArr = fileArr.filter(file => {
+      let whiteListed = true;
+      const extensions = file.name.split('.');
+      extensions.shift();
+
+      extensions.forEach(ext => (whiteListed = this.props.formatWhiteList.includes(`.${ext}`)));
+
+      return whiteListed;
+    });
+
     this.setState({ list: [...this.state.list, ...fileArr] }, () => {
       this.returnData();
     });
@@ -82,7 +95,7 @@ class ButtonUpload extends PureComponent {
   }
 
   render() {
-    const { disabled, btnText, limit, loading, ...rest } = this.props;
+    const { disabled, btnText, limit, loading, accept, formatWhiteList, ...rest } = this.props;
     const hasMaxFiles = this.state.list.length === limit;
 
     return (
@@ -95,7 +108,7 @@ class ButtonUpload extends PureComponent {
             onChange={this.handleChange}
             disabled={disabled || hasMaxFiles}
             multiple
-            accept="image/png"
+            accept={accept || formatWhiteList.join(', ')}
           />
         </Button>
 

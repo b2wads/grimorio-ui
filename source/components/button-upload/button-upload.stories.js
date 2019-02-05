@@ -18,4 +18,11 @@ stories.addWithInfo(
 );
 
 
-stories.addWithInfo('With Limit', () => <ButtonUpload btnText="Apenas 2 imagens" limit={2} onChange={(data, list) => console.log('images: ', data, 'list:', list)} />);
+stories.addWithInfo('With Limit', () =>
+  <ButtonUpload
+    formatWhiteList={['.jpg', '.jpeg']}
+    btnText="Apenas 2 imagens"
+    limit={2}
+    onChange={(data, list) => console.log('images: ', data, 'list:', list)}
+  />
+);
