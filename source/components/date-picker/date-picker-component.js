@@ -18,7 +18,7 @@ class DatePicker extends Component {
     this.state = {
       startDate: props.defaultStartDate || null,
       endDate: props.defaultEndDate || null,
-      singleDate: props.defaultStartDate || null,
+      singleDate: props.defaultSingleDay || null,
       focusedInput: null,
     };
 
