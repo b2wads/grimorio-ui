@@ -75,6 +75,16 @@ stories.addWithInfo('Fixed', () => {
   );
 });
 
+stories.addWithInfo('Sticky', withState({ data: null })(({ store }) => {
+  fetch('https://randomuser.me/api/?results=10')
+    .then(res => res.json())
+    .then(res => {
+      !store.state.data && store.set({ data: res.results });
+    });
+
+  return <Table schema={schema} data={store.state.data} scrollY height="400px" isSticky />
+}));
+
 stories.addWithInfo('Special Case', () => {
   const special = [
     {
@@ -104,7 +114,6 @@ stories.addWithInfo('Scroll', () => {
     <Table scrollY scrollX width="500px" height="150px" schema={schema} data={simpledata} />
   );
 });
-
 
 stories.addWithInfo('With async Data', withState({ data: null })(({ store }) => {
   fetch('https://randomuser.me/api/?results=10')

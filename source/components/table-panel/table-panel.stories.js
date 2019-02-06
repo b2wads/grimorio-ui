@@ -114,6 +114,23 @@ stories.addWithInfo('Scroll', () => {
   );
 });
 
+stories.addWithInfo('Sticky', () => {
+  return (
+    <TablePanel
+      scrollY
+      height="100px"
+      title="Jogo da Idade"
+      actions={<Button>Trocar nomes</Button>}
+      schema={schema}
+      data={simpledata}
+      pager
+      perpage
+      meta={{}}
+      isSticky
+    />
+  );
+});
+
 stories.addWithInfo('Error', () => {
   return (
     <TablePanel
