@@ -41,6 +41,7 @@ class DatePicker extends Component {
     isMobile: PropTypes.bool,
     range: PropTypes.number,
     singleDay: PropTypes.bool,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -50,6 +51,7 @@ class DatePicker extends Component {
     monthsToShow: 2,
     range: 2,
     initialMonth: moment().subtract(1, 'month'),
+    disabled: false,
     isMobile: false,
     singleDay: false,
   };
@@ -140,7 +142,7 @@ class DatePicker extends Component {
 
   render() {
     const { startDate, endDate, singleDate, focusedInput } = this.state;
-    const { className, align, monthsToShow, isMobile, ...rest } = this.props;
+    const { className, align, monthsToShow, isMobile, disabled, ...rest } = this.props;
     const labelClasses = cx(styles.label, {
       [styles.isActive]: this.hasDates() || focusedInput,
     });
@@ -155,13 +157,13 @@ class DatePicker extends Component {
       <div className={cx(styles.wrap, className)} {...rest}>
         <div className={styles.labelWrapper}>
           <span className={labelClasses}>{this.props.label}</span>
-          <div onClick={this.toggleCalendar} className={styles.input}>
+          <fieldset className={styles.input} onClick={this.toggleCalendar} disabled={disabled}>
             <Icon className={styles.calendarIcon} name="today" size={20} />
             <span className={styles.inputContent}>
               {this.hasDates() && this.renderDates(startDate, endDate, singleDate)}
             </span>
             <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
-          </div>
+          </fieldset>
         </div>
 
         <div className={calendarClasses}>
