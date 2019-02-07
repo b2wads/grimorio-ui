@@ -145,8 +145,8 @@ class Table extends PureComponent {
     });
 
     const wrapSizes = {
-      width: width || 'auto',
-      height: height || 'auto',
+      maxWidth: width || 'auto',
+      maxHeight: height || 'auto',
     };
 
     return (
