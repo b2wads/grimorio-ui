@@ -54,11 +54,20 @@ class ButtonUpload extends PureComponent {
     });
   }
 
-  handleChange(event) {
+  fileValidation(file) {
     const { formatWhiteList, maxFileSize } = this.props;
+    const extension = file.name.split('.').pop();
+    return {
+      valid: formatWhiteList.includes(`.${extension}`) && file.size <= maxFileSize,
+      validFormat: formatWhiteList.includes(`.${extension}`),
+      validSize: file.size <= maxFileSize,
+    };
+  }
+
+  handleChange(event) {
     const { files } = event.target;
     let fileArr = [...files];
-    const fileError = [];
+    let fileError = {};
 
     if (this.props.limit) {
       const spaceLeft = this.props.limit - this.state.list.length;
@@ -66,14 +75,17 @@ class ButtonUpload extends PureComponent {
     }
 
     fileArr = fileArr.filter(file => {
-      const extension = file.name.split('.').pop();
+      const { valid, validFormat, validSize } = this.fileValidation(file);
+      const err = !valid ? { [file.name]: [] } : {};
+      !validFormat && err[file.name].push('invalid format');
+      !validSize && err[file.name].push('too big');
 
-      !(file.size <= maxFileSize) && !fileError.includes('File too big') && fileError.push('File too big');
-      !formatWhiteList.includes(`.${extension}`) &&
-        !fileError.includes('Extension not valid') &&
-        fileError.push('Extension not valid');
+      fileError = {
+        ...fileError,
+        ...err,
+      };
 
-      return formatWhiteList.includes(`.${extension}`) && file.size <= maxFileSize;
+      return valid;
     });
 
     this.setState({ list: [...this.state.list, ...fileArr] }, () => {
