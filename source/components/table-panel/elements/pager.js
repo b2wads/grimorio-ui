@@ -164,7 +164,7 @@ class Pager extends PureComponent {
   }
 }
 
-Option.propTypes = {
+Pager.propTypes = {
   offset: PropTypes.string,
 };
 
