@@ -64,6 +64,10 @@ $cell {
 
 .rowHead {
   @extend $row;
+
+  &--sticky {
+    border-bottom: unset;
+  }
 }
 
 .cell {
@@ -75,6 +79,14 @@ $cell {
   @extend $cell;
   font-size: $base-font-size-px;
   font-weight: bold;
+
+  &--sticky {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+    box-shadow: 2px 1px 4px 0 rgba(0,0,0,0.17)
+  }
 }
 
 /* ==========================================================================

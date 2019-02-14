@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, number } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import TablePanel from './table-panel-component';
@@ -110,6 +110,24 @@ stories.addWithInfo('Scroll', () => {
       perpage
       meta={{}}
       fixed
+    />
+  );
+});
+
+stories.addWithInfo('Sticky', () => {
+  const height = number('Height', 150);
+  return (
+    <TablePanel
+      scrollY
+      height={height}
+      title="Jogo da Idade"
+      actions={<Button>Trocar nomes</Button>}
+      schema={schema}
+      data={simpledata}
+      pager
+      perpage
+      meta={{}}
+      isSticky
     />
   );
 });
