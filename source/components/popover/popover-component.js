@@ -48,7 +48,7 @@ class Popover extends React.PureComponent {
   }
 
   render() {
-    const { children, actionComponent, isOpen, position, className } = this.props;
+    const { children, actionComponent, isOpen, position, className, ...rest } = this.props;
     return (
       <div className={cx([styles.popoverContainer, className])} ref={this.setWrapperRef}>
         {actionComponent}
@@ -57,6 +57,7 @@ class Popover extends React.PureComponent {
             className={cx(styles.popover, {
               [styles[position]]: position,
             })}
+            {...rest}
           >
             {children}
           </div>}
