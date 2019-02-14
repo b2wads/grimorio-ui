@@ -20,7 +20,7 @@ class SelectOption extends PureComponent {
   }
 }
 
-Option.propTypes = {
+SelectOption.propTypes = {
   value: PropTypes.string,
   icon: PropTypes.string,
   onSelect: PropTypes.func,

@@ -25,6 +25,9 @@ class ButtonUpload extends PureComponent {
     loading: PropTypes.bool,
     limit: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     defaultFiles: PropTypes.array,
+    formatWhiteList: PropTypes.array,
+    accept: PropTypes.string,
+    maxFileSize: PropTypes.number, // bytes
   };
 
   static defaultProps = {
@@ -32,6 +35,8 @@ class ButtonUpload extends PureComponent {
     disabled: false,
     limit: false,
     loading: false,
+    formatWhiteList: ['.png', '.jpg', '.jpeg', '.pdf'],
+    maxFileSize: 3000000, // 3MB
   };
 
   convertToBase64(file) {
@@ -43,23 +48,48 @@ class ButtonUpload extends PureComponent {
     });
   }
 
-  returnData() {
+  returnData(error) {
     Promise.all(this.state.list.map(el => this.convertToBase64(el))).then(data => {
-      this.props.onChange(data, this.state.list);
+      this.props.onChange(data, this.state.list, error);
     });
+  }
+
+  fileValidation(file) {
+    const { formatWhiteList, maxFileSize } = this.props;
+    const extension = file.name.split('.').pop();
+    return {
+      valid: formatWhiteList.includes(`.${extension}`) && file.size <= maxFileSize,
+      validFormat: formatWhiteList.includes(`.${extension}`),
+      validSize: file.size <= maxFileSize,
+    };
   }
 
   handleChange(event) {
     const { files } = event.target;
     let fileArr = [...files];
+    let fileError = {};
 
     if (this.props.limit) {
       const spaceLeft = this.props.limit - this.state.list.length;
       fileArr = fileArr.splice(0, spaceLeft);
     }
 
+    fileArr = fileArr.filter(file => {
+      const { valid, validFormat, validSize } = this.fileValidation(file);
+      const err = !valid ? { [file.name]: [] } : {};
+      !validFormat && err[file.name].push('invalid format');
+      !validSize && err[file.name].push('too big');
+
+      fileError = {
+        ...fileError,
+        ...err,
+      };
+
+      return valid;
+    });
+
     this.setState({ list: [...this.state.list, ...fileArr] }, () => {
-      this.returnData();
+      this.returnData(fileError);
     });
   }
 
@@ -82,7 +112,7 @@ class ButtonUpload extends PureComponent {
   }
 
   render() {
-    const { disabled, btnText, limit, loading, ...rest } = this.props;
+    const { disabled, btnText, limit, loading, accept, formatWhiteList, ...rest } = this.props;
     const hasMaxFiles = this.state.list.length === limit;
 
     return (
@@ -95,7 +125,7 @@ class ButtonUpload extends PureComponent {
             onChange={this.handleChange}
             disabled={disabled || hasMaxFiles}
             multiple
-            accept="image/png"
+            accept={accept || formatWhiteList.join(', ')}
           />
         </Button>
 
