@@ -49,10 +49,10 @@ class Table extends PureComponent {
 
   renderHeadRow(schema, isSticky) {
     return (
-      <tr className={cx(styles.rowHead, { [styles['rowHead--sticky']]: isSticky })}>
+      <tr className={cx(styles.rowHead, { [styles.isSticky]: isSticky })}>
         {Object.keys(schema).map(key => {
           const currentSchema = schema[key];
-          const headClass = cx(styles.cellHead, currentSchema.className, { [styles['cellHead--sticky']]: isSticky });
+          const headClass = cx(styles.cellHead, currentSchema.className, { [styles.isSticky]: isSticky });
 
           if (Object.keys(currentSchema).length) {
             return (
