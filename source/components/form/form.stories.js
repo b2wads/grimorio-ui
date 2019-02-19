@@ -44,7 +44,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', chec
       <Form onSubmit={ ()=>{} }>
         <FormGroup>
           <FormLabel>Example of label</FormLabel>
-          <FormControl placeholder="Form, FormGroup and input" className="testando-o-teste" />
+          <FormControl placeholder="Form, FormGroup and input" />
           <FormHelpText>text</FormHelpText>
         </FormGroup>
         <FormActions>
