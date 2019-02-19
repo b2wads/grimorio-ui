@@ -22,10 +22,12 @@ class SelectPopover extends React.Component {
     component: PropTypes.node.isRequired,
     position: PropTypes.oneOf(['bottomRight', 'bottomLeft', 'topRight', 'topLeft']),
     header: PropTypes.string,
+    submitOnChange: PropTypes.bool,
   };
   static defaultProps = {
     onSubmit: () => {},
     position: 'bottomRight',
+    submitOnChange: false,
   };
 
   constructor(props) {
@@ -83,9 +85,12 @@ class SelectPopover extends React.Component {
   toggleCheck(key) {
     const { nextOptions } = this.state;
     const options = { ...nextOptions };
+    const { submitOnChange } = this.props;
 
     options[key] = !options[key];
-    this.setState({ nextOptions: options, touched: true });
+    this.setState({ nextOptions: options, touched: true }, () => {
+      submitOnChange && this.submitOnChange();
+    });
   }
 
   checkAll() {
@@ -114,6 +119,14 @@ class SelectPopover extends React.Component {
     this.setState({ prevOptions: { ...nextOptions }, isOpen: false, touched: false });
   }
 
+  submitOnChange() {
+    const { onSubmit } = this.props;
+    const { nextOptions } = this.state;
+
+    onSubmit({ ...nextOptions });
+    this.setState({ prevOptions: { ...nextOptions } });
+  }
+
   dismiss() {
     const { prevOptions } = this.state;
 
@@ -126,7 +139,7 @@ class SelectPopover extends React.Component {
   }
 
   render() {
-    const { component, title, options, position, header, ...rest } = this.props;
+    const { component, title, options, position, header, submitOnChange, ...rest } = this.props;
     return (
       <Popover
         actionComponent={React.cloneElement(component, { onClick: this.toggleIsOpen })}
@@ -160,10 +173,11 @@ class SelectPopover extends React.Component {
                   </label>
                 </div>
               ))}
-            <footer className={styles.formActions}>
-              <Button color="variant" modifier="outline" size="medium" onClick={this.dismiss}>Cancelar</Button>
-              <Button size="medium" onClick={this.submit} disabled={!this.isValid()}>Aplicar</Button>
-            </footer>
+            {!submitOnChange &&
+              <footer className={styles.formActions}>
+                <Button color="variant" modifier="outline" size="medium" onClick={this.dismiss}>Cancelar</Button>
+                <Button size="medium" onClick={this.submit} disabled={!this.isValid()}>Aplicar</Button>
+              </footer>}
           </section>
         </div>
       </Popover>
