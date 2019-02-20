@@ -168,7 +168,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           placeholder={placeholder}
           onSelect={handleChange}
-          {...ommit(rest, ['feedback'])}
+          {...ommit(rest, ['feedback', 'className'])}
         >
           {children}
         </Select>
@@ -187,7 +187,7 @@ class FormControl extends PureComponent {
             disabled={disabled}
             name={name}
             value={this.state.value}
-            {...rest}
+            {...ommit(rest, ['className'])}
           />
           <label
             className={classNames(styles.fakeInput, {
@@ -219,7 +219,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           name={name}
           value={this.state.value}
-          {...rest}
+          {...ommit(rest, ['className'])}
         >
           {children}
         </Component>
@@ -238,7 +238,7 @@ class FormControl extends PureComponent {
     const isCheckboxOrRadio = (formGroup && formGroup.isCheckboxOrRadio) || undefined;
 
     // styles
-    const addonClass = classNames(className, styles['form-addon'], {
+    const addonClass = classNames(className, styles['form-addon'], styles['form-field-wrapper'], {
       [styles['form-addon--withItens']]: addonBefore || addonAfter || feedback,
       [styles['form-addon--horizontal']]: formStyleType === 'horizontal',
       [styles[`has-${validationState}`]]: validationState,
