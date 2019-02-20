@@ -18,6 +18,7 @@ class DatePicker extends Component {
     this.state = {
       startDate: props.defaultStartDate || null,
       endDate: props.defaultEndDate || null,
+      singleDate: props.defaultSingleDay || null,
       focusedInput: null,
     };
 
@@ -39,6 +40,8 @@ class DatePicker extends Component {
     initialMonth: PropTypes.instanceOf(moment),
     isMobile: PropTypes.bool,
     range: PropTypes.number,
+    singleDay: PropTypes.bool,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -48,7 +51,9 @@ class DatePicker extends Component {
     monthsToShow: 2,
     range: 2,
     initialMonth: moment().subtract(1, 'month'),
+    disabled: false,
     isMobile: false,
+    singleDay: false,
   };
 
   shouldComponenteUpdate() {
@@ -74,8 +79,21 @@ class DatePicker extends Component {
   }
 
   hasDates() {
-    const { startDate, endDate } = this.state;
+    const { startDate, endDate, singleDate } = this.state;
+
+    if (this.props.singleDay) {
+      return !!singleDate;
+    }
+
     return startDate && endDate;
+  }
+
+  renderDates(startDate, endDate, singleDate) {
+    if (this.props.singleDay) {
+      return `${moment(singleDate).format('DD/MM/YYYY')}`;
+    }
+
+    return `${moment(startDate).format('DD/MM/YYYY')} - ${moment(endDate).format('DD/MM/YYYY')}`;
   }
 
   changeDate({ startDate, endDate }) {
@@ -85,8 +103,22 @@ class DatePicker extends Component {
       valueEndDate = endDate;
     }
 
-    this.props.onChange({ startDate, endDate: valueEndDate });
-    this.setState({ startDate, endDate: valueEndDate });
+    let dateValues = {
+      startDate,
+      endDate: valueEndDate,
+    };
+
+    if (this.props.singleDay) {
+      dateValues = {
+        focusedInput: null,
+        startDate: null,
+        endDate: null,
+        singleDate: startDate,
+      };
+    }
+
+    this.props.onChange(dateValues);
+    this.setState(dateValues);
   }
 
   initialMonth() {
@@ -94,19 +126,23 @@ class DatePicker extends Component {
   }
 
   isOutsideRange(day) {
-    const { range } = this.props;
+    const { range, singleDay } = this.props;
     let endIsOutside = false;
 
     if (this.state.focusedInput === 'endDate') {
       endIsOutside = day.isAfter(moment(this.state.startDate).add(range, 'months'));
     }
 
+    if (singleDay) {
+      return false;
+    }
+
     return endIsOutside || isInclusivelyAfterDay(day, moment().add(1, 'day'));
   }
 
   render() {
-    const { startDate, endDate, focusedInput } = this.state;
-    const { className, align, monthsToShow, isMobile, ...rest } = this.props;
+    const { startDate, endDate, singleDate, focusedInput } = this.state;
+    const { className, align, monthsToShow, isMobile, disabled, ...rest } = this.props;
     const labelClasses = cx(styles.label, {
       [styles.isActive]: this.hasDates() || focusedInput,
     });
@@ -121,13 +157,13 @@ class DatePicker extends Component {
       <div className={cx(styles.wrap, className)} {...rest}>
         <div className={styles.labelWrapper}>
           <span className={labelClasses}>{this.props.label}</span>
-          <div onClick={this.toggleCalendar} className={styles.input}>
+          <fieldset className={styles.input} onClick={this.toggleCalendar} disabled={disabled}>
             <Icon className={styles.calendarIcon} name="today" size={20} />
             <span className={styles.inputContent}>
-              {this.hasDates() && `${moment(startDate).format('DD/MM/YYYY')} - ${moment(endDate).format('DD/MM/YYYY')}`}
+              {this.hasDates() && this.renderDates(startDate, endDate, singleDate)}
             </span>
             <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
-          </div>
+          </fieldset>
         </div>
 
         <div className={calendarClasses}>

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import styles from './table.styl';
 
@@ -35,6 +35,7 @@ class Table extends PureComponent {
     scrollX: PropTypes.bool,
     width: PropTypes.string,
     height: PropTypes.string,
+    isSticky: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -43,14 +44,15 @@ class Table extends PureComponent {
     type: 'default',
     notFoundMessage: 'Nenhum resultado encontrado :(',
     loadingMessage: 'Loading...',
+    isSticky: false,
   };
 
-  renderHeadRow(schema) {
+  renderHeadRow(schema, isSticky) {
     return (
-      <tr className={styles.rowHead}>
+      <tr className={cx(styles.rowHead, { [styles.isSticky]: isSticky })}>
         {Object.keys(schema).map(key => {
           const currentSchema = schema[key];
-          const headClass = classNames(styles.cellHead, currentSchema.className);
+          const headClass = cx(styles.cellHead, currentSchema.className, { [styles.isSticky]: isSticky });
 
           if (Object.keys(currentSchema).length) {
             return (
@@ -78,16 +80,12 @@ class Table extends PureComponent {
 
   renderRow(data, schema, specialCase) {
     return data.map(infoRow => (
-      <tr key={uniqueId()} className={classNames(styles.row, this.generateSpecialStyle(specialCase, infoRow))}>
+      <tr key={uniqueId()} className={cx(styles.row, this.generateSpecialStyle(specialCase, infoRow))}>
         {Object.keys(schema).map(key => {
           const currentSchema = schema[key];
           if (Object.keys(currentSchema).length) {
             return (
-              <td
-                width={currentSchema.width}
-                key={uniqueId()}
-                className={classNames(styles.cell, currentSchema.className)}
-              >
+              <td width={currentSchema.width} key={uniqueId()} className={cx(styles.cell, currentSchema.className)}>
                 {currentSchema.render ? currentSchema.render(infoRow) : infoRow[key]}
               </td>
             );
@@ -132,29 +130,30 @@ class Table extends PureComponent {
       loadingMessage,
       notFoundMessage,
       specialCase,
+      isSticky,
       ...rest
     } = this.props;
 
-    const tableClass = classNames(tableClassName, styles.table, {
+    const tableClass = cx(tableClassName, styles.table, {
       [styles.isFixed]: layout === 'fixed',
     });
 
-    const wrapClass = classNames(styles.wrap, className, {
+    const wrapClass = cx(styles.wrap, className, {
       [styles.isScrollY]: scrollY,
       [styles.isScrollX]: scrollX,
       [styles.panel]: type === 'panel',
     });
 
     const wrapSizes = {
-      width: width || 'auto',
-      height: height || 'auto',
+      maxWidth: width || 'auto',
+      maxHeight: height || 'auto',
     };
 
     return (
       <div style={wrapSizes} className={wrapClass} {...rest}>
         <table className={tableClass}>
           <thead className={styles.tableHead}>
-            {this.renderHeadRow(schema)}
+            {this.renderHeadRow(schema, isSticky)}
           </thead>
 
           <tbody className={styles.tableBody}>

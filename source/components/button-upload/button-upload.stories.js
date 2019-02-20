@@ -18,4 +18,26 @@ stories.addWithInfo(
 );
 
 
-stories.addWithInfo('With Limit', () => <ButtonUpload btnText="Apenas 2 imagens" limit={2} onChange={(data, list) => console.log('images: ', data, 'list:', list)} />);
+stories.addWithInfo('With Limit', () =>
+  <ButtonUpload
+    btnText="Apenas 2 imagens"
+    limit={2}
+    onChange={(data, list) => console.log('images: ', data, 'list:', list)}
+  />
+);
+
+stories.addWithInfo('With Extension Whitelist', () =>
+  <ButtonUpload
+    formatWhiteList={['.jpg', '.jpeg']}
+    btnText="Apenas JPG e JPEG"
+    onChange={(data, list, error) => console.log('images: ', data, 'list:', list, 'error:', error)}
+  />
+);
+
+stories.addWithInfo('With MaxFileSize', () =>
+  <ButtonUpload
+    maxFileSize={100000}
+    btnText="Até 100KB"
+    onChange={(data, list, error) => console.log('images: ', data, 'list:', list, 'error:', error)}
+  />
+);
