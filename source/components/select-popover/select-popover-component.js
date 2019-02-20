@@ -95,20 +95,26 @@ class SelectPopover extends React.Component {
 
   checkAll() {
     const options = { ...this.state.nextOptions };
+    const { submitOnChange } = this.props;
     Object.keys(options).forEach(key => {
       options[key] = true;
     });
 
-    this.setState({ nextOptions: options, touched: true });
+    this.setState({ nextOptions: options, touched: true }, () => {
+      submitOnChange && this.submitOnChange();
+    });
   }
 
   uncheckAll() {
     const options = { ...this.state.nextOptions };
+    const { submitOnChange } = this.props;
     Object.keys(options).forEach(key => {
       options[key] = false;
     });
 
-    this.setState({ nextOptions: options, touched: true });
+    this.setState({ nextOptions: options, touched: true }, () => {
+      submitOnChange && this.submitOnChange();
+    });
   }
 
   submit() {
