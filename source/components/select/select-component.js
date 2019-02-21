@@ -6,7 +6,7 @@ import cx from 'classnames';
 import SelectOption from './elements/select-option';
 import Icon from '../icon';
 
-import { ommit } from '../../helpers';
+import { omit } from '../../helpers';
 
 import styles from './select.styl';
 
@@ -254,7 +254,7 @@ class Select extends Component {
       <div
         ref={el => (this.selectWrap = el)}
         className={cx(styles.selectWrap, className)}
-        {...ommit(elementProps, ['closeOnClickOutside', 'onClickOutside'])}
+        {...omit(elementProps, ['closeOnClickOutside', 'onClickOutside'])}
       >
         <span onClick={this.toggleOptions()} className={styles.button}>
           {this.renderButton(type, label, menuButton)}

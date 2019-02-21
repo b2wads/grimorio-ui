@@ -1,9 +1,12 @@
 import React, { PureComponent, Fragment } from 'react';
 import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import cx from 'classnames';
+
+import Loader from '../loader';
+import Error from '../error';
 
 import styles from './pie-chart.styl';
 
@@ -20,15 +23,27 @@ class PieChart extends PureComponent {
 
   static chart = null;
 
-  static propTypes = {};
+  static propTypes = {
+    options: PropTypes.object,
+    chartData: PropTypes.object.isRequired,
+    loading: PropTypes.bool,
+    error: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    onErrorClick: PropTypes.func,
+    errorBtnText: PropTypes.string,
+  };
+
   static defaultProps = {
     error: false,
-    cutoutPercentage: 50,
+    chartData: {
+      data: [],
+    },
   };
 
   componentDidMount() {
-    const { options, error, labels, datasets, cutoutPercentage } = this.props;
-    const total = datasets[0].data.reduce((acc, num) => acc + num, 0);
+    const { options, error, chartData } = this.props;
+    const chartValues = chartData.data || [];
+    const total = chartValues.reduce((acc, num) => acc + num, 0);
 
     if (!this.canvas || !this.canvas.current) {
       return null;
@@ -39,21 +54,22 @@ class PieChart extends PureComponent {
       new Chart(this.canvas.current, {
         type: 'pie',
         data: {
-          datasets,
-          labels,
+          datasets: [
+            {
+              borderWidth: chartValues.map(() => 0),
+              hoverBorderColor: chartValues.map(() => '#FFF'),
+              hoverBorderWidth: chartValues.map(() => 2),
+              ...chartData,
+            },
+          ],
+          labels: chartData.labels,
         },
         plugins: [ChartDataLabels],
         options: {
-          cutoutPercentage,
+          cutoutPercentage: 50,
           maintainAspectRatio: false,
           tooltips: {
-            cornerRadius: 2,
-            borderColor: 'rgba(0,0,0,0.08)',
-            borderWidth: 2,
-            backgroundColor: '#fff',
-            titleFontColor: '#777',
-            bodyFontColor: '#777',
-            footerFontColor: '#777',
+            enabled: false,
           },
           plugins: {
             datalabels: {
@@ -69,10 +85,14 @@ class PieChart extends PureComponent {
             display: false,
           },
           legendCallback: chart => {
-            return chart.data.datasets[0].data.map(value => {
+            return chart.data.datasets[0].data.map((value, index) => {
+              const color = chart.data.datasets[0].backgroundColor[index];
               return (
                 <div key={value} className={styles.legendItem}>
-                  {value}
+                  <span className={styles.legendColor} style={{ background: color }} />
+                  <span className={styles.legendText}>
+                    {chartData.labels[index]} - {value}
+                  </span>
                 </div>
               );
             });
@@ -88,16 +108,30 @@ class PieChart extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { datasets, error } = this.props;
+    const { chartData, error } = this.props;
 
-    if (prevProps.datasets !== datasets && !error) {
-      this.chart.data.datasets = datasets;
+    if (prevProps.chartData !== chartData && !error) {
+      this.chart.data.datasets[0] = { ...this.chart.data.datasets[0], ...chartData };
 
       const legend = this.chart.generateLegend();
       this.setState({ legend });
 
       this.chart.update();
     }
+  }
+
+  renderError() {
+    const { onErrorClick, errorMessage, errorBtnText } = this.props;
+
+    return (
+      <Error
+        hasButton
+        className={styles.error}
+        onErrorClick={onErrorClick}
+        errorMessage={errorMessage}
+        errorBtnText={errorBtnText}
+      />
+    );
   }
 
   render() {
@@ -110,11 +144,11 @@ class PieChart extends PureComponent {
         {error
           ? this.renderError()
           : <Fragment>
-              <div className={chartClass} {...rest}>
-                <canvas ref={this.canvas} />
-              </div>
               <div className={styles.legend}>
                 {this.state.legend}
+              </div>
+              <div className={chartClass} {...rest}>
+                <canvas ref={this.canvas} />
               </div>
             </Fragment>}
       </div>
