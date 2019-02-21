@@ -17,6 +17,7 @@ class Pager extends PureComponent {
           className={styles.select}
           onSelect={({ value }) => onLimitChange(value)}
           defaultValue={limit}
+          position="bottom"
         >
           {limitList.map(limitVal => (
             <SelectOption value={limitVal}>
