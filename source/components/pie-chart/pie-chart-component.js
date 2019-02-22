@@ -25,12 +25,14 @@ class PieChart extends PureComponent {
 
   static propTypes = {
     options: PropTypes.object,
+    datalabels: PropTypes.object,
     chartData: PropTypes.object.isRequired,
     loading: PropTypes.bool,
     error: PropTypes.bool,
     errorMessage: PropTypes.string,
     onErrorClick: PropTypes.func,
     errorBtnText: PropTypes.string,
+    legendClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -41,9 +43,8 @@ class PieChart extends PureComponent {
   };
 
   componentDidMount() {
-    const { options, error, chartData } = this.props;
+    const { options, datalabels, error, chartData } = this.props;
     const chartValues = chartData.data || [];
-    const total = chartValues.reduce((acc, num) => acc + num, 0);
 
     if (!this.canvas || !this.canvas.current) {
       return null;
@@ -78,20 +79,26 @@ class PieChart extends PureComponent {
                 size: 14,
                 weight: 'bold',
               },
-              formatter: value => `${Math.round(value * 100 / total)}%`,
+              formatter: (value, chart) => {
+                const total = chart.dataset.data.reduce((acc, num) => acc + num, 0);
+                return `${Math.round(value * 100 / total)}%`;
+              },
+              ...datalabels,
             },
           },
           legend: {
             display: false,
           },
           legendCallback: chart => {
-            return chart.data.datasets[0].data.map((value, index) => {
-              const color = chart.data.datasets[0].backgroundColor[index];
+            const [{ data, backgroundColor, labels }] = chart.config.data.datasets;
+
+            return data.map((value, index) => {
+              const color = backgroundColor[index];
               return (
                 <div key={value} className={styles.legendItem}>
                   <span className={styles.legendColor} style={{ background: color }} />
                   <span className={styles.legendText}>
-                    {chartData.labels[index]} - {value}
+                    {labels[index]} - {value}
                   </span>
                 </div>
               );
@@ -111,7 +118,16 @@ class PieChart extends PureComponent {
     const { chartData, error } = this.props;
 
     if (prevProps.chartData !== chartData && !error) {
-      this.chart.data.datasets[0] = { ...this.chart.data.datasets[0], ...chartData };
+      const chartValues = chartData.data || [];
+
+      this.chart.data.datasets[0] = {
+        borderWidth: chartValues.map(() => 0),
+        hoverBorderColor: chartValues.map(() => '#FFF'),
+        hoverBorderWidth: chartValues.map(() => 2),
+        ...chartData,
+      };
+
+      this.chart.data.labels = chartData.labels;
 
       const legend = this.chart.generateLegend();
       this.setState({ legend });
@@ -135,7 +151,7 @@ class PieChart extends PureComponent {
   }
 
   render() {
-    const { className, error, loading, ...rest } = this.props;
+    const { className, legendClassName, error, loading, ...rest } = this.props;
     const chartClass = cx(className, styles.chart);
 
     return (
@@ -144,7 +160,7 @@ class PieChart extends PureComponent {
         {error
           ? this.renderError()
           : <Fragment>
-              <div className={styles.legend}>
+              <div className={cx(styles.legend, legendClassName)}>
                 {this.state.legend}
               </div>
               <div className={chartClass} {...rest}>
