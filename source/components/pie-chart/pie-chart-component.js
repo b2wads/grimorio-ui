@@ -33,6 +33,7 @@ class PieChart extends PureComponent {
     onErrorClick: PropTypes.func,
     errorBtnText: PropTypes.string,
     legendClassName: PropTypes.string,
+    chartClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -151,11 +152,10 @@ class PieChart extends PureComponent {
   }
 
   render() {
-    const { className, legendClassName, error, loading, ...rest } = this.props;
-    const chartClass = cx(className, styles.chart);
+    const { className, legendClassName, chartClassName, error, loading, ...rest } = this.props;
 
     return (
-      <div className={styles.chartWrap}>
+      <div className={cx(styles.chartWrap, className)}>
         {loading && <Loader type="full" />}
         {error
           ? this.renderError()
@@ -163,7 +163,7 @@ class PieChart extends PureComponent {
               <div className={cx(styles.legend, legendClassName)}>
                 {this.state.legend}
               </div>
-              <div className={chartClass} {...rest}>
+              <div className={cx(styles.chart, chartClassName)} {...rest}>
                 <canvas ref={this.canvas} />
               </div>
             </Fragment>}
