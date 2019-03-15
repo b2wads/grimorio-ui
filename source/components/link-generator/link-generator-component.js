@@ -85,7 +85,7 @@ class LinkGenerator extends PureComponent {
   }
 
   isValidUrl(url) {
-    const rx = /^((https?:\/\/)?(www\.)?(americanas|submarino|shoptime|soubarato)\.com\.br)[a-z-0-9.\/]{0,}/;
+    const rx = /^((https?:\/\/)?(www\.)?(mundo.americanas|americanas|submarino|shoptime|soubarato)\.com\.br)[a-z-0-9.\/]{0,}/;
     return rx.test(url);
   }
 
