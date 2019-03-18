@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import moment from 'moment';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
@@ -12,13 +12,13 @@ import Icon from '../icon';
 
 import styles from './date-picker.styl';
 
-class DatePicker extends Component {
+class DatePicker extends PureComponent {
   constructor(props) {
     super();
     this.state = {
-      startDate: props.defaultStartDate || null,
+      startDate: props.defaultStartDate || props.defaultSingleDate || null,
       endDate: props.defaultEndDate || null,
-      singleDate: props.defaultSingleDay || null,
+      singleDate: props.defaultSingleDate || null,
       focusedInput: null,
     };
 
@@ -34,13 +34,14 @@ class DatePicker extends Component {
     onChange: PropTypes.func.isRequired,
     defaultStartDate: PropTypes.instanceOf(moment),
     defaultEndDate: PropTypes.instanceOf(moment),
+    defaultSingleDate: PropTypes.instanceOf(moment),
     label: PropTypes.string,
     align: PropTypes.oneOf(['left', 'right']),
     monthsToShow: PropTypes.number,
     initialMonth: PropTypes.instanceOf(moment),
     isMobile: PropTypes.bool,
     range: PropTypes.number,
-    singleDay: PropTypes.bool,
+    isSingleDate: PropTypes.bool,
     disabled: PropTypes.bool,
   };
 
@@ -53,20 +54,17 @@ class DatePicker extends Component {
     initialMonth: moment().subtract(1, 'month'),
     disabled: false,
     isMobile: false,
-    singleDay: false,
+    isSingleDate: false,
   };
 
-  shouldComponenteUpdate() {
-    return false;
-  }
-
   outsiteClick() {
+    const { isSingleDate } = this.props;
     const { startDate, endDate } = this.state;
     let resetDates = {};
 
-    if (!startDate) {
+    if (!startDate && !isSingleDate) {
       resetDates = { startDate: null, endDate: null };
-    } else if (!endDate) {
+    } else if (!endDate && !isSingleDate) {
       resetDates = { startDate, endDate: startDate };
       this.props.onChange(resetDates);
     }
@@ -81,7 +79,7 @@ class DatePicker extends Component {
   hasDates() {
     const { startDate, endDate, singleDate } = this.state;
 
-    if (this.props.singleDay) {
+    if (this.props.isSingleDate) {
       return !!singleDate;
     }
 
@@ -89,7 +87,7 @@ class DatePicker extends Component {
   }
 
   renderDates(startDate, endDate, singleDate) {
-    if (this.props.singleDay) {
+    if (this.props.isSingleDate) {
       return `${moment(singleDate).format('DD/MM/YYYY')}`;
     }
 
@@ -108,10 +106,10 @@ class DatePicker extends Component {
       endDate: valueEndDate,
     };
 
-    if (this.props.singleDay) {
+    if (this.props.isSingleDate) {
       dateValues = {
         focusedInput: null,
-        startDate: null,
+        startDate,
         endDate: null,
         singleDate: startDate,
       };
@@ -126,14 +124,14 @@ class DatePicker extends Component {
   }
 
   isOutsideRange(day) {
-    const { range, singleDay } = this.props;
+    const { range, isSingleDate } = this.props;
     let endIsOutside = false;
 
     if (this.state.focusedInput === 'endDate') {
       endIsOutside = day.isAfter(moment(this.state.startDate).add(range, 'months'));
     }
 
-    if (singleDay) {
+    if (isSingleDate) {
       return false;
     }
 
