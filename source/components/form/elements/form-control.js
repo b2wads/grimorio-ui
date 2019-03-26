@@ -5,7 +5,7 @@ import CSSModules from 'react-css-modules';
 // components
 import Icon from '../../icon';
 import { fieldsValidation } from '../../../helpers/validation';
-import { ommit } from '../../../helpers';
+import { omit } from '../../../helpers';
 
 import Select from '../../select';
 
@@ -168,7 +168,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           placeholder={placeholder}
           onSelect={handleChange}
-          {...ommit(rest, ['feedback', 'className'])}
+          {...omit(rest, ['feedback', 'className'])}
         >
           {children}
         </Select>
@@ -187,7 +187,7 @@ class FormControl extends PureComponent {
             disabled={disabled}
             name={name}
             value={this.state.value}
-            {...ommit(rest, ['className'])}
+            {...omit(rest, ['className'])}
           />
           <label
             className={classNames(styles.fakeInput, {
@@ -219,7 +219,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           name={name}
           value={this.state.value}
-          {...ommit(rest, ['className'])}
+          {...omit(rest, ['className'])}
         >
           {children}
         </Component>

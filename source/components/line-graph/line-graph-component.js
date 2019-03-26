@@ -70,6 +70,11 @@ class LineGraph extends PureComponent {
             bodyFontColor: '#777',
             footerFontColor: '#777',
           },
+          plugins: {
+            datalabels: {
+              display: false,
+            },
+          },
           legendCallback: chart => {
             return chart.data.datasets.map(set => {
               const { label, borderColor } = set;

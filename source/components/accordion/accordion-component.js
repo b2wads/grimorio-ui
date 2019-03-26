@@ -7,7 +7,7 @@ import styles from './accordion.styl';
 
 import AccordionPanel from './elements/accordion-panel';
 
-import { uniqueId, ommit } from '../../helpers';
+import { uniqueId, omit } from '../../helpers';
 
 class Accordion extends PureComponent {
   constructor(props) {
@@ -96,7 +96,7 @@ class Accordion extends PureComponent {
     const ElementType = as ? as : 'ul';
 
     return (
-      <ElementType className={classes} {...ommit(rest, ['exclusive'])}>
+      <ElementType className={classes} {...omit(rest, ['exclusive'])}>
         {children ? children : this.renderPanels(panels)}
       </ElementType>
     );

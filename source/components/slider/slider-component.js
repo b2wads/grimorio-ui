@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
-import { uniqueId, ommit } from '../../helpers';
+import { uniqueId, omit } from '../../helpers';
 
 import Icon from '../icon';
 
@@ -193,7 +193,7 @@ class Slider extends PureComponent {
     });
 
     return (
-      <div className={sliderClass} {...ommit(rest, ['autoplay', 'delays'])}>
+      <div className={sliderClass} {...omit(rest, ['autoplay', 'delays'])}>
         <div className={classNames(styles.wrapper, wrapperClassName)}>
           {this.renderChildren(current)}
         </div>

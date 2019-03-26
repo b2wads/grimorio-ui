@@ -35,6 +35,7 @@ import LineGraph from './components/line-graph';
 import Error from './components/error';
 import Popover from './components/popover';
 import SelectPopover from './components/select-popover';
+import PieChart from './components/pie-chart';
 import Tag from './components/tag';
 
 // HELPERS
@@ -84,5 +85,6 @@ export {
   Error,
   Popover,
   SelectPopover,
+  PieChart,
   Tag,
 };
