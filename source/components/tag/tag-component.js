@@ -13,6 +13,7 @@ class Tag extends PureComponent {
     color: PropTypes.oneOf(['primary', 'secondary']),
     fixed: PropTypes.bool,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    onClose: PropTypes.func,
   };
 
   static defaultProps = {
@@ -22,7 +23,7 @@ class Tag extends PureComponent {
   };
 
   render() {
-    const { children, className, color, fixed, ...rest } = this.props;
+    const { children, className, color, fixed, onClose, ...rest } = this.props;
     const fullClassName = cx(className, styles.tag, {
       [styles.fixed]: fixed,
       [styles[color]]: color,
@@ -30,7 +31,7 @@ class Tag extends PureComponent {
     return (
       <div className={fullClassName} {...rest}>
         {children}
-        {!fixed && <Icon className={styles.icon} name="close" size={14} />}
+        {!fixed && <Icon className={styles.icon} name="cancel" size={18} onClick={onClose} />}
       </div>
     );
   }

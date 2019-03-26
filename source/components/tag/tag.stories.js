@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import Tag from './tag-component';
 
@@ -15,5 +16,11 @@ stories.addWithInfo('Normal', () => (
 stories.addWithInfo('Fixed', () => (
   <div>
     <Tag color="primary" fixed >2º Ranking</Tag>
+  </div>
+));
+
+stories.addWithInfo('onClick()', () => (
+  <div>
+    <Tag color="primary" onClick={action('onClick!')}>Click here ➡️</Tag>
   </div>
 ));
