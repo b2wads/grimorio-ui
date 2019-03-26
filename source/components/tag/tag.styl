@@ -2,13 +2,24 @@
    Variables
 ========================================================================== */
 .tag {
-  border-radius: 5px;
-  display: inline-block;
-  line-height: 18px;
-  padding: 8px 15px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px
+  border-radius: 16px;
+  font-size: 14px;
+  padding: 0 12px;
 
   >.icon {
+    display: relative;
     margin-left: 8px;
+    border-radius: 100%
+    cursor: pointer;
+    opacity: .4;
+    color: rgba(0, 0, 0, .87);
+
+    &:hover {
+      opacity: .54;
+    }
   }
 }
 
@@ -24,12 +35,4 @@
 .secondary {
   background: $c-secondary;
   color: $white;
-}
-
-/* Closable
- ================ */
-.fixed {
-  >.icon {
-    margin-left: 0;
-  }
 }
