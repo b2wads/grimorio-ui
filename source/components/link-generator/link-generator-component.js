@@ -39,12 +39,14 @@ class LinkGenerator extends PureComponent {
     defaultSite: PropTypes.string,
     linkGenerated: PropTypes.string,
     text: PropTypes.string,
+    acceptedDomains: PropTypes.array,
   };
 
   static defaultProps = {
     stage: 'generate',
     loading: false,
     sites: [],
+    acceptedDomains: ['mundo.americanas', 'americanas', 'submarino', 'shoptime', 'soubarato'],
   };
 
   onGenerateClick(e) {
@@ -85,7 +87,8 @@ class LinkGenerator extends PureComponent {
   }
 
   isValidUrl(url) {
-    const rx = /^((https?:\/\/)?(www\.)?(americanas|submarino|shoptime|soubarato)\.com\.br)[a-z-0-9.\/]{0,}/;
+    const domains = this.props.acceptedDomains.join('|');
+    const rx = new RegExp(`^((https?:\/\/)?(www\.)?(${domains})\.com\.br)[a-z-0-9.\/]{0,}`);
     return rx.test(url);
   }
 
