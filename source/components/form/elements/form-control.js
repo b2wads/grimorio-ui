@@ -5,7 +5,7 @@ import CSSModules from 'react-css-modules';
 // components
 import Icon from '../../icon';
 import { fieldsValidation } from '../../../helpers/validation';
-import { ommit } from '../../../helpers';
+import { omit } from '../../../helpers';
 
 import Select from '../../select';
 
@@ -168,7 +168,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           placeholder={placeholder}
           onSelect={handleChange}
-          {...ommit(rest, ['feedback'])}
+          {...omit(rest, ['feedback', 'className'])}
         >
           {children}
         </Select>
@@ -187,7 +187,7 @@ class FormControl extends PureComponent {
             disabled={disabled}
             name={name}
             value={this.state.value}
-            {...rest}
+            {...omit(rest, ['className'])}
           />
           <label
             className={classNames(styles.fakeInput, {
@@ -219,7 +219,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           name={name}
           value={this.state.value}
-          {...rest}
+          {...omit(rest, ['className'])}
         >
           {children}
         </Component>
@@ -238,7 +238,7 @@ class FormControl extends PureComponent {
     const isCheckboxOrRadio = (formGroup && formGroup.isCheckboxOrRadio) || undefined;
 
     // styles
-    const addonClass = classNames(className, styles['form-addon'], {
+    const addonClass = classNames(className, styles['form-addon'], styles['form-field-wrapper'], {
       [styles['form-addon--withItens']]: addonBefore || addonAfter || feedback,
       [styles['form-addon--horizontal']]: formStyleType === 'horizontal',
       [styles[`has-${validationState}`]]: validationState,

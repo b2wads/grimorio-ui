@@ -23,11 +23,11 @@ stories.addWithInfo('Normal', () => {
   );
 });
 
-stories.addWithInfo('Single Day', () => {
+stories.addWithInfo('Single Date', () => {
   return (
     <div>
       <DatePicker
-        singleDay
+        isSingleDate
         monthsToShow={1}
         onChange={(dates) => console.log('single date:', dates)}
       />
@@ -60,9 +60,10 @@ stories.addWithInfo('Default Values', () => {
       <br/>
 
       <DatePicker
-        defaultSingleDay={moment().subtract(7, 'days')}
-        singleDay
+        defaultSingleDate={moment().subtract(7, 'days')}
+        isSingleDate
         monthsToShow={1}
+        initialMonth={moment()}
         onChange={(dates) => console.log('single date:', dates)}
       />
     </div>

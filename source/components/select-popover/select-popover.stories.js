@@ -198,3 +198,38 @@ stories.addWithInfo('Dynamic options', withState(initialState)(({ store }) => {
     </React.Fragment>
   )
 }));
+
+stories.addWithInfo('Without submit button', () => {
+  const options = [
+    {
+      key: 'name',
+      label: 'Nome',
+      checked: true,
+    },
+    {
+      key: 'likes',
+      label: 'Favoritos',
+      checked: false,
+    },
+    {
+      key: 'store',
+      label: 'Loja',
+    },
+  ];
+
+  const submit = (e) => {
+    action('form submitted')();
+    console.log(e);
+  }
+
+  return (
+    <SelectPopover
+      component={<Button>Select</Button>}
+      title="Escolha as colunas visíveis"
+      options={options}
+      onSubmit={submit}
+      submitOnChange={true}
+    />
+  )
+
+});
