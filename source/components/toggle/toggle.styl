@@ -1,12 +1,8 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-
-
-/* ==========================================================================
-   Placeholders
-========================================================================== */
-$default {}
+$track = 36px;
+$knob = 20px;
 
 /* ==========================================================================
    Toggle Elements
@@ -18,10 +14,6 @@ $default {}
 
 /* Default
  ================ */
-
-.default {
-  @extend $default;
-}
 
 .wrap {
   position: relative;
@@ -37,34 +29,33 @@ $default {}
   display: block;
   background-color: $c-gray-1;
   box-sizing: border-box;
-  width: 36px;
+  width: $track;
   height: 14px;
   border-radius: 7px;
   transition: background-color 90ms cubic-bezier(.4,0,.2,1);
 }
 
 .input:checked ~ .track {
-  background-color: $c-primary;
+  background-color: lighten($c-primary, 5%);
 }
 
 .knob {
   background-color: $white;
   display: block;
   box-sizing: border-box;
-  width: 20px;
-  height: 20px;
+  width: $knob;
+  height: $knob;
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
   position: absolute;
   top: -3px;
   left: 0;
-  transform: translate3d(0,0,0);
-  transition: transform 80ms linear;
+  transition: left 80ms linear;
   box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
 .input:checked ~ .knob {
-  transform: translate3d(16px,0,0);
+  left: $track - $knob;
   background-color: $c-primary-dark;
 }
