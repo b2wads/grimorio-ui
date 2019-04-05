@@ -19,6 +19,11 @@ $knob = 20px;
   position: relative;
   display: inline-block;
   cursor: pointer;
+
+  &.isDisabled {
+    cursor: not-allowed;
+    opacity: .6;
+  }
 }
 
 .input {

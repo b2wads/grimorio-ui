@@ -12,6 +12,7 @@ class Toggle extends PureComponent {
     id: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     checked: PropTypes.bool,
+    disabled: PropTypes.bool,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
@@ -20,10 +21,10 @@ class Toggle extends PureComponent {
   };
 
   render() {
-    const { id, checked, onChange, value, className, ...elementProps } = this.props;
+    const { id, checked, onChange, value, disabled, className, ...elementProps } = this.props;
 
     return (
-      <label for={id} className={cx(styles.wrap, className)} {...elementProps}>
+      <label for={id} className={cx(styles.wrap, { [styles.isDisabled]: disabled }, className)} {...elementProps}>
         <input
           value={value}
           checked={checked}
@@ -32,6 +33,7 @@ class Toggle extends PureComponent {
           id={id}
           className={styles.input}
           role="switch"
+          disabled={disabled}
         />
         <span className={styles.knob} />
         <span className={styles.track} />
