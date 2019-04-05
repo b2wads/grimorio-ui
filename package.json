@@ -116,6 +116,8 @@
   "jest": {
     "testURL": "http://localhost",
     "moduleNameMapper": {
+      "^helpers(.*)$": "<rootDir>/source/helpers/",
+      "^components(.*)$": "<rootDir>/source/components/",
       "\\.(css|styl)$": "identity-obj-proxy",
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./internals/file-transformer.js"
     },
