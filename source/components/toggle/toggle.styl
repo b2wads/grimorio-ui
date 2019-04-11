@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+$track = 36px;
+$knob = 20px;
+
+/* ==========================================================================
+   Toggle Elements
+========================================================================== */
+
+/* ==========================================================================
+   Toggle Props
+========================================================================== */
+
+/* Default
+ ================ */
+
+.wrap {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  &.isDisabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.input {
+  display: none;
+}
+
+.track {
+  background-color: $c-gray-1;
+  border-radius: 7px;
+  box-sizing: border-box;
+  display: block;
+  height: 14px;
+  transition: background-color 90ms cubic-bezier(0.4,0,0.2,1);
+  width: $track;
+}
+
+.input:checked ~ .track {
+  background-color: lighten($c-primary, 5%);
+}
+
+.knob {
+  background-color: $white;
+  border-radius: 50%;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
+  box-sizing: border-box;
+  display: block;
+  height: $knob;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: -3px;
+  transition: left 80ms linear;
+  width: $knob;
+  z-index: 1;
+}
+
+.input:checked ~ .knob {
+  background-color: $c-primary-dark;
+  left: $track - $knob;
+}

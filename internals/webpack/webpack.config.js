@@ -25,7 +25,11 @@ const baseConfig = {
   ],
 
   resolve: {
-    extensions: ['.js', '.jsx', '.styl']
+    extensions: ['.js', '.jsx', '.styl'],
+    alias: {
+      components: path.resolve(__dirname, '../../source/components/'),
+      helpers: path.resolve(__dirname, '../../source/helpers/'),
+    },
   },
 
   module: {
