@@ -45,6 +45,7 @@ class Select extends Component {
     inputClassName: PropTypes.string,
     sortItems: PropTypes.bool,
     isMobile: PropTypes.bool,
+    active: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -181,10 +182,10 @@ class Select extends Component {
 
   renderInput() {
     const { selectedName, activeLabel } = this.state;
-    const { placeholder, disabled, inputClassName } = this.props;
+    const { placeholder, disabled, inputClassName, active } = this.props;
     const fieldClasses = cx(styles.input, inputClassName, {
       [styles.isPlaceholder]: selectedName === null,
-      [styles.isActive]: activeLabel,
+      [styles.isActive]: activeLabel || active,
       [styles.isDisabled]: disabled,
     });
 
