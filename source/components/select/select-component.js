@@ -182,10 +182,10 @@ class Select extends Component {
 
   renderInput() {
     const { selectedName, activeLabel } = this.state;
-    const { placeholder, disabled, inputClassName, active } = this.props;
+    const { label, placeholder, disabled, inputClassName, active } = this.props;
     const fieldClasses = cx(styles.input, inputClassName, {
       [styles.isPlaceholder]: selectedName === null,
-      [styles.isActive]: activeLabel || active,
+      [styles.isActive]: (label && activeLabel) || active,
       [styles.isDisabled]: disabled,
     });
 
