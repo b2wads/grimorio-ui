@@ -138,6 +138,7 @@ class FormControl extends PureComponent {
       validate,
       onValidate,
       outline,
+      active,
       ...rest
     } = this.props;
 
@@ -153,6 +154,7 @@ class FormControl extends PureComponent {
         [styles['form-field--select']]: type === 'select',
         [styles['form-field--horizontal']]: formStyleType === 'horizontal',
         [styles['form-field--outline']]: outline,
+        [styles.isActive]: active,
       },
       inputClassName
     );
