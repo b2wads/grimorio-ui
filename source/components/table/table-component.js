@@ -50,14 +50,14 @@ class Table extends PureComponent {
   renderHeadRow(schema, isSticky) {
     return (
       <tr className={cx(styles.rowHead, { [styles.isSticky]: isSticky })}>
-        {Object.keys(schema).map(key => {
+        {Object.keys(schema).map((key, index) => {
           const currentSchema = schema[key];
           const headClass = cx(styles.cellHead, currentSchema.className, { [styles.isSticky]: isSticky });
 
           if (Object.keys(currentSchema).length) {
             return (
               <th width={currentSchema.width} key={uniqueId()} className={headClass}>
-                {currentSchema.renderHead ? currentSchema.renderHead(currentSchema) : currentSchema.title}
+                {currentSchema.renderHead ? currentSchema.renderHead(currentSchema, index) : currentSchema.title}
               </th>
             );
           }
@@ -79,14 +79,14 @@ class Table extends PureComponent {
   }
 
   renderRow(data, schema, specialCase) {
-    return data.map(infoRow => (
+    return data.map((infoRow, index) => (
       <tr key={uniqueId()} className={cx(styles.row, this.generateSpecialStyle(specialCase, infoRow))}>
         {Object.keys(schema).map(key => {
           const currentSchema = schema[key];
           if (Object.keys(currentSchema).length) {
             return (
               <td width={currentSchema.width} key={uniqueId()} className={cx(styles.cell, currentSchema.className)}>
-                {currentSchema.render ? currentSchema.render(infoRow) : infoRow[key]}
+                {currentSchema.render ? currentSchema.render(infoRow, index) : infoRow[key]}
               </td>
             );
           }
