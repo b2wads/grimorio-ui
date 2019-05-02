@@ -18,6 +18,7 @@ class Modal extends PureComponent {
     children: PropTypes.element,
     open: PropTypes.bool.isRequired,
     showClose: PropTypes.bool,
+    closeOnOverlay: PropTypes.bool,
     type: PropTypes.oneOf(['custom', 'confirm', 'success', 'fail']),
     confirmInverted: PropTypes.bool,
     showButton: PropTypes.bool,
@@ -30,6 +31,7 @@ class Modal extends PureComponent {
 
   static defaultProps = {
     showClose: true,
+    closeOnOverlay: true,
     type: 'custom',
     confirmInverted: false,
     showButton: false,
@@ -130,6 +132,7 @@ class Modal extends PureComponent {
       showButton,
       children,
       showClose,
+      closeOnOverlay,
       className,
       ...rest
     } = this.props;
@@ -155,7 +158,10 @@ class Modal extends PureComponent {
             )}
           </div>
         </div>
-        <div onClick={onClose} className={classNames(styles.overlay, { [styles.isOpen]: open })} />
+        <div
+          onClick={closeOnOverlay ? onClose : null}
+          className={classNames(styles.overlay, { [styles.isOpen]: open })}
+        />
       </div>
     );
   }
