@@ -6,8 +6,8 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$c-activeDot = #767676;
-$c-arrow = #A8A7A8;
+$c-activeDot = $c-primary;
+$c-arrow = $c-support-medium;
 
 $arrowBtn {
   background: none;
@@ -90,16 +90,19 @@ $arrowBtn {
   justify-content: center;
   padding: 0;
   width: 100%;
+  
 }
 
 .arrowLeft {
   @extend $arrowBtn;
   left: -7px;
+  color: $c-support-medium;
 }
 
 .arrowRight {
   @extend $arrowBtn;
   right: -7px;
+  color: $c-support-medium;
 }
 
 .dots {
@@ -118,7 +121,7 @@ $arrowBtn {
 }
 
 .dotsBtn {
-  background: $white;
+  background: $c-support-medium;
   border-radius: 50%;
   cursor: pointer;
   font-size: 0;
