@@ -63,6 +63,7 @@ class Select extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
+      nextState.activeLabel !== this.state.activeLabel ||
       nextState.menuOpen !== this.state.menuOpen ||
       nextState.selectedValue !== this.state.selectedValue ||
       nextProps.value !== this.props.value ||
@@ -97,6 +98,7 @@ class Select extends Component {
     const { value } = this.props;
     if (this.props.value !== prevProps.value) {
       this.setState({
+        activeLabel: true,
         selectedName: this.getSelectedValue(value) ? this.getSelectedValue(value)['name'] : null,
         selectedValue: this.getSelectedValue(value) ? this.getSelectedValue(value)['value'] : null,
       });
