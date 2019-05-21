@@ -4,7 +4,6 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Icon from '../icon';
-import Svg from '../svg';
 
 import styles from './sidebar.styl';
 
@@ -25,6 +24,8 @@ class Sidebar extends PureComponent {
     isMobile: PropTypes.bool,
     open: PropTypes.bool,
     openMobile: PropTypes.bool,
+    logo: PropTypes.string,
+    logoSmall: PropTypes.string,
   };
 
   static defaultProps = {
@@ -48,7 +49,7 @@ class Sidebar extends PureComponent {
   }
 
   render() {
-    const { children, className, onClick, open, openMobile, isAdmin, isMobile } = this.props;
+    const { children, className, onClick, open, openMobile, isMobile, logo, logoSmall } = this.props;
     const openNav = open === null ? this.state.open : open;
     const openNavMobile = openMobile === null ? this.state.openMobile : openMobile;
     const classes = classNames(styles.sidebar, className, {
@@ -65,15 +66,8 @@ class Sidebar extends PureComponent {
               <Icon className={styles.toggleIcon} name="menu" />
             </button>}
           {!isMobile &&
-            <div className={styles.logotype}>
-              {openNav
-                ? <Svg
-                    onClick={this.handleLogoClick}
-                    width={188}
-                    height={58}
-                    src={isAdmin ? 'logo/afiliados-admin' : 'logo/afiliados'}
-                  />
-                : <Svg onClick={this.handleLogoClick} width={24} src="logo/afiliados-icon" />}
+            <div onClick={this.handleLogoClick} className={styles.logotype}>
+              {openNav ? logo : logoSmall}
             </div>}
 
           <nav className={styles.content}>
