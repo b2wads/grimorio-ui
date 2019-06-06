@@ -89,6 +89,28 @@ $cell {
   }
 }
 
+.rowFoot {
+  @extend $row;
+
+  &.isSticky {
+    border-top: unset;
+  }
+}
+
+.cellFoot {
+  @extend $cell;
+  font-size: $base-font-size-px;
+  font-weight: bold;
+
+  &.isSticky {
+    background-color: white;
+    box-shadow: 2px -1px 2px 0 rgba(0, 0, 0, .17);
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+  }
+}
+
 /* ==========================================================================
    Type
 ========================================================================== */
