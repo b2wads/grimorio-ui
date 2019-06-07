@@ -123,7 +123,7 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./internals/file-transformer.js"
     },
     "transform": {
-      "^.+\\.js$": "babel-jest",
+      "^.+\\.(js|jsx)?$": "babel-jest",
       "\\.(css|styl)$": "jest-css-modules-transform"
     },
     "testEnvironment": "jsdom",
