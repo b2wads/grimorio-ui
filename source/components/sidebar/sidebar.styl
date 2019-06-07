@@ -3,7 +3,6 @@
 ========================================================================== */
 
 $c-shadow = rgba(0, 0, 0, 0.15);
-$c-menu-text = #3F5D79;
 
 
 /* Default
@@ -21,11 +20,11 @@ $c-menu-text = #3F5D79;
     max-width: 290px;
     transition: left 0.3s ease;
     width: 80%;
+    z-index: $z-upmax;
   }
 
   &.isMobile.isMobileOpen {
     left: 0;
-    z-index: $z-upmax;
   }
 }
 

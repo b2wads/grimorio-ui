@@ -1,7 +1,7 @@
 {
   "name": "bitservices-theme",
   "sideEffects": false,
-  "version": "3.5.12",
+  "version": "3.5.5",
   "description": "Bitservices UI React",
   "main": "lib/index.js",
   "scripts": {
@@ -111,7 +111,8 @@
     "react-css-modules": "4.7.2",
     "react-dates": "18.2.2",
     "react-dom": "16.3.3",
-    "webpack": "3.5.2"
+    "webpack": "3.5.2",
+    "svg-react-loader": "0.4.5"
   },
   "jest": {
     "testURL": "http://localhost",
