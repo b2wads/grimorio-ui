@@ -31,14 +31,23 @@ class TableFixed extends PureComponent {
   static defaultProps = {};
 
   render() {
-    const { schemaLeft, data, schemaRight, width, height, dataFooterRight, dataFooterLeft } = this.props;
+    const {
+      schemaLeft,
+      data,
+      schemaRight,
+      width,
+      height,
+      dataFooterRight,
+      dataFooterLeft,
+      widthFixedTable,
+    } = this.props;
     const wrapSizes = {
       maxWidth: width || 'auto',
       maxHeight: height || 'auto',
     };
     return (
       <div className={styles.wrap} style={wrapSizes}>
-        <div className={styles.sticky}>
+        <div className={styles.sticky} style={{ width: widthFixedTable }}>
           <Table
             className={styles.table}
             type="panel"
