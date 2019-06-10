@@ -46,11 +46,9 @@ class PieChart extends PureComponent {
   componentDidMount() {
     const { options, datalabels, error, chartData } = this.props;
     const chartValues = chartData.data || [];
-
     if (!this.canvas || !this.canvas.current) {
       return null;
     }
-
     this.chart =
       !error &&
       new Chart(this.canvas.current, {
@@ -82,7 +80,11 @@ class PieChart extends PureComponent {
               },
               formatter: (value, chart) => {
                 const total = chart.dataset.data.reduce((acc, num) => acc + num, 0);
-                return `${Math.round(value * 100 / total)}%`;
+                if (Math.round(value * 100 / total) >= 4) {
+                  return `${Math.round(value * 100 / total)}%`;
+                } else {
+                  return '';
+                }
               },
               ...datalabels,
             },
