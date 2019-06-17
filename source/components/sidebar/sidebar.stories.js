@@ -6,6 +6,7 @@ import { withState } from '@dump247/storybook-state';
 import Sidebar from './index';
 
 import Svg from '../svg';
+import styles from './sidebar.styl';
 
 import Menu, { MenuItem } from '../menu';
 import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
@@ -30,7 +31,17 @@ stories.addWithInfo('Default', withState({ open: false, active: -1 })(({ store }
 
   return (
     <div style={{ height: 800 }}>
-      <Sidebar open={store.state.open} onLogoClick={() => alert('logo!')} onClick={(e, { open }) => store.set({ open: !store.state.open, active: !open ? -1 : store.state.active })}>
+      <Sidebar
+        open={store.state.open}
+        onLogoClick={() => alert('logo!')}
+        onClick={(e, { open }) => store.set({ open: !store.state.open, active: !open ? -1 : store.state.active })}
+        logo={
+          <Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />
+        }
+        logoSmall={
+          <Svg className={styles.logo} width={24} src="logo/afiliados-icon" />
+        }
+      >
         <Accordion type="accordionMenu" exclusive={false} as={Menu} {...store.state}>
           <MenuItem title="Dashboard" active={true} isNotAccordion icon="dashboard">
             Dashboard

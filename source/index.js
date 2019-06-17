@@ -24,6 +24,7 @@ import Form, {
 } from './components/form';
 import Modal from './components/modal';
 import Table from './components/table';
+import TableFixed from './components/table-fixed';
 import TablePanel from './components/table-panel';
 import Loader from './components/loader';
 import DatePicker from './components/date-picker';
@@ -74,6 +75,7 @@ export {
   Select,
   SelectOption,
   Table,
+  TableFixed,
   TablePanel,
   Loader,
   Modal,
