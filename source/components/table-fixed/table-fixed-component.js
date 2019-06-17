@@ -27,6 +27,12 @@ class TableFixed extends PureComponent {
         render: PropTypes.func,
       })
     ).isRequired,
+    specialCase: PropTypes.arrayOf(
+      PropTypes.shape({
+        className: PropTypes.string,
+        case: PropTypes.func,
+      })
+    ),
   };
   static defaultProps = {};
 
@@ -40,6 +46,7 @@ class TableFixed extends PureComponent {
       dataFooterRight,
       dataFooterLeft,
       widthFixedTable,
+      specialCase,
     } = this.props;
     const wrapSizes = {
       maxWidth: width || 'auto',
@@ -55,6 +62,7 @@ class TableFixed extends PureComponent {
             schema={schemaLeft}
             data={data}
             dataFooter={dataFooterLeft}
+            specialCase={specialCase}
           />
         </div>
         <div>
@@ -65,6 +73,7 @@ class TableFixed extends PureComponent {
             schema={schemaRight}
             data={data}
             dataFooter={dataFooterRight}
+            specialCase={specialCase}
           />
         </div>
       </div>
