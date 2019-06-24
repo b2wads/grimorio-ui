@@ -38,6 +38,7 @@ import SelectPopover from './components/select-popover';
 import PieChart from './components/pie-chart';
 import Tag from './components/tag';
 import Toggle from './components/toggle';
+import Pager from './components/pager';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -89,4 +90,5 @@ export {
   PieChart,
   Tag,
   Toggle,
+  Pager,
 };
