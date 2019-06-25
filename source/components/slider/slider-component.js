@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import { uniqueId, omit } from '../../helpers';
 
@@ -108,7 +108,7 @@ class Slider extends PureComponent {
 
     if (!Array.isArray(children)) {
       return (
-        <div className={classNames(styles.slide, slideClassName)}>
+        <div className={cx(styles.slide, slideClassName)}>
           {children}
         </div>
       );
@@ -117,7 +117,7 @@ class Slider extends PureComponent {
         const indexPlus = index + 1;
         if (indexPlus % slidesToShow === 0) {
           return (
-            <div className={classNames(styles.slide, slideClassName)}>
+            <div className={cx(styles.slide, slideClassName)}>
               {children.slice(indexPlus - slidesToShow, indexPlus)}
             </div>
           );
@@ -132,13 +132,13 @@ class Slider extends PureComponent {
 
     if (!Array.isArray(dividedChildren)) {
       return React.cloneElement(dividedChildren, {
-        className: classNames(styles.currentSlide, styles[command], dividedChildren.props.className),
+        className: cx(styles.currentSlide, styles[command], dividedChildren.props.className),
       });
     } else {
       return React.Children.map(dividedChildren, (child, index) => {
-        const isCurrent = classNames({ [styles.currentSlide]: current === index });
+        const isCurrent = cx({ [styles.currentSlide]: current === index });
         return React.cloneElement(child, {
-          className: classNames(isCurrent, styles[command], child.props.className),
+          className: cx(isCurrent, styles[command], child.props.className),
         });
       });
     }
@@ -146,7 +146,7 @@ class Slider extends PureComponent {
 
   renderArrows(arrowClassName) {
     return (
-      <div className={classNames(styles.arrow, arrowClassName)}>
+      <div className={cx(styles.arrow, arrowClassName)}>
         <button className={styles.arrowLeft} onClick={() => this.prevSlide()}>
           <Icon size="32px" name="navigate_before" />
         </button>
@@ -161,10 +161,10 @@ class Slider extends PureComponent {
   renderDots(children, dotsClassName, dotsBackground) {
     const { current } = this.state;
     return (
-      <ul className={classNames(styles.dots, dotsClassName, { [styles.hasDotsBackground]: dotsBackground })}>
+      <ul className={cx(styles.dots, dotsClassName, { [styles.hasDotsBackground]: dotsBackground })}>
         {this.divideChildContent(children).map((_, index) => (
           <li
-            className={classNames(styles.dotsBtn, { [styles.isActive]: current === index })}
+            className={cx(styles.dotsBtn, { [styles.isActive]: current === index })}
             onClick={this.goTo(index)}
             key={uniqueId()}
           >
@@ -188,13 +188,13 @@ class Slider extends PureComponent {
       wrapperClassName,
       ...rest
     } = this.props;
-    const sliderClass = classNames(styles.content, className, {
+    const sliderClass = cx(styles.content, className, {
       [styles.withArrow]: arrows,
     });
 
     return (
       <div className={sliderClass} {...omit(rest, ['autoplay', 'delays'])}>
-        <div className={classNames(styles.wrapper, wrapperClassName)}>
+        <div className={cx(styles.wrapper, wrapperClassName)}>
           {this.renderChildren(current)}
         </div>
 
