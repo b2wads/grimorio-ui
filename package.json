@@ -132,9 +132,6 @@
     ],
     "setupTestFrameworkScriptFile": "./internals/test/setup.js",
     "coverageDirectory": ".reports/coverage",
-    "reporters": [
-      "jest-dot-reporter"
-    ],
     "cacheDirectory": "./tmp/",
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
