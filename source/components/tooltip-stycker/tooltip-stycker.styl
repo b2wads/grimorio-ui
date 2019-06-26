@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Variables
+========================================================================== */
+$shadow-color = rgba(0, 0, 0, 0.125);
+$c-border = #ccc;
+
+/* ==========================================================================
+   Placeholders
+========================================================================== */
+$default {}
+
+/* ==========================================================================
+   TooltipStycker Elements
+========================================================================== */
+
+/* ==========================================================================
+   TooltipStycker Props
+========================================================================== */
+
+/* Default
+ ================ */
+
+.default {
+  @extend $default;
+}
+
+.tooltip {
+  float: left;
+  border: 1px solid $c-border;
+  padding: 10px;
+  position: absolute;
+  box-shadow: 0 2px 5px $shadow-color;
+  background: $white;
+  width: 357px;
+  font-size: 1rem;
+  line-height: 20px;
+  border-radius: 2px;
+  word-wrap: break-word;
+  z-index: 10;
+  opacity: 0;
+}
+
+
+.wrapper {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.show {
+  transition: 1s opacity;
+  opacity: 1;
+}
+
+.title {
+  color: $color-green-1;
+  padding-bottom: 15px;
+}
+
+.body {
+  font-weight: normal;
+  word-break: break-word;
+  white-space: pre-line;
+}
+
+.title,
+.body {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.left{
+  &:after, &:before {
+    left : 20px;
+  }
+}
+.right{
+  &:after, &:before {
+    right : 20px;
+  }
+}
+.bottom {
+  &:after {
+    border-color: #fff transparent;
+    top: -10px;
+    border-style: solid;
+    content: "";
+    display: block;
+    position: absolute;
+    border-width: 0 10px 10px;
+  }
+  &:before {
+    border-style: solid;
+    content: "";
+    display: block;
+    position: absolute;
+    border-width: 0 10px 10px;
+    border-color: $c-border transparent;
+    top: -11px;
+  }
+}
+.top {
+  &:after {
+    border-color: $color-white transparent;
+    bottom: -10px;
+    border-style: solid;
+    content: "";
+    display: block;
+    position: absolute;
+    border-width: 10px 10px 0;
+  }
+  &:before {
+    border-style: solid;
+    content: "";
+    display: block;
+    position: absolute;
+    border-width: 10px 10px 0;
+    border-color: $c-border transparent;
+    bottom: -11px;
+  }
+}

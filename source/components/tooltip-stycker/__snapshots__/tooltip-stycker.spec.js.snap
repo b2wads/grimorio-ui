@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TooltipStycker component #render should render child content 1`] = `
+<div>
+  <span
+    className="wrapper"
+    key=".0"
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  />
+</div>
+`;
