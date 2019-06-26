@@ -68,6 +68,7 @@
     "css-loader": "0.28.4",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.5",
     "eslint": "4.19.0",
     "eslint-config-google": "0.9.1",
     "eslint-loader": "2.0.0",
@@ -132,9 +133,9 @@
     ],
     "setupTestFrameworkScriptFile": "./internals/test/setup.js",
     "coverageDirectory": ".reports/coverage",
-    "reporters": [
-      "jest-dot-reporter"
-    ],
-    "cacheDirectory": "./tmp/"
+    "cacheDirectory": "./tmp/",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }

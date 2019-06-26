@@ -2,17 +2,12 @@
    Variables
 ========================================================================== */
 
+
 $foterSpacing = 5%;
-$c-divisor = #DFDFDF;
 
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$section {
-  padding-left: 25px;
-  padding-right: 25px;
-}
-
 $footerSection {
   margin-right: $foterSpacing;
 
@@ -21,78 +16,77 @@ $footerSection {
   }
 }
 
-$row {
-  border-bottom: 1px solid $c-divisor;
+$pagerIcon {
+  color: $c-text;
+
+  &.isDisabled {
+    color: darken($c-support-light, 5%);
+  }
 }
 
 /* ==========================================================================
    TablePanel Elements
 ========================================================================== */
-.wrap {
-  position: relative;
-}
-
-.loading {
-  align-items: center;
-  background: $white;
+.holdPager {
   display: flex;
-  height: 100%;
-  justify-content: center;
-  left: 0;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
+  align-items: center;
   width: 100%;
-  z-index: 2;
-}
-
-.error {
-  padding-bottom: 25px;
-  padding-left: 25px;
-  padding-top: 0;
-}
-
-.header {
-  @extend $section;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 15px;
-  padding-top: 15px;
-
-  &--underlined {
-    @extend $row;
-  }
-}
-
-.title {
-  color: $c-text-dark;
-  font-size: 21px;
-}
-
-.footer {
-  @extend $section;
-  align-items: center;
-  display: flex;
   justify-content: flex-end;
-  padding-bottom: 15px;
-  padding-top: 15px;
-
-  &.isMobile {
-    flex-wrap: wrap;
-  }
 }
 
 .nav {
   @extend $footerSection;
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
-
+  flex-wrap: nowrap;
+  flex-direction: row;
   &.isMobile {
     margin: 0;
     width: 100%;
   }
+}
+
+.perpage {
+  @extend $footerSection;
+  align-items: center;
+  display: flex;
+
+  &.isMobile {
+    margin: 0;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+.showing {
+  @extend $footerSection;
+
+  &.isMobile {
+    margin: 0;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+.pager {
+  @extend $pagerIcon;
+}
+
+.pagerLeft {
+  @extend $pagerIcon;
+  margin-right: 15px;
+}
+
+.pagesWrap {
+  display: flex;
+  margin-right: 15px;
+  text-align: center;
+}
+
+.select {
+  color: $c-text;
+  font-size: 14px;
+  width: 150px;
 }
 
 .pagesWrap {
