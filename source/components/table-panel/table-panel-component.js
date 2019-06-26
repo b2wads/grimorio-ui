@@ -8,7 +8,7 @@ import Loader from '../loader';
 import Error from '../error';
 import Table from '../table';
 
-import Pager from './elements/pager';
+import Pager from '../pager';
 
 import styles from './table-panel.styl';
 

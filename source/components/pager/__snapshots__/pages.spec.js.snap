@@ -1,0 +1,978 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pager component #render change start and end pages when currentPage + 4 >= maxPages 1`] = `
+<div
+  className="holdPager"
+>
+  <div
+    className="perpage"
+  >
+    <Select
+      className="select"
+      closeOnClickOutside={true}
+      defaultValue={15}
+      disabled={false}
+      height="auto"
+      isMobile={false}
+      items={Array []}
+      onSelect={[Function]}
+      open={null}
+      position="bottom"
+      sortItems={false}
+      type="select"
+      value={false}
+    >
+      <SelectOption
+        value={10}
+      >
+        10 por página
+      </SelectOption>
+      <SelectOption
+        value={15}
+      >
+        15 por página
+      </SelectOption>
+      <SelectOption
+        value={50}
+      >
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div
+    className="showing"
+  >
+    300
+     - 
+    320
+     de 
+    300
+  </div>
+  <div
+    className="nav"
+  >
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pagerLeft"
+        name="navigate_before"
+        size={24}
+      />
+    </Button>
+    <div
+      className="pagesWrap"
+    >
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        11
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        12
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        13
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        14
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        15
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        16
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        17
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        18
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        19
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        20
+      </Button>
+    </div>
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pager"
+        name="navigate_next"
+        size={24}
+      />
+    </Button>
+  </div>
+</div>
+`;
+
+exports[`Pager component #render change start and end pages when currentPage <= 6 1`] = `
+<div
+  className="holdPager"
+>
+  <div
+    className="perpage"
+  >
+    <Select
+      className="select"
+      closeOnClickOutside={true}
+      defaultValue={15}
+      disabled={false}
+      height="auto"
+      isMobile={false}
+      items={Array []}
+      onSelect={[Function]}
+      open={null}
+      position="bottom"
+      sortItems={false}
+      type="select"
+      value={false}
+    >
+      <SelectOption
+        value={10}
+      >
+        10 por página
+      </SelectOption>
+      <SelectOption
+        value={15}
+      >
+        15 por página
+      </SelectOption>
+      <SelectOption
+        value={50}
+      >
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div
+    className="showing"
+  >
+    60
+     - 
+    80
+     de 
+    500
+  </div>
+  <div
+    className="nav"
+  >
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pagerLeft"
+        name="navigate_before"
+        size={24}
+      />
+    </Button>
+    <div
+      className="pagesWrap"
+    >
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        1
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        2
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        3
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        4
+      </Button>
+      <Button
+        active={false}
+        className="btn number isActive"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        5
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        6
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        7
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        8
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        9
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        10
+      </Button>
+    </div>
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pager"
+        name="navigate_next"
+        size={24}
+      />
+    </Button>
+  </div>
+</div>
+`;
+
+exports[`Pager component #render change start and end pages when is a default value 1`] = `
+<div
+  className="holdPager"
+>
+  <div
+    className="perpage"
+  >
+    <Select
+      className="select"
+      closeOnClickOutside={true}
+      defaultValue={15}
+      disabled={false}
+      height="auto"
+      isMobile={false}
+      items={Array []}
+      onSelect={[Function]}
+      open={null}
+      position="bottom"
+      sortItems={false}
+      type="select"
+      value={false}
+    >
+      <SelectOption
+        value={10}
+      >
+        10 por página
+      </SelectOption>
+      <SelectOption
+        value={15}
+      >
+        15 por página
+      </SelectOption>
+      <SelectOption
+        value={50}
+      >
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div
+    className="showing"
+  >
+    100
+     - 
+    120
+     de 
+    500
+  </div>
+  <div
+    className="nav"
+  >
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pagerLeft"
+        name="navigate_before"
+        size={24}
+      />
+    </Button>
+    <div
+      className="pagesWrap"
+    >
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        3
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        4
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        5
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        6
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        7
+      </Button>
+      <Button
+        active={false}
+        className="btn number isActive"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        8
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        9
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        10
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        11
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        12
+      </Button>
+    </div>
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pager"
+        name="navigate_next"
+        size={24}
+      />
+    </Button>
+  </div>
+</div>
+`;
+
+exports[`Pager component #render render correctly 1`] = `
+<div
+  className="holdPager"
+>
+  <div
+    className="perpage"
+  >
+    <Select
+      className="select"
+      closeOnClickOutside={true}
+      defaultValue={15}
+      disabled={false}
+      height="auto"
+      isMobile={false}
+      items={Array []}
+      onSelect={[Function]}
+      open={null}
+      position="bottom"
+      sortItems={false}
+      type="select"
+      value={false}
+    >
+      <SelectOption
+        value={10}
+      >
+        10 por página
+      </SelectOption>
+      <SelectOption
+        value={15}
+      >
+        15 por página
+      </SelectOption>
+      <SelectOption
+        value={50}
+      >
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div
+    className="showing"
+  >
+    20
+     - 
+    40
+     de 
+    100
+  </div>
+  <div
+    className="nav"
+  >
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pagerLeft"
+        name="navigate_before"
+        size={24}
+      />
+    </Button>
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pager"
+        name="navigate_next"
+        size={24}
+      />
+    </Button>
+  </div>
+</div>
+`;
+
+exports[`Pager component #render render correctly with hasFirstLast 1`] = `
+<div
+  className="holdPager"
+>
+  <div
+    className="perpage"
+  >
+    <Select
+      className="select"
+      closeOnClickOutside={true}
+      defaultValue={15}
+      disabled={false}
+      height="auto"
+      isMobile={false}
+      items={Array []}
+      onSelect={[Function]}
+      open={null}
+      position="bottom"
+      sortItems={false}
+      type="select"
+      value={false}
+    >
+      <SelectOption
+        value={10}
+      >
+        10 por página
+      </SelectOption>
+      <SelectOption
+        value={15}
+      >
+        15 por página
+      </SelectOption>
+      <SelectOption
+        value={50}
+      >
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div
+    className="showing"
+  >
+    20
+     - 
+    40
+     de 
+    100
+  </div>
+  <div
+    className="nav"
+  >
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pager"
+        name="first_page"
+        size={24}
+      />
+    </Button>
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pagerLeft"
+        name="navigate_before"
+        size={24}
+      />
+    </Button>
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pager"
+        name="navigate_next"
+        size={24}
+      />
+    </Button>
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pager"
+        name="last_page"
+        size={24}
+      />
+    </Button>
+  </div>
+</div>
+`;
+
+exports[`Pager component #render render correctly with hasPagination 1`] = `
+<div
+  className="holdPager"
+>
+  <div
+    className="perpage"
+  >
+    <Select
+      className="select"
+      closeOnClickOutside={true}
+      defaultValue={15}
+      disabled={false}
+      height="auto"
+      isMobile={false}
+      items={Array []}
+      onSelect={[Function]}
+      open={null}
+      position="bottom"
+      sortItems={false}
+      type="select"
+      value={false}
+    >
+      <SelectOption
+        value={10}
+      >
+        10 por página
+      </SelectOption>
+      <SelectOption
+        value={15}
+      >
+        15 por página
+      </SelectOption>
+      <SelectOption
+        value={50}
+      >
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div
+    className="showing"
+  >
+    20
+     - 
+    40
+     de 
+    100
+  </div>
+  <div
+    className="nav"
+  >
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pagerLeft"
+        name="navigate_before"
+        size={24}
+      />
+    </Button>
+    <div
+      className="pagesWrap"
+    >
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        1
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        2
+      </Button>
+      <Button
+        active={false}
+        className="btn number isActive"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        3
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        4
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        5
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        6
+      </Button>
+      <Button
+        active={false}
+        className="btn number"
+        color="transparent"
+        disabled={false}
+        onClick={[Function]}
+        size="none"
+        type="button"
+      >
+        7
+      </Button>
+    </div>
+    <Button
+      active={false}
+      className="btn"
+      color="transparent"
+      disabled={false}
+      onClick={[Function]}
+      size="none"
+      type="button"
+    >
+      <Icon
+        align="middle"
+        className="pager"
+        name="navigate_next"
+        size={24}
+      />
+    </Button>
+  </div>
+</div>
+`;

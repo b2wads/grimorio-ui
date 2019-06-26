@@ -66,6 +66,25 @@ class Table extends PureComponent {
     );
   }
 
+  renderFootRow(dataFooter, isSticky) {
+    return (
+      <tr className={cx(styles.rowFoot, { [styles.isSticky]: isSticky })}>
+        {Object.keys(dataFooter).map((key, index) => {
+          const currentData = dataFooter[key];
+          const headClass = cx(styles.cellFoot, currentData.className, { [styles.isSticky]: isSticky });
+
+          if (Object.keys(currentData).length) {
+            return (
+              <td width={currentData.width} key={uniqueId()} className={headClass} colspan={currentData.colspan || 1}>
+                {currentData.value || ''}
+              </td>
+            );
+          }
+        })}
+      </tr>
+    );
+  }
+
   generateSpecialStyle(specialCase, row) {
     return specialCase
       ? specialCase.reduce((acc, obj) => {
@@ -131,6 +150,7 @@ class Table extends PureComponent {
       notFoundMessage,
       specialCase,
       isSticky,
+      dataFooter,
       ...rest
     } = this.props;
 
@@ -159,6 +179,10 @@ class Table extends PureComponent {
           <tbody className={styles.tableBody}>
             {this.verifyResults(data, schema, loadingMessage, notFoundMessage, specialCase)}
           </tbody>
+          {dataFooter &&
+            <tfoot>
+              {this.renderFootRow(dataFooter, true)}
+            </tfoot>}
         </table>
       </div>
     );

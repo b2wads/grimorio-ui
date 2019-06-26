@@ -5,6 +5,7 @@ import ReactShallowRenderer from 'react-test-renderer/shallow';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount, render } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -14,7 +15,8 @@ Object.assign(global, {
   ReactTestUtils,
   shallow,
   mount,
-  render
+  render,
+  toJson
 });
 
 global.shallowRender = jsx => {

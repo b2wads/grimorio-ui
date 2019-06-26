@@ -16,6 +16,10 @@ $item {
   color: $c-primary;
   cursor: pointer;
   font-size: 13px;
+  max-width: 180px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 /* ==========================================================================
@@ -39,6 +43,7 @@ $item {
 
 .itemWrap {
   display: flex;
+  align-items: center;
 }
 
 .item {
