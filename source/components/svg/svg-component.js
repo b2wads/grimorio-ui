@@ -9,7 +9,6 @@ class Svg extends PureComponent {
   }
 
   static defaultProps = {
-    src: 'logo/acom',
     align: 'middle',
   };
 
