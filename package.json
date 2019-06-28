@@ -1,7 +1,7 @@
 {
   "name": "bitservices-theme",
   "sideEffects": false,
-  "version": "3.5.4",
+  "version": "4.0.0",
   "description": "Bitservices UI React",
   "main": "lib/index.js",
   "scripts": {
@@ -68,6 +68,7 @@
     "css-loader": "0.28.4",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.5",
     "eslint": "4.19.0",
     "eslint-config-google": "0.9.1",
     "eslint-loader": "2.0.0",
@@ -111,7 +112,8 @@
     "react-css-modules": "4.7.2",
     "react-dates": "18.2.2",
     "react-dom": "16.3.3",
-    "webpack": "3.5.2"
+    "webpack": "3.5.2",
+    "svg-react-loader": "0.4.5"
   },
   "jest": {
     "testURL": "http://localhost",
@@ -122,7 +124,7 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./internals/file-transformer.js"
     },
     "transform": {
-      "^.+\\.js$": "babel-jest",
+      "^.+\\.(js|jsx)?$": "babel-jest",
       "\\.(css|styl)$": "jest-css-modules-transform"
     },
     "testEnvironment": "jsdom",
@@ -131,9 +133,9 @@
     ],
     "setupTestFrameworkScriptFile": "./internals/test/setup.js",
     "coverageDirectory": ".reports/coverage",
-    "reporters": [
-      "jest-dot-reporter"
-    ],
-    "cacheDirectory": "./tmp/"
+    "cacheDirectory": "./tmp/",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }

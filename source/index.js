@@ -24,6 +24,7 @@ import Form, {
 } from './components/form';
 import Modal from './components/modal';
 import Table from './components/table';
+import TableFixed from './components/table-fixed';
 import TablePanel from './components/table-panel';
 import Loader from './components/loader';
 import DatePicker from './components/date-picker';
@@ -38,6 +39,7 @@ import SelectPopover from './components/select-popover';
 import PieChart from './components/pie-chart';
 import Tag from './components/tag';
 import Toggle from './components/toggle';
+import Pager from './components/pager';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -74,6 +76,7 @@ export {
   Select,
   SelectOption,
   Table,
+  TableFixed,
   TablePanel,
   Loader,
   Modal,
@@ -89,4 +92,5 @@ export {
   PieChart,
   Tag,
   Toggle,
+  Pager,
 };

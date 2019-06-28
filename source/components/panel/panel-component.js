@@ -31,6 +31,7 @@ class Panel extends PureComponent {
     loading: PropTypes.bool,
     accordion: PropTypes.bool,
     open: PropTypes.bool,
+    noPadding: PropTypes.bool,
     onAccordionClick: PropTypes.func,
   };
 
@@ -121,6 +122,7 @@ class Panel extends PureComponent {
       children,
       className,
       brand,
+      noPadding,
       size,
       footer,
       contentClassName,
@@ -137,10 +139,12 @@ class Panel extends PureComponent {
     const wrapperClass = cx(styles.wrapper, {
       [styles[size]]: size,
       [styles.isBrand]: brand,
+      [styles.noPadding]: noPadding,
     });
 
     const contentClass = cx(styles.content, contentClassName, {
       [styles.isBrand]: brand,
+      [styles.noPadding]: noPadding,
       [styles.isClosed]: !open,
     });
 

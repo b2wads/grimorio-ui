@@ -46,6 +46,10 @@ $brandLogo {
   &.isBrand {
     padding: 0;
   }
+
+  &.noPadding {
+    padding: 0;
+  }
 }
 
 .title {
@@ -82,6 +86,10 @@ $brandLogo {
   &.isBrand {
     padding: 0;
   }
+
+  &.noPadding {
+    padding: 0;
+  }
 }
 
 .content {
@@ -96,6 +104,10 @@ $brandLogo {
     opacity: 0;
     overflow: hidden;
     transition: all 0.3s ease;
+  }
+
+  &.noPadding {
+    padding: 0;
   }
 }
 
@@ -140,7 +152,8 @@ $brandLogo {
 
   .brandLogo {
     @extend $brandLogo;
-    height: 28px;
+    height: 35px;
+    margin-top: -5px;
   }
 }
 

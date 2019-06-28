@@ -1,12 +1,12 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import Icon from '../../icon';
-import Button from '../../button';
-import Select, { SelectOption } from '../../select';
+import Icon from '../icon';
+import Button from '../button';
+import Select, { SelectOption } from '../select';
 
-import styles from '../table-panel.styl';
+import styles from './pager.styl';
 
 class Pager extends PureComponent {
   renderPerPage(limit, onLimitChange, limitList, isMobile) {
@@ -143,7 +143,7 @@ class Pager extends PureComponent {
     const { range, currentPage } = this.getPageRange({ count, offset, limit });
 
     return (
-      <Fragment>
+      <div className={styles.holdPager}>
         {perpage && this.renderPerPage(limit, onLimitChange, limitList, isMobile)}
 
         <div className={cx(styles.showing, { [styles.isMobile]: isMobile })}>
@@ -160,7 +160,7 @@ class Pager extends PureComponent {
           {this.renderPaginationBtn('next')}
           {hasFirstLast && this.renderPaginationBtn('last')}
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

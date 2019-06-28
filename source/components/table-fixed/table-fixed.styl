@@ -6,68 +6,37 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$headerItem {
-  font-size: 14px;
-}
 
 /* ==========================================================================
-   Header Elements
+   TableFixed Elements
 ========================================================================== */
-
-.header {
-  align-items: center;
-  background: $c-primary;
-  display: flex;
-  height: 74px;
-  justify-content: flex-end;
-  padding: 0 20px;
-  position: relative;
-  width: 100%;
-  color: $white;
-
-  &.isMobile {
-    background-color: $c-support-dark;
-  }
-}
-
-.logo {
-  display: block;
-  margin: 0 auto;
-}
 
 /* ==========================================================================
-   Header Props
+   TableFixed Props
 ========================================================================== */
 
-/* headerItem
+/* Default
  ================ */
 
-.headerUser {
-  @extend $headerItem;
-  text-align: left;
+.wrap {
+  display: flex;
+  overflow: auto;
+}
 
-  .iconLeft {
-    margin-right: 5px;
-  }
-
-  .iconRight {
-    margin-left: 2px;
+.table {
+  tr {
+    height: 60px;
   }
 }
 
-.headerLogout {
-  @extend $headerItem;
-
-  .iconRight {
-    margin-left: 5px;
-  }
-
-  &.isMobile {
-    padding: 0;
-    position: absolute;
-    right: 20px;
-    top: 28px;
+.sticky {
+  position: sticky;
+  z-index: 3;
+  left: 0;
+  table {
+    background: white;
+    tbody {
+      box-shadow: 2px 1px 4px 0 rgba(0, 0, 0, 0.17);
+    }
   }
 }
-
-
