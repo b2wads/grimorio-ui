@@ -40,13 +40,13 @@ describe('TooltipStycker component', () => {
     });
 
     it('should call tooltip mouseover', () => {
-      wrapper.find('span').simulate('mouseover');
+      wrapper.find('span').at(1).simulate('mouseover');
       expect(TooltipStycker.prototype.clearTimeout).toHaveBeenCalled();
       expect(TooltipStycker.prototype.onMouseOver).toHaveBeenCalled();
     });
 
     it('should call hideTooltip on mouseout', () => {
-      wrapper.find('span').simulate('mouseout');
+      wrapper.find('span').at(1).simulate('mouseout');
       expect(TooltipStycker.prototype.hideTooltip).toHaveBeenCalled();
     });
 

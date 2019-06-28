@@ -114,7 +114,7 @@ class TooltipStycker extends PureComponent {
   render() {
     const { show } = this.state;
     return (
-      <div>
+      <span>
         <span
           onMouseOver={this.onMouseOver}
           onMouseOut={this.hideTooltip}
@@ -124,7 +124,7 @@ class TooltipStycker extends PureComponent {
           {this.props.children}
         </span>
         {show && this.renderTooltip()}
-      </div>
+      </span>
     );
   }
 }
