@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import moment from 'moment';
 import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeController';
+import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
 
 import styles from './calendar.styl';
 
@@ -18,6 +19,8 @@ class Calendar extends PureComponent {
 
     moment.locale('pt-br');
     this.changeDate = this.changeDate.bind(this);
+    this.isOutsideRange = this.isOutsideRange.bind(this);
+    this.outsideClick = this.outsideClick.bind(this);
   }
 
   static defaultProps = {
@@ -45,32 +48,65 @@ class Calendar extends PureComponent {
   };
 
   changeDate({ startDate, endDate }) {
-    // TODO: verificar que, ao escolher uma data de fim anterior a de início, se comporta diferente do componente de datepicker
     let dateValues = {
       startDate,
       endDate: null,
     };
 
-    if (this.state.focusedInput === 'endDate') {
+    if (this.state.focusedInput === 'endDate' && endDate) {
       dateValues.endDate = endDate;
       dateValues.focusedInput = 'startDate';
+      this.props.onChange(dateValues);
     }
 
     if (this.props.isSingleDate) {
       dateValues = {
         focusedInput: 'startDate',
         startDate,
-        endDate: null,
         singleDate: startDate,
       };
+      this.props.onChange(dateValues);
     }
 
-    this.props.onChange(dateValues);
     this.setState(dateValues);
+  }
+  isOutsideRange(day) {
+    const { range, isSingleDate } = this.props;
+    let endIsOutside = false;
+
+    console.log('ousite', day);
+    if (this.state.focusedInput === 'endDate') {
+      console.log('entoru no primeiro if');
+      endIsOutside = day.isAfter(moment(this.state.startDate).add(range, 'months'));
+    }
+
+    if (isSingleDate) {
+      return false;
+    }
+
+    console.log('???', endIsOutside);
+    console.log(isInclusivelyAfterDay(day, moment().add(1, 'day')));
+    console.log('return', endIsOutside || isInclusivelyAfterDay(day, moment().add(1, 'day')));
+
+    return endIsOutside || isInclusivelyAfterDay(day, moment().add(1, 'day'));
+  }
+  outsideClick() {
+    const { isSingleDate } = this.props;
+    const { startDate, endDate } = this.state;
+    let resetDates = {};
+
+    if (!startDate && !isSingleDate) {
+      resetDates = { startDate: null, endDate: null };
+    } else if (!endDate && !isSingleDate) {
+      resetDates = { startDate, endDate: startDate };
+      this.props.onChange(resetDates);
+    }
+    this.props.onOutsideClick();
   }
   render() {
     const { startDate, endDate } = this.state;
     const { monthsToShow, isMobile } = this.props;
+
     return (
       <DayPickerRangeController
         startDate={startDate}
@@ -80,8 +116,9 @@ class Calendar extends PureComponent {
         onFocusChange={focusedInput => this.setState({ focusedInput })}
         hideKeyboardShortcutsPanel
         numberOfMonths={isMobile ? 1 : monthsToShow}
-        onOutsideClick={this.outsiteClick}
         isOutsideRange={this.isOutsideRange}
+        // isOutsideRange={() => true || true}
+        onOutsideClick={this.outsideClick}
         minimumNights={0}
         initialVisibleMonth={this.initialMonth}
       />

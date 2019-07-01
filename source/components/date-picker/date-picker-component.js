@@ -2,13 +2,14 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
-import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeController';
-import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
+// import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeController';
+// import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import Icon from '../icon';
+import Calendar from '../calendar';
 
 import styles from './date-picker.styl';
 
@@ -19,12 +20,12 @@ class DatePicker extends PureComponent {
       startDate: props.defaultStartDate || props.defaultSingleDate || null,
       endDate: props.defaultEndDate || null,
       singleDate: props.defaultSingleDate || null,
-      focusedInput: null,
+      showCalendar: false,
     };
 
     this.toggleCalendar = this.toggleCalendar.bind(this);
-    this.outsiteClick = this.outsiteClick.bind(this);
-    this.isOutsideRange = this.isOutsideRange.bind(this);
+    this.outsideClick = this.outsideClick.bind(this);
+    // this.isOutsideRange = this.isOutsideRange.bind(this);
     this.initialMonth = this.initialMonth.bind(this);
 
     moment.locale('pt-br');
@@ -57,23 +58,12 @@ class DatePicker extends PureComponent {
     isSingleDate: false,
   };
 
-  outsiteClick() {
-    const { isSingleDate } = this.props;
-    const { startDate, endDate } = this.state;
-    let resetDates = {};
-
-    if (!startDate && !isSingleDate) {
-      resetDates = { startDate: null, endDate: null };
-    } else if (!endDate && !isSingleDate) {
-      resetDates = { startDate, endDate: startDate };
-      this.props.onChange(resetDates);
-    }
-
-    this.setState({ focusedInput: null, ...resetDates });
+  outsideClick() {
+    this.setState({ showCalendar: false /* , ...resetDates */ }); // checar se precisa do resetDates aqui
   }
 
   toggleCalendar() {
-    this.setState({ focusedInput: this.state.focusedInput ? null : 'startDate' });
+    this.setState({ showCalendar: !this.state.showCalendar });
   }
 
   hasDates() {
@@ -94,59 +84,25 @@ class DatePicker extends PureComponent {
     return `${moment(startDate).format('DD/MM/YYYY')} - ${moment(endDate).format('DD/MM/YYYY')}`;
   }
 
-  changeDate({ startDate, endDate }) {
-    let valueEndDate = null;
-
-    if (this.state.focusedInput === 'endDate') {
-      valueEndDate = endDate;
-    }
-
-    let dateValues = {
-      startDate,
-      endDate: valueEndDate,
-    };
-
-    if (this.props.isSingleDate) {
-      dateValues = {
-        focusedInput: null,
-        startDate,
-        endDate: null,
-        singleDate: startDate,
-      };
-    }
-
-    this.props.onChange(dateValues);
+  changeDate(dateValues) {
     this.setState(dateValues);
+    this.toggleCalendar();
+    this.props.onChange(dateValues);
   }
 
   initialMonth() {
     return this.props.initialMonth;
   }
 
-  isOutsideRange(day) {
-    const { range, isSingleDate } = this.props;
-    let endIsOutside = false;
-
-    if (this.state.focusedInput === 'endDate') {
-      endIsOutside = day.isAfter(moment(this.state.startDate).add(range, 'months'));
-    }
-
-    if (isSingleDate) {
-      return false;
-    }
-
-    return endIsOutside || isInclusivelyAfterDay(day, moment().add(1, 'day'));
-  }
-
   render() {
-    const { startDate, endDate, singleDate, focusedInput } = this.state;
-    const { className, align, monthsToShow, isMobile, disabled, ...rest } = this.props;
+    const { startDate, endDate, singleDate, showCalendar } = this.state;
+    const { className, align, isMobile, disabled, ...rest } = this.props;
     const labelClasses = cx(styles.label, {
-      [styles.isActive]: this.hasDates() || focusedInput,
+      [styles.isActive]: this.hasDates() || showCalendar,
     });
 
     const calendarClasses = cx(styles.calendar, {
-      [styles.isActive]: focusedInput,
+      [styles.isActive]: showCalendar,
       [styles[align]]: align,
       [styles.isMobile]: isMobile,
     });
@@ -165,22 +121,17 @@ class DatePicker extends PureComponent {
         </div>
 
         <div className={calendarClasses}>
-          <DayPickerRangeController
+          <Calendar
+            {...this.props}
             startDate={startDate}
             endDate={endDate}
-            onDatesChange={({ startDate, endDate }) => this.changeDate({ startDate, endDate })}
-            focusedInput={this.state.focusedInput}
-            onFocusChange={focusedInput => this.setState({ focusedInput })}
-            hideKeyboardShortcutsPanel
-            numberOfMonths={isMobile ? 1 : monthsToShow}
-            onOutsideClick={this.outsiteClick}
-            isOutsideRange={this.isOutsideRange}
-            minimumNights={0}
+            onOutsideClick={this.outsideClick}
             initialVisibleMonth={this.initialMonth}
+            onChange={dates => this.changeDate(dates)}
           />
         </div>
 
-        {isMobile && <div className={cx(styles.overlay, { [styles.isOpen]: focusedInput })} />}
+        {isMobile && <div className={cx(styles.overlay, { [styles.isOpen]: showCalendar })} />}
       </div>
     );
   }
