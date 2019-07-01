@@ -4,6 +4,15 @@
 $shadow-color = rgba(0, 0, 0, 0.125);
 $c-border = #ccc;
 
+arrow(color, borderWidth) {
+  display: block;
+  position: absolute;
+  content: "";
+  border-style: solid;
+  border-color: color transparent;
+  border-width: borderWidth;
+}
+
 /* ==========================================================================
    Placeholders
 ========================================================================== */
@@ -80,41 +89,21 @@ $default {}
 }
 .bottom {
   &:after {
-    border-color: #fff transparent;
+    arrow(#fff, 0 10px 10px)
     top: -10px;
-    border-style: solid;
-    content: "";
-    display: block;
-    position: absolute;
-    border-width: 0 10px 10px;
   }
   &:before {
-    border-style: solid;
-    content: "";
-    display: block;
-    position: absolute;
-    border-width: 0 10px 10px;
-    border-color: $c-border transparent;
+    arrow($c-border, 0 10px 10px)
     top: -11px;
   }
 }
 .top {
   &:after {
-    border-color: #fff transparent;
+    arrow(#fff, 10px 10px 0)
     bottom: -10px;
-    border-style: solid;
-    content: "";
-    display: block;
-    position: absolute;
-    border-width: 10px 10px 0;
   }
   &:before {
-    border-style: solid;
-    content: "";
-    display: block;
-    position: absolute;
-    border-width: 10px 10px 0;
-    border-color: $c-border transparent;
+    arrow($c-border, 10px 10px 0)
     bottom: -11px;
   }
 }
