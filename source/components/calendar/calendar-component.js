@@ -74,19 +74,13 @@ class Calendar extends PureComponent {
     const { range, isSingleDate } = this.props;
     let endIsOutside = false;
 
-    console.log('ousite', day);
     if (this.state.focusedInput === 'endDate') {
-      console.log('entoru no primeiro if');
       endIsOutside = day.isAfter(moment(this.state.startDate).add(range, 'months'));
     }
 
     if (isSingleDate) {
       return false;
     }
-
-    console.log('???', endIsOutside);
-    console.log(isInclusivelyAfterDay(day, moment().add(1, 'day')));
-    console.log('return', endIsOutside || isInclusivelyAfterDay(day, moment().add(1, 'day')));
 
     return endIsOutside || isInclusivelyAfterDay(day, moment().add(1, 'day'));
   }
@@ -117,7 +111,6 @@ class Calendar extends PureComponent {
         hideKeyboardShortcutsPanel
         numberOfMonths={isMobile ? 1 : monthsToShow}
         isOutsideRange={this.isOutsideRange}
-        // isOutsideRange={() => true || true}
         onOutsideClick={this.outsideClick}
         minimumNights={0}
         initialVisibleMonth={this.initialMonth}
