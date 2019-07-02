@@ -25,7 +25,7 @@ stories.addWithInfo(
     return (
       <div>
         <Button onClick={openModal}>Abrir Modal</Button>
-        <Modal open={store.state.open} onClose={closeModal} modalPadding={false}>
+        <Modal open={store.state.open} onClose={closeModal} innerPadding={true}>
           <div>
             <p>Olar</p>
             <Button onClick={closeModal}>Fechar</Button>
