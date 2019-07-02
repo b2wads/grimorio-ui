@@ -148,7 +148,7 @@ class Modal extends PureComponent {
       <div className={classNames(styles.wrap, { [styles.isOpen]: open })}>
         <div className={fullClassName} {...rest}>
           {showClose && <Icon onClick={onClose} className={styles.close} size="20" name="close" />}
-          <div className={modalPadding ? styles.content : styles.contentVerticalPadding}>
+          <div className={modalPadding && styles.content}>
             {this.renderTypeModal(
               type,
               message,
