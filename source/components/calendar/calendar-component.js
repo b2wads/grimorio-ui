@@ -67,7 +67,6 @@ class Calendar extends PureComponent {
       };
       this.props.onChange(dateValues);
     }
-
     this.setState(dateValues);
   }
   isOutsideRange(day) {
