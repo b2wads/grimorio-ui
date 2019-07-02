@@ -14,6 +14,7 @@ describe('Calendar component', () => {
       isSingleDate: false,
       onOutsideClick: jest.fn(),
       onChange: jest.fn(),
+      isOutsideRange: jest.fn(),
     };
 
     beforeAll(() => {
@@ -117,12 +118,12 @@ describe('Calendar component', () => {
       expect(isOutsideRange).toEqual(true);
     });
 
-    it('isOutsideRange return false - when day is before startDate and is NOT single date', () => {
-      wrapper.setProps({ isSingleDate: false })
-      const isOutsideRange = wrapper.instance().isOutsideRange(moment('05/01/2010', 'DD/MM/YYYY'));
+    it('isOutsideRange should call isOutsideRange props', () => {
+      const day = moment('05/01/2010', 'DD/MM/YYYY');
+      wrapper.instance().isOutsideRange(day);
       wrapper.setState({ focusedInput: 'endDate', startDate: moment('10/05/2019', 'DD/MM/YYYY') });
-
-      expect(isOutsideRange).toEqual(false);
+      const spy = jest.spyOn(props, 'isOutsideRange');
+      expect(spy).toHaveBeenCalledWith(day);
     })
   });
 });

@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
-// import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeController';
-// import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
+import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -25,8 +24,6 @@ class DatePicker extends PureComponent {
 
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.outsideClick = this.outsideClick.bind(this);
-    // this.isOutsideRange = this.isOutsideRange.bind(this);
-    this.initialMonth = this.initialMonth.bind(this);
 
     moment.locale('pt-br');
   }
@@ -38,10 +35,6 @@ class DatePicker extends PureComponent {
     defaultSingleDate: PropTypes.instanceOf(moment),
     label: PropTypes.string,
     align: PropTypes.oneOf(['left', 'right']),
-    monthsToShow: PropTypes.number,
-    initialMonth: PropTypes.instanceOf(moment),
-    isMobile: PropTypes.bool,
-    range: PropTypes.number,
     isSingleDate: PropTypes.bool,
     disabled: PropTypes.bool,
   };
@@ -50,16 +43,13 @@ class DatePicker extends PureComponent {
     onChange: () => {},
     label: 'Data',
     align: 'left',
-    monthsToShow: 2,
-    range: 2,
-    initialMonth: moment().subtract(1, 'month'),
     disabled: false,
     isMobile: false,
     isSingleDate: false,
   };
 
   outsideClick() {
-    this.setState({ showCalendar: false /* , ...resetDates */ }); // checar se precisa do resetDates aqui
+    this.setState({ showCalendar: false });
   }
 
   toggleCalendar() {
@@ -88,10 +78,6 @@ class DatePicker extends PureComponent {
     this.setState(dateValues);
     this.toggleCalendar();
     this.props.onChange(dateValues);
-  }
-
-  initialMonth() {
-    return this.props.initialMonth;
   }
 
   render() {
@@ -126,8 +112,8 @@ class DatePicker extends PureComponent {
             startDate={startDate}
             endDate={endDate}
             onOutsideClick={this.outsideClick}
-            initialVisibleMonth={this.initialMonth}
             onChange={dates => this.changeDate(dates)}
+            isOutsideRange={day => isInclusivelyAfterDay(day, moment().add(1, 'day'))}
           />
         </div>
 

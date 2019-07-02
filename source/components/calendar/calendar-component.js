@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import moment from 'moment';
 import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeController';
-import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
 
 import styles from './calendar.styl';
 
@@ -21,6 +20,7 @@ class Calendar extends PureComponent {
     this.changeDate = this.changeDate.bind(this);
     this.isOutsideRange = this.isOutsideRange.bind(this);
     this.outsideClick = this.outsideClick.bind(this);
+    this.initialMonth = this.initialMonth.bind(this);
   }
 
   static defaultProps = {
@@ -33,6 +33,7 @@ class Calendar extends PureComponent {
     disabled: false,
     isMobile: false,
     isSingleDate: false,
+    isOutsideRange: () => false,
   };
 
   static propTypes = {
@@ -81,7 +82,7 @@ class Calendar extends PureComponent {
       return false;
     }
 
-    return endIsOutside || isInclusivelyAfterDay(day, moment().add(1, 'day'));
+    return endIsOutside || this.props.isOutsideRange(day);
   }
   outsideClick() {
     const { isSingleDate } = this.props;
@@ -96,7 +97,10 @@ class Calendar extends PureComponent {
 
     this.props.onChange(resetDates);
     this.setState({ ...resetDates });
-    this.props.onOutsideClick();
+    this.props.onOutsideClick && this.props.onOutsideClick();
+  }
+  initialMonth() {
+    return this.props.initialMonth;
   }
   render() {
     const { startDate, endDate } = this.state;
