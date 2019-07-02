@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calendar component #render render correctly 1`] = `
+<DayPickerRangeController
+  calendarInfoPosition="bottom"
+  daySize={39}
+  disabled={false}
+  enableOutsideDays={false}
+  endDate={null}
+  firstDayOfWeek={null}
+  focusedInput="startDate"
+  hideKeyboardShortcutsPanel={true}
+  horizontalMonthPadding={13}
+  initialVisibleMonth={null}
+  isDayBlocked={[Function]}
+  isDayHighlighted={[Function]}
+  isFocused={false}
+  isOutsideRange={[Function]}
+  isRTL={false}
+  keepOpenOnDateSelect={false}
+  minimumNights={0}
+  monthFormat="MMMM YYYY"
+  navNext={null}
+  navPrev={null}
+  noBorder={false}
+  noNavButtons={false}
+  numberOfMonths={2}
+  onBlur={[Function]}
+  onClose={[Function]}
+  onDatesChange={[Function]}
+  onFocusChange={[Function]}
+  onNextMonthClick={[Function]}
+  onOutsideClick={[Function]}
+  onPrevMonthClick={[Function]}
+  onShiftTab={[Function]}
+  onTab={[Function]}
+  orientation="horizontal"
+  phrases={
+    Object {
+      "calendarLabel": "Calendar",
+      "chooseAvailableDate": [Function],
+      "chooseAvailableEndDate": [Function],
+      "chooseAvailableStartDate": [Function],
+      "dateIsSelected": [Function],
+      "dateIsUnavailable": [Function],
+      "enterKey": "Enter key",
+      "escape": "Escape key",
+      "hideKeyboardShortcutsPanel": "Close the shortcuts panel.",
+      "homeEnd": "Home and end keys",
+      "jumpToNextMonth": "Move forward to switch to the next month.",
+      "jumpToPrevMonth": "Move backward to switch to the previous month.",
+      "keyboardShortcuts": "Keyboard Shortcuts",
+      "leftArrowRightArrow": "Right and left arrow keys",
+      "moveFocusByOneDay": "Move backward (left) and forward (right) by one day.",
+      "moveFocusByOneMonth": "Switch months.",
+      "moveFocusByOneWeek": "Move backward (up) and forward (down) by one week.",
+      "moveFocustoStartAndEndOfWeek": "Go to the first or last day of a week.",
+      "openThisPanel": "Open this panel.",
+      "pageUpPageDown": "page up and page down keys",
+      "questionMark": "Question mark",
+      "returnFocusToInput": "Return to the date input field.",
+      "selectFocusedDate": "Select the date in focus.",
+      "showKeyboardShortcutsPanel": "Open the keyboard shortcuts panel.",
+      "upArrowDownArrow": "up and down arrow keys",
+    }
+  }
+  renderCalendarInfo={null}
+  renderDayContents={null}
+  renderMonthElement={null}
+  renderMonthText={null}
+  showKeyboardShortcuts={false}
+  startDate={null}
+  verticalHeight={null}
+  weekDayFormat="dd"
+  withPortal={false}
+/>
+`;

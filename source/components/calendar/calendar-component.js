@@ -93,8 +93,10 @@ class Calendar extends PureComponent {
       resetDates = { startDate: null, endDate: null };
     } else if (!endDate && !isSingleDate) {
       resetDates = { startDate, endDate: startDate };
-      this.props.onChange(resetDates);
     }
+
+    this.props.onChange(resetDates);
+    this.setState({ ...resetDates });
     this.props.onOutsideClick();
   }
   render() {
