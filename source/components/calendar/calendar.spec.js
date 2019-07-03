@@ -102,14 +102,6 @@ describe('Calendar component', () => {
       expect(onOutsideClick).toHaveBeenCalled();
       expect(onChange).toHaveBeenCalledWith({});
     });
-
-    it('isOutsideRange return false - when is single date', () => {
-      wrapper.setProps({ isSingleDate: true })
-      const isOutsideRange = wrapper.instance().isOutsideRange(moment('30/10/2020', 'DD/MM/YYYY'));
-      wrapper.setState({ focusedInput: 'endDate', startDate: moment('10/05/2019', 'DD/MM/YYYY') });
-
-      expect(isOutsideRange).toEqual(false);
-    });
     it('isOutsideRange return true - when day is after startDate and is NOT single date', () => {
       wrapper.setProps({ isSingleDate: false })
       const isOutsideRange = wrapper.instance().isOutsideRange(moment('30/10/2020', 'DD/MM/YYYY'));

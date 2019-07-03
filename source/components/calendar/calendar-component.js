@@ -48,6 +48,18 @@ class Calendar extends PureComponent {
     isMobile: PropTypes.bool,
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.defaultStartDate !== prevProps.defaultStartDate) {
+      this.setState({ startDate: this.props.defaultStartDate });
+    }
+    if (this.props.defaultEndDate !== prevProps.defaultEndDate) {
+      this.setState({ endDate: this.props.defaultEndDate });
+    }
+    if (this.props.defaultSingleDate !== prevProps.defaultSingleDate) {
+      this.setState({ defaultSingleDate: this.props.defaultSingleDate, startDate: this.props.defaultSingleDate });
+    }
+  }
+
   changeDate({ startDate, endDate }) {
     let dateValues = {
       startDate,
@@ -71,15 +83,11 @@ class Calendar extends PureComponent {
     this.setState(dateValues);
   }
   isOutsideRange(day) {
-    const { range, isSingleDate } = this.props;
+    const { range } = this.props;
     let endIsOutside = false;
 
     if (this.state.focusedInput === 'endDate') {
       endIsOutside = day.isAfter(moment(this.state.startDate).add(range, 'months'));
-    }
-
-    if (isSingleDate) {
-      return false;
     }
 
     return endIsOutside || this.props.isOutsideRange(day);
@@ -97,14 +105,14 @@ class Calendar extends PureComponent {
 
     this.props.onChange(resetDates);
     this.setState({ ...resetDates });
-    this.props.onOutsideClick && this.props.onOutsideClick();
+    this.props.onOutsideClick();
   }
   initialMonth() {
     return this.props.initialMonth;
   }
   render() {
     const { startDate, endDate } = this.state;
-    const { monthsToShow, isMobile } = this.props;
+    const { monthsToShow, isMobile, onOutsideClick } = this.props;
 
     return (
       <DayPickerRangeController
@@ -116,7 +124,7 @@ class Calendar extends PureComponent {
         hideKeyboardShortcutsPanel
         numberOfMonths={isMobile ? 1 : monthsToShow}
         isOutsideRange={this.isOutsideRange}
-        onOutsideClick={this.outsideClick}
+        onOutsideClick={onOutsideClick && this.outsideClick}
         minimumNights={0}
         initialVisibleMonth={this.initialMonth}
       />
