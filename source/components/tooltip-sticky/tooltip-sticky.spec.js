@@ -1,10 +1,10 @@
 import '../../../internals/test/helper';
 
-import TooltipStycker from './tooltip-stycker-component';
+import TooltipSticky from './tooltip-sticky-component';
 
-/** @test {TooltipStycker} */
-describe('TooltipStycker component', () => {
-  /** @test {TooltipStycker#render} */
+/** @test {TooltipSticky} */
+describe('TooltipSticky component', () => {
+  /** @test {TooltipSticky#render} */
   describe('#render', () => {
     let wrapper;
     const props = {
@@ -13,12 +13,12 @@ describe('TooltipStycker component', () => {
     };
 
     beforeEach(() => {
-      jest.spyOn(TooltipStycker.prototype, 'onMouseOver');
-      jest.spyOn(TooltipStycker.prototype, 'hideTooltip');
-      jest.spyOn(TooltipStycker.prototype, 'clearTimeout');
+      jest.spyOn(TooltipSticky.prototype, 'onMouseOver');
+      jest.spyOn(TooltipSticky.prototype, 'hideTooltip');
+      jest.spyOn(TooltipSticky.prototype, 'clearTimeout');
 
       wrapper = shallow(
-        <TooltipStycker {...props} />
+        <TooltipSticky {...props} />
       );
       const selectedInput = 'elemShowTooltip';
       wrapper.instance()[selectedInput] = {
@@ -41,18 +41,18 @@ describe('TooltipStycker component', () => {
 
     it('should call tooltip mouseover', () => {
       wrapper.find('span').at(1).simulate('mouseover');
-      expect(TooltipStycker.prototype.clearTimeout).toHaveBeenCalled();
-      expect(TooltipStycker.prototype.onMouseOver).toHaveBeenCalled();
+      expect(TooltipSticky.prototype.clearTimeout).toHaveBeenCalled();
+      expect(TooltipSticky.prototype.onMouseOver).toHaveBeenCalled();
     });
 
     it('should call hideTooltip on mouseout', () => {
       wrapper.find('span').at(1).simulate('mouseout');
-      expect(TooltipStycker.prototype.hideTooltip).toHaveBeenCalled();
+      expect(TooltipSticky.prototype.hideTooltip).toHaveBeenCalled();
     });
 
     it('should call cleatTimeOut on componentWillUnmount', () => {
       wrapper.instance().componentWillUnmount();
-      expect(TooltipStycker.prototype.clearTimeout).toHaveBeenCalled();
+      expect(TooltipSticky.prototype.clearTimeout).toHaveBeenCalled();
     })
   });
 });

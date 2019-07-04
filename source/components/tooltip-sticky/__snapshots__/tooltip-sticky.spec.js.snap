@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TooltipStycker component #render should render child content 1`] = `
+exports[`TooltipSticky component #render should render child content 1`] = `
 <span>
   <span
     className="wrapper"

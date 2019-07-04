@@ -29,7 +29,7 @@ import TablePanel from './components/table-panel';
 import Loader from './components/loader';
 import DatePicker from './components/date-picker';
 import Tooltip from './components/tooltip';
-import TooltipStycker from './components/tooltip-stycker';
+import TooltipSticky from './components/tooltip-sticky';
 import Slider from './components/slider';
 import LinkGenerator from './components/link-generator';
 import Alert from './components/alert';
@@ -83,7 +83,7 @@ export {
   Modal,
   DatePicker,
   Tooltip,
-  TooltipStycker,
+  TooltipSticky,
   LinkGenerator,
   Slider,
   Alert,

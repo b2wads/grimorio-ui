@@ -2,15 +2,15 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import TooltipStycker from './tooltip-stycker-component';
+import TooltipSticky from './tooltip-sticky-component';
 import Button from '../button';
 
-const stories = storiesOf('TooltipStycker', module);
+const stories = storiesOf('TooltipSticky', module);
 
 stories.addDecorator(withKnobs);
 
 stories.addWithInfo('Normal', () =>
-  <TooltipStycker
+  <TooltipSticky
     body={
       <div>
         <span>Suas campanhas estão paradas por falta de saldo.</span>
@@ -21,11 +21,11 @@ stories.addWithInfo('Normal', () =>
     <Button color="clean">
       Passe o mouse
     </Button>
-  </TooltipStycker>
+  </TooltipSticky>
 );
 
 stories.addWithInfo('With Title', () =>
-  <TooltipStycker
+  <TooltipSticky
     body={
       <div>
         <span>Suas campanhas estão paradas por falta de saldo.</span>
@@ -37,5 +37,5 @@ stories.addWithInfo('With Title', () =>
     <Button color="clean">
       Passe o mouse aqui também!
     </Button>
-  </TooltipStycker>
+  </TooltipSticky>
 );

@@ -3,9 +3,9 @@ import CSSModules from 'react-css-modules';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
-import styles from './tooltip-stycker.styl';
+import styles from './tooltip-sticky.styl';
 
-class TooltipStycker extends PureComponent {
+class TooltipSticky extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -129,4 +129,4 @@ class TooltipStycker extends PureComponent {
   }
 }
 
-export default CSSModules(TooltipStycker, styles);
+export default CSSModules(TooltipSticky, styles);
