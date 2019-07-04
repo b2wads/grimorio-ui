@@ -23,6 +23,10 @@
   overflow: auto;
 }
 
+.wrapMobile {
+  display: flex;
+}
+
 .table {
   tr {
     height: 60px;
@@ -33,6 +37,9 @@
   position: sticky;
   z-index: 3;
   left: 0;
+  @media (max-width: 767px) {
+    left: initial
+  }
   table {
     background: white;
     tbody {

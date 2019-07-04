@@ -8,8 +8,8 @@ const stories = storiesOf('Pager', module);
 
 const data = [];
 
-for(let i = 0; i < 10; ++i) {
-  data.push({id: i});
+for (let i = 0; i < 10; ++i) {
+  data.push({ id: i });
 }
 
 const meta = {

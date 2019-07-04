@@ -141,9 +141,13 @@ class Pager extends PureComponent {
     }
 
     const { range, currentPage } = this.getPageRange({ count, offset, limit });
+    const checkIsMobile = cx({
+      [styles.holdPager]: !isMobile,
+      [styles.holdPagerMobile]: isMobile,
+    });
 
     return (
-      <div className={styles.holdPager}>
+      <div className={checkIsMobile}>
         {perpage && this.renderPerPage(limit, onLimitChange, limitList, isMobile)}
 
         <div className={cx(styles.showing, { [styles.isMobile]: isMobile })}>
