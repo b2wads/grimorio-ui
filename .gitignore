@@ -21,6 +21,6 @@ tmp/
 source/vendor/
 
 # Package
-bitservices-theme-*.tgz
+grimorio-ui-*.tgz
 lib/
 dist/

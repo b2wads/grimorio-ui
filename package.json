@@ -1,13 +1,14 @@
 {
-  "name": "bitservices-theme",
+  "name": "grimorio-ui",
   "sideEffects": false,
   "version": "4.1.0",
-  "description": "Bitservices UI React",
+  "description": "React UI Kit that works like magic",
   "main": "lib/index.js",
   "scripts": {
-    "cp:pack": "rm ../$APP/packages/bitservices-theme-*.tgz && ./node_modules/.bin/cpy bitservices-theme-*.tgz ../$APP/packages/",
-    "pack:build": "yarn build && yarn pack --filename bitservices-theme-${npm_package_version}.$THEME_ENV.tgz",
-    "pack:full": "rm -f ./bitservices-theme-**.tgz && yarn pack:build",
+    "cp:pack": "rm ../$APP/packages/grimorio-ui-*.tgz && ./node_modules/.bin/cpy grimorio-ui-*.tgz ../$APP/packages/",
+    "cp": "./node_modules/.bin/cpy grimorio-ui-*.tgz ../$APP/packages/",
+    "pack:build": "yarn build && yarn pack --filename grimorio-ui-${npm_package_version}.$THEME_ENV.tgz",
+    "pack:full": "rm -f ./grimorio-ui-**.tgz && yarn pack:build",
     "build": "yarn build:images && yarn build:js",
     "build:js": "./node_modules/.bin/cross-env THEME_ENV=$THEME_ENV NODE_ENV=production BABEL_ENV=production babel source --out-dir lib && webpack --progress --config ./internals/webpack/webpack.config.js",
     "build:images": "./node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=production babel source/images --out-dir lib/images --copy-files",
@@ -31,13 +32,7 @@
   "directories": {
     "doc": "docs"
   },
-  "author": "Bitservices",
-  "contributors": [
-    "Ana Azevedo <ana.fazevedo@b2wdigital.com> (http://)",
-    "Deborah Miranda <dmiranda@b2wdigital.com> (http://)",
-    "Lais Chagas <lais.chagas@b2wdigital.com> (http://)",
-    "Hemerson Vianna <hemerson.lourenco@b2wdigital.com> (http://)"
-  ],
+  "author": "@b2wads",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.44",
@@ -105,7 +100,6 @@
     "classnames": "2.2.5",
     "cpy-cli": "2.0.0",
     "extract-text-webpack-plugin": "3.0.2",
-    "lodash": "4.17.11",
     "moment": "2.22.1",
     "prop-types": "15.5.10",
     "react": "16.3.1",

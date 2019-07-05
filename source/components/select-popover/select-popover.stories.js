@@ -152,7 +152,8 @@ const initialState = {
 }
 
 stories.addWithInfo('Dynamic options', withState(initialState)(({ store }) => {
-  const options = [
+
+  const changedOptions = [
     {
       key: 'name',
       label: 'Nome',
@@ -163,10 +164,6 @@ stories.addWithInfo('Dynamic options', withState(initialState)(({ store }) => {
       label: 'Favoritos',
       checked: false,
     },
-  ];
-
-  const changedOptions = [
-    ...options,
     {
       key: 'shares',
       label: 'Compartilhamentos',
