@@ -22,6 +22,7 @@ class Modal extends PureComponent {
     type: PropTypes.oneOf(['custom', 'confirm', 'success', 'fail']),
     confirmInverted: PropTypes.bool,
     showButton: PropTypes.bool,
+    innerPadding: PropTypes.bool,
     message: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     confirmButtonText: PropTypes.string,
     cancelButtonText: PropTypes.string,
@@ -35,6 +36,7 @@ class Modal extends PureComponent {
     type: 'custom',
     confirmInverted: false,
     showButton: false,
+    innerPadding: true,
     confirmButtonText: 'Okay',
     cancelButtonText: 'Cancelar',
   };
@@ -134,6 +136,7 @@ class Modal extends PureComponent {
       showClose,
       closeOnOverlay,
       className,
+      innerPadding,
       ...rest
     } = this.props;
 
@@ -145,7 +148,7 @@ class Modal extends PureComponent {
       <div className={classNames(styles.wrap, { [styles.isOpen]: open })}>
         <div className={fullClassName} {...rest}>
           {showClose && <Icon onClick={onClose} className={styles.close} size="20" name="close" />}
-          <div className={styles.content}>
+          <div className={classNames({ [styles.content]: innerPadding })}>
             {this.renderTypeModal(
               type,
               message,

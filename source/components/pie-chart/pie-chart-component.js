@@ -120,7 +120,7 @@ class PieChart extends PureComponent {
   componentDidUpdate(prevProps) {
     const { chartData, error } = this.props;
 
-    if (prevProps.chartData !== chartData && !error) {
+    if (prevProps.chartData !== chartData && !error && this.chart) {
       const chartValues = chartData.data || [];
 
       this.chart.data.datasets[0] = {
