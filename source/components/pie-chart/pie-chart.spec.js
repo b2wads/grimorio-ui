@@ -7,7 +7,7 @@ describe('PieChart component', () => {
 /** @test {PieChart#render} */
   describe('#render', () => {
     it('render correctly', () => {
-      const wrapper = mount(
+      const wrapper = shallow(
         <PieChart />
       );
       expect(wrapper.length).toEqual(1);
