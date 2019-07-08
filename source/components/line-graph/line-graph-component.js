@@ -99,7 +99,7 @@ class LineGraph extends PureComponent {
   componentDidUpdate(prevProps) {
     const { datasets, error } = this.props;
 
-    if (prevProps.datasets !== datasets && !error) {
+    if (prevProps.datasets !== datasets && !error && this.chart) {
       this.chart.data.datasets = datasets;
 
       const legend = this.chart.generateLegend();

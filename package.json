@@ -1,7 +1,7 @@
 {
   "name": "bitservices-theme",
   "sideEffects": false,
-  "version": "4.0.9",
+  "version": "4.1.0",
   "description": "Bitservices UI React",
   "main": "lib/index.js",
   "scripts": {
@@ -67,7 +67,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "0.28.4",
     "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-adapter-react-16": "1.2.0",
     "enzyme-to-json": "3.3.5",
     "eslint": "4.19.0",
     "eslint-config-google": "0.9.1",

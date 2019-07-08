@@ -30,6 +30,7 @@ import Loader from './components/loader';
 import DatePicker from './components/date-picker';
 import Calendar from './components/calendar';
 import Tooltip from './components/tooltip';
+import TooltipSticky from './components/tooltip-sticky';
 import Slider from './components/slider';
 import LinkGenerator from './components/link-generator';
 import Alert from './components/alert';
@@ -84,6 +85,7 @@ export {
   DatePicker,
   Calendar,
   Tooltip,
+  TooltipSticky,
   LinkGenerator,
   Slider,
   Alert,
