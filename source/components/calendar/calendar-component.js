@@ -34,6 +34,7 @@ class Calendar extends PureComponent {
     isMobile: false,
     isSingleDate: false,
     isOutsideRange: () => false,
+    locale: 'pt-br',
   };
 
   static propTypes = {
@@ -46,6 +47,7 @@ class Calendar extends PureComponent {
     monthsToShow: PropTypes.number,
     initialMonth: PropTypes.instanceOf(moment),
     isMobile: PropTypes.bool,
+    locale: PropTypes.string,
   };
 
   componentDidUpdate(prevProps) {
@@ -112,7 +114,7 @@ class Calendar extends PureComponent {
   }
   render() {
     const { startDate, endDate } = this.state;
-    const { monthsToShow, isMobile, onOutsideClick } = this.props;
+    const { monthsToShow, isMobile, onOutsideClick, locale } = this.props;
 
     return (
       <DayPickerRangeController
@@ -121,6 +123,7 @@ class Calendar extends PureComponent {
         onDatesChange={({ startDate, endDate }) => this.changeDate({ startDate, endDate })}
         focusedInput={this.state.focusedInput}
         onFocusChange={focusedInput => this.setState({ focusedInput })}
+        locale={locale}
         hideKeyboardShortcutsPanel
         numberOfMonths={isMobile ? 1 : monthsToShow}
         isOutsideRange={this.isOutsideRange}
