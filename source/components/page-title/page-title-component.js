@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-// import classNames from 'classnames';
 import cx from 'classnames';
 
 import styles from './page-title.styl';

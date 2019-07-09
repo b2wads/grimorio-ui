@@ -1,7 +1,7 @@
 {
   "name": "bitservices-theme",
   "sideEffects": false,
-  "version": "4.1.1",
+  "version": "4.1.7",
   "description": "Bitservices UI React",
   "main": "lib/index.js",
   "scripts": {

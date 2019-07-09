@@ -18,12 +18,11 @@
 /* Default
  ================ */
 
-.wrap {
-  display: flex;
+.shortWrap {
   overflow: auto;
 }
 
-.wrapMobile {
+.fullWrap  {
   display: flex;
 }
 
@@ -33,14 +32,20 @@
   }
 }
 
-.sticky {
-  position: sticky;
+.stickShort {
+  left: initial;
+  z-index: 0;
+}
+
+.stickFull {
   z-index: 3;
   left: 0;
-  @media (max-width: 767px) {
-    left: initial;
-    z-index: 0;
-  }
+}
+
+.sticky {
+  position: sticky;
+  // z-index: 3;
+  // left: 0;
   table {
     background: white;
     tbody {
