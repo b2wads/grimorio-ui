@@ -17,9 +17,8 @@ class PageTitle extends PureComponent {
   render() {
     const { title, sideComponent, isMobile, ...elementProps } = this.props;
 
-    const checkIsMobile = cx({
+    const checkIsMobile = cx(styles.titleWrap, {
       [styles.titleWrapMobile]: isMobile,
-      [styles.titleWrap]: !isMobile,
     });
 
     return (
