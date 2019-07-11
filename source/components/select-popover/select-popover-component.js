@@ -61,7 +61,8 @@ class SelectPopover extends React.Component {
   }
 
   hasKeyChanged(arr) {
-    return !arr.every(obj => this.state.flatOptions.includes(obj.key));
+    const { flatOptions } = this.state;
+    return !arr.every(obj => flatOptions.includes(obj.key)) || flatOptions.length !== arr.length;
   }
 
   componentDidUpdate() {
