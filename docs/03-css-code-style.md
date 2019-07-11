@@ -239,4 +239,4 @@ Use a maximum of 3 elements when you need to change the behavior of a class, thr
 .page .sidebar .mainMenu a { ... }
 ```
 
-**[⬆ back to the top](#summary)**
+**[voltar para o README](../README.md#Manual)**

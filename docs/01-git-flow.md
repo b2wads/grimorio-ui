@@ -9,4 +9,4 @@ Git flow é um modelo de organização criado por Vincent Driessen e exposto [ne
 - [Git flow cheatsheet](http://danielkummer.github.io/git-flow-cheatsheet/)
 - [Git flow commands](https://gist.github.com/JamesMGreene/cdd0ac49f90c987e45ac)
 
-**[voltar para o README](../../README.md#markdown-header-helpers)**
+**[voltar para o README](../README.md#Manual)**

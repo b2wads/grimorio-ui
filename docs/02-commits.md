@@ -18,4 +18,4 @@ Usar voz imperativa, como se completasse a frase: Esse commit (faz algo);
 
 feat Organiza items
 
-**[voltar para o README](../../README.md#markdown-header-helpers)**
+**[voltar para o README](../README.md#Manual)**

@@ -122,5 +122,5 @@ APP=afiliados-webapp yarn cp:pack
 1. [Git Flow](./docs/01-git-flow.md)
 2. [Commits](./docs/02-commits.md)
 3. [CSS (code style)](./docs/03-css-code-style.md)
-4. [Links Úteis](./docs/04-javascript-code-style.md)
+4. [Links Úteis](./docs/04-links-uteis.md)
 

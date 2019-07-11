@@ -10,4 +10,4 @@
 |  |  |  |
 
 
-**[voltar para o README](../../README.md#markdown-header-helpers)**
+**[voltar para o README](../README.md#Manual)**
