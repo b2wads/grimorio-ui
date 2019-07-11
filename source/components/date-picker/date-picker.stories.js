@@ -13,7 +13,7 @@ const printDates = (startDate, endDate) => {
   console.log('dates:', moment(startDate).format(), moment(endDate).format());
 };
 
-stories.addWithInfo('Normal', () => {
+stories.add('Normal', () => {
   return (
     <div>
       <DatePicker
@@ -23,7 +23,7 @@ stories.addWithInfo('Normal', () => {
   );
 });
 
-stories.addWithInfo('Single Date', () => {
+stories.add('Single Date', () => {
   return (
     <div>
       <DatePicker
@@ -35,7 +35,7 @@ stories.addWithInfo('Single Date', () => {
   );
 });
 
-stories.addWithInfo('Mobile', () => {
+stories.add('Mobile', () => {
   return (
     <div>
       <DatePicker
@@ -47,7 +47,7 @@ stories.addWithInfo('Mobile', () => {
 });
 
 
-stories.addWithInfo('Default Values', () => {
+stories.add('Default Values', () => {
   return (
     <div>
       <DatePicker
@@ -70,7 +70,7 @@ stories.addWithInfo('Default Values', () => {
   );
 });
 
-stories.addWithInfo('Align', () => {
+stories.add('Align', () => {
   return (
     <div>
       <DatePicker

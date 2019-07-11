@@ -9,6 +9,6 @@ const stories = storiesOf('PageTitle', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () =>
+stories.add('Normal', () =>
   <PageTitle title="Dashboard" sideComponent={<Button>Hello</Button>} />
 );

@@ -93,7 +93,7 @@ const stories = storiesOf('$capitalizeName', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => <$capitalizeName />);
+stories.add('Normal', () => <$capitalizeName />);
 EOF
 
 echo 'Created Story'

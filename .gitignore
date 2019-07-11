@@ -24,3 +24,6 @@ source/vendor/
 grimorio-ui-*.tgz
 lib/
 dist/
+
+# Other
+/.vscode

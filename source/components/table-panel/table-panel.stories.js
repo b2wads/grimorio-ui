@@ -66,7 +66,7 @@ const meta = {
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => {
+stories.add('Normal', () => {
   return (
     <TablePanel
       title="Jogo da Idade"
@@ -80,7 +80,7 @@ stories.addWithInfo('Normal', () => {
   );
 });
 
-stories.addWithInfo('With header separator', () => {
+stories.add('With header separator', () => {
   return (
     <TablePanel
       title="Jogo da Idade"
@@ -95,7 +95,7 @@ stories.addWithInfo('With header separator', () => {
   );
 });
 
-stories.addWithInfo('Scroll', () => {
+stories.add('Scroll', () => {
   return (
     <TablePanel
       scrollY
@@ -114,7 +114,7 @@ stories.addWithInfo('Scroll', () => {
   );
 });
 
-stories.addWithInfo('Sticky', () => {
+stories.add('Sticky', () => {
   const height = number('Height', 150);
   return (
     <TablePanel
@@ -132,7 +132,7 @@ stories.addWithInfo('Sticky', () => {
   );
 });
 
-stories.addWithInfo('Error', () => {
+stories.add('Error', () => {
   return (
     <TablePanel
       error
@@ -152,7 +152,7 @@ stories.addWithInfo('Error', () => {
   );
 });
 
-stories.addWithInfo('Special Case', () => {
+stories.add('Special Case', () => {
   const special = [
     {
       className: 'mail',
@@ -191,7 +191,7 @@ const _meta = {
   offset: 0,
 };
 
-stories.addWithInfo('With async Data', withState({ data: null, meta: _meta, loading: null, })(({ store }) => {
+stories.add('With async Data', withState({ data: null, meta: _meta, loading: null, })(({ store }) => {
   const getNames = (type, value = 0) => {
     const typeOffset = {
       prev: store.state.meta.offset - store.state.meta.limit,

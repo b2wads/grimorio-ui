@@ -8,7 +8,7 @@ const stories = storiesOf('Breadcrumb', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => {
+stories.add('Normal', () => {
   return (
     <Breadcrumb
       home="Dashboard"
@@ -18,7 +18,7 @@ stories.addWithInfo('Normal', () => {
   );
 });
 
-stories.addWithInfo('No Home', () => {
+stories.add('No Home', () => {
   return (
     <div>
       <Breadcrumb

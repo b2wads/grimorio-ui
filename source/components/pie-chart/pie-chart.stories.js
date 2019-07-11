@@ -11,7 +11,7 @@ const stories = storiesOf('PieChart', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () =>
+stories.add('Normal', () =>
   <PieChart
     chartData={{
       labels: ['Verde', 'Rosa', 'Roxo'],
@@ -21,7 +21,7 @@ stories.addWithInfo('Normal', () =>
   />
 );
 
-stories.addWithInfo('Pie', () =>
+stories.add('Pie', () =>
   <PieChart
     options={{
       cutoutPercentage: 0,
@@ -34,7 +34,7 @@ stories.addWithInfo('Pie', () =>
   />
 );
 
-stories.addWithInfo('Error', () =>
+stories.add('Error', () =>
   <PieChart
     cutoutPercentage={50}
     chartData={{
@@ -46,7 +46,7 @@ stories.addWithInfo('Error', () =>
   />
 );
 
-stories.addWithInfo('With changing data', withState({
+stories.add('With changing data', withState({
   loading: false,
   data: [10, 20, 30],
   label: ['Verde', 'Rosa', 'Roxo'],

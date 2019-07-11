@@ -16,7 +16,7 @@ const stories = storiesOf('Sidebar', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Default', withState({ open: false, active: -1 })(({ store }) => {
+stories.add('Default', withState({ open: false, active: -1 })(({ store }) => {
   const getActive = (index) => {
     return store.state.active === index;
   }
@@ -83,7 +83,7 @@ stories.addWithInfo('Default', withState({ open: false, active: -1 })(({ store }
     </div>);
 }));
 
-stories.addWithInfo('Mobile', withState({ openMobile: false, active: -1 })(({ store }) => {
+stories.add('Mobile', withState({ openMobile: false, active: -1 })(({ store }) => {
   const getActive = (index) => {
     return store.state.active === index;
   }

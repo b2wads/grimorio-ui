@@ -1,5 +1,9 @@
 # Grimório 📜✨
 
+## Prerequisites
+
+- [Node >= v8.10.0](https://nodejs.org/en/)
+
 ## Install
 Primeiro, copie o pacote para uma pasta do seu projeto, por exemplo `/packages`. Depois adicione a dependencia no seu package.json e atualize!
 

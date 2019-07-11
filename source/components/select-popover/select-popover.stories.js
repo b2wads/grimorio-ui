@@ -11,7 +11,7 @@ const stories = storiesOf('SelectPopover', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => {
+stories.add('Normal', () => {
   const options = [
     {
       key: 'name',
@@ -44,7 +44,7 @@ stories.addWithInfo('Normal', () => {
   )
 });
 
-stories.addWithInfo('Open in different positions', () => {
+stories.add('Open in different positions', () => {
   const options = [
     {
       key: 'name',
@@ -107,7 +107,7 @@ stories.addWithInfo('Open in different positions', () => {
   )
 });
 
-stories.addWithInfo('With Header', () => {
+stories.add('With Header', () => {
   const options = [
     {
       key: 'name',
@@ -151,7 +151,7 @@ const initialState = {
   ],
 }
 
-stories.addWithInfo('Dynamic options', withState(initialState)(({ store }) => {
+stories.add('Dynamic options', withState(initialState)(({ store }) => {
 
   const changedOptions = [
     {
@@ -196,7 +196,7 @@ stories.addWithInfo('Dynamic options', withState(initialState)(({ store }) => {
   )
 }));
 
-stories.addWithInfo('Without submit button', () => {
+stories.add('Without submit button', () => {
   const options = [
     {
       key: 'name',

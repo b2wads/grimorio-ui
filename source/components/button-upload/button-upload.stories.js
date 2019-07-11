@@ -5,11 +5,8 @@ import ButtonUpload from './index';
 
 const stories = storiesOf('Button Upload', module);
 
-stories.addWithInfo(
+stories.add(
   'Normal',
-  `
-    This is the basic usage with the button upload.
-  `,
   () => (
     <div>
       <ButtonUpload onChange={(data, list) => console.log('images: ', data, 'list:', list)} />
@@ -18,7 +15,7 @@ stories.addWithInfo(
 );
 
 
-stories.addWithInfo('With Limit', () =>
+stories.add('With Limit', () =>
   <ButtonUpload
     btnText="Apenas 2 imagens"
     limit={2}
@@ -26,7 +23,7 @@ stories.addWithInfo('With Limit', () =>
   />
 );
 
-stories.addWithInfo('With Extension Whitelist', () =>
+stories.add('With Extension Whitelist', () =>
   <ButtonUpload
     formatWhiteList={['.jpg', '.jpeg']}
     btnText="Apenas JPG e JPEG"
@@ -34,7 +31,7 @@ stories.addWithInfo('With Extension Whitelist', () =>
   />
 );
 
-stories.addWithInfo('With MaxFileSize', () =>
+stories.add('With MaxFileSize', () =>
   <ButtonUpload
     maxFileSize={100000}
     btnText="Até 100KB"
