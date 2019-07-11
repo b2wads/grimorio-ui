@@ -2,7 +2,9 @@ import React from 'react';
 import { configure } from '@storybook/react';
 import { setAddon, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
-// import { addParameters } from '@storybook/react';
+import { addParameters } from '@storybook/react';
+import { themes } from '@storybook/theming';
+
 
 import infoAddon from '@storybook/addon-info';
 
@@ -24,7 +26,11 @@ setOptions({
 });
 
 setAddon(infoAddon);
-// addParameters({ viewport: { defaultViewport: newViewports } });
+addParameters({
+  options: {
+    theme: themes.dark,
+  },
+});
 
 configure(loadStories, module);
 
