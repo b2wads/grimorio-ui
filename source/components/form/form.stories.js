@@ -91,7 +91,15 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', chec
           </FormControlLabel>
           <FormHelpText>Select!</FormHelpText>
         </FormGroup>
-
+        <br/>
+        <FormGroup>
+          <FormControlLabel outline onChange={data => console.log(data)} label="Nome" type="select">
+            <SelectOption value="a">a</SelectOption>
+            <SelectOption value="b">b</SelectOption>
+          </FormControlLabel>
+          <FormHelpText>Select ouline!</FormHelpText>
+        </FormGroup>
+        <br/>
         <Button onClick={changeCheck}>Marcar Checkboxes</Button>
         <FormGroup>
           <label htmlFor="check">Checkbox!</label>

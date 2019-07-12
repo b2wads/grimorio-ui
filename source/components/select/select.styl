@@ -184,3 +184,30 @@ $field {
 .overlay {
   @extend $overlay;
 }
+
+.isOutline {
+  .input {
+    border: 1px solid $c-border;
+    padding: 25px 10px;
+    border-radius: 3px;
+    line-height: 5px;
+  }
+  .arrow {
+    top: 16px;
+    right: 5px;
+  }
+  .label {
+    top: 20px;
+    padding-left: 10px;
+    &.isActive {
+      top: -6px;
+      background: $white;
+      width: auto;
+      padding: 0 5px;
+      left: 10px;
+    }
+  }
+  .menu {
+    top: 10px;
+  }
+}

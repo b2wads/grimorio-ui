@@ -75,6 +75,7 @@ class FormControlLabel extends Component {
     const labelClasses = classNames(styles.label, {
       [styles.isActive]: activeLabel === null ? this.state.active : activeLabel,
       [styles[`has-${validationState}`]]: validationState,
+      [styles.isOutline]: this.props.outline,
     });
 
     const inputClasses = classNames(styles.formControl, {
