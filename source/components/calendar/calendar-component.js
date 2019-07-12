@@ -10,9 +10,6 @@ class Calendar extends PureComponent {
   constructor(props) {
     super();
     this.state = {
-      startDate: props.defaultStartDate || props.defaultSingleDate || null,
-      endDate: props.defaultEndDate || null,
-      singleDate: props.defaultSingleDate || null,
       focusedInput: 'startDate',
     };
 
@@ -20,7 +17,6 @@ class Calendar extends PureComponent {
     this.changeDate = this.changeDate.bind(this);
     this.isOutsideRange = this.isOutsideRange.bind(this);
     this.outsideClick = this.outsideClick.bind(this);
-    this.initialMonth = this.initialMonth.bind(this);
   }
 
   static defaultProps = {
@@ -32,7 +28,7 @@ class Calendar extends PureComponent {
     initialMonth: moment().subtract(1, 'month'),
     disabled: false,
     isMobile: false,
-    isSingleDate: false,
+    isRangeDate: false,
     isOutsideRange: () => false,
     locale: 'pt-br',
   };
@@ -48,21 +44,11 @@ class Calendar extends PureComponent {
     initialMonth: PropTypes.instanceOf(moment),
     isMobile: PropTypes.bool,
     locale: PropTypes.string,
+    isRangeDate: PropTypes.bool,
   };
 
-  componentDidUpdate(prevProps) {
-    if (this.props.defaultStartDate !== prevProps.defaultStartDate) {
-      this.setState({ startDate: this.props.defaultStartDate });
-    }
-    if (this.props.defaultEndDate !== prevProps.defaultEndDate) {
-      this.setState({ endDate: this.props.defaultEndDate });
-    }
-    if (this.props.defaultSingleDate !== prevProps.defaultSingleDate) {
-      this.setState({ defaultSingleDate: this.props.defaultSingleDate, startDate: this.props.defaultSingleDate });
-    }
-  }
-
   changeDate({ startDate, endDate }) {
+    const newState = {};
     let dateValues = {
       startDate,
       endDate: null,
@@ -70,55 +56,48 @@ class Calendar extends PureComponent {
 
     if (this.state.focusedInput === 'endDate' && endDate) {
       dateValues.endDate = endDate;
-      dateValues.focusedInput = 'startDate';
-      this.props.onChange(dateValues);
+      newState.focusedInput = 'startDate';
     }
 
-    if (this.props.isSingleDate) {
+    if (!this.props.isRangeDate) {
       dateValues = {
-        focusedInput: 'startDate',
-        startDate,
-        singleDate: startDate,
+        date: startDate,
       };
-      this.props.onChange(dateValues);
+      newState.focusedInput = 'startDate';
     }
-    this.setState(dateValues);
+    this.props.onChange(dateValues);
+    this.setState({ ...newState });
   }
   isOutsideRange(day) {
-    const { range } = this.props;
+    const { range, startDate } = this.props;
+    const { focusedInput } = this.state;
     let endIsOutside = false;
 
-    if (this.state.focusedInput === 'endDate') {
-      endIsOutside = day.isAfter(moment(this.state.startDate).add(range, 'months'));
+    if (focusedInput === 'endDate') {
+      endIsOutside = day.isAfter(moment(startDate).add(range, 'months'));
     }
 
     return endIsOutside || this.props.isOutsideRange(day);
   }
   outsideClick() {
-    const { isSingleDate } = this.props;
-    const { startDate, endDate } = this.state;
+    const { startDate, endDate, isRangeDate } = this.props;
     let resetDates = {};
 
-    if (!startDate && !isSingleDate) {
+    if (!startDate && isRangeDate) {
       resetDates = { startDate: null, endDate: null };
-    } else if (!endDate && !isSingleDate) {
+    } else if (!endDate && isRangeDate) {
       resetDates = { startDate, endDate: startDate };
     }
-
+    this.setState({ focusedInput: 'startDate' });
     this.props.onChange(resetDates);
-    this.setState({ ...resetDates });
     this.props.onOutsideClick();
   }
-  initialMonth() {
-    return this.props.initialMonth;
-  }
   render() {
-    const { startDate, endDate } = this.state;
-    const { monthsToShow, isMobile, onOutsideClick, locale } = this.props;
+    const { monthsToShow, isMobile, onOutsideClick, locale, startDate, endDate, date, initialMonth } = this.props;
 
     return (
       <DayPickerRangeController
-        startDate={startDate}
+        startDate={startDate || date}
         endDate={endDate}
         onDatesChange={({ startDate, endDate }) => this.changeDate({ startDate, endDate })}
         focusedInput={this.state.focusedInput}
@@ -129,7 +108,7 @@ class Calendar extends PureComponent {
         isOutsideRange={this.isOutsideRange}
         onOutsideClick={onOutsideClick && this.outsideClick}
         minimumNights={0}
-        initialVisibleMonth={this.initialMonth}
+        initialVisibleMonth={() => initialMonth}
       />
     );
   }

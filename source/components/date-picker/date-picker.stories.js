@@ -13,7 +13,7 @@ const printDates = (startDate, endDate) => {
   console.log('dates:', moment(startDate).format(), moment(endDate).format());
 };
 
-stories.addWithInfo('Normal', () => {
+stories.addWithInfo('Range date', () => {
   return (
     <div>
       <DatePicker

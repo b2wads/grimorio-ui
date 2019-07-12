@@ -18,7 +18,7 @@ class DatePicker extends PureComponent {
     this.state = {
       startDate: props.defaultStartDate || props.defaultSingleDate || null,
       endDate: props.defaultEndDate || null,
-      singleDate: props.defaultSingleDate || null,
+      date: props.defaultSingleDate || null,
       showCalendar: false,
     };
 
@@ -57,18 +57,18 @@ class DatePicker extends PureComponent {
   }
 
   hasDates() {
-    const { startDate, endDate, singleDate } = this.state;
+    const { startDate, endDate, date } = this.state;
 
     if (this.props.isSingleDate) {
-      return !!singleDate;
+      return !!date;
     }
 
     return startDate && endDate;
   }
 
-  renderDates(startDate, endDate, singleDate) {
+  renderDates(startDate, endDate, date) {
     if (this.props.isSingleDate) {
-      return `${moment(singleDate).format('DD/MM/YYYY')}`;
+      return `${moment(date).format('DD/MM/YYYY')}`;
     }
 
     return `${moment(startDate).format('DD/MM/YYYY')} - ${moment(endDate).format('DD/MM/YYYY')}`;
@@ -76,13 +76,21 @@ class DatePicker extends PureComponent {
 
   changeDate(dateValues) {
     this.setState(dateValues);
-    this.toggleCalendar();
+    const { startDate, endDate } = dateValues;
+    const { isSingleDate } = this.props;
+
+    if (!isSingleDate && startDate && endDate) {
+      this.toggleCalendar();
+    }
+    if (isSingleDate) {
+      this.toggleCalendar();
+    }
     this.props.onChange(dateValues);
   }
 
   render() {
-    const { startDate, endDate, singleDate, showCalendar } = this.state;
-    const { className, align, isMobile, disabled, ...rest } = this.props;
+    const { startDate, endDate, date, showCalendar } = this.state;
+    const { className, align, isMobile, disabled, isSingleDate, ...rest } = this.props;
     const labelClasses = cx(styles.label, {
       [styles.isActive]: this.hasDates() || showCalendar,
     });
@@ -100,20 +108,20 @@ class DatePicker extends PureComponent {
           <fieldset className={styles.input} onClick={this.toggleCalendar} disabled={disabled}>
             <Icon className={styles.calendarIcon} name="today" size={20} />
             <span className={styles.inputContent}>
-              {this.hasDates() && this.renderDates(startDate, endDate, singleDate)}
+              {this.hasDates() && this.renderDates(startDate, endDate, date)}
             </span>
             <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
           </fieldset>
         </div>
-
         <div className={calendarClasses}>
           <Calendar
             {...this.props}
-            startDate={startDate}
+            startDate={startDate || date}
             endDate={endDate}
             onOutsideClick={this.outsideClick}
             onChange={dates => this.changeDate(dates)}
             isOutsideRange={day => isInclusivelyAfterDay(day, moment().add(1, 'day'))}
+            isRangeDate={!isSingleDate}
           />
         </div>
 

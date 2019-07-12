@@ -13,32 +13,45 @@ const stories = storiesOf('Calendar', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => {
+stories.addWithInfo('Range date', withState({ startDate: undefined, endDate: undefined })(({ store }) => {
+  const handleChange = dates => {
+    store.set(dates);
+  }
+
   return (
     <Calendar
-      onChange={(dates) => console.log('single date:', dates)}
+      onChange={(dates) => handleChange(dates)}
+      startDate={store.state.startDate}
+      endDate={store.state.endDate}
+      isRangeDate
     />
   );
-});
+}));
 
-stories.addWithInfo('Single Date', () => {
+stories.addWithInfo('Single Date', withState({ singleDate: undefined })(({ store }) => {
+  const handleChange = ({date}) => {
+    store.set({ singleDate: date });
+  }
   return (
     <Calendar
-      onChange={(dates) => console.log('single date:', dates)}
-      isSingleDate
+      onChange={dates => handleChange(dates)}
+      date={store.state.singleDate}
     />
   );
-});
+}));
 
-stories.addWithInfo('Block days', () => {
+stories.addWithInfo('Block days', withState({ singleDate: undefined })(({ store }) => {
+  const handleChange = ({date}) => {
+    store.set({ singleDate: date });
+  }
   return (
     <Calendar
-      onChange={(dates) => console.log('single date:', dates)}
-      isSingleDate
+      date={store.state.singleDate}
+      onChange={dates => handleChange(dates)}
       isOutsideRange={day => isInclusivelyAfterDay(day, moment().add(1, 'day'))}
     />
   );
-});
+}));
 
 
 stories.addWithInfo(
@@ -49,12 +62,17 @@ stories.addWithInfo(
       store.set({ startDate: moment().subtract(10, 'days'), endDate: moment().subtract(5, 'days') });
     }
 
+    const handleChange = dates => {
+      store.set(dates);
+    }
+
     return (
       <div>
         <Calendar
-          defaultStartDate={store.state.startDate}
-          defaultEndDate={store.state.endDate}
-          onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
+          startDate={store.state.startDate}
+          endDate={store.state.endDate}
+          onChange={dates => handleChange(dates)}
+          isRangeDate
         />
         <Button onClick={handleClick}>
           Novos valores de data
