@@ -10,7 +10,7 @@ const stories = storiesOf('Toggle', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () =>
+stories.add('Normal', () =>
   <Toggle
     id="my-toggle"
     value="10"
@@ -18,7 +18,7 @@ stories.addWithInfo('Normal', () =>
   />
 );
 
-stories.addWithInfo('Disabled', () =>
+stories.add('Disabled', () =>
   <div>
     <Toggle
       id="my-toggle-1"

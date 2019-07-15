@@ -8,7 +8,7 @@ const stories = storiesOf('Icon', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => (
+stories.add('Normal', () => (
   <div>
     <Icon />
     <Icon name="pets" />

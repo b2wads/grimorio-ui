@@ -172,7 +172,7 @@ const options = {
   },
 };
 
-stories.addWithInfo('Normal', () =>
+stories.add('Normal', () =>
     <Panel title="Normal" accordion>
       <LineGraph
         title="Pedidos!"
@@ -199,7 +199,7 @@ stories.addWithInfo('Normal', () =>
     </Panel>
 );
 
-stories.addWithInfo('Error', () =>
+stories.add('Error', () =>
     <LineGraph
       title="Pedidos!"
       error
@@ -211,7 +211,7 @@ stories.addWithInfo('Error', () =>
     />
 );
 
-stories.addWithInfo('With changing data', withState({ loading: false, data: other, label: 'teste 1' })(({ store }) => {
+stories.add('With changing data', withState({ loading: false, data: other, label: 'teste 1' })(({ store }) => {
   const change = () => {
     store.set({ loading: true })
     setTimeout(() => {

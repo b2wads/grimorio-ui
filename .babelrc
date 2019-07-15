@@ -14,7 +14,7 @@
         "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
         "@babel/plugin-proposal-export-namespace-from",
-        "transform-es2015-modules-commonjs"
+        "@babel/plugin-transform-modules-commonjs"
       ]
     },
     "development": {

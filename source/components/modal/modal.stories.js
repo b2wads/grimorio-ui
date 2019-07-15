@@ -11,7 +11,7 @@ const stories = storiesOf('Modal', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo(
+stories.add(
   'Custom',
   withState({ open: false })(({ store }) => {
     const openModal = () => {
@@ -36,7 +36,7 @@ stories.addWithInfo(
   })
 );
 
-stories.addWithInfo(
+stories.add(
   'Types',
   withState({ success: false, fail: false, confirm: false })(({ store }) => {
     const openModal = type => {
