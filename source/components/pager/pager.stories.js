@@ -35,3 +35,21 @@ stories.addWithInfo('Normal', () => {
     />
   );
 });
+
+
+stories.addWithInfo('Mobile', () => {
+  return (
+    <Pager
+      {...meta}
+      perpage={10}
+      length={data.length}
+      onLimitChange={() => alert('mudou o limit')}
+      onClickPagination={(type, value) => alert(`clicou na página ${value}`)}
+      limitList={limitList}
+      hasFirstLast
+      hasPagination
+      isMobile
+    />
+  );
+});
+
