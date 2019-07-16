@@ -9,4 +9,6 @@ const stories = storiesOf('PageTitle', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => <PageTitle isMobile title="Dashboard" sideComponent={<Button>Hello</Button>} />);
+stories.addWithInfo('Normal', () => <PageTitle title="Dashboard" sideComponent={<Button>Hello</Button>} />);
+
+stories.addWithInfo('Mobile', () => <PageTitle isMobile title="Dashboard" sideComponent={<Button>Hello</Button>} />);

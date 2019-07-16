@@ -18,13 +18,13 @@ class PageTitle extends PureComponent {
     const { title, sideComponent, isMobile, ...elementProps } = this.props;
 
     const checkIsMobile = cx(styles.titleWrap, {
-      [styles.titleWrapMobile]: isMobile,
+      [styles.isMobile]: isMobile,
     });
 
     return (
       <Panel size="small" contentClassName={checkIsMobile} {...elementProps}>
         <h1 className={styles.title}>{title}</h1>
-        {sideComponent ? <div className={checkIsMobile}>{sideComponent}</div> : ''}
+        {sideComponent ? <div>{sideComponent}</div> : ''}
       </Panel>
     );
   }

@@ -1,16 +1,15 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-
-
 .titleWrap {
   align-items: center;
   display: flex;
-  justify-content: space-between;
-}
-
-.titleWrapMobile {
   flex-direction: column;
+  justify-content: space-between;
+
+  &.isMobile {
+    flex-direction: column;
+  }
 }
 
 .title {
@@ -19,5 +18,3 @@
   font-size: 21px;
   line-height: 1.1;
 }
-
-
