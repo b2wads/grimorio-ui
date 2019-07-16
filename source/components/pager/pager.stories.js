@@ -21,7 +21,7 @@ const meta = {
 const limitList = [10, 15, 50];
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => {
+stories.add('Normal', () => {
   return (
     <Pager
       {...meta}

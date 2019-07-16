@@ -23,7 +23,7 @@ const itemsIcon = [
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () =>
+stories.add('Normal', () =>
   <Header
     user="ana@ana.com"
     onSelect={({value}) => alert(value)}
@@ -32,13 +32,13 @@ stories.addWithInfo('Normal', () =>
     />
 );
 
-stories.addWithInfo('With children', () =>
-  <Header> 
+stories.add('With children', () =>
+  <Header>
     Conteúdo qualquer que vai entrar aqui!
   </Header>
 );
 
-stories.addWithInfo('Mobile', () =>
+stories.add('Mobile', () =>
   <Header
     isMobile
     onLogout={() => alert('Logout!')}

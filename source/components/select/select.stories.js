@@ -28,7 +28,7 @@ const itemsIcon = [
   }
 ];
 
-stories.addWithInfo('Select with Label', () => {
+stories.add('Select with Label', () => {
   return <Select
     label="Opções"
     onSelect={data => console.log(data)}
@@ -38,7 +38,7 @@ stories.addWithInfo('Select with Label', () => {
   />
 });
 
-stories.addWithInfo('Select Mobile', () => {
+stories.add('Select Mobile', () => {
   return <Select
     isMobile
     label="Opções"
@@ -48,7 +48,7 @@ stories.addWithInfo('Select Mobile', () => {
   />
 });
 
-stories.addWithInfo('Controled', withState({ value: 'value-1' })(({ store }) => {
+stories.add('Controled', withState({ value: 'value-1' })(({ store }) => {
   const changeValue = ({ value }) => {
     store.set({ value });
   }
@@ -61,7 +61,7 @@ stories.addWithInfo('Controled', withState({ value: 'value-1' })(({ store }) => 
   />
 }));
 
-stories.addWithInfo('Select with defaultValue', () => {
+stories.add('Select with defaultValue', () => {
   return <Select
     label="Opções"
     onSelect={data => console.log(data)}
@@ -70,7 +70,7 @@ stories.addWithInfo('Select with defaultValue', () => {
   />
 });
 
-stories.addWithInfo('Select without Label', () => {
+stories.add('Select without Label', () => {
   return <Select
     placeholder="Opções"
     onSelect={data => console.log(data)}
@@ -78,7 +78,7 @@ stories.addWithInfo('Select without Label', () => {
   />
 });
 
-stories.addWithInfo('Select disabled', () => {
+stories.add('Select disabled', () => {
   return <div>
     <Select
       disabled
@@ -113,7 +113,7 @@ stories.addWithInfo('Select disabled', () => {
   </div>
 });
 
-stories.addWithInfo('Select - Options Bottom', () => {
+stories.add('Select - Options Bottom', () => {
   return <div>
     <br/>
     <br/>
@@ -129,7 +129,7 @@ stories.addWithInfo('Select - Options Bottom', () => {
   </div>
 });
 
-stories.addWithInfo('Menu', () => {
+stories.add('Menu', () => {
   return <Select
     type="menu"
     position="under"
@@ -144,7 +144,7 @@ const manualState = {
   value: 'val2',
 };
 
-stories.addWithInfo('Manual', withState(manualState)(({ store }) => {
+stories.add('Manual', withState(manualState)(({ store }) => {
   const updateMenu = menuState => {
     store.set({ manualOpen: menuState });
   };

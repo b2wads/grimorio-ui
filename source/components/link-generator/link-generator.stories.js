@@ -15,7 +15,7 @@ const sites = [1,2,3,4,5,].map(item => ({
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Generate', () => (
+stories.add('Generate', () => (
     <LinkGenerator
       text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in porta sapien. Maecenas congue quis ipsum vel vestibulum. Vestibulum suscipit, dolor sit amet aliquet dictum, nisi lectus sagittis massa."
       onGenerate={res => console.log(res)}
@@ -24,7 +24,7 @@ stories.addWithInfo('Generate', () => (
   )
 );
 
-stories.addWithInfo('Finish', () => (
+stories.add('Finish', () => (
     <LinkGenerator
       text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in porta sapien. Maecenas congue quis ipsum vel vestibulum. Vestibulum suscipit, dolor sit amet aliquet dictum, nisi lectus sagittis massa."
       stage="finished"
@@ -41,7 +41,7 @@ const initialState = {
   loading: false,
 };
 
-stories.addWithInfo('Functional', withState(initialState)(({ store }) => {
+stories.add('Functional', withState(initialState)(({ store }) => {
   const generateLink = ({ site, link }) => {
     store.set({ loading: true });
 

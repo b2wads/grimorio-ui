@@ -15,7 +15,7 @@ const initialState = {
   isPopoverOpen: false,
 };
 
-stories.addWithInfo('Normal', withState(initialState)(({ store }) => {
+stories.add('Normal', withState(initialState)(({ store }) => {
   const StubButton = () => {
     const { isPopoverOpen } = store.state;
     return (
@@ -32,7 +32,7 @@ stories.addWithInfo('Normal', withState(initialState)(({ store }) => {
   )
 }));
 
-stories.addWithInfo('On Dismiss', withState(initialState)(({ store }) => {
+stories.add('On Dismiss', withState(initialState)(({ store }) => {
   const StubButton = () => {
     const { isPopoverOpen } = store.state;
     return (
@@ -65,7 +65,7 @@ const anotherInitialState = {
   "fourth": false,
 }
 
-stories.addWithInfo('Open in different positions', withState(anotherInitialState)(({ store }) => {
+stories.add('Open in different positions', withState(anotherInitialState)(({ store }) => {
   const StubButton = ({ popoverName, title }) => {
     const { isPopoverOpen } = store.state;
     return (

@@ -29,7 +29,7 @@ const stories = storiesOf('Panel', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Default', () => (
+stories.add('Default', () => (
   <div style={{ width: '25%' }}>
     <Panel>
       Simple Panel
@@ -42,7 +42,7 @@ stories.addWithInfo('Default', () => (
   </div>
 ));
 
-stories.addWithInfo('With Footer', () => (
+stories.add('With Footer', () => (
   <div style={{ width: '25%' }}>
     <Panel title="Title" footer={<Button size="large">Cadastrar Site</Button>}>
       <p>Content</p>
@@ -50,7 +50,7 @@ stories.addWithInfo('With Footer', () => (
   </div>
 ));
 
-stories.addWithInfo('Loading', () => (
+stories.add('Loading', () => (
   <div style={{ width: '25%' }}>
     <Panel title="Title" loading={true} footer={<Button size="large">Cadastrar Site</Button>}>
       <p>Content</p>
@@ -58,7 +58,7 @@ stories.addWithInfo('Loading', () => (
   </div>
 ));
 
-stories.addWithInfo('Accordion', () => (
+stories.add('Accordion', () => (
   <div style={{ width: '25%' }}>
     <Panel
       title="Title"
@@ -71,7 +71,7 @@ stories.addWithInfo('Accordion', () => (
   </div>
 ));
 
-stories.addWithInfo('With Brand', () => (
+stories.add('With Brand', () => (
   <div style={{ display: 'flex' }}>
     <Panel brand="suba" style={pannelSize}>
       <Product type="card" data={exampleProduct}></Product>
