@@ -36,8 +36,7 @@ stories.add('Normal', () => {
   );
 });
 
-
-stories.addWithInfo('Mobile', () => {
+stories.add('Mobile', () => {
   return (
     <Pager
       {...meta}
@@ -52,4 +51,3 @@ stories.addWithInfo('Mobile', () => {
     />
   );
 });
-

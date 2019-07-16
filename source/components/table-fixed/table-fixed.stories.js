@@ -94,7 +94,7 @@ const footerModelRight = {
   },
 };
 
-stories.addWithInfo(
+stories.add(
   'Sticky',
   withState({ data: null })(({ store }) => {
     fetch('https://randomuser.me/api/?results=10').then(res => res.json()).then(res => {
