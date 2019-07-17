@@ -101,12 +101,12 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', chec
         </FormGroup>
         <br/>
         <FormGroup>
-          <FormControlLabel iconRight="link" outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormControlLabel iconRight="link" iconRightClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
           <FormHelpText>Com ícone à direita</FormHelpText>
         </FormGroup>
         <br/>
         <FormGroup>
-          <FormControlLabel iconLeft="link" outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormControlLabel iconLeft="link" iconLeftClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
           <FormHelpText>Com ícone à esquerda</FormHelpText>
         </FormGroup>
         <br/>

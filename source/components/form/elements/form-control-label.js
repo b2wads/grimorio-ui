@@ -67,7 +67,19 @@ class FormControlLabel extends Component {
   }
 
   render() {
-    const { label, placeholder, activeLabel, onChange, type, children, iconRight, iconLeft, ...rest } = this.props;
+    const {
+      label,
+      placeholder,
+      activeLabel,
+      onChange,
+      type,
+      children,
+      iconRight,
+      iconRightClick,
+      iconLeft,
+      iconLeftClick,
+      ...rest
+    } = this.props;
 
     // context
     const formGroup = this.context.$formGroup;
@@ -88,6 +100,14 @@ class FormControlLabel extends Component {
       [styles[`has-${validationState}`]]: validationState,
     });
 
+    const iconRightClasses = classNames(styles.iconRight, {
+      [styles.isClickable]: iconRightClick,
+    });
+
+    const iconLeftClasses = classNames(styles.iconLeft, {
+      [styles.isClickable]: iconLeftClick,
+    });
+
     if (type === 'select') {
       return (
         <Select className={inputClasses} label={label} onSelect={onChange} {...rest}>
@@ -98,7 +118,7 @@ class FormControlLabel extends Component {
       return (
         <div className={labelWrapperClasses}>
           <FormLabel className={labelClasses}>{label}</FormLabel>
-          {iconLeft && <Icon className={styles.iconLeft} name={iconLeft} size={18} />}
+          {iconLeft && <Icon className={iconLeftClasses} name={iconLeft} size={18} onClick={iconLeftClick} />}
           <FormControl
             placeholder={this.state.active ? placeholder : ''}
             inputClassName={inputClasses}
@@ -108,7 +128,7 @@ class FormControlLabel extends Component {
             onFocus={this.onFocusLabel}
             onBlur={this.onBlurLabel}
           />
-          {iconRight && <Icon className={styles.iconRight} name={iconRight} size={18} />}
+          {iconRight && <Icon className={iconRightClasses} name={iconRight} size={18} onClick={iconRightClick} />}
         </div>
       );
     }

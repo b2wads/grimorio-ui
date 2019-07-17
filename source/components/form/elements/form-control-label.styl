@@ -69,6 +69,7 @@ $c-default = #333;
 .iconRight, .iconLeft {
   position: absolute;
   top: 16px;
+  pointer-events: none;
 }
 .iconRight {
   right: 12px;
@@ -76,4 +77,9 @@ $c-default = #333;
 
 .iconLeft {
   left: 12px;
+}
+
+.isClickable {
+  pointer-events: auto;
+  cursor: pointer;
 }
