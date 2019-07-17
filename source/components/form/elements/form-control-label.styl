@@ -35,14 +35,14 @@ $c-default = #333;
   transition: all 0.125s ease;
 }
 
-.formControl { margin-top: 20px; color: $c-default; font-size: 16px; }
+.formControl { margin-top: 5px; color: $c-default; font-size: 16px; }
 
 .has-success.label { color: $c-success; }
 .has-warning.label { color: $c-warning; }
 .has-error.label { color: $c-error; }
 
 .isOutline {
-  top: 20px;
+  top: 17px;
   padding-left 10px;
 }
 
@@ -52,4 +52,28 @@ $c-default = #333;
   width: auto;
   padding: 0 5px;
   left: 5px;
+}
+
+.has-iconRight {
+  label, input {
+    padding-right: 35px;
+  }
+}
+
+.has-iconLeft {
+  label, input {
+    padding-left: 35px;
+  }
+}
+
+.iconRight, .iconLeft {
+  position: absolute;
+  top: 16px;
+}
+.iconRight {
+  right: 12px;
+}
+
+.iconLeft {
+  left: 12px;
 }

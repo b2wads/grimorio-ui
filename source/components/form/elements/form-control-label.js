@@ -7,6 +7,7 @@ import FormControl from './form-control';
 import FormLabel from './form-label';
 
 import Select from '../../select';
+import Icon from '../../icon';
 
 // styles
 import styles from './form-control-label.styl';
@@ -66,11 +67,16 @@ class FormControlLabel extends Component {
   }
 
   render() {
-    const { label, placeholder, activeLabel, onChange, type, children, ...rest } = this.props;
+    const { label, placeholder, activeLabel, onChange, type, children, iconRight, iconLeft, ...rest } = this.props;
 
     // context
     const formGroup = this.context.$formGroup;
     const validationState = (formGroup && formGroup.validationState) || undefined;
+
+    const labelWrapperClasses = classNames(styles.labelWrapper, {
+      [styles['has-iconRight']]: iconRight,
+      [styles['has-iconLeft']]: iconLeft,
+    });
 
     const labelClasses = classNames(styles.label, {
       [styles.isActive]: activeLabel === null ? this.state.active : activeLabel,
@@ -90,8 +96,9 @@ class FormControlLabel extends Component {
       );
     } else {
       return (
-        <div className={styles.labelWrapper}>
+        <div className={labelWrapperClasses}>
           <FormLabel className={labelClasses}>{label}</FormLabel>
+          {iconLeft && <Icon className={styles.iconLeft} name={iconLeft} size={18} />}
           <FormControl
             placeholder={this.state.active ? placeholder : ''}
             inputClassName={inputClasses}
@@ -101,6 +108,7 @@ class FormControlLabel extends Component {
             onFocus={this.onFocusLabel}
             onBlur={this.onBlurLabel}
           />
+          {iconRight && <Icon className={styles.iconRight} name={iconRight} size={18} />}
         </div>
       );
     }

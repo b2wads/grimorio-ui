@@ -100,6 +100,16 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', chec
           <FormHelpText>Select ouline!</FormHelpText>
         </FormGroup>
         <br/>
+        <FormGroup>
+          <FormControlLabel iconRight="link" outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Com ícone à direita</FormHelpText>
+        </FormGroup>
+        <br/>
+        <FormGroup>
+          <FormControlLabel iconLeft="link" outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Com ícone à esquerda</FormHelpText>
+        </FormGroup>
+        <br/>
         <Button onClick={changeCheck}>Marcar Checkboxes</Button>
         <FormGroup>
           <label htmlFor="check">Checkbox!</label>
