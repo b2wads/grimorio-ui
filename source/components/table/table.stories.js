@@ -63,19 +63,19 @@ const schema = {
   },
 };
 
-stories.addWithInfo('Normal', () => {
+stories.add('Normal', () => {
   return (
     <Table schema={schema} data={simpledata} />
   );
 });
 
-stories.addWithInfo('Fixed', () => {
+stories.add('Fixed', () => {
   return (
     <Table layout="fixed" schema={schema} data={simpledata} />
   );
 });
 
-stories.addWithInfo('Sticky', withState({ data: null })(({ store }) => {
+stories.add('Sticky', withState({ data: null })(({ store }) => {
   fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json())
     .then(res => {
@@ -85,7 +85,7 @@ stories.addWithInfo('Sticky', withState({ data: null })(({ store }) => {
   return <Table schema={schema} data={store.state.data} scrollY height="400px" isSticky />
 }));
 
-stories.addWithInfo('Special Case', () => {
+stories.add('Special Case', () => {
   const special = [
     {
       className: 'mail',
@@ -109,13 +109,13 @@ stories.addWithInfo('Special Case', () => {
   );
 });
 
-stories.addWithInfo('Scroll', () => {
+stories.add('Scroll', () => {
   return (
     <Table scrollY scrollX width="500px" height="150px" schema={schema} data={simpledata} />
   );
 });
 
-stories.addWithInfo('With async Data', withState({ data: null })(({ store }) => {
+stories.add('With async Data', withState({ data: null })(({ store }) => {
   fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json())
     .then(res => {

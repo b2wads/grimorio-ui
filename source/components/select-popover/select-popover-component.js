@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
-import { has, sortBy, isEqual } from 'lodash';
 
 import Popover from '../popover';
 import Button from '../button';
@@ -40,6 +39,7 @@ class SelectPopover extends React.Component {
       prevOptions: { ...options },
       nextOptions: { ...options },
       touched: false,
+      flatOptions: props.options.map(obj => obj.key),
     };
 
     this.toggleIsOpen = this.toggleIsOpen.bind(this);
@@ -54,20 +54,26 @@ class SelectPopover extends React.Component {
   generateOptions(optionsArray) {
     const options = {};
     optionsArray.forEach(obj => {
-      options[obj.key] = has(obj, 'checked') ? obj.checked : true;
+      options[obj.key] = obj.hasOwnProperty('checked') ? obj.checked : true;
     });
 
     return options;
   }
 
-  componentDidUpdate(prevProps) {
-    if (!isEqual(sortBy(prevProps.options), sortBy(this.props.options))) {
+  hasKeyChanged(arr) {
+    const { flatOptions } = this.state;
+    return !arr.every(obj => flatOptions.includes(obj.key)) || flatOptions.length !== arr.length;
+  }
+
+  componentDidUpdate() {
+    if (this.hasKeyChanged(this.props.options)) {
       const options = this.generateOptions(this.props.options);
       Object.keys(options).forEach(key => {
-        options[key] = has(this.state.nextOptions, key) ? this.state.nextOptions[key] : options[key];
+        options[key] = this.state.nextOptions.hasOwnProperty(key) ? this.state.nextOptions[key] : options[key];
       });
 
       this.setState({
+        flatOptions: this.props.options.map(obj => obj.key),
         prevOptions: { ...options },
         nextOptions: { ...options },
       });

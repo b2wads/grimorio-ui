@@ -94,18 +94,25 @@ const footerModelRight = {
   },
 };
 
-stories.addWithInfo('Sticky', withState({ data: null })(({ store }) => {
-  fetch('https://randomuser.me/api/?results=10')
-    .then(res => res.json())
-    .then(res => {
+stories.add(
+  'Sticky',
+  withState({ data: null })(({ store }) => {
+    fetch('https://randomuser.me/api/?results=10').then(res => res.json()).then(res => {
       !store.state.data && store.set({ data: res.results });
     });
 
-  return <TableFixed scrollY isSticky width="700px" height="300px"
-  schemaRight={schemaRight}
-  schemaLeft={schemaLeft}
-  data={store.state.data}
-  dataFooterLeft={footerModelLeft}
-  dataFooterRight={footerModelRight}
-  />
-}));
+    return (
+      <TableFixed
+        scrollY
+        isSticky
+        width="700px"
+        height="300px"
+        schemaRight={schemaRight}
+        schemaLeft={schemaLeft}
+        data={store.state.data}
+        dataFooterLeft={footerModelLeft}
+        dataFooterRight={footerModelRight}
+      />
+    );
+  })
+);
