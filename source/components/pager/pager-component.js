@@ -19,11 +19,12 @@ class Pager extends PureComponent {
           defaultValue={limit}
           position="bottom"
         >
-          {limitList.map(limitVal => (
-            <SelectOption value={limitVal}>
-              {`${limitVal} por página`}
-            </SelectOption>
-          ))}
+          {limitList &&
+            limitList.map(limitVal => (
+              <SelectOption value={limitVal}>
+                {`${limitVal} por página`}
+              </SelectOption>
+            ))}
         </Select>
       </div>
     );
