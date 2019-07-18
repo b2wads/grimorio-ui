@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-
 import Button from './index';
+
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 
 const stories = storiesOf('Button', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Color', () => (
+stories.add('Color', () => (
   <div>
     <Button color="primary" className="teste">Primary</Button>&nbsp;
     <Button color="secondary">Secondary</Button>&nbsp;
@@ -18,7 +18,7 @@ stories.addWithInfo('Color', () => (
   </div>
 ));
 
-stories.addWithInfo('Modifier', () => (
+stories.add('Modifier', () => (
   <div>
     <Button color="variant" modifier="outline">Variant --Outline</Button>&nbsp;
     <Button color="primary" modifier="outline">Primary --Outline</Button>&nbsp;
@@ -30,7 +30,7 @@ stories.addWithInfo('Modifier', () => (
   </div>
 ));
 
-stories.addWithInfo('Size', () => (
+stories.add('Size', () => (
   <div>
     <Button size="none">None</Button>&nbsp;
     <Button size="small">Small</Button>&nbsp;
@@ -39,7 +39,7 @@ stories.addWithInfo('Size', () => (
   </div>
 ));
 
-stories.addWithInfo('Loading', () => (
+stories.add('Loading', () => (
   <div>
     <Button onClick={() => alert('btn is disabled while loading')} loading color="primary">
       Primary
@@ -51,7 +51,7 @@ stories.addWithInfo('Loading', () => (
   </div>
 ));
 
-stories.addWithInfo('With icon', () => (
+stories.add('With icon', () => (
   <div>
     <Button iconLeft="person" color="primary">
       Primary Medium
@@ -66,7 +66,7 @@ stories.addWithInfo('With icon', () => (
   </div>
 ));
 
-stories.addWithInfo('States', () => (
+stories.add('States', () => (
   <div>
     <Button color="primary">
       Normal
@@ -83,7 +83,7 @@ stories.addWithInfo('States', () => (
   </div>
 ));
 
-stories.addWithInfo('Disabled', () => (
+stories.add('Disabled', () => (
   <div>
     <Button color="primary" disabled={boolean('Disabled', true)}>
       {text('Primary', 'Primary')}

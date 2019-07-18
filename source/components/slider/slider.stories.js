@@ -17,7 +17,7 @@ const style = {
   padding: '50px 0',
 };
 
-stories.addWithInfo('Arrow Dots', () => (
+stories.add('Arrow Dots', () => (
   <div>
     <Slider arrows dots>
       <div style={style}>1</div>
@@ -27,7 +27,7 @@ stories.addWithInfo('Arrow Dots', () => (
   </div>
 ));
 
-stories.addWithInfo('Dots Back', () => (
+stories.add('Dots Back', () => (
   <div>
     <Slider dots dotsBackground>
       <div style={style}>1</div>
@@ -39,7 +39,7 @@ stories.addWithInfo('Dots Back', () => (
   </div>
 ));
 
-stories.addWithInfo('Autoplay', () => (
+stories.add('Autoplay', () => (
   <div>
     <Slider dots autoplay delay={2500}>
       <img style={{ width: '100%', height: 'auto' }} src="https://picsum.photos/1020/420" />
@@ -49,7 +49,7 @@ stories.addWithInfo('Autoplay', () => (
   </div>
 ));
 
-stories.addWithInfo('Slides To Show', () => (
+stories.add('Slides To Show', () => (
   <div>
     <Slider dots autoplay delay={2500} slidesToShow={2}>
       <div style={style}>1</div>
@@ -62,7 +62,7 @@ stories.addWithInfo('Slides To Show', () => (
   </div>
 ));
 
-stories.addWithInfo('Single Slide', () => (
+stories.add('Single Slide', () => (
   <div>
     <Slider>
       <div style={style}>Single</div>

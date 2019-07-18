@@ -9,9 +9,8 @@ const stories = storiesOf('Menu', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo(
+stories.add(
   'Default',
-  `This is the basic usage with the menu.`,
   () => {
     return (
       <Menu items={[
@@ -38,8 +37,8 @@ stories.addWithInfo(
   }
 );
 
-stories.addWithInfo(
-  'Manual',``,
+stories.add(
+  'Manual',
   () => {
     return (
       <Menu>

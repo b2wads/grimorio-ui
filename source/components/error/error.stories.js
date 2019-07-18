@@ -8,7 +8,7 @@ const stories = storiesOf('Error', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => {
+stories.add('Normal', () => {
   return (
     <div>
       <Error hasButton onErrorClick={() => alert('error!')} />

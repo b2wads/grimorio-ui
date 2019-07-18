@@ -24,13 +24,12 @@ const options = {
   dark: 'dark',
 };
 
-stories.addWithInfo(
+stories.add(
   'Default',
-  `This is the basic usage with the accordion.`,
   () => {
     const isExclusive = boolean('exclusive', true);
     return (
-      <Accordion exclusive={isExclusive} type={select('Theme', options, 'default', '0')}  panels={[
+      <Accordion exclusive={isExclusive} type={select('Theme', options, 'default', 'Theme')}  panels={[
         { icon: 'insert_chart', title: 'Dashboard', content: renderContent() },
         { icon: 'dashboard', title: 'Charts', content: 'segundo conteudo' }
       ]} />
@@ -38,8 +37,8 @@ stories.addWithInfo(
   }
 );
 
-stories.addWithInfo(
-  'Manual',``,
+stories.add(
+  'Manual',
   withState({ active: -1 })(({ store }) => {
     const getActive = (index) => {
       return store.state.active === index;

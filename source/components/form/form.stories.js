@@ -14,7 +14,7 @@ const stories = storiesOf('Form', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
+stories.add('Normal', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
   const handleChange = event => {
     store.set({ input: event.target.value });
   }
@@ -136,7 +136,7 @@ stories.addWithInfo('Normal', withState({ input: 'Campo com valor default', chec
   );
 }));
 
-stories.addWithInfo('Inline', () => (
+stories.add('Inline', () => (
   <Form onSubmit={ ()=>{} } styleType='inline'>
     <FormGroup>
       <FormControl placeholder="Form, FormGroup and input" />
@@ -151,7 +151,7 @@ stories.addWithInfo('Inline', () => (
   </Form>
 ));
 
-stories.addWithInfo('Horizontal', () => (
+stories.add('Horizontal', () => (
   <Form onSubmit={ ()=>{} } styleType='horizontal'>
     <FormGroup>
       <FormLabel>Example of label</FormLabel>
@@ -169,14 +169,14 @@ stories.addWithInfo('Horizontal', () => (
 ));
 
 // Form label
-stories.addWithInfo('Addon text', () => (
+stories.add('Addon text', () => (
   <FormGroup>
     <br/><br/><br/>
     <FormLabel addon={'text'}>Nome:</FormLabel>
   </FormGroup>
 ));
 
-stories.addWithInfo('Addon link', () => (
+stories.add('Addon link', () => (
   <FormGroup>
     <br/><br/><br/>
     <FormLabel addon={<a href="/home">Esqueci a minha senha</a>}>Nome:</FormLabel>
@@ -184,14 +184,14 @@ stories.addWithInfo('Addon link', () => (
 ));
 
 // Form group
-stories.addWithInfo('With id', () => (
+stories.add('With id', () => (
   <FormGroup controlId="test">
     <FormLabel>Nome:</FormLabel>
     <FormControl placeholder="Form group with input" />
   </FormGroup>
 ));
 
-stories.addWithInfo('With validation', () => (
+stories.add('With validation', () => (
   <div>
     <FormGroup validationState="success">
       <FormLabel>Nome:</FormLabel>
@@ -210,7 +210,7 @@ stories.addWithInfo('With validation', () => (
 ));
 
 // Form control
-stories.addWithInfo('Knobs', () => (
+stories.add('Knobs', () => (
   <div>
     <FormControl
       type={text('Type', 'text')}
@@ -234,7 +234,7 @@ stories.addWithInfo('Knobs', () => (
   </div>
 ));
 
-stories.addWithInfo('Disabled', () => (
+stories.add('Disabled', () => (
   <div>
     <FormControl placeholder="Digite um nome" disabled />
     <FormControl type="email" placeholder="Digite o seu e-mail" disabled />
@@ -248,13 +248,13 @@ stories.addWithInfo('Disabled', () => (
   </div>
 ));
 
-stories.addWithInfo('Feedback', () => (
+stories.add('Feedback', () => (
   <FormGroup validationState="success">
     <FormControl type="password" placeholder="Digite um valor" feedback />
   </FormGroup>
 ));
 
-stories.addWithInfo('On focus', () => (
+stories.add('On focus', () => (
   <div>
     <FormControl placeholder="Digite um nome" onFocus={action('focus')} />
     <FormControl type="radio" onFocus={action('focus')} />
@@ -268,7 +268,7 @@ stories.addWithInfo('On focus', () => (
   </div>
 ));
 
-stories.addWithInfo('On change', () => (
+stories.add('On change', () => (
   <div>
     <FormControl placeholder="Digite um nome" onChange={action('change')} />
     <FormControl type="radio" onChange={action('change')} />
@@ -282,7 +282,7 @@ stories.addWithInfo('On change', () => (
   </div>
 ));
 
-stories.addWithInfo('On blur', () => (
+stories.add('On blur', () => (
   <div>
     <FormControl placeholder="Digite um nome" onBlur={action('blur')} />
     <FormControl type="radio" onBlur={action('blur')} />
@@ -296,7 +296,7 @@ stories.addWithInfo('On blur', () => (
   </div>
 ));
 
-stories.addWithInfo('On Mask', () => {
+stories.add('On Mask', () => {
   const handleMask = value => {
     return fieldsMask({ type: 'number' }, value);
   }
@@ -309,7 +309,7 @@ stories.addWithInfo('On Mask', () => {
 });
 
 
-stories.addWithInfo('On Validation', withState({ status: undefined, message: undefined, status2: undefined, message2: undefined })(({ store }) => {
+stories.add('On Validation', withState({ status: undefined, message: undefined, status2: undefined, message2: undefined })(({ store }) => {
   const handleValidate = validation => {
     store.set({ status: validation.validationState, message: validation.errorMessage });
   }
