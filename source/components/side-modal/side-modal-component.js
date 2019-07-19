@@ -26,7 +26,7 @@ class SideModal extends PureComponent {
     const { width, height, position, open } = this.props;
 
     if (width) {
-      return { width, right: open ? '0px' : `-${width}` };
+      return { width, [position]: open ? '0px' : `-${width}` };
     } else if (height) {
       return { height, [position]: open ? '0px' : `-${height}` };
     }
