@@ -1,0 +1,50 @@
+@import '../../../source/styl/00-settings/_variables.styl';
+
+.panel-steps {
+  display: flex;
+  justify-content: center;
+}
+
+.stepsHolder {
+  align-items: center;
+  display: flex;
+  flex-grow: 4;
+  opacity: 0.4;
+}
+
+.steps {
+  color: $c-primary-dark;
+  display: inline-flex;
+  width: 100%;
+}
+
+.stepsHolderActive {
+  color: $c-primary;
+  opacity: 1;
+}
+
+.stepsHolderLine {
+  align-self: center;
+  background-color: $c-support-medium;
+  height: 1px;
+  margin: 0 18px;
+  vertical-align: middle;
+  width: 150px;
+}
+
+.stepsCurrent {
+  color: blue !important;
+}
+
+.stepsNumber {
+  background-color: $c-primary;
+  border-radius: 100px;
+  color: $c-support-light;
+  font-size: 17px;
+  height: 30px;
+  margin-right: 10px;
+  padding: 3px;
+  text-align: center;
+  vertical-align: middle;
+  width: 30px;
+}

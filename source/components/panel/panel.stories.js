@@ -7,7 +7,7 @@ import Panel from './panel-component';
 import Button from '../button';
 import Product from '../product';
 
-const pannelSize = { flexBasis: '20%', minWidth: '250px', };
+const pannelSize = { flexBasis: '20%', minWidth: '250px' };
 
 const exampleProduct = {
   img: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
@@ -21,7 +21,7 @@ const exampleProduct = {
     {
       type: 'highlight',
       value: true,
-    }
+    },
   ],
 };
 
@@ -38,6 +38,10 @@ stories.add('Default', () => (
     <Panel title="Title">
       <p>Content</p>
       <Button>Send</Button>
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel central>
+      <p>Valor</p>
     </Panel>
   </div>
 ));
@@ -74,19 +78,19 @@ stories.add('Accordion', () => (
 stories.add('With Brand', () => (
   <div style={{ display: 'flex' }}>
     <Panel brand="suba" style={pannelSize}>
-      <Product type="card" data={exampleProduct}></Product>
+      <Product type="card" data={exampleProduct} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel brand="acom" style={pannelSize}>
-      <Product type="card" data={exampleProduct}></Product>
+      <Product type="card" data={exampleProduct} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel brand="shop" style={pannelSize}>
-      <Product type="card" data={exampleProduct}></Product>
+      <Product type="card" data={exampleProduct} />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel brand="soub" style={pannelSize}>
-      <Product type="card" data={exampleProduct}></Product>
+      <Product type="card" data={exampleProduct} />
     </Panel>
   </div>
 ));
