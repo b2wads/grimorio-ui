@@ -38,10 +38,22 @@ class Steps extends Component {
                   [styles.stepsHolderActive]: index === this.state.value,
                 })}
               >
-                <span className={cx(styles.stepsNumber)}>
-                  {this.state.value > index ? <Icon name="check_circle_outline" size={21} /> : index + 1}
+                <span
+                  className={cx(styles.stepsNumber, {
+                    [styles.enabled]: index === this.state.value,
+                    [styles.disabledText]: index <= this.state.value,
+                  })}
+                >
+                  {this.state.value > index ? <Icon name="check" size={16} /> : index + 1}
                 </span>
-                <span>{step.title}</span>
+                <span
+                  className={cx({
+                    [styles.disabled]: !(index === this.state.value),
+                    [styles.enabledText]: index === this.state.value,
+                  })}
+                >
+                  {step.title}
+                </span>
                 {index + 1 < this.props.data.length && <div className={cx(styles.stepsHolderLine)} />}
               </div>
             ))}
