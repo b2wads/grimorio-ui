@@ -1,6 +1,6 @@
 import '../../../internals/test/helper';
 
-import Steps from './slider-component';
+import Steps from './steps-component';
 
 /** @test {Slider} */
 describe('Slider component', () => {
