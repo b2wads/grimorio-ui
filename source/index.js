@@ -41,7 +41,7 @@ import PieChart from './components/pie-chart';
 import Tag from './components/tag';
 import Toggle from './components/toggle';
 import Pager from './components/pager';
-
+import Steps from './components/steps';
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
 import { fieldsMask, masks } from './helpers/mask';
@@ -94,5 +94,6 @@ export {
   PieChart,
   Tag,
   Toggle,
+  Steps,
   Pager,
 };

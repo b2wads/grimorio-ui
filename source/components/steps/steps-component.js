@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './steps.styl';
 import Icon from '../icon/index';
-import Button from '../button/index';
+// import Button from '../button/index';
 import Panel from '../panel/index';
 
 class Steps extends Component {
@@ -28,46 +28,29 @@ class Steps extends Component {
   }
 
   render() {
+    const { current, data } = this.props;
+
     return (
       <Fragment>
         <Panel central>
-          <div className={cx(styles.steps)}>
-            {this.props.data.map((step, index) => (
+          <div className={styles.steps}>
+            {data.map((step, index) => (
               <div
+                // key={index}
                 className={cx(styles.stepsHolder, {
-                  [styles.stepsHolderActive]: index === this.state.value,
+                  [styles.StepsHolderActive]: step.isComplete,
+                  [styles.stepsCurrent]: step.name === current,
                 })}
               >
-                <span
-                  className={cx(styles.stepsNumber, {
-                    [styles.enabled]: index === this.state.value,
-                    [styles.disabledText]: index <= this.state.value,
-                  })}
-                >
-                  {this.state.value > index ? <Icon name="check" size={16} /> : index + 1}
+                <span className={cx(styles.stepsNumber, { [styles.currentNumber]: step.name === current })}>
+                  {step.isComplete ? <Icon name="check" size={20} /> : index + 1}
                 </span>
-                <span
-                  className={cx({
-                    [styles.disabled]: !(index === this.state.value),
-                    [styles.enabledText]: index === this.state.value,
-                  })}
-                >
-                  {step.title}
-                </span>
-                {index + 1 < this.props.data.length && <div className={cx(styles.stepsHolderLine)} />}
+                <span>{step.title}</span>
+                {index + 1 < data.length && <div className={styles.stepsHolderLine} />}
               </div>
             ))}
           </div>
         </Panel>
-        {this.props.children}
-        <Fragment>
-          {this.props.showButton &&
-            <div style={{ marginTop: '20px' }}>
-              <Button modifier="outline" color="variant" onClick={() => this.resetStep()}>Cancelar</Button>
-              <Button onClick={() => this.incrementStep()}>Proxímo Passo</Button>
-              <Button onClick={() => this.decrementStep()}>Voltar Passo</Button>
-            </div>}
-        </Fragment>
       </Fragment>
     );
   }
