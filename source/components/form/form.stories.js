@@ -1,5 +1,6 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
@@ -14,7 +15,7 @@ const stories = storiesOf('Form', module);
 
 stories.addDecorator(withKnobs);
 
-stories.add('Normal', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
+stories.add('Input text', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
   const handleChange = event => {
     store.set({ input: event.target.value });
   }
@@ -23,6 +24,106 @@ stories.add('Normal', withState({ input: 'Campo com valor default', check: [] })
     store.set({ input: '' });
   }
 
+  return (
+    <div>
+      <Form onSubmit={() => { }}>
+        <FormGroup>
+          <FormLabel>Example of label</FormLabel>
+          <FormControl placeholder="Form, FormGroup and input" />
+          <FormHelpText>text</FormHelpText>
+        </FormGroup>
+        <FormActions>
+          <Button>Cancelar</Button>
+          <Button color="primary">Enviar</Button>
+        </FormActions>
+      </Form>
+      <Form onSubmit={() => { }}>
+        <FormGroup>
+          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" />
+          <FormHelpText>text</FormHelpText>
+        </FormGroup>
+        <FormActions>
+          <Button>Cancelar</Button>
+          <Button color="primary">Enviar</Button>
+        </FormActions>
+      </Form>
+      <Form onSubmit={() => { }}>
+        <Button onClick={change}>Deixar vazio!</Button>
+        <FormGroup>
+          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" value={store.state.input} onChange={handleChange} />
+          <FormHelpText>Tem valor default controlado</FormHelpText>
+        </FormGroup>
+        <FormActions>
+          <Button>Cancelar</Button>
+          <Button color="primary">Enviar</Button>
+        </FormActions>
+      </Form>
+      <Form>
+        <FormGroup>
+          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Tem valor default, porém não é controlado</FormHelpText>
+        </FormGroup>
+        <br />
+        <FormGroup>
+          <FormControlLabel outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Versão outline!</FormHelpText>
+        </FormGroup>
+        <br />
+        <FormGroup>
+          <FormControlLabel iconRight="link" iconRightClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Com ícone à direita</FormHelpText>
+        </FormGroup>
+        <br />
+        <FormGroup>
+          <FormControlLabel iconLeft="link" iconLeftClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Com ícone à esquerda</FormHelpText>
+        </FormGroup>
+      </Form>
+    </div>
+  );
+}));
+
+stories.add('Input text com ícone', () => (
+    <div>
+      <Form>
+        <FormGroup>
+          <FormControlLabel iconRight="link" iconRightClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Com ícone à direita</FormHelpText>
+        </FormGroup>
+        <br />
+        <FormGroup>
+          <FormControlLabel iconLeft="link" iconLeftClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormHelpText>Com ícone à esquerda</FormHelpText>
+        </FormGroup>
+      </Form>
+    </div>
+  )
+);
+
+stories.add('Select', () => (
+  <div>
+    <Form>
+      <FormGroup>
+        <FormControlLabel onChange={data => console.log(data)} label="Nome" type="select">
+          <SelectOption value="a">a</SelectOption>
+          <SelectOption value="b">b</SelectOption>
+        </FormControlLabel>
+        <FormHelpText>Select!</FormHelpText>
+      </FormGroup>
+      <br />
+      <FormGroup>
+        <FormControlLabel outline onChange={data => console.log(data)} label="Nome" type="select">
+          <SelectOption value="a">a</SelectOption>
+          <SelectOption value="b">b</SelectOption>
+        </FormControlLabel>
+        <FormHelpText>Select ouline!</FormHelpText>
+      </FormGroup>
+    </Form>
+  </div>
+)
+);
+
+stories.add('Checkbox', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
   const changeCheck = () => {
     store.set({ check: [1, 2] });
   }
@@ -41,75 +142,7 @@ stories.add('Normal', withState({ input: 'Campo com valor default', check: [] })
 
   return (
     <div>
-      <Form onSubmit={ ()=>{} }>
-        <FormGroup>
-          <FormLabel>Example of label</FormLabel>
-          <FormControl placeholder="Form, FormGroup and input" />
-          <FormHelpText>text</FormHelpText>
-        </FormGroup>
-        <FormActions>
-          <Button>Cancelar</Button>
-          <Button color="primary">Enviar</Button>
-        </FormActions>
-      </Form>
-      <Form onSubmit={ ()=>{} }>
-        <FormGroup>
-          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" />
-          <FormHelpText>text</FormHelpText>
-        </FormGroup>
-        <FormActions>
-          <Button>Cancelar</Button>
-          <Button color="primary">Enviar</Button>
-        </FormActions>
-      </Form>
-      <Form onSubmit={ ()=>{} }>
-        <Button onClick={change}>Deixar vazio!</Button>
-        <FormGroup>
-          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" value={store.state.input} onChange={handleChange} />
-          <FormHelpText>Tem valor default controlado</FormHelpText>
-        </FormGroup>
-        <FormActions>
-          <Button>Cancelar</Button>
-          <Button color="primary">Enviar</Button>
-        </FormActions>
-      </Form>
       <Form>
-        <FormGroup>
-          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
-          <FormHelpText>Tem valor default, porém não é controlado</FormHelpText>
-        </FormGroup>
-        <br/>
-        <FormGroup>
-          <FormControlLabel outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
-          <FormHelpText>Versão outline!</FormHelpText>
-        </FormGroup>
-        <br/>
-        <FormGroup>
-          <FormControlLabel onChange={data => console.log(data)} label="Nome" type="select">
-            <SelectOption value="a">a</SelectOption>
-            <SelectOption value="b">b</SelectOption>
-          </FormControlLabel>
-          <FormHelpText>Select!</FormHelpText>
-        </FormGroup>
-        <br/>
-        <FormGroup>
-          <FormControlLabel outline onChange={data => console.log(data)} label="Nome" type="select">
-            <SelectOption value="a">a</SelectOption>
-            <SelectOption value="b">b</SelectOption>
-          </FormControlLabel>
-          <FormHelpText>Select ouline!</FormHelpText>
-        </FormGroup>
-        <br/>
-        <FormGroup>
-          <FormControlLabel iconRight="link" iconRightClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
-          <FormHelpText>Com ícone à direita</FormHelpText>
-        </FormGroup>
-        <br/>
-        <FormGroup>
-          <FormControlLabel iconLeft="link" iconLeftClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
-          <FormHelpText>Com ícone à esquerda</FormHelpText>
-        </FormGroup>
-        <br/>
         <Button onClick={changeCheck}>Marcar Checkboxes</Button>
         <FormGroup>
           <label htmlFor="check">Checkbox!</label>
@@ -120,24 +153,30 @@ stories.add('Normal', withState({ input: 'Campo com valor default', check: [] })
           <label htmlFor="check2">Checkbox2!</label>
           <FormControl onChange={() => toggleCheck(2)} checked={store.state.check.includes(2)} type="checkbox" id="check2" value="2" />
         </FormGroup>
-
-        <FormGroup>
-          <label htmlFor="radio">Radio!</label>
-          <FormControl type="radio" name="test" id="radio" value="1" />
-          <br/>
-          <label htmlFor="radio2">Radio2!</label>
-          <FormControl type="radio" name="test" id="radio2" value="2" />
-          <br/>
-          <label htmlFor="radio3">Radio3!</label>
-          <FormControl type="radio" name="test" id="radio3" value="3" />
-        </FormGroup>
       </Form>
     </div>
   );
 }));
 
+stories.add('Radio', () => (
+  <div>
+    <Form>
+      <FormGroup>
+        <label htmlFor="radio">Radio!</label>
+        <FormControl type="radio" name="test" id="radio" value="1" />
+        <br />
+        <label htmlFor="radio2">Radio2!</label>
+        <FormControl type="radio" name="test" id="radio2" value="2" />
+        <br />
+        <label htmlFor="radio3">Radio3!</label>
+        <FormControl type="radio" name="test" id="radio3" value="3" />
+      </FormGroup>
+    </Form>
+  </div>
+));
+
 stories.add('Inline', () => (
-  <Form onSubmit={ ()=>{} } styleType='inline'>
+  <Form onSubmit={() => { }} styleType='inline'>
     <FormGroup>
       <FormControl placeholder="Form, FormGroup and input" />
     </FormGroup>
@@ -152,7 +191,7 @@ stories.add('Inline', () => (
 ));
 
 stories.add('Horizontal', () => (
-  <Form onSubmit={ ()=>{} } styleType='horizontal'>
+  <Form onSubmit={() => { }} styleType='horizontal'>
     <FormGroup>
       <FormLabel>Example of label</FormLabel>
       <FormControl placeholder="Form, FormGroup and input" />
@@ -171,14 +210,14 @@ stories.add('Horizontal', () => (
 // Form label
 stories.add('Addon text', () => (
   <FormGroup>
-    <br/><br/><br/>
+    <br /><br /><br />
     <FormLabel addon={'text'}>Nome:</FormLabel>
   </FormGroup>
 ));
 
 stories.add('Addon link', () => (
   <FormGroup>
-    <br/><br/><br/>
+    <br /><br /><br />
     <FormLabel addon={<a href="/home">Esqueci a minha senha</a>}>Nome:</FormLabel>
   </FormGroup>
 ));
@@ -195,7 +234,7 @@ stories.add('With validation', () => (
   <div>
     <FormGroup validationState="success">
       <FormLabel>Nome:</FormLabel>
-      <FormControl  placeholder="Form group with input" feedback />
+      <FormControl placeholder="Form group with input" feedback />
     </FormGroup>
     <FormGroup validationState="warning">
       <FormLabel>Nome:</FormLabel>
@@ -203,7 +242,7 @@ stories.add('With validation', () => (
     </FormGroup>
     <FormGroup validationState="error">
       <FormLabel>Nome:</FormLabel>
-      <FormControl  placeholder="Form group with input" feedback />
+      <FormControl placeholder="Form group with input" feedback />
       <span className="error">testte</span>
     </FormGroup>
   </div>
@@ -326,12 +365,12 @@ stories.add('On Validation', withState({ status: undefined, message: undefined, 
           placeholder="Digite um nome"
           onValidate={handleValidate}
           validate={[{
-              rule: 'required',
-              message: 'Campo obrigatório'
-            }, {
-              rule: 'letter',
-              message: 'Deve ser apenas letras'
-            }]
+            rule: 'required',
+            message: 'Campo obrigatório'
+          }, {
+            rule: 'letter',
+            message: 'Deve ser apenas letras'
+          }]
           }
         />
         {store.state.message && <FormHelpText>{store.state.message}</FormHelpText>}
@@ -342,12 +381,12 @@ stories.add('On Validation', withState({ status: undefined, message: undefined, 
           placeholder="Digite um nome"
           onValidate={handleValidateTwo}
           validate={[{
-              rule: 'required',
-              message: 'Campo obrigatório'
-            }, {
-              rule: 'letter',
-              message: 'Deve ser apenas letras'
-            }]
+            rule: 'required',
+            message: 'Campo obrigatório'
+          }, {
+            rule: 'letter',
+            message: 'Deve ser apenas letras'
+          }]
           }
         />
         <FormHelpText>{store.state.message2 ? store.state.message2 : 'Seja uma pessoa gentil e escreva aqui'}</FormHelpText>
