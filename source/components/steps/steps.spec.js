@@ -15,7 +15,7 @@ describe('Slider component', () => {
   /** @test {Slider#render} */
   describe('#render', () => {
     it('render correctly', () => {
-      const wrapper = shallow(<Steps data={pageData} current={pageData[value].name} value={value} />);
+      const wrapper = shallow(<Steps data={pageData} current={pageData[value].name} />);
       expect(wrapper.length).toEqual(1);
     });
   });

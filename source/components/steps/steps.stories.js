@@ -18,9 +18,7 @@ let value = 0;
 stories.addDecorator(withKnobs);
 
 stories.add('Normal', () => (
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'baseline' }}>
-    <Steps data={pageData} current={pageData[value].name} value={value} showButton>
-      <p>Olá mundo</p>
-    </Steps>
+  <div>
+    <Steps data={pageData} current={pageData[value].name} />
   </div>
 ));

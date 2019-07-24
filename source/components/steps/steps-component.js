@@ -36,7 +36,6 @@ class Steps extends Component {
           <div className={styles.steps}>
             {data.map((step, index) => (
               <div
-                // key={index}
                 className={cx(styles.stepsHolder, {
                   [styles.StepsHolderActive]: step.isComplete,
                   [styles.stepsCurrent]: step.name === current,
