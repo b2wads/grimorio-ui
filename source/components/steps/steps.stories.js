@@ -1,8 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Steps from './index';
-import Button from '../button/index';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 
 const stories = storiesOf('Steps', module);
 

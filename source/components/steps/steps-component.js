@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './steps.styl';
 import Icon from '../icon/index';
-// import Button from '../button/index';
 import Panel from '../panel/index';
 
 class Steps extends Component {

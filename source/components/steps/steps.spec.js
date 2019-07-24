@@ -10,9 +10,7 @@ const pageData = [
 ];
 
 let value = 0;
-/** @test {Slider} */
-describe('Slider component', () => {
-  /** @test {Slider#render} */
+describe('Steps component', () => {
   describe('#render', () => {
     it('render correctly', () => {
       const wrapper = shallow(<Steps data={pageData} current={pageData[value].name} />);
