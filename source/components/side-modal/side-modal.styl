@@ -29,9 +29,6 @@ $default {}
   position: fixed;
   transition: all 0.5s ease;
   z-index: $z-upmax;
-  &.--isScrolled {
-    height: 100vh;
-  }
 }
 
 .right {
@@ -39,7 +36,7 @@ $default {}
   top: 0;
   width: 25%;
   height: 100vh;
-  &-isOpen  {
+  &.isOpen  {
     right: 0;
   }
 }
@@ -49,7 +46,7 @@ $default {}
   top: 0;
   width: 25%;
   height: 100vh;
-  &-isOpen  {
+  &.isOpen  {
     left: 0;
   }
 }
@@ -59,7 +56,7 @@ $default {}
   left: 0;
   width: 100%;
   height: 35%;
-  &-isOpen  {
+  &.isOpen  {
     top: 0;
   }
 }
@@ -69,11 +66,10 @@ $default {}
   left: 0;
   width: 100%;
   height: 35%;
-  &-isOpen  {
+  &.isOpen  {
     bottom: 0;
   }
 }
-
 
 .overlay {
   @extend $overlay;

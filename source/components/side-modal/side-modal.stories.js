@@ -187,7 +187,7 @@ stories.add(
 );
 
 stories.add(
-  'With cutom height',
+  'With custom height',
   withState({ open: false })(({ store }) => {
     const openModal = () => {
       store.set({ open: true });

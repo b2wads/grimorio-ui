@@ -51,7 +51,7 @@ class SideModal extends PureComponent {
       <div className={styles.wrap}>
         <div
           className={classNames(styles.content, styles[position], {
-            [styles[`${position}-isOpen`]]: open,
+            [styles.isOpen]: open,
           })}
           style={this.getStyles()}
         >
