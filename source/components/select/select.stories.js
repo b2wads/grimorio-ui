@@ -38,6 +38,19 @@ stories.add('Select with Label', () => {
   />
 });
 
+stories.add('Select outline', () => {
+  return <div>
+    <Select
+      outline
+      label="Opções"
+      position="bottom"
+      onSelect={data => console.log(data)}
+      height="150px"
+      items={items}
+    />
+  </div>
+});
+
 stories.add('Select Mobile', () => {
   return <Select
     isMobile
