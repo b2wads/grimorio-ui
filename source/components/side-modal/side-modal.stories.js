@@ -162,7 +162,7 @@ stories.add(
 );
 
 stories.add(
-  'With cutom width',
+  'With custom width',
   withState({ open: false })(({ store }) => {
     const openModal = () => {
       store.set({ open: true });
