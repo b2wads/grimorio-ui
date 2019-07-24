@@ -3,10 +3,10 @@ import '../../../internals/test/helper';
 import Steps from './steps-component';
 
 const pageData = [
-  { name: 'pass1', title: 'Criação de Campanha' },
-  { name: 'pass2', title: 'Criação de grupo de anúncio' },
-  { name: 'pass3', title: 'Adicionar anúncios' },
-  { name: 'finish', title: 'Finalização' },
+  { name: 'pass1', title: 'Criação de Campanha', isComplete: true },
+  { name: 'pass2', title: 'Criação de grupo de anúncio', isComplete: false },
+  { name: 'pass3', title: 'Adicionar anúncios', isComplete: false },
+  { name: 'finish', title: 'Finalização', isComplete: false },
 ];
 
 let value = 0;
