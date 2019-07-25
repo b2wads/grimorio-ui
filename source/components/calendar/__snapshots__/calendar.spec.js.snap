@@ -17,7 +17,6 @@ exports[`Calendar component #render render correctly 1`] = `
   isOutsideRange={[Function]}
   isRTL={false}
   keepOpenOnDateSelect={false}
-  locale="pt-br"
   minimumNights={0}
   monthFormat="MMMM YYYY"
   navNext={null}
