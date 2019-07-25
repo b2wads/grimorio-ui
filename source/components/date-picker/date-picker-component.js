@@ -35,7 +35,7 @@ class DatePicker extends PureComponent {
     defaultSingleDate: PropTypes.instanceOf(moment),
     label: PropTypes.string,
     align: PropTypes.oneOf(['left', 'right']),
-    isSingleDate: PropTypes.bool,
+    isRangeDate: PropTypes.bool,
     disabled: PropTypes.bool,
   };
 
@@ -45,7 +45,7 @@ class DatePicker extends PureComponent {
     align: 'left',
     disabled: false,
     isMobile: false,
-    isSingleDate: false,
+    isRangeDate: false,
   };
 
   outsideClick() {
@@ -59,30 +59,30 @@ class DatePicker extends PureComponent {
   hasDates() {
     const { startDate, endDate, date } = this.state;
 
-    if (this.props.isSingleDate) {
-      return !!date;
+    if (this.props.isRangeDate) {
+      return startDate && endDate;
     }
 
-    return startDate && endDate;
+    return !!date;
   }
 
   renderDates(startDate, endDate, date) {
-    if (this.props.isSingleDate) {
-      return `${moment(date).format('DD/MM/YYYY')}`;
+    if (this.props.isRangeDate) {
+      return `${moment(startDate).format('DD/MM/YYYY')} - ${moment(endDate).format('DD/MM/YYYY')}`;
     }
 
-    return `${moment(startDate).format('DD/MM/YYYY')} - ${moment(endDate).format('DD/MM/YYYY')}`;
+    return `${moment(date).format('DD/MM/YYYY')}`;
   }
 
   changeDate(dateValues) {
     this.setState(dateValues);
     const { startDate, endDate } = dateValues;
-    const { isSingleDate } = this.props;
+    const { isRangeDate } = this.props;
 
-    if (!isSingleDate && startDate && endDate) {
+    if (isRangeDate && startDate && endDate) {
       this.toggleCalendar();
     }
-    if (isSingleDate) {
+    if (!isRangeDate) {
       this.toggleCalendar();
     }
     this.props.onChange(dateValues);
@@ -90,7 +90,7 @@ class DatePicker extends PureComponent {
 
   render() {
     const { startDate, endDate, date, showCalendar } = this.state;
-    const { className, align, isMobile, disabled, isSingleDate, ...rest } = this.props;
+    const { className, align, isMobile, disabled, isRangeDate, ...rest } = this.props;
     const labelClasses = cx(styles.label, {
       [styles.isActive]: this.hasDates() || showCalendar,
     });
@@ -121,7 +121,7 @@ class DatePicker extends PureComponent {
             onOutsideClick={this.outsideClick}
             onChange={dates => this.changeDate(dates)}
             isOutsideRange={day => isInclusivelyAfterDay(day, moment().add(1, 'day'))}
-            isRangeDate={!isSingleDate}
+            isRangeDate={isRangeDate}
           />
         </div>
 
