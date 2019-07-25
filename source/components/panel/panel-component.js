@@ -129,7 +129,6 @@ class Panel extends PureComponent {
       footerClassName,
       loading,
       accordion,
-      central,
       ...rest
     } = this.props;
 
@@ -141,7 +140,6 @@ class Panel extends PureComponent {
       [styles[size]]: size,
       [styles.isBrand]: brand,
       [styles.noPadding]: noPadding,
-      [styles.centralize]: central,
     });
 
     const contentClass = cx(styles.content, contentClassName, {
