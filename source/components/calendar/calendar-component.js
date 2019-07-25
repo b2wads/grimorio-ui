@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import moment from 'moment';
+import 'moment/locale/pt-br';
+import 'react-dates/lib/css/_datepicker.css';
+import 'react-dates/initialize';
 import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeController';
 
 import styles from './calendar.styl';
@@ -13,7 +16,6 @@ class Calendar extends PureComponent {
       focusedInput: 'startDate',
     };
 
-    moment.locale('pt-br');
     this.changeDate = this.changeDate.bind(this);
     this.isOutsideRange = this.isOutsideRange.bind(this);
     this.outsideClick = this.outsideClick.bind(this);
@@ -30,7 +32,6 @@ class Calendar extends PureComponent {
     isMobile: false,
     isRangeDate: false,
     isOutsideRange: () => false,
-    locale: 'pt-br',
   };
 
   static propTypes = {
@@ -93,7 +94,7 @@ class Calendar extends PureComponent {
     this.props.onOutsideClick();
   }
   render() {
-    const { monthsToShow, isMobile, onOutsideClick, locale, startDate, endDate, date, initialMonth } = this.props;
+    const { monthsToShow, isMobile, onOutsideClick, startDate, endDate, date, initialMonth } = this.props;
 
     return (
       <DayPickerRangeController
@@ -102,7 +103,6 @@ class Calendar extends PureComponent {
         onDatesChange={({ startDate, endDate }) => this.changeDate({ startDate, endDate })}
         focusedInput={this.state.focusedInput}
         onFocusChange={focusedInput => this.setState({ focusedInput })}
-        locale={locale}
         hideKeyboardShortcutsPanel
         numberOfMonths={isMobile ? 1 : monthsToShow}
         isOutsideRange={this.isOutsideRange}

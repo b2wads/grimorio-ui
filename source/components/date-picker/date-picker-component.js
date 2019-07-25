@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment';
-import 'react-dates/lib/css/_datepicker.css';
-import 'react-dates/initialize';
 import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
 import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
