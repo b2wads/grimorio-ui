@@ -1,8 +1,11 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
+
 import CSSModules from 'react-css-modules';
 import Icon from '../icon';
 import styles from './feedback.styl';
+import Button from '../button';
 
 class Feedback extends PureComponent {
   static propTypes = {
@@ -11,22 +14,47 @@ class Feedback extends PureComponent {
     isMobile: PropTypes.bool,
   };
 
+  static defaultProps = {
+    onDismiss: () => '',
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: true,
+    };
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  handleClickOutside() {
+    const { onDismiss } = this.props;
+    this.setState({ isOpen: false });
+    onDismiss();
+  }
+
   render() {
     const { message, type } = this.props;
+    const typeFeedback = cx({
+      [styles.success]: type === 'success',
+      [styles.fail]: type === 'fail',
+    });
+
+    const iconType = cx({
+      [styles.icon]: type === 'success',
+      [styles.iconError]: type === 'fail',
+    });
+
+    const nameIcon = type === 'success' ? 'check' : 'error';
 
     return (
       <Fragment>
-        {type === 'success' &&
-          <div className={styles.success}>
-            <Icon className={styles.icon} size="20" name="check" />
+        {this.state.isOpen === true &&
+          <div className={typeFeedback} ref={this.setWrapperRef}>
+            <Icon className={iconType} size="20" name={nameIcon} />
             <span className={styles.message}>{message}</span>
-            <Icon className={styles.iconClear} name="clear" />
-          </div>}
-        {type === 'fail' &&
-          <div className={styles.fail}>
-            <Icon className={styles.iconError} size="22" name="error" />
-            <span className={styles.message}>{message}</span>
-            <Icon className={styles.iconCleanError} name="clear" />
+            <Button className={styles.buttonClick} onClick={this.handleClickOutside}>
+              <Icon className={styles.iconCleanError} size="22" name="clear" />
+            </Button>
           </div>}
       </Fragment>
     );
