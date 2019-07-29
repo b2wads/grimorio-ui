@@ -41,6 +41,7 @@ import PieChart from './components/pie-chart';
 import Tag from './components/tag';
 import Toggle from './components/toggle';
 import Pager from './components/pager';
+import Feedback from './components/feedback';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -87,6 +88,7 @@ export {
   LinkGenerator,
   Slider,
   Alert,
+  Feedback,
   LineGraph,
   Error,
   Popover,
