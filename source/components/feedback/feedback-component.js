@@ -26,7 +26,7 @@ class Feedback extends PureComponent {
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  handleClickOutside() {
+  handleClick() {
     const { onDismiss } = this.props;
     this.setState({ isOpen: false });
     onDismiss();
@@ -52,7 +52,7 @@ class Feedback extends PureComponent {
           <div className={typeFeedback} ref={this.setWrapperRef}>
             <Icon className={iconType} size="20" name={nameIcon} />
             <span className={styles.message}>{message}</span>
-            <Button className={styles.buttonClick} onClick={this.handleClickOutside}>
+            <Button className={styles.buttonClick} onClick={this.handleClick}>
               <Icon className={styles.iconCleanError} size="22" name="clear" />
             </Button>
           </div>}
