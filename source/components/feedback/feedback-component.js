@@ -23,7 +23,7 @@ class Feedback extends PureComponent {
     this.state = {
       isOpen: true,
     };
-    this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.handleClick = this.handleClickOutside.bind(this);
   }
 
   handleClick() {
