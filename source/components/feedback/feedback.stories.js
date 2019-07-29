@@ -8,4 +8,6 @@ const stories = storiesOf('Feedback', module);
 
 stories.addDecorator(withKnobs);
 
-stories.add('Normal', () => <Feedback isMobile={false} title="Meu feedback" />);
+stories.add('Success', () => <Feedback type="success" message="Sua campanha foi criada com sucesso!" />);
+
+stories.add('Fail', () => <Feedback type="fail" message="Alguma coisa aconteceu, por favor tente novamente ou entre em contato conosco" />);

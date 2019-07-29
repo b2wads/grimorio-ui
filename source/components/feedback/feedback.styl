@@ -1,19 +1,64 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-.titleWrap {
+/* type success */
+.success {
   align-items: center;
+  background-color: $c-primary;
+  border-radius: 4px;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2);
   display: flex;
-  justify-content: space-between;
-
-  &.isMobile {
-    flex-direction: column;
-  }
+  height: 72px;
+  width: 30%;
 }
 
-.title {
-  color: $c-text-dark;
-  font-family: $base-font-family;
-  font-size: 21px;
-  line-height: 1.1;
+.message {
+  color: #FFFFFF;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+  margin-left: 15px;
+}
+
+.icon {
+  background-color: #fff;
+  border-radius: 50%;
+  color: $c-primary;
+  margin-left: 15px;
+}
+
+.iconClear {
+  background-color: $c-primary;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+/* type error */
+.fail {
+  align-items: center;
+  background-color: #DE4E4E;
+  border-radius: 4px;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  height: 72px;
+  width: 30%;
+}
+
+.iconError {
+  border-radius: 50%;
+  color: white;
+  margin-left: 15px;
+}
+
+.iconCleanError {
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin-right: 10px;
 }
