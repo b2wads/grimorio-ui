@@ -49,7 +49,7 @@ class Feedback extends PureComponent {
     return (
       <Fragment>
         {this.state.isOpen === true &&
-          <div className={typeFeedback} ref={this.setWrapperRef}>
+          <div className={typeFeedback}>
             <Icon className={iconType} size="20" name={nameIcon} />
             <span className={styles.message}>{message}</span>
             <Button className={styles.buttonClick} onClick={this.handleClick}>
