@@ -17,6 +17,7 @@ stories.add('Normal', () => {
   return (
     <div>
       <DatePicker
+        isRangeDate
         onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
       />
     </div>
@@ -27,7 +28,6 @@ stories.add('Single Date', () => {
   return (
     <div>
       <DatePicker
-        isSingleDate
         monthsToShow={1}
         onChange={(dates) => console.log('single date:', dates)}
       />
@@ -39,6 +39,7 @@ stories.add('Mobile', () => {
   return (
     <div>
       <DatePicker
+        isRangeDate
         isMobile
         onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
       />
@@ -51,6 +52,7 @@ stories.add('Default Values', () => {
   return (
     <div>
       <DatePicker
+        isRangeDate
         defaultStartDate={moment().subtract(7, 'days')}
         defaultEndDate={moment()}
         onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
@@ -61,7 +63,6 @@ stories.add('Default Values', () => {
 
       <DatePicker
         defaultSingleDate={moment().subtract(7, 'days')}
-        isSingleDate
         monthsToShow={1}
         initialMonth={moment()}
         onChange={(dates) => console.log('single date:', dates)}
@@ -74,6 +75,7 @@ stories.add('Align', () => {
   return (
     <div>
       <DatePicker
+        isRangeDate
         align="left"
         label="Align Calendar Left"
         onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
@@ -83,6 +85,7 @@ stories.add('Align', () => {
       <br/>
 
       <DatePicker
+        isRangeDate
         align="right"
         label="Align Calendar Right"
         onChange={({ startDate, endDate }) => printDates(startDate, endDate)}

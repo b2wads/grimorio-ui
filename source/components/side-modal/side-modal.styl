@@ -1,53 +1,76 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
+
+
 /* ==========================================================================
    Placeholders
 ========================================================================== */
+$default {}
+
 /* ==========================================================================
-   TableFixed Elements
+   SideModal Elements
 ========================================================================== */
+
 /* ==========================================================================
-   TableFixed Props
+   SideModal Props
 ========================================================================== */
+
 /* Default
-================ */
-.shortWrap {
-  overflow: auto;
+ ================ */
+
+.default {
+  @extend $default;
 }
 
-.fullWrap {
-  display: flex;
+.content {
+  @extend $drop-shadow;
+  background: $white;
+  position: fixed;
+  transition: all 0.5s ease;
+  z-index: $z-upmax;
 }
 
-.fullWidth {
-  flex: 1;
-}
-
-.table {
-  tr {
-    height: 60px;
+.right {
+  right: -25%;
+  top: 0;
+  width: 25%;
+  height: 100vh;
+  &.isOpen  {
+    right: 0;
   }
 }
 
-.stickShort {
-  left: initial;
-  z-index: 0;
+.left {
+  left: -25%;
+  top: 0;
+  width: 25%;
+  height: 100vh;
+  &.isOpen  {
+    left: 0;
+  }
 }
 
-.stickFull {
+.top {
+  top: -35%;
   left: 0;
-  z-index: 3;
+  width: 100%;
+  height: 35%;
+  &.isOpen  {
+    top: 0;
+  }
 }
 
-.sticky {
-  position: sticky;
-
-  table {
-    background: white;
-
-    tbody {
-      box-shadow: 2px 1px 4px 0 rgba(0, 0, 0, 0.17);
-    }
+.bottom {
+  bottom: -35%;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  &.isOpen  {
+    bottom: 0;
   }
+}
+
+.overlay {
+  @extend $overlay;
 }

@@ -23,11 +23,13 @@ import Form, {
   FormHelpText,
 } from './components/form';
 import Modal from './components/modal';
+import SideModal from './components/side-modal';
 import Table from './components/table';
 import TableFixed from './components/table-fixed';
 import TablePanel from './components/table-panel';
 import Loader from './components/loader';
 import DatePicker from './components/date-picker';
+import Calendar from './components/calendar';
 import Tooltip from './components/tooltip';
 import TooltipSticky from './components/tooltip-sticky';
 import Slider from './components/slider';
@@ -81,7 +83,9 @@ export {
   TablePanel,
   Loader,
   Modal,
+  SideModal,
   DatePicker,
+  Calendar,
   Tooltip,
   TooltipSticky,
   LinkGenerator,
