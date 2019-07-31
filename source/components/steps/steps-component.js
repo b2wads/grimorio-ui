@@ -13,7 +13,7 @@ const Steps = ({ data, current }) => {
           {data.map((step, index) => (
             <div
               className={cx(styles.stepsHolder, {
-                [styles.StepsHolderActive]: step.isComplete,
+                [styles.stepsHolderActive]: step.isComplete,
                 [styles.stepsCurrent]: step.name === current,
               })}
             >
