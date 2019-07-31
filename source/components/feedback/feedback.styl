@@ -1,18 +1,21 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-/* type success */
-.success {
+.default {
   align-items: center;
-  background-color: $c-primary;
   border-radius: 4px;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2);
   display: flex;
   height: 72px;
-  position: fixed;
-  right: 40px;
-  top: 210px;
   width: 30%;
+}
+
+.success {
+  background-color: $c-primary;
+}
+
+.fail {
+  background-color: #DE4E4E;
 }
 
 .message {
@@ -41,19 +44,6 @@
 }
 
 /* type error */
-.fail {
-  align-items: center;
-  background-color: #DE4E4E;
-  border-radius: 4px;
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2);
-  display: flex;
-  height: 72px;
-  position: fixed;
-  right: 40px;
-  top: 210px;
-  width: 30%;
-}
-
 .iconError {
   border-radius: 50%;
   color: white;
@@ -82,4 +72,24 @@
   &:active {
     box-shadow: none;
   }
+}
+
+.positionBottom {
+  bottom: 60px;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  margin-bottom: 0;
+  position: fixed;
+  right: 0;
+}
+
+.positionTop {
+  position: fixed;
+  right: 40px;
+  top: 190px;
+}
+
+.isMobile {
+  width: 317px;
 }

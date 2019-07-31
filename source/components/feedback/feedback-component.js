@@ -32,29 +32,34 @@ class Feedback extends PureComponent {
   }
 
   render() {
-    const { message, type } = this.props;
-    const typeFeedback = cx({
+    const { message, type, position, isMobile } = this.props;
+    const typeFeedback = cx(styles.default, {
       [styles.success]: type === 'success',
       [styles.fail]: type === 'fail',
+      [styles.isMobile]: isMobile === true,
+      [styles.positionTop]: position === 'top-distance',
     });
-
     const iconType = cx({
       [styles.icon]: type === 'success',
       [styles.iconError]: type === 'fail',
     });
-
     const nameIcon = type === 'success' ? 'check' : 'error';
+    const positionFeedback = cx({
+      [styles.positionBottom]: position === 'bottom',
+    });
 
     return (
       <Fragment>
-        {this.state.isOpen === true &&
-          <div className={typeFeedback}>
-            <Icon className={iconType} size="20" name={nameIcon} />
-            <span className={styles.message}>{message}</span>
-            <Button className={styles.buttonClick} onClick={this.handleClick}>
-              <Icon className={styles.iconCleanError} size="22" name="clear" />
-            </Button>
-          </div>}
+        <div className={positionFeedback}>
+          {this.state.isOpen === true &&
+            <div className={typeFeedback}>
+              <Icon className={iconType} size="20" name={nameIcon} />
+              <span className={styles.message}>{message}</span>
+              <Button className={styles.buttonClick} onClick={this.handleClick}>
+                <Icon className={styles.iconCleanError} size="22" name="clear" />
+              </Button>
+            </div>}
+        </div>
       </Fragment>
     );
   }
