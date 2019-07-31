@@ -38,9 +38,10 @@ stories.add(
   'Fail',
   withState(initialState)(({ store }) => {
     const onDismiss = () => {
-      const { isPopoverOpen } = store.state;
-      store.set({ isPopoverOpen: !isPopoverOpen });
-      action('Popover dismissed.')();
+      // const { isPopoverOpen } = store.state;
+      // store.set({ isPopoverOpen: !isPopoverOpen });
+      // action('Popover dismissed.')();
+      console.log(true);
     };
     return (
       <Feedback

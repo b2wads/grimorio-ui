@@ -28,7 +28,6 @@ class Feedback extends PureComponent {
 
   handleClick() {
     const { onDismiss } = this.props;
-    this.setState({ isOpen: false });
     onDismiss();
   }
 
