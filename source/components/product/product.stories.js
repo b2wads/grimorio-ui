@@ -74,7 +74,7 @@ const exampleCupomCard = {...exampleCupom, tags: []};
 const exampleProductCard = {...exampleProduct, tags: [{type: 'highlight', value: true}]};
 const exampleCategoryCard = {...exampleCat, tags: [{type: 'highlight', value: true}]};
 
-stories.addWithInfo('Default', () => (
+stories.add('Default', () => (
   <div style={{ display: 'flex' }}>
     <Panel style={pannelSize}>
       <Product data={object('Product', exampleProduct)} />
@@ -94,7 +94,7 @@ stories.addWithInfo('Default', () => (
   </div>
 ));
 
-stories.addWithInfo('Card', () => (
+stories.add('Card', () => (
   <div style={{ display: 'flex' }}>
     <Panel type="brand" brand="acom" style={pannelSize}>
       <Product type="card" data={object('Product', exampleProductCard)} />
@@ -114,7 +114,7 @@ stories.addWithInfo('Card', () => (
   </div>
 ));
 
-stories.addWithInfo('Functional', withState({ loading: false, data: null, stage: 'generate' })(({ store }) => {
+stories.add('Functional', withState({ loading: false, data: null, stage: 'generate' })(({ store }) => {
   const generateLink = link => {
     store.set({ loading: true });
 

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import Table from '../table';
-
 import styles from './table-fixed.styl';
 
 class TableFixed extends PureComponent {
@@ -33,6 +33,7 @@ class TableFixed extends PureComponent {
         case: PropTypes.func,
       })
     ),
+    isMobile: PropTypes.bool,
   };
   static defaultProps = {};
 
@@ -47,14 +48,19 @@ class TableFixed extends PureComponent {
       dataFooterLeft,
       widthFixedTable,
       specialCase,
+      isMobile,
     } = this.props;
     const wrapSizes = {
       maxWidth: width || 'auto',
       maxHeight: height || 'auto',
     };
+
+    const tableWrap = cx(styles.fullWrap, { [styles.shortWrap]: !isMobile });
+    const tableSticky = cx(styles.sticky, { [styles.stickShort]: isMobile, [styles.stickFull]: !isMobile });
+
     return (
-      <div className={styles.wrap} style={wrapSizes}>
-        <div className={styles.sticky} style={{ width: widthFixedTable }}>
+      <div className={tableWrap} style={wrapSizes}>
+        <div className={tableSticky} style={{ width: widthFixedTable }}>
           <Table
             className={styles.table}
             type="panel"
@@ -65,7 +71,7 @@ class TableFixed extends PureComponent {
             specialCase={specialCase}
           />
         </div>
-        <div>
+        <div className={styles.fullWidth}>
           <Table
             className={styles.table}
             type="panel"

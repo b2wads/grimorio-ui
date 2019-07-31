@@ -9,7 +9,7 @@ const stories = storiesOf('TooltipSticky', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () =>
+stories.add('Normal', () =>
   <TooltipSticky
     body={
       <div>
@@ -24,7 +24,7 @@ stories.addWithInfo('Normal', () =>
   </TooltipSticky>
 );
 
-stories.addWithInfo('With Title', () =>
+stories.add('With Title', () =>
   <TooltipSticky
     body={
       <div>

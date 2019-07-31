@@ -3,7 +3,7 @@ const path = require('path');
 
 const baseConfig = {
   entry: {
-    'bitservices-theme': './source/index.js',
+    'grimorio-ui': './source/index.js',
   },
 
   output: {

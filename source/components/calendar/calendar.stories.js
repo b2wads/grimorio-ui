@@ -13,7 +13,7 @@ const stories = storiesOf('Calendar', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Range date', withState({ startDate: undefined, endDate: undefined })(({ store }) => {
+stories.add('Range date', withState({ startDate: undefined, endDate: undefined })(({ store }) => {
   const handleChange = dates => {
     store.set(dates);
   }
@@ -28,8 +28,8 @@ stories.addWithInfo('Range date', withState({ startDate: undefined, endDate: und
   );
 }));
 
-stories.addWithInfo('Single Date', withState({ singleDate: undefined })(({ store }) => {
-  const handleChange = ({date}) => {
+stories.add('Single Date', withState({ singleDate: undefined })(({ store }) => {
+  const handleChange = ({ date }) => {
     store.set({ singleDate: date });
   }
   return (
@@ -40,8 +40,8 @@ stories.addWithInfo('Single Date', withState({ singleDate: undefined })(({ store
   );
 }));
 
-stories.addWithInfo('Block days', withState({ singleDate: undefined })(({ store }) => {
-  const handleChange = ({date}) => {
+stories.add('Block days', withState({ singleDate: undefined })(({ store }) => {
+  const handleChange = ({ date }) => {
     store.set({ singleDate: date });
   }
   return (
@@ -53,31 +53,16 @@ stories.addWithInfo('Block days', withState({ singleDate: undefined })(({ store 
   );
 }));
 
-
-stories.addWithInfo(
-  'With default values', ``,
-  withState({ startDate: moment().subtract(7, 'days'), endDate: moment() })
-  (({ store }) => {
-    const handleClick = () => {
-      store.set({ startDate: moment().subtract(10, 'days'), endDate: moment().subtract(5, 'days') });
-    }
-
-    const handleChange = dates => {
-      store.set(dates);
-    }
-
-    return (
-      <div>
-        <Calendar
-          startDate={store.state.startDate}
-          endDate={store.state.endDate}
-          onChange={dates => handleChange(dates)}
-          isRangeDate
-        />
-        <Button onClick={handleClick}>
-          Novos valores de data
-    </Button>
-      </div>
-    )
+stories.add('Starting with values', withState({ startDate: moment().subtract(7, 'days'), endDate: moment() })(({ store }) => {
+  const handleChange = dates => {
+    store.set(dates);
   }
-));
+  return (
+    <Calendar
+      startDate={store.state.startDate}
+      endDate={store.state.endDate}
+      onChange={dates => handleChange(dates)}
+      isRangeDate
+    />
+  );
+}));

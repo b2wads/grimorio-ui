@@ -10,7 +10,7 @@ const stories = storiesOf('Tooltip', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () => (
+stories.add('Normal', () => (
   <div style={{ paddingLeft: '20%'}}>
     <Tooltip message="Tooltip" />
     <br/><br/>

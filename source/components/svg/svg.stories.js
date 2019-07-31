@@ -8,7 +8,7 @@ const stories = storiesOf('Svg', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('All', () => (
+stories.add('All', () => (
   <div>
     <Svg width={48} height={48} />
     <Svg src="555555555555555" />

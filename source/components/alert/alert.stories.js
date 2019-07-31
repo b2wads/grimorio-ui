@@ -8,7 +8,7 @@ const stories = storiesOf('Alert', module);
 
 stories.addDecorator(withKnobs);
 
-stories.addWithInfo('Normal', () =>
+stories.add('Normal', () =>
   <div>
     <Alert
       type="danger"
@@ -45,7 +45,7 @@ stories.addWithInfo('Normal', () =>
   </div>
 );
 
-stories.addWithInfo('Overlay', () =>
+stories.add('Overlay', () =>
   <div>
     <Alert
       type="danger"
