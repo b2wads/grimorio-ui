@@ -29,6 +29,7 @@ import TableFixed from './components/table-fixed';
 import TablePanel from './components/table-panel';
 import Loader from './components/loader';
 import DatePicker from './components/date-picker';
+import Calendar from './components/calendar';
 import Tooltip from './components/tooltip';
 import TooltipSticky from './components/tooltip-sticky';
 import Slider from './components/slider';
@@ -84,6 +85,7 @@ export {
   Modal,
   SideModal,
   DatePicker,
+  Calendar,
   Tooltip,
   TooltipSticky,
   LinkGenerator,
