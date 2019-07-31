@@ -71,7 +71,7 @@ class TableFixed extends PureComponent {
             specialCase={specialCase}
           />
         </div>
-        <div>
+        <div className={styles.fullWidth}>
           <Table
             className={styles.table}
             type="panel"

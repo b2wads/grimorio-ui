@@ -5,50 +5,47 @@ $shadow-color = rgba(0, 0, 0, 0.125);
 $c-border = #e8e8e8;
 
 arrow(color, borderWidth) {
+  border-color: color transparent;
+  border-style: solid;
+  border-width: borderWidth;
+  content: '';
   display: block;
   position: absolute;
-  content: "";
-  border-style: solid;
-  border-color: color transparent;
-  border-width: borderWidth;
 }
 
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$default {}
+$default {
+}
 
 /* ==========================================================================
    TooltipSticky Elements
 ========================================================================== */
-
 /* ==========================================================================
    TooltipSticky Props
 ========================================================================== */
-
 /* Default
- ================ */
-
+================ */
 .default {
   @extend $default;
 }
 
 .tooltip {
   @extend $drop-shadow;
-  float: left;
-  border: 1px solid $c-border;
-  padding: 10px;
-  position: absolute;
   background: $white;
-  width: 357px;
+  border: 1px solid $c-border;
+  border-radius: 2px;
+  float: left;
   font-size: 1rem;
   line-height: 20px;
-  border-radius: 2px;
+  opacity: 0;
+  padding: 10px;
+  position: absolute;
+  width: 357px;
   word-wrap: break-word;
   z-index: 10;
-  opacity: 0;
 }
-
 
 .wrapper {
   cursor: pointer;
@@ -56,8 +53,8 @@ $default {}
 }
 
 .show {
-  transition: 1s opacity;
   opacity: 1;
+  transition: 1s opacity;
 }
 
 .title {
@@ -67,43 +64,47 @@ $default {}
 
 .body {
   font-weight: normal;
-  word-break: break-word;
   white-space: pre-line;
+  word-break: break-word;
 }
 
-.title,
-.body {
-  margin: 0;
+.title, .body {
   font-size: 1.3rem;
+  margin: 0;
 }
 
-.left{
+.left {
   &:after, &:before {
-    left : 20px;
+    left: 20px;
   }
 }
-.right{
+
+.right {
   &:after, &:before {
-    right : 20px;
+    right: 20px;
   }
 }
+
 .bottom {
   &:after {
-    arrow(#fff, 0 10px 10px)
+    arrow(#fff, 0 10px 10px);
     top: -10px;
   }
+
   &:before {
-    arrow($c-border, 0 10px 10px)
+    arrow($c-border, 0 10px 10px);
     top: -11px;
   }
 }
+
 .top {
   &:after {
-    arrow(#fff, 10px 10px 0)
+    arrow(#fff, 10px 10px 0);
     bottom: -10px;
   }
+
   &:before {
-    arrow($c-border, 10px 10px 0)
+    arrow($c-border, 10px 10px 0);
     bottom: -11px;
   }
 }
