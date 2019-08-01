@@ -31,7 +31,6 @@ import DatePicker from './components/date-picker';
 import Tooltip from './components/tooltip';
 import TooltipSticky from './components/tooltip-sticky';
 import Slider from './components/slider';
-import LinkGenerator from './components/link-generator';
 import Alert from './components/alert';
 import LineGraph from './components/line-graph';
 import Error from './components/error';
@@ -84,7 +83,6 @@ export {
   DatePicker,
   Tooltip,
   TooltipSticky,
-  LinkGenerator,
   Slider,
   Alert,
   LineGraph,
