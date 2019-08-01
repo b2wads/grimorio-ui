@@ -39,7 +39,6 @@ stories.add(
     return (
       <Feedback
         type="fail"
-        position="top-distance"
         message="Alguma coisa aconteceu, por favor tente novamente ou entre em contato conosco"
         isOpen={store.state.show}
         onDismiss={onDismiss}
@@ -57,11 +56,11 @@ stories.add(
     return (
       <Feedback
         type="fail"
-        position="bottom"
         isMobile={true}
         message="Alguma coisa aconteceu, por favor tente novamente ou entre em contato conosco"
         isOpen={store.state.isPopoverOpen}
         onDismiss={onDismiss}
+        time
       />
     );
   })

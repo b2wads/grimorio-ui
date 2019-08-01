@@ -1,7 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-
 import CSSModules from 'react-css-modules';
 import Icon from '../icon';
 import styles from './feedback.styl';
@@ -23,8 +22,11 @@ class Feedback extends PureComponent {
     super(props);
     this.state = {
       isOpen: true,
+      currentCount: 5,
+      stopInterval: '',
     };
     this.handleClick = this.handleClick.bind(this);
+    this.timer = this.timer.bind(this);
   }
 
   handleClick() {
@@ -32,9 +34,21 @@ class Feedback extends PureComponent {
     onDismiss();
   }
 
+  componentWillMount() {
+    const stopInterval = setInterval(this.timer, 1000);
+    this.setState({ stopInterval: stopInterval });
+  }
+
+  timer() {
+    this.setState({ currentCount: this.state.currentCount - 1 });
+    if (this.state.currentCount === 0) {
+      this.setState({ isOpen: false });
+      clearInterval(this.state.stopInterval);
+    }
+  }
+
   render() {
     const { message, type, isMobile, isOpen } = this.props;
-
     const typeFeedback = cx(styles.default, {
       [styles.success]: type === 'success',
       [styles.fail]: type === 'fail',
