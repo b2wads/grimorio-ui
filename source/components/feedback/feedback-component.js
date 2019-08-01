@@ -33,11 +33,12 @@ class Feedback extends PureComponent {
   }
 
   render() {
-    const { message, type, isMobile } = this.props;
+    const { message, type, isMobile, isOpen } = this.props;
 
     const typeFeedback = cx(styles.default, {
       [styles.success]: type === 'success',
       [styles.fail]: type === 'fail',
+      [styles.noneFeedback]: isOpen === false,
     });
     const iconType = cx({
       [styles.icon]: type === 'success',
@@ -46,7 +47,7 @@ class Feedback extends PureComponent {
 
     const positionFeedback = cx({
       [styles.isMobile]: isMobile === true,
-      [styles.defaultPosition]: isMobile !== true,
+      [styles.defaultPosition]: isMobile !== true && isOpen === true,
     });
     const nameIcon = type === 'success' ? 'check' : 'error';
 
