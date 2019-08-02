@@ -31,8 +31,7 @@ class Feedback extends Component {
   }
 
   handleClick() {
-    const { onDismiss } = this.props;
-    onDismiss();
+    this.props.onDismiss();
   }
 
   componentWillMount() {
@@ -50,11 +49,10 @@ class Feedback extends Component {
   }
 
   render() {
-    const { message, type, isMobile, isOpen } = this.props;
+    const { message, type, isMobile } = this.props;
     const typeFeedback = cx(styles.default, {
       [styles.success]: type === 'success',
       [styles.fail]: type === 'fail',
-      [styles.noneFeedback]: isOpen === false,
     });
     const iconType = cx({
       [styles.icon]: type === 'success',
