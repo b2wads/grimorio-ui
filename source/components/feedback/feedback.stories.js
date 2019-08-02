@@ -53,6 +53,7 @@ stories.add(
     const onDismiss = () => {
       store.set({ show: false });
     };
+
     return (
       <Feedback
         type="fail"
@@ -60,7 +61,6 @@ stories.add(
         message="Alguma coisa aconteceu, por favor tente novamente ou entre em contato conosco"
         isOpen={store.state.isPopoverOpen}
         onDismiss={onDismiss}
-        time
       />
     );
   })

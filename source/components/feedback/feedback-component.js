@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import CSSModules from 'react-css-modules';
@@ -6,7 +6,7 @@ import Icon from '../icon';
 import styles from './feedback.styl';
 import Button from '../button';
 
-class Feedback extends PureComponent {
+class Feedback extends Component {
   static propTypes = {
     message: PropTypes.element,
     type: PropTypes.string,
@@ -16,6 +16,7 @@ class Feedback extends PureComponent {
   static defaultProps = {
     onDismiss: () => '',
     isMobile: false,
+    isOpen: true,
   };
 
   constructor(props) {
@@ -44,6 +45,7 @@ class Feedback extends PureComponent {
     if (this.state.currentCount === 0) {
       this.setState({ isOpen: false });
       clearInterval(this.state.stopInterval);
+      this.handleClick();
     }
   }
 
@@ -61,7 +63,7 @@ class Feedback extends PureComponent {
 
     const positionFeedback = cx({
       [styles.isMobile]: isMobile === true,
-      [styles.defaultPosition]: isMobile !== true && isOpen === true,
+      [styles.defaultPosition]: isMobile !== true,
     });
     const nameIcon = type === 'success' ? 'check' : 'error';
 
