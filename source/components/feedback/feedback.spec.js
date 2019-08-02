@@ -2,9 +2,9 @@ import '../../../internals/test/helper';
 
 import Feedback from './feedback-component';
 
-/** @test {PageTitle} */
-describe('PageTitle component', () => {
-  /** @test {PageTitle#render} */
+/** @test {Feedback} */
+describe('Feedback component', () => {
+  /** @test {Feedback#render} */
   describe('#render', () => {
     it('render correctly', () => {
       const wrapper = shallow(<Feedback />);
