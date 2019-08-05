@@ -33,7 +33,6 @@ import Calendar from './components/calendar';
 import Tooltip from './components/tooltip';
 import TooltipSticky from './components/tooltip-sticky';
 import Slider from './components/slider';
-import LinkGenerator from './components/link-generator';
 import Alert from './components/alert';
 import LineGraph from './components/line-graph';
 import Error from './components/error';
@@ -88,7 +87,6 @@ export {
   Calendar,
   Tooltip,
   TooltipSticky,
-  LinkGenerator,
   Slider,
   Alert,
   LineGraph,
