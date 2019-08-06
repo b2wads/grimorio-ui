@@ -61,6 +61,7 @@ stories.add(
         message="Alguma coisa aconteceu, por favor tente novamente ou entre em contato conosco"
         isOpen={store.state.isPopoverOpen}
         onDismiss={onDismiss}
+        timeToClose={10}
       />
     );
   })

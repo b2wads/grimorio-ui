@@ -11,6 +11,7 @@ class Feedback extends Component {
     message: PropTypes.element,
     type: PropTypes.oneOf(['success', 'fail']),
     isMobile: PropTypes.bool,
+    timeToClose: PropTypes.number,
   };
 
   static defaultProps = {
@@ -21,9 +22,10 @@ class Feedback extends Component {
 
   constructor(props) {
     super(props);
+    const { timeToClose } = this.props;
     this.state = {
       isOpen: true,
-      currentCount: 5,
+      currentCount: timeToClose,
       stopInterval: '',
     };
     this.handleClick = this.handleClick.bind(this);
