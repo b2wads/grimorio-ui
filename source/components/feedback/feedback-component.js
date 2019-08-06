@@ -18,6 +18,7 @@ class Feedback extends Component {
     onDismiss: () => '',
     isMobile: false,
     isOpen: true,
+    timeToClose: 5,
   };
 
   constructor(props) {
