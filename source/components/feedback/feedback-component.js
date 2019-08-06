@@ -9,7 +9,7 @@ import Button from '../button';
 class Feedback extends Component {
   static propTypes = {
     message: PropTypes.element,
-    type: PropTypes.string,
+    type: PropTypes.oneOf(['success', 'fail']),
     isMobile: PropTypes.bool,
   };
 
@@ -50,18 +50,19 @@ class Feedback extends Component {
 
   render() {
     const { message, type, isMobile } = this.props;
+
     const typeFeedback = cx(styles.default, {
-      [styles.success]: type === 'success',
-      [styles.fail]: type === 'fail',
+      [styles[type]]: type,
     });
+
     const iconType = cx({
       [styles.icon]: type === 'success',
       [styles.iconError]: type === 'fail',
     });
 
     const positionFeedback = cx({
-      [styles.isMobile]: isMobile === true,
-      [styles.defaultPosition]: isMobile !== true,
+      [styles.mobilePosition]: isMobile,
+      [styles.defaultPosition]: !isMobile,
     });
     const nameIcon = type === 'success' ? 'check' : 'error';
 
