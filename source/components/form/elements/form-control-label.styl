@@ -1,18 +1,17 @@
-@import "../../../styl/config";
-
 /* ==========================================================================
-  Variables
-  ========================================================================== */
-
+Variables
+========================================================================== */
 /* Color
-   ========================================================================== */
+========================================================================== */
 $c-label = #999;
 $c-default = #333;
 
 /* ==========================================================================
-   Form Label Component
-   ========================================================================== */
-.labelWrapper { position: relative }
+Form Label Component
+========================================================================== */
+.labelWrapper {
+  position: relative;
+}
 
 .label {
   color: $c-label;
@@ -27,31 +26,42 @@ $c-default = #333;
 }
 
 .isActive {
-  color: $c-primary;
+  color: $c-support-dark;
   font-size: 12px;
-  font-weight: 700;
   left: 0;
   top: -1.5rem;
   transition: all 0.125s ease;
 }
 
-.formControl { margin-top: 5px; color: $c-default; font-size: 16px; }
+.formControl {
+  color: $c-default;
+  font-size: 16px;
+  margin-top: 5px;
+}
 
-.has-success.label { color: $c-success; }
-.has-warning.label { color: $c-warning; }
-.has-error.label { color: $c-error; }
+.has-success.label {
+  color: $c-success;
+}
+
+.has-warning.label {
+  color: $c-warning;
+}
+
+.has-error.label {
+  color: $c-error;
+}
 
 .isOutline {
+  padding-left: 10px;
   top: 17px;
-  padding-left 10px;
 }
 
 .isActive.isOutline {
-  top: -6px;
   background: $white;
-  width: auto;
-  padding: 0 5px;
   left: 5px;
+  padding: 0 5px;
+  top: -6px;
+  width: auto;
 }
 
 .has-iconRight {
@@ -67,10 +77,11 @@ $c-default = #333;
 }
 
 .iconRight, .iconLeft {
+  pointer-events: none;
   position: absolute;
   top: 16px;
-  pointer-events: none;
 }
+
 .iconRight {
   right: 12px;
 }
@@ -80,6 +91,6 @@ $c-default = #333;
 }
 
 .isClickable {
-  pointer-events: auto;
   cursor: pointer;
+  pointer-events: auto;
 }
