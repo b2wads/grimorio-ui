@@ -1,23 +1,21 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-
-
 /* ==========================================================================
    Placeholders
 ========================================================================== */
 $triangle {
   color: $white;
-	display: none;
-	font-size: 15px;
-	height: 0;
-	opacity: 0;
-	padding: 0;
-	position: absolute;
-	text-align: left;
-	transition: all 1s ease;
-	width: auto;
-	word-wrap: break-word;
+  display: none;
+  font-size: 15px;
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  text-align: left;
+  transition: all 1s ease;
+  width: auto;
+  word-wrap: break-word;
 }
 
 $centerX {
@@ -29,18 +27,17 @@ $centerY {
   top: 50%;
   transform: translate(0, -50%);
 }
+
 /* ==========================================================================
    Tooltip Elements
 ========================================================================== */
-
 /* wrapper
- ================ */
-
+================ */
 .wrapper {
-	color: $base-text-color;
+  color: $c-support;
   cursor: pointer;
-	display: inline;
-	position: relative;
+  display: inline;
+  position: relative;
 
   &:hover .dialog {
     display: block;
@@ -61,25 +58,24 @@ $centerY {
 
 .dialog {
   @extend $drop-shadow;
-	background: $white;
-	border-radius: 2px;
-	display: none;
-	font-size: 12px;
-	height: 0;
-	opacity: 0;
-	padding: 0;
-	position: absolute;
-	text-shadow: none;
-	transition: all 1s ease;
-	visibility: hidden;
-	width: auto;
-	word-wrap: break-word;
+  background: $white;
+  border-radius: 2px;
+  display: none;
+  font-size: 12px;
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  text-shadow: none;
+  transition: all 1s ease;
+  visibility: hidden;
+  width: auto;
+  word-wrap: break-word;
 }
 
 /* ==========================================================================
    Tooltip Props
 ========================================================================== */
-
 .block {
   display: inline-block;
 }
