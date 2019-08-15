@@ -1,10 +1,9 @@
 
-
 $c-input = #333;
 $placeholder = #999;
 $c-border = #ccc;
 $c-label = #999;
-$disabled = lighten($c-secondary, 60%);
+// $disabled = lighten($c-secondary, 60%);
 $c-disabled = #999;
 
 $field {
@@ -40,7 +39,8 @@ $field {
     color: $placeholder;
   }
 
-  &.isActive {}
+  &.isActive {
+  }
 
   &:disabled {
     background: $disabled;
@@ -67,7 +67,9 @@ $field {
   margin-top: -2px;
 }
 
-.labelWrapper { position: relative }
+.labelWrapper {
+  position: relative;
+}
 
 .label {
   color: $c-label;
@@ -114,11 +116,11 @@ $field {
   }
 
   &.isMobile {
-    left: 50%;
-    right: inherit;
-    position: fixed;
-    top: 70px;
     bottom: inherit;
+    left: 50%;
+    position: fixed;
+    right: inherit;
+    top: 70px;
     transform: translate(-50%, 0);
     width: auto;
     z-index: $z-upmax;

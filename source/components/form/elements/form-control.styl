@@ -14,7 +14,6 @@ $c-check-border = #7F7F7F;
 ========================================================================== */
 $default-background = #fff;
 $c-default = #333;
-$disabled = lighten($c-secondary, 60%);
 $c-disabled = #999;
 $c-disabled-light = #b4b5b5;
 /* Addon
@@ -159,12 +158,12 @@ Form Control Component
   input[type='radio']:disabled {
     &:checked ~ .fakeInput {
       background: $disabled;
-      border-color: darken($disabled, 25%);
+      border-color: $disabled;
       cursor: not-allowed;
     }
 
     &:checked ~ .fakeInput:before {
-      background: darken($disabled, 25%);
+      background: $disabled;
     }
   }
 }
@@ -181,8 +180,8 @@ Form Control Component
     border-radius: 3px;
 
     &.isActive {
-      background: $c-support-dark;
-      border-color: $c-support-dark;
+      background: $c-primary;
+      border-color: $c-primary;
       transition: all 0.2s ease;
     }
   }
