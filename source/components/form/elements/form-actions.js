@@ -20,23 +20,12 @@ class FormActions extends PureComponent {
     className: PropTypes.string,
   };
 
-  static contextTypes = {
-    $form: PropTypes.object,
-  };
-
   render() {
-    const { children, className, ...elementProps } = this.props;
-
-    // context
-    const form = this.context.$form;
-    const formStyleType = (form && form.styleType) || undefined;
-
-    const fullClassName = classNames(className, styles['form-group-actions'], {
-      [styles['form-group-actions--horizontal']]: formStyleType === 'horizontal',
-    });
+    const { children, className } = this.props;
+    const fullClassName = classNames(className, styles['form-group-actions']);
 
     return (
-      <div className={fullClassName} {...elementProps}>
+      <div className={fullClassName}>
         {children}
       </div>
     );

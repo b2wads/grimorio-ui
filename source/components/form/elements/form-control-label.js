@@ -9,6 +9,8 @@ import FormLabel from './form-label';
 import Select from '../../select';
 import Icon from '../../icon';
 
+import { withContext } from '../form-context';
+
 // styles
 import styles from './form-control-label.styl';
 
@@ -34,10 +36,6 @@ class FormControlLabel extends Component {
 
   static defaultProps = {
     activeLabel: null,
-  };
-
-  static contextTypes = {
-    $formGroup: PropTypes.object,
   };
 
   verifyPropsValue(props) {
@@ -78,12 +76,12 @@ class FormControlLabel extends Component {
       iconRightClick,
       iconLeft,
       iconLeftClick,
+      context,
       ...rest
     } = this.props;
 
     // context
-    const formGroup = this.context.$formGroup;
-    const validationState = (formGroup && formGroup.validationState) || undefined;
+    const { validationState } = context.formGroup;
 
     const labelWrapperClasses = classNames(styles.labelWrapper, {
       [styles['has-iconRight']]: iconRight,
@@ -135,4 +133,4 @@ class FormControlLabel extends Component {
   }
 }
 
-export default CSSModules(FormControlLabel, styles);
+export default withContext(CSSModules(FormControlLabel, styles));

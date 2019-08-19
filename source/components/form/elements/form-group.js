@@ -3,76 +3,64 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSModules from 'react-css-modules';
 
-import { property } from '../../../helpers';
+import { property } from 'helpers';
 // styles
 import styles from './form-group.styl';
+
+import { Provider } from '../form-context';
 
 const { randomId } = property;
 
 class FormGroup extends PureComponent {
   constructor(props, context) {
     super(props, context);
-  }
 
-  static defaultProps = {
-    controlId: '',
-    style: undefined,
-    validationState: undefined,
-    withoutTopLabel: false,
-  };
-
-  static propTypes = {
-    controlId: PropTypes.string,
-    style: PropTypes.oneOf(['checkbox', 'radio']),
-    validationState: PropTypes.oneOf(['success', 'warning', 'error']),
-    withoutTopLabel: PropTypes.bool,
-    children: PropTypes.node,
-    className: PropTypes.string,
-  };
-
-  static childContextTypes = {
-    $formGroup: PropTypes.object.isRequired,
-  };
-
-  static contextTypes = {
-    $form: PropTypes.object,
-  };
-
-  getChildContext() {
-    const { controlId, validationState, style } = this.props;
-    const id = controlId ? controlId : randomId();
-
-    return {
-      $formGroup: {
-        controlId: id,
-        validationState,
-        isCheckboxOrRadio: style === 'checkbox' || style === 'radio',
+    this.state = {
+      formGroup: {
+        controlId: props.controlId,
+        validationState: props.validationState,
       },
     };
   }
 
+  static defaultProps = {
+    controlId: randomId(),
+    validationState: undefined,
+  };
+
+  static propTypes = {
+    controlId: PropTypes.string,
+    validationState: PropTypes.oneOf(['success', 'warning', 'error']),
+    children: PropTypes.node,
+    className: PropTypes.string,
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.validationState !== this.props.validationState) {
+      this.setState({
+        formGroup: {
+          ...this.state.formGroup,
+          validationState: this.props.validationState,
+        },
+      });
+    }
+  }
+
   render() {
-    const { validationState, children, className, style, withoutTopLabel } = this.props;
+    const { validationState, children, className } = this.props;
 
     const validationStateClass = `has-${validationState}`;
 
-    // context
-    const form = this.context.$form;
-    const formStyleType = (form && form.styleType) || undefined;
-
-    const formGroupClass = classNames(className, styles['form-group'], {
+    const formGroupClass = classNames(className, styles['form-group'], styles['form-group--horizontal'], {
       [styles[validationStateClass]]: validationState,
-      [styles['form-group--checkbox']]: style === 'checkbox',
-      [styles['form-group--radio']]: style === 'radio',
-      [styles['form-group--withoutTopLabel']]: withoutTopLabel,
-      [styles['form-group--horizontal']]: formStyleType === 'horizontal',
-      [styles['form-group--inline']]: formStyleType === 'inline',
     });
 
     return (
-      <div className={formGroupClass}>
-        {children}
-      </div>
+      <Provider value={this.state}>
+        <div className={formGroupClass}>
+          {children}
+        </div>
+      </Provider>
     );
   }
 }

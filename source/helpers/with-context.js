@@ -1,13 +1,11 @@
 import React from 'react';
 
-export const withContext = (Consumer, Component) => {
-  return class extends React.Component {
-    render() {
-      return (
-        <Consumer>
-          {context => <Component {...this.props} context={context} />}
-        </Consumer>
-      );
-    }
+export function withContextGenerator(Consumer, Component) {
+  return function ThemeComponent(props) {
+    return (
+      <Consumer>
+        {ctx => <Component {...props} context={ctx} />}
+      </Consumer>
+    );
   };
-};
+}

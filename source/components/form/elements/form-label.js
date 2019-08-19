@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSModules from 'react-css-modules';
+
+import { withContext } from '../form-context';
+
 // styles
 import styles from './form-label.styl';
 
@@ -22,30 +25,14 @@ class FormLabel extends Component {
     className: PropTypes.string,
   };
 
-  static contextTypes = {
-    $form: PropTypes.object,
-    $formGroup: PropTypes.object,
-  };
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return true;
-  }
-
   render() {
-    const { addon, children, className, ...elementProps } = this.props;
+    const { addon, children, className, context, ...elementProps } = this.props;
 
     // context
-    const form = this.context.$form;
-    const formStyleType = (form && form.styleType) || undefined;
-    const formGroup = this.context.$formGroup;
-    const controlId = (formGroup && formGroup.controlId) || undefined;
-    const validationState = (formGroup && formGroup.validationState) || undefined;
-    const isCheckboxOrRadio = (formGroup && formGroup.isCheckboxOrRadio) || undefined;
+    const { validationState, controlId } = context.formGroup;
 
     const classes = classNames(className, styles.label, {
-      [styles.isHorizontal]: formStyleType === 'horizontal',
       [styles[`has-${validationState}`]]: validationState,
-      [styles.isCheckboxOrRadio]: isCheckboxOrRadio,
     });
 
     if (!addon && !children) {
@@ -61,4 +48,4 @@ class FormLabel extends Component {
   }
 }
 
-export default CSSModules(FormLabel, styles);
+export default withContext(CSSModules(FormLabel, styles));
