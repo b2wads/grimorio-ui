@@ -49,7 +49,7 @@ $field {
   }
 
   &:disabled {
-    background: $disabled;
+    background: $c-back-disabled;
     color: $c-disabled;
   }
 }
@@ -67,12 +67,12 @@ $radioCheckbox {
   width: 20px;
 
   &.isDisabled, &.isDisabled.isActive {
-    background: $disabled;
-    border-color: darken($disabled, 25%);
+    background: $c-back-disabled;
+    border-color: darken($c-back-disabled, 25%);
     cursor: not-allowed;
 
     i {
-      color: darken($disabled, 25%);
+      color: darken($c-back-disabled, 25%);
     }
   }
 }
@@ -157,13 +157,13 @@ Form Control Component
 
   input[type='radio']:disabled {
     &:checked ~ .fakeInput {
-      background: $disabled;
-      border-color: $disabled;
+      background: $c-back-disabled;
+      border-color: $c-back-disabled;
       cursor: not-allowed;
     }
 
     &:checked ~ .fakeInput:before {
-      background: $disabled;
+      background: $c-back-disabled;
     }
   }
 }
@@ -248,8 +248,8 @@ Form Control Component
 }
 
 .form-addon--disabled {
-  background: $disabled;
-  border-color: $disabled;
+  background: $c-back-disabled;
+  border-color: $c-back-disabled;
   color: $c-disabled-light;
 }
 
