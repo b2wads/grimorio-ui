@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
+import cx from 'classnames';
 
 import styles from './info-card.styl';
 
@@ -35,6 +36,7 @@ class InfoCard extends PureComponent {
       tagline,
       className,
       error,
+      ellipsis,
       onErrorClick,
       errorMessage,
       errorBtnText,
@@ -55,7 +57,7 @@ class InfoCard extends PureComponent {
           />}
         {!error &&
           <Fragment>
-            <span className={styles.info}>
+            <span className={cx(styles.info, { [styles.ellipsis]: ellipsis })}>
               {type === 'money' ? <span className={styles.symbol}>R$</span> : ''}
               {type === 'money' ? moneyFormat(value, false) : value}
             </span>
