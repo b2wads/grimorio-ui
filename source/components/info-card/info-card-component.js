@@ -21,6 +21,7 @@ class InfoCard extends PureComponent {
     errorMessage: PropTypes.string,
     onErrorClick: PropTypes.func,
     errorBtnText: PropTypes.string,
+    sizeText: PropTypes.number,
   };
 
   static defaultProptypes = {
@@ -38,6 +39,8 @@ class InfoCard extends PureComponent {
       error,
       ellipsis,
       onErrorClick,
+      sizeTitle,
+      sizeText,
       errorMessage,
       errorBtnText,
       ...elementProps
@@ -46,7 +49,7 @@ class InfoCard extends PureComponent {
     const fullClassName = classNames(className, styles.default);
 
     return (
-      <Panel title={title} className={fullClassName} {...elementProps}>
+      <Panel title={title} className={fullClassName} sizeTitle={sizeTitle} {...elementProps}>
         {error &&
           <Error
             className={styles.error}
@@ -57,7 +60,10 @@ class InfoCard extends PureComponent {
           />}
         {!error &&
           <Fragment>
-            <span className={cx(styles.info, { [styles.ellipsis]: ellipsis })}>
+            <span
+              className={cx(styles.info, { [styles.ellipsis]: ellipsis })}
+              style={{ fontSize: sizeText ? `${sizeText}px` : '24px' }}
+            >
               {type === 'money' ? <span className={styles.symbol}>R$</span> : ''}
               {type === 'money' ? moneyFormat(value, false) : value}
             </span>

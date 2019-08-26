@@ -73,7 +73,7 @@ class Panel extends PureComponent {
     );
   }
 
-  renderHeader(brand, title, accordion, open) {
+  renderHeader(brand, title, accordion, open, size) {
     if (brand) {
       return (
         <header className={styles[brand]}>
@@ -83,7 +83,7 @@ class Panel extends PureComponent {
     } else {
       return (
         <header className={cx(styles.title, { [styles.isAccordion]: accordion })}>
-          {title}
+          <span style={{ fontSize: size ? `${size}px` : '17px' }}>{title}</span>
           {accordion && this.renderIcon(open)}
         </header>
       );
@@ -124,6 +124,7 @@ class Panel extends PureComponent {
       brand,
       noPadding,
       size,
+      sizeTitle,
       footer,
       contentClassName,
       footerClassName,
@@ -159,7 +160,7 @@ class Panel extends PureComponent {
     return (
       <article {...rest} className={fullClassName}>
         <div className={wrapperClass}>
-          {(title || brand) && this.renderHeader(brand, title, accordion, open)}
+          {(title || brand) && this.renderHeader(brand, title, accordion, open, sizeTitle)}
           {loading && <Loader size="32px" className={styles.loader} />}
           {!loading &&
             <div ref={content => (this.content = content)} className={contentClass} style={style}>
