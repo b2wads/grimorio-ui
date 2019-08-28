@@ -83,7 +83,7 @@ class Panel extends PureComponent {
     } else {
       return (
         <header className={cx(styles.title, { [styles.isAccordion]: accordion })}>
-          <span style={{ fontSize: size ? `${size}px` : '17px' }}>{title}</span>
+          <span style={{ fontSize: size ? `${size}px` : '21px' }}>{title}</span>
           {accordion && this.renderIcon(open)}
         </header>
       );

@@ -60,10 +60,9 @@ class InfoCard extends PureComponent {
           />}
         {!error &&
           <Fragment>
-            {console.log('meus valores', value)}
             <span
               className={cx(styles.info, { [styles.ellipsis]: ellipsis })}
-              style={{ fontSize: sizeText ? `${sizeText}px` : '24px' }}
+              style={{ fontSize: sizeText ? `${sizeText}px` : '28px' }}
             >
               {type === 'money' ? <span className={styles.symbol}>R$</span> : ''}
               {type === 'money' ? moneyFormat(value, false) : value}
