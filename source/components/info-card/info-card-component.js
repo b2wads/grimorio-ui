@@ -64,7 +64,6 @@ class InfoCard extends PureComponent {
             <span
               className={cx(styles.info, { [styles.ellipsis]: ellipsis })}
               style={{ fontSize: sizeText ? `${sizeText}px` : '24px' }}
-              title={value}
             >
               {type === 'money' ? <span className={styles.symbol}>R$</span> : ''}
               {type === 'money' ? moneyFormat(value, false) : value}
