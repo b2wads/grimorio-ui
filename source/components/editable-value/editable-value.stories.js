@@ -4,15 +4,26 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import EditableValue from './editable-value-component';
+import Button from '../button';
 
 const stories = storiesOf('EditableValue', module);
 
 stories.addDecorator(withKnobs);
 
-stories.add('Uncontrolled', () => (
+stories.add('Default', () => (
   <EditableValue
-    label="Teste"
-    value="123"
+    initialValue="Default"
+    onSubmit={(value, toggleFn) => {
+      console.log('onSubmit', value);
+      toggleFn();
+    }}
+  />
+));
+
+stories.add('Outline', () => (
+  <EditableValue
+    outline
+    initialValue="Outline"
     onSubmit={(value, toggleFn) => {
       console.log('onSubmit', value);
       toggleFn();
@@ -22,11 +33,40 @@ stories.add('Uncontrolled', () => (
   />
 ));
 
-stories.add('Outline and Label', () => (
+stories.add('Label', () => (
+  <div>
+    <EditableValue
+      outline
+      label="Teste"
+      initialValue="Outline"
+      onSubmit={(value, toggleFn) => {
+        console.log('onSubmit', value);
+        toggleFn();
+      }}
+      validation={value => `${value}`.length === 4}
+      errorMessage="Favor inserir 4 caracteres"
+    />
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <EditableValue
+      label="Teste"
+      initialValue="No Outline"
+      onSubmit={(value, toggleFn) => {
+        console.log('onSubmit', value);
+        toggleFn();
+      }}
+      validation={value => `${value}`.length === 4}
+      errorMessage="Favor inserir 4 caracteres"
+    />
+  </div>
+));
+
+stories.add('Uncontrolled', () => (
   <EditableValue
-    outline
-    label="Teste"
-    value="123"
+    label="Uncontrolled"
+    initialValue="Valor interno"
     onSubmit={(value, toggleFn) => {
       console.log('onSubmit', value);
       toggleFn();
@@ -38,7 +78,7 @@ stories.add('Outline and Label', () => (
 
 stories.add(
   'Controlled',
-  withState({ loading: false, value: 'Valor no estado' })(({ store }) => {
+  withState({ loading: false, value: 'Valor no estado (externo)' })(({ store }) => {
     const setVal = (value, toggle) => {
       store.set({ loading: true });
       setTimeout(() => {
@@ -47,14 +87,23 @@ stories.add(
       }, 1000);
     };
 
+    const changeVal = () => {
+      store.set({ value: 'Novo Valor do Estado' });
+    };
+
     return (
-      <EditableValue
-        loading={store.state.loading}
-        value={store.state.value}
-        onSubmit={setVal}
-        validation={value => `${value}`.length > 4}
-        errorMessage="Favor inserir mais que 4 caracteres"
-      />
+      <div>
+        <EditableValue
+          loading={store.state.loading}
+          value={store.state.value}
+          onSubmit={setVal}
+          validation={value => `${value}`.length > 4}
+          errorMessage="Favor inserir mais que 4 caracteres"
+        />
+        <br/>
+        <br/>
+        <Button onClick={changeVal}>Change State Value</Button>
+      </div>
     );
   })
 );

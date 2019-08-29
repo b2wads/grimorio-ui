@@ -15,7 +15,8 @@ class EditableValue extends PureComponent {
     super();
     this.state = {
       isEditing: null,
-      editValue: props.value,
+      editValue: null,
+      innerValue: props.initialValue,
       validationStatus: null,
     };
 
@@ -26,6 +27,7 @@ class EditableValue extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string,
+    initialValue: PropTypes.string,
     validation: PropTypes.func,
     errorMessage: PropTypes.string,
     loading: PropTypes.bool,
@@ -33,6 +35,8 @@ class EditableValue extends PureComponent {
     label: PropTypes.string,
     outline: PropTypes.bool,
     inputClassName: PropTypes.string,
+    buttonClassName: PropTypes.string,
+    iconClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -61,9 +65,8 @@ class EditableValue extends PureComponent {
 
     if (!this.isValid(editValue)) {
       this.toggleEdit();
-    }
-
-    if (validationStatus !== 'error') {
+    } else if (validationStatus !== 'error') {
+      this.setState({ innerValue: editValue });
       this.props.onSubmit(editValue, this.toggleEdit);
     } else {
       this.setState({ validationStatus });
@@ -79,8 +82,9 @@ class EditableValue extends PureComponent {
   }
 
   renderEdition() {
-    const { label, value, outline, loading, inputClassName, errorMessage } = this.props;
-    const { editValue, validationStatus } = this.state;
+    const { label, value, outline, loading, inputClassName, buttonClassName, errorMessage } = this.props;
+    const { editValue, innerValue, validationStatus } = this.state;
+    const finalValue = value || innerValue;
     return (
       <Fragment>
         <FormGroup key={validationStatus} validationState={validationStatus} className={styles.formGroup}>
@@ -90,12 +94,12 @@ class EditableValue extends PureComponent {
             outline={outline}
             label={label}
             type="text"
-            value={this.isValid(editValue) ? editValue : value}
+            value={this.isValid(editValue) ? editValue : finalValue}
             inputClassName={cx(styles.input, inputClassName)}
           />
           {validationStatus === 'error' && errorMessage && <FormHelpText>{errorMessage}</FormHelpText>}
         </FormGroup>
-        <Button className={cx(styles.submit, { [styles.isInputOutline]: outline })} size="none" onClick={this.onSubmit}>
+        <Button className={cx(styles.submit, buttonClassName)} size="none" onClick={this.onSubmit}>
           {!loading ? <Icon name="check" size={16} /> : <Loader size="20px" color="secondary" />}
         </Button>
       </Fragment>
@@ -103,10 +107,11 @@ class EditableValue extends PureComponent {
   }
 
   renderValue() {
+    const { value, iconClassName } = this.props;
     return (
       <Fragment>
-        {this.props.value}
-        <Button className={styles.edit} size="none" color="transparent" onClick={this.toggleEdit}>
+        {value || this.state.innerValue}
+        <Button className={cx(styles.edit, iconClassName)} size="none" color="transparent" onClick={this.toggleEdit}>
           <Icon name="edit" size={16} />
         </Button>
       </Fragment>
@@ -116,7 +121,7 @@ class EditableValue extends PureComponent {
   render() {
     const { isEditing } = this.state;
     return (
-      <div className={cx(styles.wrap, { [styles.isEditing]: isEditing })}>
+      <div className={cx(styles.wrap, { [styles.isEditing]: isEditing }, this.props.className)}>
         {isEditing ? this.renderEdition() : this.renderValue()}
       </div>
     );
