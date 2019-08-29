@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { withState } from '@dump247/storybook-state';
 
 import EditableValue from './editable-value-component';
 
@@ -34,3 +35,26 @@ stories.add('Outline and Label', () => (
     errorMessage="Favor inserir 4 caracteres"
   />
 ));
+
+stories.add(
+  'Controlled',
+  withState({ loading: false, value: 'Valor no estado' })(({ store }) => {
+    const setVal = (value, toggle) => {
+      store.set({ loading: true });
+      setTimeout(() => {
+        store.set({ value, loading: false });
+        toggle();
+      }, 1000);
+    };
+
+    return (
+      <EditableValue
+        loading={store.state.loading}
+        value={store.state.value}
+        onSubmit={setVal}
+        validation={value => `${value}`.length > 4}
+        errorMessage="Favor inserir mais que 4 caracteres"
+      />
+    );
+  })
+);

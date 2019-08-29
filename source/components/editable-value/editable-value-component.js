@@ -5,6 +5,7 @@ import cx from 'classnames';
 
 import Icon from '../icon';
 import Button from '../button';
+import Loader from '../loader';
 import { FormControlLabel, FormGroup, FormHelpText } from '../form';
 
 import styles from './editable-value.styl';
@@ -58,7 +59,7 @@ class EditableValue extends PureComponent {
     const { editValue } = this.state;
     const { validationStatus } = this.validation(editValue);
 
-    if (!editValue) {
+    if (!this.isValid(editValue)) {
       this.toggleEdit();
     }
 
@@ -94,13 +95,8 @@ class EditableValue extends PureComponent {
           />
           {validationStatus === 'error' && errorMessage && <FormHelpText>{errorMessage}</FormHelpText>}
         </FormGroup>
-        <Button
-          className={cx(styles.submit, { [styles.isInputOutline]: outline })}
-          size="none"
-          loading={loading}
-          onClick={this.onSubmit}
-        >
-          <Icon name="check" size={16} />
+        <Button className={cx(styles.submit, { [styles.isInputOutline]: outline })} size="none" onClick={this.onSubmit}>
+          {!loading ? <Icon name="check" size={16} /> : <Loader size="20px" color="secondary" />}
         </Button>
       </Fragment>
     );
