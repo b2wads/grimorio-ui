@@ -1,9 +1,7 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-//
 $shadow-color = rgba(0, 0, 0, 0.125);
-$c-back-disabled = #eee;
 
 /* ==========================================================================
    Placeholders
@@ -15,26 +13,25 @@ $button {
   cursor: pointer;
   display: inline-flex;
   font-family: $base-font-family;
+  justify-content: center;
   position: relative;
   text-align: center;
   transition: all 0.3s ease;
-  justify-content: center;
 
   &:focus {
     outline: 0;
   }
 
-  &:disabled:not(.isLoading),
-  &:disabled:hover:not(.isLoading) {
+  &:disabled:not(.isLoading), &:disabled:hover:not(.isLoading) {
     background: $c-back-disabled;
     border: 0;
-    color: lighten($c-text, 25%);
+    color: $c-support;
     cursor: not-allowed;
   }
 }
 
 /* Primary
- ================ */
+================ */
 .primary {
   @extend $button;
   background: $c-primary;
@@ -44,8 +41,7 @@ $button {
     box-shadow: inset 0 3px 5px $shadow-color;
   }
 
-  &:hover,
-  &.isActive {
+  &:hover, &.isActive {
     background: $c-primary-dark;
     color: $white;
   }
@@ -56,8 +52,7 @@ $button {
   border: 1px solid $c-primary;
   color: $c-primary;
 
-  &:hover,
-  &.isActive {
+  &:hover, &.isActive {
     background: $c-primary;
     color: $white;
   }
@@ -74,8 +69,7 @@ $button {
     box-shadow: inset 0 3px 5px $shadow-color;
   }
 
-  &:hover,
-  &.isActive {
+  &:hover, &.isActive {
     background: darken($c-primary-dark, 5%);
   }
 }
@@ -89,8 +83,7 @@ $button {
     box-shadow: inset 0 3px 5px $shadow-color;
   }
 
-  &:hover,
-  &.isActive {
+  &:hover, &.isActive {
     background: darken($c-gray-1, 5%);
     color: $white;
   }
@@ -101,8 +94,7 @@ $button {
   border: 1px solid $c-gray-1;
   color: $c-text;
 
-  &:hover,
-  &.isActive {
+  &:hover, &.isActive {
     background: $c-gray-1;
     color: $white;
   }
@@ -132,24 +124,19 @@ $button {
   background: none;
   border: 0;
 
-  &.outline,
-  &:hover,
-  &:disabled,
-  &:disabled:not(.isLoading)
-  &:hover:disabled,
-  &:hover:disabled:not(.isLoading) {
+  &.outline, &:hover, &:disabled, &:disabled:not(.isLoading), &:hover:disabled, &:hover:disabled:not(.isLoading) {
     background: none;
   }
 }
 
 /* SIZES
- ==================================================== */
-
+==================================================== */
 /* Small
 ================ */
 .small {
   font-size: 13px;
   padding: 4px 10px;
+
   &.outline {
     padding: 2px 8px;
   }
@@ -160,6 +147,7 @@ $button {
 .medium {
   font-size: 14px;
   padding: 7px 20px;
+
   &.outline {
     padding: 6px 18px;
   }
@@ -170,6 +158,7 @@ $button {
 .large {
   font-size: 15px;
   padding: 8px 25px;
+
   &.outline {
     padding: 6px 23px;
   }
@@ -183,7 +172,7 @@ $button {
 }
 
 /* Block
- ========================================================================== */
+========================================================================== */
 .block {
   display: block;
   width: 100%;
