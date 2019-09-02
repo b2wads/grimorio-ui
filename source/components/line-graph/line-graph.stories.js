@@ -280,33 +280,6 @@ stories.add(
   })
 );
 
-// return <div>
-//     <Button onClick={change}>
-//       Change
-//     </Button>
-//     <br />
-//     <br />
-//     <br />
-
-//     <Panel title="Changing Data" accordion>
-//       <LineGraph
-//         loading={store.state.loading}
-//         title="Pedidos!"
-//         style={{ height: '400px' }}
-//         datasets={[
-//           {
-//             data: transformData(store.state.data),
-//             label: store.state.label,
-//             borderColor: '#00b8ad',
-//             pointHoverBackgroundColor: '#fff',
-//             fill: false,
-//           },
-//         ]}
-//         options={options}
-//       />
-//     </Panel>
-//   </div>
-
 stories.add('With custom tooltip label', () =>
   <Panel title="Normal" accordion>
     <LineGraph
