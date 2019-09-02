@@ -238,6 +238,7 @@ class Select extends Component {
       menuButton,
       sortItems,
       isMobile,
+      outline,
       ...elementProps
     } = this.props;
     const { selectedValue, menuOpen, childItems } = this.state;
@@ -253,10 +254,14 @@ class Select extends Component {
       [styles.isMobile]: isMobile,
     });
 
+    const selectStyles = cx(styles.selectWrap, className, {
+      [styles.isOutline]: outline,
+    });
+
     return (
       <div
         ref={el => (this.selectWrap = el)}
-        className={cx(styles.selectWrap, className)}
+        className={selectStyles}
         {...omit(elementProps, ['closeOnClickOutside', 'onClickOutside'])}
       >
         <span onClick={this.toggleOptions()} className={styles.button}>

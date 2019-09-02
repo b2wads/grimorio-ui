@@ -1,0 +1,61 @@
+@import '../../../source/styl/00-settings/_variables.styl';
+
+.panel-steps {
+  display: flex;
+  justify-content: center;
+}
+
+.stepsHolderActive {
+  color: $c-primary;
+  .stepsNumber {
+    background-color: $c-primary;
+    padding: 2px;
+  }
+}
+
+.stepsHolder {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  &:last-child {
+    flex-grow: 0;
+  }
+}
+
+.steps {
+  color: $c-gray-1;
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.stepsHolderLine {
+  align-self: center;
+  background-color: $c-support-medium;
+  height: 1px;
+  margin: 0 18px;
+  vertical-align: middle;
+  flex-grow: 1;
+}
+
+.stepsCurrent {
+  color: $c-primary;
+}
+
+.stepsNumber {
+  background-color: grey;
+  border-radius: 50%;
+  color: $c-support-light;
+  font-size: 15px;
+  height: 24px;
+  margin-right: 7px;
+  padding: 3px;
+  text-align: center;
+  vertical-align: middle;
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.currentNumber {
+  background-color: $c-primary;
+}

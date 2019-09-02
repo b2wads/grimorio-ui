@@ -23,15 +23,16 @@ import Form, {
   FormHelpText,
 } from './components/form';
 import Modal from './components/modal';
+import SideModal from './components/side-modal';
 import Table from './components/table';
 import TableFixed from './components/table-fixed';
 import TablePanel from './components/table-panel';
 import Loader from './components/loader';
 import DatePicker from './components/date-picker';
+import Calendar from './components/calendar';
 import Tooltip from './components/tooltip';
 import TooltipSticky from './components/tooltip-sticky';
 import Slider from './components/slider';
-import LinkGenerator from './components/link-generator';
 import Alert from './components/alert';
 import LineGraph from './components/line-graph';
 import Error from './components/error';
@@ -41,6 +42,8 @@ import PieChart from './components/pie-chart';
 import Tag from './components/tag';
 import Toggle from './components/toggle';
 import Pager from './components/pager';
+import Steps from './components/steps';
+import Feedback from './components/feedback';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -81,12 +84,14 @@ export {
   TablePanel,
   Loader,
   Modal,
+  SideModal,
   DatePicker,
+  Calendar,
   Tooltip,
   TooltipSticky,
-  LinkGenerator,
   Slider,
   Alert,
+  Feedback,
   LineGraph,
   Error,
   Popover,
@@ -94,5 +99,6 @@ export {
   PieChart,
   Tag,
   Toggle,
+  Steps,
   Pager,
 };

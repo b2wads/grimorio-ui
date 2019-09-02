@@ -1,14 +1,10 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-
-
 $c-input = #333;
 $placeholder = #999;
 $c-border = #ccc;
 $c-label = #999;
-$disabled = lighten($c-secondary, 60%);
-$c-disabled = #999;
 
 /* ==========================================================================
    Placeholders
@@ -21,9 +17,9 @@ $menu {
   margin: 0;
   opacity: 0;
   padding: 8px 0;
-  transform: scaleY(0);
   position: absolute;
   top: 0;
+  transform: scaleY(0);
   user-select: none;
   width: 100%;
   z-index: -1;
@@ -47,14 +43,11 @@ $field {
 /* ==========================================================================
    Select Elements
 ========================================================================== */
-
 /* ==========================================================================
    Select Props
 ========================================================================== */
-
 /* Default
- ================ */
-
+================ */
 .selectWrap {
   position: relative;
 }
@@ -92,14 +85,16 @@ $field {
   }
 
   &.isDisabled {
-    background: $disabled;
+    background: $c-back-disabled;
     border-color: $c-border;
     color: $c-disabled;
     cursor: not-allowed;
   }
 }
 
-.labelWrapper { position: relative }
+.labelWrapper {
+  position: relative;
+}
 
 .label {
   color: $c-label;
@@ -113,9 +108,8 @@ $field {
   transition: all 0.25s ease;
 
   &.isActive {
-    color: $c-primary;
+    color: $c-default;
     font-size: 12px;
-    font-weight: 700;
     top: -1.5rem;
     transition: all 0.125s ease;
   }
@@ -138,8 +132,8 @@ $field {
   }
 
   &.isOpen {
-    transform: scaleY(1);
     opacity: 1;
+    transform: scaleY(1);
     transition: opacity 0.5s ease;
     z-index: $z-upmax;
   }
@@ -160,7 +154,6 @@ $field {
   color: $c-text;
   cursor: pointer;
   padding: 10px 16px;
-  // word-wrap: break-word;
 
   &:hover {
     background: $c-support-light;
@@ -183,4 +176,35 @@ $field {
 
 .overlay {
   @extend $overlay;
+}
+
+.isOutline {
+  .input {
+    border: 1px solid $c-border;
+    border-radius: 3px;
+    line-height: 5px;
+    padding: 24px 10px 22px;
+  }
+
+  .arrow {
+    right: 5px;
+    top: 16px;
+  }
+
+  .label {
+    padding-left: 10px;
+    top: 17px;
+
+    &.isActive {
+      background: $white;
+      left: 10px;
+      padding: 0 5px;
+      top: -6px;
+      width: auto;
+    }
+  }
+
+  .menu {
+    top: 10px;
+  }
 }

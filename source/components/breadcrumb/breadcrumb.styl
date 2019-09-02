@@ -1,24 +1,22 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-
-
 /* ==========================================================================
    Placeholders
 ========================================================================== */
 $icon {
-  color: $base-text-color;
+  color: $c-support;
   margin: 0 2px;
 }
 
 $item {
-  text-transform: capitalize;
   color: $c-primary;
   cursor: pointer;
   font-size: 13px;
   max-width: 180px;
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
   white-space: nowrap;
 }
 
@@ -42,8 +40,8 @@ $item {
 }
 
 .itemWrap {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .item {
@@ -52,13 +50,12 @@ $item {
 
 .itemCurrent {
   @extend $item;
-  color: $base-text-color;
+  color: $c-support;
   cursor: inherit;
 }
 
 /* ==========================================================================
    Breadcrumb Props
 ========================================================================== */
-
 /* Default
- ================ */
+================ */
