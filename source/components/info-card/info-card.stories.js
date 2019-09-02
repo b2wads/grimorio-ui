@@ -10,7 +10,7 @@ stories.addDecorator(withKnobs);
 
 stories.add('Normal', () => (
   <div style={{ display: 'flex' }}>
-    <InfoCard title="Pedidos Faturados" type="money" value={666999000} tagline="fevereiro" />
+    <InfoCard title="Pedidos Faturados" type="money" sizeText={21} value={666999000} tagline="fevereiro" />
     <InfoCard title="Pedidos Colocados" tagline="fevereiro" value={50} />
   </div>
 ));

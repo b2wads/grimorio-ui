@@ -1,7 +1,7 @@
 {
   "name": "grimorio-ui",
   "sideEffects": false,
-  "version": "5.0.24",
+  "version": "5.0.52",
   "description": "React UI Kit that works like magic",
   "main": "lib/index.js",
   "scripts": {
