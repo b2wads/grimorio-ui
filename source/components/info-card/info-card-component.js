@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
+import cx from 'classnames';
 
 import styles from './info-card.styl';
 
@@ -20,11 +21,15 @@ class InfoCard extends PureComponent {
     errorMessage: PropTypes.string,
     onErrorClick: PropTypes.func,
     errorBtnText: PropTypes.string,
+    sizeText: PropTypes.number,
+    ellipsis: PropTypes.bool,
+    sizeTitle: PropTypes.number,
   };
 
   static defaultProptypes = {
     type: 'alphanum',
     error: false,
+    sizeText: 28,
   };
 
   render() {
@@ -35,7 +40,10 @@ class InfoCard extends PureComponent {
       tagline,
       className,
       error,
+      ellipsis,
       onErrorClick,
+      sizeTitle,
+      sizeText,
       errorMessage,
       errorBtnText,
       ...elementProps
@@ -44,7 +52,7 @@ class InfoCard extends PureComponent {
     const fullClassName = classNames(className, styles.default);
 
     return (
-      <Panel title={title} className={fullClassName} {...elementProps}>
+      <Panel title={title} className={fullClassName} sizeTitle={sizeTitle} {...elementProps}>
         {error &&
           <Error
             className={styles.error}
@@ -55,7 +63,7 @@ class InfoCard extends PureComponent {
           />}
         {!error &&
           <Fragment>
-            <span className={styles.info}>
+            <span className={cx(styles.info, { [styles.ellipsis]: ellipsis })} style={{ fontSize: `${sizeText}px` }}>
               {type === 'money' ? <span className={styles.symbol}>R$</span> : ''}
               {type === 'money' ? moneyFormat(value, false) : value}
             </span>
