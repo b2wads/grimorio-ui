@@ -16,6 +16,10 @@
 .stepsHolder {
   align-items: center;
   display: flex;
+  flex-grow: 1;
+  &:last-child {
+    flex-grow: 0;
+  }
 }
 
 .steps {
@@ -31,7 +35,7 @@
   height: 1px;
   margin: 0 18px;
   vertical-align: middle;
-  width: 150px;
+  flex-grow: 1;
 }
 
 .stepsCurrent {
