@@ -172,12 +172,11 @@ const options = {
   },
 };
 
-stories.add('Normal', () => (
+stories.add('Normal', () =>
   <Panel title="Normal" accordion>
     <LineGraph
       title="Pedidos!"
       style={{ height: '400px' }}
-      noLegend
       accordion
       datasets={[
         {
@@ -198,7 +197,35 @@ stories.add('Normal', () => (
       options={options}
     />
   </Panel>
-));
+);
+
+stories.add('No Legend', () =>
+  <Panel title="Normal" accordion>
+    <LineGraph
+      title="Pedidos!"
+      style={{ height: '400px' }}
+      accordion
+      noLegend
+      datasets={[
+        {
+          data: transformData(data),
+          label: 'Faturados',
+          borderColor: '#00b8ad',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+        {
+          data: transformData(other),
+          label: 'Other',
+          borderColor: 'red',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+      ]}
+      options={options}
+    />
+  </Panel>
+);
 
 stories.add('Error', () => (
   <LineGraph
@@ -251,4 +278,61 @@ stories.add(
       </div>
     );
   })
+);
+
+// return <div>
+//     <Button onClick={change}>
+//       Change
+//     </Button>
+//     <br />
+//     <br />
+//     <br />
+
+//     <Panel title="Changing Data" accordion>
+//       <LineGraph
+//         loading={store.state.loading}
+//         title="Pedidos!"
+//         style={{ height: '400px' }}
+//         datasets={[
+//           {
+//             data: transformData(store.state.data),
+//             label: store.state.label,
+//             borderColor: '#00b8ad',
+//             pointHoverBackgroundColor: '#fff',
+//             fill: false,
+//           },
+//         ]}
+//         options={options}
+//       />
+//     </Panel>
+//   </div>
+
+stories.add('With custom tooltip label', () =>
+  <Panel title="Normal" accordion>
+    <LineGraph
+      title="Pedidos!"
+      style={{ height: '400px' }}
+      accordion
+      datasets={[
+        {
+          data: transformData(data),
+          label: 'Faturados',
+          borderColor: '#00b8ad',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+        {
+          data: transformData(other),
+          label: 'Other',
+          borderColor: 'red',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+      ]}
+      options={options}
+      tooltipFormatLabel={(tooltipItem, data) => {
+        return `customizado! ${data.datasets[tooltipItem.datasetIndex].label}: ${tooltipItem.yLabel}`
+      }}
+    />
+  </Panel>
 );
