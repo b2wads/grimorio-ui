@@ -28,6 +28,7 @@ class LineGraph extends PureComponent {
     errorMessage: PropTypes.string,
     onErrorClick: PropTypes.func,
     errorBtnText: PropTypes.string,
+    tooltipFormatLabel: PropTypes.func,
   };
 
   static chart = null;
@@ -46,7 +47,7 @@ class LineGraph extends PureComponent {
   }
 
   componentDidMount() {
-    const { options, datasets, error } = this.props;
+    const { options, datasets, error, tooltipFormatLabel } = this.props;
 
     if (!this.canvas || !this.canvas.current) {
       return null;
@@ -69,6 +70,12 @@ class LineGraph extends PureComponent {
             titleFontColor: '#777',
             bodyFontColor: '#777',
             footerFontColor: '#777',
+            callbacks: {
+              label: (tooltipItem, data) =>
+                tooltipFormatLabel
+                  ? tooltipFormatLabel(tooltipItem, data)
+                  : ` ${data.datasets[tooltipItem.datasetIndex].label}: ${tooltipItem.yLabel}`,
+            },
           },
           plugins: {
             datalabels: {

@@ -173,42 +173,42 @@ const options = {
 };
 
 stories.add('Normal', () =>
-    <Panel title="Normal" accordion>
-      <LineGraph
-        title="Pedidos!"
-        style={{ height: '400px' }}
-        accordion
-        datasets={[
-          {
-            data: transformData(data),
-            label: 'Faturados',
-            borderColor: '#00b8ad',
-            pointHoverBackgroundColor: '#fff',
-            fill: false,
-          },
-          {
-            data: transformData(other),
-            label: 'Other',
-            borderColor: 'red',
-            pointHoverBackgroundColor: '#fff',
-            fill: false,
-          },
-        ]}
-        options={options}
-      />
-    </Panel>
+  <Panel title="Normal" accordion>
+    <LineGraph
+      title="Pedidos!"
+      style={{ height: '400px' }}
+      accordion
+      datasets={[
+        {
+          data: transformData(data),
+          label: 'Faturados',
+          borderColor: '#00b8ad',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+        {
+          data: transformData(other),
+          label: 'Other',
+          borderColor: 'red',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+      ]}
+      options={options}
+    />
+  </Panel>
 );
 
 stories.add('Error', () =>
-    <LineGraph
-      title="Pedidos!"
-      error
-      onErrorClick={() => alert('try again!')}
-      style={{ height: '400px' }}
-      actions={<Button color="variant" modifier="outline">Export</Button>}
-      datasets={[]}
-      options={options}
-    />
+  <LineGraph
+    title="Pedidos!"
+    error
+    onErrorClick={() => alert('try again!')}
+    style={{ height: '400px' }}
+    actions={<Button color="variant" modifier="outline">Export</Button>}
+    datasets={[]}
+    options={options}
+  />
 );
 
 stories.add('With changing data', withState({ loading: false, data: other, label: 'teste 1' })(({ store }) => {
@@ -223,9 +223,9 @@ stories.add('With changing data', withState({ loading: false, data: other, label
     <Button onClick={change}>
       Change
     </Button>
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
 
     <Panel title="Changing Data" accordion>
       <LineGraph
@@ -246,3 +246,33 @@ stories.add('With changing data', withState({ loading: false, data: other, label
     </Panel>
   </div>
 }));
+
+stories.add('With custom tooltip label', () =>
+  <Panel title="Normal" accordion>
+    <LineGraph
+      title="Pedidos!"
+      style={{ height: '400px' }}
+      accordion
+      datasets={[
+        {
+          data: transformData(data),
+          label: 'Faturados',
+          borderColor: '#00b8ad',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+        {
+          data: transformData(other),
+          label: 'Other',
+          borderColor: 'red',
+          pointHoverBackgroundColor: '#fff',
+          fill: false,
+        },
+      ]}
+      options={options}
+      tooltipFormatLabel={(tooltipItem, data) => {
+        return `customizado! ${data.datasets[tooltipItem.datasetIndex].label}: ${tooltipItem.yLabel}`
+      }}
+    />
+  </Panel>
+);
