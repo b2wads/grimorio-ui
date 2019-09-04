@@ -36,6 +36,7 @@ class Table extends PureComponent {
     width: PropTypes.string,
     height: PropTypes.string,
     isSticky: PropTypes.bool,
+    rowHeight: PropTypes.string,
   };
 
   static defaultProps = {
@@ -47,9 +48,9 @@ class Table extends PureComponent {
     isSticky: false,
   };
 
-  renderHeadRow(schema, isSticky) {
+  renderHeadRow(schema, isSticky, rowHeight) {
     return (
-      <tr className={cx(styles.rowHead, { [styles.isSticky]: isSticky })}>
+      <tr style={{ height: rowHeight }} className={cx(styles.rowHead, { [styles.isSticky]: isSticky })}>
         {Object.keys(schema).map((key, index) => {
           const currentSchema = schema[key];
           const headClass = cx(styles.cellHead, currentSchema.className, { [styles.isSticky]: isSticky });
@@ -66,9 +67,9 @@ class Table extends PureComponent {
     );
   }
 
-  renderFootRow(dataFooter, isSticky) {
+  renderFootRow(dataFooter, isSticky, rowHeight) {
     return (
-      <tr className={cx(styles.rowFoot, { [styles.isSticky]: isSticky })}>
+      <tr style={{ height: rowHeight }} className={cx(styles.rowFoot, { [styles.isSticky]: isSticky })}>
         {Object.keys(dataFooter).map((key, index) => {
           const currentData = dataFooter[key];
           const headClass = cx(styles.cellFoot, currentData.className, { [styles.isSticky]: isSticky });
@@ -97,9 +98,13 @@ class Table extends PureComponent {
       : {};
   }
 
-  renderRow(data, schema, specialCase) {
+  renderRow(data, schema, specialCase, rowHeight) {
     return data.map((infoRow, index) => (
-      <tr key={uniqueId()} className={cx(styles.row, this.generateSpecialStyle(specialCase, infoRow))}>
+      <tr
+        style={{ height: rowHeight }}
+        key={uniqueId()}
+        className={cx(styles.row, this.generateSpecialStyle(specialCase, infoRow))}
+      >
         {Object.keys(schema).map(key => {
           const currentSchema = schema[key];
           if (Object.keys(currentSchema).length) {
@@ -124,13 +129,13 @@ class Table extends PureComponent {
     );
   }
 
-  verifyResults(data, schema, loadingMessage, notFoundMessage, specialCase) {
+  verifyResults(data, schema, loadingMessage, notFoundMessage, specialCase, rowHeight) {
     if (!Array.isArray(data)) {
       return this.renderEmptyResults(loadingMessage, schema);
     } else if (data.length === 0) {
       return this.renderEmptyResults(notFoundMessage, schema);
     } else {
-      return this.renderRow(data, schema, specialCase);
+      return this.renderRow(data, schema, specialCase, rowHeight);
     }
   }
 
@@ -151,6 +156,7 @@ class Table extends PureComponent {
       specialCase,
       isSticky,
       dataFooter,
+      rowHeight,
       ...rest
     } = this.props;
 
@@ -173,15 +179,15 @@ class Table extends PureComponent {
       <div style={wrapSizes} className={wrapClass} {...rest}>
         <table className={tableClass}>
           <thead className={styles.tableHead}>
-            {this.renderHeadRow(schema, isSticky)}
+            {this.renderHeadRow(schema, isSticky, rowHeight)}
           </thead>
 
           <tbody className={styles.tableBody}>
-            {this.verifyResults(data, schema, loadingMessage, notFoundMessage, specialCase)}
+            {this.verifyResults(data, schema, loadingMessage, notFoundMessage, specialCase, rowHeight)}
           </tbody>
           {dataFooter &&
             <tfoot>
-              {this.renderFootRow(dataFooter, true)}
+              {this.renderFootRow(dataFooter, true, rowHeight)}
             </tfoot>}
         </table>
       </div>
