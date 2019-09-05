@@ -75,6 +75,17 @@ stories.add('Fixed', () => {
   );
 });
 
+stories.add('Row Height', () => {
+  return (
+    <Table
+      layout="fixed"
+      rowHeight="80px"
+      schema={schema}
+      data={simpledata}
+    />
+  );
+});
+
 stories.add('Sticky', withState({ data: null })(({ store }) => {
   fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json())

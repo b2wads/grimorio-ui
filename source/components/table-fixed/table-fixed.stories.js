@@ -107,6 +107,7 @@ stories.add(
         isSticky
         width="700px"
         height="300px"
+        rowHeight="60px"
         schemaRight={schemaRight}
         schemaLeft={schemaLeft}
         data={store.state.data}
