@@ -1,19 +1,13 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
 
-import styles from '../tab.styl';
+const Tab = ({ onClick, children, className }) => {
+  return <li className={className} onClick={onClick}>{children}</li>;
+};
 
-class Tab extends PureComponent {
-  static propTypes = {
-    id: PropTypes.string,
-    value: PropTypes.string,
-  };
+Tab.propTypes = {
+  id: PropTypes.string,
+  value: PropTypes.string,
+};
 
-  render() {
-    console.log('x', this.props);
-    return <li onClick={this.props.onClick}>{this.props.children}</li>;
-  }
-}
-
-export default CSSModules(Tab, styles);
+export default React.memo(Tab);

@@ -22,3 +22,62 @@ $default {}
 .default {
   @extend $default;
 }
+
+.wrap {
+  @extend $drop-shadow;
+  position: relative;
+}
+
+.indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background: $c-primary;
+  height: 2px;
+  width: 0;
+  transition: left .3s ease-in-out;
+
+  &.primary {
+    background: $c-primary
+  }
+
+  &.secondary {
+    background: $c-support-dark;
+  }
+}
+
+.list {
+  width: 100%;
+  display: grid;
+  margin-bottom: 0;
+  padding: 0 25px;
+
+  &.stretch {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  &.auto {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+
+.item {
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  box-sizing: border-box;
+
+
+  &.isActive.primary {
+    color: $c-primary
+  }
+
+  &.isActive.secondary {
+    color: $c-support-dark;
+  }
+}
