@@ -27,12 +27,10 @@ class TabMenu extends PureComponent {
     active: PropTypes.string,
     initialActive: PropTypes.string,
     onChange: PropTypes.func,
-    iconLeft: PropTypes.string,
-    iconTop: PropTypes.string,
+    icon: PropTypes.string,
     tabs: PropTypes.array,
     activeStyle: PropTypes.oneOf(['primary', 'secondary']),
     tabDisplay: PropTypes.oneOf(['inline', 'center', 'full']),
-    centered: PropTypes.bool,
     listClassName: PropTypes.string,
     itemClassName: PropTypes.string,
   };
@@ -66,7 +64,6 @@ class TabMenu extends PureComponent {
     } else if (children) {
       return children.findIndex(childTab => value === childTab.props.id);
     }
-
     return -1;
   }
 
@@ -95,8 +92,8 @@ class TabMenu extends PureComponent {
 
     return React.Children.map(children, (child, index) =>
       React.cloneElement(child, {
+        ...child.props,
         onClick: this.onChange(child.props.id, child.props.value, index),
-        icon: child.props.icon,
         className: cx(styles.item, itemClassName, child.props.className, {
           [styles.isActive]: child.props.id === finalActive,
           [styles[activeStyle]]: activeStyle,
