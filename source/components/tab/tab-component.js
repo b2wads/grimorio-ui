@@ -11,8 +11,8 @@ class TabMenu extends PureComponent {
     super();
 
     this.state = {
-      activeTab: props.active,
-      activeTabIndex: this.getFirstIndex(props),
+      activeTab: props.initialActive,
+      activeTabIndex: this.getFirstValueIndex(props),
       indicator: {
         width: 0,
         left: 0,
@@ -25,6 +25,7 @@ class TabMenu extends PureComponent {
 
   static propTypes = {
     active: PropTypes.string,
+    initialActive: PropTypes.string,
     onChange: PropTypes.func,
     iconLeft: PropTypes.string,
     iconTop: PropTypes.string,
@@ -43,45 +44,61 @@ class TabMenu extends PureComponent {
   };
 
   componentDidMount() {
-    this.generateIndicatorPosition();
-    window.addEventListener('resize', this.generateIndicatorPosition);
+    this.getCurrentIndicator();
+    window.addEventListener('resize', this.getCurrentIndicator);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.generateIndicatorPosition);
+    window.removeEventListener('resize', this.getCurrentIndicator);
   }
 
-  getFirstIndex(props) {
-    const { active, tabs, children } = props;
+  componentDidUpdate(prevProps) {
+    if (prevProps.active !== this.props.active) {
+      const { tabs, children, active } = this.props;
+      const index = this.getValueIndex(tabs, children, active);
+      this.generateIndicatorPosition(index);
+    }
+  }
 
+  getValueIndex(tabs, children, value) {
     if (tabs.length) {
-      return tabs.findIndex(singleTab => active === singleTab.id);
+      return tabs.findIndex(singleTab => value === singleTab.id);
     } else if (children) {
-      return children.findIndex(childTab => active === childTab.props.id);
+      return children.findIndex(childTab => value === childTab.props.id);
     }
 
     return -1;
   }
 
-  onChange(id, value, activeTabIndex) {
+  getFirstValueIndex(props) {
+    const { tabs, children, active, initialActive } = props;
+    const firstActive = active || initialActive;
+    return this.getValueIndex(tabs, children, firstActive);
+  }
+
+  onChange(id, value, index) {
     return () => {
-      this.setState({ activeTab: id, activeTabIndex }, () => {
-        this.generateIndicatorPosition();
-      });
+      if (!this.props.active) {
+        this.setState({ activeTab: id, activeTabIndex: index }, () => {
+          this.getCurrentIndicator();
+        });
+      }
+
       this.props.onChange(id, value);
     };
   }
 
   hydrateChildren(children) {
     const { activeTab } = this.state;
-    const { activeStyle, itemClassName } = this.props;
+    const { active, activeStyle, itemClassName } = this.props;
+    const finalActive = active || activeTab;
 
     return React.Children.map(children, (child, index) =>
       React.cloneElement(child, {
         onClick: this.onChange(child.props.id, child.props.value, index),
         icon: child.props.icon,
         className: cx(styles.item, itemClassName, child.props.className, {
-          [styles.isActive]: child.props.id === activeTab,
+          [styles.isActive]: child.props.id === finalActive,
           [styles[activeStyle]]: activeStyle,
         }),
       })
@@ -90,7 +107,8 @@ class TabMenu extends PureComponent {
 
   generateChildren(array) {
     const { activeTab } = this.state;
-    const { itemClassName, activeStyle } = this.props;
+    const { active, itemClassName, activeStyle } = this.props;
+    const finalActive = active || activeTab;
 
     return array.map((tabValue, index) => (
       <Tab
@@ -98,7 +116,7 @@ class TabMenu extends PureComponent {
         key={tabValue.id}
         onClick={this.onChange(tabValue.id, tabValue.value, index)}
         className={cx(styles.item, itemClassName, {
-          [styles.isActive]: tabValue.id === activeTab,
+          [styles.isActive]: tabValue.id === finalActive,
           [styles[activeStyle]]: activeStyle,
         })}
       >
@@ -107,12 +125,11 @@ class TabMenu extends PureComponent {
     ));
   }
 
-  generateIndicatorPosition() {
-    const { activeTabIndex } = this.state;
+  generateIndicatorPosition(index) {
     const list = this.list ? this.list.current : null;
 
-    if (list && activeTabIndex !== -1) {
-      const currentNode = list.childNodes[activeTabIndex];
+    if (list && index !== -1) {
+      const currentNode = list.childNodes[index];
       const { left: listLeft } = list.getBoundingClientRect();
       const { width, left } = currentNode.getBoundingClientRect();
 
@@ -123,6 +140,10 @@ class TabMenu extends PureComponent {
         },
       });
     }
+  }
+
+  getCurrentIndicator() {
+    this.generateIndicatorPosition(this.state.activeTabIndex);
   }
 
   render() {

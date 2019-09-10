@@ -1,10 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withState } from '@dump247/storybook-state';
 import { withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import TabMenu, { Tab } from './';
 import Panel from '../panel';
+import Button from '../button';
 
 const tabGen = (arr, icon = false) => arr.map(i => ({
   id: `tab${i}`,
@@ -25,7 +27,7 @@ stories.add('Default', () => {
     <Panel size="no-padding" style={{ width: '500px', marginLeft: '150px' }}>
       <TabMenu
         tabs={tabs}
-        active="tab2"
+        initialActive="tab2"
         activeIndex={1}
         onChange={action('onChange: id, value')}
         tabDisplay="full"
@@ -38,7 +40,7 @@ stories.add('Inline (default)', () => {
   return (
     <TabMenu
       tabs={tabs}
-      active="tab2"
+      initialActive="tab2"
       onChange={action('onChange: id, value')}
     />
   );
@@ -48,7 +50,7 @@ stories.add('Full', () => {
   return (
     <TabMenu
       tabs={tabs}
-      active="tab2"
+      initialActive="tab2"
       onChange={action('onChange: id, value')}
       tabDisplay="full"
     />
@@ -59,7 +61,7 @@ stories.add('Center', () => {
   return (
     <TabMenu
       tabs={tabs}
-      active="tab2"
+      initialActive="tab2"
       onChange={action('onChange: id, value')}
       tabDisplay="center"
     />
@@ -70,7 +72,7 @@ stories.add('With Icon', () => {
   return (
     <TabMenu
       tabs={tabGen([1,2,3], 'favorite')}
-      active="tab1"
+      initialActive="tab1"
       onChange={action('onChange: id, value')}
       tabDisplay="center"
     />
@@ -80,14 +82,14 @@ stories.add('With Icon', () => {
 stories.add('Active Style', () => {
   return (
     <div>
-      <TabMenu activeStyle="primary" active="1" onChange={action('onChange: id, value')}>
+      <TabMenu activeStyle="primary" initialActive="1" onChange={action('onChange: id, value')}>
         <Tab id="1" value="value 1">Primary</Tab>
         <Tab id="2" value="value 2">Active</Tab>
         <Tab id="3" value="value 3">Style</Tab>
       </TabMenu>
       <br/>
       <br/>
-      <TabMenu activeStyle="secondary" active="1" onChange={action('onChange: id, value')}>
+      <TabMenu activeStyle="secondary" initialActive="1" onChange={action('onChange: id, value')}>
         <Tab id="1" value="value 1">Secondary</Tab>
         <Tab id="2" value="value 2">Active</Tab>
         <Tab id="3" value="value 3">Style</Tab>
@@ -99,7 +101,7 @@ stories.add('Active Style', () => {
 stories.add('Manual', () => {
   return (
     <div>
-      <TabMenu active="acom" onChange={action('onChange: id, value')}>
+      <TabMenu initialActive="acom" onChange={action('onChange: id, value')}>
         <Tab id="acom" value="Americanas.com" iconLeft="heart">Acom</Tab>
         <Tab id="suba" value="Submarino" iconTop="heart">Suba</Tab>
         <Tab id="shop" value="Shoptime">Shop</Tab>
@@ -107,7 +109,7 @@ stories.add('Manual', () => {
       <br/>
       <br/>
       <br/>
-      <TabMenu active="acom" onChange={action('onChange: id, value')}>
+      <TabMenu initialActive="acom" onChange={action('onChange: id, value')}>
         <Tab id="acom" value="Americanas.com" iconLeft="heart">Palavra</Tab>
         <Tab id="suba" value="Submarino" iconTop="heart">Uma frase grande</Tab>
         <Tab id="shop" value="Shoptime">Outra grande frase na tab</Tab>
@@ -120,8 +122,31 @@ stories.add('With Array', () => {
   return (
     <TabMenu
       tabs={tabsBig}
-      active="tab5"
+      initialActive="tab5"
       onChange={action('onChange: id, value')}
     />
   );
 });
+
+
+stories.add(
+  'Controlled',
+  withState({ selected: 'tab1' })(({ store }) => {
+    const setVal = id => {
+      store.set({ selected: id });
+    };
+
+    return (
+      <div>
+        <TabMenu
+          tabs={tabGen([1,2,3], 'favorite')}
+          active={store.state.selected}
+          onChange={setVal}
+          tabDisplay="center"
+        />
+        <Button onClick={() => setVal('tab3')}>Change to Tab3</Button>
+      </div>
+    );
+  })
+);
+
