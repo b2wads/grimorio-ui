@@ -76,11 +76,11 @@ class TabMenu extends PureComponent {
     const { activeTab } = this.state;
     const { activeStyle, itemClassName } = this.props;
 
-    return React.Children.map(children, (child, idx) =>
+    return React.Children.map(children, (child, index) =>
       React.cloneElement(child, {
-        onClick: this.onChange(child.props.id, child.props.value, idx),
-        key: child.props.id,
-        className: cx(styles.item, itemClassName, {
+        onClick: this.onChange(child.props.id, child.props.value, index),
+        icon: child.props.icon,
+        className: cx(styles.item, itemClassName, child.props.className, {
           [styles.isActive]: child.props.id === activeTab,
           [styles[activeStyle]]: activeStyle,
         }),
@@ -92,11 +92,11 @@ class TabMenu extends PureComponent {
     const { activeTab } = this.state;
     const { itemClassName, activeStyle } = this.props;
 
-    return array.map((tabValue, idx) => (
+    return array.map((tabValue, index) => (
       <Tab
-        key={tabValue.id}
         {...tabValue}
-        onClick={this.onChange(tabValue.id, tabValue.value, idx)}
+        key={tabValue.id}
+        onClick={this.onChange(tabValue.id, tabValue.value, index)}
         className={cx(styles.item, itemClassName, {
           [styles.isActive]: tabValue.id === activeTab,
           [styles[activeStyle]]: activeStyle,
@@ -113,12 +113,15 @@ class TabMenu extends PureComponent {
 
     if (list && activeTabIndex !== -1) {
       const currentNode = list.childNodes[activeTabIndex];
+      const { left: listLeft } = list.getBoundingClientRect();
       const { width, left } = currentNode.getBoundingClientRect();
+
+      console.log('>>>', left, listLeft);
 
       this.setState({
         indicator: {
           width,
-          left: left - 10,
+          left: left - listLeft,
         },
       });
     }
@@ -127,7 +130,6 @@ class TabMenu extends PureComponent {
   render() {
     const { tabs, tabDisplay, activeStyle, className, listClassName, children } = this.props;
     const { indicator } = this.state;
-    const wrapClassName = cx(className, styles.wrap);
     const listFullClass = cx(listClassName, styles.list, {
       [styles[tabDisplay]]: tabDisplay,
     });
@@ -137,7 +139,7 @@ class TabMenu extends PureComponent {
     });
 
     return (
-      <nav className={wrapClassName}>
+      <nav className={cx(className, styles.wrap)}>
         <ul className={listFullClass} ref={this.list}>
           {tabs.length ? this.generateChildren(tabs) : null}
           {children && this.hydrateChildren(children)}

@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Tab = ({ onClick, children, className }) => {
-  return <li className={className} onClick={onClick}>{children}</li>;
+import Icon from '../../icon';
+
+const Tab = ({ onClick, icon, children, className }) => {
+  return (
+    <li className={className} onClick={onClick}>
+      {icon ? <Icon name={icon} /> : null}
+      {children}
+    </li>
+  );
 };
 
 Tab.propTypes = {

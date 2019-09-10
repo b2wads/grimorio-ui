@@ -4,12 +4,13 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import TabMenu, { Tab } from './';
+import Panel from '../panel';
 
-const tabGen = arr => arr.map(i => ({
+const tabGen = (arr, icon = false) => arr.map(i => ({
   id: `tab${i}`,
   value: `value-tab${i}`,
   content: `Tab ${i}`,
-  iconLeft: 'heart',
+  ...(icon && { icon })
 }));
 
 const tabs = tabGen([1,2,3]);
@@ -21,7 +22,7 @@ stories.addDecorator(withKnobs);
 
 stories.add('Default', () => {
   return (
-    <div style={{ width: '500px' }}>
+    <Panel size="no-padding" style={{ width: '500px', marginLeft: '150px' }}>
       <TabMenu
         tabs={tabs}
         active="tab2"
@@ -29,7 +30,7 @@ stories.add('Default', () => {
         onChange={action('onChange: id, value')}
         tabDisplay="full"
       />
-    </div>
+    </Panel>
   );
 });
 
@@ -59,6 +60,17 @@ stories.add('Center', () => {
     <TabMenu
       tabs={tabs}
       active="tab2"
+      onChange={action('onChange: id, value')}
+      tabDisplay="center"
+    />
+  );
+});
+
+stories.add('With Icon', () => {
+  return (
+    <TabMenu
+      tabs={tabGen([1,2,3], 'favorite')}
+      active="tab1"
       onChange={action('onChange: id, value')}
       tabDisplay="center"
     />
