@@ -116,8 +116,6 @@ class TabMenu extends PureComponent {
       const { left: listLeft } = list.getBoundingClientRect();
       const { width, left } = currentNode.getBoundingClientRect();
 
-      console.log('>>>', left, listLeft);
-
       this.setState({
         indicator: {
           width,

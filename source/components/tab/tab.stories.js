@@ -87,7 +87,7 @@ stories.add('Active Style', () => {
       </TabMenu>
       <br/>
       <br/>
-      <TabMenu activeStyle="secondary" active="1" onChange={(...args) => console.log(args)}>
+      <TabMenu activeStyle="secondary" active="1" onChange={action('onChange: id, value')}>
         <Tab id="1" value="value 1">Secondary</Tab>
         <Tab id="2" value="value 2">Active</Tab>
         <Tab id="3" value="value 3">Style</Tab>
