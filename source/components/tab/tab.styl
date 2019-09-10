@@ -36,7 +36,7 @@ $default {}
   background: $c-primary;
   height: 2px;
   width: 0;
-  transition: left .3s ease-in-out;
+  transition: all .3s ease-in-out;
 
   &.primary {
     background: $c-primary
@@ -49,16 +49,17 @@ $default {}
 
 .list {
   width: 100%;
-  display: grid;
+  display: flex;
   margin-bottom: 0;
   padding: 0 25px;
 
-  &.stretch {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  &.center {
+    justify-content: center;
   }
 
-  &.auto {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  &.full {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
 
@@ -66,12 +67,12 @@ $default {}
   display: inline-block;
   text-align: center;
   text-transform: uppercase;
-  padding: 20px 10px;
+  padding: 20px;
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
   box-sizing: border-box;
-
+  min-width: 120px;
 
   &.isActive.primary {
     color: $c-primary

@@ -30,14 +30,15 @@ class TabMenu extends PureComponent {
     iconTop: PropTypes.string,
     tabs: PropTypes.array,
     activeStyle: PropTypes.oneOf(['primary', 'secondary']),
-    layout: PropTypes.oneOf(['stretch', 'auto']),
+    tabDisplay: PropTypes.oneOf(['inline', 'center', 'full']),
+    centered: PropTypes.bool,
     listClassName: PropTypes.string,
     itemClassName: PropTypes.string,
   };
 
   static defaultProps = {
     activeStyle: 'primary',
-    layout: 'stretch',
+    tabDisplay: 'inline',
     tabs: [],
   };
 
@@ -124,11 +125,11 @@ class TabMenu extends PureComponent {
   }
 
   render() {
-    const { tabs, layout, activeStyle, className, listClassName, children } = this.props;
+    const { tabs, tabDisplay, activeStyle, className, listClassName, children } = this.props;
     const { indicator } = this.state;
     const wrapClassName = cx(className, styles.wrap);
     const listFullClass = cx(listClassName, styles.list, {
-      [styles[layout]]: layout,
+      [styles[tabDisplay]]: tabDisplay,
     });
 
     const indicatorClass = cx(styles.indicator, {

@@ -1,36 +1,19 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import TabMenu, { Tab } from './';
 
-const tabs = [
-  {
-    id: 'tab1',
-    value: 'tab1',
-    content: 'Tab 1',
-    iconLeft: 'heart',
-  },
-  {
-    id: 'tab2',
-    value: 'tab2',
-    content: 'Tab 2',
-    iconLeft: 'heart',
-  },
-  {
-    id: 'tab3',
-    value: 'tab3',
-    content: 'Tab 3',
-    iconLeft: 'heart',
-  },
-];
-
-const tabs2 = [1,2,3,4,5,6,7].map(i => ({
+const tabGen = arr => arr.map(i => ({
   id: `tab${i}`,
-  value: `tab${i}`,
-  content: `Número ${i}`,
+  value: `value-tab${i}`,
+  content: `Tab ${i}`,
   iconLeft: 'heart',
 }));
+
+const tabs = tabGen([1,2,3]);
+const tabsBig = tabGen([1,2,3,4,5,6,7]);
 
 const stories = storiesOf('Tab', module);
 
@@ -38,41 +21,64 @@ stories.addDecorator(withKnobs);
 
 stories.add('Default', () => {
   return (
-    <div>
-      <div style={{ width: '500px' }}>
-        <TabMenu
-          tabs={tabs}
-          active="tab2"
-          activeIndex={1}
-          onChange={(...args) => console.log(args)}
-        />
-      </div>
-      <br/>
-      <br/>
+    <div style={{ width: '500px' }}>
       <TabMenu
         tabs={tabs}
         active="tab2"
         activeIndex={1}
-        onChange={(...args) => console.log(args)}
+        onChange={action('onChange: id, value')}
+        tabDisplay="full"
       />
     </div>
+  );
+});
+
+stories.add('Inline (default)', () => {
+  return (
+    <TabMenu
+      tabs={tabs}
+      active="tab2"
+      onChange={action('onChange: id, value')}
+    />
+  );
+});
+
+stories.add('Full', () => {
+  return (
+    <TabMenu
+      tabs={tabs}
+      active="tab2"
+      onChange={action('onChange: id, value')}
+      tabDisplay="full"
+    />
+  );
+});
+
+stories.add('Center', () => {
+  return (
+    <TabMenu
+      tabs={tabs}
+      active="tab2"
+      onChange={action('onChange: id, value')}
+      tabDisplay="center"
+    />
   );
 });
 
 stories.add('Active Style', () => {
   return (
     <div>
-      <TabMenu activeStyle="primary" active="1" onChange={(...args) => console.log(args)}>
-        <Tab id="1" value="1">Primary</Tab>
-        <Tab id="2" value="2">Active</Tab>
-        <Tab id="3" value="3">Style</Tab>
+      <TabMenu activeStyle="primary" active="1" onChange={action('onChange: id, value')}>
+        <Tab id="1" value="value 1">Primary</Tab>
+        <Tab id="2" value="value 2">Active</Tab>
+        <Tab id="3" value="value 3">Style</Tab>
       </TabMenu>
       <br/>
       <br/>
       <TabMenu activeStyle="secondary" active="1" onChange={(...args) => console.log(args)}>
-        <Tab id="1" value="1">Secondary</Tab>
-        <Tab id="2" value="2">Active</Tab>
-        <Tab id="3" value="3">Style</Tab>
+        <Tab id="1" value="value 1">Secondary</Tab>
+        <Tab id="2" value="value 2">Active</Tab>
+        <Tab id="3" value="value 3">Style</Tab>
       </TabMenu>
     </div>
   );
@@ -80,20 +86,30 @@ stories.add('Active Style', () => {
 
 stories.add('Manual', () => {
   return (
-    <TabMenu active="acom" onChange={(...args) => console.log(args)}>
-      <Tab id="acom" value="brandAcom" iconLeft="heart">Acom</Tab>
-      <Tab id="suba" value="Subidubidu" iconTop="heart">Suba</Tab>
-      <Tab id="shop" value="Shapitaim">Shop</Tab>
-    </TabMenu>
+    <div>
+      <TabMenu active="acom" onChange={action('onChange: id, value')}>
+        <Tab id="acom" value="Americanas.com" iconLeft="heart">Acom</Tab>
+        <Tab id="suba" value="Submarino" iconTop="heart">Suba</Tab>
+        <Tab id="shop" value="Shoptime">Shop</Tab>
+      </TabMenu>
+      <br/>
+      <br/>
+      <br/>
+      <TabMenu active="acom" onChange={action('onChange: id, value')}>
+        <Tab id="acom" value="Americanas.com" iconLeft="heart">Palavra</Tab>
+        <Tab id="suba" value="Submarino" iconTop="heart">Uma frase grande</Tab>
+        <Tab id="shop" value="Shoptime">Outra grande frase na tab</Tab>
+      </TabMenu>
+    </div>
   );
 });
 
 stories.add('With Array', () => {
   return (
     <TabMenu
-      tabs={tabs2}
+      tabs={tabsBig}
       active="tab5"
-      onChange={(...args) => console.log(args)}
+      onChange={action('onChange: id, value')}
     />
   );
 });
