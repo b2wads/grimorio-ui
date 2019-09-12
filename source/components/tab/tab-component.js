@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { debounced } from 'helpers';
+import { debounced } from '../../helpers';
 
 import Tab from './elements/tab';
 
@@ -13,7 +13,7 @@ class TabMenu extends PureComponent {
     super();
 
     this.state = {
-      activeTab: props.initialActive,
+      activeTab: props.defaultActive,
       activeTabIndex: this.getFirstValueIndex(props),
       indicator: {
         width: 0,
@@ -30,7 +30,7 @@ class TabMenu extends PureComponent {
 
   static propTypes = {
     active: PropTypes.string,
-    initialActive: PropTypes.string,
+    defaultActive: PropTypes.string,
     onChange: PropTypes.func,
     icon: PropTypes.string,
     tabs: PropTypes.array,
@@ -73,8 +73,8 @@ class TabMenu extends PureComponent {
   }
 
   getFirstValueIndex(props) {
-    const { tabs, children, active, initialActive } = props;
-    const firstActive = active || initialActive;
+    const { tabs, children, active, defaultActive } = props;
+    const firstActive = active || defaultActive;
     return this.getValueIndex(tabs, children, firstActive);
   }
 
