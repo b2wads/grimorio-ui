@@ -44,6 +44,7 @@ import Toggle from './components/toggle';
 import Pager from './components/pager';
 import Steps from './components/steps';
 import Feedback from './components/feedback';
+import EditableValue from './components/editable-value';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -101,4 +102,5 @@ export {
   Toggle,
   Steps,
   Pager,
+  EditableValue,
 };
