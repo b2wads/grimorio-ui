@@ -11,6 +11,7 @@ class Tooltip extends PureComponent {
     direction: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
     message: PropTypes.string.isRequired,
     width: PropTypes.string,
+    size: PropTypes.number,
   };
 
   static defaultProps = {
@@ -20,7 +21,7 @@ class Tooltip extends PureComponent {
   };
 
   render() {
-    const { children, message, position, width, icon, className, ...elementProps } = this.props;
+    const { children, message, position, width, icon, className, size, ...elementProps } = this.props;
 
     const finalClass = classNames(className, styles.wrapper, {
       [styles.block]: children,
@@ -30,9 +31,11 @@ class Tooltip extends PureComponent {
       width,
     };
 
+    const customSizeIcon = size;
+
     return (
       <span {...elementProps} className={finalClass}>
-        {children ? children : <Icon name={icon} size={19} />}
+        {children ? children : <Icon name={icon} size={size ? customSizeIcon : 19} />}
         <span style={customStyle} className={classNames(styles.dialog, { [styles[position]]: position })}>
           {message}
         </span>
