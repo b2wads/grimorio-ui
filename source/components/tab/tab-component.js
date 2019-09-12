@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import { debounced } from 'helpers';
+
 import Tab from './elements/tab';
 
 import styles from './tab.styl';
@@ -20,7 +22,10 @@ class TabMenu extends PureComponent {
     };
 
     this.generateIndicatorPosition = this.generateIndicatorPosition.bind(this);
+    this.getCurrentIndicator = this.getCurrentIndicator.bind(this);
     this.list = React.createRef();
+
+    this.debouncedIndicatorResize = debounced(this.getCurrentIndicator, 50);
   }
 
   static propTypes = {
@@ -43,11 +48,11 @@ class TabMenu extends PureComponent {
 
   componentDidMount() {
     this.getCurrentIndicator();
-    window.addEventListener('resize', this.getCurrentIndicator);
+    window.addEventListener('resize', this.debouncedIndicatorResize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.getCurrentIndicator);
+    window.addEventListener('resize', this.debouncedIndicatorResize);
   }
 
   componentDidUpdate(prevProps) {

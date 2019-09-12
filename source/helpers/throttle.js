@@ -1,9 +1,9 @@
-export const throttle = (fn, time) => {
-  let lastCall;
+export const throttle = (fn, period) => {
+  let currentCall;
   return () => {
-    let previousCall = lastCall;
-    lastCall = Date.now();
-    if (previousCall === undefined || lastCall - previousCall > time) {
+    let previousCall = currentCall;
+    currentCall = Date.now();
+    if (previousCall === undefined || currentCall - previousCall > period) {
       fn();
     }
   };

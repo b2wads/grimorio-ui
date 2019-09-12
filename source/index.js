@@ -45,14 +45,20 @@ import Pager from './components/pager';
 import Steps from './components/steps';
 import Feedback from './components/feedback';
 import EditableValue from './components/editable-value';
+import TabMenu, { Tab } from './components/tab';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
 import { fieldsMask, masks } from './helpers/mask';
+import { debounced, throttle } from './helpers';
 
 export const validation = fieldsValidation;
 export const mask = fieldsMask;
 export const maskPattens = masks;
+export const utils = {
+  debounced,
+  throttle,
+};
 
 export {
   Button,
@@ -103,4 +109,6 @@ export {
   Steps,
   Pager,
   EditableValue,
+  TabMenu,
+  Tab,
 };
