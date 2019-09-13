@@ -73,7 +73,7 @@ class Pager extends PureComponent {
   }
 
   renderPaginationBtn(type, number = false, currentPage = 1) {
-    const { onClickPagination, offset, length, count } = this.props;
+    const { onClickPagination, offset, limit, count } = this.props;
 
     const className = type === 'prev' ? styles.pagerLeft : styles.pager;
     const btn = {
@@ -89,12 +89,12 @@ class Pager extends PureComponent {
       },
       next: {
         icon: 'navigate_next',
-        disabled: offset + length === count,
+        disabled: offset + limit >= count,
         onClick: () => onClickPagination('next'),
       },
       last: {
         icon: 'last_page',
-        disabled: offset + length === count,
+        disabled: offset + limit >= count,
         onClick: () => onClickPagination('last'),
       },
       goto: {
@@ -125,11 +125,10 @@ class Pager extends PureComponent {
 
   render() {
     const {
-      length,
       count,
       offset,
       limit,
-      perpage,
+      hasPerpage,
       hasFirstLast,
       hasPagination,
       onLimitChange,
@@ -137,7 +136,7 @@ class Pager extends PureComponent {
       isMobile,
     } = this.props;
 
-    if (count === undefined || !limit === undefined || perpage === undefined) {
+    if (count === undefined || limit === undefined || offset === undefined) {
       return null;
     }
 
@@ -147,10 +146,10 @@ class Pager extends PureComponent {
 
     return (
       <div className={pagerWrap}>
-        {perpage && this.renderPerPage(limit, onLimitChange, limitList, isMobile)}
+        {hasPerpage && this.renderPerPage(limit, onLimitChange, limitList, isMobile)}
 
         <div className={cx(styles.showing, { [styles.isMobile]: isMobile })}>
-          {offset} - {offset + length} de {count}
+          {offset} - {offset + limit} de {count}
         </div>
 
         <div className={cx(styles.nav, { [styles.isMobile]: isMobile })}>
@@ -169,7 +168,15 @@ class Pager extends PureComponent {
 }
 
 Pager.propTypes = {
-  offset: PropTypes.string,
+  offset: PropTypes.number, // current position of pagination
+  limit: PropTypes.number, // number of items perpage
+  hasPerpage: PropTypes.bool, // has perpage select?
+  count: PropTypes.number, // total of items
+  hasFirstLast: PropTypes.bool,
+  hasPagination: PropTypes.bool,
+  onLimitChange: PropTypes.func,
+  limitList: PropTypes.array,
+  isMobile: PropTypes.bool,
 };
 
 export default Pager;

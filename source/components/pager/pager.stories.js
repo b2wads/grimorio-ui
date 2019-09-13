@@ -13,8 +13,8 @@ for (let i = 0; i < 10; ++i) {
 }
 
 const meta = {
-  count: 23,
-  limit: 10,
+  count: data.length,
+  limit: 50,
   offset: 0,
 };
 
@@ -25,10 +25,9 @@ stories.add('Normal', () => {
   return (
     <Pager
       {...meta}
-      perpage={10}
-      length={data.length}
       onLimitChange={() => alert('mudou o limit')}
       onClickPagination={(type, value) => alert(`clicou na página ${value}`)}
+      hasPerpage
       limitList={limitList}
       hasFirstLast
       hasPagination
