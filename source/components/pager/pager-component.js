@@ -141,15 +141,15 @@ class Pager extends PureComponent {
     }
 
     const { range, currentPage } = this.getPageRange({ count, offset, limit });
-
     const pagerWrap = cx(styles.holdPager, { [styles.holdPagerMobile]: isMobile });
+    const maxPageItems = offset + limit;
 
     return (
       <div className={pagerWrap}>
         {hasPerpage && this.renderPerPage(limit, onLimitChange, limitList, isMobile)}
 
         <div className={cx(styles.showing, { [styles.isMobile]: isMobile })}>
-          {offset} - {offset + limit} de {count}
+          {offset} - {maxPageItems > count ? count : maxPageItems} de {count}
         </div>
 
         <div className={cx(styles.nav, { [styles.isMobile]: isMobile })}>
