@@ -8,9 +8,9 @@ describe('Pager component', () => {
 /** @test {Pager#render} */
   describe('#render', () => {
     let wrapper;
+
     const props = {
-      perpage: 10,
-      length: 20,
+      hasPerpage: true,
       onLimitChange: jest.fn(),
       onClickPagination: jest.fn(),
       hasFirstLast: false,
@@ -20,6 +20,7 @@ describe('Pager component', () => {
       offset: 20,
       limitList: [10, 15, 50],
     }
+
     beforeEach(() => {
       wrapper = shallow(
         <Pager {...props} />
@@ -40,7 +41,7 @@ describe('Pager component', () => {
       wrapper.setProps({ hasFirstLast: true });
       wrapper.find('.nav .btn').at(0).simulate('click');
       expect(props.onClickPagination).toBeCalledWith('first');
-    });  
+    });
 
     it('onClick pagination prev button', () => {
       wrapper.setProps({ hasFirstLast: true });
@@ -76,11 +77,16 @@ describe('Pager component', () => {
       expect(wrapper.html()).toEqual(null);
     });
 
-    it('return null when perpage is undefined', () => {
-      wrapper.setProps({ perpage: undefined });
+    it('return null when limit is undefined', () => {
+      wrapper.setProps({ limit: undefined });
       expect(wrapper.html()).toEqual(null);
     });
-    
+
+    it('return null when offset is undefined', () => {
+      wrapper.setProps({ offset: undefined });
+      expect(wrapper.html()).toEqual(null);
+    });
+
     it('should call function when changes perpage select', () => {
       const obj = { value: 10 };
       wrapper.find('.perpage').find(Select).prop('onSelect')(obj);

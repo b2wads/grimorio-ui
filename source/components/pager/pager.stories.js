@@ -8,17 +8,17 @@ const stories = storiesOf('Pager', module);
 
 const data = [];
 
-for (let i = 0; i < 10; ++i) {
+for (let i = 0; i < 100; ++i) {
   data.push({ id: i });
 }
 
 const meta = {
   count: data.length,
-  limit: 50,
-  offset: 0,
+  limit: 20,
+  offset: 80,
 };
 
-const limitList = [10, 15, 50];
+const limitList = [10, 15, 20, 50];
 stories.addDecorator(withKnobs);
 
 stories.add('Normal', () => {

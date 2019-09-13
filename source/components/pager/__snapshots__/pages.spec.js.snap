@@ -44,7 +44,7 @@ exports[`Pager component #render change start and end pages when currentPage + 4
   >
     300
      - 
-    320
+    300
      de 
     300
   </div>
@@ -185,14 +185,14 @@ exports[`Pager component #render change start and end pages when currentPage + 4
       active={false}
       className="btn"
       color="transparent"
-      disabled={false}
+      disabled={true}
       onClick={[Function]}
       size="none"
       type="button"
     >
       <Icon
         align="middle"
-        className="pager"
+        className="pager isDisabled"
         name="navigate_next"
         size={24}
       />
@@ -245,7 +245,7 @@ exports[`Pager component #render change start and end pages when currentPage <= 
   >
     60
      - 
-    80
+    75
      de 
     500
   </div>
@@ -446,7 +446,7 @@ exports[`Pager component #render change start and end pages when is a default va
   >
     100
      - 
-    120
+    115
      de 
     500
   </div>
@@ -647,7 +647,7 @@ exports[`Pager component #render render correctly 1`] = `
   >
     20
      - 
-    40
+    35
      de 
     100
   </div>
@@ -734,7 +734,7 @@ exports[`Pager component #render render correctly with hasFirstLast 1`] = `
   >
     20
      - 
-    40
+    35
      de 
     100
   </div>
@@ -853,7 +853,7 @@ exports[`Pager component #render render correctly with hasPagination 1`] = `
   >
     20
      - 
-    40
+    35
      de 
     100
   </div>
