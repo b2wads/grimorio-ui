@@ -56,6 +56,12 @@ class TabMenu extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
+    const indicatorPosition = this.generateIndicatorPosition(this.state.activeTabIndex, false);
+
+    if (indicatorPosition.width !== this.state.indicator.width) {
+      this.setState({ indicator: indicatorPosition });
+    }
+
     if (prevProps.active !== this.props.active) {
       const { tabs, children, active } = this.props;
       const index = this.getValueIndex(tabs, children, active);
@@ -127,7 +133,7 @@ class TabMenu extends PureComponent {
     ));
   }
 
-  generateIndicatorPosition(index) {
+  generateIndicatorPosition(index, setToState = true) {
     const list = this.list ? this.list.current : null;
 
     if (list && index !== -1) {
@@ -135,12 +141,16 @@ class TabMenu extends PureComponent {
       const { left: listLeft } = list.getBoundingClientRect();
       const { width, left } = currentNode.getBoundingClientRect();
 
-      this.setState({
-        indicator: {
-          width,
-          left: left - listLeft,
-        },
-      });
+      const indicator = {
+        width,
+        left: left - listLeft,
+      };
+
+      if (setToState) {
+        this.setState({ indicator });
+      } else {
+        return indicator;
+      }
     }
   }
 
