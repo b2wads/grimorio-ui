@@ -115,6 +115,7 @@ class Pager extends PureComponent {
         size="none"
         disabled={btn[type].disabled}
         onClick={btn[type].onClick}
+        name={type}
       >
         {number
           ? number
@@ -170,12 +171,13 @@ class Pager extends PureComponent {
 Pager.propTypes = {
   offset: PropTypes.number, // current position of pagination
   limit: PropTypes.number, // number of items perpage
-  hasPerpage: PropTypes.bool, // has perpage select?
   count: PropTypes.number, // total of items
-  hasFirstLast: PropTypes.bool,
-  hasPagination: PropTypes.bool,
-  onLimitChange: PropTypes.func,
-  limitList: PropTypes.array,
+  hasPerpage: PropTypes.bool, // has perpage select
+  hasFirstLast: PropTypes.bool, // has first and last navigators
+  hasPagination: PropTypes.bool, // has list of pages navigator
+  onLimitChange: PropTypes.func, // called when changing limit
+  onClickPagination: PropTypes.func, // called when changing pages (first-last included)
+  limitList: PropTypes.array, // list of limit presets
   isMobile: PropTypes.bool,
 };
 
