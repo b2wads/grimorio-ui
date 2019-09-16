@@ -39,8 +39,7 @@ stories.add('Mobile', () => {
   return (
     <Pager
       {...meta}
-      perpage={10}
-      length={data.length}
+      hasPerpage
       onLimitChange={() => alert('mudou o limit')}
       onClickPagination={(type, value) => alert(`clicou na página ${value}`)}
       limitList={limitList}
