@@ -8,27 +8,26 @@ const stories = storiesOf('Pager', module);
 
 const data = [];
 
-for (let i = 0; i < 10; ++i) {
+for (let i = 0; i < 100; ++i) {
   data.push({ id: i });
 }
 
 const meta = {
-  count: 23,
-  limit: 10,
-  offset: 0,
+  count: data.length,
+  limit: 20,
+  offset: 80,
 };
 
-const limitList = [10, 15, 50];
+const limitList = [10, 15, 20, 50];
 stories.addDecorator(withKnobs);
 
 stories.add('Normal', () => {
   return (
     <Pager
       {...meta}
-      perpage={10}
-      length={data.length}
       onLimitChange={() => alert('mudou o limit')}
       onClickPagination={(type, value) => alert(`clicou na página ${value}`)}
+      hasPerpage
       limitList={limitList}
       hasFirstLast
       hasPagination
@@ -40,8 +39,7 @@ stories.add('Mobile', () => {
   return (
     <Pager
       {...meta}
-      perpage={10}
-      length={data.length}
+      hasPerpage
       onLimitChange={() => alert('mudou o limit')}
       onClickPagination={(type, value) => alert(`clicou na página ${value}`)}
       limitList={limitList}
