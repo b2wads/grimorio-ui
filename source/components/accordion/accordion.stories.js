@@ -58,13 +58,17 @@ stories.add(
           active={getActive(0)}
           index={0}
           onClick={handleClick}
-        >Um --</AccordionTitle>
+        >
+          Um --
+        </AccordionTitle>
         <AccordionContent active={getActive(0)}>primeiro conteudo --</AccordionContent>
         <AccordionTitle
           active={getActive(1)}
           index={1}
           onClick={handleClick}
-        >Dois --</AccordionTitle>
+        >
+          Dois --
+        </AccordionTitle>
         <AccordionContent active={getActive(1)}>segundo conteudo --</AccordionContent>
       </Accordion>
     )

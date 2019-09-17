@@ -34,7 +34,10 @@ class TableFixed extends PureComponent {
       })
     ),
     isMobile: PropTypes.bool,
+    rowHeight: PropTypes.string,
+    layout: PropTypes.oneOf(['auto', 'fixed']),
   };
+
   static defaultProps = {};
 
   render() {
@@ -49,6 +52,8 @@ class TableFixed extends PureComponent {
       widthFixedTable,
       specialCase,
       isMobile,
+      rowHeight,
+      layout,
     } = this.props;
     const wrapSizes = {
       maxWidth: width || 'auto',
@@ -69,6 +74,8 @@ class TableFixed extends PureComponent {
             data={data}
             dataFooter={dataFooterLeft}
             specialCase={specialCase}
+            rowHeight={rowHeight}
+            layout={layout}
           />
         </div>
         <div className={styles.fullWidth}>
@@ -80,6 +87,8 @@ class TableFixed extends PureComponent {
             data={data}
             dataFooter={dataFooterRight}
             specialCase={specialCase}
+            rowHeight={rowHeight}
+            layout={layout}
           />
         </div>
       </div>
