@@ -16,7 +16,6 @@
     "lint:styl": "stylint source/",
     "lint:js": "eslint source/",
     "precommit": "yarn lint",
-    "prepush": "yarn test",
     "release": "./node_modules/.bin/release-it",
     "storybook": "./node_modules/.bin/cross-env THEME_ENV=$THEME_ENV start-storybook -p 9000",
     "test": "./node_modules/.bin/cross-env NODE_ENV=testing BABEL_ENV=testing jest",
