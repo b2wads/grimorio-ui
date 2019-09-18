@@ -1,48 +1,62 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
+
+
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$default {
-  width: auto;
+$default {}
+
+$btn {
+  margin-left: 5px;
+  width: 35px;
+  height: 35px;
 }
 
 /* ==========================================================================
-   InfoCard Elements
+   EditableValue Elements
 ========================================================================== */
+
 /* ==========================================================================
-   InfoCard Props
+   EditableValue Props
 ========================================================================== */
+
 /* Default
-================ */
+ ================ */
+
 .default {
   @extend $default;
 }
 
-.info {
-  color: $c-primary;
-  display: block;
-  margin-top: 15px;
-  font-size: 28px;
+.wrap {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  &.isEditing {
+    align-items: end;
+  }
 }
 
-.ellipsis {
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.edit {
+  @extend $btn;
+  color: $base-text-color;
+
+  &:hover {
+    background: $c-support-light;
+  }
 }
 
-.symbol {
-  font-size: 14px;
-  margin-right: 5px;
+.formGroup {
+  margin-bottom: 0;
 }
 
-.tagline {
-  font-size: 12px;
+.input {
+  padding: 0;
+  padding-left: 10px;
 }
 
-.error {
-  padding-left: 0;
+.submit {
+  @extend $btn;
 }
