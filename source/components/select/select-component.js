@@ -239,6 +239,7 @@ class Select extends Component {
       sortItems,
       isMobile,
       outline,
+      noneAtualValue,
       ...elementProps
     } = this.props;
     const { selectedValue, menuOpen, childItems } = this.state;
@@ -276,6 +277,7 @@ class Select extends Component {
               selected={selectedValue === option.value}
               onSelect={this.onSelectItem}
               value={option.value}
+              noneValue={noneAtualValue && selectedValue === option.value}
             >
               {option.name}
             </SelectOption>
