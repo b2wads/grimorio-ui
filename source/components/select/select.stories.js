@@ -91,7 +91,7 @@ stories.add('Select - None atual value', () => {
       onSelect={data => console.log(data)}
       items={items}
       height="200px"
-      noneAtualValue
+      noCurrentValue
       sortItems={false}
     />
   );
