@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from '../../icon';
@@ -7,15 +7,18 @@ import styles from '../select.styl';
 
 class SelectOption extends PureComponent {
   render() {
-    const { value, icon, onSelect, selected, children } = this.props;
+    const { value, icon, onSelect, selected, children, noCurrentValue } = this.props;
     return (
-      <li
-        className={classNames(styles.option, { [styles.isSelected]: selected })}
-        onClick={onSelect({ name: children, value })}
-      >
-        {icon && <Icon className={styles.optionIcon} size="18" name={icon} />}
-        <span className={styles.optionContent}>{children}</span>
-      </li>
+      <Fragment>
+        {!noCurrentValue &&
+          <li
+            className={classNames(styles.option, { [styles.isSelected]: selected })}
+            onClick={onSelect({ name: children, value })}
+          >
+            {icon && <Icon className={styles.optionIcon} size="18" name={icon} />}
+            <span className={styles.optionContent}>{children}</span>
+          </li>}
+      </Fragment>
     );
   }
 }

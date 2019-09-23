@@ -239,12 +239,13 @@ class Select extends Component {
       sortItems,
       isMobile,
       outline,
+      noCurrentValue,
       ...elementProps
     } = this.props;
     const { selectedValue, menuOpen, childItems } = this.state;
     const isOpen = open !== null ? open : menuOpen;
     const renderItems = items.length ? items : childItems;
-    const sortedItems = sortItems ? this.sortItems(renderItems, selectedValue) : renderItems;
+    const sortedItems = sortItems ? this.sortItems(renderItems, noCurrentValue) : renderItems;
 
     const menuStyle = cx(styles.menu, {
       [styles.isOpen]: isOpen,
@@ -276,6 +277,7 @@ class Select extends Component {
               selected={selectedValue === option.value}
               onSelect={this.onSelectItem}
               value={option.value}
+              noneValue={noCurrentValue && selectedValue === option.value}
             >
               {option.name}
             </SelectOption>
