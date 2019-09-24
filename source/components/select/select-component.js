@@ -245,7 +245,7 @@ class Select extends Component {
     const { selectedValue, menuOpen, childItems } = this.state;
     const isOpen = open !== null ? open : menuOpen;
     const renderItems = items.length ? items : childItems;
-    const sortedItems = sortItems ? this.sortItems(renderItems, noCurrentValue) : renderItems;
+    const sortedItems = sortItems ? this.sortItems(renderItems, selectedValue) : renderItems;
 
     const menuStyle = cx(styles.menu, {
       [styles.isOpen]: isOpen,

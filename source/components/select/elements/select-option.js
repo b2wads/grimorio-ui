@@ -7,10 +7,10 @@ import styles from '../select.styl';
 
 class SelectOption extends PureComponent {
   render() {
-    const { value, icon, onSelect, selected, children, noCurrentValue } = this.props;
+    const { value, icon, onSelect, selected, children, noneValue } = this.props;
     return (
       <Fragment>
-        {!noCurrentValue &&
+        {!noneValue &&
           <li
             className={classNames(styles.option, { [styles.isSelected]: selected })}
             onClick={onSelect({ name: children, value })}
