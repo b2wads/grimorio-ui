@@ -29,6 +29,7 @@ SelectOption.propTypes = {
   onSelect: PropTypes.func,
   selected: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  noCurrentValue: PropTypes.bool,
 };
 
 export default SelectOption;
