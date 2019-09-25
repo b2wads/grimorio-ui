@@ -84,7 +84,7 @@ stories.add('Select disabled', () => {
   );
 });
 
-stories.add('Select - None atual value', () => {
+stories.add('Select - No Current Value', () => {
   return (
     <Select
       label="Opções"
