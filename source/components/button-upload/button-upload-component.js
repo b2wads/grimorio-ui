@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 
-import { omit } from '../../../helpers';
+import { omit } from '../../helpers';
 
 import Button from '../button';
 import Icon from '../icon';
