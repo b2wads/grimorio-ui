@@ -21,8 +21,9 @@ stories.add('Color', () => (
 stories.add('Modifier', () => (
   <div>
     <Button color="variant" modifier="outline">Variant --Outline</Button>&nbsp;
+    <Button color="variant" modifier="border">Primary --Only Border</Button>&nbsp;
     <Button color="primary" modifier="outline">Primary --Outline</Button>&nbsp;
-    <span color={{background: 'lightgray'}}>
+    <span style={{ background: 'lightgray'}}>
       <Button color="clean" modifier="inverted" size="small">
         Clean --Inverted
       </Button>&nbsp;

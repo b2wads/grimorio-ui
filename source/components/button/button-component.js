@@ -16,7 +16,7 @@ class Button extends PureComponent {
     block: PropTypes.bool,
     type: PropTypes.oneOf(['button', 'reset', 'submit']),
     color: PropTypes.oneOf(['primary', 'secondary', 'variant', 'clean', 'transparent']),
-    modifier: PropTypes.oneOf(['inverted', 'outline']),
+    modifier: PropTypes.oneOf(['inverted', 'outline', 'border']),
     size: PropTypes.oneOf(['small', 'medium', 'large', 'none']),
     onClick: PropTypes.func,
     children: PropTypes.any.isRequired,

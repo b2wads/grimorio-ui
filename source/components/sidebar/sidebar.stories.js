@@ -41,6 +41,7 @@ stories.add('Default', withState({ open: false, active: -1 })(({ store }) => {
         logoSmall={
           <Svg className={styles.logo} width={24} src="logo/afiliados-icon" />
         }
+        noneMenuName
       >
         <Accordion type="accordionMenu" exclusive={false} as={Menu} {...store.state}>
           <MenuItem title="Dashboard" active={true} isNotAccordion icon="dashboard">

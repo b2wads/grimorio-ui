@@ -26,6 +26,7 @@ class Sidebar extends PureComponent {
     openMobile: PropTypes.bool,
     logo: PropTypes.string,
     logoSmall: PropTypes.string,
+    noneMenuName: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -40,7 +41,10 @@ class Sidebar extends PureComponent {
     const changeOpen = isMobile ? { openMobile: !openMobile } : { open: !open };
 
     this.setState(changeOpen, () => {
-      this.props.onClick(e, { open: this.state.open, openMobile: !this.state.openMobile });
+      this.props.onClick(e, {
+        open: this.state.open,
+        openMobile: !this.state.openMobile,
+      });
     });
   }
 
@@ -49,7 +53,7 @@ class Sidebar extends PureComponent {
   }
 
   render() {
-    const { children, className, onClick, open, openMobile, isMobile, logo, logoSmall } = this.props;
+    const { children, className, onClick, open, openMobile, isMobile, logo, logoSmall, noneMenuName } = this.props;
     const openNav = open === null ? this.state.open : open;
     const openNavMobile = openMobile === null ? this.state.openMobile : openMobile;
     const classes = classNames(styles.sidebar, className, {
@@ -71,16 +75,23 @@ class Sidebar extends PureComponent {
             </div>}
 
           <nav className={styles.content}>
-            <span className={classNames(styles.contentTitle, { [styles.isNavClosed]: openNav === false })}>
-              Menu
-            </span>
+            {!noneMenuName &&
+              <span
+                className={classNames(styles.contentTitle, {
+                  [styles.isNavClosed]: openNav === false,
+                })}
+              >
+                Menu
+              </span>}
             {children}
           </nav>
         </div>
         {isMobile &&
           <div
             onClick={this.handleToggle}
-            className={classNames(styles.overlay, { [styles.isOpen]: openNavMobile })}
+            className={classNames(styles.overlay, {
+              [styles.isOpen]: openNavMobile,
+            })}
           />}
       </Fragment>
     );
