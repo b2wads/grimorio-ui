@@ -179,9 +179,14 @@ Form Control Component
     @extend $radioCheckbox;
     border-radius: 3px;
 
-    &.isActive {
+    &.isActive.isPrimary {
       background: $c-primary;
       border-color: $c-primary;
+    }
+
+    &.isActive {
+      background: $c-support-dark;
+      border-color: $c-support-dark;
       transition: all 0.2s ease;
     }
   }
