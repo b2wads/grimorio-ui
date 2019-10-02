@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TooltipSticky component #render should render child content 1`] = `
-ShallowWrapper {
-  "length": 1,
-}
+"<span>
+  <span onMouseOver={[Function: bound mockConstructor]} onMouseOut={[Function: bound mockConstructor]} className=\\"wrapper\\" />
+</span>"
 `;

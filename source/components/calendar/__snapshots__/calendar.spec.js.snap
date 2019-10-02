@@ -1,7 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Calendar component #render render correctly 1`] = `
-ShallowWrapper {
-  "length": 1,
-}
-`;
+exports[`Calendar component #render render correctly 1`] = `"<DayPickerRangeController startDate={[undefined]} endDate={[undefined]} onDatesChange={[Function: onDatesChange]} focusedInput=\\"startDate\\" onFocusChange={[Function: onFocusChange]} hideKeyboardShortcutsPanel={true} numberOfMonths={2} isOutsideRange={[Function: bound isOutsideRange]} onOutsideClick={[Function: bound outsideClick]} minimumNights={0} initialVisibleMonth={[Function: initialVisibleMonth]} startDateOffset={[undefined]} endDateOffset={[undefined]} onClose={[Function: onClose]} keepOpenOnDateSelect={false} disabled={false} isDayBlocked={[Function: isDayBlocked]} isDayHighlighted={[Function: isDayHighlighted]} renderMonthText={{...}} enableOutsideDays={false} orientation=\\"horizontal\\" withPortal={false} daySize={39} navPrev={{...}} navNext={{...}} noNavButtons={false} onPrevMonthClick={[Function: onPrevMonthClick]} onNextMonthClick={[Function: onNextMonthClick]} renderCalendarDay={[undefined]} renderDayContents={{...}} renderCalendarInfo={{...}} renderMonthElement={{...}} calendarInfoPosition=\\"bottom\\" firstDayOfWeek={{...}} verticalHeight={{...}} noBorder={false} transitionDuration={[undefined]} verticalBorderSpacing={[undefined]} horizontalMonthPadding={13} onBlur={[Function: onBlur]} isFocused={false} showKeyboardShortcuts={false} onTab={[Function: onTab]} onShiftTab={[Function: onShiftTab]} monthFormat=\\"MMMM YYYY\\" weekDayFormat=\\"dd\\" phrases={{...}} dayAriaLabelFormat={[undefined]} isRTL={false} />"`;

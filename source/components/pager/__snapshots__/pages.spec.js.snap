@@ -1,37 +1,324 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Pager component #render change start and end pages when currentPage + 4 >= maxPages 1`] = `
-ShallowWrapper {
-  "length": 1,
-}
+"<div className=\\"holdPager\\">
+  <div className=\\"perpage\\">
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+      <SelectOption value={10}>
+        10 por página
+      </SelectOption>
+      <SelectOption value={15}>
+        15 por página
+      </SelectOption>
+      <SelectOption value={50}>
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div className=\\"showing\\">
+    300
+     - 
+    300
+     de 
+    300
+  </div>
+  <div className=\\"nav\\">
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"prev\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_before\\" className=\\"pagerLeft\\" size={24} align=\\"middle\\" />
+    </Button>
+    <div className=\\"pagesWrap\\">
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        11
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        12
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        13
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        14
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        15
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        16
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        17
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        18
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        19
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        20
+      </Button>
+    </div>
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={true} onClick={[Function: onClick]} name=\\"next\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_next\\" className=\\"pager isDisabled\\" size={24} align=\\"middle\\" />
+    </Button>
+  </div>
+</div>"
 `;
 
 exports[`Pager component #render change start and end pages when currentPage <= 6 1`] = `
-ShallowWrapper {
-  "length": 1,
-}
+"<div className=\\"holdPager\\">
+  <div className=\\"perpage\\">
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+      <SelectOption value={10}>
+        10 por página
+      </SelectOption>
+      <SelectOption value={15}>
+        15 por página
+      </SelectOption>
+      <SelectOption value={50}>
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div className=\\"showing\\">
+    60
+     - 
+    75
+     de 
+    500
+  </div>
+  <div className=\\"nav\\">
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"prev\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_before\\" className=\\"pagerLeft\\" size={24} align=\\"middle\\" />
+    </Button>
+    <div className=\\"pagesWrap\\">
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        1
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        2
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        3
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        4
+      </Button>
+      <Button className=\\"btn number isActive\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        5
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        6
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        7
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        8
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        9
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        10
+      </Button>
+    </div>
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"next\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_next\\" className=\\"pager\\" size={24} align=\\"middle\\" />
+    </Button>
+  </div>
+</div>"
 `;
 
 exports[`Pager component #render change start and end pages when is a default value 1`] = `
-ShallowWrapper {
-  "length": 1,
-}
+"<div className=\\"holdPager\\">
+  <div className=\\"perpage\\">
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+      <SelectOption value={10}>
+        10 por página
+      </SelectOption>
+      <SelectOption value={15}>
+        15 por página
+      </SelectOption>
+      <SelectOption value={50}>
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div className=\\"showing\\">
+    100
+     - 
+    115
+     de 
+    500
+  </div>
+  <div className=\\"nav\\">
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"prev\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_before\\" className=\\"pagerLeft\\" size={24} align=\\"middle\\" />
+    </Button>
+    <div className=\\"pagesWrap\\">
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        3
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        4
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        5
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        6
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        7
+      </Button>
+      <Button className=\\"btn number isActive\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        8
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        9
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        10
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        11
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        12
+      </Button>
+    </div>
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"next\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_next\\" className=\\"pager\\" size={24} align=\\"middle\\" />
+    </Button>
+  </div>
+</div>"
 `;
 
 exports[`Pager component #render render correctly 1`] = `
-ShallowWrapper {
-  "length": 1,
-}
+"<div className=\\"holdPager\\">
+  <div className=\\"perpage\\">
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+      <SelectOption value={10}>
+        10 por página
+      </SelectOption>
+      <SelectOption value={15}>
+        15 por página
+      </SelectOption>
+      <SelectOption value={50}>
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div className=\\"showing\\">
+    20
+     - 
+    35
+     de 
+    100
+  </div>
+  <div className=\\"nav\\">
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"prev\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_before\\" className=\\"pagerLeft\\" size={24} align=\\"middle\\" />
+    </Button>
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"next\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_next\\" className=\\"pager\\" size={24} align=\\"middle\\" />
+    </Button>
+  </div>
+</div>"
 `;
 
 exports[`Pager component #render render correctly with hasFirstLast 1`] = `
-ShallowWrapper {
-  "length": 1,
-}
+"<div className=\\"holdPager\\">
+  <div className=\\"perpage\\">
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+      <SelectOption value={10}>
+        10 por página
+      </SelectOption>
+      <SelectOption value={15}>
+        15 por página
+      </SelectOption>
+      <SelectOption value={50}>
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div className=\\"showing\\">
+    20
+     - 
+    35
+     de 
+    100
+  </div>
+  <div className=\\"nav\\">
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"first\\" type=\\"button\\" active={false}>
+      <Icon name=\\"first_page\\" className=\\"pager\\" size={24} align=\\"middle\\" />
+    </Button>
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"prev\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_before\\" className=\\"pagerLeft\\" size={24} align=\\"middle\\" />
+    </Button>
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"next\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_next\\" className=\\"pager\\" size={24} align=\\"middle\\" />
+    </Button>
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"last\\" type=\\"button\\" active={false}>
+      <Icon name=\\"last_page\\" className=\\"pager\\" size={24} align=\\"middle\\" />
+    </Button>
+  </div>
+</div>"
 `;
 
 exports[`Pager component #render render correctly with hasPagination 1`] = `
-ShallowWrapper {
-  "length": 1,
-}
+"<div className=\\"holdPager\\">
+  <div className=\\"perpage\\">
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+      <SelectOption value={10}>
+        10 por página
+      </SelectOption>
+      <SelectOption value={15}>
+        15 por página
+      </SelectOption>
+      <SelectOption value={50}>
+        50 por página
+      </SelectOption>
+    </Select>
+  </div>
+  <div className=\\"showing\\">
+    20
+     - 
+    35
+     de 
+    100
+  </div>
+  <div className=\\"nav\\">
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"prev\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_before\\" className=\\"pagerLeft\\" size={24} align=\\"middle\\" />
+    </Button>
+    <div className=\\"pagesWrap\\">
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        1
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        2
+      </Button>
+      <Button className=\\"btn number isActive\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        3
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        4
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        5
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        6
+      </Button>
+      <Button className=\\"btn number\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"goto\\" type=\\"button\\" active={false}>
+        7
+      </Button>
+    </div>
+    <Button className=\\"btn\\" color=\\"transparent\\" size=\\"none\\" disabled={false} onClick={[Function: onClick]} name=\\"next\\" type=\\"button\\" active={false}>
+      <Icon name=\\"navigate_next\\" className=\\"pager\\" size={24} align=\\"middle\\" />
+    </Button>
+  </div>
+</div>"
 `;
