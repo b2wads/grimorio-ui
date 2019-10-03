@@ -88,7 +88,7 @@ class DatePicker extends PureComponent {
 
   render() {
     const { startDate, endDate, date, showCalendar } = this.state;
-    const { className, align, isMobile, disabled, isRangeDate, ...rest } = this.props;
+    const { className, align, isMobile, disabled, isRangeDate } = this.props;
     const labelClasses = cx(styles.label, {
       [styles.isActive]: this.hasDates() || showCalendar,
     });
@@ -100,7 +100,7 @@ class DatePicker extends PureComponent {
     });
 
     return (
-      <div className={cx(styles.wrap, className)} {...rest}>
+      <div className={cx(styles.wrap, className)}>
         <div className={styles.labelWrapper}>
           <span className={labelClasses}>{this.props.label}</span>
           <fieldset className={styles.input} onClick={this.toggleCalendar} disabled={disabled}>
