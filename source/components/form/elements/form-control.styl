@@ -13,7 +13,7 @@ $c-check-border = #7F7F7F;
 /* Field
 ========================================================================== */
 $default-background = #fff;
-$c-default = #333;
+$c-text-default = #333;
 $c-disabled = #999;
 $c-disabled-light = #b4b5b5;
 /* Addon
@@ -41,11 +41,11 @@ $field {
   width: 100%;
 
   &:focus {
-    border-color: $c-form;
+    border-color: $c-active-input;
   }
 
   &.isActive {
-    border-color: $c-form;
+    border-color: $c-active-input;
   }
 
   &:disabled {
@@ -110,7 +110,7 @@ Form Control Component
 ========================================================================== */
 .form-field {
   @extend $field;
-  color: $c-default;
+  color: $c-text-default;
 }
 
 .form-field--outline {
@@ -125,7 +125,7 @@ Form Control Component
   @extend $field;
   background: $default-background;
   border: 0;
-  color: $c-default;
+  color: $c-text-default;
 }
 
 .form-field--radio {
