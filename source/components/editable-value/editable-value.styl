@@ -1,47 +1,62 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
+
+
 /* ==========================================================================
    Placeholders
 ========================================================================== */
+$default {}
+
+$btn {
+  margin-left: 5px;
+  width: 35px;
+  height: 35px;
+}
+
 /* ==========================================================================
-   TableFixed Elements
+   EditableValue Elements
 ========================================================================== */
+
 /* ==========================================================================
-   TableFixed Props
+   EditableValue Props
 ========================================================================== */
+
 /* Default
-================ */
-.shortWrap {
-  overflow: auto;
+ ================ */
+
+.default {
+  @extend $default;
 }
 
-.fullWrap {
-  display: flex;
-}
+.wrap {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
-.fullWidth {
-  flex: 1;
-}
-
-.stickShort {
-  left: initial;
-  z-index: 0;
-}
-
-.stickFull {
-  left: 0;
-  z-index: 3;
-}
-
-.sticky {
-  position: sticky;
-
-  table {
-    background: white;
-
-    tbody {
-      box-shadow: 2px 1px 4px 0 rgba(0, 0, 0, 0.17);
-    }
+  &.isEditing {
+    align-items: end;
   }
+}
+
+.edit {
+  @extend $btn;
+  color: $base-text-color;
+
+  &:hover {
+    background: $c-support-light;
+  }
+}
+
+.formGroup {
+  margin-bottom: 0;
+}
+
+.input {
+  padding: 0;
+  padding-left: 10px;
+}
+
+.submit {
+  @extend $btn;
 }

@@ -1,8 +1,6 @@
 /* ==========================================================================
    Variables
 ========================================================================== */
-
-
 $gutter-px = 8px;
 $hot = #FF5567;
 
@@ -20,7 +18,7 @@ $default-product {
   position: relative;
 
   a {
-    color: $base-text-color;
+    color: $c-support;
     text-decoration: none;
   }
 }
@@ -35,7 +33,6 @@ $img {
 /* ==========================================================================
    Product Elements
 ========================================================================== */
-
 .wrapper {
   position: relative;
 }
@@ -69,8 +66,6 @@ $img {
 }
 
 .name {
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
   display: -webkit-box;
   font-size: 14px;
   height: 33px;
@@ -78,6 +73,8 @@ $img {
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 
   &.isShort {
     align-items: center;
@@ -87,7 +84,7 @@ $img {
 }
 
 .rules {
-  color: $base-text-color;
+  color: $c-support;
   display: inline-block;
   font-size: 11px;
   margin-left: 4px;
@@ -98,7 +95,7 @@ $img {
   align-items: center;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  color: $base-text-color;
+  color: $c-support;
   display: flex;
   height: 17px;
   justify-content: center;
@@ -128,7 +125,9 @@ $img {
   transition: all 0.3s ease;
 
   @media screen and (max-width: 1375px) {
-    i { display: none; }
+    i {
+      display: none;
+    }
   }
 }
 
@@ -153,10 +152,8 @@ $img {
 /* ==========================================================================
    Product Props
 ========================================================================== */
-
 /* Default
- ================ */
-
+================ */
 .default {
   @extend $default-product;
 
@@ -173,8 +170,7 @@ $img {
 }
 
 /* Card
- ================ */
-
+================ */
 .card {
   @extend $default-product;
   text-align: center;

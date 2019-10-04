@@ -1,36 +1,30 @@
-@import "../../../styl/config";
+@import '../../../styl/config';
 
 /* ==========================================================================
-  Variables
-  ========================================================================== */
+Variables
+========================================================================== */
 $c-success-light = lightness($c-success);
 $c-warning-light = lightness($c-warning);
 $c-error-light = lightness($c-error);
-
 /* Border color
-   ========================================================================== */
+========================================================================== */
 $c-border = #ccc;
 $c-check-border = #7F7F7F;
-
 /* Field
-   ========================================================================== */
+========================================================================== */
 $default-background = #fff;
 $c-default = #333;
-
-$disabled = lighten($c-secondary, 60%);
 $c-disabled = #999;
 $c-disabled-light = #b4b5b5;
-
 /* Addon
-   ========================================================================== */
+========================================================================== */
 $c-addon-background = #18a689;
 $c-addon-border = $c-border;
 $c-addon = $c-primary;
 
 /* ==========================================================================
-  Placeholders
-  ========================================================================== */
-
+Placeholders
+========================================================================== */
 /* Field (text || select || textarea )
 ========================================================================== */
 $field {
@@ -47,15 +41,15 @@ $field {
   width: 100%;
 
   &:focus {
-    border-color: $c-primary;
+    border-color: $c-form;
   }
 
   &.isActive {
-    border-color: $c-primary;
+    border-color: $c-form;
   }
 
   &:disabled {
-    background: $disabled;
+    background: $c-back-disabled;
     color: $c-disabled;
   }
 }
@@ -72,12 +66,14 @@ $radioCheckbox {
   transition: all 0.2s ease;
   width: 20px;
 
-  &.isDisabled,
-  &.isDisabled.isActive {
-    background: $disabled;
-    border-color: darken($disabled, 25%);
+  &.isDisabled, &.isDisabled.isActive {
+    background: $c-back-disabled;
+    border-color: darken($c-back-disabled, 25%);
     cursor: not-allowed;
-    i { color: darken($disabled, 25%); }
+
+    i {
+      color: darken($c-back-disabled, 25%);
+    }
   }
 }
 
@@ -100,32 +96,29 @@ $addon {
   white-space: nowrap;
   width: 35px;
 
-  [class*="button"] {
+  [class*='button'] {
     margin: -6px -10px;
-    padding: 6px 10px;
     outline: none;
+    padding: 6px 10px;
   }
- }
+}
 
 /* ==========================================================================
-   Form Control Component
-   ========================================================================== */
-
+Form Control Component
+========================================================================== */
 /* Form field
-   ========================================================================== */
+========================================================================== */
 .form-field {
   @extend $field;
-
   color: $c-default;
 }
 
 .form-field--outline {
   @extend $field;
-
   border: 1px solid $c-border;
   border-radius: 3px;
-  padding: 24px 10px 22px 10px;
   margin-top: 0;
+  padding: 24px 10px 22px;
 }
 
 .form-field--select {
@@ -138,7 +131,7 @@ $addon {
 .form-field--radio {
   background: $default-background;
 
-  input[type="radio"] {
+  input[type='radio'] {
     display: none;
   }
 
@@ -148,29 +141,29 @@ $addon {
     color: $c-support-dark;
   }
 
-  input[type="radio"]:checked ~ .fakeInput {
+  input[type='radio']:checked ~ .fakeInput {
     border-color: $c-support-dark;
   }
 
-  input[type="radio"]:checked ~ .fakeInput:before {
+  input[type='radio']:checked ~ .fakeInput:before {
+    background: $c-support-dark;
+    border-radius: 50%;
     content: '';
     display: block;
-    width: 10px;
-    height 10px;
-    border-radius: 50%;
-    background: $c-support-dark;
+    height: 10px;
     transition: all 0.2s ease;
+    width: 10px;
   }
 
-  input[type="radio"]:disabled {
+  input[type='radio']:disabled {
     &:checked ~ .fakeInput {
-      border-color: darken($disabled, 25%);
-      background: $disabled;
+      background: $c-back-disabled;
+      border-color: $c-back-disabled;
       cursor: not-allowed;
     }
 
     &:checked ~ .fakeInput:before {
-      background: darken($disabled, 25%);
+      background: $c-back-disabled;
     }
   }
 }
@@ -178,7 +171,7 @@ $addon {
 .form-field--checkbox {
   background: $default-background;
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     display: none;
   }
 
@@ -187,8 +180,8 @@ $addon {
     border-radius: 3px;
 
     &.isActive {
-      background: $c-support-dark;
-      border-color: $c-support-dark;
+      background: $c-primary;
+      border-color: $c-primary;
       transition: all 0.2s ease;
     }
   }
@@ -205,15 +198,18 @@ $addon {
 
 .form-field--textarea {
   @extend $field;
-
   height: 200px;
 }
 
 /* Form addon
-   ========================================================================== */
-.form-addon { background: none; }
+========================================================================== */
+.form-addon {
+  background: none;
+}
 
-.form-field-wrapper { font-size: 16px; }
+.form-field-wrapper {
+  font-size: 16px;
+}
 
 .form-addon--withItens {
   border-collapse: separate;
@@ -224,7 +220,6 @@ $addon {
 
 .form-addon-before {
   @extend $addon;
-
   border-bottom-right-radius: 0;
   border-right: 0;
   border-top-right-radius: 0;
@@ -237,7 +232,6 @@ $addon {
 
 .form-addon-after {
   @extend $addon;
-
   border-bottom-left-radius: 0;
   border-left: 0;
   border-top-left-radius: 0;
@@ -249,13 +243,13 @@ $addon {
 }
 
 .form-addon--disabled {
-  background: $disabled;
-  border-color: $disabled;
+  background: $c-back-disabled;
+  border-color: $c-back-disabled;
   color: $c-disabled-light;
 }
 
 /* Feedback
-   ========================================================================== */
+========================================================================== */
 .form-feedback {
   display: block;
   height: 28px;
@@ -273,10 +267,9 @@ $addon {
    ========================================================================== */
 
 /* Validations
-   ========================================================================== */
+========================================================================== */
 .has-success {
-  &.form-addon,
-  & .form-feedback {
+  &.form-addon, & .form-feedback {
     color: $c-success;
   }
 
@@ -285,13 +278,13 @@ $addon {
     border-color: $c-success;
   }
 
-  & .form-field,
-  & .form-control { border-color: $c-success; }
+  & .form-field, & .form-control {
+    border-color: $c-success;
+  }
 }
 
 .has-warning {
-  &.form-addon,
-  & .form-feedback {
+  &.form-addon, & .form-feedback {
     color: $c-warning;
   }
 
@@ -300,13 +293,13 @@ $addon {
     border-color: $c-warning;
   }
 
-  & .form-field,
-  & .form-control { border-color: $c-warning; }
+  & .form-field, & .form-control {
+    border-color: $c-warning;
+  }
 }
 
 .has-error {
-  &.form-addon,
-  & .form-feedback {
+  &.form-addon, & .form-feedback {
     color: $c-error;
   }
 
@@ -315,6 +308,7 @@ $addon {
     border-color: $c-error;
   }
 
-  & .form-field,
-  & .form-control { border-color: $c-error; }
+  & .form-field, & .form-control {
+    border-color: $c-error;
+  }
 }

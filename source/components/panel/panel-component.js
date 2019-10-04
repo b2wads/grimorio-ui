@@ -28,6 +28,7 @@ class Panel extends PureComponent {
     contentClassName: PropTypes.string,
     footer: PropTypes.element,
     footerClassName: PropTypes.string,
+    titleClassName: PropTypes.string,
     loading: PropTypes.bool,
     accordion: PropTypes.bool,
     open: PropTypes.bool,
@@ -73,7 +74,7 @@ class Panel extends PureComponent {
     );
   }
 
-  renderHeader(brand, title, accordion, open) {
+  renderHeader(brand, title, accordion, open, titleClassName) {
     if (brand) {
       return (
         <header className={styles[brand]}>
@@ -82,8 +83,8 @@ class Panel extends PureComponent {
       );
     } else {
       return (
-        <header className={cx(styles.title, { [styles.isAccordion]: accordion })}>
-          {title}
+        <header className={cx(styles.titleWrap, { [styles.isAccordion]: accordion })}>
+          <span className={cx(styles.title, titleClassName)}>{title}</span>
           {accordion && this.renderIcon(open)}
         </header>
       );
@@ -127,6 +128,7 @@ class Panel extends PureComponent {
       footer,
       contentClassName,
       footerClassName,
+      titleClassName,
       loading,
       accordion,
       ...rest
@@ -159,7 +161,7 @@ class Panel extends PureComponent {
     return (
       <article {...rest} className={fullClassName}>
         <div className={wrapperClass}>
-          {(title || brand) && this.renderHeader(brand, title, accordion, open)}
+          {(title || brand) && this.renderHeader(brand, title, accordion, open, titleClassName)}
           {loading && <Loader size="32px" className={styles.loader} />}
           {!loading &&
             <div ref={content => (this.content = content)} className={contentClass} style={style}>

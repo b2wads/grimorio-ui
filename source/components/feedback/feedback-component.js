@@ -52,7 +52,7 @@ class Feedback extends Component {
   }
 
   render() {
-    const { message, type, isMobile } = this.props;
+    const { message, type, isMobile, className } = this.props;
 
     const typeFeedback = cx(styles.default, {
       [styles[type]]: type,
@@ -63,7 +63,7 @@ class Feedback extends Component {
       [styles.iconError]: type === 'fail',
     });
 
-    const positionFeedback = cx({
+    const positionFeedback = cx(className, {
       [styles.mobilePosition]: isMobile,
       [styles.defaultPosition]: !isMobile,
     });

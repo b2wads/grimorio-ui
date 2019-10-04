@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 
+import { omit } from 'helpers';
+
 import Button from '../button';
 import Icon from '../icon';
 
@@ -57,10 +59,15 @@ class ButtonUpload extends PureComponent {
   fileValidation(file) {
     const { formatWhiteList, maxFileSize } = this.props;
     const extension = file.name.split('.').pop();
-    return {
-      valid: formatWhiteList.includes(`.${extension}`) && file.size <= maxFileSize,
+    const validation = {
       validFormat: formatWhiteList.includes(`.${extension}`),
       validSize: file.size <= maxFileSize,
+      hasNoRepeat: !this.state.list.filter(currentFile => currentFile.name === file.name).length,
+    };
+
+    return {
+      ...validation,
+      valid: validation.validFormat && validation.validSize && validation.hasNoRepeat,
     };
   }
 
@@ -116,7 +123,7 @@ class ButtonUpload extends PureComponent {
     const hasMaxFiles = this.state.list.length === limit;
 
     return (
-      <div {...rest}>
+      <div {...omit(rest, ['onChange'])}>
         <Button loading={loading} disabled={disabled || hasMaxFiles} iconLeft="publish" className={styles.button}>
           {btnText}
           <input
@@ -126,6 +133,7 @@ class ButtonUpload extends PureComponent {
             disabled={disabled || hasMaxFiles}
             multiple
             accept={accept || formatWhiteList.join(', ')}
+            key={this.state.list.length}
           />
         </Button>
 

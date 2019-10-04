@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
+import cx from 'classnames';
 
 import styles from './info-card.styl';
 
@@ -20,6 +21,10 @@ class InfoCard extends PureComponent {
     errorMessage: PropTypes.string,
     onErrorClick: PropTypes.func,
     errorBtnText: PropTypes.string,
+    ellipsis: PropTypes.bool,
+    titleClassName: PropTypes.string,
+    infoClassName: PropTypes.string,
+    tagClassName: PropTypes.string,
   };
 
   static defaultProptypes = {
@@ -35,7 +40,11 @@ class InfoCard extends PureComponent {
       tagline,
       className,
       error,
+      ellipsis,
       onErrorClick,
+      titleClassName,
+      infoClassName,
+      tagClassName,
       errorMessage,
       errorBtnText,
       ...elementProps
@@ -44,7 +53,7 @@ class InfoCard extends PureComponent {
     const fullClassName = classNames(className, styles.default);
 
     return (
-      <Panel title={title} className={fullClassName} {...elementProps}>
+      <Panel title={title} className={fullClassName} titleClassName={titleClassName} {...elementProps}>
         {error &&
           <Error
             className={styles.error}
@@ -55,11 +64,11 @@ class InfoCard extends PureComponent {
           />}
         {!error &&
           <Fragment>
-            <span className={styles.info}>
+            <span className={cx(styles.info, infoClassName, { [styles.ellipsis]: ellipsis })}>
               {type === 'money' ? <span className={styles.symbol}>R$</span> : ''}
               {type === 'money' ? moneyFormat(value, false) : value}
             </span>
-            <span className={styles.tagline}>
+            <span className={cx(styles.tagline, tagClassName)}>
               {tagline ? <span>{tagline}</span> : ''}
             </span>
           </Fragment>}
