@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import moment from 'moment';
 
 import DatePicker from './date-picker-component';
@@ -9,16 +10,12 @@ const stories = storiesOf('DatePicker', module);
 
 stories.addDecorator(withKnobs);
 
-const printDates = (startDate, endDate) => {
-  console.log('dates:', moment(startDate).format(), moment(endDate).format());
-};
-
 stories.add('Normal', () => {
   return (
     <div>
       <DatePicker
         isRangeDate
-        onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
+        onChange={action('onChange: dates object')}
       />
     </div>
   );
@@ -29,7 +26,7 @@ stories.add('Single Date', () => {
     <div>
       <DatePicker
         monthsToShow={1}
-        onChange={(dates) => console.log('single date:', dates)}
+        onChange={action('onChange: dates object')}
       />
     </div>
   );
@@ -41,7 +38,7 @@ stories.add('Mobile', () => {
       <DatePicker
         isRangeDate
         isMobile
-        onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
+        onChange={action('onChange: dates object')}
       />
     </div>
   );
@@ -55,7 +52,7 @@ stories.add('Default Values', () => {
         isRangeDate
         defaultStartDate={moment().subtract(7, 'days')}
         defaultEndDate={moment()}
-        onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
+        onChange={action('onChange: dates object')}
       />
 
       <br/>
@@ -65,7 +62,7 @@ stories.add('Default Values', () => {
         defaultSingleDate={moment().subtract(7, 'days')}
         monthsToShow={1}
         initialMonth={moment()}
-        onChange={(dates) => console.log('single date:', dates)}
+        onChange={action('onChange: dates object')}
       />
     </div>
   );
@@ -78,7 +75,7 @@ stories.add('Align', () => {
         isRangeDate
         align="left"
         label="Align Calendar Left"
-        onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
+        onChange={action('onChange: dates object')}
       />
 
       <br/>
@@ -88,7 +85,7 @@ stories.add('Align', () => {
         isRangeDate
         align="right"
         label="Align Calendar Right"
-        onChange={({ startDate, endDate }) => printDates(startDate, endDate)}
+        onChange={action('onChange: dates object')}
       />
     </div>
   );

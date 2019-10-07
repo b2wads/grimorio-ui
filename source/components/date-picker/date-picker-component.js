@@ -73,17 +73,22 @@ class DatePicker extends PureComponent {
   }
 
   changeDate(dateValues) {
-    this.setState(dateValues);
-    const { startDate, endDate } = dateValues;
+    const { startDate, endDate, date } = dateValues;
     const { isRangeDate } = this.props;
+
+    this.setState(dateValues);
 
     if (isRangeDate && startDate && endDate) {
       this.toggleCalendar();
     }
+
     if (!isRangeDate) {
       this.toggleCalendar();
     }
-    this.props.onChange(dateValues);
+
+    if (startDate || endDate || date) {
+      this.props.onChange(dateValues);
+    }
   }
 
   render() {
