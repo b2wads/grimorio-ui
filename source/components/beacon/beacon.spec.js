@@ -2,9 +2,9 @@ import '../../../internals/test/helper';
 
 import Beacon from './beacon-component';
 
-/** @test {Breadcrumb} */
+/** @test {Beacon} */
 describe('Beacon component', () => {
-/** @test {Breadcrumb#render} */
+/** @test {Beacon#render} */
   describe('#render', () => {
     it('render correctly', () => {
       const wrapper = shallow(

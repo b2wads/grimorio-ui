@@ -87,7 +87,7 @@ stories.add('Input text com ícone', () => (
     <div>
       <Form>
         <FormGroup>
-          <FormControlLabel iconRight="link" colorIconRight="green" iconRightClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormControlLabel iconRight="link" iconRightClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
           <FormHelpText>Com ícone à direita</FormHelpText>
         </FormGroup>
         <br />
