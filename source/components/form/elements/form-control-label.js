@@ -78,6 +78,7 @@ class FormControlLabel extends Component {
       iconRightClick,
       iconLeft,
       iconLeftClick,
+      colorIconRight,
       ...rest
     } = this.props;
 
@@ -128,7 +129,14 @@ class FormControlLabel extends Component {
             onFocus={this.onFocusLabel}
             onBlur={this.onBlurLabel}
           />
-          {iconRight && <Icon className={iconRightClasses} name={iconRight} size={18} onClick={iconRightClick} />}
+          {iconRight &&
+            <Icon
+              className={iconRightClasses}
+              color={colorIconRight}
+              name={iconRight}
+              size={18}
+              onClick={iconRightClick}
+            />}
         </div>
       );
     }

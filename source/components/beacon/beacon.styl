@@ -1,0 +1,56 @@
+.beacon {
+  position: absolute;
+  top: 40%;
+  right: 13%;
+  background-color: #de4e4e;
+  height: 0.7em;
+  width: 0.7em;
+  border-radius: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+
+  &:before {
+    position: absolute;
+    content: '';
+    height: 0.7em;
+    width: 0.7em;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 0px 0px 2px 2px #de4e4e;
+    -webkit-animation: active 2s infinite linear;
+    animation: active 2s infinite linear;
+  }
+}
+
+@keyframes active {
+  0% {
+    -webkit-transform: scale(0.1);
+    opacity: 1;
+  }
+
+  70% {
+    -webkit-transform: scale(2.5);
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes active {
+  0% {
+    transform: scale(0.1);
+    opacity: 1;
+  }
+
+  70% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
