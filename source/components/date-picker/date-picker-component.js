@@ -22,6 +22,7 @@ class DatePicker extends PureComponent {
 
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.outsideClick = this.outsideClick.bind(this);
+    this.isOutsideRange = this.isOutsideRange.bind(this);
 
     moment.locale('pt-br');
   }
@@ -91,6 +92,14 @@ class DatePicker extends PureComponent {
     }
   }
 
+  isOutsideRange(day) {
+    if (this.props.isOutsideRange) {
+      return this.props.isOutsideRange(day);
+    }
+
+    return isInclusivelyAfterDay(day, moment().add(1, 'day'));
+  }
+
   render() {
     const { startDate, endDate, date, showCalendar } = this.state;
     const { className, align, isMobile, disabled, isRangeDate } = this.props;
@@ -123,7 +132,7 @@ class DatePicker extends PureComponent {
             endDate={endDate}
             onOutsideClick={this.outsideClick}
             onChange={dates => this.changeDate(dates)}
-            isOutsideRange={day => isInclusivelyAfterDay(day, moment().add(1, 'day'))}
+            isOutsideRange={this.isOutsideRange}
             isRangeDate={isRangeDate}
           />
         </div>
