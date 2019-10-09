@@ -16,6 +16,7 @@ stories.add('Normal', () => {
       <DatePicker
         isRangeDate
         onChange={action('onChange: dates object')}
+        isOutsideRange={() => false}
       />
     </div>
   );
