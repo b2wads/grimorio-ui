@@ -22,6 +22,7 @@ class DatePicker extends PureComponent {
 
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.outsideClick = this.outsideClick.bind(this);
+    this.isOutsideRange = this.isOutsideRange.bind(this);
 
     moment.locale('pt-br');
   }
@@ -73,22 +74,35 @@ class DatePicker extends PureComponent {
   }
 
   changeDate(dateValues) {
-    this.setState(dateValues);
-    const { startDate, endDate } = dateValues;
+    const { startDate, endDate, date } = dateValues;
     const { isRangeDate } = this.props;
+
+    this.setState(dateValues);
 
     if (isRangeDate && startDate && endDate) {
       this.toggleCalendar();
     }
+
     if (!isRangeDate) {
       this.toggleCalendar();
     }
-    this.props.onChange(dateValues);
+
+    if (startDate || endDate || date) {
+      this.props.onChange(dateValues);
+    }
+  }
+
+  isOutsideRange(day) {
+    if (this.props.isOutsideRange) {
+      return this.props.isOutsideRange(day);
+    }
+
+    return isInclusivelyAfterDay(day, moment().add(1, 'day'));
   }
 
   render() {
     const { startDate, endDate, date, showCalendar } = this.state;
-    const { className, align, isMobile, disabled, isRangeDate, ...rest } = this.props;
+    const { className, align, isMobile, disabled, isRangeDate } = this.props;
     const labelClasses = cx(styles.label, {
       [styles.isActive]: this.hasDates() || showCalendar,
     });
@@ -100,7 +114,7 @@ class DatePicker extends PureComponent {
     });
 
     return (
-      <div className={cx(styles.wrap, className)} {...rest}>
+      <div className={cx(styles.wrap, className)}>
         <div className={styles.labelWrapper}>
           <span className={labelClasses}>{this.props.label}</span>
           <fieldset className={styles.input} onClick={this.toggleCalendar} disabled={disabled}>
@@ -118,7 +132,7 @@ class DatePicker extends PureComponent {
             endDate={endDate}
             onOutsideClick={this.outsideClick}
             onChange={dates => this.changeDate(dates)}
-            isOutsideRange={day => isInclusivelyAfterDay(day, moment().add(1, 'day'))}
+            isOutsideRange={this.isOutsideRange}
             isRangeDate={isRangeDate}
           />
         </div>

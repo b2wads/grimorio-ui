@@ -1,4 +1,5 @@
 import '../../../internals/test/helper';
+import React from 'react';
 
 import InfoCard from './info-card-component';
 

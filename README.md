@@ -1,4 +1,10 @@
-# Grimório 📜✨
+<p align="center">
+  <img alt="Grimório✨" src="internals/logo/logo-grimorio-cores.png?raw=true">
+</p>
+
+<h3 align="center">
+  UI just like magic
+</h3>
 
 ## Prerequisites
 
@@ -21,7 +27,7 @@ npm install
 yarn
 ```
 
-Importe o css do tema no seu arquivo de entrada e insira um loader no webpack
+Importe o css do Grimório✨ no seu arquivo de entrada e insira um loader no webpack
 
 ```bash
 // import the CSS

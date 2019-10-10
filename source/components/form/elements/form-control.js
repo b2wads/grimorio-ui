@@ -34,6 +34,7 @@ class FormControl extends PureComponent {
     feedback: false,
     type: 'text',
     outline: false,
+    theme: 'primary',
   };
 
   static propTypes = {
@@ -50,6 +51,7 @@ class FormControl extends PureComponent {
     checked: PropTypes.bool,
     feedback: PropTypes.bool,
     outline: PropTypes.bool,
+    theme: PropTypes.oneOf(['primary', 'secondary']),
     type: PropTypes.oneOf([
       'text',
       'password',
@@ -195,6 +197,7 @@ class FormControl extends PureComponent {
             className={classNames(styles.fakeInput, {
               [styles.isDisabled]: disabled,
               [styles.isActive]: this.props.checked,
+              [styles.isPrimary]: this.props.theme === 'primary',
             })}
             htmlFor={id}
           >
