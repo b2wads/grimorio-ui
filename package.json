@@ -96,7 +96,7 @@
     "stylus-loader": "3.0.2",
     "svg-react-loader": "0.4.5",
     "webpack": "3.5.2",
-    "webpack-bundle-analyzer": "3.0.3"
+    "webpack-bundle-analyzer": "3.3.2"
   },
   "dependencies": {
     "chart.js": "2.7.3",
