@@ -1,0 +1,10 @@
+{
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#7934d0",
+        "statusBarItem.hoverBackground": "#945dda",
+        "statusBar.foreground": "#e7e7e7"
+    },
+    "peacock.color": "#7934d0",
+    "jest.pathToJest": "yarn test",
+    "jest.showCoverageOnLoad": true
+}

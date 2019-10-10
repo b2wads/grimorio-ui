@@ -34,9 +34,8 @@ addParameters({
 
 configure(loadStories, module);
 
-const req = require.context('../source/components', true, /\.stories\.js$/);
-
 function loadStories() {
+  const req = require.context('../source/components', true, /\.stories\.js$/);
   req.keys().forEach(filename => req(filename));
 }
 
