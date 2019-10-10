@@ -7,8 +7,7 @@ or any other method with the owners of this repository before making a change.
 ## Pull Request Process
 
 1. Fork this repository.
-2. Ensure any install or build dependencies are removed before the end of the layer when doing a 
-   build.
+2. Ensure to install all dependencies.
 3. Update the README.md with details of changes to the interface, if apply.
 4. Open a PR with your changes to branch `develop`.
 
