@@ -1,15 +1,14 @@
 import '../../../internals/test/helper';
-import React from 'react';
 
-import InfoCard from './info-card-component';
+import Beacon from './beacon-component';
 
-/** @test {InfoCard} */
-describe('InfoCard component', () => {
-/** @test {InfoCard#render} */
+/** @test {Beacon} */
+describe('Beacon component', () => {
+/** @test {Beacon#render} */
   describe('#render', () => {
     it('render correctly', () => {
       const wrapper = shallow(
-        <InfoCard />
+        <Beacon />
       );
       expect(wrapper.length).toEqual(1);
     });

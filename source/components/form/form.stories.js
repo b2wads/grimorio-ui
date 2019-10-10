@@ -151,7 +151,7 @@ stories.add('Checkbox', withState({ input: 'Campo com valor default', check: [] 
 
         <FormGroup>
           <label htmlFor="check2">Checkbox2!</label>
-          <FormControl onChange={() => toggleCheck(2)} checked={store.state.check.includes(2)} type="checkbox" id="check2" value="2" />
+          <FormControl theme="secondary" onChange={() => toggleCheck(2)} checked={store.state.check.includes(2)} type="checkbox" id="check2" value="2" />
         </FormGroup>
       </Form>
     </div>

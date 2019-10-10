@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import moment from 'moment';
 import 'moment/locale/pt-br';
-import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
 import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeController';
 

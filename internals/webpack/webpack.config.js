@@ -5,7 +5,11 @@ const path = require('path');
 
 const baseConfig = {
   entry: {
-    'grimorio-ui': './source/index.js',
+    'grimorio-ui': [
+      './source/index.js',
+      './source/styl/style.styl',
+      './node_modules/react-dates/lib/css/_datepicker.css',
+    ],
   },
 
   output: {
@@ -62,11 +66,13 @@ const baseConfig = {
             {
               loader: 'css-loader',
               options: {
-                modules: true,
                 importLoaders: true,
-                localIdentName: '[name]_[local]_[hash:base64:5]',
-                minimize: true,
-                sourceMap: false
+                sourceMap: false,
+                modules: {
+                  mode: 'local',
+                  localIdentName: 'grm-[name]__[local]',
+                  context: path.resolve(__dirname, '../../source/'),
+                },
               }
             },
             {
@@ -88,7 +94,22 @@ const baseConfig = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                config: {
+                  path: path.resolve(__dirname, './config/postcss.config.js')
+                }
+              }
+            }
+          ],
+        }),
       },
       {
         test: /\.(jpe?g|jpg|gif|ico|png|woff|woff2|eot|ttf)$/,

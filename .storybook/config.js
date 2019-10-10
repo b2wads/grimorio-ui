@@ -9,6 +9,7 @@ import { themes } from '@storybook/theming';
 import infoAddon from '@storybook/addon-info';
 
 import "../source/styl/style.styl";
+import 'react-dates/lib/css/_datepicker.css';
 import styles from "../source/styl/03-pages/storybook.styl";
 
 addDecorator((fn, { kind, story }) => <div className={styles.container}>
@@ -34,9 +35,8 @@ addParameters({
 
 configure(loadStories, module);
 
-const req = require.context('../source/components', true, /\.stories\.js$/);
-
 function loadStories() {
+  const req = require.context('../source/components', true, /\.stories\.js$/);
   req.keys().forEach(filename => req(filename));
 }
 
