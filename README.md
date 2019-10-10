@@ -27,33 +27,36 @@ npm install
 yarn
 ```
 
-Importe o css do Grimório✨ no seu arquivo de entrada e insira um loader no webpack
+Importe o css do Grimório✨ no seu arquivo de entrada:
 
-```bash
+```js
 // import the CSS
 
 // ex: layout.js
-import '[node_modules path]/grimorio-ui/dist/grimorio-ui.min.css';
+import '[path/to/node_modules]/grimorio-ui/dist/grimorio-ui.min.css';
 
-// webpack
-{
-  test: /\.styl$/,
-  loader: 'style!css?modules=1&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]!postcss!stylus?sourceMap',
-  include: path.resolve(__dirname, '../../source'),
-  exclude: path.resolve(__dirname, "../../node_modules")
-},
-{
-  test: /\.css/,
-  loader: 'style!css',
-  include: path.resolve(__dirname, "../../node_modules/grimorio-ui/dist/")
-}
 ```
+
 E então, é só usar!
 
 ```js
 // component.js
 
 import { Alert } from 'grimorio-ui';
+```
+
+Caso seu webpack ignore o `node_modules` na hora de gerar o build de css, é necessário criar uma regra para incluir o css do Grimório✨.
+
+```js
+// exemplo de exceção no webpack 3.X.X
+{
+  test: /\.css$/,
+  include: path.resolve(__dirname, '[path/to/node_modules]/grimorio-ui/dist/grimorio-ui.min.css'),
+  use: {
+    fallback: 'style-loader',
+    loader: 'css-loader',
+  },
+},
 ```
 
 ## Local Usage
@@ -88,7 +91,7 @@ THEME_ENV=afiliados yarn pack:full
 Remove o pacote antigo do repositório `APP` e copia o novo
 
 ```bash
-APP=afiliados-webapp yarn cp:pack
+APP=[path/to/app]/your-webapp yarn cp:pack
 ```
 
 ## CLI
