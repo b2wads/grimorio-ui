@@ -63,7 +63,7 @@ const baseConfig = {
             options: {
               modules: true,
               importLoaders: true,
-              localIdentName: '[name]_[local]_[hash:base64:5]'
+              localIdentName: 'grm-[name]__[local]',
             }
           },
           {

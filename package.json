@@ -94,7 +94,6 @@
     "stylint": "1.5.9",
     "stylus": "0.54.5",
     "stylus-loader": "3.0.2",
-    "svg-react-loader": "0.4.5",
     "webpack": "3.5.2",
     "webpack-bundle-analyzer": "3.0.3"
   },
@@ -107,6 +106,30 @@
     "react": "16.8.6",
     "react-css-modules": "4.7.2",
     "react-dates": "18.2.2",
-    "react-dom": "16.8.6"
+    "react-dom": "16.8.6",
+    "svg-react-loader": "0.4.5"
+  },
+  "jest": {
+    "testURL": "http://localhost",
+    "moduleNameMapper": {
+      "^helpers(.*)$": "<rootDir>/source/helpers/",
+      "^components(.*)$": "<rootDir>/source/components/",
+      "\\.(css|styl)$": "identity-obj-proxy",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./internals/file-transformer.js"
+    },
+    "transform": {
+      "^.+\\.(js|jsx)?$": "babel-jest",
+      "\\.(css|styl)$": "jest-css-modules-transform"
+    },
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "<rootDir>/source/**/*.spec.js"
+    ],
+    "setupTestFrameworkScriptFile": "./internals/test/setup.js",
+    "coverageDirectory": ".reports/coverage",
+    "cacheDirectory": "./tmp/",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
