@@ -66,11 +66,13 @@ const baseConfig = {
             {
               loader: 'css-loader',
               options: {
-                modules: true,
                 importLoaders: true,
-                localIdentName: 'grm-[name]__[local]',
-                minimize: true,
-                sourceMap: false
+                sourceMap: false,
+                modules: {
+                  mode: 'local',
+                  localIdentName: 'grm-[name]__[local]',
+                  context: path.resolve(__dirname, '../../source/'),
+                },
               }
             },
             {
@@ -94,12 +96,19 @@ const baseConfig = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              minimize: true,
+          use: [
+            {
+              loader: 'css-loader',
             },
-          },
+            {
+              loader: 'postcss-loader',
+              options: {
+                config: {
+                  path: path.resolve(__dirname, './config/postcss.config.js')
+                }
+              }
+            }
+          ],
         }),
       },
       {

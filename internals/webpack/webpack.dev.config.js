@@ -59,13 +59,17 @@ const baseConfig = {
             loader: 'style-loader'
           },
           {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: true,
-              localIdentName: 'grm-[name]__[local]',
-            }
-          },
+              loader: 'css-loader',
+              options: {
+                importLoaders: true,
+                sourceMap: false,
+                modules: {
+                  mode: 'local',
+                  localIdentName: 'grm-[name]__[local]',
+                  context: path.resolve(__dirname, '../../source/'),
+                },
+              }
+            },
           {
             loader: 'postcss-loader',
             options: {
