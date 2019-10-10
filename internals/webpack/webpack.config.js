@@ -5,7 +5,11 @@ const path = require('path');
 
 const baseConfig = {
   entry: {
-    'grimorio-ui': './source/index.js',
+    'grimorio-ui': [
+      './source/index.js',
+      './source/styl/style.styl',
+      './node_modules/react-dates/lib/css/_datepicker.css',
+    ],
   },
 
   output: {
@@ -88,7 +92,15 @@ const baseConfig = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: {
+            loader: 'css-loader',
+            options: {
+              minimize: true,
+            },
+          },
+        }),
       },
       {
         test: /\.(jpe?g|jpg|gif|ico|png|woff|woff2|eot|ttf)$/,
