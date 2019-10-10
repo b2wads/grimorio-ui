@@ -8,6 +8,7 @@ import Menu, { MenuItem } from './components/menu';
 import Accordion, { AccordionTitle, AccordionContent } from './components/accordion';
 import Sidebar from './components/sidebar';
 import Header from './components/header';
+import Beacon from './components/beacon';
 import InfoCard from './components/info-card';
 import PageTitle from './components/page-title';
 import Breadcrumb from './components/breadcrumb';
@@ -71,6 +72,7 @@ export {
   FormLabel,
   FormActions,
   FormControlLabel,
+  Beacon,
   FormHelpText,
   Accordion,
   AccordionTitle,
