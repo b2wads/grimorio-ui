@@ -8,7 +8,7 @@ import Button from '../button';
 
 class Feedback extends Component {
   static propTypes = {
-    message: PropTypes.element,
+    message: PropTypes.string,
     type: PropTypes.oneOf(['success', 'fail']),
     isMobile: PropTypes.bool,
     timeToClose: PropTypes.number,

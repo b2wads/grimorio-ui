@@ -173,7 +173,7 @@ const options = {
 };
 
 stories.add('Normal', () =>
-  <Panel title="Normal" accordion>
+  <Panel title="Normal">
     <LineGraph
       title="Pedidos!"
       style={{ height: '400px' }}

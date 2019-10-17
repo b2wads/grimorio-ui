@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 import moment from 'moment';
 
+import { omit } from '../../helpers';
 import styles from './product.styl';
 
 import Svg from '../svg';
@@ -161,7 +162,7 @@ class Product extends PureComponent {
     }
 
     return (
-      <section {...elementProps} className={fullClassName}>
+      <section {...omit(elementProps, ['btnText', 'generateLoading'])} className={fullClassName}>
         <div className={styles.tag}>
           {this.renderTags()}
         </div>

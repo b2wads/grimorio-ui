@@ -78,19 +78,19 @@ stories.add('Accordion', () => (
 stories.add('With Brand', () => (
   <div style={{ display: 'flex' }}>
     <Panel brand="suba" style={pannelSize}>
-      <Product type="card" data={exampleProduct} />
+      <Product type="card" data={exampleProduct} copyValue="copy" />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel brand="acom" style={pannelSize}>
-      <Product type="card" data={exampleProduct} />
+      <Product type="card" data={exampleProduct} copyValue="copy" />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel brand="shop" style={pannelSize}>
-      <Product type="card" data={exampleProduct} />
+      <Product type="card" data={exampleProduct} copyValue="copy" />
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel brand="soub" style={pannelSize}>
-      <Product type="card" data={exampleProduct} />
+      <Product type="card" data={exampleProduct} copyValue="copy" />
     </Panel>
   </div>
 ));

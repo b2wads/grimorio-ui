@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 
+import { omit } from '../../helpers';
 import Error from '../error';
 import Loader from '../loader';
 
@@ -144,7 +145,7 @@ class LineGraph extends PureComponent {
         {error
           ? this.renderError()
           : <Fragment>
-              <div className={chartClass} {...rest}>
+              <div className={chartClass} {...omit(rest, ['accordion', 'noLegend', 'tooltipFormatLabel'])}>
                 <canvas ref={this.canvas} />
               </div>
               <div className={styles.legend}>

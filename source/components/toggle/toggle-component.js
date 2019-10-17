@@ -24,7 +24,7 @@ class Toggle extends PureComponent {
     const { id, checked, onChange, value, disabled, className, ...elementProps } = this.props;
 
     return (
-      <label for={id} className={cx(styles.wrap, { [styles.isDisabled]: disabled }, className)} {...elementProps}>
+      <label htmlFor={id} className={cx(styles.wrap, { [styles.isDisabled]: disabled }, className)} {...elementProps}>
         <input
           value={value}
           checked={checked}
