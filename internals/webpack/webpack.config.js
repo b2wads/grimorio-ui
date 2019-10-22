@@ -17,11 +17,7 @@ module.exports = (env, argv) => {
     postcssCustomProperties({
       preserve: false,
       importFrom: [
-        {
-          customProperties: {
-            '--teste123': '#00B8AD',
-          }
-        }
+        'source/styl/variables.css',
       ]
     }),
     require('postcss-preset-env')({ browsers: ['> 0.05%', 'IE 9'] }),
