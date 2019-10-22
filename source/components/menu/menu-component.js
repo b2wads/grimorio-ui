@@ -39,7 +39,14 @@ class Menu extends PureComponent {
         {children
           ? children
           : items.map(item => (
-              <MenuItem icon={item.icon} content={item.name} link={item.link} items={item.items} active={item.active} />
+              <MenuItem
+                key={item.name}
+                icon={item.icon}
+                content={item.name}
+                link={item.link}
+                items={item.items}
+                active={item.active}
+              />
             ))}
       </ul>
     );

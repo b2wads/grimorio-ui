@@ -2,6 +2,7 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import { omit } from '../../helpers';
 
 import styles from './popover.styl';
 
@@ -57,7 +58,7 @@ class Popover extends React.PureComponent {
             className={cx(styles.popover, {
               [styles[position]]: position,
             })}
-            {...rest}
+            {...omit(rest, ['onOpen', 'onDismiss'])}
           >
             {children}
           </div>}
