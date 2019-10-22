@@ -103,8 +103,8 @@ module.exports = (env, argv) => {
         // CSS LOADER
         {
           test: /\.css$/,
-          // exclude : /(node_modules)/,
-          // include: path.resolve(__dirname, '../../node_modules/react-dates/'),
+          exclude : isProd() ? /(node_modules)/ : [],
+          include: isProd() ? path.resolve(__dirname, '../../node_modules/react-dates/') : [],
           use: [
             {
               loader: isProd() ? ExtractCSS.loader : 'style-loader',
