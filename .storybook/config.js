@@ -23,7 +23,7 @@ addDecorator((fn, { kind, story }) => <div className={styles.container}>
 </div>);
 
 setOptions({
-  name: 'Grimório 📜✨',
+  name: 'Grimório ✨',
 });
 
 setAddon(infoAddon);

@@ -1,4 +1,4 @@
-const webpackConfig = require('../internals/webpack/webpack.config.js');
+const webpackConfig = require('../internals/webpack/webpack.config.js')({ NODE_ENV: 'development' });
 const path = require('path');
 
 // Export a function. Accept the base config as the only param.
