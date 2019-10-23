@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSModules from 'react-css-modules';
 // styles
-import styles from './form-help-text.styl';
+import styles from '../form.styl';
 
 class HelpText extends Component {
   constructor(props, context) {

@@ -50,7 +50,8 @@
         ["css-modules-transform", {
           "preprocessCss": "./internals/css-modules-transform.js",
           "generateScopedName": "grm-[name]__[local]",
-          "extensions": [".styl"]
+          "extensions": [".styl"],
+          "extractCss": "./lib/modules/components.css"
         }]
       ],
       "ignore": ["./internals/css-modules-transform.js"]

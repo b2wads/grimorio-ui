@@ -20,8 +20,8 @@ module.exports = (env, argv) => {
     entry: {
       'grimorio-ui': [
         './source/styl/variables.css',
-        './source/index.js',
         './source/styl/style.styl',
+        './source/index.js',
         './node_modules/react-dates/lib/css/_datepicker.css',
       ],
     },
