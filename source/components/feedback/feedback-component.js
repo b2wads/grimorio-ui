@@ -18,16 +18,13 @@ class Feedback extends Component {
     onDismiss: () => '',
     isMobile: false,
     isOpen: true,
-    timeToClose: 5,
+    timeToClose: 5000,
   };
 
   constructor(props) {
     super(props);
-    const { timeToClose } = this.props;
     this.state = {
       isOpen: true,
-      currentCount: timeToClose,
-      stopInterval: '',
     };
     this.handleClick = this.handleClick.bind(this);
     this.timer = this.timer.bind(this);
@@ -37,18 +34,14 @@ class Feedback extends Component {
     this.props.onDismiss();
   }
 
-  componentWillMount() {
-    const stopInterval = setInterval(this.timer, 1000);
-    this.setState({ stopInterval: stopInterval });
+  componentDidMount() {
+    const { timeToClose } = this.props;
+    setTimeout(this.timer, timeToClose);
   }
 
   timer() {
-    this.setState({ currentCount: this.state.currentCount - 1 });
-    if (this.state.currentCount === 0) {
-      this.setState({ isOpen: false });
-      clearInterval(this.state.stopInterval);
-      this.handleClick();
-    }
+    this.setState({ isOpen: false });
+    this.handleClick();
   }
 
   render() {

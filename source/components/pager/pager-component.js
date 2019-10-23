@@ -21,7 +21,7 @@ class Pager extends PureComponent {
         >
           {limitList &&
             limitList.map(limitVal => (
-              <SelectOption value={limitVal}>
+              <SelectOption value={limitVal} key={limitVal}>
                 {`${limitVal} por página`}
               </SelectOption>
             ))}
@@ -72,7 +72,7 @@ class Pager extends PureComponent {
     return this.mapPaginationObject(start, end, currentPage);
   }
 
-  renderPaginationBtn(type, number = false, currentPage = 1) {
+  renderPaginationBtn(type, number = false, currentPage = 1, index) {
     const { onClickPagination, offset, limit, count } = this.props;
 
     const className = type === 'prev' ? styles.pagerLeft : styles.pager;
@@ -116,6 +116,7 @@ class Pager extends PureComponent {
         disabled={btn[type].disabled}
         onClick={btn[type].onClick}
         name={type}
+        key={`${type}-${index}`}
       >
         {number
           ? number
@@ -158,7 +159,7 @@ class Pager extends PureComponent {
           {this.renderPaginationBtn('prev')}
           {hasPagination &&
             <div className={styles.pagesWrap}>
-              {range.map(number => this.renderPaginationBtn('goto', number, currentPage))}
+              {range.map((number, index) => this.renderPaginationBtn('goto', number, currentPage, index))}
             </div>}
           {this.renderPaginationBtn('next')}
           {hasFirstLast && this.renderPaginationBtn('last')}
