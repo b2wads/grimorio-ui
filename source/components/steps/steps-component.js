@@ -4,6 +4,7 @@ import cx from 'classnames';
 import styles from './steps.styl';
 import Icon from '../icon/index';
 import Panel from '../panel/index';
+import { uniqueId } from '../../helpers';
 
 const Steps = ({ data, current }) => {
   return (
@@ -15,7 +16,7 @@ const Steps = ({ data, current }) => {
               [styles.stepsHolderActive]: step.isComplete,
               [styles.stepsCurrent]: step.name === current,
             })}
-            key={step.name}
+            key={uniqueId()}
           >
             <span className={cx(styles.stepsNumber, { [styles.currentNumber]: step.name === current })}>
               {step.isComplete ? <Icon name="check" className={styles.icon} size={16} /> : index + 1}
