@@ -8,6 +8,7 @@ import { themes } from '@storybook/theming';
 
 import infoAddon from '@storybook/addon-info';
 
+import "../source/styl/variables.css";
 import "../source/styl/style.styl";
 import 'react-dates/lib/css/_datepicker.css';
 import styles from "../source/styl/03-pages/storybook.styl";

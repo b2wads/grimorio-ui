@@ -1,27 +1,16 @@
 const path = require('path');
 const ExtractCSS = require('mini-css-extract-plugin');
-const postcssCustomProperties = require('postcss-custom-properties');
+const postcssPresetEnv= require('postcss-preset-env');
+const postcssNano= require('cssnano');
 
 module.exports = (env, argv) => {
   const isProd = () => env.NODE_ENV === 'production';
-  const isCustomTheme = () => env.THEME_ENV === 'custom';
 
-  console.log('isProd?', isProd(), 'isCustom?', isCustomTheme());
-
-  const customPostCSSPlugins = [
-    require('postcss-preset-env')({ browsers: ['> 0.05%', 'IE 9'] }),
-    // require('cssnano')({ preset: 'default' }),
-  ];
+  console.log('isProd?', isProd());
 
   const postCSSPlugins = [
-    postcssCustomProperties({
-      preserve: false,
-      importFrom: [
-        'source/styl/variables.css',
-      ]
-    }),
-    require('postcss-preset-env')({ browsers: ['> 0.05%', 'IE 9'] }),
-    // require('cssnano')({ preset: 'default' }),
+    postcssPresetEnv({ browsers: ['> 0.05%', 'IE 9'] }),
+    // postcssNano({ preset: 'default' }),
   ];
 
   return {
@@ -77,7 +66,7 @@ module.exports = (env, argv) => {
               loader: 'css-loader',
               options: {
                 importLoaders: true,
-                sourceMap: false,
+                sourceMap: true,
                 modules: {
                   mode: 'local',
                   localIdentName: 'grm-[name]__[local]',
@@ -89,7 +78,7 @@ module.exports = (env, argv) => {
               loader: 'postcss-loader',
               options: {
                 ident: 'postcss',
-                plugins: !isCustomTheme() ? postCSSPlugins : customPostCSSPlugins,
+                plugins: postCSSPlugins,
               },
             },
             {
@@ -103,8 +92,10 @@ module.exports = (env, argv) => {
         // CSS LOADER
         {
           test: /\.css$/,
-          exclude : isProd() ? /(node_modules)/ : [],
-          include: isProd() ? path.resolve(__dirname, '../../node_modules/react-dates/') : [],
+          include: isProd() ? [
+              path.resolve(__dirname, '../../node_modules/react-dates/lib/css/_datepicker.css'),
+              path.resolve(__dirname, '../../source')
+            ] : [],
           use: [
             {
               loader: isProd() ? ExtractCSS.loader : 'style-loader',
@@ -115,7 +106,7 @@ module.exports = (env, argv) => {
               loader: 'postcss-loader',
               options: {
                 ident: 'postcss',
-                plugins: !isCustomTheme() ? postCSSPlugins : customPostCSSPlugins,
+                plugins: postCSSPlugins,
               },
             },
           ]
@@ -144,7 +135,7 @@ module.exports = (env, argv) => {
 
     plugins: [
       new ExtractCSS({
-        filename: !isCustomTheme() ? 'grimorio-ui.min.css' : 'grimorio-ui.custom.min.css',
+        filename: 'grimorio-ui-custom.min.css',
       }),
     ],
   };
