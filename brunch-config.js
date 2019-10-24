@@ -2,10 +2,10 @@ const postcssPresetEnv = require('postcss-preset-env');
 const postcssNano = require('cssnano');
 
 const postCSSPlugins = [
-  // postcssPresetEnv({
-  //   browsers: ['> 0.05%', 'IE 9'],
-  // }),
-  // postcssNano({ preset: 'default' }),
+  postcssPresetEnv({
+    browsers: ['> 0.05%', 'IE 9'],
+  }),
+  postcssNano({ preset: 'default' }),
 ];
 
 const cssFileList = ['source/styl/style.styl', 'lib/css/modules/components.css', 'source/styl/vendor/react-dates.styl'];
