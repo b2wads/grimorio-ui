@@ -3,7 +3,7 @@ module.exports = ctx => ({
   plugins: {
     'postcss-custom-properties': {
       preserve: false,
-      importFrom: ['./source/styl/variables.css'],
+      importFrom: ['./lib/css/variables.css'],
     },
   },
 });

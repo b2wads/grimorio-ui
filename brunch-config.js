@@ -2,10 +2,10 @@ const postcssPresetEnv = require('postcss-preset-env');
 const postcssNano = require('cssnano');
 
 const postCSSPlugins = [
-  postcssPresetEnv({
-    browsers: ['> 0.05%', 'IE 9'],
-  }),
-  postcssNano({ preset: 'default' }),
+  // postcssPresetEnv({
+  //   browsers: ['> 0.05%', 'IE 9'],
+  // }),
+  // postcssNano({ preset: 'default' }),
 ];
 
 const cssFileList = ['source/styl/style.styl', 'lib/css/modules/components.css', 'source/styl/vendor/react-dates.styl'];
@@ -20,7 +20,7 @@ module.exports = {
     stylus: {
       includeCss: true,
       includePaths: ['node_modules'],
-      imports: ['./source/styl/00-settings/_default.styl'],
+      imports: ['./source/styl/config.styl'],
     },
     postcss: {
       processors: postCSSPlugins,
@@ -38,6 +38,7 @@ module.exports = {
       joinTo: {
         'css/grimorio-ui.min.css': ['source/styl/variables.styl', ...cssFileList],
         'css/grimorio-ui-custom.min.css': cssFileList,
+        'css/variables.css': ['source/styl/variables.styl'],
       },
     },
   },

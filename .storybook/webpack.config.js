@@ -13,7 +13,7 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
   {
     test: /\.styl$/,
     exclude : /(node_modules)/,
-    include: [path.resolve(__dirname, '../source')],
+    include: [path.resolve(__dirname, './'), path.resolve(__dirname, '../source')],
     use: [
       'style-loader',
       {
@@ -28,13 +28,6 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
           },
         }
       },
-      // {
-      //   loader: 'postcss-loader',
-      //   options: {
-      //     ident: 'postcss',
-      //     plugins: postCSSPlugins,
-      //   },
-      // },
       {
         loader: 'stylus-loader',
         options: {

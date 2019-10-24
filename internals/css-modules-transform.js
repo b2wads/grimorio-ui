@@ -2,6 +2,6 @@ const stylus = require('stylus');
 
 module.exports = (styl, filename) =>
   stylus(styl)
-    .import(`${__dirname}/../source/styl/00-settings/_default.styl`)
+    .import(`${__dirname}/../lib/css/config.styl`)
     .set('filename', filename)
     .render();
