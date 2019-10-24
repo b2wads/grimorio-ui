@@ -5,20 +5,15 @@ const postCSSPlugins = [
   postcssPresetEnv({
     browsers: ['> 0.05%', 'IE 9'],
   }),
-  // postcssNano({ preset: 'default' }),
+  postcssNano({ preset: 'default' }),
 ];
 
-const cssFileList = [
-  'source/styl/variables.css',
-  'source/styl/style.styl',
-  'lib/modules/components.css',
-  'source/styl/react-dates.styl',
-];
+const cssFileList = ['source/styl/style.styl', 'lib/css/modules/components.css', 'source/styl/vendor/react-dates.styl'];
 
 module.exports = {
   paths: {
     public: 'lib',
-    watched: cssFileList,
+    watched: ['source/styl/variables.styl', ...cssFileList],
   },
 
   plugins: {
@@ -36,9 +31,12 @@ module.exports = {
     whitelist: ['react-dates'],
   },
 
+  sourceMaps: false,
+
   files: {
     stylesheets: {
       joinTo: {
+        'css/grimorio-ui.min.css': ['source/styl/variables.styl', ...cssFileList],
         'css/grimorio-ui-custom.min.css': cssFileList,
       },
     },

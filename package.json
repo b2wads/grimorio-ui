@@ -10,7 +10,7 @@
     "pack:dist": "rm -f ./grimorio-ui-**.tgz && yarn build && yarn pack --filename grimorio-ui-${npm_package_version}.tgz",
     "build": "yarn build:images && yarn build:modules && yarn build:css && yarn build:css:variables",
 
-    "build:css:variables": "./node_modules/.bin/postcss ./lib/css/grimorio-ui-custom.min.css --config ./internals/postcss.config.js -o ./lib/css/grimorio-ui.min.css",
+    "build:css:variables": "./node_modules/.bin/postcss ./lib/css/grimorio-ui.min.css --config ./internals/postcss.config.js -r",
     "build:css": "./node_modules/.bin/brunch build",
     "build:modules": "./node_modules/.bin/cross-env BABEL_ENV=production babel source --out-dir lib",
 
