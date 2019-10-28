@@ -41,7 +41,8 @@ $knob = 20px;
 }
 
 .input:checked ~ .track {
-  background-color: lighten($c-primary, 5%);
+  background-color: var(--c-primary);
+  filter: brightness(105%);
 }
 
 .knob {
