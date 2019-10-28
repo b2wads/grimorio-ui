@@ -134,15 +134,15 @@ Form Control Component
   .fakeInput {
     @extend $radioCheckbox;
     border-radius: 50%;
-    color: $c-support-dark;
+    color: var(--c-support-dark);
   }
 
   input[type='radio']:checked ~ .fakeInput {
-    border-color: $c-support-dark;
+    border-color: var(--c-support-dark);
   }
 
   input[type='radio']:checked ~ .fakeInput:before {
-    background: $c-support-dark;
+    background: var(--c-support-dark);
     border-radius: 50%;
     content: '';
     display: block;
@@ -181,8 +181,8 @@ Form Control Component
     }
 
     &.isActive {
-      background: $c-support-dark;
-      border-color: $c-support-dark;
+      background: var(--c-support-dark);
+      border-color: var(--c-support-dark);
       transition: all 0.2s ease;
     }
   }
