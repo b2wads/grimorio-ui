@@ -50,10 +50,10 @@ $button {
 .primary.outline {
   background: none;
   border: 1px solid $c-primary;
-  color: $c-primary;
+  colorvar(--c-primary)
 
   &:hover, &.isActive {
-    background: $c-primary;
+    backgroundvar(--c-primary)
     color: $white;
   }
 }
@@ -105,7 +105,7 @@ $button {
 .clean {
   @extend $button;
   background: none;
-  color: $c-primary;
+  colorvar(--c-primary)
   padding: 5px 7px;
 
   &:hover {
