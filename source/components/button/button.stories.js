@@ -78,7 +78,7 @@ stories.add('States', () => (
       Active
     </Button>&nbsp;
     <Button color="variant" modifier="outline" active>
-      Active
+      Variant Active
     </Button>&nbsp;
   </div>
 ));
