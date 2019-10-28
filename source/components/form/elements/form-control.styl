@@ -3,9 +3,7 @@
 /* ==========================================================================
 Variables
 ========================================================================== */
-$c-success-light = $c-success;
-$c-warning-light = $c-warning;
-$c-error-light = $c-error;
+
 /* Border color
 ========================================================================== */
 $c-border = #ccc;
@@ -14,8 +12,6 @@ $c-check-border = #7F7F7F;
 ========================================================================== */
 $default-background = #fff;
 $c-text-default = #333;
-$c-disabled = #999;
-$c-disabled-light = #b4b5b5;
 /* Addon
 ========================================================================== */
 $c-addon-background = #18a689;
@@ -50,7 +46,7 @@ $field {
 
   &:disabled {
     background: $c-back-disabled;
-    color: $c-disabled;
+    color: $c-text-disabled;
   }
 }
 
@@ -67,12 +63,12 @@ $radioCheckbox {
   width: 20px;
 
   &.isDisabled, &.isDisabled.isActive {
-    background: $c-back-disabled;
-    border-color: darken($c-back-disabled, 25%);
+    background:  var(--c-back-disabled);
+    border-color: var(--c-text-disabled);
     cursor: not-allowed;
 
     i {
-      color: darken($c-back-disabled, 25%);
+      color: var(--c-text-disabled);
     }
   }
 }
@@ -157,8 +153,8 @@ Form Control Component
 
   input[type='radio']:disabled {
     &:checked ~ .fakeInput {
-      background: $c-back-disabled;
-      border-color: $c-back-disabled;
+      background: var(--c-back-disabled);
+      border-color: var(--c-text-disabled);
       cursor: not-allowed;
     }
 
@@ -179,7 +175,7 @@ Form Control Component
     @extend $radioCheckbox;
     border-radius: 3px;
 
-    &.isActive.isPrimary {
+    &.isActive.isPrimary:not(.isDisabled) {
       background: $c-primary;
       border-color: $c-primary;
     }
@@ -255,7 +251,7 @@ Form Control Component
 .form-addon--disabled {
   background: $c-back-disabled;
   border-color: $c-back-disabled;
-  color: $c-disabled-light;
+  color: $c-text-disabled
 }
 
 .form-addon--horizontal {
@@ -294,7 +290,7 @@ Form Control Component
   }
 
   & .form-addon {
-    background: $c-success-light;
+    background: $c-success;
     border-color: $c-success;
   }
 
@@ -309,7 +305,7 @@ Form Control Component
   }
 
   & .form-addon {
-    background: $c-warning-light;
+    background: $c-warning;
     border-color: $c-warning;
   }
 
@@ -324,7 +320,7 @@ Form Control Component
   }
 
   & .form-addon {
-    background: $c-error-light;
+    background: $c-error;
     border-color: $c-error;
   }
 
