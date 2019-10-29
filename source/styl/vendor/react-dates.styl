@@ -1,1 +1,27 @@
-@import 'node_modules/react-dates/lib/css/_datepicker.css';
+@import '../../../node_modules/react-dates/lib/css/_datepicker.css';
+
+.CalendarDay__selected,
+.CalendarDay__selected:active,
+.CalendarDay__selected:hover {
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+}
+
+.CalendarDay__selected_span {
+  background: var(--c-primary-light);
+  border-color: var(--c-primary-light);
+  color: var(--c-primary-dark);
+}
+
+.CalendarDay__hovered_span,
+.CalendarDay__hovered_span:hover {
+  background: var(--c-secondary-light);
+  border-color: var(--c-secondary-light);
+  color: $c-text;
+}
+
+// .CalendarDay__today {
+//   background: var(--c-support);
+//   border-color: var(--c-support);
+//   color: #fff;
+// }

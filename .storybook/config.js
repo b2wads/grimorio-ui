@@ -10,7 +10,7 @@ import infoAddon from '@storybook/addon-info';
 
 import "../source/styl/variables.styl";
 import "../source/styl/style.styl";
-import 'react-dates/lib/css/_datepicker.css';
+import "../source/styl/vendor/react-dates.styl";
 import styles from "./storybook.styl";
 
 addDecorator((fn, { kind, story }) => <div className={styles.container}>

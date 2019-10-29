@@ -13,7 +13,7 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
   {
     test: /\.styl$/,
     exclude : /(node_modules)/,
-    include: [path.resolve(__dirname, './'), path.resolve(__dirname, '../source')],
+    include: [path.resolve(__dirname, './'), path.resolve(__dirname, '../source/components')],
     use: [
       'style-loader',
       {
@@ -36,10 +36,26 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
       },
     ]
   },
+  {
+    test: /\.styl$/,
+    exclude : /(node_modules)/,
+    include: [path.resolve(__dirname, '../source')],
+    exclude: [path.resolve(__dirname, '../source/components')],
+    use: [
+      'style-loader',
+      'css-loader',
+      {
+        loader: 'stylus-loader',
+        options: {
+          import: path.resolve(__dirname, `../source/styl/config.styl`),
+        },
+      },
+    ]
+  },
   // CSS LOADER
   {
     test: /\.css$/,
-    include: [],
+    include: [path.resolve(__dirname, `../node_modules/react-dates/lib`)],
     use: [
       'style-loader',
       'css-loader',
