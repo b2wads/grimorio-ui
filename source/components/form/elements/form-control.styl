@@ -47,6 +47,18 @@ $field {
     background: var(--c-back-disabled);
     color: var(--c-text-disabled);
   }
+
+  &:disabled::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--c-text-disabled);
+  }
+
+  &:disabled:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: var(--c-text-disabled);
+  }
+
+  &:disabled::-ms-input-placeholder { /* Microsoft Edge */
+    color: var(--c-text-disabled);
+  }
 }
 
 /* Radio and checkbox
