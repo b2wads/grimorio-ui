@@ -6,7 +6,7 @@
 
 `elementName isModifierName`
 
-`[component]_[prop||element||modifier]_[hash:base64:5]`
+`grm-[component]__[prop||element||modifier]`
 
 - CSS Modules adds an unique hash to the classes. Because of that, block-element naming conventions aren't necessary.
 - Names are written in camelCase.

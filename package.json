@@ -9,11 +9,9 @@
     "cp": "./node_modules/.bin/cpy grimorio-ui-*.tgz ../$APP/packages/",
     "pack:dist": "rm -f ./grimorio-ui-**.tgz && yarn build && yarn pack --filename grimorio-ui-${npm_package_version}.tgz",
     "build": "yarn build:images && yarn build:modules && yarn build:css && yarn build:css:variables",
-
     "build:css:variables": "./node_modules/.bin/postcss ./lib/css/grimorio-ui.min.css --config ./internals/postcss.config.js -r",
     "build:css": "./node_modules/.bin/brunch build",
     "build:modules": "./node_modules/.bin/cross-env BABEL_ENV=production babel source --out-dir lib",
-
     "build:js": "./node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=production babel source --out-dir lib && webpack --progress --config ./internals/webpack/webpack.config.js --env.NODE_ENV=production",
     "build:images": "./node_modules/.bin/cross-env NODE_ENV=production BABEL_ENV=production babel source/images --out-dir lib/images --copy-files",
     "lint": "run-p lint:*",
@@ -26,7 +24,7 @@
     "test:verb": "./node_modules/.bin/cross-env NODE_ENV=testing BABEL_ENV=testing jest --verbose",
     "test:tdd": "yarn test -- --watch",
     "test:coverage": "yarn test -- --coverage --coverageDirectory=coverage",
-    "create:comp": "bash ./helpers/component/create.sh $COMP ./source/components"
+    "create:comp": "bash ./helpers/component/create.sh ./source/components"
   },
   "engines": {
     "node": ">=8.10.0",

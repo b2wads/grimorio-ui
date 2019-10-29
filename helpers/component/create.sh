@@ -41,14 +41,39 @@ camelCase() {
 
 clear
 
-name=$1
-path=$2
+path=$1
+name=$2
 
 capitalize
 camelCase
 
+
+echo '
+      * ***                                             *
+    *  ****  *                *                        **                  *
+   *  *  ****                ***                       *                  ***
+  *  **   **                  *                                            *
+ *  ***        ***  ****                             ****   ***  ****             ****
+**   **         **** **** * ***   *** **** ****     * ***  * **** **** * ***     * ***  *
+**   **   ***    **   ****   ***   *** **** ***  * *   ****   **   ****   ***   *   ****
+**   **  ****  * **           **    **  **** **** **    **    **           **  **    **
+**   ** *  ****  **           **    **   **   **  **    **    **           **  **    **
+**   ***    **   **           **    **   **   **  **    **    **           **  **    **
+ **  **     *    **           **    **   **   **  **    **    **           **  **    **
+  ** *      *    **           **    **   **   **  **    **    **           **  **    **
+   ***     *     ***          **    **   **   **   ******     ***          **   ******
+    *******       ***         *** * ***  ***  ***   ****       ***         *** * ****
+      ***                      ***   ***  ***  ***                          ***
+
+
+'
+
+echo -ne '[                     ] creating component...                       \r'
+
 mkdir $path/$name
-echo 'Created folder'
+
+echo -ne '[###                  ] created folder!                       \r'
+sleep 0.5
 
 touch $path/$name/index.js
 cat > $path/$name/index.js <<EOF
@@ -57,7 +82,8 @@ import $capitalizeName from './$name-component';
 export default $capitalizeName;
 EOF
 
-echo 'Created index'
+echo -ne '[######               ] created index!                       \r'
+sleep 0.5
 
 touch $path/$name/$name-component.js
 cat > $path/$name/$name-component.js <<EOF
@@ -79,7 +105,8 @@ class $capitalizeName extends PureComponent {
 export default CSSModules($capitalizeName, styles);
 EOF
 
-echo 'Created Component'
+echo -ne '[#########            ] created react component!                       \r'
+sleep 0.5
 
 touch $path/$name/$name.stories.js
 cat > $path/$name/$name.stories.js <<EOF
@@ -96,7 +123,8 @@ stories.addDecorator(withKnobs);
 stories.add('Normal', () => <$capitalizeName />);
 EOF
 
-echo 'Created Story'
+echo -ne '[############         ] created story!                       \r'
+sleep 0.5
 
 touch $path/$name/$name.spec.js
 cat > $path/$name/$name.spec.js <<EOF
@@ -118,7 +146,8 @@ describe('$capitalizeName component', () => {
 });
 EOF
 
-echo 'Created Test'
+echo -ne '[###############      ] created test!                       \r'
+sleep 0.5
 
 touch $path/$name/$name.styl
 cat > $path/$name/$name.styl <<EOF
@@ -148,6 +177,10 @@ cat > $path/$name/$name.styl <<EOF
 }
 EOF
 
-echo 'Created STYL'
+echo -ne '[##################   ] created styles!                       \r'
+sleep 0.5
 
-echo 'Created files !!'
+echo -ne '[#####################] created component!                       \r'
+sleep 0.5
+
+echo -ne '\n'

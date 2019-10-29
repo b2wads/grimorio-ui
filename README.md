@@ -17,23 +17,32 @@ Primeiro, copie o pacote para uma pasta do seu projeto, por exemplo `/packages`.
 // your package.json
 
 "dependencies": {
-  "grimorio-ui": "./packages/grimorio-ui-4.1.0.variation.tgz"
+  "grimorio-ui": "./packages/grimorio-ui-x.x.x.tgz"
 }
 ```
 
 ```bash
-npm install
-// or
 yarn
 ```
 
-Importe o css do Grimório✨ no seu arquivo de entrada:
+Importe o css do Grimório✨ no seu arquivo de entrada ou no entrypoint do seu webpack:
 
 ```js
-// import the CSS
+// import the CSS on js
 
-// ex: layout.js
-import '[path/to/node_modules]/grimorio-ui/dist/grimorio-ui.min.css';
+import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css';
+
+// or
+
+{ 
+  //...webpack configs
+  entry: {
+    'your-app': [
+      '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css',
+      'index.js',
+    ],
+  },
+}
 
 ```
 
@@ -51,7 +60,7 @@ Caso seu webpack ignore o `node_modules` na hora de gerar o build de css, é nec
 // exemplo de exceção no webpack 3.X.X
 {
   test: /\.css$/,
-  include: path.resolve(__dirname, '[path/to/node_modules]/grimorio-ui/dist/grimorio-ui.min.css'),
+  include: path.resolve(__dirname, '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css'),
   use: {
     fallback: 'style-loader',
     loader: 'css-loader',
@@ -59,20 +68,16 @@ Caso seu webpack ignore o `node_modules` na hora de gerar o build de css, é nec
 },
 ```
 
-## Local Usage
+## Personalização
 
-## UI Components (storybook)
+Caso seja necessário mudar as cores principais do Grimório✨ é preciso sobrescrerver as variáveis CSS disponibilidadas. [Veja como](./docs/advanced-css.md).
 
-http://localhost:9000
+## Visualização com Storybook
 
-```bash
-THEME_ENV=afiliados yarn storybook
-```
-
-## Tests
+Para visualizar e interagir com os componentes do Grimório✨, basta subir localmente o `storybook`.
 
 ```bash
-yarn test
+yarn storybook
 ```
 
 ## Build and Pack
@@ -94,42 +99,27 @@ Remove o pacote antigo do repositório `APP` e copia o novo
 APP=[path/to/app]/your-webapp yarn cp:pack
 ```
 
+## Rodando testes
+
+```bash
+yarn test
+```
+
 ## CLI
 
-### Creating file structure for the component
+Temos um script sh que fica encarregado por criar a estrutura de arquivos e pastas dos componentes.
 
-```bash
-./helpers/component/create.sh component-name path
-```
 ```sh
-└── component-name
-    ├── component-name/index.js
-    ├── component-name/component-name-component.js
-    ├── component-name/component-name.styl
-    ├── component-name/component-name.story.js
-    └── component-name/component-name.test.js
+yarn create:comp nome-do-componente
 ```
 
-```bash
-./helpers/component/create-with-redux.sh component-name path
-```
-```sh
-└── component-name
-    ├── component-name/index.js
-    ├── component-name/component-name-actions.js
-    ├── component-name/component-name-component.js
-    ├── component-name/component-name-constants.js
-    ├── component-name/component-name-container.js
-    ├── component-name/component-name-reducer.js
-    ├── component-name/component-name.styl
-    ├── component-name/component-name.story.js
-    └── component-name/component-name.test.js
-```
+Esse comando será capaz de criar as pastas e arquivos corretamente para iniciar o desenvolvimento de um componente.
 
 ## Manual
 
 1. [Git Flow](./docs/01-git-flow.md)
 2. [Commits](./docs/02-commits.md)
 3. [CSS (code style)](./docs/03-css-code-style.md)
-4. [Links Úteis](./docs/04-links-uteis.md)
+4. [Processo de Build](./docs/04-processo-de-build.md)
+4. [Links Úteis](./docs/05-links-uteis.md)
 
