@@ -165,3 +165,11 @@ stories.add(
     );
   })
 );
+
+stories.add(
+  'With Search', () => {
+    return (
+      <Select label="Opções" onSelect={data => console.log(data)} items={items} height="200px" sortItems={false} hasSearch={true} />
+    )
+  }
+)

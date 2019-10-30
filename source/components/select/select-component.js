@@ -19,12 +19,15 @@ class Select extends Component {
       menuOpen: false,
       activeLabel: !!props.value || !!props.defaultValue,
       childItems: [],
+      inputValue: '',
+      searchedResult: [],
     };
 
     this.onSelectItem = this.onSelectItem.bind(this);
     this.verifyClickOutside = this.verifyClickOutside.bind(this);
     this.closeSelect = this.closeSelect.bind(this);
     this.selectWrap = null;
+    this.searchResult = this.searchResult.bind(this);
   }
 
   static propTypes = {
@@ -47,6 +50,7 @@ class Select extends Component {
     isMobile: PropTypes.bool,
     active: PropTypes.bool,
     noCurrentValue: PropTypes.bool,
+    hasSearch: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -60,6 +64,7 @@ class Select extends Component {
     value: false,
     sortItems: true,
     isMobile: false,
+    hasSearch: false,
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -227,6 +232,20 @@ class Select extends Component {
     }
   }
 
+  async searchResult(e, sortedItems) {
+    console.log('e.target.value', e.target.value);
+    let filteredSortedItems = sortedItems.filter(option =>
+      option.name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    console.log('filteredSortedItems', filteredSortedItems);
+    await this.setState({
+      inputValue: e.target.value,
+      searchedResult: filteredSortedItems,
+    });
+    console.log('this.state.inputValue', this.state.inputValue);
+    console.log('this.state.filteredSortedItems', this.state.filteredSortedItems);
+  }
+
   render() {
     const {
       items,
@@ -241,6 +260,7 @@ class Select extends Component {
       isMobile,
       outline,
       noCurrentValue,
+      hasSearch,
       ...elementProps
     } = this.props;
     const { selectedValue, menuOpen, childItems } = this.state;
@@ -270,20 +290,46 @@ class Select extends Component {
           {this.renderButton(type, label, menuButton)}
         </span>
 
-        <ul ref={list => (this.list = list)} style={{ height }} className={menuStyle}>
-          {sortedItems.map(option => (
-            <SelectOption
-              key={option.value}
-              icon={option.icon}
-              selected={selectedValue === option.value}
-              onSelect={this.onSelectItem}
-              value={option.value}
-              noCurrentValue={noCurrentValue && selectedValue === option.value}
-            >
-              {option.name}
-            </SelectOption>
-          ))}
-        </ul>
+        <div className={menuStyle}>
+          {hasSearch &&
+            <input
+              type="text"
+              id="addInput"
+              placeholder="Buscar..."
+              className={styles.hasSearch}
+              onChange={event => {
+                this.searchResult(event, sortedItems);
+              }}
+            />}
+          <ul style={{ height }}>
+            {this.state.inputValue === ''
+              ? sortedItems.map(option => (
+                  <SelectOption
+                    key={option.value}
+                    icon={option.icon}
+                    selected={selectedValue === option.value}
+                    onSelect={this.onSelectItem}
+                    PropTypes
+                    value={option.value}
+                    noCurrentValue={noCurrentValue && selectedValue === option.value}
+                  >
+                    {option.name}
+                  </SelectOption>
+                ))
+              : this.state.searchedResult.map(option => (
+                  <SelectOption
+                    key={option.value}
+                    icon={option.icon}
+                    selected={selectedValue === option.value}
+                    onSelect={this.onSelectItem}
+                    value={option.value}
+                    noCurrentValue={noCurrentValue && selectedValue === option.value}
+                  >
+                    {option.name}
+                  </SelectOption>
+                ))}
+          </ul>
+        </div>
 
         {isMobile && <div onClick={this.closeSelect} className={cx(styles.overlay, { [styles.isOpen]: isOpen })} />}
       </div>
