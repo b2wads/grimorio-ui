@@ -1,4 +1,4 @@
-## Instalação personalizada
+## Personalização
 
 Para personalizar as cores do Grimório✨ é necessário importar outro CSS no seu arquivo de entrada. O arquivo `grimorio-ui-custom.min.css` possui [variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var) sem declaração, permitindo a personalização do arquivo.
 
@@ -72,7 +72,9 @@ import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui-custom.min.css';
 }
 ```
 
-As variáveis do CSS tem cerca de [88% de aderência dos browsers usados no Brasil](https://caniuse.com/#feat=css-variables). Por isso, é uma boa prática usar o [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) para processar as variáveis css como um pre-processador faria.
+## Compatibilidade nos navegadores
+
+As variáveis do CSS tem cerca de [88% de aderência dos navegadores usados no Brasil](https://caniuse.com/#feat=css-variables). Por isso, é uma boa prática usar o [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) para processar as variáveis css como um pré-processador faria.
 
 Para implementar o [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) no seu webpack, primeiro é preciso instalar o [`postcss-loader`](https://github.com/postcss/postcss-loader) e especificar este loader numa regra de CSS. Depois basta adicionar o `postcss-custom-properties` na lista de plugins e especificar os arquivos de onde serão lidas as variáveis na opção `importFrom`.
 

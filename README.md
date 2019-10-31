@@ -11,10 +11,10 @@
 - [Node >= v8.10.0](https://nodejs.org/en/)
 
 ## Install
-Primeiro, copie o pacote para uma pasta do seu projeto, por exemplo `/packages`. Depois adicione a dependencia no seu package.json e atualize!
+Primeiro, copie o pacote para uma pasta do seu projeto, por exemplo `/packages`. Depois adicione a dependencia no seu package.json e instale!
 
 ```bash
-// your package.json
+# your package.json
 
 "dependencies": {
   "grimorio-ui": "./packages/grimorio-ui-x.x.x.tgz"
@@ -23,9 +23,13 @@ Primeiro, copie o pacote para uma pasta do seu projeto, por exemplo `/packages`.
 
 ```bash
 yarn
+
+# or
+
+npm i
 ```
 
-Importe o css do Grimório✨ no seu arquivo de entrada ou no entrypoint do seu webpack:
+Importe o CSS do Grimório✨ no seu arquivo de entrada ou na lista de entrypoints do seu Webpack:
 
 ```js
 // import the CSS on js
@@ -54,58 +58,53 @@ E então, é só usar!
 import { Alert } from 'grimorio-ui';
 ```
 
-Caso seu webpack ignore o `node_modules` na hora de gerar o build de css, é necessário criar uma regra para incluir o css do Grimório✨.
+Caso seu webpack ignore o `node_modules` na hora de gerar o build de CSS, é necessário criar uma regra para incluir o CSS do Grimório✨.
 
 ```js
 // exemplo de exceção no webpack 3.X.X
 {
   test: /\.css$/,
   include: path.resolve(__dirname, '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css'),
-  use: {
-    fallback: 'style-loader',
-    loader: 'css-loader',
-  },
+  use: ['style-loader', 'css-loader', { ... }],
 },
 ```
 
 ## Personalização
 
-Caso seja necessário mudar as cores principais do Grimório✨ é preciso sobrescrerver as variáveis CSS disponibilidadas. [Veja como](./docs/advanced-css.md).
+Caso seja necessário mudar as cores principais do Grimório✨ é possível através de [variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var). Veja o [guia de personalização](./docs/advanced-css.md)
+ para entender como.
 
-## Visualização com Storybook
+## Comandos
 
-Para visualizar e interagir com os componentes do Grimório✨, basta subir localmente o `storybook`.
+### Visualização com Storybook
+
+Para visualizar e interagir com os componentes do Grimório✨, basta rodar localmente o `storybook`.
 
 ```bash
 yarn storybook
 ```
 
-## Build and Pack
-Caso não exista nenhum pacote já criado, usar esse comando:
+### Build e Pack
+Para chamar a build e gerar o pacote, o comando é:
 
 ```bash
-THEME_ENV=afiliados yarn pack:build
-```
-E caso já exista um pacote gerado:
-
-```bash
-THEME_ENV=afiliados yarn pack:full
+yarn pack:dist
 ```
 
-## Copy
+### Copiar
 Remove o pacote antigo do repositório `APP` e copia o novo
 
 ```bash
 APP=[path/to/app]/your-webapp yarn cp:pack
 ```
 
-## Rodando testes
+### Rodando testes
 
 ```bash
 yarn test
 ```
 
-## CLI
+### CLI
 
 Temos um script sh que fica encarregado por criar a estrutura de arquivos e pastas dos componentes.
 
@@ -121,5 +120,6 @@ Esse comando será capaz de criar as pastas e arquivos corretamente para iniciar
 2. [Commits](./docs/02-commits.md)
 3. [CSS (code style)](./docs/03-css-code-style.md)
 4. [Processo de Build](./docs/04-processo-de-build.md)
-4. [Links Úteis](./docs/05-links-uteis.md)
+5. [Links Úteis](./docs/05-links-uteis.md)
+6. [Guia de Personalização](./docs/advanced-css.md)
 
