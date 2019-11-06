@@ -123,7 +123,7 @@ class ButtonUpload extends PureComponent {
     const hasMaxFiles = this.state.list.length === limit;
 
     return (
-      <div {...omit(rest, ['onChange'])}>
+      <div {...omit(rest, ['onChange', 'maxFileSize'])}>
         <Button loading={loading} disabled={disabled || hasMaxFiles} iconLeft="publish" className={styles.button}>
           {btnText}
           <input

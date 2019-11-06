@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSModules from 'react-css-modules';
 // styles
-import styles from './form-label.styl';
+import styles from '../form.styl';
 
 class FormLabel extends Component {
   constructor(props, context) {

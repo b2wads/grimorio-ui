@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 
+import { omit } from '../../helpers';
+
 import Svg from '../svg';
 import Icon from '../icon';
 import Loader from '../loader';
@@ -159,7 +161,7 @@ class Panel extends PureComponent {
     }
 
     return (
-      <article {...rest} className={fullClassName}>
+      <article {...omit(rest, ['central'])} className={fullClassName}>
         <div className={wrapperClass}>
           {(title || brand) && this.renderHeader(brand, title, accordion, open, titleClassName)}
           {loading && <Loader size="32px" className={styles.loader} />}

@@ -10,7 +10,7 @@ import { omit } from '../../../helpers';
 import Select from '../../select';
 
 // styles
-import styles from './form-control.styl';
+import styles from '../form.styl';
 
 class FormControl extends PureComponent {
   constructor(props, context) {
@@ -191,7 +191,7 @@ class FormControl extends PureComponent {
             disabled={disabled}
             name={name}
             value={this.state.value}
-            {...omit(rest, ['className'])}
+            {...omit(rest, ['feedback', 'className'])}
           />
           <label
             className={classNames(styles.fakeInput, {
@@ -224,7 +224,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           name={name}
           value={this.state.value}
-          {...omit(rest, ['className'])}
+          {...omit(rest, ['feedback', 'className'])}
         >
           {children}
         </Component>

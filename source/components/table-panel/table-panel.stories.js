@@ -109,7 +109,6 @@ stories.add('Scroll', () => {
       pager
       perpage
       meta={{}}
-      fixed
     />
   );
 });

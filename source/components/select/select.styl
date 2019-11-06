@@ -81,13 +81,13 @@ $field {
   }
 
   &.isActive {
-    border-color: $c-primary;
+    border-color: var(--c-primary);
   }
 
   &.isDisabled {
-    background: $c-back-disabled;
+    background: var(--c-back-disabled);
     border-color: $c-border;
-    color: $c-disabled;
+    color: var(--c-text-disabled);
     cursor: not-allowed;
   }
 }
@@ -108,7 +108,7 @@ $field {
   transition: all 0.25s ease;
 
   &.isActive {
-    color: $c-active-input;
+    color: var(--c-active-input);
     font-size: 12px;
     top: -1.5rem;
     transition: all 0.125s ease;
@@ -156,11 +156,11 @@ $field {
   padding: 10px 16px;
 
   &:hover {
-    background: $c-support-light;
+    background: $c-secondary-light;
   }
 
   &.isSelected {
-    background: darken($c-support-light, 5%);
+    background: $c-secondary;
   }
 }
 

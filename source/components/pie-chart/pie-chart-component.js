@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 
+import { omit } from '../../helpers';
+
 import Loader from '../loader';
 import Error from '../error';
 
@@ -165,7 +167,7 @@ class PieChart extends PureComponent {
               <div className={cx(styles.legend, legendClassName)}>
                 {this.state.legend}
               </div>
-              <div className={cx(styles.chart, chartClassName)} {...rest}>
+              <div className={cx(styles.chart, chartClassName)} {...omit(rest, ['chartData', 'cutoutPercentage'])}>
                 <canvas ref={this.canvas} />
               </div>
             </Fragment>}

@@ -4,6 +4,7 @@ import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 import moment from 'moment';
 
+import { omit } from '../../helpers';
 import styles from './product.styl';
 
 import Svg from '../svg';
@@ -29,12 +30,12 @@ class Product extends PureComponent {
     onCopy: PropTypes.func,
     onGenerate: PropTypes.func,
     generateLoading: PropTypes.bool,
-    copyValue: PropTypes.string.isRequired,
+    copyValue: PropTypes.string,
     stage: PropTypes.oneOf(['generate', 'copy']),
     data: PropTypes.shape({
       name: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
-      img: PropTypes.string.isRequired,
+      img: PropTypes.string,
       info: PropTypes.shape({
         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         rules: PropTypes.string,
@@ -161,7 +162,7 @@ class Product extends PureComponent {
     }
 
     return (
-      <section {...elementProps} className={fullClassName}>
+      <section {...omit(elementProps, ['btnText', 'onGenerate', 'generateLoading'])} className={fullClassName}>
         <div className={styles.tag}>
           {this.renderTags()}
         </div>

@@ -1,18 +1,14 @@
+import Accordion, { AccordionTitle, AccordionContent } from './components/accordion';
+import Alert from './components/alert';
+import Beacon from './components/beacon';
+import Breadcrumb from './components/breadcrumb';
 import Button from './components/button';
 import ButtonUpload from './components/button-upload';
-import Icon from './components/icon';
-import Panel from './components/panel';
-import Svg from './components/svg';
-import Product from './components/product';
-import Menu, { MenuItem } from './components/menu';
-import Accordion, { AccordionTitle, AccordionContent } from './components/accordion';
-import Sidebar from './components/sidebar';
-import Header from './components/header';
-import Beacon from './components/beacon';
-import InfoCard from './components/info-card';
-import PageTitle from './components/page-title';
-import Breadcrumb from './components/breadcrumb';
-import Select, { SelectOption } from './components/select';
+import Calendar from './components/calendar';
+import DatePicker from './components/date-picker';
+import EditableValue from './components/editable-value';
+import Error from './components/error';
+import Feedback from './components/feedback';
 import Form, {
   FormGroup,
   FormControl,
@@ -21,30 +17,34 @@ import Form, {
   FormControlLabel,
   FormHelpText,
 } from './components/form';
+import Header from './components/header';
+import Icon from './components/icon';
+import InfoCard from './components/info-card';
+import LineGraph from './components/line-graph';
+import Loader from './components/loader';
+import Menu, { MenuItem } from './components/menu';
 import Modal from './components/modal';
+import Pager from './components/pager';
+import PageTitle from './components/page-title';
+import Panel from './components/panel';
+import PieChart from './components/pie-chart';
+import Popover from './components/popover';
+import Product from './components/product';
+import Select, { SelectOption } from './components/select';
+import SelectPopover from './components/select-popover';
+import Sidebar from './components/sidebar';
 import SideModal from './components/side-modal';
+import Slider from './components/slider';
+import Steps from './components/steps';
+import Svg from './components/svg';
 import Table from './components/table';
 import TableFixed from './components/table-fixed';
 import TablePanel from './components/table-panel';
-import Loader from './components/loader';
-import DatePicker from './components/date-picker';
-import Calendar from './components/calendar';
-import Tooltip from './components/tooltip';
-import TooltipSticky from './components/tooltip-sticky';
-import Slider from './components/slider';
-import Alert from './components/alert';
-import LineGraph from './components/line-graph';
-import Error from './components/error';
-import Popover from './components/popover';
-import SelectPopover from './components/select-popover';
-import PieChart from './components/pie-chart';
+import TabMenu, { Tab } from './components/tab';
 import Tag from './components/tag';
 import Toggle from './components/toggle';
-import Pager from './components/pager';
-import Steps from './components/steps';
-import Feedback from './components/feedback';
-import EditableValue from './components/editable-value';
-import TabMenu, { Tab } from './components/tab';
+import Tooltip from './components/tooltip';
+import TooltipSticky from './components/tooltip-sticky';
 
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
@@ -60,55 +60,55 @@ export const utils = {
 };
 
 export {
+  Accordion,
+  AccordionContent,
+  AccordionTitle,
+  Alert,
+  Beacon,
+  Breadcrumb,
   Button,
   ButtonUpload,
-  Icon,
-  Panel,
-  Svg,
-  Product,
+  Calendar,
+  DatePicker,
+  EditableValue,
+  Error,
+  Feedback,
   Form,
-  FormGroup,
-  FormControl,
-  FormLabel,
   FormActions,
+  FormControl,
   FormControlLabel,
-  Beacon,
+  FormGroup,
   FormHelpText,
-  Accordion,
-  AccordionTitle,
-  AccordionContent,
+  FormLabel,
+  Header,
+  Icon,
+  InfoCard,
+  LineGraph,
+  Loader,
   Menu,
   MenuItem,
-  Sidebar,
-  Header,
-  InfoCard,
+  Modal,
+  Pager,
   PageTitle,
-  Breadcrumb,
+  Panel,
+  PieChart,
+  Popover,
+  Product,
   Select,
   SelectOption,
+  SelectPopover,
+  Sidebar,
+  SideModal,
+  Slider,
+  Steps,
+  Svg,
+  Tab,
   Table,
   TableFixed,
   TablePanel,
-  Loader,
-  Modal,
-  SideModal,
-  DatePicker,
-  Calendar,
-  Tooltip,
-  TooltipSticky,
-  Slider,
-  Alert,
-  Feedback,
-  LineGraph,
-  Error,
-  Popover,
-  SelectPopover,
-  PieChart,
+  TabMenu,
   Tag,
   Toggle,
-  Steps,
-  Pager,
-  EditableValue,
-  TabMenu,
-  Tab,
+  Tooltip,
+  TooltipSticky,
 };

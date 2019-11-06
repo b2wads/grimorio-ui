@@ -23,9 +23,9 @@ $button {
   }
 
   &:disabled:not(.isLoading), &:disabled:hover:not(.isLoading) {
-    background: $c-back-disabled;
+    background: var(--c-back-disabled);
     border: 0;
-    color: $c-text-disabled;
+    color: var(--c-text-disabled);
     cursor: not-allowed;
   }
 }
@@ -34,7 +34,7 @@ $button {
 ================ */
 .primary {
   @extend $button;
-  background: $c-primary;
+  background: var(--c-primary);
   color: $white;
 
   &:active {
@@ -42,18 +42,18 @@ $button {
   }
 
   &:hover, &.isActive {
-    background: $c-primary-dark;
+    background: var(--c-primary-dark);
     color: $white;
   }
 }
 
 .primary.outline {
   background: none;
-  border: 1px solid $c-primary;
-  color: $c-primary;
+  border: 1px solid var(--c-primary);
+  color: var(--c-primary);
 
   &:hover, &.isActive {
-    background: $c-primary;
+    background: var(--c-primary);
     color: $white;
   }
 }
@@ -62,7 +62,7 @@ $button {
 ================ */
 .secondary {
   @extend $button;
-  background: $c-primary-dark;
+  background: var(--c-primary-dark);
   color: $white;
 
   &:active {
@@ -70,7 +70,7 @@ $button {
   }
 
   &:hover, &.isActive {
-    background: darken($c-primary-dark, 5%);
+    background: var(--c-primary-dark-hover);
   }
 }
 
@@ -105,7 +105,7 @@ $button {
 .clean {
   @extend $button;
   background: none;
-  color: $c-primary;
+  color: var(--c-primary);
   padding: 5px 7px;
 
   &:hover {
