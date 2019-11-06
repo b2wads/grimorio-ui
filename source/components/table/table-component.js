@@ -34,7 +34,7 @@ class Table extends PureComponent {
     scrollY: PropTypes.bool,
     scrollX: PropTypes.bool,
     width: PropTypes.string,
-    height: PropTypes.string,
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     isSticky: PropTypes.bool,
     rowHeight: PropTypes.string,
   };
@@ -76,7 +76,7 @@ class Table extends PureComponent {
 
           if (Object.keys(currentData).length) {
             return (
-              <td width={currentData.width} key={uniqueId()} className={headClass} colspan={currentData.colspan || 1}>
+              <td width={currentData.width} key={uniqueId()} className={headClass} colSpan={currentData.colspan || 1}>
                 {currentData.value || ''}
               </td>
             );

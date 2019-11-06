@@ -87,10 +87,6 @@ stories.add('Default', () => (
     <Panel style={pannelSize}>
       <Product onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Categoria', exampleCat)} />
     </Panel>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel style={pannelSize}>
-      <Product />
-    </Panel>
   </div>
 ));
 
