@@ -10,7 +10,7 @@ import { omit } from '../../../helpers';
 import Select from '../../select';
 
 // styles
-import styles from './form-control.styl';
+import styles from '../form.styl';
 
 class FormControl extends PureComponent {
   constructor(props, context) {

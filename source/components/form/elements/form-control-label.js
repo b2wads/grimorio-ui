@@ -10,7 +10,7 @@ import Select from '../../select';
 import Icon from '../../icon';
 
 // styles
-import styles from './form-control-label.styl';
+import styles from '../form.styl';
 
 class FormControlLabel extends Component {
   constructor(props, context) {
@@ -90,7 +90,7 @@ class FormControlLabel extends Component {
       [styles['has-iconLeft']]: iconLeft,
     });
 
-    const labelClasses = classNames(styles.label, {
+    const labelClasses = classNames(styles.controlledLabel, {
       [styles.isActive]: activeLabel === null ? this.state.active : activeLabel,
       [styles[`has-${validationState}`]]: validationState,
       [styles.isOutline]: this.props.outline,

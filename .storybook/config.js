@@ -8,9 +8,10 @@ import { themes } from '@storybook/theming';
 
 import infoAddon from '@storybook/addon-info';
 
+import "../source/styl/variables.styl";
 import "../source/styl/style.styl";
-import 'react-dates/lib/css/_datepicker.css';
-import styles from "../source/styl/03-pages/storybook.styl";
+import "../source/styl/vendor/react-dates.styl";
+import styles from "./storybook.styl";
 
 addDecorator((fn, { kind, story }) => <div className={styles.container}>
   <header className={styles.header}>
@@ -22,8 +23,8 @@ addDecorator((fn, { kind, story }) => <div className={styles.container}>
   </div>
 </div>);
 
-withOptions({
-  name: 'Grimório 📜✨',
+setOptions({
+  name: 'Grimório ✨',
 });
 
 setAddon(infoAddon);

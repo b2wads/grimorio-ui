@@ -1,5 +1,4 @@
-# Links Úteis
-
+# Links Uteis
 
 | Nome 	| Tipo | Assunto |
 |--------	|---------	| ---------	|
@@ -8,6 +7,5 @@
 |[Stylus Docs](http://stylus-lang.com/docs/)| Documentaçao | Stylus|
 |[Getting Started with Redux](https://egghead.io/courses/getting-started-with-redux)| Curso/Vídeo | Redux|
 |  |  |  |
-
 
 **[voltar para o README](../README.md#Manual)**
