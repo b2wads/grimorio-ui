@@ -78,6 +78,14 @@ As variáveis do CSS tem cerca de [88% de aderência dos navegadores usados no B
 
 Para implementar o [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) no seu webpack, primeiro é preciso instalar o [`postcss-loader`](https://github.com/postcss/postcss-loader) e especificar este loader numa regra de CSS. Depois basta adicionar o `postcss-custom-properties` na lista de plugins e especificar os arquivos de onde serão lidas as variáveis na opção `importFrom`.
 
+```bash
+yarn add postcss-custom-properties postcss-loader -D
+
+# or
+
+npm i postcss-custom-properties postcss-loader -D
+```
+
 ```js
 const postcssCustomProperties = require('postcss-custom-properties');
 
