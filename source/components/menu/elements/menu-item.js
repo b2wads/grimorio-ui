@@ -21,7 +21,6 @@ class MenuItem extends PureComponent {
     children: PropTypes.node,
     className: PropTypes.string,
     icon: PropTypes.string,
-    key: PropTypes.string,
     name: PropTypes.string,
     link: PropTypes.string,
     onClick: PropTypes.func,

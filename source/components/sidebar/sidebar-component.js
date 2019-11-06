@@ -24,8 +24,8 @@ class Sidebar extends PureComponent {
     isMobile: PropTypes.bool,
     open: PropTypes.bool,
     openMobile: PropTypes.bool,
-    logo: PropTypes.string,
-    logoSmall: PropTypes.string,
+    logo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    logoSmall: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   };
 
   static defaultProps = {

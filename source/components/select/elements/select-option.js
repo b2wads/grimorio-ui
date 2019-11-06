@@ -24,7 +24,7 @@ class SelectOption extends PureComponent {
 }
 
 SelectOption.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   icon: PropTypes.string,
   onSelect: PropTypes.func,
   selected: PropTypes.bool,

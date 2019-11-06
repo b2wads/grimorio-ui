@@ -1,7 +1,7 @@
 import React from 'react';
 import { configure } from '@storybook/react';
 import { setAddon, addDecorator } from '@storybook/react';
-import { setOptions } from '@storybook/addon-options';
+import { withOptions } from '@storybook/addon-options';
 import { addParameters } from '@storybook/react';
 import { themes } from '@storybook/theming';
 
@@ -33,8 +33,6 @@ addParameters({
     theme: themes.dark,
   },
 });
-
-configure(loadStories, module);
 
 function loadStories() {
   const req = require.context('../source/components', true, /\.stories\.js$/);
