@@ -6,11 +6,12 @@
   UI just like magic
 </h3>
 
-## Prerequisites
+<p align="center">
+  Grimório✨ é uma coleção de componentes de interface do usuário prontos para serem utilizados em projetos feitos com React ⚛️. São 40 componentes inspirados pelo <a href="https://material.io/design/">Material Design</a> e com a possibilidade de personalização através de <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties">Variáveis CSS</a>!
+</p>
 
-- [Node >= v8.10.0](https://nodejs.org/en/)
+# 📦 Instalação
 
-## Install
 Primeiro, copie o pacote para uma pasta do seu projeto, por exemplo `/packages`. Depois adicione a dependencia no seu package.json e instale!
 
 ```bash
@@ -69,14 +70,30 @@ Caso seu webpack ignore o `node_modules` na hora de gerar o build de CSS, é nec
 },
 ```
 
-## Personalização
+### 💅 Personalização
 
 Caso seja necessário mudar as cores principais do Grimório✨ é possível através de [variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var). Veja o [guia de personalização](./docs/advanced-css.md)
  para entender como.
 
-## Comandos
+### 🕰 Migração de versões antigas
+Para migrar vindo do Grimório✨ 6.X ou anterior para a versão mais atual, é necessário mudar o path de importação do CSS. Isso também vale para todas as variações `grimorio-ui-[version].afiliados.tgz` do Grimório✨.
 
-### Visualização com Storybook
+```js
+// ❌ Antigo CSS
+import '[path/to/node_modules]/grimorio-ui/dist/grimorio-ui.min.css';
+
+// ✔️ Novo CSS
+import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css';
+
+```
+Já no caso da migração vir de outras variações do Grimório✨ (`grimorio-ui-[version].b2wads.tgz` ou `grimorio-ui-[version].sieve.tgz`), será necessário seguir o [guia de personalização](./docs/advanced-css.md), usando as [variáveis legado](./docs/legacy-variables.md) relativas a cada variante.
+
+
+# 🕹 Desenvolvimento
+
+Antes de começar a contribuir com o Grimório✨, leia nosso [guia de contribuição](./CONTRIBUTING.md).
+
+### 📘 Visualização com Storybook
 
 Para visualizar e interagir com os componentes do Grimório✨, basta rodar localmente o `storybook`.
 
@@ -84,27 +101,27 @@ Para visualizar e interagir com os componentes do Grimório✨, basta rodar loca
 yarn storybook
 ```
 
-### Build e Pack
+### ⛏️ Build e Pack
 Para chamar a build e gerar o pacote, o comando é:
 
 ```bash
 yarn pack:dist
 ```
 
-### Copiar
+### 📋 Copiar
 Remove o pacote antigo do repositório `APP` e copia o novo
 
 ```bash
 APP=[path/to/app]/your-webapp yarn cp:pack
 ```
 
-### Rodando testes
+### 🧪 Rodando testes
 
 ```bash
 yarn test
 ```
 
-### CLI
+### 💻 CLI
 
 Temos um script sh que fica encarregado por criar a estrutura de arquivos e pastas dos componentes.
 
@@ -114,12 +131,11 @@ yarn create:comp nome-do-componente
 
 Esse comando será capaz de criar as pastas e arquivos corretamente para iniciar o desenvolvimento de um componente.
 
-## Manual
+### 📜 Docs
 
-1. [Git Flow](./docs/01-git-flow.md)
-2. [Commits](./docs/02-commits.md)
-3. [CSS (code style)](./docs/03-css-code-style.md)
-4. [Processo de Build](./docs/04-processo-de-build.md)
-5. [Links Úteis](./docs/05-links-uteis.md)
-6. [Guia de Personalização](./docs/advanced-css.md)
+- [Git Flow](./docs/git-flow.md)
+- [Commits](./docs/commits.md)
+- [CSS (code style)](./docs/css-code-style.md)
+- [Processo de Build](./docs/processo-de-build.md)
+- [Links Úteis](./docs/links-uteis.md)
 
