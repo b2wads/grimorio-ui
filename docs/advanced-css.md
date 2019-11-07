@@ -32,7 +32,7 @@ Depois, importe suas variáveis e o arquivo custom do Grimório✨:
 // import the CSS on js
 
 import '[path/to/your/styles]/custom-variables.css';
-import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui-custom.min.css';
+import '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/grimorio-ui-custom.min.css';
 
 // or on Webpack
 
@@ -41,7 +41,7 @@ import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui-custom.min.css';
   entry: {
     'your-app': [
       '[path/to/your/styles]/custom-variables.css',
-      '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui-custom.min.css',
+      '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/grimorio-ui-custom.min.css',
       'index.js',
     ],
   },
@@ -53,9 +53,9 @@ No caso de querer apenas substituir algumas variáveis, é preciso importar as v
 ```js
 // import the CSS on js
 
-import '[path/to/node_modules]/grimorio-ui/lib/css/variables.css';
+import '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/variables.css';
 import '[path/to/your/styles]/custom-variables.css';
-import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui-custom.min.css';
+import '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/grimorio-ui-custom.min.css';
 
 // or on Webpack
 
@@ -64,8 +64,8 @@ import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui-custom.min.css';
   entry: {
     'your-app': [
       '[path/to/your/styles]/custom-variables.css',
-      '[path/to/node_modules]/grimorio-ui/lib/css/variables.css',
-      '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui-custom.min.css',
+      '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/variables.css',
+      '[path/to/node_modules]@b2wads/grimorio-ui/lib/css/grimorio-ui-custom.min.css',
       'index.js',
     ],
   },
@@ -103,7 +103,7 @@ const postcssCustomProperties = require('postcss-custom-properties');
             postcssCustomProperties({
               preserve: false, // Opção para sobrescrever as variaveis
               importFrom: [
-                './node_modules/grimorio-ui/lib/css/variables.css',
+                './node_modules/@b2wads/grimorio-ui/lib/css/variables.css',
                 './path/to/your/style/custom-variables.css',
               ],
             }),

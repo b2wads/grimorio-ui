@@ -1,9 +1,9 @@
 import React from 'react';
 import { configure } from '@storybook/react';
 import { setAddon, addDecorator } from '@storybook/react';
-import { withOptions } from '@storybook/addon-options';
 import { addParameters } from '@storybook/react';
-import { themes } from '@storybook/theming';
+import { create } from '@storybook/theming';
+import brandImage from '../internals/logo/logo-grimorio-white.png';
 
 
 import infoAddon from '@storybook/addon-info';
@@ -23,14 +23,25 @@ addDecorator((fn, { kind, story }) => <div className={styles.container}>
   </div>
 </div>);
 
-setOptions({
-  name: 'Grimório ✨',
-});
-
 setAddon(infoAddon);
 addParameters({
   options: {
-    theme: themes.dark,
+    theme: create({
+      base: 'dark',
+      brandTitle: 'Grimório✨',
+      brandUrl: 'https://github.com/b2wads/grimorio-ui#readme',
+      brandImage,
+
+      // colorPrimary: '#5e4596',
+      colorSecondary: '#7934d0',
+
+      // UI
+      appBg: '#282a36',
+      appBorderRadius: 0,
+
+      // Toolbar default and active colors
+      barBg: '#282a36',
+    }),
   },
 });
 
