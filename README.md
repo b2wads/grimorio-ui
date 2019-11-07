@@ -12,22 +12,13 @@
 
 # 📦 Instalação
 
-Primeiro, copie o pacote para uma pasta do seu projeto, por exemplo `/packages`. Depois adicione a dependencia no seu package.json e instale!
+Primeiro, instale o pacote vindo do npm:
 
 ```bash
-# your package.json
-
-"dependencies": {
-  "grimorio-ui": "./packages/grimorio-ui-x.x.x.tgz"
-}
+yarn add @b2wads/grimorio-ui
 ```
-
 ```bash
-yarn
-
-# or
-
-npm i
+npm i @b2wads/grimorio-ui
 ```
 
 Importe o CSS do Grimório✨ no seu arquivo de entrada ou na lista de entrypoints do seu Webpack:
@@ -35,7 +26,7 @@ Importe o CSS do Grimório✨ no seu arquivo de entrada ou na lista de entrypoin
 ```js
 // import the CSS on js
 
-import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css';
+import '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/grimorio-ui.min.css';
 
 // or
 
@@ -43,7 +34,7 @@ import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css';
   //...webpack configs
   entry: {
     'your-app': [
-      '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css',
+      '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/grimorio-ui.min.css',
       'index.js',
     ],
   },
@@ -56,7 +47,7 @@ E então, é só usar!
 ```js
 // component.js
 
-import { Alert } from 'grimorio-ui';
+import { Alert } from '@b2wads/grimorio-ui';
 ```
 
 Caso seu webpack ignore o `node_modules` na hora de gerar o build de CSS, é necessário criar uma regra para incluir o CSS do Grimório✨.
@@ -65,7 +56,7 @@ Caso seu webpack ignore o `node_modules` na hora de gerar o build de CSS, é nec
 // exemplo de exceção no webpack 3.X.X
 {
   test: /\.css$/,
-  include: path.resolve(__dirname, '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css'),
+  include: path.resolve(__dirname, '[path/to/node_modules]/@b2wads/grimorio-ui/css/grimorio-ui.min.css'),
   use: ['style-loader', 'css-loader', { ... }],
 },
 ```
@@ -80,10 +71,10 @@ Para migrar vindo do Grimório✨ 6.X ou anterior para a versão mais atual, é 
 
 ```js
 // ❌ Antigo CSS
-import '[path/to/node_modules]/grimorio-ui/dist/grimorio-ui.min.css';
+import '[path/to/node_modules]/@b2wads/grimorio-ui/grimorio-ui.min.css';
 
 // ✔️ Novo CSS
-import '[path/to/node_modules]/grimorio-ui/lib/css/grimorio-ui.min.css';
+import '[path/to/node_modules]/@b2wads/grimorio-ui/css/grimorio-ui.min.css';
 
 ```
 Já no caso da migração vir de outras variações do Grimório✨ (`grimorio-ui-[version].b2wads.tgz` ou `grimorio-ui-[version].sieve.tgz`), será necessário seguir o [guia de personalização](./docs/advanced-css.md), usando as [variáveis legado](./docs/legacy-variables.md) relativas a cada variante.
