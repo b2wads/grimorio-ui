@@ -5,6 +5,13 @@
   "description": "React UI Kit that works like magic",
   "main": "lib/index.js",
   "repository": "https://github.com/b2wads/grimorio-ui",
+  "keywords": [
+    "react",
+    "ui",
+    "ui kit",
+    "material design"
+  ],
+  "homepage": "https://github.com/b2wads/grimorio-ui#readme",
   "scripts": {
     "cp:pack": "rm ../$APP/packages/grimorio-ui-*.tgz && ./node_modules/.bin/cpy grimorio-ui-*.tgz ../$APP/packages/",
     "cp": "./node_modules/.bin/cpy grimorio-ui-*.tgz ../$APP/packages/",
@@ -142,5 +149,8 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
+  },
+  "bugs": {
+    "url": "https://github.com/b2wads/grimorio-ui/issues"
   }
 }
