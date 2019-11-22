@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert component render correctly with default values 1`] = `"<div class=\\"alertWrap info\\"><div class=\\"icon\\"><i style=\\"vertical-align:middle;font-size:28pxpx\\" class=\\"material-icons icon\\" align=\\"middle\\">info</i></div><div class=\\"content\\"><div class=\\"text\\"><h3 class=\\"title\\"></h3></div><button type=\\"button\\" class=\\"action primary medium\\">Okay</button></div></div>"`;
