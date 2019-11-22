@@ -7,17 +7,8 @@ import Icon from '../icon';
 /** @test {Button} */
 describe('Button component', () => {
   const props = {
-    // color,
-    // modifier,
-    // size,
     disabled: false,
-    // active,
     onClick: jest.fn(),
-    // type,
-    // className,
-    // block,
-    // iconLeft,
-    // iconRight,
     loading: false,
   }
 
