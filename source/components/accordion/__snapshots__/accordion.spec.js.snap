@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accordion component should render default props 1`] = `"<ul class=\\"accordion default\\" theme=\\"default\\">Accordion com filho</ul>"`;
