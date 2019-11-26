@@ -54,6 +54,14 @@ stories.add('With Footer', () => (
   </div>
 ));
 
+stories.add('With Header Border', () => (
+  <div style={{ width: '25%' }}>
+    <Panel title="Title" headerSeparator>
+      <p>Content</p>
+    </Panel>
+  </div>
+));
+
 stories.add('Loading', () => (
   <div style={{ width: '25%' }}>
     <Panel title="Title" loading={true} footer={<Button size="large">Cadastrar Site</Button>}>
