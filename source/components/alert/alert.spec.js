@@ -14,10 +14,11 @@ describe('Alert component', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  describe('should render Button when action is true', () => {
+  describe('should render Button when action is true and close is false', () => {
     let wrapper;
     const props = {
       action: true,
+      close: false,
       actionText: 'texto botão',
       onClick: jest.fn()
     }
@@ -38,10 +39,11 @@ describe('Alert component', () => {
     });
   })
 
-  describe('Should render Icon close when props close is true', () => {
+  describe('Should render Icon close when props close is true and action is false', () => {
     let wrapper
     const props = {
       close: true,
+      action: false,
       onClick: jest.fn(),
     }
 
@@ -59,6 +61,29 @@ describe('Alert component', () => {
       jest.spyOn(props, 'onClick')
       wrapper.find({name: 'close'}).simulate('click')
       expect(wrapper.find({name: 'close'})).toHaveLength(1)
+    });
+  })
+
+  describe('Should NOT render Icon or Button when close is true and action is true', () => {
+    let wrapper
+    const props = {
+      close: true,
+      action: true,
+      onClick: jest.fn(),
+    }
+
+    beforeAll(() => {
+      wrapper = shallow(
+        <Alert {...props} />
+      );
+    })
+
+    it('should NOT render Icon close', () => {
+      expect(wrapper.find({name: 'close'})).toHaveLength(0)
+    });
+
+    it('should NOT render Button with right text', () => {
+      expect(wrapper.find(Button)).toHaveLength(0)
     });
   })
 
