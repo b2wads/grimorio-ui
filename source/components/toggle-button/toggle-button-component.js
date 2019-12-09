@@ -1,9 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
 
-import styles from './toogle-button.styl';
+import styles from './toggle-button.styl';
 
-const ToogleBool = ({ value, onClick }) => {
+const ToggleBool = ({ value, onClick }) => {
   return (
     <div className={styles.toggleBool}>
       <span onClick={() => onClick(true)} className={cx(styles.toggleBoolLeft, { [styles.active]: value })}>
@@ -17,4 +17,4 @@ const ToogleBool = ({ value, onClick }) => {
   );
 };
 
-export default ToogleBool;
+export default ToggleBool;

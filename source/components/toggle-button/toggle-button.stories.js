@@ -3,9 +3,9 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
-import ToogleButton from './toogle-button-component';
+import ToggleButton from './toggle-button-component';
 
-const stories = storiesOf('ToogleButton', module);
+const stories = storiesOf('ToggleButton', module);
 
 stories.addDecorator(withKnobs);
 
@@ -18,6 +18,6 @@ stories.add(
     }
 
     return (
-      <ToogleButton onClick={handleChange} value={store.state.value} />
+      <ToggleButton onClick={handleChange} value={store.state.value} />
     )
 }))
