@@ -14,11 +14,10 @@ stories.add(
   withState({ value: false })
   (({ store }) => {
     const handleChange = value => {
-      console.log('eventooo', value)
       store.set({ value });
     }
 
     return (
-      <ToogleButton onClick={handleChange} value={false} />
+      <ToogleButton onClick={handleChange} value={store.state.value} />
     )
 }))
