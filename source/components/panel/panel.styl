@@ -4,23 +4,6 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$brandHeader {
-  align-items: center;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  display: flex;
-  font-size: 0;
-  height: 60px;
-  justify-content: center;
-  overflow: hidden;
-  padding: 15px 0;
-}
-
-$brandLogo {
-  fill: $white;
-  width: auto;
-}
-
 /* ==========================================================================
    Panel Component
 ========================================================================== */
@@ -35,10 +18,18 @@ $brandLogo {
 /* Default
 ================ */
 .default {
-  @extend $drop-shadow;
+  // @extend $drop-shadow;
   background: $white;
   border-radius: 2px;
   width: 100%;
+
+  &.shadow {
+    @extend $drop-shadow;
+  }
+
+  &.line {
+    @extend $base-border;
+  }
 
   &.isBrand {
     padding: 0;
@@ -49,6 +40,9 @@ $brandLogo {
   }
 }
 
+/* Header
+================ */
+
 .titleWrap {
   &.isAccordion {
     align-items: center;
@@ -56,6 +50,34 @@ $brandLogo {
     display: flex;
     justify-content: space-between;
   }
+
+  &.small {
+    padding: 15px 15px 0;
+  }
+
+  &.medium {
+    padding: 20px;
+  }
+
+  &.large {
+    padding: 25px;
+  }
+}
+
+.titleBorder {
+  border-bottom: 1px solid var(--c-secondary);
+
+  // &.small {
+  //   padding-bottom: 15px;
+  // }
+
+  // &.medium {
+  //   padding-bottom: 20px;
+  // }
+
+  // &.large {
+  //   padding-bottom: 25px;
+  // }
 }
 
 .title {
@@ -89,14 +111,28 @@ $brandLogo {
   &.noPadding {
     padding: 0;
   }
+
+  &.isClosed {
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
 }
 
 .content {
   opacity: 1;
   transition: all 0.3s ease;
 
-  &.isBrand {
-    padding: 0 10px 10px;
+   &.small {
+    padding: 20px 15px;
+  }
+
+  &.medium {
+    padding: 25px 20px;
+  }
+
+  &.large {
+    padding: 30px 25px;
   }
 
   &.isClosed {
@@ -133,55 +169,3 @@ $brandLogo {
   }
 }
 
-/* Header
-================ */
-
-.headerSeparator {
-  border-bottom: 1px solid var(--c-secondary);
-  margin: -5px -20px 15px -20px;
-  padding: 0 20px 15px 20px;
-}
-
-/* Brand
-================ */
-.acom {
-  @extend $brandHeader;
-  background: $c-acom;
-
-  .brandLogo {
-    @extend $brandLogo;
-    height: 22px;
-  }
-}
-
-.suba {
-  @extend $brandHeader;
-  background: $c-suba;
-
-  .brandLogo {
-    @extend $brandLogo;
-    height: 35px;
-    margin-top: -5px;
-  }
-}
-
-.shop {
-  @extend $brandHeader;
-  background: $c-shop;
-
-  .brandLogo {
-    @extend $brandLogo;
-    height: 30px;
-    stroke: $white;
-  }
-}
-
-.soub {
-  @extend $brandHeader;
-  background: $c-soub;
-
-  .brandLogo {
-    @extend $brandLogo;
-    height: 35px;
-  }
-}

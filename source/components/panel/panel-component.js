@@ -5,7 +5,6 @@ import cx from 'classnames';
 
 import { omit } from '../../helpers';
 
-import Svg from '../svg';
 import Icon from '../icon';
 import Loader from '../loader';
 
@@ -23,28 +22,29 @@ class Panel extends PureComponent {
   }
 
   static propTypes = {
+    highlight: PropTypes.oneOf(['shadow', 'line']),
     size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
-    brand: PropTypes.oneOf([null, 'acom', 'suba', 'shop', 'soub']),
     title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.element]),
+    titleClassName: PropTypes.string,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     contentClassName: PropTypes.string,
     footer: PropTypes.element,
     footerClassName: PropTypes.string,
-    titleClassName: PropTypes.string,
     loading: PropTypes.bool,
     accordion: PropTypes.bool,
     open: PropTypes.bool,
     noPadding: PropTypes.bool,
     onAccordionClick: PropTypes.func,
+    titleBorder: PropTypes.bool,
   };
 
   static defaultProps = {
-    brand: null,
     title: false,
     size: 'medium',
     loading: false,
     accordion: false,
     open: true,
+    highlight: 'shadow',
   };
 
   componentDidMount() {
@@ -78,27 +78,20 @@ class Panel extends PureComponent {
 
   renderHeader() {
     const { open } = this.state;
-    const { title, brand, titleClassName, accordion, headerSeparator } = this.props;
+    const { title, titleClassName, accordion, titleBorder, size } = this.props;
 
-    if (brand) {
-      return (
-        <header className={styles[brand]}>
-          <Svg className={styles.brandLogo} src={`logo/${brand}-full`} />
-        </header>
-      );
-    } else {
-      return (
-        <header
-          className={cx(styles.titleWrap, {
-            [styles.isAccordion]: accordion,
-            [styles.headerSeparator]: headerSeparator,
-          })}
-        >
-          <span className={cx(styles.title, titleClassName)}>{title}</span>
-          {accordion && this.renderIcon(open)}
-        </header>
-      );
-    }
+    return (
+      <header
+        className={cx(styles.header, styles.titleWrap, {
+          [styles.isAccordion]: accordion,
+          [styles.titleBorder]: titleBorder,
+          [styles[size]]: size,
+        })}
+      >
+        <span className={cx(styles.title, titleClassName)}>{title}</span>
+        {accordion && this.renderIcon(open)}
+      </header>
+    );
   }
 
   renderFooter(footer, size, footerClassName) {
@@ -130,6 +123,7 @@ class Panel extends PureComponent {
     const { open, height } = this.state;
     const {
       title,
+      header,
       children,
       className,
       brand,
@@ -140,20 +134,22 @@ class Panel extends PureComponent {
       footerClassName,
       loading,
       accordion,
+      highlight,
       ...rest
     } = this.props;
 
     const fullClassName = cx(className, {
       [styles.default]: true,
+      [styles[highlight]]: highlight,
     });
 
-    const wrapperClass = cx(styles.wrapper, {
-      [styles[size]]: size,
-      [styles.isBrand]: brand,
-      [styles.noPadding]: noPadding,
-    });
+    // const wrapperClass = cx(styles.wrapper, {
+    //   [styles[size]]: size,
+    //   [styles.isClosed]: !this.state.open,
+    // });
 
     const contentClass = cx(styles.content, contentClassName, {
+      [styles[size]]: size,
       [styles.isBrand]: brand,
       [styles.noPadding]: noPadding,
       [styles.isClosed]: !open,
@@ -169,14 +165,18 @@ class Panel extends PureComponent {
 
     return (
       <article {...omit(rest, ['central'])} className={fullClassName}>
-        <div className={wrapperClass}>
-          {(title || brand) && this.renderHeader()}
-          {loading && <Loader size="32px" className={styles.loader} />}
+        {(title || header) && this.renderHeader()}
+
+        {/* <div className={wrapperClass}>
           {!loading &&
-            <div ref={content => (this.content = content)} className={contentClass} style={style}>
-              {children}
-            </div>}
+
+        </div> */}
+
+        <div ref={content => (this.content = content)} className={contentClass} style={style}>
+          {loading && <Loader size="32px" className={styles.loader} />}
+          {!loading && children}
         </div>
+
         {this.renderFooter(footer, size, footerClassName)}
       </article>
     );

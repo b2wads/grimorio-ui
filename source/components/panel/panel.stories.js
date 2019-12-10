@@ -46,6 +46,18 @@ stories.add('Default', () => (
   </div>
 ));
 
+stories.add('Highlight types', () => (
+  <div style={{ width: '25%' }}>
+    <Panel highlight="line" title="Highlight">
+      <p>Line</p>
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel highlight="shadow" title="Highlight">
+      <p>Shadow</p>
+    </Panel>
+  </div>
+));
+
 stories.add('With Footer', () => (
   <div style={{ width: '25%' }}>
     <Panel title="Title" footer={<Button size="large">Cadastrar Site</Button>}>
@@ -56,7 +68,7 @@ stories.add('With Footer', () => (
 
 stories.add('With Header Border', () => (
   <div style={{ width: '25%' }}>
-    <Panel title="Title" headerSeparator>
+    <Panel title="Title" titleBorder size="small">
       <p>Content</p>
     </Panel>
   </div>
@@ -74,31 +86,12 @@ stories.add('Accordion', () => (
   <div style={{ width: '25%' }}>
     <Panel
       title="Title"
+      titleBorder
       footer={<Button size="large">Cadastrar Site</Button>}
       accordion
       open={boolean('Open', true, 'accordion')}
     >
       <p>Content</p>
-    </Panel>
-  </div>
-));
-
-stories.add('With Brand', () => (
-  <div style={{ display: 'flex' }}>
-    <Panel brand="suba" style={pannelSize}>
-      <Product type="card" data={exampleProduct} copyValue="copy" />
-    </Panel>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel brand="acom" style={pannelSize}>
-      <Product type="card" data={exampleProduct} copyValue="copy" />
-    </Panel>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel brand="shop" style={pannelSize}>
-      <Product type="card" data={exampleProduct} copyValue="copy" />
-    </Panel>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel brand="soub" style={pannelSize}>
-      <Product type="card" data={exampleProduct} copyValue="copy" />
     </Panel>
   </div>
 ));
