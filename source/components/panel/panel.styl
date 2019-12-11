@@ -7,12 +7,11 @@
 /* ==========================================================================
    Panel Component
 ========================================================================== */
-.loader {
-  margin-top: 10px;
-}
-
-.error {
-  margin-top: 10px;
+$isClosed {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 /* Default
@@ -56,28 +55,41 @@
   }
 
   &.medium {
-    padding: 20px;
+    padding: 20px 20px 0;
   }
 
   &.large {
-    padding: 25px;
+    padding: 25px 25px 0;
   }
+}
+
+$headerPaddingBotton {
+  &.small {
+    padding-bottom: 15px;
+  }
+
+  &.medium {
+    padding-bottom: 20px;
+  }
+
+  &.large {
+    padding-bottom: 25px;
+  }
+}
+
+.titleWrap.isAccordion {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+
+  @extend $headerPaddingBotton;
 }
 
 .titleBorder {
   border-bottom: 1px solid var(--c-secondary);
 
-  // &.small {
-  //   padding-bottom: 15px;
-  // }
-
-  // &.medium {
-  //   padding-bottom: 20px;
-  // }
-
-  // &.large {
-  //   padding-bottom: 25px;
-  // }
+  @extend $headerPaddingBotton;
 }
 
 .title {
@@ -89,56 +101,27 @@
   margin-left: 10px;
 }
 
-/* Size
+/* Body
 ================ */
-.wrapper {
-  &.small {
-    padding: 20px 15px;
-  }
-
-  &.medium {
-    padding: 25px 20px;
-  }
-
-  &.large {
-    padding: 30px 25px;
-  }
-
-  &.isBrand {
-    padding: 0;
-  }
-
-  &.noPadding {
-    padding: 0;
-  }
-
-  &.isClosed {
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-}
 
 .content {
   opacity: 1;
   transition: all 0.3s ease;
 
-   &.small {
-    padding: 20px 15px;
+  &.small {
+    padding: 15px;
   }
 
   &.medium {
-    padding: 25px 20px;
+    padding: 20px;
   }
 
   &.large {
-    padding: 30px 25px;
+    padding: 25px;
   }
 
   &.isClosed {
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
+    @extend $isClosed;
   }
 
   &.noPadding {
@@ -165,7 +148,7 @@
   }
 
   &.isClosed {
-    display: none;
+    @extend $isClosed;
   }
 }
 

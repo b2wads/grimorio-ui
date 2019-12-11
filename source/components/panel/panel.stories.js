@@ -31,7 +31,7 @@ stories.addDecorator(withKnobs);
 
 stories.add('Default', () => (
   <div style={{ width: '25%' }}>
-    <Panel>
+    <Panel accordion>
       Simple Panel
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -40,9 +40,30 @@ stories.add('Default', () => (
       <Button>Send</Button>
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel central>
+    <Panel>
       <p>Valor</p>
     </Panel>
+  </div>
+));
+
+stories.add('Padding Size', () => (
+  <div style={{ width: '25%' }}>
+    <Panel title="Small" size="small">
+      <p>Content</p>
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel title="Medium" size="medium">
+      <p>Content</p>
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel title="Large" size="large">
+      <p>Content</p>
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <Panel title="No Padding" size="nopadding">
+      <p>Content</p>
+    </Panel>
+    &nbsp;&nbsp;&nbsp;&nbsp;
   </div>
 ));
 
@@ -68,15 +89,7 @@ stories.add('With Footer', () => (
 
 stories.add('With Header Border', () => (
   <div style={{ width: '25%' }}>
-    <Panel title="Title" titleBorder size="small">
-      <p>Content</p>
-    </Panel>
-  </div>
-));
-
-stories.add('Loading', () => (
-  <div style={{ width: '25%' }}>
-    <Panel title="Title" loading={true} footer={<Button size="large">Cadastrar Site</Button>}>
+    <Panel title="Title" titleBorder>
       <p>Content</p>
     </Panel>
   </div>
@@ -91,6 +104,14 @@ stories.add('Accordion', () => (
       accordion
       open={boolean('Open', true, 'accordion')}
     >
+      <p>Content</p>
+    </Panel>
+  </div>
+));
+
+stories.add('Loading', () => (
+  <div style={{ width: '25%' }}>
+    <Panel title="Title" loading={true} footer={<Button size="large">Cadastrar Site</Button>}>
       <p>Content</p>
     </Panel>
   </div>
