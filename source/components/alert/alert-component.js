@@ -69,10 +69,11 @@ class Alert extends PureComponent {
               {children ? children : content}
             </div>
             {action &&
+              !close &&
               <Button className={styles.action} onClick={onClick}>
                 {actionText}
               </Button>}
-            {close && <Icon name="close" className={styles.close} onClick={onClick} />}
+            {close && !action && <Icon name="close" className={styles.close} onClick={onClick} />}
           </div>
         </div>
         {overlay && <div className={styles.overlay} />}
