@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 
-// import { omit } from '../../helpers';
-
 import Icon from '../icon';
 import Loader from '../loader';
 
