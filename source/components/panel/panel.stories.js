@@ -106,6 +106,10 @@ stories.add('Accordion', () => (
     >
       <p>Content</p>
     </Panel>
+    <br/>
+    <Panel highlight="line" title="Highlight" accordion>
+      <p>Line</p>
+    </Panel>
   </div>
 ));
 

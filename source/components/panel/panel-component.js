@@ -72,6 +72,7 @@ class Panel extends PureComponent {
           [styles.isAccordion]: accordion,
           [styles.titleBorder]: titleBorder && open,
           [styles[size]]: size,
+          [styles.isClosed]: !open,
         })}
       >
         <span className={cx(styles.title, titleClassName)}>{title}</span>

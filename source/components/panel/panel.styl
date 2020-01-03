@@ -14,10 +14,13 @@ $isClosed {
   transition: all 0.3s ease;
 }
 
+$smSpacing = 15px;
+$mdSpacing = 20px;
+$lgSpacing = 25px;
+
 /* Default
 ================ */
 .default {
-  // @extend $drop-shadow;
   background: $white;
   border-radius: 2px;
   width: 100%;
@@ -50,45 +53,48 @@ $isClosed {
     justify-content: space-between;
   }
 
+  // the header, without border or accordion, does not need padding bottom
   &.small {
-    padding: 15px 15px 0;
+    padding: $smSpacing $smSpacing 0;
   }
 
   &.medium {
-    padding: 20px 20px 0;
+    padding: $mdSpacing $mdSpacing 0;
   }
 
   &.large {
-    padding: 25px 25px 0;
+    padding: $lgSpacing $lgSpacing 0;
   }
 }
 
 $headerPaddingBotton {
   &.small {
-    padding-bottom: 15px;
+    padding-bottom: $smSpacing;
   }
 
   &.medium {
-    padding-bottom: 20px;
+    padding-bottom: $mdSpacing;
   }
 
   &.large {
-    padding-bottom: 25px;
+    padding-bottom: $lgSpacing;
   }
 }
 
+// the header needs padding bottom when the accordion is closed and when the header has border
 .titleWrap.isAccordion {
   align-items: center;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+}
 
+.titleWrap.isClosed {
   @extend $headerPaddingBotton;
 }
 
 .titleBorder {
   border-bottom: 1px solid var(--c-secondary);
-
   @extend $headerPaddingBotton;
 }
 
@@ -109,15 +115,15 @@ $headerPaddingBotton {
   transition: all 0.3s ease;
 
   &.small {
-    padding: 15px;
+    padding: $smSpacing;
   }
 
   &.medium {
-    padding: 20px;
+    padding: $mdSpacing;
   }
 
   &.large {
-    padding: 25px;
+    padding: $lgSpacing;
   }
 
   &.isClosed {
@@ -136,15 +142,15 @@ $headerPaddingBotton {
   display: block;
 
   &.small {
-    padding: 15px;
+    padding: $smSpacing;
   }
 
   &.medium {
-    padding: 20px;
+    padding: $mdSpacing;
   }
 
   &.large {
-    padding: 25px;
+    padding: $lgSpacing;
   }
 
   &.isClosed {

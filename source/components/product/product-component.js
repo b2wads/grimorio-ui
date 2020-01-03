@@ -229,7 +229,7 @@ class Product extends PureComponent {
 
     if (type === 'card' && brand) {
       return (
-        <Panel title={this.renderBrandHeader(brand)} contentClassName={fullClassName} {...sendProps}>
+        <Panel title={this.renderBrandHeader(brand)} contentClassName={fullClassName} size="no-padding" {...sendProps}>
           {this.renderProductContent()}
         </Panel>
       );
