@@ -87,13 +87,30 @@ stories.add('With Footer', () => (
   </div>
 ));
 
-stories.add('With Header Border', () => (
-  <div style={{ width: '25%' }}>
-    <Panel title="Title" titleBorder>
+stories.add('Title Variations', () => (
+  <div>
+    <Panel style={{ width: '35%' }} title="Normal Title">
       <p>Content</p>
+      <Button>Send</Button>
+    </Panel>
+    <br/>
+    <br/>
+    <Panel title="Title Border" titleBorder style={{ width: '35%' }}>
+      <p>Content</p>
+    </Panel>
+    <br/>
+    <br/>
+    <Panel 
+      style={{ width: '35%' }}
+      title="Title"
+      titleBorder
+      titleSideComponent={<Button style={{ marginLeft: '10px' }}>Side Component</Button>}
+      accordion>
+      <p>titleSideComponent</p>
     </Panel>
   </div>
 ));
+
 
 stories.add('Accordion', () => (
   <div style={{ width: '25%' }}>

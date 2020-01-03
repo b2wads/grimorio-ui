@@ -25,6 +25,8 @@ class Panel extends PureComponent {
     size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
     title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.element]),
     titleClassName: PropTypes.string,
+    titleBorder: PropTypes.bool,
+    titleSideComponent: PropTypes.element,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     contentClassName: PropTypes.string,
     footer: PropTypes.element,
@@ -34,7 +36,6 @@ class Panel extends PureComponent {
     open: PropTypes.bool,
     noPadding: PropTypes.bool,
     onAccordionClick: PropTypes.func,
-    titleBorder: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -64,7 +65,7 @@ class Panel extends PureComponent {
 
   renderHeader() {
     const { open } = this.state;
-    const { title, titleClassName, accordion, titleBorder, size } = this.props;
+    const { title, titleClassName, accordion, titleBorder, size, titleSideComponent } = this.props;
 
     return (
       <header
@@ -75,7 +76,10 @@ class Panel extends PureComponent {
           [styles.isClosed]: !open,
         })}
       >
-        <span className={cx(styles.title, titleClassName)}>{title}</span>
+        <span className={cx(styles.title, titleClassName)}>
+          {title}
+          {titleSideComponent}
+        </span>
         {accordion && this.renderIcon(open)}
       </header>
     );
@@ -134,8 +138,6 @@ class Panel extends PureComponent {
       [styles.noPadding]: noPadding,
       [styles.isClosed]: !open,
     });
-
-    //TODO: Sidecomponent
 
     return (
       <article {...rest} className={fullClassName}>
