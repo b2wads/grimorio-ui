@@ -10,6 +10,13 @@
   Grimório✨ é uma coleção de componentes de interface do usuário prontos para serem utilizados em projetos feitos com React ⚛️. São 40 componentes inspirados pelo <a href="https://material.io/design/">Material Design</a> com personalização através de <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties">Variáveis CSS</a>!
 </p>
 
+<div align="center">
+
+  [![npm version](https://img.shields.io/npm/v/@b2wads/grimorio-ui?label=npm%20package)](https://www.npmjs.com/package/@b2wads/grimorio-ui)
+  [![GitHub issues](https://img.shields.io/github/issues/b2wads/grimorio-ui)](https://github.com/b2wads/grimorio-ui/issues)
+  [![GitHub contributors](https://img.shields.io/github/contributors/b2wads/grimorio-ui)](https://github.com/b2wads/grimorio-ui/graphs/contributors)  
+</div>
+
 # 📦 Instalação
 
 Primeiro, instale o pacote vindo do npm:
