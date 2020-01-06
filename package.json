@@ -114,6 +114,9 @@
     "react-dom": "16.8.6",
     "svg-react-loader": "0.4.6"
   },
+  "resolutions": {
+    "serialize-javascript": "^2.1.1"
+  },
   "jest": {
     "testURL": "http://localhost",
     "moduleNameMapper": {
