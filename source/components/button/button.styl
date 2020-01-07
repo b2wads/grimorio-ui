@@ -124,7 +124,12 @@ $button {
   background: none;
   border: 0;
 
-  &.outline, &:hover, &:disabled, &:disabled:not(.isLoading), &:hover:disabled, &:hover:disabled:not(.isLoading) {
+  &.outline, 
+  &:hover, 
+  &:disabled,
+  &:disabled:not(.isLoading),
+  &:hover:disabled,
+  &:hover:disabled:not(.isLoading) {
     background: none;
   }
 }
@@ -133,12 +138,21 @@ $button {
 ==================================================== */
 /* Small
 ================ */
-.small {
+.tiny {
   font-size: 13px;
   padding: 4px 10px;
 
   &.outline {
-    padding: 2px 8px;
+    padding: 3px 9px;
+  }
+}
+
+.small {
+  font-size: 13px;
+  padding: 6px 15px;
+
+  &.outline {
+    padding: 5px 14px;
   }
 }
 
@@ -149,18 +163,18 @@ $button {
   padding: 7px 20px;
 
   &.outline {
-    padding: 6px 18px;
+    padding: 6px 19px;
   }
 }
 
-/* Large
+/* Large  
 ================ */
 .large {
   font-size: 15px;
   padding: 8px 25px;
 
   &.outline {
-    padding: 6px 23px;
+    padding: 7px 24px;
   }
 }
 

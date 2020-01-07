@@ -33,9 +33,24 @@ stories.add('Modifier', () => (
 stories.add('Size', () => (
   <div>
     <Button size="none">None</Button>&nbsp;
+    <Button size="tiny">Tiny</Button>&nbsp;
     <Button size="small">Small</Button>&nbsp;
     <Button>Medium</Button>&nbsp;
     <Button size="large">Large</Button>&nbsp;
+    <br/>
+    <br/>
+    <Button modifier="outline" size="none">None</Button>&nbsp;
+    <Button modifier="outline" size="tiny">Tiny</Button>&nbsp;
+    <Button modifier="outline" size="small">Small</Button>&nbsp;
+    <Button modifier="outline">Medium</Button>&nbsp;
+    <Button modifier="outline" size="large">Large</Button>
+    <br/>
+    <br/>
+    <Button loading size="none">None</Button>&nbsp;
+    <Button loading size="tiny">Tiny</Button>&nbsp;
+    <Button loading size="small">Small</Button>&nbsp;
+    <Button loading>Medium</Button>&nbsp;
+    <Button loading size="large">Large</Button>&nbsp;
   </div>
 ));
 

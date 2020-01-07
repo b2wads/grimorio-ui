@@ -4,41 +4,34 @@
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-$brandHeader {
-  align-items: center;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  display: flex;
-  font-size: 0;
-  height: 60px;
-  justify-content: center;
-  overflow: hidden;
-  padding: 15px 0;
-}
-
-$brandLogo {
-  fill: $white;
-  width: auto;
-}
-
 /* ==========================================================================
    Panel Component
 ========================================================================== */
-.loader {
-  margin-top: 10px;
+$isClosed {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-.error {
-  margin-top: 10px;
-}
+$smSpacing = 15px;
+$mdSpacing = 20px;
+$lgSpacing = 25px;
 
 /* Default
 ================ */
 .default {
-  @extend $drop-shadow;
   background: $white;
   border-radius: 2px;
   width: 100%;
+
+  &.shadow {
+    @extend $drop-shadow;
+  }
+
+  &.line {
+    @extend $base-border;
+  }
 
   &.isBrand {
     padding: 0;
@@ -49,6 +42,9 @@ $brandLogo {
   }
 }
 
+/* Header
+================ */
+
 .titleWrap {
   &.isAccordion {
     align-items: center;
@@ -56,6 +52,50 @@ $brandLogo {
     display: flex;
     justify-content: space-between;
   }
+
+  // the header, without border or accordion, does not need padding bottom
+  &.small {
+    padding: $smSpacing $smSpacing 0;
+  }
+
+  &.medium {
+    padding: $mdSpacing $mdSpacing 0;
+  }
+
+  &.large {
+    padding: $lgSpacing $lgSpacing 0;
+  }
+}
+
+$headerPaddingBotton {
+  &.small {
+    padding-bottom: $smSpacing;
+  }
+
+  &.medium {
+    padding-bottom: $mdSpacing;
+  }
+
+  &.large {
+    padding-bottom: $lgSpacing;
+  }
+}
+
+// the header needs padding bottom when the accordion is closed and when the header has border
+.titleWrap.isAccordion {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleWrap.isClosed {
+  @extend $headerPaddingBotton;
+}
+
+.titleBorder {
+  border-bottom: 1px solid var(--c-secondary);
+  @extend $headerPaddingBotton;
 }
 
 .title {
@@ -67,42 +107,27 @@ $brandLogo {
   margin-left: 10px;
 }
 
-/* Size
+/* Body
 ================ */
-.wrapper {
-  &.small {
-    padding: 20px 15px;
-  }
-
-  &.medium {
-    padding: 25px 20px;
-  }
-
-  &.large {
-    padding: 30px 25px;
-  }
-
-  &.isBrand {
-    padding: 0;
-  }
-
-  &.noPadding {
-    padding: 0;
-  }
-}
 
 .content {
   opacity: 1;
   transition: all 0.3s ease;
 
-  &.isBrand {
-    padding: 0 10px 10px;
+  &.small {
+    padding: $smSpacing;
+  }
+
+  &.medium {
+    padding: $mdSpacing;
+  }
+
+  &.large {
+    padding: $lgSpacing;
   }
 
   &.isClosed {
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
+    @extend $isClosed;
   }
 
   &.noPadding {
@@ -117,71 +142,19 @@ $brandLogo {
   display: block;
 
   &.small {
-    padding: 15px;
+    padding: $smSpacing;
   }
 
   &.medium {
-    padding: 20px;
+    padding: $mdSpacing;
   }
 
   &.large {
-    padding: 25px;
+    padding: $lgSpacing;
   }
 
   &.isClosed {
-    display: none;
+    @extend $isClosed;
   }
 }
 
-/* Header
-================ */
-
-.headerSeparator {
-  border-bottom: 1px solid var(--c-secondary);
-  margin: -5px -20px 15px -20px;
-  padding: 0 20px 15px 20px;
-}
-
-/* Brand
-================ */
-.acom {
-  @extend $brandHeader;
-  background: $c-acom;
-
-  .brandLogo {
-    @extend $brandLogo;
-    height: 22px;
-  }
-}
-
-.suba {
-  @extend $brandHeader;
-  background: $c-suba;
-
-  .brandLogo {
-    @extend $brandLogo;
-    height: 35px;
-    margin-top: -5px;
-  }
-}
-
-.shop {
-  @extend $brandHeader;
-  background: $c-shop;
-
-  .brandLogo {
-    @extend $brandLogo;
-    height: 30px;
-    stroke: $white;
-  }
-}
-
-.soub {
-  @extend $brandHeader;
-  background: $c-soub;
-
-  .brandLogo {
-    @extend $brandLogo;
-    height: 35px;
-  }
-}
