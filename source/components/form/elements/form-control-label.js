@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CSSModules from 'react-css-modules';
 
 import FormControl from './form-control';
 import FormLabel from './form-label';
@@ -133,4 +132,4 @@ class FormControlLabel extends Component {
   }
 }
 
-export default withContext(CSSModules(FormControlLabel, styles));
+export default withContext(FormControlLabel);

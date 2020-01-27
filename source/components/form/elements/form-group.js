@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CSSModules from 'react-css-modules';
 
 import { property } from '../../../helpers';
 // styles
@@ -65,4 +64,4 @@ class FormGroup extends PureComponent {
   }
 }
 
-export default CSSModules(FormGroup, styles);
+export default FormGroup;

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CSSModules from 'react-css-modules';
 // styles
 import styles from '../form.styl';
 
@@ -32,4 +31,4 @@ class FormActions extends PureComponent {
   }
 }
 
-export default CSSModules(FormActions, styles);
+export default FormActions;

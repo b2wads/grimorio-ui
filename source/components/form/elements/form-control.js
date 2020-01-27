@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CSSModules from 'react-css-modules';
 // components
 import Icon from '../../icon';
 import { fieldsValidation } from '../../../helpers/validation';
@@ -252,4 +251,4 @@ class FormControl extends PureComponent {
   }
 }
 
-export default withContext(CSSModules(FormControl, styles));
+export default withContext(FormControl);

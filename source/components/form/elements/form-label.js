@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CSSModules from 'react-css-modules';
 
 import { withContext } from '../form-context';
 
@@ -48,4 +47,4 @@ class FormLabel extends Component {
   }
 }
 
-export default withContext(CSSModules(FormLabel, styles));
+export default withContext(FormLabel);
