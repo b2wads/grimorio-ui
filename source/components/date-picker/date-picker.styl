@@ -3,7 +3,6 @@ $c-input = #333;
 $placeholder = #999;
 $c-border = #ccc;
 $c-label = #999;
-$c-disabled = #999;
 
 $field {
   border: 0;
@@ -42,9 +41,9 @@ $field {
   }
 
   &:disabled {
-    background: $c-back-disabled;
+    background: var(--c-back-disabled);
     border-color: $c-border;
-    color: $c-disabled;
+    color: var(--c-text-disabled);
     cursor: not-allowed;
   }
 }
@@ -82,7 +81,7 @@ $field {
   transition: all 0.25s ease;
 
   &.isActive {
-    color: $c-primary;
+    color: var(--c-primary);
     font-size: 12px;
     font-weight: 700;
     left: 5px;

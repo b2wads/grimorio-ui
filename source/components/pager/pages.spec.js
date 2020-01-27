@@ -30,13 +30,13 @@ describe('Pager component', () => {
       jest.spyOn(props, 'onClickPagination');
     })
     it('render correctly', () => {
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
       expect(wrapper.find('.showing').text()).toBe(`${props.offset} - ${props.offset + props.limit} de ${props.count}`);
     });
 
      it('render correctly with hasFirstLast', () => {
       wrapper.setProps({ hasFirstLast: true });
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
     it('onClick pagination first button', () => {
       wrapper.setProps({ hasFirstLast: true });
@@ -64,7 +64,7 @@ describe('Pager component', () => {
 
     it('render correctly with hasPagination', () => {
       wrapper.setProps({ hasPagination: true });
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('onClick pagination number button', () => {
@@ -127,17 +127,17 @@ describe('Pager component', () => {
 
     it('change start and end pages when currentPage <= 6', () => {
       wrapper.setProps({ offset: 60, hasPagination: true, count: 500 });
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('change start and end pages when currentPage + 4 >= maxPages', () => {
       wrapper.setProps({ offset: 300, hasPagination: true, count: 300 });
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('change start and end pages when is a default value', () => {
       wrapper.setProps({ offset: 100, hasPagination: true, count: 500 });
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
   });
 });

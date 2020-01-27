@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
+import { uniqueId } from '../../helpers';
+
 import MenuItem from './elements/menu-item';
 
 // styles
@@ -39,7 +41,14 @@ class Menu extends PureComponent {
         {children
           ? children
           : items.map(item => (
-              <MenuItem icon={item.icon} content={item.name} link={item.link} items={item.items} active={item.active} />
+              <MenuItem
+                key={uniqueId()}
+                icon={item.icon}
+                content={item.name}
+                link={item.link}
+                items={item.items}
+                active={item.active}
+              />
             ))}
       </ul>
     );

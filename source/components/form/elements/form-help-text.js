@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSModules from 'react-css-modules';
+// styles
+import styles from '../form.styl';
 
 import { withContext } from '../form-context';
-
-import styles from './form-help-text.styl';
 
 const HelpText = ({ children, className, context }) => {
   const { validationState } = context.formGroup;

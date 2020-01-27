@@ -18,7 +18,7 @@ $default-product {
   position: relative;
 
   a {
-    color: $c-support;
+    color: $c-text;
     text-decoration: none;
   }
 }
@@ -27,6 +27,23 @@ $img {
   display: block;
   height: 150px;
   margin: 0 auto;
+  width: auto;
+}
+
+$brandHeader {
+  align-items: center;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  display: flex;
+  font-size: 0;
+  height: 60px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 15px 0;
+}
+
+$brandLogo {
+  fill: $white;
   width: auto;
 }
 
@@ -84,7 +101,7 @@ $img {
 }
 
 .rules {
-  color: $c-support;
+  color: $c-text;
   display: inline-block;
   font-size: 11px;
   margin-left: 4px;
@@ -95,7 +112,7 @@ $img {
   align-items: center;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  color: $c-support;
+  color: $c-text;
   display: flex;
   height: 17px;
   justify-content: center;
@@ -180,7 +197,7 @@ $img {
   }
 
   .info {
-    color: $c-primary;
+    color: var(--c-primary);
     font-size: 21px;
     margin: 15px 0;
     text-align: center;
@@ -193,4 +210,48 @@ $img {
 
 .info.isBig {
   font-size: 16px;
+}
+
+/* Brand Header
+================ */
+.acom {
+  @extend $brandHeader;
+  background: $c-acom;
+
+  .brandLogo {
+    @extend $brandLogo;
+    height: 22px;
+  }
+}
+
+.suba {
+  @extend $brandHeader;
+  background: $c-suba;
+
+  .brandLogo {
+    @extend $brandLogo;
+    height: 35px;
+    margin-top: -5px;
+  }
+}
+
+.shop {
+  @extend $brandHeader;
+  background: $c-shop;
+
+  .brandLogo {
+    @extend $brandLogo;
+    height: 30px;
+    stroke: $white;
+  }
+}
+
+.soub {
+  @extend $brandHeader;
+  background: $c-soub;
+
+  .brandLogo {
+    @extend $brandLogo;
+    height: 35px;
+  }
 }

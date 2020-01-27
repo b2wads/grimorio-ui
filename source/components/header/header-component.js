@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 
+import { omit } from '../../helpers';
+
 import styles from './header.styl';
 import Button from '../button';
 import Icon from '../icon';
@@ -56,7 +58,7 @@ class Header extends PureComponent {
     });
 
     return (
-      <header className={fullClassName} {...elementProps}>
+      <header className={fullClassName} {...omit(elementProps, ['onLogoClick'])}>
         {children ||
           <React.Fragment>
             {!isMobile &&

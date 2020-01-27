@@ -3,9 +3,7 @@
 /* ==========================================================================
 Variables
 ========================================================================== */
-$c-success-light = lightness($c-success);
-$c-warning-light = lightness($c-warning);
-$c-error-light = lightness($c-error);
+
 /* Border color
 ========================================================================== */
 $c-border = #ccc;
@@ -13,14 +11,11 @@ $c-check-border = #7F7F7F;
 /* Field
 ========================================================================== */
 $default-background = #fff;
-$c-default = #333;
-$c-disabled = #999;
-$c-disabled-light = #b4b5b5;
+$c-text-default = #333;
 /* Addon
 ========================================================================== */
 $c-addon-background = #18a689;
 $c-addon-border = $c-border;
-$c-addon = $c-primary;
 
 /* ==========================================================================
 Placeholders
@@ -41,16 +36,28 @@ $field {
   width: 100%;
 
   &:focus {
-    border-color: $c-form;
+    border-color: var(--c-active-input);
   }
 
   &.isActive {
-    border-color: $c-form;
+    border-color: var(--c-active-input);
   }
 
   &:disabled {
-    background: $c-back-disabled;
-    color: $c-disabled;
+    background: var(--c-back-disabled);
+    color: var(--c-text-disabled);
+  }
+
+  &:disabled::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--c-text-disabled);
+  }
+
+  &:disabled:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: var(--c-text-disabled);
+  }
+
+  &:disabled::-ms-input-placeholder { /* Microsoft Edge */
+    color: var(--c-text-disabled);
   }
 }
 
@@ -67,12 +74,12 @@ $radioCheckbox {
   width: 20px;
 
   &.isDisabled, &.isDisabled.isActive {
-    background: $c-back-disabled;
-    border-color: darken($c-back-disabled, 25%);
+    background:  var(--c-back-disabled);
+    border-color: var(--c-text-disabled);
     cursor: not-allowed;
 
     i {
-      color: darken($c-back-disabled, 25%);
+      color: var(--c-text-disabled);
     }
   }
 }
@@ -82,9 +89,9 @@ $radioCheckbox {
 $addon {
   border: 0;
   bottom: 7px;
-  color: $c-addon;
+  color: var(--c-primary);
   display: block;
-  fill: $c-addon;
+  fill: var(--c-primary);
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
@@ -110,7 +117,7 @@ Form Control Component
 ========================================================================== */
 .form-field {
   @extend $field;
-  color: $c-default;
+  color: $c-text-default;
 }
 
 .form-field--outline {
@@ -125,7 +132,7 @@ Form Control Component
   @extend $field;
   background: $default-background;
   border: 0;
-  color: $c-default;
+  color: $c-text-default;
 }
 
 .form-field--radio {
@@ -138,15 +145,15 @@ Form Control Component
   .fakeInput {
     @extend $radioCheckbox;
     border-radius: 50%;
-    color: $c-support-dark;
+    color: var(--c-support-dark);
   }
 
   input[type='radio']:checked ~ .fakeInput {
-    border-color: $c-support-dark;
+    border-color: var(--c-support-dark);
   }
 
   input[type='radio']:checked ~ .fakeInput:before {
-    background: $c-support-dark;
+    background: var(--c-support-dark);
     border-radius: 50%;
     content: '';
     display: block;
@@ -157,13 +164,13 @@ Form Control Component
 
   input[type='radio']:disabled {
     &:checked ~ .fakeInput {
-      background: $c-back-disabled;
-      border-color: $c-back-disabled;
+      background: var(--c-back-disabled);
+      border-color: var(--c-text-disabled);
       cursor: not-allowed;
     }
 
     &:checked ~ .fakeInput:before {
-      background: $c-back-disabled;
+      background: var(--c-back-disabled);
     }
   }
 }
@@ -179,9 +186,14 @@ Form Control Component
     @extend $radioCheckbox;
     border-radius: 3px;
 
+    &.isActive.isPrimary:not(.isDisabled) {
+      background: var(--c-primary);
+      border-color: var(--c-primary);
+    }
+
     &.isActive {
-      background: $c-primary;
-      border-color: $c-primary;
+      background: var(--c-support-dark);
+      border-color: var(--c-support-dark);
       transition: all 0.2s ease;
     }
   }
@@ -243,9 +255,9 @@ Form Control Component
 }
 
 .form-addon--disabled {
-  background: $c-back-disabled;
-  border-color: $c-back-disabled;
-  color: $c-disabled-light;
+  background: var(--c-back-disabled);
+  border-color: var(--c-back-disabled);
+  color: var(--c-text-disabled);
 }
 
 /* Feedback
@@ -274,7 +286,6 @@ Form Control Component
   }
 
   & .form-addon {
-    background: $c-success-light;
     border-color: $c-success;
   }
 
@@ -289,7 +300,6 @@ Form Control Component
   }
 
   & .form-addon {
-    background: $c-warning-light;
     border-color: $c-warning;
   }
 
@@ -304,7 +314,6 @@ Form Control Component
   }
 
   & .form-addon {
-    background: $c-error-light;
     border-color: $c-error;
   }
 

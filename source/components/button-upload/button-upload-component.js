@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 
-import { omit } from 'helpers';
+import { omit } from '../../helpers';
 
 import Button from '../button';
 import Icon from '../icon';
@@ -123,7 +123,7 @@ class ButtonUpload extends PureComponent {
     const hasMaxFiles = this.state.list.length === limit;
 
     return (
-      <div {...omit(rest, ['onChange'])}>
+      <div {...omit(rest, ['onChange', 'maxFileSize'])}>
         <Button loading={loading} disabled={disabled || hasMaxFiles} iconLeft="publish" className={styles.button}>
           {btnText}
           <input

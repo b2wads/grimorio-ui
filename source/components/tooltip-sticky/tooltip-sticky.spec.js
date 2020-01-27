@@ -36,7 +36,7 @@ describe('TooltipSticky component', () => {
     });
 
     it('should render child content', () => {
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('should call tooltip mouseover', () => {

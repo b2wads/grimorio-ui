@@ -4,7 +4,7 @@ Variables
 /* Color
 ========================================================================== */
 $c-label = #999;
-$c-default = #333;
+$c-text-default = #333;
 
 /* ==========================================================================
 Form Label Component
@@ -13,7 +13,7 @@ Form Label Component
   position: relative;
 }
 
-.label {
+.controlledLabel {
   color: $c-label;
   font-size: 16px;
   font-weight: 400;
@@ -26,7 +26,7 @@ Form Label Component
 }
 
 .isActive {
-  color: $c-form;
+  color: var(--c-active-input);
   font-size: 12px;
   left: 0;
   top: -1.5rem;
@@ -34,7 +34,7 @@ Form Label Component
 }
 
 .formControl {
-  color: $c-default;
+  color: $c-text-default;
   font-size: 16px;
   margin-top: 5px;
 }

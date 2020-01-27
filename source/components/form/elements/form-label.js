@@ -6,7 +6,7 @@ import CSSModules from 'react-css-modules';
 import { withContext } from '../form-context';
 
 // styles
-import styles from './form-label.styl';
+import styles from '../form.styl';
 
 class FormLabel extends Component {
   constructor(props, context) {

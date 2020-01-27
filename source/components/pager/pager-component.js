@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import { uniqueId } from '../../helpers';
+
 import Icon from '../icon';
 import Button from '../button';
 import Select, { SelectOption } from '../select';
@@ -21,7 +23,7 @@ class Pager extends PureComponent {
         >
           {limitList &&
             limitList.map(limitVal => (
-              <SelectOption value={limitVal}>
+              <SelectOption value={limitVal} key={uniqueId()}>
                 {`${limitVal} por página`}
               </SelectOption>
             ))}
@@ -116,6 +118,7 @@ class Pager extends PureComponent {
         disabled={btn[type].disabled}
         onClick={btn[type].onClick}
         name={type}
+        key={uniqueId()}
       >
         {number
           ? number

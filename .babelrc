@@ -49,8 +49,9 @@
         "@babel/plugin-proposal-export-namespace-from",
         ["css-modules-transform", {
           "preprocessCss": "./internals/css-modules-transform.js",
-          "generateScopedName": "[name]_[local]_[hash:base64:5]",
-          "extensions": [".styl"]
+          "generateScopedName": "grm-[name]__[local]",
+          "extensions": [".styl"],
+          "extractCss": "./lib/css/modules/components.css"
         }]
       ],
       "ignore": ["./internals/css-modules-transform.js"]

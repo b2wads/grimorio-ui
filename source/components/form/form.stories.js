@@ -151,7 +151,7 @@ stories.add('Checkbox', withState({ input: 'Campo com valor default', check: [] 
 
         <FormGroup>
           <label htmlFor="check2">Checkbox2!</label>
-          <FormControl onChange={() => toggleCheck(2)} checked={store.state.check.includes(2)} type="checkbox" id="check2" value="2" />
+          <FormControl theme="secondary" onChange={() => toggleCheck(2)} checked={store.state.check.includes(2)} type="checkbox" id="check2" value="2" />
         </FormGroup>
       </Form>
     </div>
@@ -243,8 +243,8 @@ stories.add('Knobs', () => (
 
 stories.add('Disabled', () => (
   <div>
-    <FormControl placeholder="Digite um nome" disabled />
-    <FormControl type="email" placeholder="Digite o seu e-mail" disabled />
+    <FormControl value="Com texto" placeholder="Digite um nome" disabled />
+    <FormControl type="email" placeholder="Com placeholder" disabled />
     <FormControl type="radio" checked={true} disabled />
     <FormControl type="checkbox" checked={true} disabled />
     <FormControl type="select" placeholder="Selecione" disabled>

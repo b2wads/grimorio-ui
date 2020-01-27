@@ -5,7 +5,7 @@ import CSSModules from 'react-css-modules';
 
 import { property } from 'helpers';
 // styles
-import styles from './form-group.styl';
+import styles from '../form.styl';
 
 import { Provider } from '../form-context';
 

@@ -23,7 +23,7 @@ class Slider extends PureComponent {
   }
 
   static propTypes = {
-    children: PropTypes.array,
+    children: PropTypes.node,
     className: PropTypes.string,
     dotsClassName: PropTypes.string,
     arrowClassName: PropTypes.string,
@@ -193,7 +193,7 @@ class Slider extends PureComponent {
     });
 
     return (
-      <div className={sliderClass} {...omit(rest, ['autoplay', 'delays'])}>
+      <div className={sliderClass} {...omit(rest, ['autoplay', 'delays', 'slidesToShow'])}>
         <div className={cx(styles.wrapper, wrapperClassName)}>
           {this.renderChildren(current)}
         </div>

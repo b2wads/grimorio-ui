@@ -3,7 +3,6 @@ import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeC
 import moment from 'moment';
 
 import Calendar from './calendar-component';
-import { wrap } from 'module';
 
 /** @test {Calendar} */
 describe('Calendar component', () => {
@@ -23,7 +22,7 @@ describe('Calendar component', () => {
       );
     });
     it('render correctly', () => {
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('should call changeDate', () => {
@@ -102,7 +101,7 @@ describe('Calendar component', () => {
       wrapper.setProps({ isRangeDate: true, startDate: moment('10/05/2019', 'DD/MM/YYYY') })
       wrapper.setState({ focusedInput: 'endDate' });
       const isOutsideRange = wrapper.instance().isOutsideRange(moment('30/10/2020', 'DD/MM/YYYY'));
-      
+
 
       expect(isOutsideRange).toEqual(true);
     });

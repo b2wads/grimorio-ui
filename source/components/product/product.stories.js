@@ -10,7 +10,7 @@ const stories = storiesOf('Product', module);
 
 stories.addDecorator(withKnobs);
 
-const pannelSize = { flexBasis: '30%', minWidth: '250px', };
+const pannelSize = { width: '300px' };
 
 const exampleProduct = {
   img: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
@@ -87,30 +87,18 @@ stories.add('Default', () => (
     <Panel style={pannelSize}>
       <Product onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Categoria', exampleCat)} />
     </Panel>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel style={pannelSize}>
-      <Product />
-    </Panel>
   </div>
 ));
 
 stories.add('Card', () => (
   <div style={{ display: 'flex' }}>
-    <Panel type="brand" brand="acom" style={pannelSize}>
-      <Product type="card" data={object('Product', exampleProductCard)} />
-    </Panel>
+    <Product type="card" brand="acom" style={pannelSize} data={object('Product', exampleProductCard)} />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel type="brand" brand="suba" style={pannelSize}>
-      <Product type="card" btnText="Copiar Cupom" data={object('Cupom', exampleCupomCard)} />
-    </Panel>
+    <Product type="card" brand="suba" style={pannelSize} btnText="Copiar Cupom" data={object('Cupom', exampleCupomCard)} />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel type="brand" brand="shop" style={pannelSize}>
-      <Product type="card" btnText="Copiar Cupom" data={object('Cupom', exampleCupomCard)} />
-    </Panel>
+    <Product type="card" brand="shop" style={pannelSize} btnText="Copiar Cupom" data={object('Cupom', exampleCupomCard)} />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel type="brand" brand="soub" style={pannelSize}>
-      <Product type="card" btnText="Copiar Cupom" data={object('Categoria', exampleCategoryCard)} />
-    </Panel>
+    <Product type="card" brand="soub" style={pannelSize} btnText="Copiar Cupom" data={object('Categoria', exampleCategoryCard)} />
   </div>
 ));
 

@@ -12,7 +12,7 @@ import { withContext } from '../form-context';
 import Select from '../../select';
 
 // styles
-import styles from './form-control.styl';
+import styles from '../form.styl';
 
 class FormControl extends PureComponent {
   constructor(props, context) {
@@ -36,6 +36,7 @@ class FormControl extends PureComponent {
     feedback: false,
     type: 'text',
     outline: false,
+    theme: 'primary',
   };
 
   static propTypes = {
@@ -52,6 +53,7 @@ class FormControl extends PureComponent {
     checked: PropTypes.bool,
     feedback: PropTypes.bool,
     outline: PropTypes.bool,
+    theme: PropTypes.oneOf(['primary', 'secondary']),
     type: PropTypes.oneOf([
       'text',
       'password',
@@ -183,12 +185,13 @@ class FormControl extends PureComponent {
             disabled={disabled}
             name={name}
             value={this.state.value}
-            {...omit(rest, ['className', 'context'])}
+            {...omit(rest, ['feedback', 'className', 'context'])}
           />
           <label
             className={classNames(styles.fakeInput, {
               [styles.isDisabled]: disabled,
               [styles.isActive]: this.props.checked,
+              [styles.isPrimary]: this.props.theme === 'primary',
             })}
             htmlFor={id}
           >
@@ -215,7 +218,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           name={name}
           value={this.state.value}
-          {...omit(rest, ['className', 'context'])}
+          {...omit(rest, ['feedback', 'className', 'context'])}
         >
           {children}
         </Component>

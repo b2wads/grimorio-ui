@@ -17,7 +17,7 @@ class Button extends PureComponent {
     type: PropTypes.oneOf(['button', 'reset', 'submit']),
     color: PropTypes.oneOf(['primary', 'secondary', 'variant', 'clean', 'transparent']),
     modifier: PropTypes.oneOf(['inverted', 'outline']),
-    size: PropTypes.oneOf(['small', 'medium', 'large', 'none']),
+    size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large', 'none']),
     onClick: PropTypes.func,
     children: PropTypes.any.isRequired,
     className: PropTypes.string,
@@ -80,7 +80,7 @@ class Button extends PureComponent {
       <button {...elementProps} type={type} className={fullClassName} onClick={onClick} disabled={loading || disabled}>
         {iconLeft && <Icon className={styles.iconLeft} size={18} name={iconLeft} />}
         {children}
-        {loading && <Loader className={styles.btnLoad} size="17px" color={this.getLoaderColor()} />}
+        {loading && <Loader className={styles.btnLoad} size="15px" color={this.getLoaderColor()} />}
         {iconRight && <Icon className={styles.iconRight} size={18} name={iconRight} />}
       </button>
     );
