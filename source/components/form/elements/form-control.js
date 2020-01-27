@@ -82,19 +82,13 @@ class FormControl extends PureComponent {
       return null;
     }
 
-    let iconName;
+    const iconMap = {
+      success: 'check',
+      warning: 'warning',
+      error: 'close',
+    };
 
-    switch (validationState) {
-      case 'success':
-        iconName = 'check';
-        break;
-      case 'warning':
-        iconName = 'warning';
-        break;
-      case 'error':
-        iconName = 'close';
-        break;
-    }
+    const iconName = iconMap[validationState];
 
     return (
       <span className={styles['form-feedback']}>
