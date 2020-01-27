@@ -1,5 +1,5 @@
 import React from 'react';
-import { withContextGenerator } from 'helpers';
+import { withContextGenerator } from '../../helpers';
 
 export const { Provider, Consumer } = React.createContext({
   formGroup: {
