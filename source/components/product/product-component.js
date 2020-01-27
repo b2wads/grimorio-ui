@@ -1,6 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 import moment from 'moment';
 
@@ -10,6 +9,7 @@ import styles from './product.styl';
 import Svg from '../svg';
 import Button from '../button';
 import Tooltip from '../tooltip';
+import Panel from '../panel';
 
 import { moneyFormat, shareOn, uniqueId, copyToClipboard } from '../../helpers';
 
@@ -149,20 +149,12 @@ class Product extends PureComponent {
     );
   }
 
-  render() {
-    const { className, type, stage, copyValue, ...elementProps } = this.props;
-    const { img, name, info, expires, link } = this.props.data;
-
-    const fullClassName = cx(className, styles.wrapper, {
-      [styles[type]]: type,
-    });
-
-    if (!name || !link || !info) {
-      return null;
-    }
+  renderProductContent() {
+    const { stage, copyValue } = this.props;
+    const { img, name, expires, link } = this.props.data;
 
     return (
-      <section {...omit(elementProps, ['btnText', 'onGenerate', 'generateLoading'])} className={fullClassName}>
+      <Fragment>
         <div className={styles.tag}>
           {this.renderTags()}
         </div>
@@ -209,9 +201,46 @@ class Product extends PureComponent {
             />
           </div>
         </div>
+      </Fragment>
+    );
+  }
+
+  renderBrandHeader(brand) {
+    return (
+      <header className={styles[brand]}>
+        <Svg className={styles.brandLogo} src={`logo/${brand}-full`} />
+      </header>
+    );
+  }
+
+  render() {
+    const { className, type, brand, ...elementProps } = this.props;
+    const { name, info, link } = this.props.data;
+
+    const fullClassName = cx(className, styles.wrapper, {
+      [styles[type]]: type,
+    });
+
+    const sendProps = omit(elementProps, ['btnText', 'onGenerate', 'generateLoading', 'copyValue']);
+
+    if (!name || !link || !info) {
+      return null;
+    }
+
+    if (type === 'card' && brand) {
+      return (
+        <Panel title={this.renderBrandHeader(brand)} contentClassName={fullClassName} size="no-padding" {...sendProps}>
+          {this.renderProductContent()}
+        </Panel>
+      );
+    }
+
+    return (
+      <section className={fullClassName} {...sendProps}>
+        {this.renderProductContent()}
       </section>
     );
   }
 }
 
-export default CSSModules(Product, styles);
+export default Product;
