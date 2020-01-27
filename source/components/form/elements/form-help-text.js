@@ -8,15 +8,15 @@ import styles from '../form.styl';
 import { withContext } from '../form-context';
 
 const HelpText = ({ children, className, context }) => {
+  if (!children) {
+    return null;
+  }
+
   const { validationState } = context.formGroup;
 
   const classes = classNames(className, styles['help-text'], {
     [styles[`has-${validationState}`]]: validationState,
   });
-
-  if (!children) {
-    return null;
-  }
 
   return (
     <span className={classes}>
