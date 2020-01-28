@@ -175,38 +175,6 @@ stories.add('Radio', () => (
   </div>
 ));
 
-stories.add('Inline', () => (
-  <Form onSubmit={() => { }} styleType='inline'>
-    <FormGroup>
-      <FormControl placeholder="Form, FormGroup and input" />
-    </FormGroup>
-    <FormGroup>
-      <FormControl placeholder="Form, FormGroup and input" />
-    </FormGroup>
-    <FormActions>
-      <Button>Cancelar</Button>
-      <Button color="primary">Enviar</Button>
-    </FormActions>
-  </Form>
-));
-
-stories.add('Horizontal', () => (
-  <Form onSubmit={() => { }} styleType='horizontal'>
-    <FormGroup>
-      <FormLabel>Example of label</FormLabel>
-      <FormControl placeholder="Form, FormGroup and input" />
-    </FormGroup>
-    <FormGroup>
-      <FormLabel>Example of label</FormLabel>
-      <FormControl placeholder="Form, FormGroup and input" />
-    </FormGroup>
-    <FormActions>
-      <Button>Cancelar</Button>
-      <Button color="primary">Enviar</Button>
-    </FormActions>
-  </Form>
-));
-
 // Form label
 stories.add('Addon text', () => (
   <FormGroup>

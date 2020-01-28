@@ -11,41 +11,18 @@ class Form extends PureComponent {
   }
 
   static defaultProps = {
-    styleType: 'form',
     className: undefined,
   };
 
   static propTypes = {
     onSubmit: PropTypes.func,
-    styleType: PropTypes.oneOf(['form', 'horizontal', 'inline']),
     className: PropTypes.string,
   };
 
-  static childContextTypes = {
-    $form: PropTypes.object.isRequired,
-  };
-
-  getChildContext() {
-    const { styleType } = this.props;
-
-    return {
-      $form: { styleType },
-    };
-  }
-
   render() {
-    const { styleType, onSubmit, className, ...elementProps } = this.props;
+    const { onSubmit, className, ...elementProps } = this.props;
 
-    return (
-      <form
-        {...elementProps}
-        ref={c => {
-          this.form = c;
-        }}
-        onSubmit={onSubmit}
-        className={classNames(className, styles[styleType])}
-      />
-    );
+    return <form {...elementProps} onSubmit={onSubmit} className={classNames(className, styles.form)} />;
   }
 }
 

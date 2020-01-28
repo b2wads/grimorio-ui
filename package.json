@@ -1,7 +1,7 @@
 {
   "name": "@b2wads/grimorio-ui",
   "sideEffects": false,
-  "version": "7.0.2",
+  "version": "8.0.0-alpha.1",
   "description": "React UI Kit that works like magic",
   "main": "lib/index.js",
   "repository": "https://github.com/b2wads/grimorio-ui",
