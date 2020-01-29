@@ -136,4 +136,5 @@ Esse comando será capaz de criar as pastas e arquivos corretamente para iniciar
 - [CSS (code style)](./docs/css-code-style.md)
 - [Processo de Build](./docs/processo-de-build.md)
 - [Links Úteis](./docs/links-uteis.md)
+- [NPM](./docs/publish-to-npm.md)
 
