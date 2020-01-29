@@ -28,7 +28,7 @@ stories.add('Outline', () => (
       console.log('onSubmit', value);
       toggleFn();
     }}
-    validation={value => `${value}`.length === 4}
+    validation={value => `${value}`.length >= 4}
     errorMessage="Favor inserir 4 caracteres"
   />
 ));
@@ -43,7 +43,7 @@ stories.add('Label', () => (
         console.log('onSubmit', value);
         toggleFn();
       }}
-      validation={value => `${value}`.length === 4}
+      validation={value => `${value}`.length >= 4}
       errorMessage="Favor inserir 4 caracteres"
     />
     <br/>
@@ -57,7 +57,7 @@ stories.add('Label', () => (
         console.log('onSubmit', value);
         toggleFn();
       }}
-      validation={value => `${value}`.length === 4}
+      validation={value => `${value}`.length >= 4}
       errorMessage="Favor inserir 4 caracteres"
     />
   </div>
@@ -71,7 +71,7 @@ stories.add('Uncontrolled', () => (
       console.log('onSubmit', value);
       toggleFn();
     }}
-    validation={value => `${value}`.length === 4}
+    validation={value => `${value}`.length >= 4}
     errorMessage="Favor inserir 4 caracteres"
   />
 ));

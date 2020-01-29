@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CSSModules from 'react-css-modules';
 // components
 import Icon from '../../icon';
 import { fieldsValidation } from '../../../helpers/validation';
 import { omit } from '../../../helpers';
+
+import { withContext } from '../form-context';
 
 import Select from '../../select';
 
@@ -76,29 +77,18 @@ class FormControl extends PureComponent {
     ]),
   };
 
-  static contextTypes = {
-    $form: PropTypes.object,
-    $formGroup: PropTypes.object,
-  };
-
   static feedbackRender(validationState, feedback, addonAfter) {
     if ((!validationState && !feedback && addonAfter) || !feedback || !validationState) {
       return null;
     }
 
-    let iconName;
+    const iconMap = {
+      success: 'check',
+      warning: 'warning',
+      error: 'close',
+    };
 
-    switch (validationState) {
-      case 'success':
-        iconName = 'check';
-        break;
-      case 'warning':
-        iconName = 'warning';
-        break;
-      case 'error':
-        iconName = 'close';
-        break;
-    }
+    const iconName = iconMap[validationState];
 
     return (
       <span className={styles['form-feedback']}>
@@ -144,8 +134,6 @@ class FormControl extends PureComponent {
       ...rest
     } = this.props;
 
-    const form = this.context.$form;
-    const formStyleType = (form && form.styleType) || undefined;
     const isClassDefault = ['radio', 'checkbox', 'textarea'].indexOf(type) < 0;
     const componentClass = classNames(
       {
@@ -154,7 +142,6 @@ class FormControl extends PureComponent {
         [styles['form-field--checkbox']]: type === 'checkbox',
         [styles['form-field--textarea']]: type === 'textarea',
         [styles['form-field--select']]: type === 'select',
-        [styles['form-field--horizontal']]: formStyleType === 'horizontal',
         [styles['form-field--outline']]: outline,
         [styles.isActive]: active,
       },
@@ -191,7 +178,7 @@ class FormControl extends PureComponent {
             disabled={disabled}
             name={name}
             value={this.state.value}
-            {...omit(rest, ['feedback', 'className'])}
+            {...omit(rest, ['feedback', 'className', 'context'])}
           />
           <label
             className={classNames(styles.fakeInput, {
@@ -224,7 +211,7 @@ class FormControl extends PureComponent {
           disabled={disabled}
           name={name}
           value={this.state.value}
-          {...omit(rest, ['feedback', 'className'])}
+          {...omit(rest, ['feedback', 'className', 'context'])}
         >
           {children}
         </Component>
@@ -233,21 +220,14 @@ class FormControl extends PureComponent {
   }
 
   render() {
-    const { type, addonBefore, addonAfter, feedback, className } = this.props;
+    const { type, addonBefore, addonAfter, feedback, className, context } = this.props;
     // context
-    const form = this.context.$form;
-    const formStyleType = (form && form.styleType) || undefined;
-    const formGroup = this.context.$formGroup;
-    const controlId = (formGroup && formGroup.controlId) || undefined;
-    const validationState = (formGroup && formGroup.validationState) || undefined;
-    const isCheckboxOrRadio = (formGroup && formGroup.isCheckboxOrRadio) || undefined;
+    const { validationState, controlId } = context.formGroup;
 
     // styles
     const addonClass = classNames(className, styles['form-addon'], styles['form-field-wrapper'], {
       [styles['form-addon--withItens']]: addonBefore || addonAfter || feedback,
-      [styles['form-addon--horizontal']]: formStyleType === 'horizontal',
       [styles[`has-${validationState}`]]: validationState,
-      [styles.isCheckboxOrRadio]: isCheckboxOrRadio,
     });
 
     // internal components
@@ -265,4 +245,4 @@ class FormControl extends PureComponent {
   }
 }
 
-export default CSSModules(FormControl, styles);
+export default withContext(FormControl);

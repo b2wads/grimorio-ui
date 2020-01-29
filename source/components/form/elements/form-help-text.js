@@ -1,58 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import CSSModules from 'react-css-modules';
 // styles
 import styles from '../form.styl';
 
-class HelpText extends Component {
-  constructor(props, context) {
-    super(props, context);
+import { withContext } from '../form-context';
+
+const HelpText = ({ children, className, context }) => {
+  if (!children) {
+    return null;
   }
 
-  static defaultProps = {
-    children: false,
-    className: undefined,
-  };
+  const { validationState } = context.formGroup;
 
-  static propTypes = {
-    children: PropTypes.string.isRequired,
-    className: PropTypes.string,
-  };
+  const classes = classNames(className, styles['help-text'], {
+    [styles[`has-${validationState}`]]: validationState,
+  });
 
-  static contextTypes = {
-    $formGroup: PropTypes.object,
-  };
+  return (
+    <span className={classes}>
+      {children}
+    </span>
+  );
+};
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return true;
-  }
+HelpText.defaultProps = {
+  children: false,
+  className: undefined,
+};
 
-  render() {
-    const { children, className, ...elementProps } = this.props;
+HelpText.propTypes = {
+  children: PropTypes.string,
+  className: PropTypes.string,
+};
 
-    // context
-    const formGroup = this.context.$formGroup;
-    const validationState = (formGroup && formGroup.validationState) || undefined;
-
-    const classes = classNames(
-      styles['help-text'],
-      {
-        [styles[`has-${validationState}`]]: validationState,
-      },
-      className
-    );
-
-    if (!children) {
-      return null;
-    }
-
-    return (
-      <span {...elementProps} className={classes}>
-        {children}
-      </span>
-    );
-  }
-}
-
-export default CSSModules(HelpText, styles);
+export default withContext(HelpText);
