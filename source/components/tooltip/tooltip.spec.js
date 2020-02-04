@@ -5,12 +5,13 @@ import Icon from '../icon';
 
 /** @test {Tooltip} */
 describe('Tooltip component', () => {
-  /** @test {Tooltip#render} */
 
   let wrapper
   const emptyProps = {
     message: null,
-    children: null
+    children: null,
+    icon: null,
+    size: null,
   }
 
   beforeAll(() => {
