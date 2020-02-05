@@ -8,7 +8,7 @@ describe('Tag component', () => {
   let wrapper
 
   const emptyProps = {
-    children: null,
+    children: undefined,
   }
 
   beforeAll(() => {

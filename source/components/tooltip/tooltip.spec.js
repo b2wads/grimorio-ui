@@ -8,10 +8,10 @@ describe('Tooltip component', () => {
 
   let wrapper
   const emptyProps = {
-    message: null,
-    children: null,
-    icon: null,
-    size: null,
+    message: undefined,
+    children: undefined,
+    icon: undefined,
+    size: undefined,
   }
 
   beforeAll(() => {
