@@ -13,11 +13,11 @@
 - The value of a modifier should start with with the verb `is` and be camelCased.
 
 ```js
-  // <Card size="big" color="green" active>Olá</Card>
+  // <Card size="big" color="green" active>Hello</Card>
   
   <div className={`${style.big} ${style.green} ${style.isActive}`}>
     <h1 className={style.header}">Card</p>
-    <p className={style.content}>Olá</p>
+    <p className={style.content}>Hello</p>
   </div>
 ```
 

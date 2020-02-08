@@ -13,5 +13,5 @@ assignees: ''
 **Descreva a solução sugerida e o porquê dessa decisão**
 <!-- Acho melhor separar as funcionalidades em dois componentes pois melhora a leitura do código, etc... -->
 
-**Conteúdo adiconal**
+**Conteúdo adicional**
 <!-- Screenshots, exemplos, links relacionados a feature -->

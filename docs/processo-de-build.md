@@ -1,19 +1,19 @@
-# Processo de Build
+# Build Process
 
-Hoje, o processo de build de arquivos e geração da lib é feito em etapas. Isso se dá pois usamos algumas tecnologias que precisam ser processadas para gerar seu código final, são elas:
+Today, the build process of files and the lib generation is done in stages. It happen because we using technologies that need to be process for generate the final code. These are the phases:
 
-- React com JSX e features ES2015+ do JS, portanto necessitando do [babel](https://babeljs.io/);
-- Nosso CSS é feito com [stylus](http://stylus-lang.com/) e usando [CSS Modules](https://github.com/css-modules/css-modules), portanto nessessitando ser pré-processado;
-- Para garantir que algumas variáveis de cor poderão ser re-escritas na utilização do Grimório✨ usamos [variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var), necessitando do [PostCSS](https://postcss.org/) para garantir compatibilidade de browsers;
+- React with JSX and features JS's ES2015+, therefore we need [babel](https://babeljs.io/);
+- Our CSS is made with [stylus](http://stylus-lang.com/) and using [CSS Modules](https://github.com/css-modules/css-modules), therefore need be pre-processed;
+- For ensure that some color variables could be rewritten on usage of Grimório✨ we use [CSS variables](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var), needing the [PostCSS](https://postcss.org/) for warranty the browsers compatibility;
 
-O processo de build, então, segue a seguinte ordem:
+The build process, so, follow the following order:
 
-- Usamos o babel para transformar todo o código React, ES2015 da pasta `/source`. Além disso, usamos o [`css-modules-transform`](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform) para inserir as classes do CSS Modules no JS e gerar todo o CSS dependente desses arquivos. Todos são criados na pasta `/lib`. O comando usado para gerar essa etapa é `yarn build:modules`.
+- We use babel for transpile all React Code, ES2015 from folder `/source`. As well, we use the [`css-modules-transform`](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform) for insert the CSS Modules Classes on JS and generate all dependent CSS of these files. All of them are create at folder `/lib`. The command used for generate that stage is `yarn build:modules`.
 
-- Após isso, usamos o [`brunch.io`](https://brunch.io/) para concatenar o CSS gerado pelo babel e todos os outros estilos, além de minificar a adicionar prefixos de compatibilidade. O brunch gera três arquivos CSS na pasta `/lib`: O `grimorio-ui.min.css` é o arquivo CSS contendo as variáveis CSS declaradas no `:root`. O `grimorio-ui-custom.min.css` é o mesmo arquivo, porém sem as declarações de variáveis de CSS, isso porque quem irá fazê-las será quem quiser customizar o Grimório✨. E o último arquivo é o `variables.css`, que é a coleção de todas as variáveis CSS que o Grimório✨ tem. Ele será usado por quem quiser apenas substituir algumas variáveis do Grimório✨, não todas. Para entender melhor o processo de customização [ver o guia](./advanced-css.md). O comando usado para gerar essa etapa é `yarn build:css`.
+- After that, e use the [`brunch.io`](https://brunch.io/) for concatenate the babel-generated CSS and all of other styles, as well the minify the files and add compatibility prefix. The brunch generates three CSS files on folder `/lib`: The `grimorio-ui.min.css` is a CSS file that contains the CSS variables declared on `:root`. The `grimorio-ui-custom.min.css` it is the same file, however without declarations of CSS variables, it is happens because who going to make them will be who want customize the Grimório✨. And the last file is the `variables.css`, that is the collection of all of CSS variables that the Grimório✨ has. It will bbe used by those who want just replace some Grimório✨'s variables, not all of them.  For understand better this particular process of customizations [see the guide](./advanced-css.md). The command used for generate this stage is `yarn build:css`.
 
-- A última etapa consiste em usar o [CLI do PostCSS](https://github.com/postcss/postcss-cli) para fazer uso do [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties). Esse plugin do PostCSS "processa" as variáveis de CSS como se fossem variáveis de um pré-procesador - efetivamente substituindo seus valores no arquivo. A CLI busca o arquivo `grimorio-ui.min.css` e substitui todas as variáveis, bustando a definição no `:root` do próprio arquivo. Isso faz com que esse arquivo css esteja 100% preparado para o uso de quem não quer customizar as variáveis do Grimório✨. O comando usado para gerar essa etapa é `yarn build:css:variables`.
+- The last stage consists at use the [PostCSS CLI](https://github.com/postcss/postcss-cli) for to do use the [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties). This PostCSS plugin "process" the CSS variables as if they were variables of a pre-process - effectively replacing your values on file. The CLI search on file `grimorio-ui.min.css` and replace all of variables, looking for the definition on `:root` of the own file. So that, this CSS file will be 100% ready to use by those who do not want  customize the Grimório✨'s variables. The command used to genarate this stage is `yarn build:css:variables`.
 
-- É importante lembrar que essas etapas precisam acontecer nessa ordem especificada! O comando `yarn build` chama todas essas etapas na ordem correta.
+- It is important remember that these stages have to happen in that specific order! The command `yarn build` call for all these stages in the correct order.
 
-**[voltar para o README](../README.md#Manual)**
+**[back to README](../README.md#Manual)**

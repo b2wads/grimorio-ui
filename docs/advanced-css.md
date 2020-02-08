@@ -1,8 +1,8 @@
-## Personalização
+## Customizing
 
-Para personalizar as cores do Grimório✨ é necessário importar outro CSS no seu arquivo de entrada. O arquivo `grimorio-ui-custom.min.css` possui [variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var) sem declaração, permitindo a personalização do arquivo.
+For customizing Grimório✨'s Colors it's necessary import another CSS in your entry file. The file `grimorio-ui-custom.min.css` has [CSS variables](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var) without declaration, allowing the file customization.
 
-Primeiro, crie seu arquivo de variáveis (estas são todas as variáveis disponíveis para serem reescritas):
+First of all, create your variables file (these are all variables available to be rewritten.)
 
 ```css
 /* custom-variables.css */
@@ -26,7 +26,7 @@ Primeiro, crie seu arquivo de variáveis (estas são todas as variáveis dispon�
 }
 ```
 
-Depois, importe suas variáveis e o arquivo custom do Grimório✨:
+Then, import your variables and the Grimório✨'s custom file:
 
 ```js
 // import the CSS on js
@@ -48,7 +48,7 @@ import '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/grimorio-ui-custom.mi
 }
 ```
 
-No caso de querer apenas substituir algumas variáveis, é preciso importar as variáveis padrão do Grimório✨, além das customizadas.
+In the case you want just replace some variables, it is have to import the Grimório✨'s default variables and the customizers as well.
 
 ```js
 // import the CSS on js
@@ -72,11 +72,11 @@ import '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/grimorio-ui-custom.mi
 }
 ```
 
-## Compatibilidade nos navegadores
+## Compatibility with browsers
 
-As variáveis do CSS tem cerca de [88% de aderência dos navegadores usados no Brasil](https://caniuse.com/#feat=css-variables). Por isso, é uma boa prática usar o [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) para processar as variáveis css como um pré-processador faria.
+The variables has amount of [88% of compatibility on browsers used in Brazil](https://caniuse.com/#feat=css-variables). Because that, it is a good practice use the[`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) for process the CSS variables as well as a pre-processor did.
 
-Para implementar o [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) no seu webpack, primeiro é preciso instalar o [`postcss-loader`](https://github.com/postcss/postcss-loader) e especificar este loader numa regra de CSS. Depois basta adicionar o `postcss-custom-properties` na lista de plugins e especificar os arquivos de onde serão lidas as variáveis na opção `importFrom`.
+For implement the [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) on yours webpacck, first it is needed install the [`postcss-loader`](https://github.com/postcss/postcss-loader) and specify this loader in a CSS rule. Then just add the `postcss-custom-properties` at plugins list and describe the files where will are read the variables on option `importFrom`.
 
 ```bash
 yarn add postcss-custom-properties postcss-loader -D
@@ -101,7 +101,7 @@ const postcssCustomProperties = require('postcss-custom-properties');
         options: {
           plugins: () => [
             postcssCustomProperties({
-              preserve: false, // Opção para sobrescrever as variaveis
+              preserve: false, // Option for replace the variables
               importFrom: [
                 './node_modules/@b2wads/grimorio-ui/lib/css/variables.css',
                 './path/to/your/style/custom-variables.css',
@@ -114,4 +114,3 @@ const postcssCustomProperties = require('postcss-custom-properties');
   }
 }
 ```
-

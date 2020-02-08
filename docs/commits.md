@@ -1,6 +1,6 @@
 # Commits
 
-## Prefixo
+## Prefix
 
 - feat
 - fix
@@ -10,12 +10,12 @@
 - test
 - chore
 
-## Mensagem
+## Message
 
-Usar voz imperativa, como se completasse a frase: Esse commit (faz algo);
+Use imperative voice, as if complete the phrase: This commit (do something);
 
-## Exemplo
+## Example
 
-feat Organiza items
+feat Organize items
 
-**[voltar para o README](../README.md#Manual)**
+**[back to README](../README.md#Manual)**

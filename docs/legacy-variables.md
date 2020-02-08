@@ -1,4 +1,4 @@
-# Variáveis Stylus legado de variações do Grimório
+# Legacy stylus variables of Grimório variations
 
 ## B2WADS
 ```stylus

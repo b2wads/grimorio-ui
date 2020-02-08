@@ -7,7 +7,7 @@
 </h3>
 
 <p align="center">
-  Grimório✨ é uma coleção de componentes de interface do usuário prontos para serem utilizados em projetos feitos com React ⚛️. São 40 componentes inspirados pelo <a href="https://material.io/design/">Material Design</a> com personalização através de <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties">Variáveis CSS</a>!
+  Grimório✨ is a collection of user interface components ready to use in React projects ⚛️. They are 40 components inspired by <a href="https://material.io/design/">Material Design</a> with customized through <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties">Variáveis CSS</a>!
 </p>
 
 <div align="center">
@@ -17,9 +17,9 @@
   [![GitHub contributors](https://img.shields.io/github/contributors/b2wads/grimorio-ui)](https://github.com/b2wads/grimorio-ui/graphs/contributors)  
 </div>
 
-# 📦 Instalação
+# 📦 Installing
 
-Primeiro, instale o pacote vindo do npm:
+First, install the npm package:
 
 ```bash
 yarn add @b2wads/grimorio-ui
@@ -28,7 +28,7 @@ yarn add @b2wads/grimorio-ui
 npm i @b2wads/grimorio-ui
 ```
 
-Importe o CSS do Grimório✨ no seu arquivo de entrada ou na lista de entrypoints do seu Webpack:
+Import the CSS of Grimório✨ on your enter files or entrypoints list of your Webpack.
 
 ```js
 // import the CSS on js
@@ -49,7 +49,7 @@ import '[path/to/node_modules]/@b2wads/grimorio-ui/lib/css/grimorio-ui.min.css';
 
 ```
 
-E então, é só usar!
+So that, it is just to use!
 
 ```js
 // component.js
@@ -57,10 +57,11 @@ E então, é só usar!
 import { Alert } from '@b2wads/grimorio-ui';
 ```
 
-Caso seu webpack ignore o `node_modules` na hora de gerar o build de CSS, é necessário criar uma regra para incluir o CSS do Grimório✨.
+
+In case your Webpack ignore the `node_modules` when it generates the CSS build, will be necessary create a rule for include the Grimório✨ CSS.
 
 ```js
-// exemplo de exceção no webpack 3.X.X
+// example of Webpack execution 3.X.X
 {
   test: /\.css$/,
   include: path.resolve(__dirname, '[path/to/node_modules]/@b2wads/grimorio-ui/css/grimorio-ui.min.css'),
@@ -68,52 +69,56 @@ Caso seu webpack ignore o `node_modules` na hora de gerar o build de CSS, é nec
 },
 ```
 
-### 💅 Personalização
+### 💅 Customizing
 
-Caso seja necessário mudar as cores principais do Grimório✨ é possível através de [variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var). Veja o [guia de personalização](./docs/advanced-css.md)
- para entender como.
+If it is necessary change the Grimório✨ main colors, you can do that just using [CSS variables](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var). See the [customizing guide](./docs/advanced-css.md)
+ for understanding more.
 
-### 🕰 Migração de versões antigas
-Para migrar vindo do Grimório✨ 6.X ou anterior para a versão mais atual, é necessário mudar o path de importação do CSS. Isso também vale para todas as variações `grimorio-ui-[version].afiliados.tgz` do Grimório✨.
+### 🕰 Old versions migration
+For migrate from Grimório✨ 6.X or later to the latest version, it is necessary change the CSS import path. This also count for all variations `grimorio-ui-[version].afiliados.tgz` of Grimório✨.
 
 ```js
-// ❌ Antigo CSS
+// ❌ Old CSS
 import '[path/to/node_modules]/@b2wads/grimorio-ui/grimorio-ui.min.css';
 
-// ✔️ Novo CSS
+// ✔️ New CSS
 import '[path/to/node_modules]/@b2wads/grimorio-ui/css/grimorio-ui.min.css';
 
 ```
-Já no caso da migração vir de outras variações do Grimório✨ (`grimorio-ui-[version].b2wads.tgz` ou `grimorio-ui-[version].sieve.tgz`), será necessário seguir o [guia de personalização](./docs/advanced-css.md), usando as [variáveis legado](./docs/legacy-variables.md) relativas a cada variante.
+In the case of migration occurs from others variations of Grimório✨ (`grimorio-ui-[version].b2wads.tgz` or `grimorio-ui-[version].sieve.tgz`), will be necessary follow the [customizing guide](./docs/advanced-css.md), using [legacy variables](./docs/legacy-variables.md) relative to each variant.
 
 
-# 🕹 Desenvolvimento
+# 🕹 Development
 
-Antes de começar a contribuir com o Grimório✨, leia nosso [guia de contribuição](./CONTRIBUTING.md).
+Before start to contribute on Grimório✨, read our [contribution guide](./CONTRIBUTING.md).
 
-### 📘 Visualização com Storybook
+### 📘 Storybook Usage
 
-Para visualizar e interagir com os componentes do Grimório✨, basta rodar localmente o `storybook`.
+To view and interact with components of Grimório✨, just run localy the `storybook`.
 
 ```bash
 yarn storybook
 ```
 
-### ⛏️ Build e Pack
-Para chamar a build e gerar o pacote, o comando é:
+### ⛏️ Build and Pack
+
+To call the build process and generate the package, the command is:
 
 ```bash
 yarn pack:dist
 ```
 
-### 📋 Copiar
-Remove o pacote antigo do repositório `APP` e copia o novo
+### 📋 Copy
+
+Remove the old package from repository `APP` and copy the new one 
 
 ```bash
 APP=[path/to/app]/your-webapp yarn cp:pack
 ```
 
-### 🧪 Rodando testes
+### 🧪 Runnigng the tests
+
+Without secrets here, just run:
 
 ```bash
 yarn test
@@ -121,20 +126,19 @@ yarn test
 
 ### 💻 CLI
 
-Temos um script sh que fica encarregado por criar a estrutura de arquivos e pastas dos componentes.
+We have a sh script that going to create the files and folders structure of components. 
 
 ```sh
-yarn create:comp nome-do-componente
+yarn create:comp component-name
 ```
 
-Esse comando será capaz de criar as pastas e arquivos corretamente para iniciar o desenvolvimento de um componente.
+This command is capable to create the files and folders correctly for you. 
 
 ### 📜 Docs
 
 - [Git Flow](./docs/git-flow.md)
 - [Commits](./docs/commits.md)
 - [CSS (code style)](./docs/css-code-style.md)
-- [Processo de Build](./docs/processo-de-build.md)
-- [Links Úteis](./docs/links-uteis.md)
+- [Build Process](./docs/processo-de-build.md)
+- [Useful Links](./docs/links-uteis.md)
 - [NPM](./docs/publish-to-npm.md)
-

@@ -1,23 +1,23 @@
-# Publicar no NPM
+# Publish on NPM
 
-Para quem faz parte da organização @b2wads, é possível fazer a publicação de uma nova versão no npm. Para fazer isso é preciso seguir os seguintes passos:
+For who want make part of the organization @b2wads, it is possible make the publish of a new version on NPM. For to do that is need follow the following steps:
 
-* `git checkout [branch]` | Fazer o checkout na branch desejada. É importante lembrar que a versão no package.json precisa estar atualizada.
-* `npm login` | Fazer o login com sua conta pertencente ao @b2wads;
-* `yarn pack:dist` | Para gerar o pacote novo;
-* `npm publish [--tag nome-da-tag]` | Publicar no npm passado tags (rc, beta, etc), se for necessário.
+* `git checkout [branch]` | To do checkout on wished branch. It is important remember that the package.json version needs to be updated.
+* `npm login` | Make login with your account belonging at @b2wads;
+* `yarn pack:dist` | To generates the new package;
+* `npm publish [--tag tag-name]` | Publish on NPM passing the tags (e.g. rc, beta, etc) if will necessary.
 
-Depois disso, a nova versão estará disponível no npm!
+After that, the new version will be available on NPM!
 
 # NPM Tags
 
-Para publicar uma versão de homologação que usa uma branch que não é a master, usamos o seguinte padrão:
+For publish a homologation version that use a branch that not is the master branch, we use the following pattern: 
 
-| Branch        | Descrição                                                             | NPM Tag   |
+| Branch        | Description                                                             | NPM Tag   |
 |---------------|-----------------------------------------------------------------------|-----------|
-| Master        | Releases finais/estáveis                                | n/a       |
-| release/X.X.X | Seleção de commits da develop, criando uma nova versão | rc        |
-| Develop       | Junção das features que foram consideradas terminadas              | beta      |
-| feature/name  | Feature sendo desenvolvida                              | feat-name |
+| Master        | Final Releases /stables                                | n/a       |
+| release/X.X.X | Selections of develop's commits, creating a new version | rc        |
+| Develop       | Join of features that was considered finished              | beta      |
+| feature/name  | Feature being developed                              | feat-name |
 
-**[voltar para o README](../README.md#Manual)**
+**[back to README](../README.md#Manual)**
