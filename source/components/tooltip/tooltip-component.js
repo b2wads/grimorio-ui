@@ -31,11 +31,9 @@ class Tooltip extends PureComponent {
       width,
     };
 
-    const customSizeIcon = size;
-
     return (
       <span {...elementProps} className={finalClass}>
-        {children ? children : <Icon name={icon} size={size ? customSizeIcon : 19} />}
+        {children ? children : <Icon name={icon} size={size || 19} />}
         <span style={customStyle} className={classNames(styles.dialog, { [styles[position]]: position })}>
           {message}
         </span>

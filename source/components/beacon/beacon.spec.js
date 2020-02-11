@@ -8,9 +8,9 @@ describe('Beacon component', () => {
   describe('#render', () => {
     it('render correctly', () => {
       const wrapper = shallow(
-        <Beacon />
+        <Beacon className="minhaClasse"/>
       );
-      expect(wrapper.length).toEqual(1);
+      expect(wrapper.debug()).toMatchSnapshot();
     });
   });
 });
