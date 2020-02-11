@@ -4,13 +4,29 @@ import Toggle from './toggle-component';
 
 /** @test {Toggle} */
 describe('Toggle component', () => {
-/** @test {Toggle#render} */
-  describe('#render', () => {
-    it('render correctly', () => {
-      const wrapper = shallow(
-        <Toggle />
-      );
-      expect(wrapper.length).toEqual(1);
-    });
+  let wrapper
+  const props = {
+    id: 123,
+     checked: true,
+     onChange: jest.fn(),
+     value: 'value',
+     disabled: true,
+     className: 'minhaClasse',
+  }
+
+  beforeAll(() => {
+    wrapper = shallow(
+      <Toggle {...props} />
+    );
+  })
+
+  it('render correctly with props values', () => {
+    expect(wrapper.html()).toMatchSnapshot();
   });
+
+  it('onChange should call onChange props', () => {
+    jest.spyOn(props, 'onChange')
+    wrapper.find('input').simulate('change')
+    expect(props.onChange).toHaveBeenCalled()
+  })
 });

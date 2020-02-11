@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip component should render with default props 1`] = `
+"<span className=\\"wrapper\\">
+  <Icon name=\\"info\\" size={19} align=\\"middle\\" />
+  <span style={{...}} className=\\"dialog top\\">
+    hello
+  </span>
+</span>"
+`;
