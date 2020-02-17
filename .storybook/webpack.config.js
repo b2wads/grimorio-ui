@@ -1,4 +1,6 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var glob = require("glob");
 
 const webpackConfigRules = [// rules for modules (configure loaders, parser options, etc.)
   // JS LOADER
@@ -12,10 +14,12 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
   // STYLUS LOADER
   {
     test: /\.styl$/,
+    sideEffects: true,
     exclude : /(node_modules)/,
     include: [path.resolve(__dirname, './'), path.resolve(__dirname, '../source/components')],
     use: [
-      'style-loader',
+      MiniCssExtractPlugin.loader,
+      // 'style-loader',
       {
         loader: 'css-loader',
         options: {
@@ -38,11 +42,13 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
   },
   {
     test: /\.styl$/,
+    sideEffects: true,
     exclude : /(node_modules)/,
     include: [path.resolve(__dirname, '../source')],
     exclude: [path.resolve(__dirname, '../source/components')],
     use: [
-      'style-loader',
+      MiniCssExtractPlugin.loader,
+      // 'style-loader',
       'css-loader',
       {
         loader: 'stylus-loader',
@@ -55,9 +61,11 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
   // CSS LOADER
   {
     test: /\.css$/,
+    sideEffects: true,
     include: [path.resolve(__dirname, `../node_modules/react-dates/lib`)],
     use: [
-      'style-loader',
+      MiniCssExtractPlugin.loader,
+      // 'style-loader',
       'css-loader',
       // {
       //   loader: 'postcss-loader',
@@ -67,15 +75,20 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
       //   },
       // },
     ]
+    // path.resolve(__dirname, `../lib/css`)
   },
   // IMG LOADER
   {
     test: /\.(jpe?g|jpg|gif|ico|png|woff|woff2|eot|ttf)$/,
+    sideEffects: true,
     include: path.resolve(__dirname, '../source/'),
     exclude: /(node_modules)/,
-    use: {
-      loader: 'file-loader'
-    }
+    use: [
+      MiniCssExtractPlugin.loader,
+      {
+        loader: 'file-loader'
+      }
+    ]
   },
   // SVG LOADER
   {
@@ -100,6 +113,17 @@ module.exports = async ({ config, mode }) => {
   // Make whatever fine-grained changes you need
   config.module.rules = (config.module.rules || []).concat(webpackConfigRules);
 
+  config.plugins = (config.plugins || []).concat([new MiniCssExtractPlugin({
+    filename: '[name].[hash].css',
+  })]);
+
+  console.log('ssssssssssssssssssssssssssssssss',config.entry );
+
+  config.entry = {
+    storybook: config.entry,
+    // components: path.resolve(__dirname, '../lib/css/grimorio-ui.min.css')
+    components: glob.sync('./source/components/**/*.styl')
+  };
   // Return the altered config
   return config;
 };

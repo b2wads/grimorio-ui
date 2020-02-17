@@ -32,7 +32,8 @@
     "test:verb": "./node_modules/.bin/cross-env NODE_ENV=testing BABEL_ENV=testing jest --verbose",
     "test:tdd": "yarn test -- --watch",
     "test:coverage": "yarn test -- --coverage --coverageDirectory=coverage",
-    "create:comp": "bash ./helpers/component/create.sh ./source/components"
+    "create:comp": "bash ./helpers/component/create.sh ./source/components",
+    "build-storybook": "build-storybook -c .storybook -o .out"
   },
   "engines": {
     "node": ">=8.10.0",
@@ -86,6 +87,7 @@
     "jest": "25.1.0",
     "jest-css-modules-transform": "1.0.5",
     "jsdom": "9.12.0",
+    "mini-css-extract-plugin": "0.7.0",
     "npm-run-all": "4.1.5",
     "postcss-brunch": "2.10.1",
     "postcss-cli": "6.1.3",
