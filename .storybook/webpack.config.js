@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var glob = require("glob");
+const glob = require("glob");
 
 const webpackConfigRules = mode => [// rules for modules (configure loaders, parser options, etc.)
   // JS LOADER
@@ -113,7 +113,7 @@ module.exports = async ({ config, mode }) => {
   config.module.rules = (config.module.rules || []).concat(rules);
 
   config.plugins = (config.plugins || []).concat([new MiniCssExtractPlugin({
-    filename: '[name].[hash].css',
+    filename: '[name].css',
   })]);
 
   config.entry = {
