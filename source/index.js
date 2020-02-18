@@ -44,7 +44,7 @@ import TabMenu, { Tab } from './components/tab';
 import Tag from './components/tag';
 import Toggle from './components/toggle';
 import Tooltip from './components/tooltip';
-import ToggleButton from './components/toggle-button'
+import ToggleButton from './components/toggle-button';
 import TooltipSticky from './components/tooltip-sticky';
 // HELPERS
 import { fieldsValidation } from './helpers/validation';
