@@ -33,7 +33,7 @@
     "test:tdd": "yarn test -- --watch",
     "test:coverage": "yarn test -- --coverage --coverageDirectory=coverage",
     "create:comp": "bash ./helpers/component/create.sh ./source/components",
-    "build-storybook": "build-storybook -c .storybook -o .out"
+    "build-storybook": "build-storybook -c .storybook -o docs"
   },
   "engines": {
     "node": ">=8.10.0",

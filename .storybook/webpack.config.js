@@ -2,7 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var glob = require("glob");
 
-const webpackConfigRules = [// rules for modules (configure loaders, parser options, etc.)
+const webpackConfigRules = mode => [// rules for modules (configure loaders, parser options, etc.)
   // JS LOADER
   {
     test: /\.js$/,
@@ -18,8 +18,7 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
     exclude : /(node_modules)/,
     include: [path.resolve(__dirname, './'), path.resolve(__dirname, '../source/components')],
     use: [
-      MiniCssExtractPlugin.loader,
-      // 'style-loader',
+      mode === 'PRODUCTION' ? MiniCssExtractPlugin.loader : 'style-loader',
       {
         loader: 'css-loader',
         options: {
@@ -47,8 +46,7 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
     include: [path.resolve(__dirname, '../source')],
     exclude: [path.resolve(__dirname, '../source/components')],
     use: [
-      MiniCssExtractPlugin.loader,
-      // 'style-loader',
+      mode === 'PRODUCTION' ? MiniCssExtractPlugin.loader : 'style-loader',
       'css-loader',
       {
         loader: 'stylus-loader',
@@ -64,8 +62,7 @@ const webpackConfigRules = [// rules for modules (configure loaders, parser opti
     sideEffects: true,
     include: [path.resolve(__dirname, `../node_modules/react-dates/lib`)],
     use: [
-      MiniCssExtractPlugin.loader,
-      // 'style-loader',
+      mode === 'PRODUCTION' ? MiniCssExtractPlugin.loader : 'style-loader',
       'css-loader',
       // {
       //   loader: 'postcss-loader',
@@ -111,19 +108,20 @@ module.exports = async ({ config, mode }) => {
   // 'PRODUCTION' is used when building the static version of storybook.
 
   // Make whatever fine-grained changes you need
-  config.module.rules = (config.module.rules || []).concat(webpackConfigRules);
+  const rules = webpackConfigRules(mode);
+
+  config.module.rules = (config.module.rules || []).concat(rules);
 
   config.plugins = (config.plugins || []).concat([new MiniCssExtractPlugin({
     filename: '[name].[hash].css',
   })]);
 
-  console.log('ssssssssssssssssssssssssssssssss',config.entry );
-
   config.entry = {
     storybook: config.entry,
-    // components: path.resolve(__dirname, '../lib/css/grimorio-ui.min.css')
-    components: glob.sync('./source/components/**/*.styl')
+    components: glob.sync('./source/components/**/*.styl'),
+    page: path.resolve(__dirname, './storybook.styl'),
   };
+
   // Return the altered config
   return config;
 };
