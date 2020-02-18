@@ -70,7 +70,7 @@ Caso seu webpack ignore o `node_modules` na hora de gerar o build de CSS, é nec
 
 ### 💅 Personalização
 
-Caso seja necessário mudar as cores principais do Grimório✨ é possível através de [variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var). Veja o [guia de personalização](./docs/advanced-css.md)
+Caso seja necessário mudar as cores principais do Grimório✨ é possível através de [variáveis CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/var). Veja o [guia de personalização](./docs-src/advanced-css.md)
  para entender como.
 
 ### 🕰 Migração de versões antigas
@@ -84,7 +84,7 @@ import '[path/to/node_modules]/@b2wads/grimorio-ui/grimorio-ui.min.css';
 import '[path/to/node_modules]/@b2wads/grimorio-ui/css/grimorio-ui.min.css';
 
 ```
-Já no caso da migração vir de outras variações do Grimório✨ (`grimorio-ui-[version].b2wads.tgz` ou `grimorio-ui-[version].sieve.tgz`), será necessário seguir o [guia de personalização](./docs/advanced-css.md), usando as [variáveis legado](./docs/legacy-variables.md) relativas a cada variante.
+Já no caso da migração vir de outras variações do Grimório✨ (`grimorio-ui-[version].b2wads.tgz` ou `grimorio-ui-[version].sieve.tgz`), será necessário seguir o [guia de personalização](./docs-src/advanced-css.md), usando as [variáveis legado](./docs-src/legacy-variables.md) relativas a cada variante.
 
 
 # 🕹 Desenvolvimento
@@ -131,10 +131,10 @@ Esse comando será capaz de criar as pastas e arquivos corretamente para iniciar
 
 ### 📜 Docs
 
-- [Git Flow](./docs/git-flow.md)
-- [Commits](./docs/commits.md)
-- [CSS (code style)](./docs/css-code-style.md)
-- [Processo de Build](./docs/processo-de-build.md)
-- [Links Úteis](./docs/links-uteis.md)
-- [NPM](./docs/publish-to-npm.md)
+- [Git Flow](./docs-src/git-flow.md)
+- [Commits](./docs-src/commits.md)
+- [CSS (code style)](./docs-src/css-code-style.md)
+- [Processo de Build](./docs-src/processo-de-build.md)
+- [Links Úteis](./docs-src/links-uteis.md)
+- [NPM](./docs-src/publish-to-npm.md)
 
