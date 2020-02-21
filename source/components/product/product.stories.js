@@ -80,7 +80,9 @@ stories.add('Default', () => (
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Product style={pannelSize} onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Cupom', exampleCupom)} />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Product style={pannelSize} onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Categoria', exampleCat)} />
+    <Panel style={pannelSize}>
+      <Product onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Categoria', exampleCat)} />
+    </Panel>
   </div>
 ));
 

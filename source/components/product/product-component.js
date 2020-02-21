@@ -65,7 +65,8 @@ class Product extends PureComponent {
   }
 
   renderInfo() {
-    const { info } = this.props.data;
+    const { data, copyValue } = this.props;
+    const { info, link } = data;
 
     if (!info) {
       return null;
@@ -73,7 +74,9 @@ class Product extends PureComponent {
 
     return (
       <div className={cx(styles.info, { [styles.isBig]: info.value && info.value.length > 11 })}>
-        {typeof info.value === 'number' ? moneyFormat(info.value) : info.value}
+        <a target="_blank" href={copyValue || link}>
+          {typeof info.value === 'number' ? moneyFormat(info.value) : info.value}
+        </a>
         {info.rules &&
           <Tooltip className={styles.rules} width="220px" message={info.rules}>
             <span className={styles.rulesIcon}>?</span>
@@ -178,7 +181,9 @@ class Product extends PureComponent {
         <div className={styles.footer}>
           {expires &&
             <div className={styles.expires}>
-              {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
+              <a target="_blank" href={copyValue || link}>
+                {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
+              </a>
             </div>}
 
           <div className={styles.social}>
