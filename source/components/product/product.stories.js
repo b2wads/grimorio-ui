@@ -10,7 +10,7 @@ const stories = storiesOf('Product', module);
 
 stories.addDecorator(withKnobs);
 
-const pannelSize = { width: '300px', marginRight: '50px' };
+const pannelSize = { width: '235px', marginRight: '50px' };
 
 const exampleProduct = {
   img: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',

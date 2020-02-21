@@ -123,7 +123,6 @@ class Product extends PureComponent {
     const { generateLoading, onGenerate } = this.props;
     return (
       <Button
-        size="small"
         className={styles.copy}
         onClick={onGenerate}
         loading={generateLoading}
@@ -140,12 +139,7 @@ class Product extends PureComponent {
     const { btnText } = this.props;
     const { linkCopied } = this.state;
     return (
-      <Button
-        size="small"
-        className={styles.copy}
-        onClick={this.handleCopy}
-        iconRight={linkCopied ? 'check' : 'insert_link'}
-      >
+      <Button className={styles.copy} onClick={this.handleCopy} iconRight={linkCopied ? 'check' : 'insert_link'}>
         {linkCopied && 'Copiado!'}
         {!linkCopied && btnText}
       </Button>
