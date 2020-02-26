@@ -26,6 +26,7 @@ class Product extends PureComponent {
 
   static propTypes = {
     type: PropTypes.oneOf(['default', 'card']),
+    brand: PropTypes.oneOf(['acom', 'suba', 'shop', 'soub']),
     btnText: PropTypes.string,
     onCopy: PropTypes.func,
     onGenerate: PropTypes.func,
@@ -92,16 +93,19 @@ class Product extends PureComponent {
       return null;
     }
 
-    return tags.map(tag => {
+    const tagMapGen = tag => {
       const key = `${tag.type}-${tag.value}`;
-      switch (tag.type) {
-        case 'brand':
-          return <Svg key={key} width={48} height={48} src={`logo/${tag.value}`} />;
-        case 'highlight':
-          return tag.value && <Svg key={key} className={styles.tagHighlight} width={32} height={32} src="flame" />;
-        default:
-          return '';
-      }
+
+      return {
+        brand: <Svg key={key} width={48} height={48} src={`logo/${tag.value}`} />,
+        highlight: tag.value && <Svg key={key} className={styles.tagHighlight} width={32} height={32} src="flame" />,
+        default: '',
+      };
+    };
+
+    return tags.map(tag => {
+      const tagMap = tagMapGen(tag);
+      return tagMap[tag.type] || tagMap.default;
     });
   }
 
