@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumb component #render when list length is bigger than one 1`] = `"<div class=\\"list\\" path=\\"department/my-amazing-category\\"><div class=\\"itemWrap\\"><i style=\\"vertical-align:unset;font-size:16px\\" class=\\"material-icons icon iconHome\\" align=\\"unset\\">home</i><span class=\\"item\\">department</span><i style=\\"vertical-align:middle;font-size:17px\\" class=\\"material-icons icon icon\\" align=\\"middle\\">keyboard_arrow_right</i></div><div class=\\"itemCurrent\\"><span>my amazing category</span></div></div>"`;
+
+exports[`Breadcrumb component #render when list length is equal one 1`] = `"<div class=\\"list\\" path=\\"department\\"><div class=\\"itemWrap\\"><i style=\\"vertical-align:unset;font-size:16px\\" class=\\"material-icons icon iconHome\\" align=\\"unset\\">home</i><span class=\\"itemCurrent\\">department</span></div></div>"`;
