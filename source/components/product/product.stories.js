@@ -10,7 +10,7 @@ const stories = storiesOf('Product', module);
 
 stories.addDecorator(withKnobs);
 
-const pannelSize = { width: '300px' };
+const pannelSize = { width: '235px', marginRight: '50px' };
 
 const exampleProduct = {
   img: 'https://images-americanas.b2w.io/produtos/01/00/sku/33446/6/33446652_4GG.jpg',
@@ -76,13 +76,9 @@ const exampleCategoryCard = {...exampleCat, tags: [{type: 'highlight', value: tr
 
 stories.add('Default', () => (
   <div style={{ display: 'flex' }}>
-    <Panel style={pannelSize}>
-      <Product data={object('Product', exampleProduct)} />
-    </Panel>
+    <Product style={pannelSize} data={object('Product', exampleProduct)} />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <Panel style={pannelSize}>
-      <Product onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Cupom', exampleCupom)} />
-    </Panel>
+    <Product style={pannelSize} onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Cupom', exampleCupom)} />
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel style={pannelSize}>
       <Product onCopy={link => `TESTE=${link}`} btnText="Pegar Cupom" data={object('Categoria', exampleCat)} />
@@ -115,23 +111,21 @@ stories.add('Functional', withState({ loading: false, data: null, stage: 'genera
 
   return (
     <div style={{ display: 'flex' }}>
-      <Panel style={pannelSize}>
-        <Product
+      <Product
+          style={pannelSize}
           data={object('Product', exampleProduct)}
           generateLoading={store.state.loading}
           onGenerate={data => generateLink(data)}
           copyValue={store.state.data}
           stage={store.state.stage}
-        />
-      </Panel>
+      />
 
-      <Panel style={pannelSize}>
-        <Product
-          data={object('Product', exampleProduct)}
-          generateLoading={false}
-          onGenerate={data => console.log(data)}
-        />
-      </Panel>
+      <Product
+        data={object('Product', exampleProduct)}
+        generateLoading={false}
+        onGenerate={data => console.log(data)}
+        style={pannelSize}
+      />
     </div>
   )
 }));

@@ -78,10 +78,10 @@ class Button extends PureComponent {
 
     return (
       <button {...elementProps} type={type} className={fullClassName} onClick={onClick} disabled={loading || disabled}>
-        {iconLeft && <Icon className={styles.iconLeft} size={18} name={iconLeft} />}
+        {iconLeft && <Icon className={styles.iconLeft} size={15} name={iconLeft} />}
         {children}
         {loading && <Loader className={styles.btnLoad} size="15px" color={this.getLoaderColor()} />}
-        {iconRight && <Icon className={styles.iconRight} size={18} name={iconRight} />}
+        {iconRight && <Icon className={styles.iconRight} size={15} name={iconRight} />}
       </button>
     );
   }
