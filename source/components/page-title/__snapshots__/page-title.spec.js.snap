@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageTitle component #render render default 1`] = `"<article open=\\"\\" class=\\"default shadow\\"><div class=\\"content titleWrap small\\"><h1 class=\\"title\\">título do header</h1></div></article>"`;
+
+exports[`PageTitle component #render render with side content 1`] = `"<article open=\\"\\" class=\\"default shadow\\"><div class=\\"content titleWrap small\\"><h1 class=\\"title\\">título do header</h1><div><div>Elemento da lateral</div></div></div></article>"`;
