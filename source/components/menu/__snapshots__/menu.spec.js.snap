@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Menu component #render render with children 1`] = `"<ul class=\\"menu default\\"><div>render com filho</div></ul>"`;
+exports[`Menu component #render render with children 1`] = `
+"<ul className=\\"menu default\\">
+  <div>
+    render com filho
+  </div>
+</ul>"
+`;
 
-exports[`Menu component #render render with items 1`] = `"<ul class=\\"menu teste accordionMenu dark\\"><li title=\\"\\" class=\\"menuItem\\"><i style=\\"vertical-align:middle;font-size:16px\\" class=\\"material-icons icon iconLeft\\" align=\\"middle\\">dashboard</i>Dashboard<ul class=\\"menu default\\"><li title=\\"\\" class=\\"menuItem\\">Default</li><li title=\\"\\" class=\\"menuItem\\">eCommerce</li><li title=\\"\\" class=\\"menuItem\\">News Portal</li></ul></li><li title=\\"\\" class=\\"menuItem\\"><i style=\\"vertical-align:middle;font-size:16px\\" class=\\"material-icons icon iconLeft\\" align=\\"middle\\">insert_chart</i>Charts<ul class=\\"menu default\\"><li title=\\"\\" class=\\"menuItem\\">Test</li></ul></li></ul>"`;
+exports[`Menu component #render render with items 1`] = `
+"<ul className=\\"menu teste accordionMenu dark\\">
+  <MenuItem icon=\\"dashboard\\" content=\\"Dashboard\\" link={[undefined]} items={{...}} active={[undefined]} />
+  <MenuItem icon=\\"insert_chart\\" content=\\"Charts\\" link={[undefined]} items={{...}} active={[undefined]} />
+</ul>"
+`;

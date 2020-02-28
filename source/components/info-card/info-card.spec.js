@@ -40,7 +40,7 @@ describe('InfoCard component', () => {
         errorMessage: 'mensagem de erro',
         errorBtnText: 'botão do erro'
       })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     })
 
     it('should call onErrorClick when click on button error', () => {
@@ -52,11 +52,11 @@ describe('InfoCard component', () => {
 
     it('should render card type money', () => {
       wrapper.setProps({ ...emptyProps, type: 'money', value: 20 })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('should render card with tagline', () => {
       wrapper.setProps({ ...emptyProps, tagline: 'fevereiro' })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 });

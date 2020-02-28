@@ -29,13 +29,13 @@ describe('Breadcrumb component', () => {
     it('when list length is bigger than one', () => {
       const path = 'department/my-amazing-category'
       wrapper.setProps({ ...emptyProps, home: false, path })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     })
 
     it('when list length is equal one', () => {
       const path = 'department'
       wrapper.setProps({ ...emptyProps, home: false, path })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     })
   });
 

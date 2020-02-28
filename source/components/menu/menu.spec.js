@@ -45,12 +45,12 @@ describe('Menu component', () => {
   describe('#render', () => {
     it('render with children', () => {
       wrapper.setProps({...emptyProps, children: <div>render com filho</div>})
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('render with items', () => {
       wrapper.setProps({...emptyProps, items, type: 'accordionMenu', theme: 'dark', className: 'teste'})
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
   });
 });

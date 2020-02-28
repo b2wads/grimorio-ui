@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toggle component render correctly with props values 1`] = `"<label for=\\"123\\" class=\\"wrap isDisabled minhaClasse\\"><input type=\\"checkbox\\" value=\\"value\\" checked=\\"\\" id=\\"123\\" class=\\"input\\" role=\\"switch\\" disabled=\\"\\"/><span class=\\"knob\\"></span><span class=\\"track\\"></span></label>"`;
+exports[`Toggle component render correctly with props values 1`] = `
+"<label htmlFor={123} className=\\"wrap isDisabled minhaClasse\\">
+  <input value=\\"value\\" checked={true} onChange={[Function: mockConstructor]} type=\\"checkbox\\" id={123} className=\\"input\\" role=\\"switch\\" disabled={true} />
+  <span className=\\"knob\\" />
+  <span className=\\"track\\" />
+</label>"
+`;

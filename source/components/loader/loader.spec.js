@@ -15,7 +15,7 @@ describe('Loader component', () => {
           size='18'
         />
       );
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
   });
 });

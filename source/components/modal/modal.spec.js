@@ -32,7 +32,7 @@ describe('Modal component', () => {
   describe('#render', () => {
     it('should render modal with children', () => {
       wrapper.setProps({ ...emptyProps, children: <div>teste com filho</div> })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     describe('render success modal', () => {
@@ -46,7 +46,7 @@ describe('Modal component', () => {
       })
       
       it('should render right', () => {
-        expect(wrapper.html()).toMatchSnapshot();
+        expect(wrapper.debug()).toMatchSnapshot();
       })
 
       it('when receives showButton props, button should call function onClose onClick', () => {
@@ -72,7 +72,7 @@ describe('Modal component', () => {
       })
       
       it('should render right', () => {
-        expect(wrapper.html()).toMatchSnapshot();
+        expect(wrapper.debug()).toMatchSnapshot();
       })
 
       it('when receives showButton props, button should call function onClose onClick', () => {
@@ -98,7 +98,7 @@ describe('Modal component', () => {
       })
       
       it('should render right', () => {
-        expect(wrapper.html()).toMatchSnapshot();
+        expect(wrapper.debug()).toMatchSnapshot();
       })
 
       it('should call function onClose onClick button close', () => {

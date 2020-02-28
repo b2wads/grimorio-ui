@@ -19,12 +19,12 @@ describe('PageTitle component', () => {
 
   describe('#render', () => {
     it('render default', () => {
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('render with side content', () => {
       wrapper.setProps({...emptyProps, sideComponent: <div>Elemento da lateral</div>})
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     })
   });
 });

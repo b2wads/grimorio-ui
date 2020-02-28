@@ -1,9 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header component render desktop version with items 1`] = `"<header class=\\"header\\" items=\\"[object Object],[object Object]\\"><button type=\\"button\\" class=\\"headerUser clean inverted small\\"><div class=\\"selectWrap\\" value=\\"false\\"><span class=\\"button\\"><i style=\\"vertical-align:middle;font-size:18px\\" class=\\"material-icons icon iconLeft\\" align=\\"middle\\">person</i><i style=\\"vertical-align:middle;font-size:20px\\" class=\\"material-icons icon iconRight\\" align=\\"middle\\">arrow_drop_down</i></span><ul style=\\"height:auto\\" class=\\"menu isUnder\\"><li class=\\"option\\"><i style=\\"vertical-align:middle;font-size:18px\\" class=\\"material-icons icon optionIcon\\" align=\\"middle\\">home</i><span class=\\"optionContent\\">Opção 3</span></li><li class=\\"option\\"><i style=\\"vertical-align:middle;font-size:18px\\" class=\\"material-icons icon optionIcon\\" align=\\"middle\\">person</i><span class=\\"optionContent\\">Opção 4</span></li></ul></div></button><button type=\\"button\\" class=\\"headerLogout clean inverted small\\">Logout<i style=\\"vertical-align:middle;font-size:18px\\" class=\\"material-icons icon iconRight\\" align=\\"middle\\">exit_to_app</i></button></header>"`;
+exports[`Header component render desktop version with items 1`] = `
+"<header className=\\"header\\" items={{...}} onLogout={[undefined]}>
+  <Symbol(react.fragment)>
+    <Button className=\\"headerUser\\" color=\\"clean\\" modifier=\\"inverted\\" size=\\"small\\" disabled={false} type=\\"button\\" active={false}>
+      <Select type=\\"menu\\" position=\\"under\\" menuButton={{...}} onSelect={[undefined]} items={{...}} open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} sortItems={true} isMobile={false} />
+    </Button>
+    <Button className=\\"headerLogout\\" color=\\"clean\\" modifier=\\"inverted\\" size=\\"small\\" onClick={[undefined]} disabled={false} type=\\"button\\" active={false}>
+      Logout
+      <Icon className=\\"iconRight\\" size=\\"18\\" name=\\"exit_to_app\\" align=\\"middle\\" />
+    </Button>
+  </Symbol(react.fragment)>
+</header>"
+`;
 
-exports[`Header component render desktop version without items 1`] = `"<header class=\\"header\\"><button type=\\"button\\" class=\\"headerUser clean inverted small\\"><span> <i style=\\"vertical-align:middle;font-size:18px\\" class=\\"material-icons icon iconLeft\\" align=\\"middle\\">person</i>  </span></button><button type=\\"button\\" class=\\"headerLogout clean inverted small\\">Logout<i style=\\"vertical-align:middle;font-size:18px\\" class=\\"material-icons icon iconRight\\" align=\\"middle\\">exit_to_app</i></button></header>"`;
+exports[`Header component render desktop version without items 1`] = `
+"<header className=\\"header\\" items={[undefined]} onLogout={[undefined]}>
+  <Symbol(react.fragment)>
+    <Button className=\\"headerUser\\" color=\\"clean\\" modifier=\\"inverted\\" size=\\"small\\" disabled={false} type=\\"button\\" active={false}>
+      <span>
+         
+        <Icon className=\\"iconLeft\\" name=\\"person\\" size=\\"18\\" align=\\"middle\\" />
+         
+         
+      </span>
+    </Button>
+    <Button className=\\"headerLogout\\" color=\\"clean\\" modifier=\\"inverted\\" size=\\"small\\" onClick={[undefined]} disabled={false} type=\\"button\\" active={false}>
+      Logout
+      <Icon className=\\"iconRight\\" size=\\"18\\" name=\\"exit_to_app\\" align=\\"middle\\" />
+    </Button>
+  </Symbol(react.fragment)>
+</header>"
+`;
 
-exports[`Header component render mobile version 1`] = `"<header class=\\"header isMobile\\"><div class=\\"logo\\"></div><button type=\\"button\\" class=\\"headerLogout isMobile clean inverted small\\"><i style=\\"vertical-align:middle;font-size:18px\\" class=\\"material-icons icon iconRight\\" align=\\"middle\\">exit_to_app</i></button></header>"`;
+exports[`Header component render mobile version 1`] = `
+"<header className=\\"header isMobile\\" items={[undefined]} onLogout={[undefined]}>
+  <Symbol(react.fragment)>
+    <div className=\\"logo\\" onClick={[undefined]} />
+    <Button className=\\"headerLogout isMobile\\" color=\\"clean\\" modifier=\\"inverted\\" size=\\"small\\" onClick={[undefined]} disabled={false} type=\\"button\\" active={false}>
+      <Icon className=\\"iconRight\\" size=\\"18\\" name=\\"exit_to_app\\" align=\\"middle\\" />
+    </Button>
+  </Symbol(react.fragment)>
+</header>"
+`;
 
-exports[`Header component render with children 1`] = `"<header class=\\"header\\"><div>teste com filho</div></header>"`;
+exports[`Header component render with children 1`] = `
+"<header className=\\"header\\" items={[undefined]} onLogout={[undefined]}>
+  <div>
+    teste com filho
+  </div>
+</header>"
+`;

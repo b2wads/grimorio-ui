@@ -37,22 +37,22 @@ describe('Header component', () => {
   describe('render', () => {
     it('with children', () => {
       wrapper.setProps({ ...emptyProps, children: <div>teste com filho</div> })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('desktop version with items', () => {
       wrapper.setProps({ ...emptyProps, isMobile: false, items })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('desktop version without items', () => {
       wrapper.setProps({ ...emptyProps, isMobile: false })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('mobile version', () => {
       wrapper.setProps({ ...emptyProps, isMobile: true })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
   });
 

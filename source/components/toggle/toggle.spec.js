@@ -21,7 +21,7 @@ describe('Toggle component', () => {
   })
 
   it('render correctly with props values', () => {
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper.debug()).toMatchSnapshot();
   });
 
   it('onChange should call onChange props', () => {

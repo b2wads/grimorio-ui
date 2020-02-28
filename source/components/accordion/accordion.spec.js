@@ -30,18 +30,18 @@ describe('Accordion component', () => {
     it('with children', () => {
       wrapper.setProps({ ...emptyProps, children: <li>teste com filho</li> })
       
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('without children', () => {
       wrapper.setProps({ ...emptyProps, panels })
       
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('with different html element', () => {
       wrapper.setProps({ ...emptyProps, children: 'oi', as: 'div' })
-      expect(wrapper.html()).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     })
 
     it('with exclusive props false', () => {
