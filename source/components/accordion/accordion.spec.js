@@ -1,7 +1,9 @@
 import '../../../internals/test/helper';
 
 import Accordion from './index';
+import AccordionContent from './elements/accordion-content';
 import AccordionPanel from './elements/accordion-panel';
+import AccordionTitle from './elements/accordion-title';
 
 /** @test {Accordion} */
 describe('Accordion component', () => {
@@ -29,13 +31,13 @@ describe('Accordion component', () => {
   describe('should render', () => {
     it('with children', () => {
       wrapper.setProps({ ...emptyProps, children: <li>teste com filho</li> })
-      
+
       expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('without children', () => {
       wrapper.setProps({ ...emptyProps, panels })
-      
+
       expect(wrapper.debug()).toMatchSnapshot();
     });
 
@@ -56,11 +58,11 @@ describe('Accordion component', () => {
   });
 
   describe('call handleTitleClick', () => {
-    const titleProps = {index: 2}
+    const titleProps = { index: 2 }
 
     it('should call handleTitleClick with right params', () => {
       const spy = jest.spyOn(wrapper.instance(), 'handleTitleClick')
-      
+
       wrapper.setProps({ ...emptyProps, panels })
       wrapper.find(AccordionPanel).at(0).props().onTitleClick('', titleProps)
       expect(spy).toHaveBeenCalledWith('', titleProps);
@@ -79,7 +81,7 @@ describe('Accordion component', () => {
         onTitleClick: jest.fn()
       }
       const spy = jest.spyOn(props, 'onTitleClick')
-      
+
       wrapper.setProps({ ...emptyProps, panels, onTitleClick: props.onTitleClick })
       wrapper.find(AccordionPanel).at(0).props().onTitleClick(e, titleProps)
       expect(spy).toHaveBeenCalledWith(e, titleProps);
@@ -162,3 +164,97 @@ describe('Accordion component', () => {
     })
   })
 });
+
+
+describe('Accordion element Content', () => {
+  const emptyProps = {
+    children: undefined,
+    content: undefined,
+  }
+
+  let wrapper
+
+  beforeAll(() => {
+    wrapper = shallow(
+      <AccordionContent {...emptyProps} />
+    );
+  })
+
+  it('should render children', () => {
+    const children = <span className="children-teste">teste</span>
+    wrapper.setProps({ ...emptyProps, children })
+    expect(wrapper.find('.children-teste')).toHaveLength(1)
+  })
+
+  it('should render content', () => {
+    const content = <span className="content-teste">teste</span>
+    wrapper.setProps({ ...emptyProps, content })
+    expect(wrapper.find('.content-teste')).toHaveLength(1)
+  })
+})
+
+describe('Accordion element Panel', () => {
+  const emptyProps = {
+    children: undefined,
+    onTitleClick: undefined,
+    content: {}
+  }
+
+  let wrapper
+
+  beforeAll(() => {
+    wrapper = shallow(
+      <AccordionPanel {...emptyProps} />
+    );
+  })
+
+  it('should render children', () => {
+    const children = <span className="children-teste">teste</span>
+    wrapper.setProps({ ...emptyProps, children })
+    expect(wrapper.find('.children-teste')).toHaveLength(1)
+  })
+
+  it('should render AccordionTitle and should call function onTitleClick onClick', () => {
+    const props = {
+      onTitleClick: jest.fn()
+    }
+    wrapper.setProps({ ...emptyProps, onTitleClick: props.onTitleClick })
+    wrapper.find(AccordionTitle).props().onClick()
+    expect(props.onTitleClick).toHaveBeenCalled()
+  })
+})
+
+describe('Accordion element Title', () => {
+  const emptyProps = {
+    children: undefined,
+    onClick: undefined,
+    content: undefined
+  }
+
+  let wrapper
+
+  beforeAll(() => {
+    wrapper = shallow(
+      <AccordionTitle {...emptyProps} />
+    );
+  })
+
+  it('should render children', () => {
+    const children = <span className="children-teste">teste</span>
+    wrapper.setProps({ ...emptyProps, children })
+    expect(wrapper.find('.children-teste')).toHaveLength(1)
+  })
+
+  it('should render content', () => {
+    const content = <span className="content-teste">teste</span>
+    wrapper.setProps({ ...emptyProps, content })
+    expect(wrapper.find('.content-teste')).toHaveLength(1)
+  })
+
+  it('should call onClick function', () => {
+    const props = { onClick: jest.fn() }
+    wrapper.setProps({ ...emptyProps, onClick: props.onClick })
+    wrapper.find('.title').simulate('click')
+    expect(props.onClick).toHaveBeenCalled()
+  })
+})
