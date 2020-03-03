@@ -43,16 +43,12 @@ class Modal extends PureComponent {
 
   renderTypeModal() {
     const { type, children } = this.props;
-    switch (type) {
-      case 'confirm':
-        return this.renderConfirm();
-      case 'fail':
-        return this.renderAlert();
-      case 'success':
-        return this.renderAlert();
-      default:
-        return children;
-    }
+    const modalTypes = {
+      confirm: 'renderConfirm',
+      fail: 'renderAlert',
+      success: 'renderAlert',
+    };
+    return modalTypes[type] ? this[modalTypes[type]]() : children;
   }
 
   renderAlert() {
