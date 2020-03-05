@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Error component render correctly with default values 1`] = `"<div class=\\"wrap\\"><p class=\\"title\\">Ops, algo deu errado :(</p></div>"`;
+exports[`Error component render correctly with default values 1`] = `
+"<div className=\\"wrap\\">
+  <p className=\\"title\\">
+    Ops, algo deu errado :(
+  </p>
+</div>"
+`;

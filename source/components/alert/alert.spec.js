@@ -11,7 +11,7 @@ describe('Alert component', () => {
     const wrapper = shallow(
       <Alert />
     );
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper.debug()).toMatchSnapshot();
   });
 
   describe('should render Button when action is true and close is false', () => {

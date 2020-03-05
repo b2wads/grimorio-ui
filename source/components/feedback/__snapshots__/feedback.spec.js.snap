@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feedback component #render render when isOpen is false 1`] = `"<Symbol(react.fragment) />"`;
+
+exports[`Feedback component #render render when isOpen is true 1`] = `
+"<Symbol(react.fragment)>
+  <div className=\\"defaultPosition\\">
+    <div className=\\"default\\">
+      <Icon className=\\"\\" size=\\"20\\" name=\\"error\\" align=\\"middle\\" />
+      <span className=\\"message\\" />
+      <Button className=\\"buttonClick\\" onClick={[Function: bound handleClick]} disabled={false} color=\\"primary\\" size=\\"medium\\" type=\\"button\\" active={false}>
+        <Icon className=\\"iconCleanError\\" size=\\"22\\" name=\\"clear\\" align=\\"middle\\" />
+      </Button>
+    </div>
+  </div>
+</Symbol(react.fragment)>"
+`;

@@ -1,3 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button component render button with default props when HAS children 1`] = `"<button type=\\"button\\" class=\\"primary medium\\">texto do botão</button>"`;
+exports[`Button component render button with default props when HAS children 1`] = `
+"<button type=\\"button\\" className=\\"primary medium\\" onClick={[undefined]} disabled={false}>
+  texto do botão
+</button>"
+`;

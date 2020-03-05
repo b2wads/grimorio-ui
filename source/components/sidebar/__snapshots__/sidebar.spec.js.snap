@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar component #render render default with children 1`] = `
+"<Symbol(react.fragment)>
+  <div className=\\"sidebar\\">
+    <div onClick={[Function: bound handleLogoClick]} className=\\"logotype\\" />
+    <nav className=\\"content\\">
+      <span className=\\"contentTitle\\">
+        Menu
+      </span>
+      <span>
+        Com filho
+      </span>
+    </nav>
+  </div>
+</Symbol(react.fragment)>"
+`;
