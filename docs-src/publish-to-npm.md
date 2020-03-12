@@ -13,11 +13,11 @@ Depois disso, a nova versão estará disponível no npm!
 
 Para publicar uma versão de homologação que usa uma branch que não é a master, usamos o seguinte padrão:
 
-| Branch        | Descrição                                                             | NPM Tag   |
-|---------------|-----------------------------------------------------------------------|-----------|
-| Master        | Releases finais/estáveis                                | n/a       |
-| release/X.X.X | Seleção de commits da develop, criando uma nova versão | rc        |
-| Develop       | Junção das features que foram consideradas terminadas              | beta      |
-| feature/name  | Feature sendo desenvolvida                              | feat-name |
+| Branch        | Descrição                                                             | NPM Tag   | package.json versão |
+|---------------|-----------------------------------------------------------------------|-----------|---------------------|
+| Master        | Releases finais/estáveis                                              | n/a       | n/a                 |
+| release/X.X.X | Seleção de commits da develop, criando uma nova versão                | rc        | X.X.X-rc            |
+| Develop       | Junção das features que foram consideradas terminadas                 | beta      | X.X.X-beta          |
+| feature/name  | Feature sendo desenvolvida                                            | feat-name | X.X.X-name-feature  |
 
 **[voltar para o README](../README.md#Manual)**
