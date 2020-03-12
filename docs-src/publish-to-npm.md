@@ -15,7 +15,7 @@ Para publicar uma versão de homologação que usa uma branch que não é a mast
 
 | Branch        | Descrição                                                             | NPM Tag   | Versão package.json |
 |---------------|-----------------------------------------------------------------------|-----------|---------------------|
-| Master        | Releases finais/estáveis                                              | n/a       | n/a                 |
+| Master        | Releases finais/estáveis                                              | n/a       | X.X.X               |
 | release/X.X.X | Seleção de commits da develop, criando uma nova versão                | rc        | X.X.X-rc            |
 | Develop       | Junção das features que foram consideradas terminadas                 | beta      | X.X.X-beta          |
 | feature/name  | Feature sendo desenvolvida                                            | feat-name | X.X.X-name-feature  |
