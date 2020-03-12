@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal component #render render fail modal should render right 1`] = `
+"<div className=\\"wrap\\">
+  <div className=\\"modal\\" type=\\"fail\\" confirmInverted={false} showButton={false} message=\\"Ops, algo deu errado :(\\" confirmButtonText=\\"Okay\\" cancelButtonText=\\"Cancelar\\" onConfirm={[undefined]}>
+    <Icon onClick={[undefined]} className=\\"close\\" size=\\"20\\" name=\\"close\\" align=\\"middle\\" />
+    <div className=\\"content\\">
+      <div className=\\"base\\">
+        <div className=\\"imageWrap\\">
+          <Svg src=\\"fail\\" width=\\"50px\\" height=\\"50px\\" align=\\"middle\\" />
+        </div>
+        <div className=\\"message\\">
+          Ops, algo deu errado :(
+        </div>
+      </div>
+    </div>
+  </div>
+  <div onClick={[undefined]} className=\\"overlay\\" />
+</div>"
+`;
+
+exports[`Modal component #render render success modal should render right 1`] = `
+"<div className=\\"wrap\\">
+  <div className=\\"modal\\" type=\\"success\\" confirmInverted={false} showButton={false} message=\\"mensagem do modal de sucesso\\" confirmButtonText=\\"Okay\\" cancelButtonText=\\"Cancelar\\" onConfirm={[undefined]}>
+    <Icon onClick={[undefined]} className=\\"close\\" size=\\"20\\" name=\\"close\\" align=\\"middle\\" />
+    <div className=\\"content\\">
+      <div className=\\"base\\">
+        <div className=\\"imageWrap\\">
+          <Svg src=\\"success\\" width=\\"70px\\" height=\\"70px\\" align=\\"middle\\" />
+        </div>
+        <div className=\\"message\\">
+          mensagem do modal de sucesso
+        </div>
+      </div>
+    </div>
+  </div>
+  <div onClick={[undefined]} className=\\"overlay\\" />
+</div>"
+`;
+
+exports[`Modal component #render should render confirm modal should render right 1`] = `
+"<div className=\\"wrap\\">
+  <div className=\\"modal\\" type=\\"confirm\\" confirmInverted={false} showButton={false} message=\\"Mensagem do modal de confirm\\" confirmButtonText=\\"Tenho certeza\\" cancelButtonText=\\"Cancelar\\" onConfirm={[undefined]}>
+    <Icon onClick={[undefined]} className=\\"close\\" size=\\"20\\" name=\\"close\\" align=\\"middle\\" />
+    <div className=\\"content\\">
+      <div className=\\"base\\">
+        <div className=\\"imageWrap\\">
+          <Svg src=\\"fail\\" width=\\"50px\\" height=\\"50px\\" align=\\"middle\\" />
+        </div>
+        <div className=\\"message\\">
+          Mensagem do modal de confirm
+        </div>
+        <div className=\\"actions\\">
+          <Button className=\\"button\\" color=\\"variant\\" modifier=\\"outline\\" onClick={[undefined]} disabled={false} size=\\"medium\\" type=\\"button\\" active={false}>
+            Cancelar
+          </Button>
+          <Button className=\\"button\\" color=\\"primary\\" modifier={{...}} onClick={[undefined]} disabled={false} size=\\"medium\\" type=\\"button\\" active={false}>
+            Tenho certeza
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div onClick={[undefined]} className=\\"overlay\\" />
+</div>"
+`;
+
+exports[`Modal component #render should render modal with children 1`] = `
+"<div className=\\"wrap\\">
+  <div className=\\"modal\\" type=\\"custom\\" confirmInverted={false} showButton={false} message={[undefined]} confirmButtonText=\\"Okay\\" cancelButtonText=\\"Cancelar\\" onConfirm={[undefined]}>
+    <Icon onClick={[undefined]} className=\\"close\\" size=\\"20\\" name=\\"close\\" align=\\"middle\\" />
+    <div className=\\"content\\">
+      <div>
+        teste com filho
+      </div>
+    </div>
+  </div>
+  <div onClick={[undefined]} className=\\"overlay\\" />
+</div>"
+`;

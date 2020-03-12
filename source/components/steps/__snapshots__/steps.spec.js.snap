@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Steps component #render render correctly 1`] = `
+"<Panel title={false} size=\\"medium\\" loading={false} accordion={false} open={true} highlight=\\"shadow\\">
+  <div className=\\"steps\\">
+    <div className=\\"stepsHolder stepsHolderActive\\">
+      <span className=\\"stepsNumber\\">
+        <Icon name=\\"check\\" className=\\"icon\\" size={16} align=\\"middle\\" />
+      </span>
+      <span>
+        Criação de Campanha
+      </span>
+      <div className=\\"stepsHolderLine\\" />
+    </div>
+    <div className=\\"stepsHolder stepsCurrent\\">
+      <span className=\\"stepsNumber currentNumber\\">
+        2
+      </span>
+      <span>
+        Criação de grupo de anúncio
+      </span>
+      <div className=\\"stepsHolderLine\\" />
+    </div>
+    <div className=\\"stepsHolder\\">
+      <span className=\\"stepsNumber\\">
+        3
+      </span>
+      <span>
+        Adicionar anúncios
+      </span>
+      <div className=\\"stepsHolderLine\\" />
+    </div>
+    <div className=\\"stepsHolder\\">
+      <span className=\\"stepsNumber\\">
+        4
+      </span>
+      <span>
+        Finalização
+      </span>
+    </div>
+  </div>
+</Panel>"
+`;

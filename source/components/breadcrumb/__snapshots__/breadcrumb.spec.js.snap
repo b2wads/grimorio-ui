@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Breadcrumb component #render when list length is bigger than one 1`] = `
+"<div className=\\"list\\" path=\\"department/my-amazing-category\\" home={false} onClick={[undefined]}>
+  <div className=\\"itemWrap\\">
+    <Icon align=\\"unset\\" size=\\"16\\" className=\\"iconHome\\" name=\\"home\\" />
+    <span className=\\"item\\" onClick={[Function: onClick]}>
+      department
+    </span>
+    <Icon size=\\"17\\" className=\\"icon\\" name=\\"keyboard_arrow_right\\" align=\\"middle\\" />
+  </div>
+  <div className=\\"itemCurrent\\">
+    <span>
+      my amazing category
+    </span>
+  </div>
+</div>"
+`;
+
+exports[`Breadcrumb component #render when list length is equal one 1`] = `
+"<div className=\\"list\\" path=\\"department\\" home={false} onClick={[undefined]}>
+  <div className=\\"itemWrap\\">
+    <Icon align=\\"unset\\" size=\\"16\\" className=\\"iconHome\\" name=\\"home\\" />
+    <span className=\\"itemCurrent\\">
+      department
+    </span>
+  </div>
+</div>"
+`;

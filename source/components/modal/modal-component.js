@@ -41,30 +41,18 @@ class Modal extends PureComponent {
     cancelButtonText: 'Cancelar',
   };
 
-  renderTypeModal(
-    type,
-    message,
-    onConfirm,
-    confirmButtonText,
-    cancelButtonText,
-    confirmInverted,
-    showButton,
-    children
-  ) {
-    switch (type) {
-      case 'confirm':
-        return this.renderConfirm(message, onConfirm, confirmButtonText, cancelButtonText, confirmInverted);
-      case 'fail':
-        return this.renderAlert('fail', message, confirmButtonText, showButton);
-      case 'success':
-        return this.renderAlert('success', message, confirmButtonText, showButton);
-      default:
-        return children;
-    }
+  renderTypeModal() {
+    const { type, children } = this.props;
+    const modalTypes = {
+      confirm: 'renderConfirm',
+      fail: 'renderAlert',
+      success: 'renderAlert',
+    };
+    return modalTypes[type] ? this[modalTypes[type]]() : children;
   }
 
-  renderAlert(type, message, confirmButtonText, showButton) {
-    const { onClose } = this.props;
+  renderAlert() {
+    const { onClose, type, message, confirmButtonText, showButton } = this.props;
     return (
       <div className={styles.base}>
         <div className={styles.imageWrap}>
@@ -87,8 +75,8 @@ class Modal extends PureComponent {
     );
   }
 
-  renderConfirm(message, onConfirm, confirmButtonText, cancelButtonText, confirmInverted) {
-    const { onClose } = this.props;
+  renderConfirm() {
+    const { onClose, message, onConfirm, confirmButtonText, cancelButtonText, confirmInverted } = this.props;
     return (
       <div className={styles.base}>
         <div className={styles.imageWrap}>
@@ -122,23 +110,7 @@ class Modal extends PureComponent {
   }
 
   render() {
-    const {
-      open,
-      type,
-      message,
-      onConfirm,
-      onClose,
-      confirmButtonText,
-      cancelButtonText,
-      confirmInverted,
-      showButton,
-      children,
-      showClose,
-      closeOnOverlay,
-      className,
-      innerPadding,
-      ...rest
-    } = this.props;
+    const { open, onClose, showClose, closeOnOverlay, className, innerPadding, ...rest } = this.props;
 
     const fullClassName = classNames(className, styles.modal, {
       [styles.isOpen]: open,
@@ -149,16 +121,7 @@ class Modal extends PureComponent {
         <div className={fullClassName} {...rest}>
           {showClose && <Icon onClick={onClose} className={styles.close} size="20" name="close" />}
           <div className={classNames({ [styles.content]: innerPadding })}>
-            {this.renderTypeModal(
-              type,
-              message,
-              onConfirm,
-              confirmButtonText,
-              cancelButtonText,
-              confirmInverted,
-              showButton,
-              children
-            )}
+            {this.renderTypeModal()}
           </div>
         </div>
         <div

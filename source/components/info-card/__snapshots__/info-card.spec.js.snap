@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoCard component should render card type money 1`] = `
+"<Panel title={false} className=\\"default\\" titleClassName={[undefined]} size=\\"medium\\" loading={false} accordion={false} open={true} highlight=\\"shadow\\">
+  <Symbol(react.fragment)>
+    <span className=\\"info\\">
+      <span className=\\"symbol\\">
+        R$
+      </span>
+      20,00
+    </span>
+    <span className=\\"tagline\\" />
+  </Symbol(react.fragment)>
+</Panel>"
+`;
+
+exports[`InfoCard component should render card with tagline 1`] = `
+"<Panel title={false} className=\\"default\\" titleClassName={[undefined]} size=\\"medium\\" loading={false} accordion={false} open={true} highlight=\\"shadow\\">
+  <Symbol(react.fragment)>
+    <span className=\\"info\\" />
+    <span className=\\"tagline\\">
+      <span>
+        fevereiro
+      </span>
+    </span>
+  </Symbol(react.fragment)>
+</Panel>"
+`;
+
+exports[`InfoCard component when error card should render correct 1`] = `
+"<Panel title={false} className=\\"default\\" titleClassName={[undefined]} size=\\"medium\\" loading={false} accordion={false} open={true} highlight=\\"shadow\\">
+  <Error className=\\"error\\" hasButton={true} onErrorClick={[Function: mockConstructor]} errorMessage=\\"mensagem de erro\\" errorBtnText=\\"botão do erro\\" outline={false} />
+</Panel>"
+`;

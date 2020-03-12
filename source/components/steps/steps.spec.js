@@ -9,12 +9,12 @@ const pageData = [
   { name: 'finish', title: 'Finalização', isComplete: false },
 ];
 
-let value = 0;
+let current = 1;
 describe('Steps component', () => {
   describe('#render', () => {
     it('render correctly', () => {
-      const wrapper = shallow(<Steps data={pageData} current={pageData[value].name} />);
-      expect(wrapper.length).toEqual(1);
+      const wrapper = shallow(<Steps data={pageData} current={pageData[current].name} />);
+      expect(wrapper.debug()).toMatchSnapshot();
     });
   });
 });

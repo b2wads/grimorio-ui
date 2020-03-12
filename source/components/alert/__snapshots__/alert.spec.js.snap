@@ -1,3 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Alert component render correctly with default values 1`] = `"<div class=\\"alertWrap info\\"><div class=\\"icon\\"><i style=\\"vertical-align:middle;font-size:28pxpx\\" class=\\"material-icons icon\\" align=\\"middle\\">info</i></div><div class=\\"content\\"><div class=\\"text\\"><h3 class=\\"title\\"></h3></div><button type=\\"button\\" class=\\"action primary medium\\">Okay</button></div></div>"`;
+exports[`Alert component render correctly with default values 1`] = `
+"<Symbol(react.fragment)>
+  <div className=\\"alertWrap info\\">
+    <div className=\\"icon\\">
+      <Icon size=\\"28px\\" name=\\"info\\" align=\\"middle\\" />
+    </div>
+    <div className=\\"content\\">
+      <div className=\\"text\\">
+        <h3 className=\\"title\\" />
+      </div>
+      <Button className=\\"action\\" onClick={[undefined]} disabled={false} color=\\"primary\\" size=\\"medium\\" type=\\"button\\" active={false}>
+        Okay
+      </Button>
+    </div>
+  </div>
+</Symbol(react.fragment)>"
+`;

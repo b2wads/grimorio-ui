@@ -1,3 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ToggleButton component render correctly with default values 1`] = `"<div class=\\"toggleBool\\"><span class=\\"toggleBoolLeft\\">Sim</span><span class=\\"toggleBoolRight active\\">Não</span></div>"`;
+exports[`ToggleButton component render correctly with default values 1`] = `
+"<div className=\\"toggleBool\\">
+  <span onClick={[Function: onClick]} className=\\"toggleBoolLeft\\">
+    Sim
+  </span>
+  <span onClick={[Function: onClick]} className=\\"toggleBoolRight active\\">
+    Não
+  </span>
+</div>"
+`;

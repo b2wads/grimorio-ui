@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader component #render render correctly 1`] = `
+"<div className=\\"wrap isFull isBlack\\">
+  <span style={{...}} className=\\"spinner secondary\\" />
+</div>"
+`;

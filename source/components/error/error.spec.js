@@ -19,7 +19,7 @@ describe('Error component', () => {
   })
 
   it('render correctly with default values', () => {
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper.debug()).toMatchSnapshot();
   });
 
   it('render with button and default button value', () => {

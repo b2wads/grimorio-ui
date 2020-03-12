@@ -24,7 +24,7 @@ describe('Button component', () => {
     const wrapper = shallow(
       <Button>{textButton}</Button>
     );
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper.debug()).toMatchSnapshot();
   });
 
   describe('on loading', () => {

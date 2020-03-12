@@ -54,6 +54,10 @@ describe('Converter', () => {
       expect(convertToZeroFilled(20, undefined)).toEqual(false);
     });
 
+    it('shoul value when value param is empty string', () => {
+      expect(convertToZeroFilled('')).toEqual('');
+    })
+
     it('should have parameter VALUE as Number and DIGITS as Number', () => {
       expect(convertToZeroFilled(40, 6)).toEqual('000040');
     });
