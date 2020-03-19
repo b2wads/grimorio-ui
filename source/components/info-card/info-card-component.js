@@ -54,24 +54,23 @@ class InfoCard extends PureComponent {
 
     return (
       <Panel title={title} className={fullClassName} titleClassName={titleClassName} {...elementProps}>
-        {error &&
-          <Error
-            className={styles.error}
-            hasButton
-            onErrorClick={onErrorClick}
-            errorMessage={errorMessage}
-            errorBtnText={errorBtnText}
-          />}
-        {!error &&
-          <Fragment>
-            <span className={cx(styles.info, infoClassName, { [styles.ellipsis]: ellipsis })}>
-              {type === 'money' ? <span className={styles.symbol}>R$</span> : ''}
-              {type === 'money' ? moneyFormat(value, false) : value}
-            </span>
-            <span className={cx(styles.tagline, tagClassName)}>
-              {tagline ? <span>{tagline}</span> : ''}
-            </span>
-          </Fragment>}
+        {error
+          ? <Error
+              className={styles.error}
+              hasButton
+              onErrorClick={onErrorClick}
+              errorMessage={errorMessage}
+              errorBtnText={errorBtnText}
+            />
+          : <Fragment>
+              <span className={cx(styles.info, infoClassName, { [styles.ellipsis]: ellipsis })}>
+                {type === 'money' ? <span className={styles.symbol}>R$</span> : ''}
+                {type === 'money' ? moneyFormat(value, false) : value}
+              </span>
+              <span className={cx(styles.tagline, tagClassName)}>
+                {tagline ? <span>{tagline}</span> : ''}
+              </span>
+            </Fragment>}
       </Panel>
     );
   }

@@ -10,11 +10,11 @@ $hot = #FF5567;
 $social-ico {
   border-radius: 3px;
   cursor: pointer;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 $default-product {
-  min-width: 175px;
+  min-width: 220px;
   position: relative;
 
   a {
@@ -66,7 +66,7 @@ $brandLogo {
 .tagHighlight {
   fill: $hot;
   position: absolute;
-  right: 0;
+  right: 15px;
 }
 
 .imgWrapper {
@@ -122,7 +122,8 @@ $brandLogo {
 }
 
 .footer {
-  bottom: 10px;
+  bottom: 0;
+  left: 0;
   position: absolute;
   width: 100%;
 }
@@ -138,7 +139,7 @@ $brandLogo {
 }
 
 .copy {
-  margin-right: 5px;
+  margin-right: 10px;
   transition: all 0.3s ease;
 
   @media screen and (max-width: 1375px) {
@@ -175,14 +176,24 @@ $brandLogo {
   @extend $default-product;
 
   .info {
+    display: flex;
+    align-items: center;
+    margin-top: $gutter-px;
+  }
+
+  .info a {
     color: $c-text-dark;
     font-size: 21px;
     font-weight: 400;
-    margin-top: $gutter-px;
   }
 
   &.wrapper {
     height: 300px;
+  }
+
+  .social {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -191,20 +202,37 @@ $brandLogo {
 .card {
   @extend $default-product;
   text-align: center;
+  padding: 0 10px;
 
   &.wrapper {
-    height: 310px;
+    height: 320px;
   }
 
   .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+  }
+
+  .info a {
     color: var(--c-primary);
     font-size: 21px;
-    margin: 15px 0;
     text-align: center;
   }
 
   .isShort {
     justify-content: center;
+  }
+
+  .footer {
+    bottom: 20px;
+  }
+
+  .social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

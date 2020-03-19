@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
-
 import styles from './side-modal.styl';
 
 class SideModal extends PureComponent {
@@ -13,6 +12,7 @@ class SideModal extends PureComponent {
     position: PropTypes.oneOf(['top', 'bottom', 'right', 'left']),
     width: PropTypes.string,
     height: PropTypes.string,
+    className: PropTypes.string,
   };
   static defaultProps = {
     position: 'right',
@@ -45,12 +45,12 @@ class SideModal extends PureComponent {
     return {};
   }
   render() {
-    const { open, onClose, children, position } = this.props;
+    const { open, onClose, children, position, className } = this.props;
 
     return (
       <div className={styles.wrap}>
         <div
-          className={classNames(styles.content, styles[position], {
+          className={classNames(styles.content, className, styles[position], {
             [styles.isOpen]: open,
           })}
           style={this.getStyles()}

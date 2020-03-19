@@ -18,7 +18,7 @@ describe('ToggleButton component', () => {
   })
 
   it('render correctly with default values', () => {
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper.debug()).toMatchSnapshot();
   });
 
   it('on Click YES button should return true', () => {

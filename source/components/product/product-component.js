@@ -26,6 +26,7 @@ class Product extends PureComponent {
 
   static propTypes = {
     type: PropTypes.oneOf(['default', 'card']),
+    brand: PropTypes.oneOf(['acom', 'suba', 'shop', 'soub']),
     btnText: PropTypes.string,
     onCopy: PropTypes.func,
     onGenerate: PropTypes.func,
@@ -65,7 +66,8 @@ class Product extends PureComponent {
   }
 
   renderInfo() {
-    const { info } = this.props.data;
+    const { data, copyValue } = this.props;
+    const { info, link } = data;
 
     if (!info) {
       return null;
@@ -73,7 +75,9 @@ class Product extends PureComponent {
 
     return (
       <div className={cx(styles.info, { [styles.isBig]: info.value && info.value.length > 11 })}>
-        {typeof info.value === 'number' ? moneyFormat(info.value) : info.value}
+        <a target="_blank" href={copyValue || link}>
+          {typeof info.value === 'number' ? moneyFormat(info.value) : info.value}
+        </a>
         {info.rules &&
           <Tooltip className={styles.rules} width="220px" message={info.rules}>
             <span className={styles.rulesIcon}>?</span>
@@ -89,16 +93,19 @@ class Product extends PureComponent {
       return null;
     }
 
-    return tags.map(tag => {
+    const tagMapGen = tag => {
       const key = `${tag.type}-${tag.value}`;
-      switch (tag.type) {
-        case 'brand':
-          return <Svg key={key} width={48} height={48} src={`logo/${tag.value}`} />;
-        case 'highlight':
-          return tag.value && <Svg key={key} className={styles.tagHighlight} width={32} height={32} src="flame" />;
-        default:
-          return '';
-      }
+
+      return {
+        brand: <Svg key={key} width={48} height={48} src={`logo/${tag.value}`} />,
+        highlight: tag.value && <Svg key={key} className={styles.tagHighlight} width={32} height={32} src="flame" />,
+        default: '',
+      };
+    };
+
+    return tags.map(tag => {
+      const tagMap = tagMapGen(tag);
+      return tagMap[tag.type] || tagMap.default;
     });
   }
 
@@ -120,7 +127,6 @@ class Product extends PureComponent {
     const { generateLoading, onGenerate } = this.props;
     return (
       <Button
-        size="small"
         className={styles.copy}
         onClick={onGenerate}
         loading={generateLoading}
@@ -137,12 +143,7 @@ class Product extends PureComponent {
     const { btnText } = this.props;
     const { linkCopied } = this.state;
     return (
-      <Button
-        size="small"
-        className={styles.copy}
-        onClick={this.handleCopy}
-        iconRight={linkCopied ? 'check' : 'insert_link'}
-      >
+      <Button className={styles.copy} onClick={this.handleCopy} iconRight={linkCopied ? 'check' : 'insert_link'}>
         {linkCopied && 'Copiado!'}
         {!linkCopied && btnText}
       </Button>
@@ -178,7 +179,9 @@ class Product extends PureComponent {
         <div className={styles.footer}>
           {expires &&
             <div className={styles.expires}>
-              {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
+              <a target="_blank" href={copyValue || link}>
+                {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
+              </a>
             </div>}
 
           <div className={styles.social}>
