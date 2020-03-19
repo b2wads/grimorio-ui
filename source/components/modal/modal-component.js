@@ -28,6 +28,7 @@ class Modal extends PureComponent {
     cancelButtonText: PropTypes.string,
     onClose: PropTypes.func,
     onConfirm: PropTypes.func,
+    buttonCloseSize: PropTypes.string,
   };
 
   static defaultProps = {
@@ -39,6 +40,7 @@ class Modal extends PureComponent {
     innerPadding: true,
     confirmButtonText: 'Okay',
     cancelButtonText: 'Cancelar',
+    buttonCloseSize: '20',
   };
 
   renderTypeModal() {
@@ -110,7 +112,7 @@ class Modal extends PureComponent {
   }
 
   render() {
-    const { open, onClose, showClose, closeOnOverlay, className, innerPadding, ...rest } = this.props;
+    const { open, onClose, showClose, closeOnOverlay, className, innerPadding, buttonCloseSize, ...rest } = this.props;
 
     const fullClassName = classNames(className, styles.modal, {
       [styles.isOpen]: open,
@@ -119,7 +121,7 @@ class Modal extends PureComponent {
     return (
       <div className={classNames(styles.wrap, { [styles.isOpen]: open })}>
         <div className={fullClassName} {...rest}>
-          {showClose && <Icon onClick={onClose} className={styles.close} size="20" name="close" />}
+          {showClose && <Icon onClick={onClose} className={styles.close} size={buttonCloseSize} name="close" />}
           <div className={classNames({ [styles.content]: innerPadding })}>
             {this.renderTypeModal()}
           </div>
