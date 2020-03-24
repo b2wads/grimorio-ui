@@ -45,6 +45,7 @@ describe('Table component', () => {
       const expectedHeight = '80px';
       const table = <Table schema={schema} data={[]} rowHeight={expectedHeight} />
       const wrapper = shallow(table);
+      expect(wrapper.find('tr').first().html()).toMatch(expectedHeight);
       expect(table.props.rowHeight).toMatch(expectedHeight)
     });
 
@@ -66,9 +67,6 @@ describe('Table component', () => {
       it('with a clickable button on header', () => { 
         const expectedOutput = 'Olá!';
         window.alert = jest.fn();
-        const wrapper = shallow( 
-          <Table schema={schema} data={simpleData} />
-        );
         wrapper.find('th').find(Button).props().onClick();
         expect(window.alert).toBeCalledWith(expectedOutput);
       });
@@ -77,9 +75,6 @@ describe('Table component', () => {
         const age = simpleData[0].dob.age;
         const expectedOutput = `Tenho ${age} anos!`;
         window.alert = jest.fn();
-        const wrapper = shallow( 
-          <Table schema={schema} data={simpleData} />
-        );
         wrapper.find('td').find(Button).props().onClick();
         expect(window.alert).toBeCalledWith(expectedOutput);
       });
