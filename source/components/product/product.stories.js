@@ -35,7 +35,7 @@ const exampleProduct = {
 const exampleCupom = {
   name: '10% com o cupom ALO10',
   info: {
-    value: 'ALO10', //16
+    value: 'UMCUPOMBEMGRANDE', //16
     rules: 'Confira as regras no site https://www.americanas.com.br/hotsite/regras-do-site',
   },
   expires: '2018-10-31T23:59:00.000Z',

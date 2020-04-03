@@ -69,10 +69,6 @@ class Product extends PureComponent {
     const { data, copyValue } = this.props;
     const { info, link } = data;
 
-    if (!info) {
-      return null;
-    }
-
     return (
       <div className={cx(styles.info, { [styles.isBig]: info.value && info.value.length > 11 })}>
         <a target="_blank" href={copyValue || link}>
