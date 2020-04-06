@@ -23,34 +23,17 @@ const exampleProduct = {
   ],
 };
 
-const bigInfoProd = {
-  ...exampleProduct,
-  info: {
-    value: 'UMCUPOMBEMGRANDE',
-    rules: 'Confira as regras no site',
-  },
-};
-
-const noImgProd = {
-  ...exampleProduct,
-  img: null,
-};
-
-const noInfoProd = {
-  ...exampleProduct,
-  info: null,
-};
-
-const props = {
-  onCopy: jest.fn(),
-  onGenerate: jest.fn(),
-  stage: 'generate',
-};
+jest.useFakeTimers();
 
 describe('Product component', () => {
 
-  describe('Product stage: generate', () => {
+  describe('Stage: generate', () => {
     let wrapper;
+    const props = {
+      onCopy: jest.fn(),
+      onGenerate: jest.fn(),
+      stage: 'generate',
+    };
 
     beforeAll(() => {
       wrapper = mount(
@@ -58,7 +41,7 @@ describe('Product component', () => {
       );
     });
 
-    it('Render correctly', () => {
+    it('Renders correctly', () => {
       expect(wrapper.find('.imgDefault').length).toEqual(0);
       expect(wrapper.debug()).toMatchSnapshot();
     });
@@ -71,16 +54,35 @@ describe('Product component', () => {
      });
   });
 
-  describe('Variations', () => {
-    it('Product Info isBig', () => {
-      const wrapper = shallow(
-        <Product data={bigInfoProd} />
-      );
+  describe('Stage: copy', () => {
+    let wrapper;
+    const props = {
+      onCopy: jest.fn(),
+      onGenerate: jest.fn(),
+      stage: 'copy',
+    };
 
-      expect(wrapper.find('.info.isBig').length).toEqual(1);
+    beforeAll(() => {
+      wrapper = mount(
+        <Product {...props} data={exampleProduct} />
+      );
+    });
+
+    it('Renders correctly', () => {
+      expect(wrapper.find('.imgDefault').length).toEqual(0);
       expect(wrapper.debug()).toMatchSnapshot();
     });
 
+    it('onCopy', () => {
+        jest.spyOn(props, 'onCopy');
+
+        wrapper.find('button').simulate('click');
+        expect(props.onCopy).toHaveBeenCalled();
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
+     });
+  });
+
+  describe('Variations', () => {
     it('Type card renders Panel', () => {
       const wrapper = shallow(
         <Product type="card" brand="acom" data={exampleProduct} />
@@ -89,32 +91,84 @@ describe('Product component', () => {
       expect(wrapper.debug()).toMatchSnapshot();
     });
 
+    it('Product Info isBig', () => {
+      const bigInfoProd = {
+        ...exampleProduct,
+        info: {
+          value: 'UMCUPOMBEMGRANDE',
+          rules: 'Confira as regras no site',
+        },
+      };
+
+      const wrapper = shallow(
+        <Product data={bigInfoProd} />
+      );
+
+      expect(wrapper.find('.info.isBig').length).toEqual(1);
+    });
+
     it('Product has no image, shows default img', () => {
+      const noImgProd = {
+        ...exampleProduct,
+        img: null,
+      };
+
       const wrapper = shallow(
         <Product data={noImgProd} />
       );
 
       expect(wrapper.find('.imgDefault').length).toEqual(1);
-      expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it('Product with no info', () => {
+      const noInfoProd = {
+        ...exampleProduct,
+        info: null,
+      };
+
       const wrapper = shallow(
         <Product data={noInfoProd} />
       );
 
       expect(wrapper.find('.info').length).toEqual(0);
-      expect(wrapper.debug()).toMatchSnapshot();
     });
 
-  });
+    it('No tags', () => {
+      const noInfoProd = {
+        ...exampleProduct,
+        tags: null,
+      };
 
-  describe('#doesnt render', () => {
-    it('doesnt render if doenst receive data props', () => {
+      const wrapper = shallow(
+        <Product data={noInfoProd} />
+      );
+      expect(wrapper.find('.tag').children().length).toEqual(0);
+    });
+
+    it('With wrong tags', () => {
+      const noInfoProd = {
+        ...exampleProduct,
+        tags: [
+          {
+            type: 'fake',
+            value: 'tag',
+          }
+        ],
+      };
+
+      const wrapper = shallow(
+        <Product data={noInfoProd} />
+      );
+
+      expect(wrapper.find('.tag').children().length).toEqual(0);
+    });
+
+    it('Does not render if no data prop', () => {
       const wrapper = shallow(
         <Product />
       );
       expect(wrapper.type()).toEqual(null);
     });
   });
+
 });

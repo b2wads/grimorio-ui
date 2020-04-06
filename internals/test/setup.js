@@ -7,6 +7,17 @@ const document = jsdom('', {
   url: 'http://localhost/',
 });
 global.document = document;
+
+// mocks for copy function
+global.document.getSelection = function() {
+  return function getRangeAt() {
+    return 'fake';
+  }
+};
+global.document.execCommand = function() {
+  return true;
+};
+
 global.window = document.defaultView;
 global.window.localStorage = global.window.sessionStorage = {
   getItem(key) {

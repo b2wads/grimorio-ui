@@ -140,8 +140,7 @@ class Product extends PureComponent {
     const { linkCopied } = this.state;
     return (
       <Button className={styles.copy} onClick={this.handleCopy} iconRight={linkCopied ? 'check' : 'insert_link'}>
-        {linkCopied && 'Copiado!'}
-        {!linkCopied && btnText}
+        {linkCopied ? 'Copiado!' : btnText}
       </Button>
     );
   }
