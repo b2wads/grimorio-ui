@@ -9,7 +9,7 @@ const exampleProduct = {
   info: {
     value: 5333.20,
   },
-  expires: '2018-07-08 23:59',
+  expires: '01/03/2020 23:59',
   link: 'https://www.americanas.com.br/produto/33446653/notebook-profissional-avell-w155-mx-intel-core-i7-16gb-geforce-mx150-1tb-15-6-fullhd',
   tags: [
     {

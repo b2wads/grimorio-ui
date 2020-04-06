@@ -1,7 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import moment from 'moment';
 
 import { omit } from '../../helpers';
 import styles from './product.styl';
@@ -175,7 +174,7 @@ class Product extends PureComponent {
           {expires &&
             <div className={styles.expires}>
               <a target="_blank" href={copyValue || link}>
-                {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
+                {`Valido até: ${expires}`}
               </a>
             </div>}
 
