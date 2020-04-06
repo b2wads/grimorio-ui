@@ -58,6 +58,10 @@ describe('Table component', () => {
         );
       });
 
+      it('when renders correctly', () => {
+        expect(wrapper.debug()).toMatchSnapshot();
+      })
+
       it('with one row', () => {
         const expectedOutput = simpleData[0].name;
         expect(wrapper.length).toEqual(1);
