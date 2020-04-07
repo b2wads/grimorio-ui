@@ -33,6 +33,11 @@ const schema = {
 describe('TablePanel component', () => {
   /** @test {TablePanel#render} */
   describe('#render', () => {
+    it('when renders correctly', () => {
+      const wrapper = shallow(<TablePanel schema={schema} data={simpleData} />);
+      expect(wrapper.debug()).toMatchSnapshot();
+    });
+
     it('with not found message', () => {
       const tablePanel = <TablePanel schema={schema} data={[]} />
       const wrapper = shallow(tablePanel);
@@ -40,7 +45,7 @@ describe('TablePanel component', () => {
       expect(wrapper.render().find('td').text()).toMatch(notFoundMessage);
     });
 
-    describe('with data', () =>{ 
+    describe('with data', () =>{
       let wrapper;
 
       beforeAll(() => {
