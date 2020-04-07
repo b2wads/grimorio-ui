@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table component #render with data when renders correctly 1`] = `
+"<div style={{...}} className=\\"wrap\\">
+  <table className=\\"table\\">
+    <thead className=\\"tableHead\\">
+      <tr style={{...}} className=\\"rowHead\\">
+        <th width=\\"100px\\" className=\\"cellHead\\">
+          Nome
+        </th>
+        <th width={[undefined]} className=\\"cellHead\\">
+          <Button onClick={[Function: onClick]} disabled={false} color=\\"primary\\" size=\\"medium\\" type=\\"button\\" className={[undefined]} active={false}>
+            Diga oi para todos!
+          </Button>
+        </th>
+      </tr>
+    </thead>
+    <tbody className=\\"tableBody\\">
+      <tr style={{...}} className=\\"row\\">
+        <td width=\\"100px\\" className=\\"cell\\">
+          Teste
+        </td>
+        <td width={[undefined]} className=\\"cell\\">
+          <Button onClick={[Function: onClick]} disabled={false} color=\\"primary\\" size=\\"medium\\" type=\\"button\\" className={[undefined]} active={false}>
+            Adivinhe minha idade ;)
+          </Button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>"
+`;

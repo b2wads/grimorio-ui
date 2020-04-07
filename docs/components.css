@@ -1859,7 +1859,6 @@ Form Control Component
 .grm-info-card__info {
   color: var(--c-primary);
   display: block;
-  margin-top: 15px;
   font-size: 28px;
 }
 .grm-info-card__ellipsis {
@@ -2483,11 +2482,11 @@ Form Control Component
 .grm-product__twitter {
   border-radius: 3px;
   cursor: pointer;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .grm-product__default,
 .grm-product__card {
-  min-width: 175px;
+  min-width: 220px;
   position: relative;
 }
 .grm-product__default a,
@@ -2540,7 +2539,7 @@ Form Control Component
 .grm-product__tagHighlight {
   fill: #ff5567;
   position: absolute;
-  right: 0;
+  right: 15px;
 }
 .grm-product__imgWrapper {
   margin-top: 8px;
@@ -2584,7 +2583,8 @@ Form Control Component
   width: 17px;
 }
 .grm-product__footer {
-  bottom: 10px;
+  bottom: 0;
+  left: 0;
   position: absolute;
   width: 100%;
 }
@@ -2597,7 +2597,7 @@ Form Control Component
   padding-bottom: 2px;
 }
 .grm-product__copy {
-  margin-right: 5px;
+  margin-right: 10px;
   transition: all 0.3s ease;
 }
 @media screen and (max-width: 1375px) {
@@ -2623,33 +2623,58 @@ Form Control Component
 /* Default
 ================ */
 .grm-product__default .grm-product__info {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+.grm-product__default .grm-product__info a {
   color: #212529;
   font-size: 21px;
   font-weight: 400;
-  margin-top: 8px;
+}
+.grm-product__default .grm-product__info.grm-product__isBig a {
+  font-size: 16px;
 }
 .grm-product__default.grm-product__wrapper {
   height: 300px;
+}
+.grm-product__default .grm-product__social {
+  display: flex;
+  align-items: center;
 }
 /* Card
 ================ */
 .grm-product__card {
   text-align: center;
+  padding: 0 10px;
 }
 .grm-product__card.grm-product__wrapper {
-  height: 310px;
+  height: 320px;
 }
 .grm-product__card .grm-product__info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+}
+.grm-product__card .grm-product__info a {
   color: var(--c-primary);
   font-size: 21px;
-  margin: 15px 0;
   text-align: center;
+}
+.grm-product__card .grm-product__info.grm-product__isBig a {
+  font-size: 16px;
 }
 .grm-product__card .grm-product__isShort {
   justify-content: center;
 }
-.grm-product__info.grm-product__isBig {
-  font-size: 16px;
+.grm-product__card .grm-product__footer {
+  bottom: 20px;
+}
+.grm-product__card .grm-product__social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* Brand Header
 ================ */

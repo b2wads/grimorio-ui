@@ -18,7 +18,7 @@ const exampleProduct = {
   info: {
     value: 5333.20,
   },
-  expires: '2018-10-31T23:59:00.000Z',
+  expires: '01/03/2020 23:59',
   link: 'https://www.americanas.com.br/produto/33446653/notebook-profissional-avell-w155-mx-intel-core-i7-16gb-geforce-mx150-1tb-15-6-fullhd',
   tags: [
     {
@@ -35,10 +35,10 @@ const exampleProduct = {
 const exampleCupom = {
   name: '10% com o cupom ALO10',
   info: {
-    value: 'ALO10', //16
+    value: 'UMCUPOMBEMGRANDE', //16
     rules: 'Confira as regras no site https://www.americanas.com.br/hotsite/regras-do-site',
   },
-  expires: '2018-10-31T23:59:00.000Z',
+  expires: '01/03/2020 23:59',
   copy: 'ALO10',
   link: 'http://www.americanas.com.br/categoria/celulares-e-smartphones/f/tag-tag_alo10_acom?opn=AFLACOM&epar=b2wafiliados&franq=AFL-03-101718',
   tags: [
@@ -56,7 +56,7 @@ const exampleCupom = {
 const exampleCat = {
   name: '10% com em telefonia',
   info: {},
-  expires: '2018-10-31T23:59:00.000Z',
+  expires: '01/03/2020 23:59',
   link: 'http://www.americanas.com.br/categoria/celulares-e-smartphones/f/tag-tag_alo10_acom?opn=AFLACOM&epar=b2wafiliados&franq=AFL-03-101718',
   tags: [
     {
