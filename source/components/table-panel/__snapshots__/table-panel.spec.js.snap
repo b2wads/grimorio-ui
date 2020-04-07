@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TablePanel component #render when renders correctly 1`] = `
+"<Panel size=\\"no-padding\\" className=\\"wrap\\" footer={false} title={false} loading={false} accordion={false} open={true} highlight=\\"shadow\\">
+  <div className=\\"header\\" />
+  <Table type=\\"panel\\" schema={{...}} data={{...}} layout=\\"auto\\" notFoundMessage=\\"Nenhum resultado encontrado :(\\" loadingMessage=\\"Loading...\\" isSticky={false} />
+</Panel>"
+`;
