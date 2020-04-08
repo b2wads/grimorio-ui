@@ -163,7 +163,7 @@ class ButtonUpload extends PureComponent {
           loading={loading}
           disabled={disabled || hasMaxFiles}
           iconLeft="publish"
-          className={styles.button}
+          className={styles.wrapcomp}
         >
           {btnText}
           <input
