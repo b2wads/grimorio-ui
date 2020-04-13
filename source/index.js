@@ -40,6 +40,7 @@ import Svg from './components/svg';
 import Table from './components/table';
 import TableFixed from './components/table-fixed';
 import TablePanel from './components/table-panel';
+import DragAndDrop from './components/drag-and-drop';
 import TabMenu, { Tab } from './components/tab';
 import Tag from './components/tag';
 import Toggle from './components/toggle';
@@ -70,6 +71,7 @@ export {
   ButtonUpload,
   Calendar,
   DatePicker,
+  DragAndDrop,
   EditableValue,
   Error,
   Feedback,
