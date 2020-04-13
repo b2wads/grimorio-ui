@@ -3,19 +3,41 @@ import { Draggable } from 'react-beautiful-dnd';
 import cx from 'classnames';
 import CSSModules from 'react-css-modules';
 import styles from './task.styl';
+import Icon from '../../../icon';
+import Button from '../../../button';
 
 class Task extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      task: this.props.task,
+    };
+  }
+
   render() {
+    const { hasIcon, changeColorElement, onClickIcon } = this.props;
+    const { task } = this.state;
     return (
-      <Draggable draggableId={this.props.task.id} index={this.props.index}>
+      <Draggable draggableId={task.id} index={this.props.index}>
         {(provided, snapshot) => (
-          <div
-            className={cx(styles.container, { [styles.changeBackground]: snapshot.isDragging })}
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            {this.props.task.content}
+          <div className={styles.body}>
+            <div
+              className={cx(styles.container, { [styles.changeBackground]: snapshot.isDragging && changeColorElement })}
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+            >
+              {task.content}
+            </div>
+            {hasIcon &&
+              <div
+                {...provided.draggableProps}
+                className={cx(styles.icon, { [styles.noneClose]: snapshot.isDragging })}
+              >
+                <Button color="transparent" className={styles.button} onClick={() => onClickIcon()}>
+                  <Icon name="close" size={14} />
+                </Button>
+              </div>}
           </div>
         )}
       </Draggable>
