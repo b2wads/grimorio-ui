@@ -5,7 +5,7 @@ import CSSModules from 'react-css-modules';
 import styles from './columns.styl';
 import Task from '../task';
 
-class Column extends React.Component {
+class Column extends React.PureComponent {
   render() {
     const { hasIcon, changeColorList, changeColorElement, onClickIcon } = this.props;
     return (

@@ -6,17 +6,9 @@ import styles from './task.styl';
 import Icon from '../../../icon';
 import Button from '../../../button';
 
-class Task extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      task: this.props.task,
-    };
-  }
-
+class Task extends React.PureComponent {
   render() {
-    const { hasIcon, changeColorElement, onClickIcon } = this.props;
-    const { task } = this.state;
+    const { hasIcon, changeColorElement, onClickIcon, task } = this.props;
     return (
       <Draggable draggableId={task.id} index={this.props.index}>
         {(provided, snapshot) => (
