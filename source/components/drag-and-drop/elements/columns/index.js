@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Droppable } from 'react-beautiful-dnd';
 import styles from './columns.styl';
-import Task from '../draggable';
+import DraggableComponent from '../draggable';
 
 class Column extends React.PureComponent {
   render() {
@@ -20,7 +20,7 @@ class Column extends React.PureComponent {
               ref={provided.innerRef}
             >
               {this.props.tasks.map((task, index) => (
-                <Task
+                <DraggableComponent
                   shouldClose={shouldClose}
                   key={task.id}
                   task={task}
