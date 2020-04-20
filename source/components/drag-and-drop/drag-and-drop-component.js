@@ -1,10 +1,9 @@
 /* eslint-disable no-invalid-this */
-import React, { Component } from 'react';
-import CSSModules from 'react-css-modules';
+import React, { Component, Fragment } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
-import styles from './drag-and-drop.styl';
 import Column from './elements/columns';
+// import { renderHtml } from './elements/component-draggable'
 
 class DragAndDrop extends Component {
   static PropTypes = {
@@ -62,27 +61,31 @@ class DragAndDrop extends Component {
   };
 
   render() {
-    const { hasIcon, changeColorElement, changeColorList, onClickIcon } = this.props;
+    const { shouldClose, changeColorElement, changeColorList, onClickIcon, component } = this.props;
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        {this.state.columnOrder.map(columnId => {
-          const column = this.state.columns[columnId];
-          const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
-          return (
-            <Column
-              key={column.id}
-              column={column}
-              tasks={tasks}
-              hasIcon={hasIcon}
-              changeColorList={changeColorList}
-              changeColorElement={changeColorElement}
-              onClickIcon={onClickIcon}
-            />
-          );
-        })}
-      </DragDropContext>
+      <Fragment>
+        {component === undefined
+          ? <DragDropContext onDragEnd={this.onDragEnd}>
+              {this.state.columnOrder.map(columnId => {
+                const column = this.state.columns[columnId];
+                const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
+                return (
+                  <Column
+                    key={column.id}
+                    column={column}
+                    tasks={tasks}
+                    shouldClose={shouldClose}
+                    changeColorList={changeColorList}
+                    changeColorElement={changeColorElement}
+                    onClickIcon={onClickIcon}
+                  />
+                );
+              })}
+            </DragDropContext>
+          : component}
+      </Fragment>
     );
   }
 }
 
-export default CSSModules(DragAndDrop, styles);
+export default DragAndDrop;

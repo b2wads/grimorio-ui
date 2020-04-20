@@ -1,13 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
 import { Droppable } from 'react-beautiful-dnd';
-import CSSModules from 'react-css-modules';
 import styles from './columns.styl';
-import Task from '../task';
+import Task from '../draggable';
 
 class Column extends React.PureComponent {
   render() {
-    const { hasIcon, changeColorList, changeColorElement, onClickIcon } = this.props;
+    const { shouldClose, changeColorList, changeColorElement, onClickIcon } = this.props;
     return (
       <div className={styles.component}>
         <h3 className={styles.title}>{this.props.column.title}</h3>
@@ -22,7 +21,7 @@ class Column extends React.PureComponent {
             >
               {this.props.tasks.map((task, index) => (
                 <Task
-                  hasIcon={hasIcon}
+                  shouldClose={shouldClose}
                   key={task.id}
                   task={task}
                   index={index}
@@ -39,4 +38,4 @@ class Column extends React.PureComponent {
   }
 }
 
-export default CSSModules(Column, styles);
+export default Column;

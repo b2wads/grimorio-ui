@@ -2,7 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
-
+import { action } from '@storybook/addon-actions';
+import { renderHtml } from './elements/component-draggable'
 import DragAndDrop from './drag-and-drop-component';
 
 const stories = storiesOf('DragAndDrop', module);
@@ -40,6 +41,12 @@ stories.add('With shadow', withState({ initialData: initialData })(({ store }) =
 
 stories.add('With icon', withState({ initialData: initialData })(({ store }) =>  {
   return (
-    <DragAndDrop hasIcon onClickIcon ={() => console.log('Click Icon')} initialData={store.state.initialData} />
+    <DragAndDrop shouldClose onClickIcon ={action('Click Icon')} initialData={store.state.initialData} />
+  );
+}));
+
+stories.add('Choose your draggable', withState({ initialData: initialData })(({ store }) =>  {
+  return (
+    <DragAndDrop component={renderHtml} initialData={store.state.initialData} />
   );
 }));
