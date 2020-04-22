@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withState } from '@dump247/storybook-state';
 
 import ButtonUpload from './index';
 
@@ -11,15 +12,26 @@ const printRes = (data, list, error, size) => {
 
 stories.add('Normal', () => <ButtonUpload onChange={printRes} />);
 
-stories.add('As Div', () => <ButtonUpload as="div" onChange={printRes} />);
+stories.add('As Div', () =>
+  <ButtonUpload
+    style={{
+      border: '2px dashed #9b9b9b',
+      padding: '20px',
+      width: '250px',
+      textAlign: 'center'
+    }}
+    as="div"
+    onChange={printRes}
+    btnText="Envie sua imagem"
+  />);
 
 stories.add(
   'With image Dimensions',
   () => (
     <ButtonUpload
-      allowedDimensions={['300x124', '1280x720']}
+      allowedDimensions={['300x250']}
       formatWhiteList={['.jpg', '.jpeg', '.png']}
-      btnText="Apenas Ibagens"
+      btnText="Apenas 300x250"
       onChange={printRes}
     />
   )
@@ -48,3 +60,24 @@ stories.add('With MaxFileSize', () =>
     onChange={printRes}
   />
 );
+
+stories.add(
+  'Showing Imagens',
+  withState({ data: [] })(({ store }) => {
+    const change = data => {
+      store.set({ data });
+    };
+    return <div>
+      <div>
+        {store.state.data.map(base64 => <img width="150px" src={base64}/> )}
+      </div>
+
+      <br/>
+      <br/>
+      <br/>
+
+      <ButtonUpload onChange={change} />
+    </div>;
+  })
+);
+

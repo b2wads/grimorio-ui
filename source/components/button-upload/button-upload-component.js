@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
+import { omit } from '../../helpers';
 
 import Button from '../button';
 import Icon from '../icon';
@@ -153,7 +154,7 @@ class ButtonUpload extends PureComponent {
   }
 
   render() {
-    const { disabled, btnText, limit, loading, accept, formatWhiteList, as, className } = this.props;
+    const { disabled, btnText, limit, loading, accept, formatWhiteList, as, className, ...rest } = this.props;
     const hasMaxFiles = this.state.list.length === limit;
     const WrapComponent = as || Button;
 
@@ -164,6 +165,7 @@ class ButtonUpload extends PureComponent {
           disabled={disabled || hasMaxFiles}
           iconLeft="publish"
           className={styles.wrapcomp}
+          {...omit(rest, ['onChange', 'maxFileSize', 'allowedDimensions', 'formatWhiteList'])}
         >
           {btnText}
           <input
@@ -185,4 +187,4 @@ class ButtonUpload extends PureComponent {
   }
 }
 
-export default CSSModules(ButtonUpload, styles);
+export default ButtonUpload;
