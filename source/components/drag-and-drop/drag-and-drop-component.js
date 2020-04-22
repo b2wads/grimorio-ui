@@ -1,89 +1,80 @@
 /* eslint-disable no-invalid-this */
-import React, { Component, Fragment } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+import React, { Component } from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types';
-import Column from './elements/columns';
-// import { renderHtml } from './elements/component-draggable'
+
+import DraggableComponent from './elements/draggable';
 
 class DragAndDrop extends Component {
-  static PropTypes = {
-    icon: PropTypes.bool,
-    changeColorList: PropTypes.bool,
-    changeColorElement: PropTypes.bool,
-    initialData: PropTypes.array.isRequired,
+  static propTypes = {
+    onChange: PropTypes.func,
+    onItemClose: PropTypes.func,
+    droppableId: PropTypes.string,
+    wrapAs: PropTypes.string,
   };
 
   static defaultProps = {
-    icon: false,
-    changeColorList: false,
-    changeColorElement: false,
+    droppableId: 'droppable-default',
   };
 
   constructor(props) {
     super(props);
-    const { initialData } = this.props;
     this.state = {
-      tasks: initialData.tasks,
-      columns: initialData.columns,
-      columnOrder: initialData.columnOrder,
+      items: this.getItems(props),
     };
   }
+
+  getItems = props => (!props.children ? props.items : props.initialItems);
+
   onDragEnd = result => {
-    const { destination, source, draggableId } = result;
+    const { items } = this.state;
+    const newItems = [...items];
+    const { destination, source } = result;
 
-    if (!destination) {
+    if (!destination || (destination.droppableId === source.droppableId && destination.index === source.index)) {
       return;
     }
-    if (destination.droppableId === source.droppableId && destination.index === source.index) {
-      return;
-    }
 
-    const column = this.state.columns[source.droppableId];
-    const newTaskIds = Array.from(column.taskIds);
+    newItems.splice(source.index, 1);
+    newItems.splice(destination.index, 0, items[source.index]);
 
-    newTaskIds.splice(source.index, 1);
-    newTaskIds.splice(destination.index, 0, draggableId);
-
-    const newColumn = {
-      ...column,
-      taskIds: newTaskIds,
-    };
-
-    const newState = {
-      ...this.state,
-      columns: {
-        ...this.state.columns,
-        [newColumn.id]: newColumn,
-      },
-    };
-
-    this.setState(newState);
+    this.props.onChange(newItems.map(it => it.id), newItems);
+    this.setState({ items: newItems });
   };
 
+  removeItem = index => {
+    const { items } = this.state;
+    const newItems = [...items];
+    newItems.splice(index, 1);
+
+    return () => {
+      this.props.onChange(newItems.map(it => it.id), newItems);
+      this.setState({ items: newItems });
+    };
+  };
+
+  renderStateItems = () =>
+    this.state.items.map((itemData, idx) => (
+      <DraggableComponent {...itemData} key={itemData.id} index={idx} onClose={this.removeItem(idx)}>
+        {itemData.content}
+      </DraggableComponent>
+    ));
+
   render() {
-    const { shouldClose, changeColorElement, changeColorList, onClickIcon, component } = this.props;
+    const { wrapAs, droppableId } = this.props;
+    const Wrap = wrapAs || 'div';
+
     return (
-      <Fragment>
-        {component === undefined
-          ? <DragDropContext onDragEnd={this.onDragEnd}>
-              {this.state.columnOrder.map(columnId => {
-                const column = this.state.columns[columnId];
-                const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
-                return (
-                  <Column
-                    key={column.id}
-                    column={column}
-                    tasks={tasks}
-                    shouldClose={shouldClose}
-                    changeColorList={changeColorList}
-                    changeColorElement={changeColorElement}
-                    onClickIcon={onClickIcon}
-                  />
-                );
-              })}
-            </DragDropContext>
-          : component}
-      </Fragment>
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <Droppable droppableId={droppableId}>
+          {(provided, _snapshot) => (
+            <Wrap {...provided.droppableProps} ref={provided.innerRef}>
+              {!this.props.children ? this.renderStateItems() : this.props.children}
+              {provided.placeholder}
+            </Wrap>
+          )}
+        </Droppable>
+      </DragDropContext>
     );
   }
 }

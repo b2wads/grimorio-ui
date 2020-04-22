@@ -1,0 +1,23 @@
+.item {
+  &:not(.isTable) {
+    display: flex;
+    align-items: center;
+  }
+
+  &.isDragging {
+    font-weight: bold;
+  }
+
+  &.isDragging.isTable {
+    display: table;
+  }
+}
+
+.close {
+  margin-left: 10px;
+  cursor: pointer;
+
+  &.isDragging {
+    display: none;
+  }
+}

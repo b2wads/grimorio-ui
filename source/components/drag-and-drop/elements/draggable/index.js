@@ -1,35 +1,51 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { Draggable } from 'react-beautiful-dnd';
 import cx from 'classnames';
-import styles from './task.styl';
+import styles from './draggable.styl';
 import Icon from '../../../icon';
-import Button from '../../../button';
 
 class DraggableComponent extends React.PureComponent {
+  static propTypes = {
+    as: PropTypes.string,
+    isTable: PropTypes.bool,
+    className: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    shouldClose: PropTypes.bool,
+    onClose: PropTypes.func,
+  };
+
   render() {
-    const { shouldClose, changeColorElement, onClickIcon, task } = this.props;
+    const { as, isTable, className, id, index, children, shouldClose, onClose } = this.props;
+
+    const Wrapper = as || 'div';
+
     return (
-      <Draggable draggableId={task.id} index={this.props.index}>
+      <Draggable key={id} draggableId={`${id}`} index={index}>
         {(provided, snapshot) => (
-          <div className={styles.body}>
-            <div
-              className={cx(styles.container, { [styles.changeBackground]: snapshot.isDragging && changeColorElement })}
-              ref={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-            >
-              {task.content}
-            </div>
-            {shouldClose &&
-              <div
-                {...provided.draggableProps}
-                className={cx(styles.icon, { [styles.noneClose]: snapshot.isDragging })}
-              >
-                <Button color="transparent" className={styles.button} onClick={() => onClickIcon()}>
-                  <Icon name="close" size={14} />
-                </Button>
-              </div>}
-          </div>
+          <Wrapper
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            className={cx(className, styles.item, {
+              [styles.isDragging]: snapshot.isDragging,
+              [styles.isTable]: isTable,
+            })}
+          >
+            <Fragment>
+              {children}
+
+              {shouldClose &&
+                !isTable &&
+                <Icon
+                  className={cx(styles.close, { [styles.isDragging]: snapshot.isDragging })}
+                  name="close"
+                  size={14}
+                  onClick={onClose}
+                />}
+            </Fragment>
+          </Wrapper>
         )}
       </Draggable>
     );
