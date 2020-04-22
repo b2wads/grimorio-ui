@@ -22,20 +22,18 @@ stories.add('Normal', () => {
 
 stories.add('Com child components', () => {
   return (
-    <table>
-      <DragAndDrop onChange={(ids, list) => console.log(ids, list)}>
-        <span className="testeeee" contentClassName="contente" id={`teste`}>
-          Teste
-        </span>
+    <DragAndDrop onChange={(ids, list) => console.log(ids, list)}>
+      <span className="testeeee" contentClassName="contente" id={`teste`}>
+        Teste
+      </span>
 
-        <div id={`teste2`}>
-          Teste 2
-        </div>
+      <div id={`teste2`}>
+        Teste 2
+      </div>
 
-        <div id={`teste3`} shouldClose={true}>
-          Teste 3
-        </div>
-      </DragAndDrop>
-    </table>
+      <div id={`teste3`} shouldClose={true}>
+        Teste 3
+      </div>
+    </DragAndDrop>
   );
 });
