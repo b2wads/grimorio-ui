@@ -10,6 +10,7 @@ class DragAndDrop extends Component {
     onChange: PropTypes.func,
     onItemClose: PropTypes.func,
     droppableId: PropTypes.string,
+    wrapAs: PropTypes.string,
   };
 
   static defaultProps = {
@@ -23,22 +24,7 @@ class DragAndDrop extends Component {
     };
   }
 
-  getItems = props => {
-    const childItems = [];
-
-    if (props.children) {
-      React.Children.forEach(props.children, child => {
-        childItems.push({
-          id: `${child.props.id}`,
-          shouldClose: child.props.shouldClose,
-          className: child.props.className,
-          content: child.props.content || child,
-        });
-      });
-    }
-
-    return props.items || childItems;
-  };
+  getItems = props => (!props.children ? props.items : props.initialItems);
 
   onDragEnd = result => {
     const { items } = this.state;
@@ -67,20 +53,25 @@ class DragAndDrop extends Component {
     };
   };
 
+  renderStateItems = () =>
+    this.state.items.map((itemData, idx) => (
+      <DraggableComponent {...itemData} key={itemData.id} index={idx} onClose={this.removeItem(idx)}>
+        {itemData.content}
+      </DraggableComponent>
+    ));
+
   render() {
-    const { droppableId } = this.props;
+    const { wrapAs, droppableId } = this.props;
+    const Wrap = wrapAs || 'div';
+
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId={droppableId}>
           {(provided, _snapshot) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              {this.state.items.map((itemData, idx) => (
-                <DraggableComponent {...itemData} key={itemData.id} index={idx} onClose={this.removeItem(idx)}>
-                  {itemData.content}
-                </DraggableComponent>
-              ))}
+            <Wrap {...provided.droppableProps} ref={provided.innerRef}>
+              {!this.props.children ? this.renderStateItems() : this.props.children}
               {provided.placeholder}
-            </div>
+            </Wrap>
           )}
         </Droppable>
       </DragDropContext>

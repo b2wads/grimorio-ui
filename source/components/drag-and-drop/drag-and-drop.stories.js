@@ -1,7 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { withState } from '@dump247/storybook-state';
 import DragAndDrop from './drag-and-drop-component';
+
+import DraggableComponent from './elements/draggable';
 
 const stories = storiesOf('DragAndDrop', module);
 
@@ -14,26 +17,36 @@ const items = [
   { id: 'task-4', content: 'Teste 4' },
 ];
 
-stories.add('Normal', () => {
+stories.add('Item list', () => {
   return (
-    <DragAndDrop items={items} onChange={(ids, list) => console.log(ids, list)} />
+    <DragAndDrop droppableId="normal" items={items} onChange={(ids, list) => console.log(ids, list)} />
   );
 });
 
-stories.add('Com child components', () => {
-  return (
-    <DragAndDrop onChange={(ids, list) => console.log(ids, list)}>
-      <span className="testeeee" contentClassName="contente" id={`teste`}>
-        Teste
-      </span>
 
-      <div id={`teste2`}>
-        Teste 2
-      </div>
+stories.add('Manual Items', withState({ items })(({ store }) => {
+    const changeValue = (_ids, items) => {
+      store.set({ items });
+    };
 
-      <div id={`teste3`} shouldClose={true}>
-        Teste 3
-      </div>
-    </DragAndDrop>
-  );
-});
+    return (
+      <table width="500px">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Content</th>
+          </tr>
+        </thead>
+        <DragAndDrop droppableId="controlled" initialItems={store.state.items} wrapAs="tbody" onChange={changeValue}>
+          {store.state.items.map((data, index) => (
+            <DraggableComponent isTable as="tr" className="teste-tr" id={data.id} index={index}>
+              <td>{data.id}</td>
+              <td>{data.content}</td>
+            </DraggableComponent>
+          ))}
+        </DragAndDrop>
+      </table>
+    );
+  })
+);
+
