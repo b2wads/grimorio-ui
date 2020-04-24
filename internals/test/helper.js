@@ -11,6 +11,16 @@ Object.assign(global, {
   toJson
 });
 
+// mocks for copy function
+global.document.getSelection = function() {
+  return function getRangeAt() {
+    return 'fake';
+  }
+};
+global.document.execCommand = function() {
+  return true;
+};
+
 global.window.localStorage = global.window.sessionStorage = {
   getItem(key) {
     return this[key];

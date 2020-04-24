@@ -81,7 +81,8 @@ module.exports = {
     '^helpers(.*)$': '<rootDir>/source/helpers/',
     '^components(.*)$': '<rootDir>/source/components/',
     '\\.(css|styl)$': 'identity-obj-proxy',
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/internals/file-transformer.js',
+    '\\.svg$': '<rootDir>/internals/svgMock.js',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/internals/file-transformer.js',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

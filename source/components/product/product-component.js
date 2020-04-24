@@ -1,7 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import moment from 'moment';
 
 import { omit } from '../../helpers';
 import styles from './product.styl';
@@ -68,10 +67,6 @@ class Product extends PureComponent {
   renderInfo() {
     const { data, copyValue } = this.props;
     const { info, link } = data;
-
-    if (!info) {
-      return null;
-    }
 
     return (
       <div className={cx(styles.info, { [styles.isBig]: info.value && info.value.length > 11 })}>
@@ -144,8 +139,7 @@ class Product extends PureComponent {
     const { linkCopied } = this.state;
     return (
       <Button className={styles.copy} onClick={this.handleCopy} iconRight={linkCopied ? 'check' : 'insert_link'}>
-        {linkCopied && 'Copiado!'}
-        {!linkCopied && btnText}
+        {linkCopied ? 'Copiado!' : btnText}
       </Button>
     );
   }
@@ -180,7 +174,7 @@ class Product extends PureComponent {
           {expires &&
             <div className={styles.expires}>
               <a target="_blank" href={copyValue || link}>
-                {`Valido até: ${moment(expires).utc().format('DD/MM/YYYY H:mm')}`}
+                {`Valido até: ${expires}`}
               </a>
             </div>}
 
