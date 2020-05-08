@@ -14,7 +14,8 @@
         "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
         "@babel/plugin-proposal-export-namespace-from",
-        "@babel/plugin-transform-modules-commonjs"
+        "@babel/plugin-transform-modules-commonjs",
+        ["@babel/plugin-transform-runtime", { "regenerator": true }]
       ]
     },
     "development": {
