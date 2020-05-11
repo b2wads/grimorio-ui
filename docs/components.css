@@ -384,7 +384,7 @@
 .grm-button-upload__file:disabled {
   cursor: not-allowed;
 }
-.grm-button-upload__button {
+.grm-button-upload__wrapcomp {
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -733,6 +733,25 @@
   transform: translate(-50%, 0);
   width: auto;
   z-index: 999991;
+}
+
+
+.grm-draggable__item:not(.grm-draggable__isTable) {
+  display: flex;
+  align-items: center;
+}
+.grm-draggable__item.grm-draggable__isDragging {
+  font-weight: bold;
+}
+.grm-draggable__item.grm-draggable__isDragging.grm-draggable__isTable {
+  display: table;
+}
+.grm-draggable__close {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.grm-draggable__close.grm-draggable__isDragging {
+  display: none;
 }
 
 /* ==========================================================================
@@ -2033,7 +2052,6 @@ Form Control Component
 .grm-menu__accordionMenu .grm-menu__menuItem.grm-menu__isNotAccordion.grm-menu__isActive {
   background: var(--c-support);
   border-left-color: var(--c-primary-dark);
-  transition: font-size 0.3s ease;
 }
 .grm-menu__accordionMenu .grm-menu__menuItem.grm-menu__isNotAccordion .grm-menu__iconLeft {
   color: #fff;
