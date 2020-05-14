@@ -24,6 +24,16 @@ class DragAndDrop extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    const { items, initialItems } = this.props;
+    if (items !== prevProps.items) {
+      this.setState({ items });
+    }
+    if (initialItems !== prevProps.initialItems) {
+      this.setState({ items: initialItems });
+    }
+  }
+
   getItems = props => (!props.children ? props.items : props.initialItems);
 
   onDragEnd = result => {
