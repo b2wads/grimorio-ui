@@ -39,7 +39,6 @@ const schema = {
     className: null,
     render: info => info.name.first,
   },
-  empty: {},
   surname: {
     title: 'Sobrenome',
     headClassName: null,
@@ -86,7 +85,7 @@ stories.add('Row Height', () => {
   );
 });
 
-stories.add('Sticky', withState({ data: null })(({ store }) => {
+stories.add('Sticky header', withState({ data: null })(({ store }) => {
   fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json())
     .then(res => {
@@ -94,6 +93,17 @@ stories.add('Sticky', withState({ data: null })(({ store }) => {
     });
 
   return <Table schema={schema} data={store.state.data} scrollY height="400px" isSticky />
+}));
+
+stories.add('Sticky header, footer and columns', withState({ data: null })(({ store }) => {
+  fetch('https://randomuser.me/api/?results=10')
+    .then(res => res.json())
+    .then(res => {
+      !store.state.data && store.set({ data: res.results });
+    });
+
+  return <Table schema={schema} 
+  numberFixedColumns="3" data={store.state.data} scrollY style={{maxWidth: '500px', height: '400px'}} isSticky />
 }));
 
 stories.add('Special Case', () => {
