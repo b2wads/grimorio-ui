@@ -67,7 +67,9 @@ class Table extends PureComponent {
   }
 
   setColumnsFixed() {
-    const nodes = [...this.headerTable.current.children];
+    const nodes = this.headerTable.current && this.headerTable.current.children
+      ? [...this.headerTable.current.children]
+      : [];
 
     const listWidthFixed = Array.from(nodes).reduce((acc, el, index) => {
       if (index < this.props.numberFixedColumns - 1) {
