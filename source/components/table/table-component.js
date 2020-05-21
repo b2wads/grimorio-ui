@@ -48,16 +48,66 @@ class Table extends PureComponent {
     isSticky: false,
   };
 
+  constructor(props) {
+    super(props);
+    this.headerTable = React.createRef();
+    this.state = {
+      listWidthFixed: [],
+    };
+  }
+
+  componentDidMount() {
+    this.setColumnsFixed();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setColumnsFixed();
+    }
+  }
+
+  setColumnsFixed() {
+    const nodes = this.headerTable.current && this.headerTable.current.children
+      ? [...this.headerTable.current.children]
+      : [];
+
+    const listWidthFixed = Array.from(nodes).reduce((acc, el, index) => {
+      if (index < this.props.numberFixedColumns - 1) {
+        if (index === 0) {
+          acc.push(0);
+          acc.push(el.clientWidth);
+        } else {
+          acc.push(el.clientWidth + acc[index]);
+        }
+      }
+      return acc;
+    }, []);
+    this.setState({ listWidthFixed });
+  }
+
   renderHeadRow(schema, isSticky, rowHeight) {
     return (
-      <tr style={{ height: rowHeight }} className={cx(styles.rowHead, { [styles.isSticky]: isSticky })}>
+      <tr
+        ref={this.headerTable}
+        style={{ height: rowHeight }}
+        className={cx(styles.rowHead, { [styles.isSticky]: isSticky })}
+      >
         {Object.keys(schema).map((key, index) => {
           const currentSchema = schema[key];
-          const headClass = cx(styles.cellHead, currentSchema.className, { [styles.isSticky]: isSticky });
-
+          const headClass = cx(
+            styles.cellHead,
+            currentSchema.className,
+            { [styles.isSticky]: isSticky },
+            this.hasStickyColumn(index)
+          );
           if (Object.keys(currentSchema).length) {
             return (
-              <th width={currentSchema.width} key={uniqueId()} className={headClass}>
+              <th
+                style={{ left: this.state.listWidthFixed[index], position: 'sticky' }}
+                width={currentSchema.width}
+                key={uniqueId()}
+                className={headClass}
+              >
                 {currentSchema.renderHead ? currentSchema.renderHead(currentSchema, index) : currentSchema.title}
               </th>
             );
@@ -72,11 +122,22 @@ class Table extends PureComponent {
       <tr style={{ height: rowHeight }} className={cx(styles.rowFoot, { [styles.isSticky]: isSticky })}>
         {Object.keys(dataFooter).map((key, index) => {
           const currentData = dataFooter[key];
-          const headClass = cx(styles.cellFoot, currentData.className, { [styles.isSticky]: isSticky });
+          const headClass = cx(
+            styles.cellFoot,
+            currentData.className,
+            { [styles.isSticky]: isSticky },
+            this.hasStickyColumn(index)
+          );
 
           if (Object.keys(currentData).length) {
             return (
-              <td width={currentData.width} key={uniqueId()} className={headClass} colSpan={currentData.colspan || 1}>
+              <td
+                style={{ left: this.state.listWidthFixed[index] }}
+                width={currentData.width}
+                key={uniqueId()}
+                className={headClass}
+                colSpan={currentData.colspan || 1}
+              >
                 {currentData.value || ''}
               </td>
             );
@@ -98,6 +159,12 @@ class Table extends PureComponent {
       : {};
   }
 
+  hasStickyColumn(index) {
+    if (typeof this.state.listWidthFixed[index] !== 'undefined') {
+      return styles.isStickyColumn;
+    }
+  }
+
   renderRow(data, schema, specialCase, rowHeight) {
     return data.map((infoRow, index) => (
       <tr
@@ -105,11 +172,18 @@ class Table extends PureComponent {
         key={uniqueId()}
         className={cx(styles.row, this.generateSpecialStyle(specialCase, infoRow))}
       >
-        {Object.keys(schema).map(key => {
+        {Object.keys(schema).map((key, indexTd) => {
           const currentSchema = schema[key];
           if (Object.keys(currentSchema).length) {
             return (
-              <td width={currentSchema.width} key={uniqueId()} className={cx(styles.cell, currentSchema.className)}>
+              <td
+                style={{
+                  left: this.state.listWidthFixed[indexTd],
+                }}
+                width={currentSchema.width}
+                key={uniqueId()}
+                className={cx(styles.cell, currentSchema.className, this.hasStickyColumn(indexTd))}
+              >
                 {currentSchema.render ? currentSchema.render(infoRow, index) : infoRow[key]}
               </td>
             );
