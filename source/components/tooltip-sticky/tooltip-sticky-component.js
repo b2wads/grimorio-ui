@@ -45,17 +45,25 @@ class TooltipSticky extends PureComponent {
     const arrowWidth = 15;
     const arrowHeight = 15;
     const pageScroll = window.scrollY;
-    const posX = this.windowWidth / 2 > x ? 'left' : 'right';
-    const posY = this.windowHeight / 2 > y ? 'bottom' : 'top';
+    let posX = this.windowWidth / 2 > x ? 'left' : 'right';
+    let posY = this.windowHeight / 2 > y ? 'bottom' : 'top';
     const tooltipWidth = this.holdTooltip.current && this.holdTooltip.current.offsetWidth;
     const tooltipHeight = this.holdTooltip.current && this.holdTooltip.current.offsetHeight;
 
-    const style = {
+    let style = {
       left: posX === 'right' ? `${x - tooltipWidth + width + arrowWidth}px` : `${x - arrowWidth}px`,
       top: posY === 'top'
         ? `${pageScroll + y - tooltipHeight - arrowHeight}px`
         : `${pageScroll + y + height + arrowHeight}px`,
     };
+
+    if (this.props.showOnSide) {
+      style = {
+        left: posX === 'left' ? `${x + width}px` : `${x - tooltipWidth - arrowWidth}px`,
+        top: `${pageScroll + y - arrowHeight}px`,
+      };
+      posY = 'top';
+    }
 
     this.setState({
       position: style,
@@ -84,12 +92,14 @@ class TooltipSticky extends PureComponent {
   }
   renderTooltip() {
     const { position, show, posX, posY } = this.state;
-    const { className } = this.props;
+    const { className, showOnSide } = this.props;
     const finalClassName = classNames(styles.tooltip, {
       className: className,
       [styles.show]: show,
       [styles[posX]]: posX,
       [styles[posY]]: posY,
+      [styles.side]: showOnSide,
+      [styles.topBottom]: !showOnSide,
     });
 
     return ReactDOM.createPortal(

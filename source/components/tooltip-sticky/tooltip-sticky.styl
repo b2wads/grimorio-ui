@@ -42,7 +42,8 @@ $default {
   opacity: 0;
   padding: 10px;
   position: absolute;
-  width: 357px;
+  max-width: 355px;
+  min-width: 50px;
   word-wrap: break-word;
   z-index: 10;
 }
@@ -72,38 +73,71 @@ $default {
   margin: 0;
 }
 
-.left {
-  &:after, &:before {
-    left: 20px;
+.topBottom {
+  &.top {
+    &:after {
+      arrow(#fff, 10px 10px 0);
+      bottom: -10px;
+    }
+
+    &:before {
+      arrow($c-border, 10px 10px 0);
+      bottom: -11px;
+    }
+  }
+
+  &.left {
+    &:after, &:before {
+      left: 20px;
+    }
+  }
+
+  &.right {
+    &:after, &:before {
+      right: 20px;
+    }
+  }
+
+  &.bottom {
+    &:after {
+      arrow(#fff, 0 10px 10px);
+      top: -10px;
+    }
+
+    &:before {
+      arrow($c-border, 0 10px 10px);
+      top: -11px;
+    }
   }
 }
 
-.right {
-  &:after, &:before {
-    right: 20px;
+.side {
+  &.right {
+    &:before {
+      arrow($c-border, 0 10px 10px);
+      transform: rotate(90deg);
+      right: -17px;
+      top: 15px;
+    }
+    &:after {
+      arrow(#fff, 0 10px 10px);
+      transform: rotate(90deg);
+      right: -15px;
+      top: 15px;
+    }  
   }
-}
-
-.bottom {
-  &:after {
-    arrow(#fff, 0 10px 10px);
-    top: -10px;
-  }
-
-  &:before {
-    arrow($c-border, 0 10px 10px);
-    top: -11px;
-  }
-}
-
-.top {
-  &:after {
-    arrow(#fff, 10px 10px 0);
-    bottom: -10px;
-  }
-
-  &:before {
-    arrow($c-border, 10px 10px 0);
-    bottom: -11px;
+  &.left {
+    &:before {
+      arrow($c-border, 0 10px 10px);
+      transform: rotate(270deg);
+      left: -17px;
+      top: 15px;
+    }
+    &:after {
+      arrow(#fff, 0 10px 10px);
+      transform: rotate(270deg);
+      left: -15px;
+      top: 15px;
+    }  
   }
 }
