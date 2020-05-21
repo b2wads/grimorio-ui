@@ -39,3 +39,35 @@ stories.add('With Title', () =>
     </Button>
   </TooltipSticky>
 );
+
+stories.add('With showOnSide', () =>
+  <div style={{display: 'flex', justifyContent: 'space-between'}}>
+    <TooltipSticky
+      body={
+        <div>
+          <span>Suas campanhas estão paradas por falta de saldo.</span>
+            Insira novos créditos e volte a anunciar.
+        </div>
+      }
+      showOnSide
+    >
+      <Button color="clean">
+        Passe o mouse aqui também!
+      </Button>
+    </TooltipSticky>
+
+    <TooltipSticky
+      body={
+        <div>
+          <span>Suas campanhas estão paradas por falta de saldo.</span>
+            Insira novos créditos e volte a anunciar.
+        </div>
+      }
+      showOnSide
+      >
+      <Button color="clean" style={{paddingLeft: '0px'}}>
+        Passe o mouse aqui também!
+      </Button>
+    </TooltipSticky>
+  </div>
+);
