@@ -99,11 +99,26 @@ stories.add('Sticky header, footer and columns', withState({ data: null })(({ st
   fetch('https://randomuser.me/api/?results=10')
     .then(res => res.json())
     .then(res => {
-      !store.state.data && store.set({ data: res.results });
+      !store.state.data && store.set({ data: res.results, dataFooter: [
+          {
+            value: 'Total: 32',
+            colspan: 2,
+          },
+          {
+            value: '-',
+          },
+          {
+            value: '-',
+          },
+          {
+            value: '-',
+          }
+        ]
+       });
     });
 
   return <Table schema={schema} 
-  numberFixedColumns="3" data={store.state.data} scrollY style={{maxWidth: '500px', height: '400px'}} isSticky />
+  numberFixedColumns="3" data={store.state.data} dataFooter={store.state.dataFooter} scrollY style={{maxWidth: '500px', height: '400px'}} isSticky />
 }));
 
 stories.add('Special Case', () => {
