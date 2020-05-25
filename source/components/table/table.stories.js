@@ -104,15 +104,9 @@ stories.add('Sticky header, footer and columns', withState({ data: null })(({ st
             value: 'Total: 32',
             colspan: 2,
           },
-          {
-            value: '-',
-          },
-          {
-            value: '-',
-          },
-          {
-            value: '-',
-          }
+          { value: '-' },
+          { value: '-' },
+          { value: '-' },
         ]
        });
     });
