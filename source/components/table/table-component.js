@@ -37,6 +37,7 @@ class Table extends PureComponent {
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     isSticky: PropTypes.bool,
     rowHeight: PropTypes.string,
+    numberFixedColumns: PropTypes.string,
   };
 
   static defaultProps = {
