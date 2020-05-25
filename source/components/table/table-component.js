@@ -37,6 +37,7 @@ class Table extends PureComponent {
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     isSticky: PropTypes.bool,
     rowHeight: PropTypes.string,
+    numberFixedColumns: PropTypes.string,
   };
 
   static defaultProps = {
@@ -118,21 +119,28 @@ class Table extends PureComponent {
   }
 
   renderFootRow(dataFooter, isSticky, rowHeight) {
+    let numbColspans = 0;
     return (
       <tr style={{ height: rowHeight }} className={cx(styles.rowFoot, { [styles.isSticky]: isSticky })}>
         {Object.keys(dataFooter).map((key, index) => {
           const currentData = dataFooter[key];
+          let newIndex = this.getNewIndex(currentData, index, numbColspans);
+
           const headClass = cx(
             styles.cellFoot,
             currentData.className,
             { [styles.isSticky]: isSticky },
-            this.hasStickyColumn(index)
+            this.hasStickyColumn(newIndex)
           );
+
+          if (currentData.colspan) {
+            numbColspans += currentData.colspan;
+          }
 
           if (Object.keys(currentData).length) {
             return (
               <td
-                style={{ left: this.state.listWidthFixed[index] }}
+                style={{ left: this.state.listWidthFixed[newIndex] }}
                 width={currentData.width}
                 key={uniqueId()}
                 className={headClass}
@@ -162,6 +170,14 @@ class Table extends PureComponent {
   hasStickyColumn(index) {
     if (typeof this.state.listWidthFixed[index] !== 'undefined') {
       return styles.isStickyColumn;
+    }
+  }
+
+  getNewIndex(currentData, index, numbColspans) {
+    if (currentData.colspan) {
+      return numbColspans + index;
+    } else {
+      return index === 0 ? index + numbColspans : index + numbColspans - 1;
     }
   }
 
