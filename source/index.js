@@ -38,7 +38,6 @@ import Slider from './components/slider';
 import Steps from './components/steps';
 import Svg from './components/svg';
 import Table from './components/table';
-import TableFixed from './components/table-fixed';
 import TablePanel from './components/table-panel';
 import DragAndDrop, { DraggableComponent } from './components/drag-and-drop';
 import TabMenu, { Tab } from './components/tab';
@@ -107,7 +106,6 @@ export {
   Svg,
   Tab,
   Table,
-  TableFixed,
   TablePanel,
   TabMenu,
   Tag,

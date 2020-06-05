@@ -3432,47 +3432,6 @@ Form Control Component
 /* ==========================================================================
    Placeholders
 ========================================================================== */
-/* ==========================================================================
-   TableFixed Elements
-========================================================================== */
-/* ==========================================================================
-   TableFixed Props
-========================================================================== */
-/* Default
-================ */
-.grm-table-fixed__shortWrap {
-  overflow: auto;
-}
-.grm-table-fixed__fullWrap {
-  display: flex;
-}
-.grm-table-fixed__fullWidth {
-  flex: 1;
-}
-.grm-table-fixed__stickShort {
-  left: initial;
-  z-index: 0;
-}
-.grm-table-fixed__stickFull {
-  left: 0;
-  z-index: 3;
-}
-.grm-table-fixed__sticky {
-  position: sticky;
-}
-.grm-table-fixed__sticky table {
-  background: #fff;
-}
-.grm-table-fixed__sticky table tbody {
-  box-shadow: 2px 1px 4px 0 rgba(0,0,0,0.17);
-}
-
-/* ==========================================================================
-   Variables
-========================================================================== */
-/* ==========================================================================
-   Placeholders
-========================================================================== */
 .grm-table-panel__header,
 .grm-table-panel__footer {
   padding-left: 25px;
