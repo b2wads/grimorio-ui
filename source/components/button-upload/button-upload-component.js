@@ -6,14 +6,14 @@ import { omit } from '../../helpers';
 import Button from '../button';
 import Icon from '../icon';
 
-// styles
 import styles from './button-upload.styl';
 
 class ButtonUpload extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      list: props.defaultFiles || [],
+      list: props.defaultFiles || props.files || [],
+      lengthCurrent: props.files.length || 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,6 +24,7 @@ class ButtonUpload extends PureComponent {
     btnText: PropTypes.string,
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
+    files: PropTypes.array,
     limit: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     defaultFiles: PropTypes.array,
     formatWhiteList: PropTypes.array,
@@ -36,11 +37,24 @@ class ButtonUpload extends PureComponent {
     btnText: 'Upload',
     disabled: false,
     limit: false,
+    type: 'default',
+    files: [],
     loading: false,
     formatWhiteList: ['.png', '.jpg', '.jpeg', '.pdf'],
     maxFileSize: 3000000, // 3MB
     allowedDimensions: [],
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.type === 'controlled') {
+      const { files } = this.props;
+      if (prevProps.files.length !== files.length) {
+        this.setState({ lengthCurrent: files.length });
+        this.handleChange(() => {}, files);
+        return;
+      }
+    }
+  }
 
   onLoadPromise(obj) {
     return new Promise((resolve, reject) => {
@@ -101,9 +115,27 @@ class ButtonUpload extends PureComponent {
     };
   }
 
-  async handleChange(event) {
-    const { files } = event.target;
-    let fileArr = [...files];
+  async handleChange(event, controlledFile) {
+    const { lengthCurrent, list } = this.state;
+    let filesReceived;
+    if (controlledFile) {
+      filesReceived = controlledFile;
+    } else {
+      filesReceived = event.target.files;
+    }
+
+    if (filesReceived.length === 0) {
+      this.setState({ list: [] });
+      return;
+    }
+
+    if (lengthCurrent > filesReceived.length) {
+      const newList = list.filter(value => filesReceived.includes(value));
+      this.setState({ list: newList });
+      return;
+    }
+
+    let fileArr = [...filesReceived];
     let fileError = {};
 
     if (this.props.limit) {
@@ -154,7 +186,7 @@ class ButtonUpload extends PureComponent {
   }
 
   render() {
-    const { disabled, btnText, limit, loading, accept, formatWhiteList, as, className, ...rest } = this.props;
+    const { disabled, btnText, limit, tags, loading, accept, formatWhiteList, as, className, ...rest } = this.props;
     const hasMaxFiles = this.state.list.length === limit;
     const WrapComponent = as || Button;
 
@@ -179,9 +211,10 @@ class ButtonUpload extends PureComponent {
           />
         </WrapComponent>
 
-        <div className={styles.holdTags}>
-          {this.renderTags()}
-        </div>
+        {tags &&
+          <div className={styles.holdTags}>
+            {this.renderTags()}
+          </div>}
       </div>
     );
   }

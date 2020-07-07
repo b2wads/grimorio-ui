@@ -3,6 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { withState } from '@dump247/storybook-state';
 
 import ButtonUpload from './index';
+import Button from '../button'
+import styles from './button-upload.styl';
 
 const stories = storiesOf('Button Upload', module);
 
@@ -10,7 +12,7 @@ const printRes = (data, list, error, size) => {
   console.log('images: ', data, 'list:', list, 'error:', error, 'size', size);
 };
 
-stories.add('Normal', () => <ButtonUpload onChange={printRes} />);
+stories.add('Normal', () => <ButtonUpload onChange={printRes} tags/>);
 
 stories.add('As Div', () =>
   <ButtonUpload
@@ -23,6 +25,7 @@ stories.add('As Div', () =>
     as="div"
     onChange={printRes}
     btnText="Envie sua imagem"
+    tags
   />);
 
 stories.add(
@@ -33,6 +36,7 @@ stories.add(
       formatWhiteList={['.jpg', '.jpeg', '.png']}
       btnText="Apenas 300x250"
       onChange={printRes}
+      tags
     />
   )
 );
@@ -42,6 +46,7 @@ stories.add('With Limit', () =>
     btnText="Apenas 2 imagens"
     limit={2}
     onChange={printRes}
+    tags
   />
 );
 
@@ -50,6 +55,7 @@ stories.add('With Extension Whitelist', () =>
     formatWhiteList={['.jpg', '.jpeg']}
     btnText="Apenas JPG e JPEG"
     onChange={printRes}
+    tags
   />
 );
 
@@ -58,26 +64,42 @@ stories.add('With MaxFileSize', () =>
     maxFileSize={100000}
     btnText="Até 100KB"
     onChange={printRes}
+    tags
   />
 );
 
 stories.add(
   'Showing Imagens',
-  withState({ data: [] })(({ store }) => {
-    const change = data => {
-      store.set({ data });
+  withState({ data: [], list: [] })(({ store }) => {
+    const change = (data, list) => {
+      store.set({ data, list });
     };
-    return <div>
+
+    const removeImage = (index) => {
+      const listFiles = store.state.list.filter((_,i) => i !== index)
+      const listData = store.state.data.filter((_,i) => i !== index)
+      store.set({list: listFiles, data: listData})
+
+    }
+
+    return (
       <div>
-        {store.state.data.map(base64 => <img width="150px" src={base64}/> )}
+        <div className={styles.contentList}>
+          {store.state.data.map((base64, index) =>
+            <div className={styles.wrapperImg}>
+              <img width="150px" src={base64}/>
+              <div>
+                <Button className={styles.buttonRemove} onClick={() => removeImage(index)}>Remover</Button>
+              </div>
+              <br/>
+              <br/>
+            </div>
+          )}
+        </div>
+        <br/>
+        <ButtonUpload files={store.state.list} type="controlled" onChange={change} tags={false} />
       </div>
-
-      <br/>
-      <br/>
-      <br/>
-
-      <ButtonUpload onChange={change} />
-    </div>;
+    );
   })
 );
 
