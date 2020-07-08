@@ -124,11 +124,6 @@ class ButtonUpload extends PureComponent {
       filesReceived = event.target.files;
     }
 
-    if (filesReceived.length === 0) {
-      this.setState({ list: [] });
-      return;
-    }
-
     if (lengthCurrent > filesReceived.length) {
       const newList = list.filter(value => filesReceived.includes(value));
       this.setState({ list: newList });
