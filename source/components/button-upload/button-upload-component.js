@@ -12,8 +12,8 @@ class ButtonUpload extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      list: props.defaultFiles || props.files || [],
-      lengthCurrent: props.files.length || 0,
+      list: props.defaultFiles || [],
+      lengthCurrent: props.defaultFiles.length || 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,7 +24,6 @@ class ButtonUpload extends PureComponent {
     btnText: PropTypes.string,
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
-    files: PropTypes.array,
     limit: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     defaultFiles: PropTypes.array,
     formatWhiteList: PropTypes.array,
@@ -37,8 +36,7 @@ class ButtonUpload extends PureComponent {
     btnText: 'Upload',
     disabled: false,
     limit: false,
-    type: 'default',
-    files: [],
+    defaultFiles: [],
     loading: false,
     formatWhiteList: ['.png', '.jpg', '.jpeg', '.pdf'],
     maxFileSize: 3000000, // 3MB
@@ -46,13 +44,11 @@ class ButtonUpload extends PureComponent {
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.type === 'controlled') {
-      const { files } = this.props;
-      if (prevProps.files.length !== files.length) {
-        this.setState({ lengthCurrent: files.length });
-        this.handleChange(() => {}, files);
-        return;
-      }
+    const { defaultFiles } = this.props;
+    if (prevProps.defaultFiles.length !== defaultFiles.length) {
+      this.setState({ lengthCurrent: defaultFiles.length });
+      this.handleChange(() => {}, defaultFiles);
+      return;
     }
   }
 
@@ -181,7 +177,7 @@ class ButtonUpload extends PureComponent {
   }
 
   render() {
-    const { disabled, btnText, limit, tags, loading, accept, formatWhiteList, as, className, ...rest } = this.props;
+    const { disabled, btnText, limit, showTags, loading, accept, formatWhiteList, as, className, ...rest } = this.props;
     const hasMaxFiles = this.state.list.length === limit;
     const WrapComponent = as || Button;
 
@@ -206,7 +202,7 @@ class ButtonUpload extends PureComponent {
           />
         </WrapComponent>
 
-        {tags &&
+        {showTags &&
           <div className={styles.holdTags}>
             {this.renderTags()}
           </div>}
