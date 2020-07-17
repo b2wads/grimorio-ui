@@ -69,7 +69,7 @@ stories.add('With MaxFileSize', () =>
 );
 
 stories.add(
-  'Showing Imagens',
+  'Without Tags',
   withState({ data: [], list: [] })(({ store }) => {
     const change = (data, list) => {
       store.set({ data, list });
@@ -97,7 +97,7 @@ stories.add(
           )}
         </div>
         <br/>
-        <ButtonUpload defaultFiles={store.state.list} onChange={change} showTags={false} />
+        <ButtonUpload files={store.state.list} onChange={change} showTags={false} />
       </div>
     );
   })

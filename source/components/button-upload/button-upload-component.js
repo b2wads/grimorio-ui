@@ -12,8 +12,7 @@ class ButtonUpload extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      list: props.defaultFiles || [],
-      lengthCurrent: props.defaultFiles.length || 0,
+      list: props.files || [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +24,7 @@ class ButtonUpload extends PureComponent {
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
     limit: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    defaultFiles: PropTypes.array,
+    files: PropTypes.array,
     formatWhiteList: PropTypes.array,
     accept: PropTypes.string,
     maxFileSize: PropTypes.number, // bytes
@@ -36,7 +35,7 @@ class ButtonUpload extends PureComponent {
     btnText: 'Upload',
     disabled: false,
     limit: false,
-    defaultFiles: [],
+    files: [],
     loading: false,
     formatWhiteList: ['.png', '.jpg', '.jpeg', '.pdf'],
     maxFileSize: 3000000, // 3MB
@@ -44,11 +43,9 @@ class ButtonUpload extends PureComponent {
   };
 
   componentDidUpdate(prevProps) {
-    const { defaultFiles } = this.props;
-    if (prevProps.defaultFiles.length !== defaultFiles.length) {
-      this.setState({ lengthCurrent: defaultFiles.length });
-      this.handleChange(() => {}, defaultFiles);
-      return;
+    const { files } = this.props;
+    if (prevProps.files.length > files.length) {
+      this.setState({ list: files });
     }
   }
 
@@ -111,22 +108,10 @@ class ButtonUpload extends PureComponent {
     };
   }
 
-  async handleChange(event, controlledFile) {
-    const { lengthCurrent, list } = this.state;
-    let filesReceived;
-    if (controlledFile) {
-      filesReceived = controlledFile;
-    } else {
-      filesReceived = event.target.files;
-    }
+  async handleChange(event) {
+    const { files } = event.target;
 
-    if (lengthCurrent > filesReceived.length) {
-      const newList = list.filter(value => filesReceived.includes(value));
-      this.setState({ list: newList });
-      return;
-    }
-
-    let fileArr = [...filesReceived];
+    let fileArr = [...files];
     let fileError = {};
 
     if (this.props.limit) {
