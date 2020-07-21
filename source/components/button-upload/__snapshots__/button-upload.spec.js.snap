@@ -2,7 +2,7 @@
 
 exports[`Button Upload component renders as div 1`] = `
 "<div className={[undefined]}>
-  <div loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" type=\\"default\\" files={{...}}>
+  <div loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" files={{...}}>
     Upload
     <input className=\\"file\\" type=\\"file\\" onChange={[Function: bound handleChange]} disabled={false} multiple={true} accept=\\".png, .jpg, .jpeg, .pdf\\" />
   </div>
@@ -11,7 +11,7 @@ exports[`Button Upload component renders as div 1`] = `
 
 exports[`Button Upload component renders correctly 1`] = `
 "<div className={[undefined]}>
-  <Button loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" type=\\"default\\" files={{...}} color=\\"primary\\" size=\\"medium\\" active={false}>
+  <Button loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" files={{...}} color=\\"primary\\" size=\\"medium\\" type=\\"button\\" active={false}>
     Upload
     <input className=\\"file\\" type=\\"file\\" onChange={[Function: bound handleChange]} disabled={false} multiple={true} accept=\\".png, .jpg, .jpeg, .pdf\\" />
   </Button>
