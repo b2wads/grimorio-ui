@@ -6,14 +6,13 @@ import { omit } from '../../helpers';
 import Button from '../button';
 import Icon from '../icon';
 
-// styles
 import styles from './button-upload.styl';
 
 class ButtonUpload extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      list: props.defaultFiles || [],
+      list: props.files || [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +24,7 @@ class ButtonUpload extends PureComponent {
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
     limit: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    defaultFiles: PropTypes.array,
+    files: PropTypes.array,
     formatWhiteList: PropTypes.array,
     accept: PropTypes.string,
     maxFileSize: PropTypes.number, // bytes
@@ -36,11 +35,19 @@ class ButtonUpload extends PureComponent {
     btnText: 'Upload',
     disabled: false,
     limit: false,
+    files: [],
     loading: false,
     formatWhiteList: ['.png', '.jpg', '.jpeg', '.pdf'],
     maxFileSize: 3000000, // 3MB
     allowedDimensions: [],
   };
+
+  componentDidUpdate(prevProps) {
+    const { files } = this.props;
+    if (prevProps.files.length > files.length) {
+      this.setState({ list: files });
+    }
+  }
 
   onLoadPromise(obj) {
     return new Promise((resolve, reject) => {
@@ -103,6 +110,7 @@ class ButtonUpload extends PureComponent {
 
   async handleChange(event) {
     const { files } = event.target;
+
     let fileArr = [...files];
     let fileError = {};
 
@@ -154,7 +162,7 @@ class ButtonUpload extends PureComponent {
   }
 
   render() {
-    const { disabled, btnText, limit, loading, accept, formatWhiteList, as, className, ...rest } = this.props;
+    const { disabled, btnText, limit, showTags, loading, accept, formatWhiteList, as, className, ...rest } = this.props;
     const hasMaxFiles = this.state.list.length === limit;
     const WrapComponent = as || Button;
 
@@ -179,9 +187,10 @@ class ButtonUpload extends PureComponent {
           />
         </WrapComponent>
 
-        <div className={styles.holdTags}>
-          {this.renderTags()}
-        </div>
+        {showTags &&
+          <div className={styles.holdTags}>
+            {this.renderTags()}
+          </div>}
       </div>
     );
   }
