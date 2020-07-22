@@ -6,22 +6,10 @@ import cx from 'classnames';
 import { omit } from '../../helpers';
 
 import styles from './header.styl';
-import Button from '../button';
 import Icon from '../icon';
-import Select from '../select';
 
 class Header extends PureComponent {
   static propTypes = {
-    user: PropTypes.string,
-    items: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-        icon: PropTypes.string.isRequired,
-      })
-    ),
-    onSelect: PropTypes.func,
-    onLogout: PropTypes.func,
     isMobile: PropTypes.bool,
     onLogoClick: PropTypes.func,
   };
@@ -31,12 +19,8 @@ class Header extends PureComponent {
   };
 
   renderButton() {
-    const { user } = this.props;
-
     return (
       <Fragment>
-        <Icon className={styles.iconLeft} name="person" size="18" />
-        {user}
         <Icon className={styles.iconRight} name="arrow_drop_down" size="20" />
       </Fragment>
     );
@@ -51,33 +35,11 @@ class Header extends PureComponent {
     );
   }
 
-  renderDesktopLayout() {
-    const { items, onSelect, user } = this.props;
-    return (
-      <Button className={styles.headerUser} color="clean" modifier="inverted" size="small">
-        {items
-          ? <Select type="menu" position="under" menuButton={this.renderButton()} onSelect={onSelect} items={items} />
-          : <span> <Icon className={styles.iconLeft} name="person" size="18" /> {user} </span>}
-      </Button>
-    );
-  }
-
   renderContent() {
-    const { onLogout, isMobile } = this.props;
+    const { isMobile } = this.props;
     return (
       <Fragment>
-        {isMobile ? this.renderLogoMobile() : this.renderDesktopLayout()}
-
-        <Button
-          className={cx(styles.headerLogout, { [styles.isMobile]: isMobile })}
-          color="clean"
-          modifier="inverted"
-          size="small"
-          onClick={onLogout}
-        >
-          {!isMobile && 'Logout'}
-          <Icon className={styles.iconRight} size="18" name="exit_to_app" />
-        </Button>
+        {isMobile ? this.renderLogoMobile() : null}
       </Fragment>
     );
   }
