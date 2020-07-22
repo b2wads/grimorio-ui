@@ -412,6 +412,15 @@
   color: #797979;
   cursor: pointer;
 }
+.grm-button-upload__buttonRemove {
+  margin-top: 20px;
+}
+.grm-button-upload__wrapperImg {
+  margin-right: 30px;
+}
+.grm-button-upload__contentList {
+  display: flex;
+}
 
 /* ==========================================================================
    Variables
