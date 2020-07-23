@@ -5,6 +5,7 @@ import { withState } from '@dump247/storybook-state';
 
 import Table from './table-component';
 import Button from '../button';
+import Popover from '../popover/popover-component';
 
 const stories = storiesOf('Table', module);
 
@@ -114,6 +115,46 @@ stories.add('Sticky header, footer and columns', withState({ data: null })(({ st
   return <Table schema={schema} 
   numberFixedColumns="3" data={store.state.data} dataFooter={store.state.dataFooter} scrollY style={{maxWidth: '500px', height: '400px'}} isSticky />
 }));
+
+stories.add('teste sticky', () => {
+  const list = [
+    {name: {first: 'aaaaaaa', last: 'bbbbbb'}, age: '22', withPopover: true},
+    {name: {first: 'bbbbbbbb', last: 'ccccccc'}, age: '24'}
+  ]
+  const schemaTest = {
+    name: {
+      title: 'Nome',
+      headClassName: null,
+      width: '100px',
+      className: null,
+      render: info => info.name.first,
+    },
+    surname: {
+      title: 'Sobrenome',
+      headClassName: null,
+      className: null,
+      render: info => <>
+      {info.name.last}
+      {info.withPopover &&
+        <Popover actionComponent={<a>clique</a>} isOpen={true} position="bottomLeft" style={{backgroundColor: 'red'}}>
+          <div style={{ width: '300px' }}>
+            Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
+          </div>
+        </Popover>
+      
+      }
+      
+      </>    
+    },
+    age: {
+      title: 'Gênero',
+      className: null,
+    },
+  }
+  
+  return <Table schema={schemaTest} 
+  numberFixedColumns="2" data={list} scrollY style={{maxWidth: '500px', height: '400px'}} isSticky />
+});
 
 stories.add('Special Case', () => {
   const special = [
