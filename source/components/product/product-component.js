@@ -48,6 +48,7 @@ class Product extends PureComponent {
         })
       ),
     }),
+    isMobile: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -58,6 +59,7 @@ class Product extends PureComponent {
     onCopy: value => value,
     generateLoading: false,
     copyValue: null,
+    isMobile: false,
   };
 
   share(type, link) {
@@ -145,7 +147,7 @@ class Product extends PureComponent {
   }
 
   renderProductContent() {
-    const { stage, copyValue } = this.props;
+    const { stage, copyValue, isMobile } = this.props;
     const { img, name, expires, link } = this.props.data;
 
     return (
@@ -195,6 +197,14 @@ class Product extends PureComponent {
               width={26}
               height={26}
               src="icon/twitter-square"
+            />
+            <Svg
+              onClick={this.share(isMobile ? 'whatsapp_mobile' : 'whatsapp_web', encodeURIComponent(copyValue || link))}
+              className={styles.whatsapp}
+              align="top"
+              width={26}
+              height={26}
+              src="icon/whatsapp-square"
             />
           </div>
         </div>

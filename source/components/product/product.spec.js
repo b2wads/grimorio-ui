@@ -21,6 +21,7 @@ const exampleProduct = {
       value: true,
     }
   ],
+  isMobile: false,
 };
 
 jest.useFakeTimers();
@@ -169,6 +170,13 @@ describe('Product component', () => {
       );
       expect(wrapper.type()).toEqual(null);
     });
+
+    // it('Is mobile', () => {
+    //   const wrapper = shallow(<Product {...exampleProduct} />);
+    //   wrapper.props().includeProp()
+      
+    //   expect(wrapper.props().isMobile).to.equal(true);
+    // })
   });
 
 });

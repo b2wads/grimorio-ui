@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Product component Stage: copy Renders correctly 1`] = `
-"<Product onCopy={[Function: mockConstructor]} onGenerate={[Function: mockConstructor]} stage=\\"copy\\" data={{...}} type=\\"default\\" btnText=\\"Copiar Link\\" generateLoading={false} copyValue={{...}}>
-  <section className=\\"wrapper default\\" onCopy={[Function: mockConstructor]} stage=\\"copy\\" data={{...}}>
+"<Product onCopy={[Function: mockConstructor]} onGenerate={[Function: mockConstructor]} stage=\\"copy\\" data={{...}} type=\\"default\\" btnText=\\"Copiar Link\\" generateLoading={false} copyValue={{...}} isMobile={false}>
+  <section className=\\"wrapper default\\" onCopy={[Function: mockConstructor]} stage=\\"copy\\" data={{...}} isMobile={false}>
     <div className=\\"tag\\">
       <Svg width={48} height={48} src=\\"logo/acom\\" align=\\"middle\\" />
       <Svg className=\\"tagHighlight\\" width={32} height={32} src=\\"flame\\" align=\\"middle\\" />
@@ -41,6 +41,7 @@ exports[`Product component Stage: copy Renders correctly 1`] = `
         </Button>
         <Svg onClick={[Function]} className=\\"facebook\\" align=\\"top\\" width={26} height={26} src=\\"icon/facebook-square\\" />
         <Svg onClick={[Function]} className=\\"twitter\\" align=\\"top\\" width={26} height={26} src=\\"icon/twitter-square\\" />
+        <Svg onClick={[Function]} className=\\"whatsapp\\" align=\\"top\\" width={26} height={26} src=\\"icon/whatsapp-square\\" />
       </div>
     </div>
   </section>
@@ -48,8 +49,8 @@ exports[`Product component Stage: copy Renders correctly 1`] = `
 `;
 
 exports[`Product component Stage: generate Renders correctly 1`] = `
-"<Product onCopy={[Function: mockConstructor]} onGenerate={[Function: mockConstructor]} stage=\\"generate\\" data={{...}} type=\\"default\\" btnText=\\"Copiar Link\\" generateLoading={false} copyValue={{...}}>
-  <section className=\\"wrapper default\\" onCopy={[Function: mockConstructor]} stage=\\"generate\\" data={{...}}>
+"<Product onCopy={[Function: mockConstructor]} onGenerate={[Function: mockConstructor]} stage=\\"generate\\" data={{...}} type=\\"default\\" btnText=\\"Copiar Link\\" generateLoading={false} copyValue={{...}} isMobile={false}>
+  <section className=\\"wrapper default\\" onCopy={[Function: mockConstructor]} stage=\\"generate\\" data={{...}} isMobile={false}>
     <div className=\\"tag\\">
       <Svg width={48} height={48} src=\\"logo/acom\\" align=\\"middle\\" />
       <Svg className=\\"tagHighlight\\" width={32} height={32} src=\\"flame\\" align=\\"middle\\" />
@@ -88,6 +89,7 @@ exports[`Product component Stage: generate Renders correctly 1`] = `
         </Button>
         <Svg onClick={[Function]} className=\\"facebook\\" align=\\"top\\" width={26} height={26} src=\\"icon/facebook-square\\" />
         <Svg onClick={[Function]} className=\\"twitter\\" align=\\"top\\" width={26} height={26} src=\\"icon/twitter-square\\" />
+        <Svg onClick={[Function]} className=\\"whatsapp\\" align=\\"top\\" width={26} height={26} src=\\"icon/whatsapp-square\\" />
       </div>
     </div>
   </section>
@@ -95,7 +97,7 @@ exports[`Product component Stage: generate Renders correctly 1`] = `
 `;
 
 exports[`Product component Variations Type card renders Panel 1`] = `
-"<Panel title={{...}} contentClassName=\\"wrapper card\\" size=\\"no-padding\\" data={{...}} stage=\\"generate\\" onCopy={[Function: onCopy]} loading={false} accordion={false} open={true} highlight=\\"shadow\\">
+"<Panel title={{...}} contentClassName=\\"wrapper card\\" size=\\"no-padding\\" data={{...}} stage=\\"generate\\" onCopy={[Function: onCopy]} isMobile={false} loading={false} accordion={false} open={true} highlight=\\"shadow\\">
   <Symbol(react.fragment)>
     <div className=\\"tag\\">
       <Svg width={48} height={48} src=\\"logo/acom\\" align=\\"middle\\" />
@@ -128,6 +130,7 @@ exports[`Product component Variations Type card renders Panel 1`] = `
         </Button>
         <Svg onClick={[Function]} className=\\"facebook\\" align=\\"top\\" width={26} height={26} src=\\"icon/facebook-square\\" />
         <Svg onClick={[Function]} className=\\"twitter\\" align=\\"top\\" width={26} height={26} src=\\"icon/twitter-square\\" />
+        <Svg onClick={[Function]} className=\\"whatsapp\\" align=\\"top\\" width={26} height={26} src=\\"icon/whatsapp-square\\" />
       </div>
     </div>
   </Symbol(react.fragment)>
