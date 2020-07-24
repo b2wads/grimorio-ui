@@ -116,7 +116,7 @@ stories.add('Sticky header, footer and columns', withState({ data: null })(({ st
   numberFixedColumns="3" data={store.state.data} dataFooter={store.state.dataFooter} scrollY style={{maxWidth: '500px', height: '400px'}} isSticky />
 }));
 
-stories.add('teste sticky', () => {
+stories.add('Table sticky with popover', () => {
   const list = [
     {name: {first: 'aaaaaaa', last: 'bbbbbb'}, age: '22', withPopover: true},
     {name: {first: 'bbbbbbbb', last: 'ccccccc'}, age: '24'}
