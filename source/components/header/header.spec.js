@@ -6,7 +6,7 @@ import Header from './header-component';
 describe('Header component', () => {
   const emptyProps = {
     children: undefined,
-    isMobile: undefined,
+    showLogo: undefined,
     onLogoClick: undefined,
   }
 
@@ -19,18 +19,18 @@ describe('Header component', () => {
   })
 
   describe('render', () => {
-    it('with children', () => {
+    it('Basic', () => {
       wrapper.setProps({ ...emptyProps, children: <div>teste com filho</div> })
       expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    it('desktop version', () => {
-      wrapper.setProps({ ...emptyProps, isMobile: false })
+    it('No logo version', () => {
+      wrapper.setProps({ ...emptyProps, showLogo: false })
       expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    it('mobile version', () => {
-      wrapper.setProps({ ...emptyProps, isMobile: true })
+    it('Showing Logo', () => {
+      wrapper.setProps({ ...emptyProps, showLogo: true })
       expect(wrapper.debug()).toMatchSnapshot();
     });
   });
@@ -40,7 +40,7 @@ describe('Header component', () => {
       onLogoClick: jest.fn()
     }
     const spy = jest.spyOn(props, 'onLogoClick')
-    wrapper.setProps({ ...emptyProps, isMobile: true, onLogoClick: props.onLogoClick })
+    wrapper.setProps({ ...emptyProps, showLogo: true, onLogoClick: props.onLogoClick })
     wrapper.find('.logo').simulate('click')
     expect(spy).toHaveBeenCalled();
   })

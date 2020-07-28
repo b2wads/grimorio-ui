@@ -1,23 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header component render desktop version 1`] = `
+exports[`Header component render Basic 1`] = `
 "<header className=\\"header\\">
-  <Symbol(react.fragment) />
-</header>"
-`;
-
-exports[`Header component render mobile version 1`] = `
-"<header className=\\"header isMobile\\">
-  <Symbol(react.fragment)>
-    <div className=\\"logo\\" onClick={[undefined]} />
-  </Symbol(react.fragment)>
-</header>"
-`;
-
-exports[`Header component render with children 1`] = `
-"<header className=\\"header\\">
-  <div>
-    teste com filho
+  <div className=\\"content\\">
+    <div>
+      teste com filho
+    </div>
   </div>
+</header>"
+`;
+
+exports[`Header component render No logo version 1`] = `
+"<header className=\\"header\\">
+  <div className=\\"content\\" />
+</header>"
+`;
+
+exports[`Header component render Showing Logo 1`] = `
+"<header className=\\"header showLogo\\">
+  <div className=\\"logo\\" onClick={[undefined]} />
+  <div className=\\"content showLogo\\" />
 </header>"
 `;

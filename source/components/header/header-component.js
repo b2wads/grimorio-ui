@@ -1,61 +1,44 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 
 import { omit } from '../../helpers';
 
 import styles from './header.styl';
-import Icon from '../icon';
 
-class Header extends PureComponent {
-  static propTypes = {
-    isMobile: PropTypes.bool,
-    onLogoClick: PropTypes.func,
-  };
+const Header = ({ className, contentClassName, showLogo, logo, onLogoClick, children, ...elementProps }) => {
+  const fullClassName = cx(className, styles.header, {
+    [styles.showLogo]: showLogo,
+  });
 
-  static defaultProps = {
-    isMobile: false,
-  };
+  const fullContent = cx(contentClassName, styles.content, {
+    [styles.showLogo]: showLogo,
+  });
 
-  renderButton() {
-    return (
-      <Fragment>
-        <Icon className={styles.iconRight} name="arrow_drop_down" size="20" />
-      </Fragment>
-    );
-  }
+  return (
+    <header className={fullClassName} {...omit(elementProps, ['onLogoClick'])}>
+      {showLogo &&
+        <div className={styles.logo} onClick={onLogoClick}>
+          {logo}
+        </div>}
 
-  renderLogoMobile() {
-    const { logo, onLogoClick } = this.props;
-    return (
-      <div className={styles.logo} onClick={onLogoClick}>
-        {logo}
+      <div className={fullContent}>
+        {children}
       </div>
-    );
-  }
+    </header>
+  );
+};
 
-  renderContent() {
-    const { isMobile } = this.props;
-    return (
-      <Fragment>
-        {isMobile ? this.renderLogoMobile() : null}
-      </Fragment>
-    );
-  }
+Header.propTypes = {
+  className: PropTypes.string,
+  contentClassName: PropTypes.string,
+  showLogo: PropTypes.bool,
+  logo: PropTypes.node,
+  onLogoClick: PropTypes.func,
+};
 
-  render() {
-    const { className, isMobile, children, ...elementProps } = this.props;
-    const fullClassName = cx(className, styles.header, {
-      [styles.isMobile]: isMobile,
-    });
+Header.defaultProps = {
+  showLogo: false,
+};
 
-    return (
-      <header className={fullClassName} {...omit(elementProps, ['onLogoClick'])}>
-        {children || this.renderContent()}
-      </header>
-    );
-  }
-}
-
-export default CSSModules(Header, styles);
+export default memo(Header);
