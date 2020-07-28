@@ -2,8 +2,6 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { omit } from '../../helpers';
-
 import styles from './header.styl';
 
 const Header = ({ className, contentClassName, showLogo, logo, onLogoClick, children, ...elementProps }) => {
@@ -16,7 +14,7 @@ const Header = ({ className, contentClassName, showLogo, logo, onLogoClick, chil
   });
 
   return (
-    <header className={fullClassName} {...omit(elementProps, ['onLogoClick'])}>
+    <header className={fullClassName} {...elementProps}>
       {showLogo &&
         <div className={styles.logo} onClick={onLogoClick}>
           {logo}
