@@ -109,11 +109,14 @@ class Table extends PureComponent {
             { [styles.isSticky]: isSticky },
             this.hasStickyColumn(index)
           );
-          const wrapStyles = {
-            left: this.state.listWidthFixed[index],
-            position: 'sticky',
-            zIndex: this.getZindexHeadAndFooter(index),
-          };
+
+          const wrapStyles = this.props.numberFixedColumns > 0
+            ? {
+                left: this.state.listWidthFixed[index],
+                position: 'sticky',
+                zIndex: this.getZindexHeadAndFooter(index),
+              }
+            : {};
 
           if (Object.keys(currentSchema).length) {
             return (
@@ -143,10 +146,12 @@ class Table extends PureComponent {
             this.hasStickyColumn(newIndex)
           );
 
-          const wrapStyles = {
-            left: this.state.listWidthFixed[newIndex],
-            zIndex: this.getZindexHeadAndFooter(newIndex),
-          };
+          const wrapStyles = this.props.numberFixedColumns > 0
+            ? {
+                left: this.state.listWidthFixed[newIndex],
+                zIndex: this.getZindexHeadAndFooter(newIndex),
+              }
+            : {};
 
           if (currentData.colspan) {
             numbColspans += currentData.colspan;
@@ -212,12 +217,16 @@ class Table extends PureComponent {
         {Object.keys(schema).map((key, indexTd) => {
           const currentSchema = schema[key];
           if (Object.keys(currentSchema).length) {
-            return (
-              <td
-                style={{
+            const wrapStyles = this.props.numberFixedColumns > 0
+              ? {
                   left: this.state.listWidthFixed[indexTd],
                   zIndex: `${data.length - index}`,
-                }}
+                }
+              : {};
+
+            return (
+              <td
+                style={wrapStyles}
                 width={currentSchema.width}
                 key={uniqueId()}
                 className={cx(styles.cell, currentSchema.className, this.hasStickyColumn(indexTd))}
