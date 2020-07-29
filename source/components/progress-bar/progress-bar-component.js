@@ -1,36 +1,33 @@
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import styles from './progress-bar.styl';
 
-class ProgressBar extends PureComponent {
-  static propTypes = {
-    progress: PropTypes.number,
-    theme: PropTypes.oneOf(['primary', 'secondary', 'success', 'warning', 'error']),
-  };
+const ProgressBar = ({ progress, className, theme }) => {
+  const progressWrap = cx(styles.progressWrap, className);
 
-  static defaultProps = {
-    progress: 0,
-    theme: 'primary',
-  };
+  const progressClass = cx(styles.progressBar, {
+    [styles[theme]]: theme,
+  });
 
-  render() {
-    const { progress, className, theme } = this.props;
-    const progressClass = classNames(styles.progressBar, {
-      [styles[theme]]: theme,
-    });
+  const progressStyle = { width: `${progress}%` };
 
-    const progressWrap = classNames(styles.progressWrap, className);
-    const progressStyle = { width: `${progress}%` };
+  return (
+    <div className={progressWrap}>
+      <span className={progressClass} style={progressStyle} />
+    </div>
+  );
+};
 
-    return (
-      <div className={progressWrap}>
-        <span style={progressStyle} className={progressClass} />
-      </div>
-    );
-  }
-}
+ProgressBar.defaultProps = {
+  progress: 0,
+  theme: 'primary',
+};
 
-export default CSSModules(ProgressBar, styles);
+ProgressBar.propTypes = {
+  progress: PropTypes.number,
+  theme: PropTypes.oneOf(['primary', 'support', 'success', 'warning', 'error']),
+};
+
+export default memo(ProgressBar);

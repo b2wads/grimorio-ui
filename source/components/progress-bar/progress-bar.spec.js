@@ -10,6 +10,7 @@ describe('ProgressBar component', () => {
       const wrapper = shallow(
         <ProgressBar progress={50} className="test" theme="primary"/>
       );
+
       expect(wrapper.length).toEqual(1);
     });
   });
