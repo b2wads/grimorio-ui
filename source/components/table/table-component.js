@@ -38,7 +38,6 @@ class Table extends PureComponent {
     isSticky: PropTypes.bool,
     rowHeight: PropTypes.string,
     numberFixedColumns: PropTypes.string,
-    zindex: PropTypes.string,
   };
 
   static defaultProps = {
@@ -69,22 +68,29 @@ class Table extends PureComponent {
   }
 
   setColumnsFixed() {
-    const nodes = this.headerTable.current && this.headerTable.current.children
-      ? [...this.headerTable.current.children]
+    const { numberFixedColumns } = this.props;
+    if (numberFixedColumns === '0') {
+      // pra não precisar passar por essa função caso não tenha coluna fixa
+      return;
+    }
+
+    const nodesWidth = this.headerTable.current && this.headerTable.current.children
+      ? [...this.headerTable.current.children].map(el => el.clientWidth)
       : [];
 
-    const listWidthFixed = Array.from(nodes).reduce((acc, el, index) => {
-      if (index < this.props.numberFixedColumns - 1) {
-        if (index === 0) {
-          acc.push(0);
-          acc.push(el.clientWidth);
-        } else {
-          acc.push(el.clientWidth + acc[index]);
-        }
+    const fixedColumnOffset = [];
+
+    for (let idx = 0; idx < numberFixedColumns; idx++) {
+      if (idx === 0) {
+        fixedColumnOffset.push(0);
+      } else {
+        const remaining = nodesWidth.slice(0, idx);
+        const previousElSum = remaining.reduce((acc, el) => el + acc, 0);
+        fixedColumnOffset.push(previousElSum);
       }
-      return acc;
-    }, []);
-    this.setState({ listWidthFixed });
+    }
+
+    this.setState({ listWidthFixed: fixedColumnOffset });
   }
 
   renderHeadRow(isSticky) {
@@ -106,7 +112,7 @@ class Table extends PureComponent {
           const wrapStyles = {
             left: this.state.listWidthFixed[index],
             position: 'sticky',
-            'z-index': this.getZindexHeadAndFooter(index),
+            zIndex: this.getZindexHeadAndFooter(index),
           };
 
           if (Object.keys(currentSchema).length) {
@@ -139,7 +145,7 @@ class Table extends PureComponent {
 
           const wrapStyles = {
             left: this.state.listWidthFixed[newIndex],
-            'z-index': this.getZindexHeadAndFooter(newIndex),
+            zIndex: this.getZindexHeadAndFooter(newIndex),
           };
 
           if (currentData.colspan) {
@@ -210,7 +216,7 @@ class Table extends PureComponent {
               <td
                 style={{
                   left: this.state.listWidthFixed[indexTd],
-                  'z-index': `${data.length - index}`,
+                  zIndex: `${data.length - index}`,
                 }}
                 width={currentSchema.width}
                 key={uniqueId()}
@@ -263,7 +269,6 @@ class Table extends PureComponent {
       isSticky,
       dataFooter,
       rowHeight,
-      zindex,
       ...rest
     } = this.props;
 
@@ -280,7 +285,6 @@ class Table extends PureComponent {
     const wrapStyles = {
       maxWidth: width || 'auto',
       maxHeight: height || 'auto',
-      'z-index': zindex || '1',
     };
 
     return (
