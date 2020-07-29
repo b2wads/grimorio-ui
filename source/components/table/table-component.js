@@ -68,25 +68,33 @@ class Table extends PureComponent {
   }
 
   setColumnsFixed() {
-    const nodes = this.headerTable.current && this.headerTable.current.children
-      ? [...this.headerTable.current.children]
+    const { numberFixedColumns } = this.props;
+    if (numberFixedColumns === '0') {
+      // pra não precisar passar por essa função caso não tenha coluna fixa
+      return;
+    }
+
+    const nodesWidth = this.headerTable.current && this.headerTable.current.children
+      ? [...this.headerTable.current.children].map(el => el.clientWidth)
       : [];
 
-    const listWidthFixed = Array.from(nodes).reduce((acc, el, index) => {
-      if (index < this.props.numberFixedColumns - 1) {
-        if (index === 0) {
-          acc.push(0);
-          acc.push(el.clientWidth);
-        } else {
-          acc.push(el.clientWidth + acc[index]);
-        }
+    const fixedColumnOffset = [];
+
+    for (let idx = 0; idx < numberFixedColumns; idx++) {
+      if (idx === 0) {
+        fixedColumnOffset.push(0);
+      } else {
+        const remaining = nodesWidth.slice(0, idx);
+        const previousElSum = remaining.reduce((acc, el) => el + acc, 0);
+        fixedColumnOffset.push(previousElSum);
       }
-      return acc;
-    }, []);
-    this.setState({ listWidthFixed });
+    }
+
+    this.setState({ listWidthFixed: fixedColumnOffset });
   }
 
-  renderHeadRow(schema, isSticky, rowHeight) {
+  renderHeadRow(isSticky) {
+    const { schema, rowHeight } = this.props;
     return (
       <tr
         ref={this.headerTable}
@@ -101,14 +109,18 @@ class Table extends PureComponent {
             { [styles.isSticky]: isSticky },
             this.hasStickyColumn(index)
           );
+
+          const wrapStyles = this.props.numberFixedColumns > 0
+            ? {
+                left: this.state.listWidthFixed[index],
+                position: 'sticky',
+                zIndex: this.getZindexHeadAndFooter(index),
+              }
+            : {};
+
           if (Object.keys(currentSchema).length) {
             return (
-              <th
-                style={{ left: this.state.listWidthFixed[index], position: 'sticky' }}
-                width={currentSchema.width}
-                key={uniqueId()}
-                className={headClass}
-              >
+              <th style={wrapStyles} width={currentSchema.width} key={uniqueId()} className={headClass}>
                 {currentSchema.renderHead ? currentSchema.renderHead(currentSchema, index) : currentSchema.title}
               </th>
             );
@@ -118,7 +130,8 @@ class Table extends PureComponent {
     );
   }
 
-  renderFootRow(dataFooter, isSticky, rowHeight) {
+  renderFootRow(isSticky) {
+    const { dataFooter, rowHeight } = this.props;
     let numbColspans = 0;
     return (
       <tr style={{ height: rowHeight }} className={cx(styles.rowFoot, { [styles.isSticky]: isSticky })}>
@@ -133,6 +146,13 @@ class Table extends PureComponent {
             this.hasStickyColumn(newIndex)
           );
 
+          const wrapStyles = this.props.numberFixedColumns > 0
+            ? {
+                left: this.state.listWidthFixed[newIndex],
+                zIndex: this.getZindexHeadAndFooter(newIndex),
+              }
+            : {};
+
           if (currentData.colspan) {
             numbColspans += currentData.colspan;
           }
@@ -140,7 +160,7 @@ class Table extends PureComponent {
           if (Object.keys(currentData).length) {
             return (
               <td
-                style={{ left: this.state.listWidthFixed[newIndex] }}
+                style={wrapStyles}
                 width={currentData.width}
                 key={uniqueId()}
                 className={headClass}
@@ -181,6 +201,12 @@ class Table extends PureComponent {
     }
   }
 
+  getZindexHeadAndFooter(zindex) {
+    const { data = [], numberFixedColumns } = this.props;
+    const dataLength = data ? data.length : 0;
+    return zindex < numberFixedColumns ? `${dataLength + 1}` : `${dataLength}`;
+  }
+
   renderRow(data, schema, specialCase, rowHeight) {
     return data.map((infoRow, index) => (
       <tr
@@ -191,11 +217,16 @@ class Table extends PureComponent {
         {Object.keys(schema).map((key, indexTd) => {
           const currentSchema = schema[key];
           if (Object.keys(currentSchema).length) {
+            const wrapStyles = this.props.numberFixedColumns > 0
+              ? {
+                  left: this.state.listWidthFixed[indexTd],
+                  zIndex: `${data.length - index}`,
+                }
+              : {};
+
             return (
               <td
-                style={{
-                  left: this.state.listWidthFixed[indexTd],
-                }}
+                style={wrapStyles}
                 width={currentSchema.width}
                 key={uniqueId()}
                 className={cx(styles.cell, currentSchema.className, this.hasStickyColumn(indexTd))}
@@ -260,16 +291,16 @@ class Table extends PureComponent {
       [styles.panel]: type === 'panel',
     });
 
-    const wrapSizes = {
+    const wrapStyles = {
       maxWidth: width || 'auto',
       maxHeight: height || 'auto',
     };
 
     return (
-      <div style={wrapSizes} className={wrapClass} {...rest}>
+      <div style={wrapStyles} className={wrapClass} {...rest}>
         <table className={tableClass}>
           <thead className={styles.tableHead}>
-            {this.renderHeadRow(schema, isSticky, rowHeight)}
+            {this.renderHeadRow(isSticky)}
           </thead>
 
           <tbody className={styles.tableBody}>
@@ -277,7 +308,7 @@ class Table extends PureComponent {
           </tbody>
           {dataFooter &&
             <tfoot>
-              {this.renderFootRow(dataFooter, true, rowHeight)}
+              {this.renderFootRow(isSticky)}
             </tfoot>}
         </table>
       </div>
