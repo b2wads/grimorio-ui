@@ -30,6 +30,7 @@ import Panel from './components/panel';
 import PieChart from './components/pie-chart';
 import Popover from './components/popover';
 import Product from './components/product';
+import ProgressBar from './components/progress-bar';
 import Select, { SelectOption } from './components/select';
 import SelectPopover from './components/select-popover';
 import Sidebar from './components/sidebar';
@@ -96,6 +97,7 @@ export {
   PieChart,
   Popover,
   Product,
+  ProgressBar,
   Select,
   SelectOption,
   SelectPopover,
