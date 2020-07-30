@@ -82,22 +82,24 @@ sleep 0.5
 
 touch $path/$name/$name-component.js
 cat > $path/$name/$name-component.js <<EOF
-import React, { PureComponent } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
 
 import styles from './$name.styl';
 
-class $capitalizeName extends PureComponent {
-  static propTypes = {};
-  static defaultProps = {};
+const $capitalizeName = ({ name }) => {
+  return <div className={styles.default}>{name}</div>;
+};
 
-  render() {
-    return <div>$capitalizeName</div>;
-  }
-}
+$capitalizeName.propTypes = {
+  name: PropTypes.string,
+};
 
-export default CSSModules($capitalizeName, styles);
+$capitalizeName.defaultProps = {
+  name: '$capitalizeName',
+};
+
+export default memo($capitalizeName);
 EOF
 
 echo -ne '[#########            ] created react component!                       \r'
@@ -127,16 +129,14 @@ import '../../../internals/test/helper';
 
 import $capitalizeName from './$name-component';
 
-/** @test {$capitalizeName} */
 describe('$capitalizeName component', () => {
-/** @test {$capitalizeName#render} */
-  describe('#render', () => {
-    it('render correctly', () => {
-      const wrapper = shallow(
-        <$capitalizeName />
-      );
-      expect(wrapper.length).toEqual(1);
-    });
+
+  it('renders correctly', () => {
+    const wrapper = shallow(
+      <$capitalizeName />
+    );
+
+    expect(wrapper.length).toEqual(1);
   });
 });
 EOF
