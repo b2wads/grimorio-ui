@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import cx from 'classnames';
+import ResizeObserver from '../../polyfills/resize-observer-polyfill';
 
 import styles from './table.styl';
 
@@ -58,21 +59,25 @@ class Table extends PureComponent {
   }
 
   componentDidMount() {
-    this.setColumnsFixed();
+    const { numberFixedColumns } = this.props;
+    if (numberFixedColumns > 0) {
+      this.setColumnsFixed();
+
+      this.resizeObserver = new ResizeObserver(() => {
+        this.setColumnsFixed();
+      });
+      this.resizeObserver.observe(this.headerTable.current);
+    }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.setColumnsFixed();
+  componentWillUnmount() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
   }
 
   setColumnsFixed() {
     const { numberFixedColumns } = this.props;
-    if (numberFixedColumns === '0') {
-      // pra não precisar passar por essa função caso não tenha coluna fixa
-      return;
-    }
 
     const nodesWidth = this.headerTable.current && this.headerTable.current.children
       ? [...this.headerTable.current.children].map(el => el.clientWidth)
