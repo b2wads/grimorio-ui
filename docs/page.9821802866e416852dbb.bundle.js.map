@@ -1,1 +1,0 @@
-{"version":3,"file":"page.9821802866e416852dbb.bundle.js","sources":["webpack:///./.storybook/storybook.styl"],"sourcesContent":["// extracted by mini-css-extract-plugin\nmodule.exports = {\"title\":\"grm-storybook__title\",\"subtitle\":\"grm-storybook__subtitle\",\"body\":\"grm-storybook__body\",\"footer\":\"grm-storybook__footer\"};"],"mappings":"AACA","sourceRoot":""}
