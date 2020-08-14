@@ -76,6 +76,13 @@ class Table extends PureComponent {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { numberFixedColumns } = this.props;
+    if (prevProps !== this.props && numberFixedColumns > 0) {
+      this.setColumnsFixed();
+    }
+  }
+
   setColumnsFixed() {
     const { numberFixedColumns } = this.props;
 
