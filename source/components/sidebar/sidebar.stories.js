@@ -9,7 +9,7 @@ import Sidebar from './index';
 import Svg from '../svg';
 import styles from './sidebar.styl';
 
-import Menu, { MenuItem } from '../menu';
+import Menu, { MenuItem } from './elements/menu';
 import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
 
 const stories = storiesOf('Sidebar', module);
@@ -41,45 +41,7 @@ stories.add('Default', withState({ open: false, active: -1 })(({ store }) => {
         logoSmall={
           <Svg className={styles.logo} width={24} src="logo/afiliados-icon" />
         }
-      >
-        <Accordion type="accordionMenu" exclusive={false} as={Menu} {...store.state}>
-          <MenuItem title="Dashboard" active={true} isNotAccordion icon="dashboard">
-            Dashboard
-          </MenuItem>
-          <MenuItem active={getActive(1)}>
-            <AccordionTitle
-              active={getActive(1)}
-              index={1}
-              onClick={handleClick}
-              icon="shop"
-            >
-              Promoções
-            </AccordionTitle>
-            <AccordionContent active={getActive(1)}>
-              <Menu>
-                <MenuItem active={true} link="/default" handleClick={action('default')}> Default</MenuItem>
-                <MenuItem link="/ecommerce" handleClick={action('ecommerce')}>eCommerce</MenuItem>
-                <MenuItem link="/news-portal" handleClick={action('news-portal')}>News Portal</MenuItem>
-              </Menu>
-            </AccordionContent>
-          </MenuItem>
-          <MenuItem active={getActive(2)}>
-            <AccordionTitle
-              active={getActive(2)}
-              index={2}
-              onClick={handleClick}
-              icon="insert_chart"
-            >
-              Charts
-            </AccordionTitle>
-            <AccordionContent active={getActive(2)}>
-              <Menu>
-                <MenuItem link="/test" handleClick={action('test')}>Test</MenuItem>
-              </Menu>
-            </AccordionContent>
-          </MenuItem>
-        </Accordion>
-      </Sidebar>
+      />
     </div>);
 }));
 
