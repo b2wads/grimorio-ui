@@ -15,6 +15,8 @@
   [![npm version](https://img.shields.io/npm/v/@b2wads/grimorio-ui?label=npm%20package)](https://www.npmjs.com/package/@b2wads/grimorio-ui)
   [![GitHub issues](https://img.shields.io/github/issues/b2wads/grimorio-ui)](https://github.com/b2wads/grimorio-ui/issues)
   [![GitHub contributors](https://img.shields.io/github/contributors/b2wads/grimorio-ui)](https://github.com/b2wads/grimorio-ui/graphs/contributors)  
+  [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://b2wads.github.io/grimorio-ui/)
+  [![Jest Tests](https://github.com/b2wads/grimorio-ui/workflows/Jest%20Tests/badge.svg)](https://github.com/b2wads/grimorio-ui/actions?query=workflow%3A%22Jest+Tests%22) 
 </div>
 
 # 📦 Instalação
