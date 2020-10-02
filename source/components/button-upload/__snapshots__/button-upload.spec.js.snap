@@ -2,18 +2,34 @@
 
 exports[`Button Upload component renders as div 1`] = `
 "<div className={[undefined]}>
-  <div loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" files={{...}}>
-    Upload
-    <input className=\\"file\\" type=\\"file\\" onChange={[Function: bound handleChange]} disabled={false} multiple={true} accept=\\".png, .jpg, .jpeg, .pdf\\" />
+  <div className=\\"dropArea\\">
+    <Icon size={60} name=\\"backup\\" className=\\"iconDrop\\" align=\\"middle\\" />
+    <p className=\\"textDropArea\\">
+      Arraste uma imagem para upload ou 
+      <br />
+       clique no botão abaixo
+    </p>
+    <div loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" files={{...}}>
+      Upload
+      <input className=\\"file\\" type=\\"file\\" onChange={[Function: onChange]} disabled={false} multiple={true} accept=\\".png, .jpg, .jpeg, .pdf\\" />
+    </div>
   </div>
 </div>"
 `;
 
 exports[`Button Upload component renders correctly 1`] = `
 "<div className={[undefined]}>
-  <Button loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" files={{...}} color=\\"primary\\" size=\\"medium\\" type=\\"button\\" active={false}>
-    Upload
-    <input className=\\"file\\" type=\\"file\\" onChange={[Function: bound handleChange]} disabled={false} multiple={true} accept=\\".png, .jpg, .jpeg, .pdf\\" />
-  </Button>
+  <div className=\\"dropArea\\">
+    <Icon size={60} name=\\"backup\\" className=\\"iconDrop\\" align=\\"middle\\" />
+    <p className=\\"textDropArea\\">
+      Arraste uma imagem para upload ou 
+      <br />
+       clique no botão abaixo
+    </p>
+    <Button loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" files={{...}} color=\\"primary\\" size=\\"medium\\" type=\\"button\\" active={false}>
+      Upload
+      <input className=\\"file\\" type=\\"file\\" onChange={[Function: onChange]} disabled={false} multiple={true} accept=\\".png, .jpg, .jpeg, .pdf\\" />
+    </Button>
+  </div>
 </div>"
 `;

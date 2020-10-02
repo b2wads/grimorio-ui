@@ -1,8 +1,18 @@
+jest.mock('react', () => {
+  const originReact = jest.requireActual('react');
+  return {
+    ...originReact,
+    createRef: () => ({
+      current: {
+        addEventListener: jest.fn()
+      }
+    }),
+  };
+});
+
 import '../../../internals/test/helper';
 
 import ButttonUpload from './button-upload-component';
-import Loader from '../loader';
-import Icon from '../icon';
 
 const props = {
   disabled: false,
@@ -12,6 +22,7 @@ const props = {
 
 
 describe('Button Upload component', () => {
+
   it('renders correctly', () => {
     const wrapper = shallow(
       <ButttonUpload {...props} />
