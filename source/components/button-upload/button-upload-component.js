@@ -71,8 +71,8 @@ class ButtonUpload extends PureComponent {
   onDrop(event) {
     event.stopPropagation();
     event.preventDefault();
-    const fileList = event.dataTransfer.files;
-    this.handleChange(fileList);
+    const { files } = event.dataTransfer;
+    this.handleChange(files);
   }
 
   onLoadPromise(obj) {
