@@ -16,6 +16,8 @@ class ButtonUpload extends PureComponent {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.onDragover = this.onDragover.bind(this);
+    this.onDrop = this.onDrop.bind(this);
     this.dropArea = React.createRef();
   }
 
@@ -44,18 +46,8 @@ class ButtonUpload extends PureComponent {
   };
 
   componentDidMount() {
-    this.dropArea.current.addEventListener('dragover', event => {
-      event.stopPropagation();
-      event.preventDefault();
-      event.dataTransfer.dropEffect = 'copy';
-    });
-
-    this.dropArea.current.addEventListener('drop', event => {
-      event.stopPropagation();
-      event.preventDefault();
-      const fileList = event.dataTransfer.files;
-      this.handleChange(fileList);
-    });
+    this.dropArea.current.addEventListener('dragover', this.onDragover);
+    this.dropArea.current.addEventListener('drop', this.onDrop);
   }
 
   componentDidUpdate(prevProps) {
@@ -63,6 +55,24 @@ class ButtonUpload extends PureComponent {
     if (prevProps.files.length > files.length) {
       this.setState({ list: files });
     }
+  }
+
+  componentWillUnmount() {
+    this.dropArea.current.removeEventListener('dragover', this.onDragover);
+    this.dropArea.current.removeEventListener('drop', this.onDrop);
+  }
+
+  onDragover(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'copy';
+  }
+
+  onDrop(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    const fileList = event.dataTransfer.files;
+    this.handleChange(fileList);
   }
 
   onLoadPromise(obj) {
@@ -198,7 +208,7 @@ class ButtonUpload extends PureComponent {
             <input
               className={styles.file}
               type="file"
-              onChange={this.handleChange}
+              onChange={e => this.handleChange(e.target.files)}
               disabled={disabled || hasMaxFiles}
               multiple
               accept={accept || formatWhiteList.join(', ')}
