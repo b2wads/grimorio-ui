@@ -18,6 +18,6 @@ stories.add(
     }
 
     return (
-      <ToggleButton onClick={handleChange} value={store.state.value} />
+      <ToggleButton onClick={handleChange} active={store.state.value} />
     )
 }))
