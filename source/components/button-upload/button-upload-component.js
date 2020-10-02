@@ -16,6 +16,7 @@ class ButtonUpload extends PureComponent {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.dropArea = React.createRef();
   }
 
   static propTypes = {
@@ -41,6 +42,21 @@ class ButtonUpload extends PureComponent {
     maxFileSize: 3000000, // 3MB
     allowedDimensions: [],
   };
+
+  componentDidMount() {
+    this.dropArea.current.addEventListener('dragover', event => {
+      event.stopPropagation();
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'copy';
+    });
+
+    this.dropArea.current.addEventListener('drop', event => {
+      event.stopPropagation();
+      event.preventDefault();
+      const fileList = event.dataTransfer.files;
+      this.handleChange(fileList);
+    });
+  }
 
   componentDidUpdate(prevProps) {
     const { files } = this.props;
@@ -108,9 +124,7 @@ class ButtonUpload extends PureComponent {
     };
   }
 
-  async handleChange(event) {
-    const { files } = event.target;
-
+  async handleChange(files) {
     let fileArr = [...files];
     let fileError = {};
 
@@ -168,29 +182,31 @@ class ButtonUpload extends PureComponent {
 
     return (
       <div className={className}>
-        <WrapComponent
-          loading={loading}
-          disabled={disabled || hasMaxFiles}
-          iconLeft="publish"
-          className={styles.wrapcomp}
-          {...omit(rest, ['onChange', 'maxFileSize', 'allowedDimensions', 'formatWhiteList'])}
-        >
-          {btnText}
-          <input
-            className={styles.file}
-            type="file"
-            onChange={this.handleChange}
+        <div ref={this.dropArea} className={styles.dropArea}>
+          <Icon size={60} name="backup" className={styles.iconDrop} />
+          <p className={styles.textDropArea}>
+            Arraste uma imagem para upload ou <br /> clique no botão abaixo
+          </p>
+          <WrapComponent
+            loading={loading}
             disabled={disabled || hasMaxFiles}
-            multiple
-            accept={accept || formatWhiteList.join(', ')}
-            key={this.state.list.length}
-          />
-        </WrapComponent>
-
-        {showTags &&
-          <div className={styles.holdTags}>
-            {this.renderTags()}
-          </div>}
+            iconLeft="publish"
+            className={styles.wrapcomp}
+            {...omit(rest, ['onChange', 'maxFileSize', 'allowedDimensions', 'formatWhiteList'])}
+          >
+            {btnText}
+            <input
+              className={styles.file}
+              type="file"
+              onChange={this.handleChange}
+              disabled={disabled || hasMaxFiles}
+              multiple
+              accept={accept || formatWhiteList.join(', ')}
+              key={this.state.list.length}
+            />
+          </WrapComponent>
+        </div>
+        {showTags && <div className={styles.holdTags}>{this.renderTags()}</div>}
       </div>
     );
   }

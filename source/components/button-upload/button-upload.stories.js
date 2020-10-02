@@ -14,20 +14,6 @@ const printRes = (data, list, error, size) => {
 
 stories.add('Normal', () => <ButtonUpload onChange={printRes} showTags/>);
 
-stories.add('As Div', () =>
-  <ButtonUpload
-    style={{
-      border: '2px dashed #9b9b9b',
-      padding: '20px',
-      width: '250px',
-      textAlign: 'center'
-    }}
-    as="div"
-    onChange={printRes}
-    btnText="Envie sua imagem"
-    showTags
-  />);
-
 stories.add(
   'With image Dimensions',
   () => (
