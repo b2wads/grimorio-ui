@@ -1,14 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import Select, { SelectOption } from './index';
 import Button from '../button';
 
 const stories = storiesOf('Select', module);
-
-stories.addDecorator(withKnobs);
 
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(item => ({
   name: `Opção ${item}`,

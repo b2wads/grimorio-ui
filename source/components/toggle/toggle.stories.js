@@ -1,14 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-
 
 import Toggle from './toggle-component';
 
 const stories = storiesOf('Toggle', module);
 
-stories.addDecorator(withKnobs);
+const action = name => (...params) => {
+  console.log(name, params);
+};
 
 stories.add('Normal', () =>
   <Toggle

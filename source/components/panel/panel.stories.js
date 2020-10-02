@@ -1,14 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { boolean } from '@storybook/addon-knobs';
 
 import Panel from './panel-component';
 import Button from '../button';
 
 const stories = storiesOf('Panel', module);
-
-stories.addDecorator(withKnobs);
 
 stories.add('Default', () => (
   <div style={{ width: '25%' }}>
@@ -81,7 +78,7 @@ stories.add('Title Variations', () => (
     </Panel>
     <br/>
     <br/>
-    <Panel 
+    <Panel
       style={{ width: '35%' }}
       title="Title"
       titleBorder
@@ -100,7 +97,7 @@ stories.add('Accordion', () => (
       titleBorder
       footer={<Button size="large">Cadastrar Site</Button>}
       accordion
-      open={boolean('Open', true, 'accordion')}
+      open={true}
     >
       <p>Content</p>
     </Panel>

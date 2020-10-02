@@ -1,11 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import Tag from './tag-component';
 
 const stories = storiesOf('Tag', module);
 
+const action = name => (...params) => {
+  console.log(name, params);
+};
 
 stories.add('Normal', () => (
   <div>

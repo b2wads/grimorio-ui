@@ -1,12 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Slider from './slider-component';
 
 const stories = storiesOf('Slider', module);
-
-stories.addDecorator(withKnobs);
 
 const style = {
   width: '100%',

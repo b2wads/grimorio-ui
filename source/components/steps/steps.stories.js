@@ -2,7 +2,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Steps from './index';
 import Button from '../button/index';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 const stories = storiesOf('Steps', module);
@@ -15,8 +14,6 @@ const pageData = [
 ];
 
 let value = 0;
-
-stories.addDecorator(withKnobs);
 
 stories.add('Normal', () => (
   <div>

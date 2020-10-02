@@ -1,7 +1,5 @@
 import React from 'react';
-import { storiesOf, ReactiveVar } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { action, configureActions } from '@storybook/addon-actions';
+import { storiesOf } from '@storybook/react';
 import { withState } from '@dump247/storybook-state';
 
 import Popover from './popover-component';
@@ -9,10 +7,12 @@ import Button from '../button'
 
 const stories = storiesOf('Popover', module);
 
-stories.addDecorator(withKnobs);
-
 const initialState = {
   isPopoverOpen: false,
+};
+
+const action = name => (...params) => {
+  console.log(name, params);
 };
 
 stories.add('Normal', withState(initialState)(({ store }) => {

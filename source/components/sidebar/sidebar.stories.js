@@ -1,8 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
-import { action } from '@storybook/addon-actions';
 
 import Sidebar from './index';
 
@@ -14,7 +12,9 @@ import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
 
 const stories = storiesOf('Sidebar', module);
 
-stories.addDecorator(withKnobs);
+const action = name => (...params) => {
+  console.log(name, params);
+};
 
 stories.add('Default', withState({ open: false, active: -1 })(({ store }) => {
   const getActive = (index) => {

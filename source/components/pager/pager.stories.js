@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, number } from '@storybook/addon-knobs';
 
 import Pager from './pager-component';
 
@@ -19,7 +18,6 @@ const meta = {
 };
 
 const limitList = [10, 15, 20, 50];
-stories.addDecorator(withKnobs);
 
 stories.add('Normal', () => {
   return (

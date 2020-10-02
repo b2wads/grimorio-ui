@@ -1,10 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Svg from '../svg';
 import Header from './header-component';
-import styles from './header.styl';
 
 const stories = storiesOf('Header', module);
 
@@ -20,8 +18,6 @@ const itemsIcon = [
     icon: 'person',
   },
 ];
-
-stories.addDecorator(withKnobs);
 
 stories.add('Normal', () =>
   <Header

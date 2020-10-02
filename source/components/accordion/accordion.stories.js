@@ -1,13 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import Accordion, { AccordionTitle, AccordionContent } from './index';
 
 const stories = storiesOf('Accordion', module);
-
-stories.addDecorator(withKnobs);
 
 const renderContent = () => {
   return (
@@ -27,9 +24,9 @@ const options = {
 stories.add(
   'Default',
   () => {
-    const isExclusive = boolean('exclusive', true);
+    const isExclusive = true;
     return (
-      <Accordion exclusive={isExclusive} type={select('Theme', options, 'default', 'Theme')}  panels={[
+      <Accordion exclusive={isExclusive} type="default" panels={[
         { icon: 'insert_chart', title: 'Dashboard', content: renderContent() },
         { icon: 'dashboard', title: 'Charts', content: 'segundo conteudo' }
       ]} />

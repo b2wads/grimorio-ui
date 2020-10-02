@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import PieChart from './pie-chart-component';
@@ -8,8 +7,6 @@ import Button from '../button';
 import Panel from '../panel';
 
 const stories = storiesOf('PieChart', module);
-
-stories.addDecorator(withKnobs);
 
 stories.add('Normal', () =>
   <PieChart

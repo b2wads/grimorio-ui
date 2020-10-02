@@ -1,13 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Menu from './index';
 import MenuItem from './elements/menu-item';
 
 const stories = storiesOf('Menu', module);
-
-stories.addDecorator(withKnobs);
 
 stories.add(
   'Default',

@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, number } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import TablePanel from './table-panel-component';
@@ -64,8 +63,6 @@ const meta = {
   offset: 20,
 };
 
-stories.addDecorator(withKnobs);
-
 stories.add('Normal', () => {
   return (
     <TablePanel
@@ -114,7 +111,7 @@ stories.add('Scroll', () => {
 });
 
 stories.add('Sticky', () => {
-  const height = number('Height', 150);
+  const height = 150;
   return (
     <TablePanel
       scrollY

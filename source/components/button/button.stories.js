@@ -2,11 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from './index';
 
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-
 const stories = storiesOf('Button', module);
-
-stories.addDecorator(withKnobs);
 
 stories.add('Color', () => (
   <div>
@@ -107,14 +103,14 @@ stories.add('States', () => (
 
 stories.add('Disabled', () => (
   <div>
-    <Button color="primary" disabled={boolean('Disabled', true)}>
-      {text('Primary', 'Primary')}
+    <Button color="primary" disabled>
+      Primary
     </Button>&nbsp;
-    <Button color="secondary" disabled={boolean('Disabled', true)}>
-      {text('Secondary', 'Secondary')}
+    <Button color="secondary" disabled>
+      Secondary
     </Button>&nbsp;
-    <Button color="clean" size="small" disabled={boolean('Disabled', true)}>
-      {text('Clean', 'Clean')}
+    <Button color="clean" size="small" disabled>
+      Clean
     </Button>&nbsp;
     <Button color="variant" modifier="outline" disabled>
       Variant Outline

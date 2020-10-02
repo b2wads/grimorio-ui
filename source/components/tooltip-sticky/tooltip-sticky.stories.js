@@ -1,13 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import TooltipSticky from './tooltip-sticky-component';
 import Button from '../button';
 
 const stories = storiesOf('TooltipSticky', module);
-
-stories.addDecorator(withKnobs);
 
 stories.add('Normal', () =>
   <TooltipSticky

@@ -1,12 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Breadcrumb from './breadcrumb-component';
 
 const stories = storiesOf('Breadcrumb', module);
-
-stories.addDecorator(withKnobs);
 
 stories.add('Normal', () => {
   return (

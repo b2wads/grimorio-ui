@@ -1,14 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 import DragAndDrop from './drag-and-drop-component';
 
 import DraggableComponent from './elements/draggable';
 
 const stories = storiesOf('DragAndDrop', module);
-
-stories.addDecorator(withKnobs);
 
 const items = [
   { id: 'task-1', content: 'Teste 1' },

@@ -1,8 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withState } from '@dump247/storybook-state';
-import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 
 import TabMenu, { Tab } from './';
 import Panel from '../panel';
@@ -20,7 +18,9 @@ const tabsBig = tabGen([1,2,3,4,5,6,7]);
 
 const stories = storiesOf('Tab', module);
 
-stories.addDecorator(withKnobs);
+const action = name => (...params) => {
+  console.log(name, params);
+};
 
 stories.add('Default', () => {
   return (

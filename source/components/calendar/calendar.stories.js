@@ -1,17 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import moment from 'moment';
 import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
 import Calendar from './calendar-component';
-import Button from '../button/button-component';
 
 
 const stories = storiesOf('Calendar', module);
-
-stories.addDecorator(withKnobs);
 
 stories.add('Range date', withState({ startDate: undefined, endDate: undefined })(({ store }) => {
   const handleChange = dates => {

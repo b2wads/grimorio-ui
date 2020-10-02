@@ -1,7 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import SelectPopover from './select-popover-component';
@@ -9,7 +7,9 @@ import Button from '../button'
 
 const stories = storiesOf('SelectPopover', module);
 
-stories.addDecorator(withKnobs);
+const action = name => (...params) => {
+  console.log(name, params);
+};
 
 stories.add('Normal', () => {
   const options = [

@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import Table from './table-component';
@@ -8,8 +7,6 @@ import Button from '../button';
 import Popover from '../popover/popover-component';
 
 const stories = storiesOf('Table', module);
-
-stories.addDecorator(withKnobs);
 
 const simpledata = [
   {
@@ -112,7 +109,7 @@ stories.add('Sticky header, footer and columns', withState({ data: null })(({ st
        });
     });
 
-  return <Table schema={schema} 
+  return <Table schema={schema}
   numberFixedColumns="3" data={store.state.data} dataFooter={store.state.dataFooter} scrollY style={{maxWidth: '500px', height: '400px'}} isSticky />
 }));
 
@@ -141,18 +138,18 @@ stories.add('Table sticky with popover', () => {
             Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
           </div>
         </Popover>
-      
+
       }
-      
-      </>    
+
+      </>
     },
     age: {
       title: 'Gênero',
       className: null,
     },
   }
-  
-  return <Table schema={schemaTest} 
+
+  return <Table schema={schemaTest}
   numberFixedColumns="2" data={list} scrollY style={{maxWidth: '500px', height: '400px'}} isSticky />
 });
 

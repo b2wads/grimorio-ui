@@ -1,13 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Feedback from './feedback-component';
 import { withState } from '@dump247/storybook-state';
 
 const stories = storiesOf('Feedback', module);
 
-stories.addDecorator(withKnobs);
 const initialState = {
   show: true,
 };

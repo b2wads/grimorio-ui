@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import Button from '../button';
@@ -8,8 +7,6 @@ import Button from '../button';
 import Modal from './modal-component';
 
 const stories = storiesOf('Modal', module);
-
-stories.addDecorator(withKnobs);
 
 stories.add(
   'Custom',

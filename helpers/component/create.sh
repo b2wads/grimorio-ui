@@ -109,13 +109,10 @@ touch $path/$name/$name.stories.js
 cat > $path/$name/$name.stories.js <<EOF
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import $capitalizeName from './$name-component';
 
 const stories = storiesOf('$capitalizeName', module);
-
-stories.addDecorator(withKnobs);
 
 stories.add('Normal', () => <$capitalizeName />);
 EOF

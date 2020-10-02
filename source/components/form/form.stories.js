@@ -1,7 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 
 import Button from '../button';
@@ -13,7 +11,9 @@ import { SelectOption } from '../select';
 
 const stories = storiesOf('Form', module);
 
-stories.addDecorator(withKnobs);
+const action = name => (...params) => {
+  console.log(name, params);
+};
 
 stories.add('Input text', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
   const handleChange = event => {
@@ -213,31 +213,6 @@ stories.add('With validation', () => (
       <FormControl placeholder="Form group with input" feedback />
       <span className="error">testte</span>
     </FormGroup>
-  </div>
-));
-
-// Form control
-stories.add('Knobs', () => (
-  <div>
-    <FormControl
-      type={text('Type', 'text')}
-      placeholder={text('Placeholder', 'Digite algo')}
-      disabled={boolean('Disabled', false)}
-      onFocus={action('focus')}
-      onChange={action('change')}
-      onBlur={action('blur')}
-    />
-    <br /><br /><br /><br />
-    <FormControl
-      type="select"
-      placeholder="Selecione"
-      onFocus={action('focus')}
-      onChange={action('change')}
-      onBlur={action('blur')}
-    >
-      <SelectOption value="a">Nome a</SelectOption>
-      <SelectOption value="b">Nome b</SelectOption>
-    </FormControl>
   </div>
 ));
 

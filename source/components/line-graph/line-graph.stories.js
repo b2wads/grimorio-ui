@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 import moment from 'moment';
 
@@ -11,8 +10,6 @@ import Button from '../button';
 import Panel from '../panel';
 
 const stories = storiesOf('LineGraph', module);
-
-stories.addDecorator(withKnobs);
 
 const data = [
   {
