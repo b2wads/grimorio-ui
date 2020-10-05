@@ -26,7 +26,6 @@ describe('Sidebar component', () => {
       {
         name: 'Um Accordion',
         icon: 'filter',
-        id: 'accordion',
         submenu: [
           {
             name: 'Item 1',
@@ -42,7 +41,6 @@ describe('Sidebar component', () => {
        {
         name: 'Outro Accordion',
         icon: 'filter',
-        id: 'accordion',
         submenu: [
           {
             name: 'Item 1',

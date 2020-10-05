@@ -13,7 +13,7 @@ class Sidebar extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { open: true, openMobile: false, openedAccordion: null };
+    this.state = { open: true, openMobile: false, openedSubmenu: null };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleLogoClick = this.handleLogoClick.bind(this);
     this.getActive = this.getActive.bind(this);
@@ -54,12 +54,12 @@ class Sidebar extends PureComponent {
   }
 
   toggleSubmenu(index) {
-    const openedAccordion = this.state.openedAccordion === index ? null : index;
-    this.setState({ openedAccordion });
+    const openedSubmenu = this.state.openedSubmenu === index ? null : index;
+    this.setState({ openedSubmenu });
   }
 
   getActive(index) {
-    return index === this.state.openedAccordion;
+    return index === this.state.openedSubmenu;
   }
 
   renderMenuWithAccordion({ icon, name, submenu }, index) {

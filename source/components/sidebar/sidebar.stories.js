@@ -27,7 +27,6 @@ const schema = [
   {
     name: 'Um Accordion',
     icon: 'filter',
-    id: 'accordion',
     submenu: [
       {
         name: 'Item 1',
@@ -43,7 +42,6 @@ const schema = [
    {
     name: 'Outro Accordion',
     icon: 'filter',
-    id: 'accordion',
     submenu: [
       {
         name: 'Item 1',
