@@ -10,7 +10,6 @@ addons.setConfig({
     brandUrl: 'https://github.com/b2wads/grimorio-ui#readme',
     brandImage,
 
-    // colorPrimary: '#5e4596',
     colorSecondary: '#7934d0',
 
     // UI
