@@ -1,12 +1,12 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import Beacon from './beacon-component';
 
-const stories = storiesOf('Beacon', module);
+export default {
+  title: 'Beacon',
+  component: Beacon,
+};
 
-stories.add('Normal', () => {
-  return (
-    <Beacon className="position"/>
-  );
-});
+export const Normal = () => {
+  return <Beacon className="position" />;
+};

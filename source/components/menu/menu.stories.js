@@ -1,16 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import Menu from './index';
 import MenuItem from './elements/menu-item';
 
-const stories = storiesOf('Menu', module);
+export default {
+  title: 'Menu',
+  component: Menu,
+};
 
-stories.add(
-  'Default',
-  () => {
-    return (
-      <Menu items={[
+export const Default = () => {
+  return (
+    <Menu
+      items={[
         {
           key: 'dashboard',
           icon: 'dashboard',
@@ -18,42 +19,37 @@ stories.add(
           items: [
             { key: 'default', name: 'Default', link: '/default' },
             { key: 'ecommerce', name: 'eCommerce', link: '/ecommerce' },
-            { key: 'newsportal', name: 'News Portal', link: '/news-portal' }
-          ]
+            { key: 'newsportal', name: 'News Portal', link: '/news-portal' },
+          ],
         },
         {
           key: 'charts',
           icon: 'insert_chart',
           name: 'Charts',
-          items: [
-            { key: 'test', name: 'Test', link: '/test' },
-          ]
-        }
-      ]} />
-    );
-  }
-);
+          items: [{ key: 'test', name: 'Test', link: '/test' }],
+        },
+      ]}
+    />
+  );
+};
 
-stories.add(
-  'Manual',
-  () => {
-    return (
-      <Menu>
-        <MenuItem icon="dashboard">
-          Dashboard
-          <Menu>
-            <MenuItem>Default</MenuItem>
-            <MenuItem>eCommerce</MenuItem>
-            <MenuItem>News Portal</MenuItem>
-          </Menu>
-        </MenuItem>
-        <MenuItem icon="insert_chart">
-          Charts
-          <Menu>
-            <MenuItem>Default</MenuItem>
-          </Menu>
-        </MenuItem>
-      </Menu>
-    )
-  }
-);
+export const Manual = () => {
+  return (
+    <Menu>
+      <MenuItem icon="dashboard">
+        Dashboard
+        <Menu>
+          <MenuItem>Default</MenuItem>
+          <MenuItem>eCommerce</MenuItem>
+          <MenuItem>News Portal</MenuItem>
+        </Menu>
+      </MenuItem>
+      <MenuItem icon="insert_chart">
+        Charts
+        <Menu>
+          <MenuItem>Default</MenuItem>
+        </Menu>
+      </MenuItem>
+    </Menu>
+  );
+};

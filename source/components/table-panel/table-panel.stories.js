@@ -1,11 +1,13 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { withState } from '@dump247/storybook-state';
 
 import TablePanel from './table-panel-component';
 import Button from '../button';
 
-const stories = storiesOf('TablePanel', module);
+export default {
+  title: 'TablePanel',
+  component: TablePanel,
+};
 
 const simpledata = [
   {
@@ -25,7 +27,7 @@ const simpledata = [
     gender: 'male',
     email: 'fulano123@teste.com',
     dob: { age: '45' },
-  }
+  },
 ];
 
 const schema = {
@@ -33,13 +35,13 @@ const schema = {
     title: 'Nome',
     headClassName: null,
     className: null,
-    render: info => info.name.first,
+    render: (info) => info.name.first,
   },
   surname: {
     title: 'Sobrenome',
     headClassName: null,
     className: null,
-    render: info => info.name.last,
+    render: (info) => info.name.last,
   },
   gender: {
     title: 'Gênero',
@@ -53,7 +55,9 @@ const schema = {
     title: 'Adivinhe a idade',
     className: null,
     headClassName: null,
-    render: info => <Button onClick={() => alert(`Tenho ${info.dob.age} anos!`)}>Descobrir idade</Button>,
+    render: (info) => (
+      <Button onClick={() => alert(`Tenho ${info.dob.age} anos!`)}>Descobrir idade</Button>
+    ),
   },
 };
 
@@ -63,7 +67,7 @@ const meta = {
   offset: 20,
 };
 
-stories.add('Normal', () => {
+export const Normal = () => {
   return (
     <TablePanel
       title="Jogo da Idade"
@@ -75,9 +79,9 @@ stories.add('Normal', () => {
       meta={{}}
     />
   );
-});
+};
 
-stories.add('With header separator', () => {
+export const WithHeaderSeparator = () => {
   return (
     <TablePanel
       title="Jogo da Idade"
@@ -90,9 +94,13 @@ stories.add('With header separator', () => {
       meta={{}}
     />
   );
-});
+};
 
-stories.add('Scroll', () => {
+WithHeaderSeparator.story = {
+  name: 'With header separator',
+};
+
+export const Scroll = () => {
   return (
     <TablePanel
       scrollY
@@ -108,9 +116,9 @@ stories.add('Scroll', () => {
       meta={{}}
     />
   );
-});
+};
 
-stories.add('Sticky', () => {
+export const Sticky = () => {
   const height = 150;
   return (
     <TablePanel
@@ -126,9 +134,9 @@ stories.add('Sticky', () => {
       isSticky
     />
   );
-});
+};
 
-stories.add('Error', () => {
+export const Error = () => {
   return (
     <TablePanel
       error
@@ -146,28 +154,32 @@ stories.add('Error', () => {
       }}
     />
   );
-});
+};
 
-stories.add('Special Case', () => {
+export const SpecialCase = () => {
   const special = [
     {
       className: 'mail',
-      case: info => info.email === 'fulana456@teste.com',
+      case: (info) => info.email === 'fulana456@teste.com',
     },
     {
       className: 'male',
-      case: info => info.gender === 'male',
+      case: (info) => info.gender === 'male',
     },
   ];
 
   return (
     <div>
-      <style dangerouslySetInnerHTML={{__html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         .mail { background: darkseagreen; color: white; }
         .male { background: cornflowerblue; color: white }
-      `}} />
+      `,
+        }}
+      />
 
-     <TablePanel
+      <TablePanel
         title="Jogo da Idade"
         actions={<Button>Trocar nomes</Button>}
         schema={schema}
@@ -179,7 +191,7 @@ stories.add('Special Case', () => {
       />
     </div>
   );
-});
+};
 
 const _meta = {
   count: 110,
@@ -187,11 +199,11 @@ const _meta = {
   offset: 0,
 };
 
-stories.add('With async Data', withState({ data: null, meta: _meta, loading: null, })(({ store }) => {
+export const WithAsyncData = withState({ data: null, meta: _meta, loading: null })(({ store }) => {
   const getNames = (type, value = 0) => {
     const typeOffset = {
       prev: store.state.meta.offset - store.state.meta.limit,
-      next:  store.state.meta.limit + store.state.meta.offset,
+      next: store.state.meta.limit + store.state.meta.offset,
       first: 0,
       last: store.state.meta.count - store.state.meta.limit,
       number: (value - 1) * store.state.meta.limit,
@@ -200,8 +212,8 @@ stories.add('With async Data', withState({ data: null, meta: _meta, loading: nul
     store.set({ loading: true });
 
     fetch(`https://randomuser.me/api/?results=${store.state.meta.limit}`)
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         store.set({
           data: res.results,
           loading: false,
@@ -232,4 +244,8 @@ stories.add('With async Data', withState({ data: null, meta: _meta, loading: nul
       meta={store.state.meta}
     />
   );
-}));
+});
+
+WithAsyncData.story = {
+  name: 'With async Data',
+};

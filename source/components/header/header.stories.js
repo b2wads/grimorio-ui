@@ -1,10 +1,12 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import Svg from '../svg';
 import Header from './header-component';
 
-const stories = storiesOf('Header', module);
+export default {
+  title: 'Header',
+  component: Header,
+};
 
 const itemsIcon = [
   {
@@ -19,28 +21,26 @@ const itemsIcon = [
   },
 ];
 
-stories.add('Normal', () =>
+export const Normal = () => (
   <Header
     user="ana@ana.com"
-    onSelect={({value}) => alert(value)}
+    onSelect={({ value }) => alert(value)}
     onLogout={() => alert('Logout!')}
     items={itemsIcon}
-    />
+  />
 );
 
-stories.add('With children', () =>
-  <Header>
-    Conteúdo qualquer que vai entrar aqui!
-  </Header>
-);
+export const WithChildren = () => <Header>Conteúdo qualquer que vai entrar aqui!</Header>;
 
-stories.add('Mobile', () =>
+WithChildren.story = {
+  name: 'With children',
+};
+
+export const Mobile = () => (
   <Header
     isMobile
     onLogout={() => alert('Logout!')}
     onLogoClick={() => alert('logo!')}
-    logo={
-      <Svg width={188} height={58} src="logo/afiliados" />
-    }
+    logo={<Svg width={188} height={58} src="logo/afiliados" />}
   />
 );

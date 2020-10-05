@@ -1,32 +1,41 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { withState } from '@dump247/storybook-state';
 
 import Button from '../button';
 
 import { fieldsMask } from '../../helpers/mask';
 
-import Form, { FormGroup, FormLabel, FormControl, FormActions, FormHelpText, FormControlLabel } from './index';
+import Form, {
+  FormGroup,
+  FormLabel,
+  FormControl,
+  FormActions,
+  FormHelpText,
+  FormControlLabel,
+} from './index';
 import { SelectOption } from '../select';
 
-const stories = storiesOf('Form', module);
+export default {
+  title: 'Form',
+  component: Form,
+};
 
-const action = name => (...params) => {
+const action = (name) => (...params) => {
   console.log(name, params);
 };
 
-stories.add('Input text', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
-  const handleChange = event => {
+export const InputText = withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
+  const handleChange = (event) => {
     store.set({ input: event.target.value });
-  }
+  };
 
   const change = () => {
     store.set({ input: '' });
-  }
+  };
 
   return (
     <div>
-      <Form onSubmit={() => { }}>
+      <Form onSubmit={() => {}}>
         <FormGroup>
           <FormLabel>Example of label</FormLabel>
           <FormControl placeholder="Form, FormGroup and input" />
@@ -37,7 +46,7 @@ stories.add('Input text', withState({ input: 'Campo com valor default', check: [
           <Button color="primary">Enviar</Button>
         </FormActions>
       </Form>
-      <Form onSubmit={() => { }}>
+      <Form onSubmit={() => {}}>
         <FormGroup>
           <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" />
           <FormHelpText>text</FormHelpText>
@@ -47,10 +56,15 @@ stories.add('Input text', withState({ input: 'Campo com valor default', check: [
           <Button color="primary">Enviar</Button>
         </FormActions>
       </Form>
-      <Form onSubmit={() => { }}>
+      <Form onSubmit={() => {}}>
         <Button onClick={change}>Deixar vazio!</Button>
         <FormGroup>
-          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" value={store.state.input} onChange={handleChange} />
+          <FormControlLabel
+            label="Nome"
+            placeholder="Form, FormGroup and input"
+            value={store.state.input}
+            onChange={handleChange}
+          />
           <FormHelpText>Tem valor default controlado</FormHelpText>
         </FormGroup>
         <FormActions>
@@ -60,51 +74,95 @@ stories.add('Input text', withState({ input: 'Campo com valor default', check: [
       </Form>
       <Form>
         <FormGroup>
-          <FormControlLabel label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormControlLabel
+            label="Nome"
+            placeholder="Form, FormGroup and input"
+            defaultValue="Valor default"
+          />
           <FormHelpText>Tem valor default, porém não é controlado</FormHelpText>
         </FormGroup>
         <br />
         <FormGroup>
-          <FormControlLabel outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormControlLabel
+            outline
+            label="Nome"
+            placeholder="Form, FormGroup and input"
+            defaultValue="Valor default"
+          />
           <FormHelpText>Versão outline!</FormHelpText>
         </FormGroup>
         <br />
         <FormGroup>
-          <FormControlLabel iconRight="link" iconRightClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormControlLabel
+            iconRight="link"
+            iconRightClick={() => console.log('clicou no ícone!')}
+            outline
+            label="Nome"
+            placeholder="Form, FormGroup and input"
+            defaultValue="Valor default"
+          />
           <FormHelpText>Com ícone à direita</FormHelpText>
         </FormGroup>
         <br />
         <FormGroup>
-          <FormControlLabel iconLeft="link" iconLeftClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
+          <FormControlLabel
+            iconLeft="link"
+            iconLeftClick={() => console.log('clicou no ícone!')}
+            outline
+            label="Nome"
+            placeholder="Form, FormGroup and input"
+            defaultValue="Valor default"
+          />
           <FormHelpText>Com ícone à esquerda</FormHelpText>
         </FormGroup>
       </Form>
     </div>
   );
-}));
+});
 
-stories.add('Input text com ícone', () => (
-    <div>
-      <Form>
-        <FormGroup>
-          <FormControlLabel iconRight="link" iconRightClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
-          <FormHelpText>Com ícone à direita</FormHelpText>
-        </FormGroup>
-        <br />
-        <FormGroup>
-          <FormControlLabel iconLeft="link" iconLeftClick={() => console.log('clicou no ícone!')} outline label="Nome" placeholder="Form, FormGroup and input" defaultValue="Valor default" />
-          <FormHelpText>Com ícone à esquerda</FormHelpText>
-        </FormGroup>
-      </Form>
-    </div>
-  )
-);
+InputText.story = {
+  name: 'Input text',
+};
 
-stories.add('Select', () => (
+export const InputTextComIcone = () => (
   <div>
     <Form>
       <FormGroup>
-        <FormControlLabel onChange={data => console.log(data)} label="Nome" type="select">
+        <FormControlLabel
+          iconRight="link"
+          iconRightClick={() => console.log('clicou no ícone!')}
+          outline
+          label="Nome"
+          placeholder="Form, FormGroup and input"
+          defaultValue="Valor default"
+        />
+        <FormHelpText>Com ícone à direita</FormHelpText>
+      </FormGroup>
+      <br />
+      <FormGroup>
+        <FormControlLabel
+          iconLeft="link"
+          iconLeftClick={() => console.log('clicou no ícone!')}
+          outline
+          label="Nome"
+          placeholder="Form, FormGroup and input"
+          defaultValue="Valor default"
+        />
+        <FormHelpText>Com ícone à esquerda</FormHelpText>
+      </FormGroup>
+    </Form>
+  </div>
+);
+
+InputTextComIcone.story = {
+  name: 'Input text com ícone',
+};
+
+export const Select = () => (
+  <div>
+    <Form>
+      <FormGroup>
+        <FormControlLabel onChange={(data) => console.log(data)} label="Nome" type="select">
           <SelectOption value="a">a</SelectOption>
           <SelectOption value="b">b</SelectOption>
         </FormControlLabel>
@@ -112,7 +170,7 @@ stories.add('Select', () => (
       </FormGroup>
       <br />
       <FormGroup>
-        <FormControlLabel outline onChange={data => console.log(data)} label="Nome" type="select">
+        <FormControlLabel outline onChange={(data) => console.log(data)} label="Nome" type="select">
           <SelectOption value="a">a</SelectOption>
           <SelectOption value="b">b</SelectOption>
         </FormControlLabel>
@@ -120,25 +178,24 @@ stories.add('Select', () => (
       </FormGroup>
     </Form>
   </div>
-)
 );
 
-stories.add('Checkbox', withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
+export const Checkbox = withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
   const changeCheck = () => {
     store.set({ check: [1, 2] });
-  }
+  };
 
-  const toggleCheck = id => {
+  const toggleCheck = (id) => {
     let check = store.state.check;
 
     if (store.state.check.includes(id)) {
-      check = store.state.check.filter(chosen => chosen !== id);
+      check = store.state.check.filter((chosen) => chosen !== id);
     } else {
       check.push(id);
     }
 
     store.set({ check });
-  }
+  };
 
   return (
     <div>
@@ -146,19 +203,32 @@ stories.add('Checkbox', withState({ input: 'Campo com valor default', check: [] 
         <Button onClick={changeCheck}>Marcar Checkboxes</Button>
         <FormGroup>
           <label htmlFor="check">Checkbox!</label>
-          <FormControl onChange={() => toggleCheck(1)} checked={store.state.check.includes(1)} type="checkbox" id="check" value="1" />
+          <FormControl
+            onChange={() => toggleCheck(1)}
+            checked={store.state.check.includes(1)}
+            type="checkbox"
+            id="check"
+            value="1"
+          />
         </FormGroup>
 
         <FormGroup>
           <label htmlFor="check2">Checkbox2!</label>
-          <FormControl theme="secondary" onChange={() => toggleCheck(2)} checked={store.state.check.includes(2)} type="checkbox" id="check2" value="2" />
+          <FormControl
+            theme="secondary"
+            onChange={() => toggleCheck(2)}
+            checked={store.state.check.includes(2)}
+            type="checkbox"
+            id="check2"
+            value="2"
+          />
         </FormGroup>
       </Form>
     </div>
   );
-}));
+});
 
-stories.add('Radio', () => (
+export const Radio = () => (
   <div>
     <Form>
       <FormGroup>
@@ -173,32 +243,46 @@ stories.add('Radio', () => (
       </FormGroup>
     </Form>
   </div>
-));
+);
 
-// Form label
-stories.add('Addon text', () => (
+export const AddonText = () => (
   <FormGroup>
-    <br /><br /><br />
+    <br />
+    <br />
+    <br />
     <FormLabel addon={'text'}>Nome:</FormLabel>
   </FormGroup>
-));
+);
 
-stories.add('Addon link', () => (
+AddonText.story = {
+  name: 'Addon text',
+};
+
+export const AddonLink = () => (
   <FormGroup>
-    <br /><br /><br />
+    <br />
+    <br />
+    <br />
     <FormLabel addon={<a href="/home">Esqueci a minha senha</a>}>Nome:</FormLabel>
   </FormGroup>
-));
+);
 
-// Form group
-stories.add('With id', () => (
+AddonLink.story = {
+  name: 'Addon link',
+};
+
+export const WithId = () => (
   <FormGroup controlId="test">
     <FormLabel>Nome:</FormLabel>
     <FormControl placeholder="Form group with input" />
   </FormGroup>
-));
+);
 
-stories.add('With validation', () => (
+WithId.story = {
+  name: 'With id',
+};
+
+export const WithValidation = () => (
   <div>
     <FormGroup validationState="success">
       <FormLabel>Nome:</FormLabel>
@@ -214,9 +298,13 @@ stories.add('With validation', () => (
       <span className="error">testte</span>
     </FormGroup>
   </div>
-));
+);
 
-stories.add('Disabled', () => (
+WithValidation.story = {
+  name: 'With validation',
+};
+
+export const Disabled = () => (
   <div>
     <FormControl value="Com texto" placeholder="Digite um nome" disabled />
     <FormControl type="email" placeholder="Com placeholder" disabled />
@@ -228,15 +316,15 @@ stories.add('Disabled', () => (
     </FormControl>
     <FormControl type="textarea" disabled />
   </div>
-));
+);
 
-stories.add('Feedback', () => (
+export const Feedback = () => (
   <FormGroup validationState="success">
     <FormControl type="password" placeholder="Digite um valor" feedback />
   </FormGroup>
-));
+);
 
-stories.add('On focus', () => (
+export const OnFocus = () => (
   <div>
     <FormControl placeholder="Digite um nome" onFocus={action('focus')} />
     <FormControl type="radio" onFocus={action('focus')} />
@@ -248,9 +336,13 @@ stories.add('On focus', () => (
 
     <FormControl type="textarea" onFocus={action('focus')} />
   </div>
-));
+);
 
-stories.add('On change', () => (
+OnFocus.story = {
+  name: 'On focus',
+};
+
+export const OnChange = () => (
   <div>
     <FormControl placeholder="Digite um nome" onChange={action('change')} />
     <FormControl type="radio" onChange={action('change')} />
@@ -262,9 +354,13 @@ stories.add('On change', () => (
 
     <FormControl type="textarea" onChange={action('change')} />
   </div>
-));
+);
 
-stories.add('On blur', () => (
+OnChange.story = {
+  name: 'On change',
+};
+
+export const OnBlur = () => (
   <div>
     <FormControl placeholder="Digite um nome" onBlur={action('blur')} />
     <FormControl type="radio" onBlur={action('blur')} />
@@ -276,29 +372,32 @@ stories.add('On blur', () => (
 
     <FormControl type="textarea" onBlur={action('blur')} />
   </div>
-));
+);
 
-stories.add('On Mask', () => {
-  const handleMask = value => {
+OnBlur.story = {
+  name: 'On blur',
+};
+
+export const OnMask = () => {
+  const handleMask = (value) => {
     return fieldsMask({ type: 'number' }, value);
-  }
-  return (
-    <FormControl
-      placeholder="Digite um nome"
-      onMask={handleMask}
-    />
-  );
-});
+  };
+  return <FormControl placeholder="Digite um nome" onMask={handleMask} />;
+};
 
-
-stories.add('On Validation', withState({ status: undefined, message: undefined, status2: undefined, message2: undefined })(({ store }) => {
-  const handleValidate = validation => {
+export const OnValidation = withState({
+  status: undefined,
+  message: undefined,
+  status2: undefined,
+  message2: undefined,
+})(({ store }) => {
+  const handleValidate = (validation) => {
     store.set({ status: validation.validationState, message: validation.errorMessage });
-  }
+  };
 
-  const handleValidateTwo = validation => {
+  const handleValidateTwo = (validation) => {
     store.set({ status2: validation.validationState, message2: validation.errorMessage });
-  }
+  };
 
   return (
     <div>
@@ -307,14 +406,16 @@ stories.add('On Validation', withState({ status: undefined, message: undefined, 
           label="Nome"
           placeholder="Digite um nome"
           onValidate={handleValidate}
-          validate={[{
-            rule: 'required',
-            message: 'Campo obrigatório'
-          }, {
-            rule: 'letter',
-            message: 'Deve ser apenas letras'
-          }]
-          }
+          validate={[
+            {
+              rule: 'required',
+              message: 'Campo obrigatório',
+            },
+            {
+              rule: 'letter',
+              message: 'Deve ser apenas letras',
+            },
+          ]}
         />
         {store.state.message && <FormHelpText>{store.state.message}</FormHelpText>}
       </FormGroup>
@@ -323,17 +424,21 @@ stories.add('On Validation', withState({ status: undefined, message: undefined, 
         <FormControl
           placeholder="Digite um nome"
           onValidate={handleValidateTwo}
-          validate={[{
-            rule: 'required',
-            message: 'Campo obrigatório'
-          }, {
-            rule: 'letter',
-            message: 'Deve ser apenas letras'
-          }]
-          }
+          validate={[
+            {
+              rule: 'required',
+              message: 'Campo obrigatório',
+            },
+            {
+              rule: 'letter',
+              message: 'Deve ser apenas letras',
+            },
+          ]}
         />
-        <FormHelpText>{store.state.message2 ? store.state.message2 : 'Seja uma pessoa gentil e escreva aqui'}</FormHelpText>
+        <FormHelpText>
+          {store.state.message2 ? store.state.message2 : 'Seja uma pessoa gentil e escreva aqui'}
+        </FormHelpText>
       </FormGroup>
     </div>
   );
-}));
+});
