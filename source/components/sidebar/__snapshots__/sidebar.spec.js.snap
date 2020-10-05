@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sidebar component #render render default with children 1`] = `
+exports[`Sidebar component render default 1`] = `
 "<Symbol(react.fragment)>
   <div className=\\"sidebar\\">
     <div onClick={[Function: bound handleLogoClick]} className=\\"logotype\\" />
@@ -8,9 +8,44 @@ exports[`Sidebar component #render render default with children 1`] = `
       <span className=\\"contentTitle\\">
         Menu
       </span>
-      <span>
-        Com filho
-      </span>
+      <Accordion type=\\"accordionMenu\\" exclusive={false} as={[Function: WrappedComponent]} open={true} theme=\\"default\\" panels={{...}}>
+        <MenuItem title=\\"Home\\" active={true} isNotAccordion={true} icon=\\"person\\" link=\\"/home\\" handleClick={[undefined]}>
+          Home
+        </MenuItem>
+        <MenuItem title=\\"Página 1\\" active={[undefined]} isNotAccordion={true} icon=\\"desktop_mac\\" link=\\"/pag1\\" handleClick={[undefined]}>
+          Página 1
+        </MenuItem>
+        <MenuItem active={false}>
+          <AccordionTitle active={false} index={2} onClick={[Function: onClick]} icon=\\"filter\\">
+            Um Accordion
+          </AccordionTitle>
+          <AccordionContent active={false}>
+            <Menu theme=\\"default\\" items={{...}}>
+              <MenuItem active={true} link=\\"/acc/item1\\" handleClick={[undefined]}>
+                Item 1
+              </MenuItem>
+              <MenuItem active={[undefined]} link=\\"/acc/item2\\" handleClick={[undefined]}>
+                Item 2
+              </MenuItem>
+            </Menu>
+          </AccordionContent>
+        </MenuItem>
+        <MenuItem active={false}>
+          <AccordionTitle active={false} index={3} onClick={[Function: onClick]} icon=\\"filter\\">
+            Outro Accordion
+          </AccordionTitle>
+          <AccordionContent active={false}>
+            <Menu theme=\\"default\\" items={{...}}>
+              <MenuItem active={[undefined]} link=\\"/acc/item1\\" handleClick={[undefined]}>
+                Item 1
+              </MenuItem>
+              <MenuItem active={[undefined]} link=\\"/acc/item2\\" handleClick={[undefined]}>
+                Item 2
+              </MenuItem>
+            </Menu>
+          </AccordionContent>
+        </MenuItem>
+      </Accordion>
     </nav>
   </div>
 </Symbol(react.fragment)>"

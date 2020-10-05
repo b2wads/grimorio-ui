@@ -4,6 +4,8 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Icon from '../icon';
+import Menu, { MenuItem } from '../menu';
+import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
 
 import styles from './sidebar.styl';
 
@@ -11,14 +13,17 @@ class Sidebar extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { open: true, openMobile: false };
+    this.state = { open: true, openMobile: false, openedAccordion: null };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleLogoClick = this.handleLogoClick.bind(this);
+    this.getActive = this.getActive.bind(this);
+    this.renderMenuWithAccordion = this.renderMenuWithAccordion.bind(this);
+    this.renderMenuSimple = this.renderMenuSimple.bind(this);
   }
 
   static propTypes = {
     className: PropTypes.string,
-    children: PropTypes.element.isRequired,
+    schema: PropTypes.element.isRequired,
     onClick: PropTypes.func,
     onLogoClick: PropTypes.func,
     isMobile: PropTypes.bool,
@@ -48,8 +53,51 @@ class Sidebar extends PureComponent {
     this.props.onLogoClick();
   }
 
+  toggleSubmenu(index) {
+    const openedAccordion = this.state.openedAccordion === index ? null : index;
+    this.setState({ openedAccordion });
+  }
+
+  getActive(index) {
+    return index === this.state.openedAccordion;
+  }
+
+  renderMenuWithAccordion({ icon, name, submenu }, index) {
+    const { onClickItem } = this.props;
+    return (
+      <MenuItem active={this.getActive(index)}>
+        <AccordionTitle
+          active={this.getActive(index)}
+          index={index}
+          onClick={() => this.toggleSubmenu(index)}
+          icon={icon}
+        >
+          {name}
+        </AccordionTitle>
+        <AccordionContent active={this.getActive(index)}>
+          <Menu>
+            {submenu.map(subitem => (
+              <MenuItem active={subitem.isActive} link={subitem.link} handleClick={onClickItem}>
+                {subitem.name}
+              </MenuItem>
+            ))}
+          </Menu>
+        </AccordionContent>
+      </MenuItem>
+    );
+  }
+
+  renderMenuSimple({ name, isActive, icon, link }, index) {
+    const { onClickItem } = this.props;
+    return (
+      <MenuItem title={name} active={isActive} isNotAccordion icon={icon} link={link} handleClick={onClickItem}>
+        {name}
+      </MenuItem>
+    );
+  }
+
   render() {
-    const { children, className, onClick, open, openMobile, isMobile, logo, logoSmall } = this.props;
+    const { schema, className, onClick, open, openMobile, isMobile, logo, logoSmall } = this.props;
     const openNav = open === null ? this.state.open : open;
     const openNavMobile = openMobile === null ? this.state.openMobile : openMobile;
     const classes = classNames(styles.sidebar, className, {
@@ -71,10 +119,13 @@ class Sidebar extends PureComponent {
             </div>}
 
           <nav className={styles.content}>
-            <span className={classNames(styles.contentTitle, { [styles.isNavClosed]: openNav === false })}>
-              Menu
-            </span>
-            {children}
+            <span className={classNames(styles.contentTitle, { [styles.isNavClosed]: openNav === false })}>Menu</span>
+            <Accordion type="accordionMenu" exclusive={false} as={Menu} open={openNav}>
+              {schema.map(
+                (item, index) =>
+                  item.submenu ? this.renderMenuWithAccordion(item, index) : this.renderMenuSimple(item, index)
+              )}
+            </Accordion>
           </nav>
         </div>
         {isMobile &&
