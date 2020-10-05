@@ -1,6 +1,6 @@
 # Contribuindo
 
-O primeiro passo para contribuir para esse repositório é primeiro abrir uma Issue, ou qualquer outro método que envolva os proprietários desse projeto, antes de fazer qualquer alteração
+Antes de começar a contribuir de fato, por favor discuta as mudanças que pretende fazer via issue, ou qualquer outro método, com os proprietários desse projeto.
 
 
 ## Processo para o Pull Request
