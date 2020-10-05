@@ -29,7 +29,6 @@ import PageTitle from './components/page-title';
 import Panel from './components/panel';
 import PieChart from './components/pie-chart';
 import Popover from './components/popover';
-import Product from './components/product';
 import ProgressBar from './components/progress-bar';
 import Select, { SelectOption } from './components/select';
 import SelectPopover from './components/select-popover';
@@ -96,7 +95,6 @@ export {
   Panel,
   PieChart,
   Popover,
-  Product,
   ProgressBar,
   Select,
   SelectOption,
