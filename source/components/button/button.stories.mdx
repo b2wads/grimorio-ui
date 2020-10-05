@@ -1,0 +1,108 @@
+import Button from "./index";
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
+
+<Meta title="Button" component={Button} />
+
+# Button
+
+Esse é o componente de Botão do Grimório✨
+
+### Color
+<Preview>
+  <Story name="Color">
+   <Button color="primary" className="teste">Primary</Button>
+    <Button color="secondary">Secondary</Button>
+    <Button color="variant">Variant</Button>
+    <Button color="clean" size="small">Clean</Button>
+    <Button color="transparent">Transparent</Button>
+  </Story>
+</Preview>
+
+### Modifier
+<Preview>
+  <Story name="Modifier">
+    <div>
+      <Button color="variant" modifier="outline">Variant --Outline</Button>
+      <Button color="primary" modifier="outline">Primary --Outline</Button>
+      <Button color="clean" modifier="inverted" size="small">Clean --Inverted</Button>
+    </div>
+  </Story>
+</Preview>
+
+### Size
+<Preview>
+  <Story name="Size">
+    <Button size="none">None</Button>
+    <Button size="tiny">Tiny</Button>
+    <Button size="small">Small</Button>
+    <Button>Medium</Button>
+    <Button size="large">Large</Button>
+    <br />
+    <br />
+    <Button modifier="outline" size="none">None</Button>
+    <Button modifier="outline" size="tiny">Tiny</Button>
+    <Button modifier="outline" size="small">Small</Button>
+    <Button modifier="outline">Medium</Button>
+    <Button modifier="outline" size="large">Large</Button>
+    <br />
+    <br />
+    <Button loading size="none">None</Button>
+    <Button loading size="tiny">Tiny</Button>
+    <Button loading size="small">Small</Button>
+    <Button loading>Medium</Button>
+    <Button loading size="large">Large</Button>
+    <br />
+    <br />
+    <Button iconRight="person" size="none">None</Button>
+    <Button iconRight="person" size="tiny">Tiny</Button>
+    <Button iconRight="person" size="small">Small</Button>
+    <Button iconRight="person">Medium</Button>
+    <Button iconRight="person" size="large">Large</Button>
+  </Story>
+</Preview>
+
+### Loading
+<Preview>
+  <Story name="Loading">
+    <Button
+      onClick={() => alert("btn is disabled while loading")}
+      loading
+      color="primary">Primary</Button>
+    <Button loading color="clean" size="small">Clean Small</Button>
+    <Button color="variant" modifier="outline" loading>Variant --Outline</Button>
+  </Story>
+</Preview>
+
+### With Icon
+<Preview>
+  <Story name="With icon">
+    <Button iconLeft="person" color="primary">Primary Medium</Button>
+    <Button color="secondary" size="small" iconRight="insert_link">Secondary Small</Button>
+    <Button
+      color="clean"
+      iconLeft="person"
+      iconRight="keyboard_arrow_down"
+      size="small">Clean Small</Button>
+    <Button iconLeft="person" color="primary" modifier="outline">Outline</Button>
+  </Story>
+</Preview>
+
+### States
+<Preview>
+  <Story name="States">
+    <Button color="primary">Normal</Button>
+    <Button color="primary" disabled>Disabled</Button>
+    <Button color="primary" active>Active</Button>
+    <Button color="variant" modifier="outline" active>Variant Active</Button>
+  </Story>
+</Preview>
+
+### Disabled
+<Preview>
+  <Story name="Disabled">
+    <Button color="primary" disabled>Primary</Button>
+    <Button color="secondary" disabled>Secondary</Button>
+    <Button color="clean" size="small" disabled>Clean</Button>
+    <Button color="variant" modifier="outline" disabled>Variant Outline</Button>
+  </Story>
+</Preview>
