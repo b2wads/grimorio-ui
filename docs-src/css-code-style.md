@@ -16,7 +16,7 @@
   // <Card size="big" color="green" active>Olá</Card>
   
   <div className={`${style.big} ${style.green} ${style.isActive}`}>
-    <h1 className={style.header}">Card</p>
+    <h1 className={style.header}>Card</p>
     <p className={style.content}>Olá</p>
   </div>
 ```
@@ -32,7 +32,7 @@ Ex: light, black, danger, large, small, slim, extended, etc.
 
 Estes são os elementos genéricos usados ​​no componente. Eles podem ser ligados semanticamente as propriedades ou separados.
 
-Digamos que o header dentro de um card seja apenas vermelho quando a `danger prop` é verdadeira - então estão ligados. Mas se o header é o mesmo não importando as propriedades, ele é separado.
+Digamos que o header dentro de um card seja vermelho apenas quando a propriedade `danger prop` é verdadeira - então estão ligados. Mas se o header é o mesmo, não importando as propriedades, ele é separado.
 
 #### Ligados
 ```
@@ -162,7 +162,7 @@ Se a opção tiver apenas uma propriedade, use a mesma linha (com espaço antes 
 }
 ```
 
-Use valores hexadecimais em minúsculo e se você puder abrevie.
+Use valores hexadecimais em minúsculo e, se for possível abrevie.
 
 ```
 /* Bom */
@@ -172,7 +172,7 @@ Use valores hexadecimais em minúsculo e se você puder abrevie.
 .item { color: #FFFFFF; }
 ```
 
-Not specify the drive for value `0`, except for the property `rotate`.
+Não especifique uma unidade de medida para valor `0`, exceto se a propriedade `rotate`.
 
 ```
 /* Bom */
