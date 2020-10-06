@@ -2,44 +2,44 @@
 
 exports[`Sidebar component render default 1`] = `
 "<Symbol(react.fragment)>
-  <div className=\\"sidebar\\">
-    <div onClick={[Function: bound handleLogoClick]} className=\\"logotype\\" />
+  <div className=\\"sidebar closed\\">
+    <div onClick={[undefined]} className=\\"logotype\\" />
     <nav className=\\"content\\">
-      <span className=\\"contentTitle\\">
+      <span className=\\"contentTitle isNavClosed\\">
         Menu
       </span>
-      <Accordion type=\\"accordionMenu\\" exclusive={false} as={[Function: WrappedComponent]} open={true} theme=\\"default\\" panels={{...}}>
-        <MenuItem title=\\"Home\\" active={true} isNotAccordion={true} icon=\\"person\\" link=\\"/home\\" handleClick={[undefined]}>
+      <Accordion type=\\"accordionMenu\\" exclusive={false} as={[Function: WrappedComponent]} open={[undefined]} theme=\\"default\\" panels={{...}}>
+        <MenuItem title=\\"Home\\" active={false} isNotAccordion={true} icon=\\"person\\" link=\\"/home\\" handleClick={[Function]} data-testid=\\"home-link\\">
           Home
         </MenuItem>
-        <MenuItem title=\\"Página 1\\" active={[undefined]} isNotAccordion={true} icon=\\"desktop_mac\\" link=\\"/pag1\\" handleClick={[undefined]}>
+        <MenuItem title=\\"Página 1\\" active={false} isNotAccordion={true} icon=\\"desktop_mac\\" link=\\"/pag1\\" handleClick={[Function]} data-testid=\\"pag1\\">
           Página 1
         </MenuItem>
         <MenuItem active={false}>
-          <AccordionTitle active={false} index={2} onClick={[Function: onClick]} icon=\\"filter\\">
+          <AccordionTitle data-testid=\\"acc\\" active={false} index={2} onClick={[Function]} icon=\\"filter\\">
             Um Accordion
           </AccordionTitle>
           <AccordionContent active={false}>
             <Menu theme=\\"default\\" items={{...}}>
-              <MenuItem active={true} link=\\"/acc/item1\\" handleClick={[undefined]}>
+              <MenuItem data-testid=\\"acc-item1\\" active={false} link=\\"/acc/item1\\" handleClick={[Function]}>
                 Item 1
               </MenuItem>
-              <MenuItem active={[undefined]} link=\\"/acc/item2\\" handleClick={[undefined]}>
+              <MenuItem data-testid=\\"acc-item2\\" active={false} link=\\"/acc/item2\\" handleClick={[Function]}>
                 Item 2
               </MenuItem>
             </Menu>
           </AccordionContent>
         </MenuItem>
-        <MenuItem active={false}>
-          <AccordionTitle active={false} index={3} onClick={[Function: onClick]} icon=\\"filter\\">
+        <MenuItem active={true}>
+          <AccordionTitle data-testid=\\"acc2\\" active={true} index={3} onClick={[Function]} icon=\\"filter\\">
             Outro Accordion
           </AccordionTitle>
-          <AccordionContent active={false}>
+          <AccordionContent active={true}>
             <Menu theme=\\"default\\" items={{...}}>
-              <MenuItem active={[undefined]} link=\\"/acc/item1\\" handleClick={[undefined]}>
+              <MenuItem data-testid=\\"acc2-item1\\" active={false} link=\\"/acc2/item1\\" handleClick={[Function]}>
                 Item 1
               </MenuItem>
-              <MenuItem active={[undefined]} link=\\"/acc/item2\\" handleClick={[undefined]}>
+              <MenuItem data-testid=\\"acc2-item2\\" active={true} link=\\"/acc2/item2\\" handleClick={[Function]}>
                 Item 2
               </MenuItem>
             </Menu>
