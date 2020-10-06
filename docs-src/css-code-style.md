@@ -1,6 +1,6 @@
 # CSS Code Style
 
-### Naming - CSS MODULES
+### Nomenclatura - CSS MODULES
 
 `propName isModifierName`
 
@@ -8,33 +8,33 @@
 
 `grm-[component]__[prop||element||modifier]`
 
-- CSS Modules adds an unique hash to the classes. Because of that, block-element naming conventions aren't necessary.
-- Names are written in camelCase.
-- The value of a modifier should start with with the verb `is` and be camelCased.
+- CSS Modules adicionam uma hash exclusiva às classes. Por causa disso, as convenções de nomenclatura do block-element não são necessárias.
+- Os nomes são escritos em camelCase.
+- O valor de um modificador deve começar com verbo `is` e ser camelCased.
 
 ```js
   // <Card size="big" color="green" active>Olá</Card>
   
   <div className={`${style.big} ${style.green} ${style.isActive}`}>
-    <h1 className={style.header}">Card</p>
+    <h1 className={style.header}>Card</p>
     <p className={style.content}>Olá</p>
   </div>
 ```
 
 
-#### Property Names (Prop)
+#### Nome de Propriedades (Prop)
 
-These are the general properties of the component, usually inheriting from a common base style. Combined, they can generate different sorts of "themes" for the component.
+Essas são as propriedades genéricas do componente, geralmente herdadas de um estilo de base comum. Combinadas, elas podem gerar diferentes tipos de "temas" para o componente.
 
 Ex: light, black, danger, large, small, slim, extended, etc.
 
-#### Element
+#### Elemento
 
-These are the general elements used in the component. They can be semantically tied to the props or be detached.
+Estes são os elementos genéricos usados ​​no componente. Eles podem ser ligados semanticamente as propriedades ou separados.
 
-Let's say perhaps the header inside a card is only red when the `danger prop` is true - then it's tied. But if the header is the same not mattering the properties, it's detached.
+Digamos que o header dentro de um card seja vermelho apenas quando a propriedade `danger prop` é verdadeira - então estão ligados. Mas se o header é o mesmo, não importando as propriedades, ele é separado.
 
-#### tied
+#### Ligados
 ```
 .danger {
     color: red;
@@ -45,7 +45,7 @@ Let's say perhaps the header inside a card is only red when the `danger prop` is
 }
 ```
 
-#### detached
+#### Separado
 ```
 .danger {
     color: red;
@@ -58,19 +58,19 @@ Let's say perhaps the header inside a card is only red when the `danger prop` is
 
 Ex: header, footer, content, title, text, etc.
 
-#### Modifier
+#### Modificador
 
-Flags on props or elements. Use them to change appearance, behavior or state.
+Flags nas propriedades ou elementos. Use-os para mudar a aparência, o comportamento ou o estado.
 
 Ex: isActive, isError, isHidden, etc.
 
 
-## Syntax
+## Sintaxe
 
-Use double quotes.
+Use aspas duplas.
 
 ```
-/* Good */
+/* Bom */
 [type="..."]
 [class^="..."]
 
@@ -78,7 +78,7 @@ Use double quotes.
   content: "";
 }
 
-/* Bad */
+/* Ruim */
 [type='...']
 [class^='...']
 
@@ -87,101 +87,101 @@ Use double quotes.
 }
 ```
 
-Use a space after the selector.
+Use um espaço após o seletor.
 
 ```
-/* Good */
+/* Bom */
 .item {
   ...
 }
 
-/* Bad */
+/* Ruim */
 .item{
   ...
 }
 ```
 
-Use a space before the property value.
+Use um espaço antes do valor da propriedade.
 
 ```
-/* Good */
+/* Bom */
 .item {
   color: #fff;
   margin: 10px;
 }
 
-/* Bad */
+/* Ruim */
 .item {
   color:#fff;
   margin:10px;
 }
 ```
 
-Use the semicolon after each value.
+Use o ponto-e-vírgula após cada valor.
 
 ```
-/* Good */
+/* Bom */
 .item {
   color: #fff;
   margin: 10px;
 }
 
-/* Bad */
+/* Ruim */
 .item {
   color:#fff;
   margin:10px
 }
 ```
 
-Use a selector per line.
+Use um seletor por linha.
 
 ```
-/* Good */
+/* Bom */
 .item,
 .box {
   color: #fff;
   margin: 10px;
 }
 
-/* Bad */
+/* Ruim */
 .item, .box {
   color:#fff;
   margin:10px
 }
 ```
 
-If the switch has only one property, use the same line (with space before and after the property value).
+Se a opção tiver apenas uma propriedade, use a mesma linha (com espaço antes e depois do valor da propriedade).
 
 ```
-/* Good */
+/* Bom */
 .item { color: #fff; }
 
-/* Bad */
+/* Ruim */
 .item {
   color:#fff;
 }
 ```
 
-Use hexadecimal values ​​in tiny and if you can abbreviate.
+Use valores hexadecimais em minúsculo e, se for possível abrevie.
 
 ```
-/* Good */
+/* Bom */
 .item { color: #fff; }
 
-/* Bad */
+/* Ruim */
 .item { color: #FFFFFF; }
 ```
 
-Not specify the drive for value `0`, except for the property `rotate`.
+Não especifique uma unidade de medida para valor `0`, exceto se a propriedade `rotate`.
 
 ```
-/* Good */
+/* Bom */
 .item {
   margin: 0;
   transform: rotate(0deg);
 }
 
-/* Bad */
+/* Ruim */
 .item {
   font-size: 0em;
   margin: 0px;
@@ -190,52 +190,53 @@ Not specify the drive for value `0`, except for the property `rotate`.
 
 ### Performance
 
-Do not use IDs
+Não use IDs
 
 ```
-/* Good */
+/* Bom */
 .mainMenu { ... }
 .sidebar { ... }
 
-/* Bad */
+/* Ruim */
 #mainMenu { ... }
 #sidebar { ... }
 ```
 
-Always give preference to object orientation through classes.
+Sempre dê preferência à orientação a objetos por meio de classes.
 
 ```
-/* Good */
+/* Bom */
 .container { ... }
 .text { ... }
 
-/* Bad */
+/* Ruim */
 div { ... }
 p { ... }
 ```
 
-Do not create complexity in the inheritance and always use classes.
+Não crie complexidade na herança e sempre use classes.
 
 ```
-/* Good */
+/* Bom */
 .mainMenu-list { ... }
 .mainMenu-item { ... }
 .mainMenu-text { ... }
 
-/* Bad */
+/* Ruim */
 .mainMenu ul { ... }
 .mainMenu ul li { ... }
 .mainMenu ul .mainMenu-item span { ... }
 ```
 
-Use a maximum of 3 elements when you need to change the behavior of a class, through another class.
+
+Use no máximo 3 elementos quando precisar mudar o comportamento de uma classe, através de outra classe.
 
 ```
-/* Good */
+/* Bom */
 .sidebar .mainMenu { ... }
 .page.on .mainMenu { ... }
 
-/* Bad */
+/* Ruim */
 .page .sidebar .mainMenu a { ... }
 ```
 
