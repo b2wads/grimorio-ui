@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
-import { uniqueId } from '../../helpers';
+import { uniqueId } from '../../../helpers';
 
 import MenuItem from './elements/menu-item';
 
 // styles
-import styles from './menu.styl';
+import styles from '../sidebar.styl';
 
 class Menu extends PureComponent {
   constructor(props) {

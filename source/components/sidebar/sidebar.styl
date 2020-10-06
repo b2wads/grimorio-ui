@@ -3,6 +3,7 @@
 ========================================================================== */
 
 $c-shadow = rgba(0, 0, 0, 0.15);
+$c-text = #a4a3a3;
 
 
 /* Default
@@ -90,3 +91,111 @@ $c-shadow = rgba(0, 0, 0, 0.15);
     visibility: visible;
   }
 }
+
+/* ==========================================================================
+   MENU
+========================================================================== */
+
+/* Default
+================ */
+.menu {
+  margin: 0;
+}
+
+.iconLeft {
+  color: $c-text;
+  margin-right: 10px;
+}
+
+.menuItem {
+  color: $c-text;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.2;
+  width: 100%;
+
+  &.isActive {
+    background-color: var(--c-support);
+  }
+
+  & .menu {
+    padding: 10px;
+  }
+}
+
+/* Dark
+================ */
+/* Accordion Type
+================ */
+.accordionMenu {
+  .menuItem {
+    color: $white;
+  }
+
+  .menuItem.isNotAccordion {
+    border-left: 2px solid transparent;
+    color: $white;
+    padding: 15px 26px 15px 24px;
+    transition: font-size 0.3s ease;
+
+    &:hover, &.isActive {
+      background: var(--c-support);
+      border-left-color: var(--c-primary-dark);
+    }
+
+    .iconLeft {
+      color: $white;
+      margin-right: 22px;
+    }
+  }
+
+  &.closed {
+    .menuItem {
+      transition: width 0.1s ease;
+    }
+
+    .menuItem.isNotAccordion {
+      font-size: 0;
+      padding: 15px 10px;
+    }
+
+    .menuItem .menu .menuItem {
+      font-size: 0;
+      width: 100%;
+    }
+
+    .menuItem.isActive:not(.isNotAccordion ) {
+      transition: width 0.3s ease-in-out;
+      width: 290px;
+    }
+
+    .menuItem.isActive .menu .menuItem {
+      font-size: 14px;
+      transition: font-size 0.5s ease;
+    }
+  }
+
+  .menuItem .menu {
+    padding: 0;
+    padding-bottom: 10px;
+
+    .menuItem {
+      color: $c-text;
+      padding: 10px 26px 10px 64px;
+
+      &.isActive {
+        color: $white;
+      }
+
+      &:hover {
+        color: $white;
+      }
+    }
+
+    .menuItem .menu {
+      padding-bottom: 0;
+    }
+  }
+}
+

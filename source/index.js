@@ -22,7 +22,6 @@ import Icon from './components/icon';
 import InfoCard from './components/info-card';
 import LineGraph from './components/line-graph';
 import Loader from './components/loader';
-import Menu, { MenuItem } from './components/menu';
 import Modal from './components/modal';
 import Pager from './components/pager';
 import PageTitle from './components/page-title';
@@ -88,8 +87,6 @@ export {
   InfoCard,
   LineGraph,
   Loader,
-  Menu,
-  MenuItem,
   Modal,
   Pager,
   PageTitle,

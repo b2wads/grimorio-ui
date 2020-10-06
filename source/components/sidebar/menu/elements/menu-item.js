@@ -4,10 +4,10 @@ import CSSModules from 'react-css-modules';
 import classNames from 'classnames';
 
 import Menu from '../index';
-import Icon from '../../icon';
+import Icon from '../../../icon';
 
 // styles
-import styles from '../menu.styl';
+import styles from '../../sidebar.styl';
 
 class MenuItem extends PureComponent {
   constructor(props) {

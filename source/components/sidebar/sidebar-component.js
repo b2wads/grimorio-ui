@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Icon from '../icon';
-import Menu, { MenuItem } from '../menu';
+import Menu, { MenuItem } from './menu';
 import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
 
 import styles from './sidebar.styl';
@@ -53,14 +53,14 @@ const Sidebar = ({
 
   const renderMenuWithAccordion = ({ icon, name, submenu, id }, index) => {
     return (
-      <MenuItem active={getActiveSubmenu(id)}>
+      <MenuItem key={id} active={getActiveSubmenu(id)}>
         <AccordionTitle data-testid={id} active={getActiveSubmenu(id)} index={index} onClick={toggleSubmenu(id)} icon={icon}>
           {name}
         </AccordionTitle>
         <AccordionContent active={getActiveSubmenu(id)}>
           <Menu>
             {submenu.map(subitem => (
-              <MenuItem data-testid={subitem.id} active={getActiveItem(subitem.id)} link={subitem.link} handleClick={onItemClick(subitem.id, subitem.link, id)}>
+              <MenuItem key={subitem.id} data-testid={subitem.id} active={getActiveItem(subitem.id)} link={subitem.link} handleClick={onItemClick(subitem.id, subitem.link, id)}>
                 {subitem.name}
               </MenuItem>
             ))}
@@ -80,6 +80,7 @@ const Sidebar = ({
         link={link}
         handleClick={onItemClick(id, link, null)}
         data-testid={id}
+        key={id}
       >
         {name}
       </MenuItem>
