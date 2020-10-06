@@ -1,32 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button Upload component renders as div 1`] = `
+exports[`Button Upload component renders correctly 1`] = `
 "<div className={[undefined]}>
-  <div className=\\"dropArea\\">
-    <Icon size={60} name=\\"backup\\" className=\\"iconDrop\\" align=\\"middle\\" />
-    <p className=\\"textDropArea\\">
-      Arraste uma imagem para upload ou 
-      <br />
-       clique no botão abaixo
-    </p>
-    <div loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" files={{...}}>
-      Upload
-      <input className=\\"file\\" type=\\"file\\" onChange={[Function: onChange]} disabled={false} multiple={true} accept=\\".png, .jpg, .jpeg, .pdf\\" />
-    </div>
-  </div>
+  <Button loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"button\\" color=\\"primary\\" size=\\"medium\\" type=\\"button\\" active={false}>
+    Upload
+    <input className=\\"file\\" type=\\"file\\" onChange={[Function: onChange]} disabled={false} multiple={true} accept=\\".png, .jpg, .jpeg, .pdf\\" />
+  </Button>
 </div>"
 `;
 
-exports[`Button Upload component renders correctly 1`] = `
+exports[`Button Upload component renders with drop area 1`] = `
 "<div className={[undefined]}>
-  <div className=\\"dropArea\\">
+  <div onDragOver={[Function: bound onDragover]} onDrop={[Function: bound onDrop]} className=\\"dropArea\\">
     <Icon size={60} name=\\"backup\\" className=\\"iconDrop\\" align=\\"middle\\" />
     <p className=\\"textDropArea\\">
-      Arraste uma imagem para upload ou 
-      <br />
-       clique no botão abaixo
+      Arraste uma imagem para upload ou clique no botão abaixo
     </p>
-    <Button loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"wrapcomp\\" files={{...}} color=\\"primary\\" size=\\"medium\\" type=\\"button\\" active={false}>
+    <Button loading={false} disabled={false} iconLeft=\\"publish\\" className=\\"button\\" color=\\"primary\\" size=\\"medium\\" type=\\"button\\" active={false}>
       Upload
       <input className=\\"file\\" type=\\"file\\" onChange={[Function: onChange]} disabled={false} multiple={true} accept=\\".png, .jpg, .jpeg, .pdf\\" />
     </Button>

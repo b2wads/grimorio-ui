@@ -28,16 +28,16 @@ describe('Button Upload component', () => {
       <ButttonUpload {...props} />
     );
 
-    expect(wrapper.find('.wrapcomp').name()).toEqual('Button');
+    expect(wrapper.find('.button').name()).toEqual('Button');
     expect(wrapper.debug()).toMatchSnapshot();
   });
 
-  it('renders as div', () => {
-    const newProps = { ...props, as: 'div' };
+  it('renders with drop area', () => {
+    const newProps = { ...props, withDrop: true };
     const wrapper = shallow(
       <ButttonUpload {...newProps} />
     );
-    expect(wrapper.find('.wrapcomp').name()).toEqual('div');
+    expect(wrapper.find('.dropArea').length).toEqual(1);
     expect(wrapper.debug()).toMatchSnapshot();
   })
 
@@ -46,7 +46,7 @@ describe('Button Upload component', () => {
     const wrapper = shallow(
       <ButttonUpload {...newProps} />
     );
-    expect(wrapper.find('.wrapcomp').prop('disabled')).toEqual(true);
+    expect(wrapper.find('.button').prop('disabled')).toEqual(true);
     expect(wrapper.find('.file').prop('disabled')).toEqual(true);
   });
 });

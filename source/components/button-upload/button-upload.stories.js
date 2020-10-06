@@ -12,7 +12,12 @@ const printRes = (data, list, error, size) => {
   console.log('images: ', data, 'list:', list, 'error:', error, 'size', size);
 };
 
-stories.add('Normal', () => <ButtonUpload onChange={printRes} showTags/>);
+stories.add('Normal', () => (
+  <div>
+    <ButtonUpload onChange={printRes} showTags/>
+    <ButtonUpload onChange={printRes} withDrop showTags/>
+  </div>
+));
 
 stories.add(
   'With image Dimensions',
@@ -33,6 +38,7 @@ stories.add('With Limit', () =>
     limit={2}
     onChange={printRes}
     showTags
+    withDrop
   />
 );
 
@@ -51,6 +57,15 @@ stories.add('With MaxFileSize', () =>
     btnText="Até 100KB"
     onChange={printRes}
     showTags
+  />
+);
+
+stories.add('With Drop Area', () =>
+  <ButtonUpload
+    onChange={printRes}
+    showTags
+    withDrop
+    dropText="Texto custom de drop"
   />
 );
 
@@ -83,9 +98,16 @@ stories.add(
           )}
         </div>
         <br/>
-        <ButtonUpload files={store.state.list} onChange={change} showTags={false} />
+        <ButtonUpload withDrop files={store.state.list} onChange={change} showTags={false} />
       </div>
     );
   })
 );
+
+stories.add('Disabled', () => (
+  <div>
+    <ButtonUpload disabled onChange={printRes} showTags/>
+    <ButtonUpload disabled onChange={printRes} withDrop showTags/>
+  </div>
+));
 

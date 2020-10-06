@@ -23,7 +23,7 @@ $c-bg-grey = #e0e0e0;
   }
 }
 
-.wrapcomp {
+.button {
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -59,6 +59,16 @@ $c-bg-grey = #e0e0e0;
   border: 2px dashed $c-secondary;
   text-align: center;
   padding: 30px;
+  transition: all .5s ease-in-out;
+
+  &.isDragging {
+    background: $c-secondary;
+    opacity: 0.6;
+  }
+
+  &.isDisabled {
+    cursor: not-allowed;
+  }
 }
 
 .iconDrop {
