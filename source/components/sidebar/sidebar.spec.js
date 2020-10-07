@@ -51,7 +51,7 @@ const schema = [
    },
 ];
 
-const initialProps = { schema, onClickItem: jest.fn(), initialSubmenu: 'acc2', initialItem: 'acc2-item2' };
+const initialProps = { schema, onClickItem: jest.fn(), initialSection: 'acc2', initialItem: 'acc2-item2' };
 
 describe('Sidebar component', () => {
   let wrapper

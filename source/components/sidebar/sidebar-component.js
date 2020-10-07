@@ -1,9 +1,8 @@
 import React, { useState, memo } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import Icon from '../icon';
-import Menu, { MenuItem } from './menu';
 import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
 
 import styles from './sidebar.styl';
@@ -18,76 +17,83 @@ const Sidebar = ({
   logoSmall,
   onClickItem,
   onLogoClick,
-  initialSubmenu,
+  initialSection,
   initialItem,
   open: openProp,
 }) => {
   const [open, setOpen] = useState(true);
-  const [currentSubmenu, setCurrentSubmenu] = useState(initialSubmenu);
+  const [currentSection, setCurrentSection] = useState(initialSection);
   const [currentItem, setCurrentItem] = useState(initialItem);
 
   const openNav = openProp !== null ? openProp : open;
 
   const handleToggle = () => {
     openProp === null ? setOpen(!open) : onToggle();
-    openNav && setCurrentSubmenu(null);
+    openNav && setCurrentSection(null);
   };
 
-  const toggleSubmenu = id => {
+  const toggleSection = id => {
     return () => {
-      const openedSubmenu = currentSubmenu === id ? null : id;
-      setCurrentSubmenu(openedSubmenu);
+      const openedSubmenu = currentSection === id ? null : id;
+      setCurrentSection(openedSubmenu);
     };
   };
 
-  const getActiveSubmenu = id => currentSubmenu === id;
+  const getActiveSection = id => currentSection === id;
   const getActiveItem = id => currentItem === id;
 
   const onItemClick = (id, link, submenuId) => {
     return () => {
       setCurrentItem(id);
-      setCurrentSubmenu(submenuId);
+      setCurrentSection(submenuId);
       onClickItem && onClickItem(link);
     };
   };
 
-  const renderMenuWithAccordion = ({ icon, name, submenu, id }, index) => {
+  const renderMenuSimple = ({ name, icon, link, id, sectionId = null, type = 'list' }) => {
     return (
-      <MenuItem key={id} active={getActiveSubmenu(id)}>
-        <AccordionTitle data-testid={id} active={getActiveSubmenu(id)} index={index} onClick={toggleSubmenu(id)} icon={icon}>
-          {name}
-        </AccordionTitle>
-        <AccordionContent active={getActiveSubmenu(id)}>
-          <Menu>
-            {submenu.map(subitem => (
-              <MenuItem key={subitem.id} data-testid={subitem.id} active={getActiveItem(subitem.id)} link={subitem.link} handleClick={onItemClick(subitem.id, subitem.link, id)}>
-                {subitem.name}
-              </MenuItem>
-            ))}
-          </Menu>
-        </AccordionContent>
-      </MenuItem>
-    );
-  }
-
-  const renderMenuSimple = ({ name, icon, link, id }) => {
-    return (
-      <MenuItem
+      <li
         title={name}
-        active={getActiveItem(id)}
-        isNotAccordion
-        icon={icon}
-        link={link}
-        handleClick={onItemClick(id, link, null)}
+        className={cx({
+          [styles.listItem]: type === 'list',
+          [styles.nestedItem]: type === 'nested',
+          [styles.isClosed]: !openNav,
+          [styles.isActive]: getActiveItem(id),
+          [styles.sectionActive]: getActiveSection(sectionId),
+        })}
+        onClick={onItemClick(id, link, sectionId)}
         data-testid={id}
         key={id}
       >
+        {icon && <Icon size={16} name={icon} className={styles.iconLeft} />}
         {name}
-      </MenuItem>
+      </li>
     );
   };
 
-  const allClassNames = classNames(styles.sidebar, className, {
+  const renderMenuWithAccordion = ({ icon, name, submenu, id }, index) => {
+    return (
+      <li
+        className={cx(styles.accordeonListItem, {
+          [styles.isActive]: getActiveSection(id),
+          [styles.isClosed]: !openNav,
+        })}
+        data-testid={id}
+        key={id}
+      >
+        <AccordionTitle data-testid={id} active={getActiveSection(id)} index={index} onClick={toggleSection(id)} icon={icon}>
+          {name}
+        </AccordionTitle>
+        <AccordionContent active={getActiveSection(id)}>
+          <ul className={styles.nestedMenu}>
+            {submenu.map(subitem => renderMenuSimple({ ...subitem, sectionId: id, type: 'nested' }))}
+          </ul>
+        </AccordionContent>
+      </li>
+    );
+  }
+
+  const allClassNames = cx(styles.sidebar, className, {
     [styles.closed]: !openNav,
     [styles.isMobile]: isMobile,
     [styles.isMobileOpen]: isMobile && openNav,
@@ -107,8 +113,8 @@ const Sidebar = ({
           </div>}
 
         <nav className={styles.content}>
-          <span className={classNames(styles.contentTitle, { [styles.isNavClosed]: !openNav })}>Menu</span>
-          <Accordion type="accordionMenu" exclusive={false} as={Menu} open={openNav}>
+          <span className={cx(styles.contentTitle, { [styles.isNavClosed]: !openNav })}>Menu</span>
+          <Accordion type="accordionMenu" exclusive={false} as={'ul'} open={openNav}>
             {schema.map(
               (item, index) => (item.submenu ? renderMenuWithAccordion(item, index) : renderMenuSimple(item, index))
             )}
@@ -117,7 +123,7 @@ const Sidebar = ({
       </div>
 
       {isMobile &&
-        <div onClick={handleToggle} className={classNames(styles.overlay, { [styles.isOpen]: openNav })} />}
+        <div onClick={handleToggle} className={cx(styles.overlay, { [styles.isOpen]: openNav })} />}
     </>
   );
 };
@@ -132,7 +138,7 @@ Sidebar.propTypes = {
   logo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   logoSmall: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   onClickItem: PropTypes.func,
-  initialSubmenu: PropTypes.string,
+  initialSection: PropTypes.string,
   initialItem: PropTypes.string,
   schema: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

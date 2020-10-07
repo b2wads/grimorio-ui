@@ -8,43 +8,45 @@ exports[`Sidebar component render default 1`] = `
       <span className=\\"contentTitle isNavClosed\\">
         Menu
       </span>
-      <Accordion type=\\"accordionMenu\\" exclusive={false} as={[Function: WrappedComponent]} open={[undefined]} theme=\\"default\\" panels={{...}}>
-        <MenuItem title=\\"Home\\" active={false} isNotAccordion={true} icon=\\"person\\" link=\\"/home\\" handleClick={[Function]} data-testid=\\"home-link\\">
+      <Accordion type=\\"accordionMenu\\" exclusive={false} as=\\"ul\\" open={[undefined]} theme=\\"default\\" panels={{...}}>
+        <li title=\\"Home\\" className=\\"listItem isClosed\\" onClick={[Function]} data-testid=\\"home-link\\">
+          <Icon size={16} name=\\"person\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Home
-        </MenuItem>
-        <MenuItem title=\\"Página 1\\" active={false} isNotAccordion={true} icon=\\"desktop_mac\\" link=\\"/pag1\\" handleClick={[Function]} data-testid=\\"pag1\\">
+        </li>
+        <li title=\\"Página 1\\" className=\\"listItem isClosed\\" onClick={[Function]} data-testid=\\"pag1\\">
+          <Icon size={16} name=\\"desktop_mac\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Página 1
-        </MenuItem>
-        <MenuItem active={false}>
+        </li>
+        <li className=\\"accordeonListItem isClosed\\" data-testid=\\"acc\\">
           <AccordionTitle data-testid=\\"acc\\" active={false} index={2} onClick={[Function]} icon=\\"filter\\">
             Um Accordion
           </AccordionTitle>
           <AccordionContent active={false}>
-            <Menu theme=\\"default\\" items={{...}}>
-              <MenuItem data-testid=\\"acc-item1\\" active={false} link=\\"/acc/item1\\" handleClick={[Function]}>
+            <ul className=\\"nestedMenu\\">
+              <li title=\\"Item 1\\" className=\\"nestedItem isClosed\\" onClick={[Function]} data-testid=\\"acc-item1\\">
                 Item 1
-              </MenuItem>
-              <MenuItem data-testid=\\"acc-item2\\" active={false} link=\\"/acc/item2\\" handleClick={[Function]}>
+              </li>
+              <li title=\\"Item 2\\" className=\\"nestedItem isClosed\\" onClick={[Function]} data-testid=\\"acc-item2\\">
                 Item 2
-              </MenuItem>
-            </Menu>
+              </li>
+            </ul>
           </AccordionContent>
-        </MenuItem>
-        <MenuItem active={true}>
+        </li>
+        <li className=\\"accordeonListItem isActive isClosed\\" data-testid=\\"acc2\\">
           <AccordionTitle data-testid=\\"acc2\\" active={true} index={3} onClick={[Function]} icon=\\"filter\\">
             Outro Accordion
           </AccordionTitle>
           <AccordionContent active={true}>
-            <Menu theme=\\"default\\" items={{...}}>
-              <MenuItem data-testid=\\"acc2-item1\\" active={false} link=\\"/acc2/item1\\" handleClick={[Function]}>
+            <ul className=\\"nestedMenu\\">
+              <li title=\\"Item 1\\" className=\\"nestedItem isClosed sectionActive\\" onClick={[Function]} data-testid=\\"acc2-item1\\">
                 Item 1
-              </MenuItem>
-              <MenuItem data-testid=\\"acc2-item2\\" active={true} link=\\"/acc2/item2\\" handleClick={[Function]}>
+              </li>
+              <li title=\\"Item 2\\" className=\\"nestedItem isClosed isActive sectionActive\\" onClick={[Function]} data-testid=\\"acc2-item2\\">
                 Item 2
-              </MenuItem>
-            </Menu>
+              </li>
+            </ul>
           </AccordionContent>
-        </MenuItem>
+        </li>
       </Accordion>
     </nav>
   </div>

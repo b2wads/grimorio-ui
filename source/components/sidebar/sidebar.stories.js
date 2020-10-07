@@ -75,7 +75,7 @@ stories.add('Default', withState({ open: true })(({ store }) => {
         <Svg className={styles.logo} width={24} src="logo/afiliados-icon" />
       }
       schema={schema}
-      initialSubmenu="acc2"
+      initialSection="acc2"
       initialItem="acc2-item2"
     />
   </div>)
