@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { useState } from '../../helpers/storybook';
 
 import ButtonUpload from './index';
 import Button from '../button';
@@ -66,7 +66,7 @@ WithMaxFileSize.story = {
   name: 'With MaxFileSize',
 };
 
-export const WithoutTags = withState({ data: [], list: [] })(({ store }) => {
+export const WithoutTags = useState({ data: [], list: [] }, store => {
   const change = (data, list) => {
     store.set({ data, list });
   };

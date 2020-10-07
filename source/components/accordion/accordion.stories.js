@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { useState } from '../../helpers/storybook';
 
 import Accordion, { AccordionTitle, AccordionContent } from './index';
 
@@ -37,7 +37,7 @@ export const Default = () => {
   );
 };
 
-export const Manual = withState({ active: -1 })(({ store }) => {
+export const Manual = useState({ active: -1 }, store => {
   const getActive = (index) => {
     return store.state.active === index;
   };
