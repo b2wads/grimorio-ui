@@ -10,7 +10,7 @@ const stories = storiesOf('Header', module);
 stories.addDecorator(withKnobs);
 
 stories.add('Normal', () =>
-  <Header >
+  <Header>
     Conteúdo qualquer que vai entrar aqui!
   </Header>
 );
