@@ -22,14 +22,12 @@ import Icon from './components/icon';
 import InfoCard from './components/info-card';
 import LineGraph from './components/line-graph';
 import Loader from './components/loader';
-import Menu, { MenuItem } from './components/menu';
 import Modal from './components/modal';
 import Pager from './components/pager';
 import PageTitle from './components/page-title';
 import Panel from './components/panel';
 import PieChart from './components/pie-chart';
 import Popover from './components/popover';
-import Product from './components/product';
 import ProgressBar from './components/progress-bar';
 import Select, { SelectOption } from './components/select';
 import SelectPopover from './components/select-popover';
@@ -88,15 +86,12 @@ export {
   InfoCard,
   LineGraph,
   Loader,
-  Menu,
-  MenuItem,
   Modal,
   Pager,
   PageTitle,
   Panel,
   PieChart,
   Popover,
-  Product,
   ProgressBar,
   Select,
   SelectOption,

@@ -10,6 +10,8 @@ $headerItem {
   font-size: 14px;
 }
 
+$spacing = 20px;
+
 /* ==========================================================================
    Header Elements
 ========================================================================== */
@@ -20,14 +22,19 @@ $headerItem {
   display: flex;
   height: 74px;
   justify-content: flex-end;
-  padding: 0 20px;
+  padding: 0 $spacing;
   position: relative;
   width: 100%;
   color: $white;
 
-  &.isMobile {
+  &.showLogo {
     background-color: var(--c-support-dark);
   }
+}
+
+.content.showLogo {
+  position: absolute;
+  right: $spacing;
 }
 
 .logo {
@@ -38,36 +45,5 @@ $headerItem {
 /* ==========================================================================
    Header Props
 ========================================================================== */
-
-/* headerItem
- ================ */
-
-.headerUser {
-  @extend $headerItem;
-  text-align: left;
-
-  .iconLeft {
-    margin-right: 5px;
-  }
-
-  .iconRight {
-    margin-left: 2px;
-  }
-}
-
-.headerLogout {
-  @extend $headerItem;
-
-  .iconRight {
-    margin-left: 5px;
-  }
-
-  &.isMobile {
-    padding: 0;
-    position: absolute;
-    right: 20px;
-    top: 28px;
-  }
-}
 
 
