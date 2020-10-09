@@ -1,90 +1,152 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { useState, memo } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
-import classNames from 'classnames';
+import cx from 'classnames';
 
 import Icon from '../icon';
+import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
 
 import styles from './sidebar.styl';
 
-class Sidebar extends PureComponent {
-  constructor(props) {
-    super(props);
+const Sidebar = ({
+  schema,
+  className,
+  onToggle,
+  hasToggle,
+  isMobile,
+  logo,
+  logoSmall,
+  onClickItem,
+  onLogoClick,
+  initialSection,
+  initialItem,
+  open: openProp,
+}) => {
+  const [open, setOpen] = useState(true);
+  const [currentSection, setCurrentSection] = useState(initialSection);
+  const [currentItem, setCurrentItem] = useState(initialItem);
 
-    this.state = { open: true, openMobile: false };
-    this.handleToggle = this.handleToggle.bind(this);
-    this.handleLogoClick = this.handleLogoClick.bind(this);
-  }
+  const openNav = openProp !== null ? openProp : open;
 
-  static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.element.isRequired,
-    onClick: PropTypes.func,
-    onLogoClick: PropTypes.func,
-    isMobile: PropTypes.bool,
-    open: PropTypes.bool,
-    openMobile: PropTypes.bool,
-    logo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    logoSmall: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  const handleToggle = () => {
+    openProp === null ? setOpen(!open) : onToggle();
+    openNav && setCurrentSection(null);
   };
 
-  static defaultProps = {
-    open: null,
-    openMobile: null,
-    isMobile: false,
+  const toggleSection = id => {
+    return () => {
+      const openedSubmenu = currentSection === id ? null : id;
+      setCurrentSection(openedSubmenu);
+    };
   };
 
-  handleToggle(e) {
-    const { isMobile } = this.props;
-    const { open, openMobile } = this.state;
-    const changeOpen = isMobile ? { openMobile: !openMobile } : { open: !open };
+  const getActiveSection = id => currentSection === id;
+  const getActiveItem = id => currentItem === id;
 
-    this.setState(changeOpen, () => {
-      this.props.onClick(e, { open: this.state.open, openMobile: !this.state.openMobile });
-    });
-  }
+  const onItemClick = (id, link, submenuId) => {
+    return () => {
+      setCurrentItem(id);
+      setCurrentSection(submenuId);
+      onClickItem && onClickItem(link);
+    };
+  };
 
-  handleLogoClick() {
-    this.props.onLogoClick();
-  }
-
-  render() {
-    const { children, className, onClick, open, openMobile, isMobile, logo, logoSmall } = this.props;
-    const openNav = open === null ? this.state.open : open;
-    const openNavMobile = openMobile === null ? this.state.openMobile : openMobile;
-    const classes = classNames(styles.sidebar, className, {
-      [styles.closed]: openNav === false,
-      [styles.isMobile]: isMobile,
-      [styles.isMobileOpen]: openNavMobile,
-    });
-
+  const renderMenuSimple = ({ name, icon, link, id, sectionId = null, type = 'list' }) => {
     return (
-      <Fragment>
-        <div className={classes}>
-          {onClick &&
-            <button className={styles.toggle} type="button" onClick={this.handleToggle}>
-              <Icon className={styles.toggleIcon} name="menu" />
-            </button>}
-          {!isMobile &&
-            <div onClick={this.handleLogoClick} className={styles.logotype}>
-              {openNav ? logo : logoSmall}
-            </div>}
+      <li
+        title={name}
+        className={cx({
+          [styles.listItem]: type === 'list',
+          [styles.nestedItem]: type === 'nested',
+          [styles.isClosed]: !openNav,
+          [styles.isActive]: getActiveItem(id),
+          [styles.sectionActive]: getActiveSection(sectionId),
+        })}
+        onClick={onItemClick(id, link, sectionId)}
+        data-testid={id}
+        key={id}
+      >
+        {icon && <Icon size={16} name={icon} className={styles.iconLeft} />}
+        {name}
+      </li>
+    );
+  };
 
-          <nav className={styles.content}>
-            <span className={classNames(styles.contentTitle, { [styles.isNavClosed]: openNav === false })}>
-              Menu
-            </span>
-            {children}
-          </nav>
-        </div>
-        {isMobile &&
-          <div
-            onClick={this.handleToggle}
-            className={classNames(styles.overlay, { [styles.isOpen]: openNavMobile })}
-          />}
-      </Fragment>
+  const renderMenuWithAccordion = ({ icon, name, submenu, id }, index) => {
+    return (
+      <li
+        className={cx(styles.accordeonListItem, {
+          [styles.isActive]: getActiveSection(id),
+          [styles.isClosed]: !openNav,
+        })}
+        data-testid={id}
+        key={id}
+      >
+        <AccordionTitle data-testid={id} active={getActiveSection(id)} index={index} onClick={toggleSection(id)} icon={icon}>
+          {name}
+        </AccordionTitle>
+        <AccordionContent active={getActiveSection(id)}>
+          <ul className={styles.nestedMenu}>
+            {submenu.map(subitem => renderMenuSimple({ ...subitem, sectionId: id, type: 'nested' }))}
+          </ul>
+        </AccordionContent>
+      </li>
     );
   }
-}
 
-export default CSSModules(Sidebar, styles);
+  const allClassNames = cx(styles.sidebar, className, {
+    [styles.closed]: !openNav,
+    [styles.isMobile]: isMobile,
+    [styles.isMobileOpen]: isMobile && openNav,
+  });
+
+  return (
+    <>
+      <div className={allClassNames}>
+        {hasToggle &&
+          <button className={styles.toggle} type="button" onClick={handleToggle}>
+            <Icon className={styles.toggleIcon} name="menu" />
+          </button>}
+
+        {!isMobile &&
+          <div onClick={onLogoClick} className={styles.logotype}>
+            {openNav ? logo : logoSmall}
+          </div>}
+
+        <nav className={styles.content}>
+          <span className={cx(styles.contentTitle, { [styles.isNavClosed]: !openNav })}>Menu</span>
+          <Accordion type="accordionMenu" exclusive={false} as={'ul'} open={openNav}>
+            {schema.map(
+              (item, index) => (item.submenu ? renderMenuWithAccordion(item, index) : renderMenuSimple(item, index))
+            )}
+          </Accordion>
+        </nav>
+      </div>
+
+      {isMobile &&
+        <div onClick={handleToggle} className={cx(styles.overlay, { [styles.isOpen]: openNav })} />}
+    </>
+  );
+};
+
+Sidebar.propTypes = {
+  className: PropTypes.string,
+  hasToggle: PropTypes.bool,
+  onToggle: PropTypes.func,
+  onLogoClick: PropTypes.func,
+  isMobile: PropTypes.bool,
+  open: PropTypes.bool,
+  logo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  logoSmall: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  onClickItem: PropTypes.func,
+  initialSection: PropTypes.string,
+  initialItem: PropTypes.string,
+  schema: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+Sidebar.defaultProps = {
+  hasToggle: true,
+  open: null,
+  isMobile: false,
+};
+
+export default memo(Sidebar);

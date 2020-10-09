@@ -3,6 +3,7 @@
 ========================================================================== */
 
 $c-shadow = rgba(0, 0, 0, 0.15);
+$c-text = #a4a3a3;
 
 
 /* Default
@@ -90,3 +91,86 @@ $c-shadow = rgba(0, 0, 0, 0.15);
     visibility: visible;
   }
 }
+
+/* ==========================================================================
+   MENU
+========================================================================== */
+
+.accordeonListItem {
+  color: $white;
+
+  &:hover, &.isActive {
+    background: var(--c-support);
+    border-left-color: var(--c-primary-dark);
+  }
+
+  .iconLeft {
+    color: $white;
+    margin-right: 22px;
+  }
+
+  &.isClosed {
+    transition: width 0.1s ease;
+  }
+
+  &.isActive.isClosed {
+    transition: width 0.3s ease-in-out;
+    width: 290px;
+  }
+}
+
+.listItem {
+  border-left: 2px solid transparent;
+  color: $white;
+  padding: 15px 26px 15px 24px;
+  transition: font-size 0.3s ease;
+  cursor: pointer;
+
+  &:hover, &.isActive {
+    background: var(--c-support);
+    border-left-color: var(--c-primary-dark);
+  }
+
+  .iconLeft {
+    color: $white;
+    margin-right: 22px;
+  }
+
+  &.isClosed {
+    transition: width 0.1s ease;
+    font-size: 0;
+    padding: 15px 10px;
+  }
+}
+
+.nestedMenu {
+  padding: 0;
+  padding-bottom: 10px;
+}
+
+.nestedItem {
+  color: $c-text;
+  padding: 10px 26px 10px 64px;
+  cursor: pointer;
+  transition: font-size 0.1s ease;
+  font-size: 0;
+
+  &.isActive {
+    color: $white;
+  }
+
+  &:hover {
+    color: $white;
+  }
+
+  &.sectionActive {
+    font-size: 14px;
+  }
+
+  &.isClosed:not(.sectionActive) {
+    transition: width 0.1s ease;
+    font-size: 0;
+    width: 100%;
+  }
+}
+
