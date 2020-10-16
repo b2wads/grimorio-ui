@@ -6,9 +6,6 @@ import Sidebar from './index';
 import Svg from '../svg';
 import styles from './sidebar.styl';
 
-import Menu, { MenuItem } from '../menu';
-import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
-
 export default {
   title: 'Sidebar',
   component: Sidebar,
@@ -18,146 +15,95 @@ const action = (name) => (...params) => {
   console.log(name, params);
 };
 
-export const Default = withState({ open: false, active: -1 })(({ store }) => {
-  const getActive = (index) => {
-    return store.state.active === index;
-  };
+const schema = [
+  {
+    name: 'Home',
+    link: '/home',
+    icon: 'person',
+    id: 'home-link',
+  },
+  {
+    name: 'Página 1',
+    link: '/pag1',
+    icon: 'desktop_mac',
+    id: 'pag1',
+  },
+  {
+    name: 'Um Accordion',
+    icon: 'filter',
+    id: 'acc',
+    submenu: [
+      {
+        name: 'Item 1',
+        link: '/acc/item1',
+        id: 'acc-item1',
+      },
+     {
+        name: 'Item 2',
+        link: '/acc/item2',
+        id: 'acc-item2',
+      },
+    ],
+   },
+   {
+    name: 'Outro Accordion',
+    icon: 'filter',
+    id: 'acc2',
+    submenu: [
+      {
+        name: 'Item 1',
+        link: '/acc2/item1',
+        id: 'acc2-item1',
+      },
+     {
+        name: 'Item 2',
+        link: '/acc2/item2',
+        id: 'acc2-item2',
+      },
+    ],
+   },
+];
 
-  const handleClick = (e, titleProps) => {
-    const { index } = titleProps;
-    const { active } = store.state;
-    const newIndex = active === index ? -1 : index;
+stories.add('Default', withState({ open: true })(({ store }) => {
+  return (<div style={{ height: 800 }}>
+    <Sidebar
+      open={store.state.open}
+      onLogoClick={() => alert('logo!')}
+      onToggle={() => store.set({ open: !store.state.open })}
+      onClickItem={link => alert(`Clicou no link ${link}`)}
+      logo={
+        <Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />
+      }
+      logoSmall={
+        <Svg className={styles.logo} width={24} src="logo/afiliados-icon" />
+      }
+      schema={schema}
+      initialSection="acc2"
+      initialItem="acc2-item2"
+    />
+  </div>)
+}));
 
-    store.set({ active: newIndex });
-  };
-
-  return (
-    <div style={{ height: 800 }}>
-      <Sidebar
-        open={store.state.open}
-        onLogoClick={() => alert('logo!')}
-        onClick={(e, { open }) =>
-          store.set({ open: !store.state.open, active: !open ? -1 : store.state.active })
-        }
-        logo={<Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />}
-        logoSmall={<Svg className={styles.logo} width={24} src="logo/afiliados-icon" />}
-      >
-        <Accordion type="accordionMenu" exclusive={false} as={Menu} {...store.state}>
-          <MenuItem title="Dashboard" active={true} isNotAccordion icon="dashboard">
-            Dashboard
-          </MenuItem>
-          <MenuItem active={getActive(1)}>
-            <AccordionTitle active={getActive(1)} index={1} onClick={handleClick} icon="shop">
-              Promoções
-            </AccordionTitle>
-            <AccordionContent active={getActive(1)}>
-              <Menu>
-                <MenuItem active={true} link="/default" handleClick={action('default')}>
-                  {' '}
-                  Default
-                </MenuItem>
-                <MenuItem link="/ecommerce" handleClick={action('ecommerce')}>
-                  eCommerce
-                </MenuItem>
-                <MenuItem link="/news-portal" handleClick={action('news-portal')}>
-                  News Portal
-                </MenuItem>
-              </Menu>
-            </AccordionContent>
-          </MenuItem>
-          <MenuItem active={getActive(2)}>
-            <AccordionTitle
-              active={getActive(2)}
-              index={2}
-              onClick={handleClick}
-              icon="insert_chart"
-            >
-              Charts
-            </AccordionTitle>
-            <AccordionContent active={getActive(2)}>
-              <Menu>
-                <MenuItem link="/test" handleClick={action('test')}>
-                  Test
-                </MenuItem>
-              </Menu>
-            </AccordionContent>
-          </MenuItem>
-        </Accordion>
-      </Sidebar>
-    </div>
-  );
-});
-
-export const Mobile = withState({ openMobile: false, active: -1 })(({ store }) => {
-  const getActive = (index) => {
-    return store.state.active === index;
-  };
-
-  const handleClick = (e, titleProps) => {
-    const { index } = titleProps;
-    const { active } = store.state;
-    const newIndex = active === index ? -1 : index;
-
-    store.set({ active: newIndex });
-  };
-
+stories.add('Mobile', withState({ openMobile: false, active: -1 })(({ store }) => {
   const open = (e, { openMobile }) => {
-    store.set({
-      openMobile: !store.state.openMobile,
-      active: !openMobile ? -1 : store.state.active,
-    });
+    store.set({ openMobile: !store.state.openMobile, active: !openMobile ? -1 : store.state.active })
   };
 
   return (
     <div style={{ height: 800 }}>
       <Sidebar
         isMobile
-        openMobile={store.state.openMobile}
-        onClick={open}
+        // openMobile={store.state.openMobile}
         onLogoClick={() => alert('logo!')}
-      >
-        <Accordion type="accordionMenu" exclusive={false} as={Menu} open={true}>
-          <MenuItem title="Dashboard" active={getActive(0)} isNotAccordion icon="dashboard">
-            Dashboard
-          </MenuItem>
-          <MenuItem active={getActive(1)}>
-            <AccordionTitle active={getActive(1)} index={1} onClick={handleClick} icon="shop">
-              Promoções
-            </AccordionTitle>
-            <AccordionContent active={getActive(1)}>
-              <Menu>
-                <MenuItem link="/default" handleClick={action('default')}>
-                  {' '}
-                  Default
-                </MenuItem>
-                <MenuItem link="/ecommerce" handleClick={action('ecommerce')}>
-                  eCommerce
-                </MenuItem>
-                <MenuItem link="/news-portal" handleClick={action('news-portal')}>
-                  News Portal
-                </MenuItem>
-              </Menu>
-            </AccordionContent>
-          </MenuItem>
-          <MenuItem active={getActive(2)}>
-            <AccordionTitle
-              active={getActive(2)}
-              index={2}
-              onClick={handleClick}
-              icon="insert_chart"
-            >
-              Charts
-            </AccordionTitle>
-            <AccordionContent active={getActive(2)}>
-              <Menu>
-                <MenuItem link="/test" handleClick={action('test')}>
-                  Test
-                </MenuItem>
-              </Menu>
-            </AccordionContent>
-          </MenuItem>
-        </Accordion>
-      </Sidebar>
+        onToggle={open}
+        logo={
+          <Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />
+        }
+        logoSmall={
+          <Svg className={styles.logo} width={24} src="logo/afiliados-icon" />
+        }
+        schema={schema}
+      />
     </div>
-  );
-});
+  )
+}));

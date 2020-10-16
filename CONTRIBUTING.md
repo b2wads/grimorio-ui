@@ -1,65 +1,49 @@
-# Contributing
+# Contribuindo
 
-When contributing to this repository, please first discuss the change you wish to make via issue 
-or any other method with the owners of this repository before making a change. 
+Antes de começar a contribuir de fato, por favor discuta as mudanças que pretende fazer via issue, ou qualquer outro método, com os proprietários desse projeto.
 
+## Processo para o Pull Request
 
-## Pull Request Process
+1. Faça um fork desse repositório.
+2. Confirme a instalação de todas as dependências.
+3. Atualize o arquivo Readme.md com os detalhes das alterações para a Interface, se for aplicável.
+4. Abra uma Pull Request com suas alterações na branch `develop`.
 
-1. Fork this repository.
-2. Ensure to install all dependencies.
-3. Update the README.md with details of changes to the interface, if apply.
-4. Open a PR with your changes to branch `develop`.
+## Código de Conduta
 
-## Code of Conduct
+### Nossa PROMESSA
 
-### Our Pledge
+Com o objetivo de promover um ambiente aberto e acolhedor, nós, como contribuintes e mantenedores, nos comprometemos a tornar a participação neste projeto e comunidade uma experiência livre de assédio para todos, independentemente da idade, corpo, tamanho, deficiência, etnia, identidade e expressão de gênero, nível de experiência, nacionalidade, aparência pessoal, raça, religião ou identidade sexual e orientação.
 
-In the interest of fostering an open and welcoming environment, we as
-contributors and maintainers pledge to making participation in our project and
-our community a harassment-free experience for everyone, regardless of age, body
-size, disability, ethnicity, gender identity and expression, level of experience,
-nationality, personal appearance, race, religion, or sexual identity and
-orientation.
+### Nossos PADRÕES
 
-### Our Standards
+Exemplos de comportamentos que contribuem para criar um ambiente positivo para a nossa comunidade incluem:
 
-Examples of behavior that contributes to creating a positive environment
-include:
+- Demonstrar empatia e bondade com as outras pessoas.
+- Respeitar opiniões, pontos de vista e experiências contrárias.
+- Dar e receber feedbacks construtivos de maneira respeitosa.
+- Usar uma linguagem inclusiva e receptiva.
+- Assumir responsabilidade, pedir desculpas às pessoas afetadas por nossos erros e aprender com a experiência.
+- Focar no que é melhor não só para nós individualmente, mas para a comunidade em geral
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+Exemplos de comportamentos inaceitáveis incluem:
 
-Examples of unacceptable behavior by participants include:
+- Uso de linguagem ou imagens sexualizadas, bem como o assédio sexual ou de qualquer natureza.
+- Comentários insultuosos/depreciativos e ataques pessoais ou políticos (_Trolling_).
+- Assédio público ou privado.
+- Publicar informações particulares de outras pessoas, como um endereço de e-mail ou endereço físico, sem a permissão explícita delas.
+- Outras condutas que são normalmente consideradas inapropriadas em um ambiente profissional.
 
-* The use of sexualized language or imagery and unwelcome sexual attention or
-advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic
-  address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+### Nossas RESPONSABILIDADES
 
-### Our Responsibilities
+A liderança do Projeto é responsável ​​por esclarecer os padrões de comportamento aceitáveis e devem tomar as ações corretivas adequadas e justas em resposta a quaisquer instâncias de comportamento inaceitável.
 
-Project maintainers are responsible for clarifying the standards of acceptable
-behavior and are expected to take appropriate and fair corrective action in
-response to any instances of unacceptable behavior.
+A liderança do Projeto têm o direito e a responsabilidade de remover, editar ou rejeitar comentários, commits, códigos, edições de wiki, questões e outras contribuições que não estejam alinhadas a este Código de Conduta, ou banir temporária ou permanentemente qualquer contribuidor por outros comportamentos que eles consideram inadequados, ameaçadores, ofensivos ou prejudiciais.
 
-Project maintainers have the right and responsibility to remove, edit, or
-reject comments, commits, code, wiki edits, issues, and other contributions
-that are not aligned to this Code of Conduct, or to ban temporarily or
-permanently any contributor for other behaviors that they deem inappropriate,
-threatening, offensive, or harmful.
+### Atribuição
 
-### Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at [http://contributor-covenant.org/version/1/4][version]
+Este Código de Conduta foi adaptado do [Contributor Covenant][homepage], versão 1.4,
+disponível em [http://contributor-covenant.org/version/1/4][version]
 
 [homepage]: http://contributor-covenant.org
 [version]: http://contributor-covenant.org/version/1/4/

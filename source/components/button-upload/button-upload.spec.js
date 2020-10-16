@@ -1,8 +1,18 @@
+jest.mock('react', () => {
+  const originReact = jest.requireActual('react');
+  return {
+    ...originReact,
+    createRef: () => ({
+      current: {
+        addEventListener: jest.fn()
+      }
+    }),
+  };
+});
+
 import '../../../internals/test/helper';
 
 import ButttonUpload from './button-upload-component';
-import Loader from '../loader';
-import Icon from '../icon';
 
 const props = {
   disabled: false,
@@ -12,21 +22,22 @@ const props = {
 
 
 describe('Button Upload component', () => {
+
   it('renders correctly', () => {
     const wrapper = shallow(
       <ButttonUpload {...props} />
     );
 
-    expect(wrapper.find('.wrapcomp').name()).toEqual('Button');
+    expect(wrapper.find('.button').name()).toEqual('Button');
     expect(wrapper.debug()).toMatchSnapshot();
   });
 
-  it('renders as div', () => {
-    const newProps = { ...props, as: 'div' };
+  it('renders with drop area', () => {
+    const newProps = { ...props, withDrop: true };
     const wrapper = shallow(
       <ButttonUpload {...newProps} />
     );
-    expect(wrapper.find('.wrapcomp').name()).toEqual('div');
+    expect(wrapper.find('.dropArea').length).toEqual(1);
     expect(wrapper.debug()).toMatchSnapshot();
   })
 
@@ -35,7 +46,7 @@ describe('Button Upload component', () => {
     const wrapper = shallow(
       <ButttonUpload {...newProps} />
     );
-    expect(wrapper.find('.wrapcomp').prop('disabled')).toEqual(true);
+    expect(wrapper.find('.button').prop('disabled')).toEqual(true);
     expect(wrapper.find('.file').prop('disabled')).toEqual(true);
   });
 });

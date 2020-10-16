@@ -1,30 +1,14 @@
 import '../../../internals/test/helper';
 
 import Header from './header-component';
-import Select from '../select';
 
 /** @test {Header} */
 describe('Header component', () => {
   const emptyProps = {
     children: undefined,
-    isMobile: undefined,
-    items: undefined,
+    showLogo: undefined,
     onLogoClick: undefined,
-    onLogout: undefined,
   }
-
-  const items = [
-    {
-      name: 'Opção 3',
-      value: 'home',
-      icon: 'home',
-    },
-    {
-      name: 'Opção 4',
-      value: 'person',
-      icon: 'person',
-    },
-  ];
 
   let wrapper
 
@@ -35,23 +19,18 @@ describe('Header component', () => {
   })
 
   describe('render', () => {
-    it('with children', () => {
+    it('Basic', () => {
       wrapper.setProps({ ...emptyProps, children: <div>teste com filho</div> })
       expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    it('desktop version with items', () => {
-      wrapper.setProps({ ...emptyProps, isMobile: false, items })
+    it('No logo version', () => {
+      wrapper.setProps({ ...emptyProps, showLogo: false })
       expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    it('desktop version without items', () => {
-      wrapper.setProps({ ...emptyProps, isMobile: false })
-      expect(wrapper.debug()).toMatchSnapshot();
-    });
-
-    it('mobile version', () => {
-      wrapper.setProps({ ...emptyProps, isMobile: true })
+    it('Showing Logo', () => {
+      wrapper.setProps({ ...emptyProps, showLogo: true })
       expect(wrapper.debug()).toMatchSnapshot();
     });
   });
@@ -61,28 +40,8 @@ describe('Header component', () => {
       onLogoClick: jest.fn()
     }
     const spy = jest.spyOn(props, 'onLogoClick')
-    wrapper.setProps({ ...emptyProps, isMobile: true, onLogoClick: props.onLogoClick })
+    wrapper.setProps({ ...emptyProps, showLogo: true, onLogoClick: props.onLogoClick })
     wrapper.find('.logo').simulate('click')
     expect(spy).toHaveBeenCalled();
   })
-
-  it('onClick headerLogout, should call onLogout props', () => {
-    const props = {
-      onLogout: jest.fn()
-    }
-    const spy = jest.spyOn(props, 'onLogout')
-    wrapper.setProps({ ...emptyProps, isMobile: true, onLogout: props.onLogout })
-    wrapper.find('.headerLogout').simulate('click')
-    expect(spy).toHaveBeenCalled();
-  })
-
-  it('onSelect items, should call onSelect props', () => {
-    const props = {
-      onSelect: jest.fn()
-    }
-    const spy = jest.spyOn(props, 'onSelect')
-    wrapper.setProps({ ...emptyProps, items, isMobile: false, onSelect: props.onSelect })
-    wrapper.find(Select).props().onSelect()
-    expect(spy).toHaveBeenCalled();
-  })
-});
+})

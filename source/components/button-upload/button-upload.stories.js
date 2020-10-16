@@ -14,21 +14,24 @@ const printRes = (data, list, error, size) => {
   console.log('images: ', data, 'list:', list, 'error:', error, 'size', size);
 };
 
-export const Normal = () => <ButtonUpload onChange={printRes} showTags />;
+stories.add('Normal', () => (
+  <div>
+    <ButtonUpload onChange={printRes} showTags/>
+    <ButtonUpload onChange={printRes} withDrop showTags/>
+  </div>
+));
 
-export const AsDiv = () => (
-  <ButtonUpload
-    style={{
-      border: '2px dashed #9b9b9b',
-      padding: '20px',
-      width: '250px',
-      textAlign: 'center',
-    }}
-    as="div"
-    onChange={printRes}
-    btnText="Envie sua imagem"
-    showTags
-  />
+stories.add(
+  'With image Dimensions',
+  () => (
+    <ButtonUpload
+      allowedDimensions={['300x250']}
+      formatWhiteList={['.jpg', '.jpeg', '.png']}
+      btnText="Apenas 300x250"
+      onChange={printRes}
+      showTags
+    />
+  )
 );
 
 export const WithImageDimensions = () => (
@@ -38,6 +41,7 @@ export const WithImageDimensions = () => (
     btnText="Apenas 300x250"
     onChange={printRes}
     showTags
+    withDrop
   />
 );
 
@@ -62,9 +66,21 @@ export const WithMaxFileSize = () => (
   <ButtonUpload maxFileSize={100000} btnText="Até 100KB" onChange={printRes} showTags />
 );
 
-WithMaxFileSize.story = {
-  name: 'With MaxFileSize',
-};
+stories.add('With Drop Area', () =>
+  <ButtonUpload
+    onChange={printRes}
+    showTags
+    withDrop
+    dropText="Texto custom de drop"
+  />
+);
+
+stories.add(
+  'Without Tags',
+  withState({ data: [], list: [] })(({ store }) => {
+    const change = (data, list) => {
+      store.set({ data, list });
+    };
 
 export const WithoutTags = useState({ data: [], list: [] }, store => {
   const change = (data, list) => {
@@ -88,13 +104,19 @@ export const WithoutTags = useState({ data: [], list: [] }, store => {
                 Remover
               </Button>
             </div>
-            <br />
-            <br />
-          </div>
-        ))}
+          )}
+        </div>
+        <br/>
+        <ButtonUpload withDrop files={store.state.list} onChange={change} showTags={false} />
       </div>
-      <br />
-      <ButtonUpload files={store.state.list} onChange={change} showTags={false} />
-    </div>
-  );
-});
+    );
+  })
+);
+
+stories.add('Disabled', () => (
+  <div>
+    <ButtonUpload disabled onChange={printRes} showTags/>
+    <ButtonUpload disabled onChange={printRes} withDrop showTags/>
+  </div>
+));
+

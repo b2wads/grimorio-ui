@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import { omit } from '../../helpers';
+import cx from 'classnames';
 
 import Button from '../button';
 import Icon from '../icon';
@@ -13,9 +13,13 @@ class ButtonUpload extends PureComponent {
     super(props);
     this.state = {
       list: props.files || [],
+      isDragging: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.onDragover = this.onDragover.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+    this.dropArea = React.createRef();
   }
 
   static propTypes = {
@@ -29,6 +33,11 @@ class ButtonUpload extends PureComponent {
     accept: PropTypes.string,
     maxFileSize: PropTypes.number, // bytes
     allowedDimensions: PropTypes.array,
+    withDrop: PropTypes.bool,
+    dropText: PropTypes.string,
+    className: PropTypes.string,
+    buttonClassName: PropTypes.string,
+    dropClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -40,12 +49,41 @@ class ButtonUpload extends PureComponent {
     formatWhiteList: ['.png', '.jpg', '.jpeg', '.pdf'],
     maxFileSize: 3000000, // 3MB
     allowedDimensions: [],
+    withDrop: false,
+    dropText: 'Arraste uma imagem para upload ou clique no botão abaixo',
   };
 
   componentDidUpdate(prevProps) {
     const { files } = this.props;
     if (prevProps.files.length > files.length) {
       this.setState({ list: files });
+    }
+  }
+
+  onDragover(event) {
+    const { disabled, limit } = this.props;
+    const hasMaxFiles = this.state.list.length === limit;
+
+    if (!disabled && !hasMaxFiles) {
+      event.stopPropagation();
+      event.preventDefault();
+      this.setState({ isDragging: true });
+
+      event.dataTransfer.dropEffect = 'copy';
+    }
+  }
+
+  onDrop(event) {
+    const { disabled, limit } = this.props;
+    const hasMaxFiles = this.state.list.length === limit;
+
+    if (!disabled && !hasMaxFiles) {
+      event.stopPropagation();
+      event.preventDefault();
+      const { files } = event.dataTransfer;
+      this.setState({ isDragging: false });
+
+      this.handleChange(files);
     }
   }
 
@@ -78,13 +116,13 @@ class ButtonUpload extends PureComponent {
   }
 
   async returnData(error) {
-    const { allowedDimensions, onChange } = this.props;
+    const { onChange } = this.props;
 
     const filePromises = this.state.list.map(file => this.convertToBase64(file));
     const data = await Promise.all(filePromises);
 
     const sizePromises = data.map(base64 => this.getImageSize(base64));
-    const sizeData = allowedDimensions.length ? await Promise.all(sizePromises) : [];
+    const sizeData = await Promise.all(sizePromises);
 
     onChange(data, this.state.list, error, sizeData);
   }
@@ -108,9 +146,7 @@ class ButtonUpload extends PureComponent {
     };
   }
 
-  async handleChange(event) {
-    const { files } = event.target;
-
+  async handleChange(files) {
     let fileArr = [...files];
     let fileError = {};
 
@@ -161,36 +197,59 @@ class ButtonUpload extends PureComponent {
     ));
   }
 
-  render() {
-    const { disabled, btnText, limit, showTags, loading, accept, formatWhiteList, as, className, ...rest } = this.props;
+  withDrop(children) {
+    const { dropText, disabled, dropClassName } = this.props;
+    return (
+      <div
+        onDragOver={this.onDragover}
+        onDrop={this.onDrop}
+        className={cx(styles.dropArea, dropClassName, {
+          [styles.isDragging]: this.state.isDragging,
+          [styles.isDisabled]: disabled,
+        })}
+      >
+        <Icon size={60} name="backup" className={styles.iconDrop} />
+        <p className={styles.textDropArea}>
+          {dropText}
+        </p>
+        {children}
+      </div>
+    );
+  }
+
+  renderButton() {
+    const { disabled, btnText, limit, loading, accept, formatWhiteList, buttonClassName } = this.props;
     const hasMaxFiles = this.state.list.length === limit;
-    const WrapComponent = as || Button;
+
+    return (
+      <Button
+        loading={loading}
+        disabled={disabled || hasMaxFiles}
+        iconLeft="publish"
+        className={cx(styles.button, buttonClassName)}
+      >
+        {btnText}
+        <input
+          className={styles.file}
+          type="file"
+          onChange={e => this.handleChange(e.target.files)}
+          disabled={disabled || hasMaxFiles}
+          multiple
+          accept={accept || formatWhiteList.join(', ')}
+          key={this.state.list.length}
+        />
+      </Button>
+    );
+  }
+
+  render() {
+    const { showTags, withDrop, className } = this.props;
+    const UploadBtn = this.renderButton();
 
     return (
       <div className={className}>
-        <WrapComponent
-          loading={loading}
-          disabled={disabled || hasMaxFiles}
-          iconLeft="publish"
-          className={styles.wrapcomp}
-          {...omit(rest, ['onChange', 'maxFileSize', 'allowedDimensions', 'formatWhiteList'])}
-        >
-          {btnText}
-          <input
-            className={styles.file}
-            type="file"
-            onChange={this.handleChange}
-            disabled={disabled || hasMaxFiles}
-            multiple
-            accept={accept || formatWhiteList.join(', ')}
-            key={this.state.list.length}
-          />
-        </WrapComponent>
-
-        {showTags &&
-          <div className={styles.holdTags}>
-            {this.renderTags()}
-          </div>}
+        {withDrop ? this.withDrop(UploadBtn) : UploadBtn}
+        {showTags && <div className={styles.holdTags}>{this.renderTags()}</div>}
       </div>
     );
   }

@@ -23,7 +23,7 @@ $c-bg-grey = #e0e0e0;
   }
 }
 
-.wrapcomp {
+.button {
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -55,14 +55,28 @@ $c-bg-grey = #e0e0e0;
   }
 }
 
-.buttonRemove {
-  margin-top: 20px;
+.dropArea {
+  border: 2px dashed $c-secondary;
+  text-align: center;
+  padding: 30px;
+  transition: all .5s ease-in-out;
+
+  &.isDragging {
+    background: $c-secondary;
+    opacity: 0.6;
+  }
+
+  &.isDisabled {
+    cursor: not-allowed;
+  }
 }
 
-.wrapperImg {
-  margin-right: 30px;
+.iconDrop {
+  color: $c-gray-1;
+  margin-bottom: 10px;
 }
 
-.contentList {
-  display: flex;
+.textDropArea {
+  margin-bottom: 20px;
+  line-height: 22px;
 }
