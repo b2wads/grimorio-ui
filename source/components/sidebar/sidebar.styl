@@ -10,11 +10,15 @@ $c-text = #a4a3a3;
  ================ */
 .sidebar {
   background-color: var(--c-support-dark);
-  height: 100%;
-  position: fixed;
-  top: 0;
   transition: width 0.3s ease;
+  position: relative;
   width: 290px;
+
+  &.isFixed {
+    height: 100%;
+    position: fixed;
+    top: 0;
+  }
 
   &.isMobile {
     left: -290px;

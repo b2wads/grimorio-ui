@@ -1,7 +1,7 @@
 import React from 'react';
 import { withState } from '../../helpers/storybook';
 
-import ProgressBar from './progress-bar-component';
+import { ProgressBar } from './progress-bar-component';
 import Button from '../button';
 
 export default {

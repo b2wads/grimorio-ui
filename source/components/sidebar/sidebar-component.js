@@ -7,9 +7,10 @@ import Accordion, { AccordionTitle, AccordionContent } from '../accordion';
 
 import styles from './sidebar.styl';
 
-const Sidebar = ({
+export const Sidebar = ({
   schema,
   className,
+  isFixed,
   onToggle,
   hasToggle,
   isMobile,
@@ -94,6 +95,7 @@ const Sidebar = ({
   }
 
   const allClassNames = cx(styles.sidebar, className, {
+    [styles.isFixed]: isFixed,
     [styles.closed]: !openNav,
     [styles.isMobile]: isMobile,
     [styles.isMobileOpen]: isMobile && openNav,
@@ -141,12 +143,14 @@ Sidebar.propTypes = {
   initialSection: PropTypes.string,
   initialItem: PropTypes.string,
   schema: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isFixed: PropTypes.bool,
 };
 
 Sidebar.defaultProps = {
   hasToggle: true,
   open: null,
   isMobile: false,
+  isFixed: true,
 };
 
 export default memo(Sidebar);

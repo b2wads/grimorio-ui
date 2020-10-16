@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Svg from '../svg';
-import Header from './header-component';
+import { Header } from './header-component';
 
 export default {
   title: 'Header',
