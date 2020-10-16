@@ -66,10 +66,9 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
 ### Default
 <Preview>
   <Story name="Default">
-    <State
-      initialState={{ open: true }}
-      render={store => (
-         <Sidebar
+    <State initialState={{ open: true }}>
+      {store => (
+        <Sidebar
           isFixed={false}
           open={store.state.open}
           onLogoClick={() => alert('logo!')}
@@ -82,7 +81,7 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
           initialItem="acc2-item2"
         />
       )}
-    />
+    </State>
   </Story>
 </Preview>
 

@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 
-export const State = ({ initialState, render }) => {
+export const State = ({ initialState, children = () => {} }) => {
   const [state, setState] = useState(initialState);
-  const changeUnmutable = changes => setState({
-    ...state,
-    ...changes,
-  });
 
   const store = {
     state,
-    set: changeUnmutable,
+    set: changes =>
+      setState({
+        ...state,
+        ...changes,
+      }),
   };
 
-  return <>
-    {render(store)}
-  </>;
+  if (typeof children !== 'function') {
+    return null;
+  }
+
+return <>{children(store)}</>;
 };
 
 export const withState = (initialState, renderComp) => {
-  return () => <State initialState={initialState} render={store => renderComp(store)} />;
+  return () => (
+    <State initialState={initialState}>
+      {store => renderComp(store)}
+    </State>
+  );
 };
 
 export const action = name => (...params) => {
