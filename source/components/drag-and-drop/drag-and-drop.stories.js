@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 import DragAndDrop from './drag-and-drop-component';
 
 import DraggableComponent from './elements/draggable';
@@ -26,11 +26,7 @@ export const ItemList = () => {
   );
 };
 
-ItemList.story = {
-  name: 'Item list',
-};
-
-export const ManualItems = withState({ items })(({ store }) => {
+export const ManualItems = withState({ items }, store => {
   const changeValue = (_ids, items) => {
     store.set({ items });
   };

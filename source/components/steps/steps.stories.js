@@ -1,7 +1,7 @@
 import React from 'react';
 import Steps from './index';
 import Button from '../button/index';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 export default {
   title: 'Steps',
@@ -23,7 +23,7 @@ export const Normal = () => (
   </div>
 );
 
-export const WithButtons = withState({ value: 0 })(({ store }) => {
+export const WithButtons = withState({ value: 0 }, store => {
   const handleClickNext = () => {
     if (store.state.value >= pageData.length - 1) {
       value = pageData.length - 1;

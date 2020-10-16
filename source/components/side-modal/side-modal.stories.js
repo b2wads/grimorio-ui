@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import Button from '../button';
 
@@ -10,7 +10,7 @@ export default {
   component: SideModal,
 };
 
-export const Right = withState({ open: false })(({ store }) => {
+export const Right = withState({ open: false }, store => {
   const openModal = () => {
     store.set({ open: true });
   };
@@ -32,7 +32,7 @@ export const Right = withState({ open: false })(({ store }) => {
   );
 });
 
-export const Left = withState({ open: false })(({ store }) => {
+export const Left = withState({ open: false }, store => {
   const openModal = () => {
     store.set({ open: true });
   };
@@ -54,7 +54,7 @@ export const Left = withState({ open: false })(({ store }) => {
   );
 });
 
-export const Top = withState({ open: false })(({ store }) => {
+export const Top = withState({ open: false }, store => {
   const openModal = () => {
     store.set({ open: true });
   };
@@ -76,7 +76,7 @@ export const Top = withState({ open: false })(({ store }) => {
   );
 });
 
-export const Bottom = withState({ open: false })(({ store }) => {
+export const Bottom = withState({ open: false }, store => {
   const openModal = () => {
     store.set({ open: true });
   };
@@ -98,7 +98,7 @@ export const Bottom = withState({ open: false })(({ store }) => {
   );
 });
 
-export const WithTopDistance = withState({ open: false })(({ store }) => {
+export const WithTopDistance = withState({ open: false }, store => {
   const openModal = () => {
     store.set({ open: true });
   };
@@ -120,11 +120,9 @@ export const WithTopDistance = withState({ open: false })(({ store }) => {
   );
 });
 
-WithTopDistance.story = {
-  name: 'With top distance',
-};
 
-export const WithBottomDistance = withState({ open: false })(({ store }) => {
+
+export const WithBottomDistance = withState({ open: false }, store => {
   const openModal = () => {
     store.set({ open: true });
   };
@@ -146,11 +144,9 @@ export const WithBottomDistance = withState({ open: false })(({ store }) => {
   );
 });
 
-WithBottomDistance.story = {
-  name: 'With bottom distance',
-};
 
-export const WithCustomWidth = withState({ open: false })(({ store }) => {
+
+export const WithCustomWidth = withState({ open: false }, store => {
   const openModal = () => {
     store.set({ open: true });
   };
@@ -172,11 +168,9 @@ export const WithCustomWidth = withState({ open: false })(({ store }) => {
   );
 });
 
-WithCustomWidth.story = {
-  name: 'With custom width',
-};
 
-export const WithCustomHeight = withState({ open: false })(({ store }) => {
+
+export const WithCustomHeight = withState({ open: false }, store => {
   const openModal = () => {
     store.set({ open: true });
   };
@@ -198,6 +192,4 @@ export const WithCustomHeight = withState({ open: false })(({ store }) => {
   );
 });
 
-WithCustomHeight.story = {
-  name: 'With custom height',
-};
+

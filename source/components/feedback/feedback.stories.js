@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Feedback from './feedback-component';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 export default {
   title: 'Feedback',
@@ -12,7 +12,7 @@ const initialState = {
   show: true,
 };
 
-export const Success = withState(initialState)(({ store }) => {
+export const Success = withState(initialState, store => {
   const onDismiss = () => {
     store.set({ show: false });
   };
@@ -27,7 +27,7 @@ export const Success = withState(initialState)(({ store }) => {
   );
 });
 
-export const FailWithTopDistance = withState(initialState)(({ store }) => {
+export const FailWithTopDistance = withState(initialState, store => {
   const onDismiss = () => {
     store.set({ show: false });
   };
@@ -41,11 +41,7 @@ export const FailWithTopDistance = withState(initialState)(({ store }) => {
   );
 });
 
-FailWithTopDistance.story = {
-  name: 'Fail with top distance',
-};
-
-export const FailBottomMobile = withState(initialState)(({ store }) => {
+export const FailBottomMobile = withState(initialState, store => {
   const onDismiss = () => {
     store.set({ show: false });
   };
@@ -61,7 +57,3 @@ export const FailBottomMobile = withState(initialState)(({ store }) => {
     />
   );
 });
-
-FailBottomMobile.story = {
-  name: 'Fail bottom mobile',
-};

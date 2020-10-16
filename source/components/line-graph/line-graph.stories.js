@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 import moment from 'moment';
 
 moment.locale('pt-br');
@@ -280,9 +280,7 @@ export const WithChangingData = withState({ loading: false, data: other, label: 
   }
 );
 
-WithChangingData.story = {
-  name: 'With changing data',
-};
+
 
 export const WithCustomTooltipLabel = () => (
   <Panel title="Normal" accordion>
@@ -316,6 +314,4 @@ export const WithCustomTooltipLabel = () => (
   </Panel>
 );
 
-WithCustomTooltipLabel.story = {
-  name: 'With custom tooltip label',
-};
+

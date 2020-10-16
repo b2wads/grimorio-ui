@@ -33,6 +33,4 @@ export const OnClick = () => (
   </div>
 );
 
-OnClick.story = {
-  name: 'onClick()',
-};
+

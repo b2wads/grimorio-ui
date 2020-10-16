@@ -64,7 +64,3 @@ export const WithShowOnSide = () => (
     </TooltipSticky>
   </div>
 );
-
-WithShowOnSide.story = {
-  name: 'With showOnSide',
-};

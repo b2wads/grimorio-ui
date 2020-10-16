@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from '../../helpers/storybook';
+import { withState } from '../../helpers/storybook';
 
 import ButtonUpload from './index';
 import Button from '../button';
@@ -14,24 +14,11 @@ const printRes = (data, list, error, size) => {
   console.log('images: ', data, 'list:', list, 'error:', error, 'size', size);
 };
 
-stories.add('Normal', () => (
+export const Normal = () => (
   <div>
-    <ButtonUpload onChange={printRes} showTags/>
-    <ButtonUpload onChange={printRes} withDrop showTags/>
+    <ButtonUpload onChange={printRes} showTags />
+    <ButtonUpload onChange={printRes} withDrop showTags />
   </div>
-));
-
-stories.add(
-  'With image Dimensions',
-  () => (
-    <ButtonUpload
-      allowedDimensions={['300x250']}
-      formatWhiteList={['.jpg', '.jpeg', '.png']}
-      btnText="Apenas 300x250"
-      onChange={printRes}
-      showTags
-    />
-  )
 );
 
 export const WithImageDimensions = () => (
@@ -41,13 +28,8 @@ export const WithImageDimensions = () => (
     btnText="Apenas 300x250"
     onChange={printRes}
     showTags
-    withDrop
   />
 );
-
-WithImageDimensions.story = {
-  name: 'With image Dimensions',
-};
 
 export const WithLimit = () => (
   <ButtonUpload btnText="Apenas 2 imagens" limit={2} onChange={printRes} showTags />
@@ -66,23 +48,11 @@ export const WithMaxFileSize = () => (
   <ButtonUpload maxFileSize={100000} btnText="Até 100KB" onChange={printRes} showTags />
 );
 
-stories.add('With Drop Area', () =>
-  <ButtonUpload
-    onChange={printRes}
-    showTags
-    withDrop
-    dropText="Texto custom de drop"
-  />
+export const WithDropArea = () => (
+  <ButtonUpload onChange={printRes} showTags withDrop dropText="Texto custom de drop" />
 );
 
-stories.add(
-  'Without Tags',
-  withState({ data: [], list: [] })(({ store }) => {
-    const change = (data, list) => {
-      store.set({ data, list });
-    };
-
-export const WithoutTags = useState({ data: [], list: [] }, store => {
+export const WithoutTags = withState({ data: [], list: [] }, store => {
   const change = (data, list) => {
     store.set({ data, list });
   };
@@ -94,29 +64,26 @@ export const WithoutTags = useState({ data: [], list: [] }, store => {
   };
 
   return (
-    <div>
-      <div className={styles.contentList}>
-        {store.state.data.map((base64, index) => (
-          <div className={styles.wrapperImg}>
-            <img width="150px" src={base64} />
-            <div>
-              <Button className={styles.buttonRemove} onClick={() => removeImage(index)}>
-                Remover
-              </Button>
-            </div>
-          )}
+    <div className={styles.contentList}>
+      {store.state.data.map((base64, index) => (
+        <div className={styles.wrapperImg}>
+          <img width="150px" src={base64} />
+          <div>
+            <Button className={styles.buttonRemove} onClick={() => removeImage(index)}>
+              Remover
+            </Button>
+          </div>
         </div>
-        <br/>
-        <ButtonUpload withDrop files={store.state.list} onChange={change} showTags={false} />
-      </div>
-    );
-  })
-);
+      ))}
+      <br />
+      <ButtonUpload withDrop files={store.state.list} onChange={change} showTags={false} />
+    </div>
+  );
+});
 
-stories.add('Disabled', () => (
+export const Disabled = () => (
   <div>
-    <ButtonUpload disabled onChange={printRes} showTags/>
-    <ButtonUpload disabled onChange={printRes} withDrop showTags/>
+    <ButtonUpload disabled onChange={printRes} showTags />
+    <ButtonUpload disabled onChange={printRes} withDrop showTags />
   </div>
-));
-
+);

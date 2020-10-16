@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import ProgressBar from './progress-bar-component';
 import Button from '../button';
@@ -9,7 +9,7 @@ export default {
   component: ProgressBar,
 };
 
-export const Normal = withState({ percent: 0 })(({ store }) => {
+export const Normal = withState({ percent: 0 }, store => {
   const changePercent = () => {
     store.set({ percent: parseFloat((Math.random() * 100).toFixed(0)) });
   };

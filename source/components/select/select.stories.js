@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import Select, { SelectOption } from './index';
 import Button from '../button';
@@ -41,9 +41,7 @@ export const SelectWithLabel = () => {
   );
 };
 
-SelectWithLabel.story = {
-  name: 'Select with Label',
-};
+
 
 export const SelectOutline = () => {
   return (
@@ -60,9 +58,7 @@ export const SelectOutline = () => {
   );
 };
 
-SelectOutline.story = {
-  name: 'Select outline',
-};
+
 
 export const SelectMobile = () => {
   return (
@@ -76,7 +72,7 @@ export const SelectMobile = () => {
   );
 };
 
-export const Controled = withState({ value: 'value-1' })(({ store }) => {
+export const Controled = withState({ value: 'value-1' }, store => {
   const changeValue = ({ value }) => {
     store.set({ value });
   };
@@ -102,17 +98,13 @@ export const SelectWithDefaultValue = () => {
   );
 };
 
-SelectWithDefaultValue.story = {
-  name: 'Select with defaultValue',
-};
+
 
 export const SelectWithoutLabel = () => {
   return <Select placeholder="Opções" onSelect={(data) => console.log(data)} items={items} />;
 };
 
-SelectWithoutLabel.story = {
-  name: 'Select without Label',
-};
+
 
 export const SelectDisabled = () => {
   return (
@@ -141,9 +133,7 @@ export const SelectDisabled = () => {
   );
 };
 
-SelectDisabled.story = {
-  name: 'Select disabled',
-};
+
 
 export const SelectNoCurrentValue = () => {
   return (
@@ -158,9 +148,7 @@ export const SelectNoCurrentValue = () => {
   );
 };
 
-SelectNoCurrentValue.story = {
-  name: 'Select - No Current Value',
-};
+
 
 export const SelectOptionsBottom = () => {
   return (
@@ -180,9 +168,7 @@ export const SelectOptionsBottom = () => {
   );
 };
 
-SelectOptionsBottom.story = {
-  name: 'Select - Options Bottom',
-};
+
 
 export const Menu = () => {
   return (
@@ -201,7 +187,7 @@ const manualState = {
   value: 'val2',
 };
 
-export const Manual = withState(manualState)(({ store }) => {
+export const Manual = withState(manualState, store => {
   const updateMenu = (menuState) => {
     store.set({ manualOpen: menuState });
   };

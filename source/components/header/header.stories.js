@@ -8,21 +8,13 @@ export default {
   component: Header,
 };
 
-stories.addDecorator(withKnobs);
+export const Normal = () => <Header>Conteúdo qualquer que vai entrar aqui!</Header>;
 
-stories.add('Normal', () =>
-  <Header>
-    Conteúdo qualquer que vai entrar aqui!
-  </Header>
-);
-
-stories.add('With Logo', () =>
+export const WithLogo = () => (
   <Header
     showLogo
     onLogoClick={() => alert('logo!')}
-    logo={
-      <Svg width={188} height={58} src="logo/afiliados" />
-    }
+    logo={<Svg width={188} height={58} src="logo/afiliados" />}
   >
     Conteúdo qualquer que vai entrar aqui!
   </Header>

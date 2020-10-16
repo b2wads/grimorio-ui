@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import Button from '../button';
 
@@ -10,7 +10,7 @@ export default {
   component: Modal,
 };
 
-export const Custom = withState({ open: false })(({ store }) => {
+export const Custom = withState({ open: false }, store => {
   const openModal = () => {
     store.set({ open: true });
   };
@@ -32,7 +32,7 @@ export const Custom = withState({ open: false })(({ store }) => {
   );
 });
 
-export const Types = withState({ success: false, fail: false, confirm: false })(({ store }) => {
+export const Types = withState({ success: false, fail: false, confirm: false }, store => {
   const openModal = (type) => {
     return () => store.set({ [type]: true });
   };

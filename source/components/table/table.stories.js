@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import Table from './table-component';
 import Button from '../button';
@@ -76,7 +76,7 @@ export const RowHeight = () => {
   return <Table layout="fixed" rowHeight="80px" schema={schema} data={simpledata} />;
 };
 
-export const StickyHeader = withState({ data: null })(({ store }) => {
+export const StickyHeader = withState({ data: null }, store => {
   fetch('https://randomuser.me/api/?results=10')
     .then((res) => res.json())
     .then((res) => {
@@ -86,11 +86,9 @@ export const StickyHeader = withState({ data: null })(({ store }) => {
   return <Table schema={schema} data={store.state.data} scrollY height="400px" isSticky />;
 });
 
-StickyHeader.story = {
-  name: 'Sticky header',
-};
 
-export const StickyHeaderFooterAndColumns = withState({ data: null })(({ store }) => {
+
+export const StickyHeaderFooterAndColumns = withState({ data: null }, store => {
   fetch('https://randomuser.me/api/?results=10')
     .then((res) => res.json())
     .then((res) => {
@@ -122,9 +120,7 @@ export const StickyHeaderFooterAndColumns = withState({ data: null })(({ store }
   );
 });
 
-StickyHeaderFooterAndColumns.story = {
-  name: 'Sticky header, footer and columns',
-};
+
 
 export const TableStickyWithPopover = () => {
   const list = [
@@ -180,9 +176,7 @@ export const TableStickyWithPopover = () => {
   );
 };
 
-TableStickyWithPopover.story = {
-  name: 'Table sticky with popover',
-};
+
 
 export const SpecialCase = () => {
   const special = [
@@ -216,7 +210,7 @@ export const Scroll = () => {
   return <Table scrollY scrollX width="500px" height="150px" schema={schema} data={simpledata} />;
 };
 
-export const WithAsyncData = withState({ data: null })(({ store }) => {
+export const WithAsyncData = withState({ data: null }, store => {
   fetch('https://randomuser.me/api/?results=10')
     .then((res) => res.json())
     .then((res) => {
@@ -226,6 +220,4 @@ export const WithAsyncData = withState({ data: null })(({ store }) => {
   return <Table schema={schema} data={store.state.data} />;
 });
 
-WithAsyncData.story = {
-  name: 'With async Data',
-};
+

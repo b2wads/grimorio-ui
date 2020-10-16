@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import moment from 'moment';
 import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
@@ -10,7 +10,7 @@ export default {
   component: Calendar,
 };
 
-export const RangeDate = withState({ startDate: undefined, endDate: undefined })(({ store }) => {
+export const RangeDate = withState({ startDate: undefined, endDate: undefined }, store => {
   const handleChange = (dates) => {
     store.set(dates);
   };
@@ -25,18 +25,14 @@ export const RangeDate = withState({ startDate: undefined, endDate: undefined })
   );
 });
 
-RangeDate.story = {
-  name: 'Range date',
-};
-
-export const SingleDate = withState({ singleDate: undefined })(({ store }) => {
+export const SingleDate = withState({ singleDate: undefined }, store => {
   const handleChange = ({ date }) => {
     store.set({ singleDate: date });
   };
   return <Calendar onChange={(dates) => handleChange(dates)} date={store.state.singleDate} />;
 });
 
-export const BlockDays = withState({ singleDate: undefined })(({ store }) => {
+export const BlockDays = withState({ singleDate: undefined }, store => {
   const handleChange = ({ date }) => {
     store.set({ singleDate: date });
   };
@@ -48,10 +44,6 @@ export const BlockDays = withState({ singleDate: undefined })(({ store }) => {
     />
   );
 });
-
-BlockDays.story = {
-  name: 'Block days',
-};
 
 export const StartingWithValues = withState({
   startDate: moment().subtract(7, 'days'),
@@ -69,7 +61,3 @@ export const StartingWithValues = withState({
     />
   );
 });
-
-StartingWithValues.story = {
-  name: 'Starting with values',
-};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import Button from '../button';
 
@@ -24,7 +24,7 @@ const action = (name) => (...params) => {
   console.log(name, params);
 };
 
-export const InputText = withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
+export const InputText = withState({ input: 'Campo com valor default', check: [] }, store => {
   const handleChange = (event) => {
     store.set({ input: event.target.value });
   };
@@ -120,10 +120,6 @@ export const InputText = withState({ input: 'Campo com valor default', check: []
   );
 });
 
-InputText.story = {
-  name: 'Input text',
-};
-
 export const InputTextComIcone = () => (
   <div>
     <Form>
@@ -154,10 +150,6 @@ export const InputTextComIcone = () => (
   </div>
 );
 
-InputTextComIcone.story = {
-  name: 'Input text com ícone',
-};
-
 export const Select = () => (
   <div>
     <Form>
@@ -180,7 +172,7 @@ export const Select = () => (
   </div>
 );
 
-export const Checkbox = withState({ input: 'Campo com valor default', check: [] })(({ store }) => {
+export const Checkbox = withState({ input: 'Campo com valor default', check: [] }, store => {
   const changeCheck = () => {
     store.set({ check: [1, 2] });
   };
@@ -254,9 +246,7 @@ export const AddonText = () => (
   </FormGroup>
 );
 
-AddonText.story = {
-  name: 'Addon text',
-};
+
 
 export const AddonLink = () => (
   <FormGroup>
@@ -267,9 +257,7 @@ export const AddonLink = () => (
   </FormGroup>
 );
 
-AddonLink.story = {
-  name: 'Addon link',
-};
+
 
 export const WithId = () => (
   <FormGroup controlId="test">
@@ -278,9 +266,7 @@ export const WithId = () => (
   </FormGroup>
 );
 
-WithId.story = {
-  name: 'With id',
-};
+
 
 export const WithValidation = () => (
   <div>
@@ -300,9 +286,7 @@ export const WithValidation = () => (
   </div>
 );
 
-WithValidation.story = {
-  name: 'With validation',
-};
+
 
 export const Disabled = () => (
   <div>
@@ -338,9 +322,7 @@ export const OnFocus = () => (
   </div>
 );
 
-OnFocus.story = {
-  name: 'On focus',
-};
+
 
 export const OnChange = () => (
   <div>
@@ -356,9 +338,7 @@ export const OnChange = () => (
   </div>
 );
 
-OnChange.story = {
-  name: 'On change',
-};
+
 
 export const OnBlur = () => (
   <div>
@@ -374,9 +354,7 @@ export const OnBlur = () => (
   </div>
 );
 
-OnBlur.story = {
-  name: 'On blur',
-};
+
 
 export const OnMask = () => {
   const handleMask = (value) => {

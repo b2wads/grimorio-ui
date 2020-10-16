@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import SelectPopover from './select-popover-component';
 import Button from '../button';
@@ -108,9 +108,7 @@ export const OpenInDifferentPositions = () => {
   );
 };
 
-OpenInDifferentPositions.story = {
-  name: 'Open in different positions',
-};
+
 
 export const WithHeader = () => {
   const options = [
@@ -156,7 +154,7 @@ const initialState = {
   ],
 };
 
-export const DynamicOptions = withState(initialState)(({ store }) => {
+export const DynamicOptions = withState(initialState, store => {
   const changedOptions = [
     {
       key: 'name',
@@ -202,9 +200,7 @@ export const DynamicOptions = withState(initialState)(({ store }) => {
   );
 });
 
-DynamicOptions.story = {
-  name: 'Dynamic options',
-};
+
 
 export const WithoutSubmitButton = () => {
   const options = [
@@ -240,6 +236,4 @@ export const WithoutSubmitButton = () => {
   );
 };
 
-WithoutSubmitButton.story = {
-  name: 'Without submit button',
-};
+

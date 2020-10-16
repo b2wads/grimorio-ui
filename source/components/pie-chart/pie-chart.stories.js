@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import PieChart from './pie-chart-component';
 import Button from '../button';
@@ -85,6 +85,4 @@ export const WithChangingData = withState({
   );
 });
 
-WithChangingData.story = {
-  name: 'With changing data',
-};
+

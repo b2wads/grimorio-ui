@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import TabMenu, { Tab } from './';
 import Panel from '../panel';
@@ -43,9 +43,7 @@ export const InlineDefault = () => {
   return <TabMenu tabs={tabs} defaultActive="tab2" onChange={action('onChange: id, value')} />;
 };
 
-InlineDefault.story = {
-  name: 'Inline (default)',
-};
+
 
 export const Full = () => {
   return (
@@ -147,7 +145,7 @@ export const WithArray = () => {
   return <TabMenu tabs={tabsBig} defaultActive="tab5" onChange={action('onChange: id, value')} />;
 };
 
-export const Controlled = withState({ selected: 'tab1' })(({ store }) => {
+export const Controlled = withState({ selected: 'tab1' }, store => {
   const setVal = (id) => {
     store.set({ selected: id });
   };

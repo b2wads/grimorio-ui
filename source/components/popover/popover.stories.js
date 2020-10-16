@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import Popover from './popover-component';
 import Button from '../button';
@@ -17,7 +17,7 @@ const action = (name) => (...params) => {
   console.log(name, params);
 };
 
-export const Normal = withState(initialState)(({ store }) => {
+export const Normal = withState(initialState, store => {
   const StubButton = () => {
     const { isPopoverOpen } = store.state;
     return (
@@ -37,7 +37,7 @@ export const Normal = withState(initialState)(({ store }) => {
   );
 });
 
-export const OnDismiss = withState(initialState)(({ store }) => {
+export const OnDismiss = withState(initialState, store => {
   const StubButton = () => {
     const { isPopoverOpen } = store.state;
     return (
@@ -77,7 +77,7 @@ const anotherInitialState = {
   fourth: false,
 };
 
-export const OpenInDifferentPositions = withState(anotherInitialState)(({ store }) => {
+export const OpenInDifferentPositions = withState(anotherInitialState, store => {
   const StubButton = ({ popoverName, title }) => {
     const { isPopoverOpen } = store.state;
     return (
@@ -139,6 +139,4 @@ export const OpenInDifferentPositions = withState(anotherInitialState)(({ store 
   );
 });
 
-OpenInDifferentPositions.story = {
-  name: 'Open in different positions',
-};
+

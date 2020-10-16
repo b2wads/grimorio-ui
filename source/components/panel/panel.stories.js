@@ -56,9 +56,7 @@ export const HighlightTypes = () => (
   </div>
 );
 
-HighlightTypes.story = {
-  name: 'Highlight types',
-};
+
 
 export const WithFooter = () => (
   <div style={{ width: '25%' }}>

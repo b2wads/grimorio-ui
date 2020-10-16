@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from '../../helpers/storybook';
+import { withState } from '../../helpers/storybook';
 
 import Accordion, { AccordionTitle, AccordionContent } from './index';
 
@@ -18,11 +18,6 @@ const renderContent = () => {
   );
 };
 
-const options = {
-  default: 'default',
-  dark: 'dark',
-};
-
 export const Default = () => {
   const isExclusive = true;
   return (
@@ -37,7 +32,7 @@ export const Default = () => {
   );
 };
 
-export const Manual = useState({ active: -1 }, store => {
+export const Manual = withState({ active: -1 }, store => {
   const getActive = (index) => {
     return store.state.active === index;
   };

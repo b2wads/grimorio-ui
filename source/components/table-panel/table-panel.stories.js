@@ -1,5 +1,5 @@
 import React from 'react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import TablePanel from './table-panel-component';
 import Button from '../button';
@@ -96,9 +96,7 @@ export const WithHeaderSeparator = () => {
   );
 };
 
-WithHeaderSeparator.story = {
-  name: 'With header separator',
-};
+
 
 export const Scroll = () => {
   return (
@@ -199,7 +197,7 @@ const _meta = {
   offset: 0,
 };
 
-export const WithAsyncData = withState({ data: null, meta: _meta, loading: null })(({ store }) => {
+export const WithAsyncData = withState({ data: null, meta: _meta, loading: null }, store => {
   const getNames = (type, value = 0) => {
     const typeOffset = {
       prev: store.state.meta.offset - store.state.meta.limit,
@@ -246,6 +244,4 @@ export const WithAsyncData = withState({ data: null, meta: _meta, loading: null 
   );
 });
 
-WithAsyncData.story = {
-  name: 'With async Data',
-};
+
