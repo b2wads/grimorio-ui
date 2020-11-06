@@ -14,6 +14,9 @@ stories.addDecorator(withKnobs);
 
 const schema = [
   {
+    render: () => <h3 className="grm-sidebar__contentTitle">Um Elemento qualquer</h3>
+  },
+  {
     name: 'Home',
     link: '/home',
     icon: 'person',
@@ -59,6 +62,12 @@ const schema = [
       },
     ],
    },
+   {
+    name: 'Ajuda!',
+    icon: 'help',
+    id: 'help',
+    action: () => alert('Ayuda-me!')
+  },
 ];
 
 stories.add('Default', withState({ open: true })(({ store }) => {
@@ -90,7 +99,6 @@ stories.add('Mobile', withState({ openMobile: false, active: -1 })(({ store }) =
     <div style={{ height: 800 }}>
       <Sidebar
         isMobile
-        // openMobile={store.state.openMobile}
         onLogoClick={() => alert('logo!')}
         onToggle={open}
         logo={
