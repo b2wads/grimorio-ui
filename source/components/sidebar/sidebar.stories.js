@@ -14,13 +14,14 @@ stories.addDecorator(withKnobs);
 
 const schema = [
   {
-    render: () => <h3 className="grm-sidebar__contentTitle">Um Elemento qualquer</h3>
+    render: () => <h3 className="teste-element">Um Elemento qualquer</h3>,
   },
   {
     name: 'Home',
     link: '/home',
     icon: 'person',
     id: 'home-link',
+    className: 'classe-teste',
   },
   {
     name: 'Página 1',
@@ -37,6 +38,7 @@ const schema = [
         name: 'Item 1',
         link: '/acc/item1',
         id: 'acc-item1',
+        className: 'classe-subitem-1'
       },
      {
         name: 'Item 2',
@@ -66,7 +68,7 @@ const schema = [
     name: 'Ajuda!',
     icon: 'help',
     id: 'help',
-    action: () => alert('Ayuda-me!')
+    action: () => alert('wake me up!'),
   },
 ];
 

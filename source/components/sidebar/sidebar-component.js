@@ -51,11 +51,11 @@ const Sidebar = ({
     };
   };
 
-  const renderMenuSimple = ({ name, icon, link, action, id, sectionId = null, type = 'list' }) => {
+  const renderMenuSimple = ({ className, name, icon, link, action, id, sectionId = null, type = 'list' }) => {
     return (
       <li
         title={name}
-        className={cx({
+        className={cx(className, {
           [styles.listItem]: type === 'list',
           [styles.nestedItem]: type === 'nested',
           [styles.isClosed]: !openNav,
@@ -73,10 +73,10 @@ const Sidebar = ({
     );
   };
 
-  const renderMenuWithAccordion = ({ icon, name, submenu, id }, index) => {
+  const renderMenuWithAccordion = ({ className, icon, name, submenu, id }, index) => {
     return (
       <li
-        className={cx(styles.accordeonListItem, {
+        className={cx(className, styles.accordeonListItem, {
           [styles.isActive]: getActiveSection(id),
           [styles.isClosed]: !openNav,
         })}
@@ -157,6 +157,7 @@ Sidebar.propTypes = {
     id: PropTypes.string,
     submenu: PropTypes.array,
     render: PropTypes.func,
+    className: PropTypes.string,
   })).isRequired,
 };
 

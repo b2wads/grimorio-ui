@@ -10,7 +10,7 @@ exports[`Sidebar component render default 1`] = `
       </span>
       <Accordion type=\\"accordionMenu\\" exclusive={false} as=\\"ul\\" open={[undefined]} theme=\\"default\\" panels={{...}}>
         <Teste />
-        <li title=\\"Home\\" className=\\"listItem isClosed\\" onClick={[Function]} data-testid=\\"home-link\\" data-testidgen=\\"menu-item\\">
+        <li title=\\"Home\\" className=\\"classe-teste listItem isClosed\\" onClick={[Function]} data-testid=\\"home-link\\" data-testidgen=\\"menu-item\\">
           <Icon size={16} name=\\"person\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Home
         </li>
@@ -24,7 +24,7 @@ exports[`Sidebar component render default 1`] = `
           </AccordionTitle>
           <AccordionContent active={false}>
             <ul className=\\"nestedMenu\\">
-              <li title=\\"Item 1\\" className=\\"nestedItem isClosed\\" onClick={[Function]} data-testid=\\"acc-item1\\" data-testidgen=\\"submenu-item\\">
+              <li title=\\"Item 1\\" className=\\"classe-subitem-1 nestedItem isClosed\\" onClick={[Function]} data-testid=\\"acc-item1\\" data-testidgen=\\"submenu-item\\">
                 Item 1
               </li>
               <li title=\\"Item 2\\" className=\\"nestedItem isClosed\\" onClick={[Function]} data-testid=\\"acc-item2\\" data-testidgen=\\"submenu-item\\">

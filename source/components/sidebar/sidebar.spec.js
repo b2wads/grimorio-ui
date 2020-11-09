@@ -2,7 +2,7 @@ import '../../../internals/test/helper';
 
 import Sidebar from './sidebar-component';
 
-const Teste = () => <h3 className=".teste-element">Um Elemento qualquer</h3>;
+const Teste = () => <h3 className="teste-element">Um Elemento qualquer</h3>;
 
 const schema = [
   {
@@ -13,6 +13,7 @@ const schema = [
     link: '/home',
     icon: 'person',
     id: 'home-link',
+    className: 'classe-teste',
   },
   {
     name: 'Página 1',
@@ -29,6 +30,7 @@ const schema = [
         name: 'Item 1',
         link: '/acc/item1',
         id: 'acc-item1',
+        className: 'classe-subitem-1'
       },
      {
         name: 'Item 2',
