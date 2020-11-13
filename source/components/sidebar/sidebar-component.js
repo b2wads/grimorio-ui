@@ -42,27 +42,29 @@ const Sidebar = ({
   const getActiveSection = id => currentSection === id;
   const getActiveItem = id => currentItem === id;
 
-  const onItemClick = (id, link, submenuId) => {
+  const onItemClick = (id, link, action, submenuId) => {
     return () => {
       setCurrentItem(id);
       setCurrentSection(submenuId);
-      onClickItem && onClickItem(link);
+      link && onClickItem && onClickItem(link);
+      action && action();
     };
   };
 
-  const renderMenuSimple = ({ name, icon, link, id, sectionId = null, type = 'list' }) => {
+  const renderMenuSimple = ({ className, name, icon, link, action, id, sectionId = null, type = 'list' }) => {
     return (
       <li
         title={name}
-        className={cx({
+        className={cx(className, {
           [styles.listItem]: type === 'list',
           [styles.nestedItem]: type === 'nested',
           [styles.isClosed]: !openNav,
           [styles.isActive]: getActiveItem(id),
           [styles.sectionActive]: getActiveSection(sectionId),
         })}
-        onClick={onItemClick(id, link, sectionId)}
+        onClick={onItemClick(id, link, action, sectionId)}
         data-testid={id}
+        data-testidgen={sectionId ? 'submenu-item' : 'menu-item'}
         key={id}
       >
         {icon && <Icon size={16} name={icon} className={styles.iconLeft} />}
@@ -71,14 +73,15 @@ const Sidebar = ({
     );
   };
 
-  const renderMenuWithAccordion = ({ icon, name, submenu, id }, index) => {
+  const renderMenuWithAccordion = ({ className, icon, name, submenu, id }, index) => {
     return (
       <li
-        className={cx(styles.accordeonListItem, {
+        className={cx(className, styles.accordeonListItem, {
           [styles.isActive]: getActiveSection(id),
           [styles.isClosed]: !openNav,
         })}
         data-testid={id}
+        data-testidgen="menu-item"
         key={id}
       >
         <AccordionTitle data-testid={id} active={getActiveSection(id)} index={index} onClick={toggleSection(id)} icon={icon}>
@@ -116,7 +119,13 @@ const Sidebar = ({
           <span className={cx(styles.contentTitle, { [styles.isNavClosed]: !openNav })}>Menu</span>
           <Accordion type="accordionMenu" exclusive={false} as={'ul'} open={openNav}>
             {schema.map(
-              (item, index) => (item.submenu ? renderMenuWithAccordion(item, index) : renderMenuSimple(item, index))
+              (item, index) => {
+                if (item.render) {
+                  return item.render(item);
+                }
+
+                return item.submenu ? renderMenuWithAccordion(item, index) : renderMenuSimple(item, index)
+              }
             )}
           </Accordion>
         </nav>
@@ -140,7 +149,16 @@ Sidebar.propTypes = {
   onClickItem: PropTypes.func,
   initialSection: PropTypes.string,
   initialItem: PropTypes.string,
-  schema: PropTypes.arrayOf(PropTypes.object).isRequired,
+  schema: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    link: PropTypes.string,
+    action: PropTypes.func,
+    icon: PropTypes.string,
+    id: PropTypes.string,
+    submenu: PropTypes.array,
+    render: PropTypes.func,
+    className: PropTypes.string,
+  })).isRequired,
 };
 
 Sidebar.defaultProps = {

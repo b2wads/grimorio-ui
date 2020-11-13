@@ -14,10 +14,14 @@ stories.addDecorator(withKnobs);
 
 const schema = [
   {
+    render: () => <h3 className="teste-element">Um Elemento qualquer</h3>,
+  },
+  {
     name: 'Home',
     link: '/home',
     icon: 'person',
     id: 'home-link',
+    className: 'classe-teste',
   },
   {
     name: 'Página 1',
@@ -34,6 +38,7 @@ const schema = [
         name: 'Item 1',
         link: '/acc/item1',
         id: 'acc-item1',
+        className: 'classe-subitem-1'
       },
      {
         name: 'Item 2',
@@ -59,6 +64,12 @@ const schema = [
       },
     ],
    },
+   {
+    name: 'Ajuda!',
+    icon: 'help',
+    id: 'help',
+    action: () => alert('wake me up!'),
+  },
 ];
 
 stories.add('Default', withState({ open: true })(({ store }) => {
@@ -90,7 +101,6 @@ stories.add('Mobile', withState({ openMobile: false, active: -1 })(({ store }) =
     <div style={{ height: 800 }}>
       <Sidebar
         isMobile
-        // openMobile={store.state.openMobile}
         onLogoClick={() => alert('logo!')}
         onToggle={open}
         logo={
