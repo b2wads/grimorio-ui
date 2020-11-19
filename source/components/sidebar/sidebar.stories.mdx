@@ -7,10 +7,14 @@ import styles from './sidebar.styl';
 
 export const schema = [
   {
+    render: () => <h3 className="teste-element">Um Elemento qualquer</h3>,
+  },
+  {
     name: 'Home',
     link: '/home',
     icon: 'person',
     id: 'home-link',
+    className: 'classe-teste',
   },
   {
     name: 'Página 1',
@@ -27,15 +31,16 @@ export const schema = [
         name: 'Item 1',
         link: '/acc/item1',
         id: 'acc-item1',
+        className: 'classe-subitem-1'
       },
-      {
+     {
         name: 'Item 2',
         link: '/acc/item2',
         id: 'acc-item2',
       },
     ],
-  },
-  {
+   },
+   {
     name: 'Outro Accordion',
     icon: 'filter',
     id: 'acc2',
@@ -45,12 +50,18 @@ export const schema = [
         link: '/acc2/item1',
         id: 'acc2-item1',
       },
-      {
+     {
         name: 'Item 2',
         link: '/acc2/item2',
         id: 'acc2-item2',
       },
     ],
+   },
+   {
+    name: 'Ajuda!',
+    icon: 'help',
+    id: 'help',
+    action: () => alert('wake me up!'),
   },
 ];
 
