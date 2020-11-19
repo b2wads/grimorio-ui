@@ -76,7 +76,7 @@ Caso seja necessário mudar as cores principais do Grimório✨ é possível atr
  para entender como.
 
 ### 🕰 Migração de versões antigas
-Para migrar vindo de versões anteriores do Grimório✨, basta procurar o guia correspondente a sua versão no nosso [guia de migração](https://github.com/b2wads/grimorio-ui/wiki/Migra%C3%A7%C3%B5es): 
+Para migrar vindo de versões anteriores do Grimório✨, basta procurar o guia correspondente a sua versão no nosso [guia de migração](https://github.com/b2wads/grimorio-ui/wiki/Migra%C3%A7%C3%B5es).
 
 
 # 🕹 Desenvolvimento
