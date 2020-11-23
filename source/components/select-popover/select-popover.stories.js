@@ -1,17 +1,19 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import SelectPopover from './select-popover-component';
-import Button from '../button'
+import Button from '../button';
 
-const stories = storiesOf('SelectPopover', module);
+export default {
+  title: 'SelectPopover',
+  component: SelectPopover,
+};
 
-stories.addDecorator(withKnobs);
+const action = (name) => (...params) => {
+  console.log(name, params);
+};
 
-stories.add('Normal', () => {
+export const Normal = () => {
   const options = [
     {
       key: 'name',
@@ -32,7 +34,7 @@ stories.add('Normal', () => {
   const submit = (e) => {
     action('form submitted')();
     console.log(e);
-  }
+  };
 
   return (
     <SelectPopover
@@ -41,10 +43,10 @@ stories.add('Normal', () => {
       options={options}
       onSubmit={submit}
     />
-  )
-});
+  );
+};
 
-stories.add('Open in different positions', () => {
+export const OpenInDifferentPositions = () => {
   const options = [
     {
       key: 'name',
@@ -65,7 +67,7 @@ stories.add('Open in different positions', () => {
   const submit = (e) => {
     action('form submitted')();
     console.log(e);
-  }
+  };
 
   return (
     <React.Fragment>
@@ -102,12 +104,13 @@ stories.add('Open in different positions', () => {
           position="topLeft"
         />
       </div>
-
     </React.Fragment>
-  )
-});
+  );
+};
 
-stories.add('With Header', () => {
+
+
+export const WithHeader = () => {
   const options = [
     {
       key: 'name',
@@ -124,7 +127,7 @@ stories.add('With Header', () => {
   const submit = (e) => {
     action('form submitted')();
     console.log(e);
-  }
+  };
 
   return (
     <SelectPopover
@@ -133,8 +136,8 @@ stories.add('With Header', () => {
       options={options}
       onSubmit={submit}
     />
-  )
-});
+  );
+};
 
 const initialState = {
   options: [
@@ -149,10 +152,9 @@ const initialState = {
       checked: false,
     },
   ],
-}
+};
 
-stories.add('Dynamic options', withState(initialState)(({ store }) => {
-
+export const DynamicOptions = withState(initialState, store => {
   const changedOptions = [
     {
       key: 'name',
@@ -168,23 +170,25 @@ stories.add('Dynamic options', withState(initialState)(({ store }) => {
       key: 'shares',
       label: 'Compartilhamentos',
       checked: false,
-    }
-  ]
+    },
+  ];
 
   const submit = (e) => {
     action('form submitted')();
     console.log(e);
-  }
+  };
 
   const changeOptions = () => {
     store.set({
       options: changedOptions,
-    })
-  }
+    });
+  };
 
   return (
     <React.Fragment>
-      <Button color="variant" onClick={changeOptions}>Then, change options</Button>
+      <Button color="variant" onClick={changeOptions}>
+        Then, change options
+      </Button>
       <br />
       <br />
       <SelectPopover
@@ -193,10 +197,12 @@ stories.add('Dynamic options', withState(initialState)(({ store }) => {
         onSubmit={submit}
       />
     </React.Fragment>
-  )
-}));
+  );
+});
 
-stories.add('Without submit button', () => {
+
+
+export const WithoutSubmitButton = () => {
   const options = [
     {
       key: 'name',
@@ -217,7 +223,7 @@ stories.add('Without submit button', () => {
   const submit = (e) => {
     action('form submitted')();
     console.log(e);
-  }
+  };
 
   return (
     <SelectPopover
@@ -227,6 +233,7 @@ stories.add('Without submit button', () => {
       onSubmit={submit}
       submitOnChange={true}
     />
-  )
+  );
+};
 
-});
+

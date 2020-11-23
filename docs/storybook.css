@@ -272,5 +272,160 @@ h5 {
   color: #777;
 }
 
+/* ==========================================================================
+   Variables
+========================================================================== */
+/* Default
+ ================ */
+.grm-sidebar__sidebar {
+  background-color: var(--c-support-dark);
+  transition: width 0.3s ease;
+  position: relative;
+  width: 290px;
+}
+.grm-sidebar__sidebar.grm-sidebar__isFixed {
+  height: 100%;
+  position: fixed;
+  top: 0;
+}
+.grm-sidebar__sidebar.grm-sidebar__isMobile {
+  left: -290px;
+  max-width: 290px;
+  transition: left 0.3s ease;
+  width: 80%;
+  z-index: 999991;
+}
+.grm-sidebar__sidebar.grm-sidebar__isMobile.grm-sidebar__isMobileOpen {
+  left: 0;
+}
+.grm-sidebar__logotype {
+  align-items: center;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 74px;
+  justify-content: center;
+  overflow: hidden;
+}
+.grm-sidebar__content {
+  padding-top: 20px;
+}
+.grm-sidebar__contentTitle {
+  color: var(--c-menu-text);
+  display: block;
+  font-size: 13px;
+  margin-bottom: 12px;
+  padding-left: 27px;
+  text-transform: uppercase;
+}
+.grm-sidebar__contentTitle.grm-sidebar__isNavClosed {
+  padding-left: 12px;
+}
+.grm-sidebar__toggle {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  height: 30px;
+  outline: 0;
+  padding: 0;
+  position: absolute;
+  right: -50px;
+  text-align: right;
+  top: 22px;
+  width: 50px;
+}
+.grm-sidebar__toggleIcon {
+  color: #fff;
+}
+.grm-sidebar__closed {
+  width: 60px;
+}
+.grm-sidebar__overlay {
+  background: #000;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  transition: all 0.5s ease;
+  visibility: hidden;
+  width: 100%;
+  z-index: 99999;
+}
+.grm-sidebar__overlay.grm-sidebar__isOpen {
+  opacity: 0.6;
+  transition: all 0.5s ease;
+  visibility: visible;
+}
+/* ==========================================================================
+   MENU
+========================================================================== */
+.grm-sidebar__accordeonListItem {
+  color: #fff;
+}
+.grm-sidebar__accordeonListItem:hover,
+.grm-sidebar__accordeonListItem.grm-sidebar__isActive {
+  background: var(--c-support);
+  border-left-color: var(--c-primary-dark);
+}
+.grm-sidebar__accordeonListItem .grm-sidebar__iconLeft {
+  color: #fff;
+  margin-right: 22px;
+}
+.grm-sidebar__accordeonListItem.grm-sidebar__isClosed {
+  transition: width 0.1s ease;
+}
+.grm-sidebar__accordeonListItem.grm-sidebar__isActive.grm-sidebar__isClosed {
+  transition: width 0.3s ease-in-out;
+  width: 290px;
+}
+.grm-sidebar__listItem {
+  border-left: 2px solid transparent;
+  color: #fff;
+  padding: 15px 26px 15px 24px;
+  transition: font-size 0.3s ease;
+  cursor: pointer;
+}
+.grm-sidebar__listItem:hover,
+.grm-sidebar__listItem.grm-sidebar__isActive {
+  background: var(--c-support);
+  border-left-color: var(--c-primary-dark);
+}
+.grm-sidebar__listItem .grm-sidebar__iconLeft {
+  color: #fff;
+  margin-right: 22px;
+}
+.grm-sidebar__listItem.grm-sidebar__isClosed {
+  transition: width 0.1s ease;
+  font-size: 0;
+  padding: 15px 10px;
+}
+.grm-sidebar__nestedMenu {
+  padding: 0;
+  padding-bottom: 10px;
+}
+.grm-sidebar__nestedItem {
+  color: #a4a3a3;
+  padding: 10px 26px 10px 64px;
+  cursor: pointer;
+  transition: font-size 0.1s ease;
+  font-size: 0;
+}
+.grm-sidebar__nestedItem.grm-sidebar__isActive {
+  color: #fff;
+}
+.grm-sidebar__nestedItem:hover {
+  color: #fff;
+}
+.grm-sidebar__nestedItem.grm-sidebar__sectionActive {
+  font-size: 14px;
+}
+.grm-sidebar__nestedItem.grm-sidebar__isClosed:not(.grm-sidebar__sectionActive) {
+  transition: width 0.1s ease;
+  font-size: 0;
+  width: 100%;
+}
+
 
 /*# sourceMappingURL=storybook.css.map*/

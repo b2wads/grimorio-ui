@@ -108,16 +108,15 @@ sleep 0.5
 touch $path/$name/$name.stories.js
 cat > $path/$name/$name.stories.js <<EOF
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import $capitalizeName from './$name-component';
 
-const stories = storiesOf('$capitalizeName', module);
+export default {
+  title: '$capitalizeName',
+  component: $capitalizeName,
+};
 
-stories.addDecorator(withKnobs);
-
-stories.add('Normal', () => <$capitalizeName />);
+export const Default = () => <$capitalizeName />;
 EOF
 
 echo -ne '[############         ] created story!                       \r'

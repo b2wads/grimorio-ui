@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import styles from './progress-bar.styl';
 
-const ProgressBar = ({ progress, className, theme }) => {
+export const ProgressBar = ({ progress, className, theme }) => {
   const progressWrap = cx(styles.progressWrap, className);
 
   const progressClass = cx(styles.progressBar, {

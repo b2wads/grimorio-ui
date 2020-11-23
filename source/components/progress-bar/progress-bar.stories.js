@@ -1,55 +1,49 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
-import ProgressBar from './progress-bar-component';
+import { ProgressBar } from './progress-bar-component';
 import Button from '../button';
 
-const stories = storiesOf('ProgressBar', module);
+export default {
+  title: 'ProgressBar',
+  component: ProgressBar,
+};
 
-stories.addDecorator(withKnobs);
+export const Normal = withState({ percent: 0 }, store => {
+  const changePercent = () => {
+    store.set({ percent: parseFloat((Math.random() * 100).toFixed(0)) });
+  };
 
-stories.add(
-  'Normal',
-  withState({ percent: 0 })(({ store }) => {
-    const changePercent = () => {
-      store.set({ percent: parseFloat((Math.random() * 100).toFixed(0)) });
-    };
+  return (
+    <div>
+      <Button onClick={changePercent}>Change Percent Randomly</Button>
+      <br />
+      <br />
 
-    return (
-      <div>
-        <Button onClick={changePercent}>Change Percent Randomly</Button>
-        <br/><br/>
+      <p>Primary / With State</p>
+      <ProgressBar progress={store.state.percent} />
+      <br />
+    </div>
+  );
+});
 
-        <p>Primary / With State</p>
-        <ProgressBar progress={store.state.percent}/>
-        <br/>
-      </div>
-    );
-  })
-);
-
-stories.add('Temas', () => {
+export const Temas = () => {
   return (
     <div>
       <p>Primary</p>
-      <ProgressBar progress={30} className="my-progress" theme="primary"/>
-      <br/>
+      <ProgressBar progress={30} className="my-progress" theme="primary" />
+      <br />
       <p>Support</p>
-      <ProgressBar progress={30} className="my-progress" theme="support"/>
-      <br/>
+      <ProgressBar progress={30} className="my-progress" theme="support" />
+      <br />
       <p>Error</p>
-      <ProgressBar progress={30} className="my-progress" theme="error"/>
-      <br/>
+      <ProgressBar progress={30} className="my-progress" theme="error" />
+      <br />
       <p>Warning</p>
-      <ProgressBar progress={50} className="my-progress" theme="warning"/>
-      <br/>
+      <ProgressBar progress={50} className="my-progress" theme="warning" />
+      <br />
       <p>Success</p>
-      <ProgressBar progress={70} className="my-progress" theme="success"/>
+      <ProgressBar progress={70} className="my-progress" theme="success" />
     </div>
-  )
-})
-
-
-
+  );
+};

@@ -1,26 +1,36 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import Tag from './tag-component';
 
-const stories = storiesOf('Tag', module);
+export default {
+  title: 'Tag',
+  component: Tag,
+};
 
+const action = (name) => (...params) => {
+  console.log(name, params);
+};
 
-stories.add('Normal', () => (
+export const Normal = () => (
   <div>
-    <Tag color="primary" >1º Ranking</Tag>
+    <Tag color="primary">1º Ranking</Tag>
   </div>
-));
+);
 
-stories.add('Fixed', () => (
+export const Fixed = () => (
   <div>
-    <Tag color="primary" fixed >2º Ranking</Tag>
+    <Tag color="primary" fixed>
+      2º Ranking
+    </Tag>
   </div>
-));
+);
 
-stories.add('onClick()', () => (
+export const OnClick = () => (
   <div>
-    <Tag color="primary" onClick={action('onClick!')}>Click here ➡️</Tag>
+    <Tag color="primary" onClick={action('onClick!')}>
+      Click here ➡️
+    </Tag>
   </div>
-));
+);
+
+

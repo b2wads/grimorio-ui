@@ -1,107 +1,142 @@
 import React from 'react';
-import { storiesOf, ReactiveVar } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { action, configureActions } from '@storybook/addon-actions';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import Popover from './popover-component';
-import Button from '../button'
+import Button from '../button';
 
-const stories = storiesOf('Popover', module);
-
-stories.addDecorator(withKnobs);
+export default {
+  title: 'Popover',
+  component: Popover,
+};
 
 const initialState = {
   isPopoverOpen: false,
 };
 
-stories.add('Normal', withState(initialState)(({ store }) => {
+const action = (name) => (...params) => {
+  console.log(name, params);
+};
+
+export const Normal = withState(initialState, store => {
   const StubButton = () => {
     const { isPopoverOpen } = store.state;
     return (
-      <Button onClick={() => store.set({ isPopoverOpen: !isPopoverOpen })}>Popover for this button</Button>
+      <Button onClick={() => store.set({ isPopoverOpen: !isPopoverOpen })}>
+        Popover for this button
+      </Button>
     );
   };
 
   return (
     <Popover actionComponent={<StubButton />} isOpen={store.state.isPopoverOpen}>
       <div style={{ width: '300px' }}>
-        Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
+        Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim
+        voluptate ea.
       </div>
     </Popover>
-  )
-}));
+  );
+});
 
-stories.add('On Dismiss', withState(initialState)(({ store }) => {
+export const OnDismiss = withState(initialState, store => {
   const StubButton = () => {
     const { isPopoverOpen } = store.state;
     return (
-      <Button onClick={() => store.set({ isPopoverOpen: !isPopoverOpen })}>Popover for this button</Button>
+      <Button onClick={() => store.set({ isPopoverOpen: !isPopoverOpen })}>
+        Popover for this button
+      </Button>
     );
   };
 
   const onDismiss = () => {
     store.set({ isPopoverOpen: false });
     action('Popover dismissed.')();
-  }
+  };
 
   return (
     <React.Fragment>
       <h3>Click outsite to dismiss the Popover</h3>
       <br />
-      <Popover actionComponent={<StubButton />} isOpen={store.state.isPopoverOpen} onDismiss={onDismiss}>
+      <Popover
+        actionComponent={<StubButton />}
+        isOpen={store.state.isPopoverOpen}
+        onDismiss={onDismiss}
+      >
         <div style={{ width: '300px' }}>
-          Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
+          Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim
+          voluptate ea.
         </div>
       </Popover>
     </React.Fragment>
-  )
-}));
+  );
+});
 
 const anotherInitialState = {
-  "first": false,
-  "second": false,
-  "third": false,
-  "fourth": false,
-}
+  first: false,
+  second: false,
+  third: false,
+  fourth: false,
+};
 
-stories.add('Open in different positions', withState(anotherInitialState)(({ store }) => {
+export const OpenInDifferentPositions = withState(anotherInitialState, store => {
   const StubButton = ({ popoverName, title }) => {
     const { isPopoverOpen } = store.state;
     return (
-      <Button onClick={() => store.set({ [popoverName]: !store.state[popoverName] })}>{title}</Button>
+      <Button onClick={() => store.set({ [popoverName]: !store.state[popoverName] })}>
+        {title}
+      </Button>
     );
   };
 
   return (
     <React.Fragment>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Popover actionComponent={<StubButton popoverName="first" title="Popover bottomRight" />} isOpen={store.state["first"]}>
+        <Popover
+          actionComponent={<StubButton popoverName="first" title="Popover bottomRight" />}
+          isOpen={store.state['first']}
+        >
           <div style={{ width: '300px' }}>
-            Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
+            Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim
+            voluptate ea.
           </div>
         </Popover>
 
-        <Popover actionComponent={<StubButton popoverName="second" title="Popover bottomLeft" />} isOpen={store.state["second"]} position="bottomLeft">
+        <Popover
+          actionComponent={<StubButton popoverName="second" title="Popover bottomLeft" />}
+          isOpen={store.state['second']}
+          position="bottomLeft"
+        >
           <div style={{ width: '300px' }}>
-            Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
+            Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim
+            voluptate ea.
           </div>
         </Popover>
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px' }}>
-        <Popover actionComponent={<StubButton popoverName="third" title="Popover topRight" />} isOpen={store.state["third"]} position="topRight">
+        <Popover
+          actionComponent={<StubButton popoverName="third" title="Popover topRight" />}
+          isOpen={store.state['third']}
+          position="topRight"
+        >
           <div style={{ width: '300px' }}>
-            Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
+            Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim
+            voluptate ea.
           </div>
         </Popover>
 
-        <Popover actionComponent={<StubButton popoverName="fourth" title="Popover topLeft" />} isOpen={store.state["fourth"]} position="topLeft">
+        <Popover
+          actionComponent={<StubButton popoverName="fourth" title="Popover topLeft" />}
+          isOpen={store.state['fourth']}
+          position="topLeft"
+        >
           <div style={{ width: '300px' }}>
-            Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim voluptate ea.
+            Mollit deserunt elit culpa ex consectetur exercitation sunt est in adipisicing nisi enim
+            voluptate ea.
           </div>
         </Popover>
       </div>
     </React.Fragment>
-  )
-}));
+  );
+});
+
+

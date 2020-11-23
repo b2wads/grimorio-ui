@@ -1,23 +1,17 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import ToggleButton from './toggle-button-component';
 
-const stories = storiesOf('ToggleButton', module);
+export default {
+  title: 'ToggleButton',
+  component: ToggleButton,
+};
 
-stories.addDecorator(withKnobs);
+export const Normal = withState({ value: false }, store => {
+  const handleChange = (value) => {
+    store.set({ value });
+  };
 
-stories.add(
-  'Normal',
-  withState({ value: false })
-  (({ store }) => {
-    const handleChange = value => {
-      store.set({ value });
-    }
-
-    return (
-      <ToggleButton onClick={handleChange} value={store.state.value} />
-    )
-}))
+  return <ToggleButton onClick={handleChange} active={store.state.value} />;
+});

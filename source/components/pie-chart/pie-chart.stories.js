@@ -1,17 +1,16 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import PieChart from './pie-chart-component';
 import Button from '../button';
 import Panel from '../panel';
 
-const stories = storiesOf('PieChart', module);
+export default {
+  title: 'PieChart',
+  component: PieChart,
+};
 
-stories.addDecorator(withKnobs);
-
-stories.add('Normal', () =>
+export const Normal = () => (
   <PieChart
     chartData={{
       labels: ['Verde', 'Rosa', 'Roxo'],
@@ -21,7 +20,7 @@ stories.add('Normal', () =>
   />
 );
 
-stories.add('Pie', () =>
+export const Pie = () => (
   <PieChart
     options={{
       cutoutPercentage: 0,
@@ -34,7 +33,7 @@ stories.add('Pie', () =>
   />
 );
 
-stories.add('Error', () =>
+export const Error = () => (
   <PieChart
     cutoutPercentage={50}
     chartData={{
@@ -46,43 +45,44 @@ stories.add('Error', () =>
   />
 );
 
-stories.add('With changing data', withState({
+export const WithChangingData = withState({
   loading: false,
   data: [10, 20, 30],
   label: ['Verde', 'Rosa', 'Roxo'],
-  color: ['#2D898B', '#CF1259', '#3772FF']
+  color: ['#2D898B', '#CF1259', '#3772FF'],
 })(({ store }) => {
-
   const change = () => {
-    store.set({ loading: true })
+    store.set({ loading: true });
     setTimeout(() => {
       store.set({
         data: [50, 15, 21, 34],
         label: ['Verde', 'Rosa', 'Roxo', 'Outro'],
         color: ['#2D898B', '#CF1259', '#3772FF', 'green'],
-        loading: false
-      })
-    }, 1500)
+        loading: false,
+      });
+    }, 1500);
   };
 
-  return <div>
-    <Button onClick={change}>
-      Change
-    </Button>
-    <br/>
-    <br/>
-    <br/>
+  return (
+    <div>
+      <Button onClick={change}>Change</Button>
+      <br />
+      <br />
+      <br />
 
-    <Panel title="Changing Data" accordion>
-      <PieChart
-        loading={store.state.loading}
-        cutoutPercentage={50}
-        chartData={{
-          labels: store.state.label,
-          backgroundColor: store.state.color,
-          data: store.state.data,
-        }}
-      />
-    </Panel>
-  </div>
-}));
+      <Panel title="Changing Data" accordion>
+        <PieChart
+          loading={store.state.loading}
+          cutoutPercentage={50}
+          chartData={{
+            labels: store.state.label,
+            backgroundColor: store.state.color,
+            data: store.state.data,
+          }}
+        />
+      </Panel>
+    </div>
+  );
+});
+
+

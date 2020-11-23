@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import styles from './header.styl';
 
-const Header = ({ className, contentClassName, showLogo, logo, onLogoClick, children, ...elementProps }) => {
+export const Header = ({ className, contentClassName, showLogo, logo, onLogoClick, children, ...elementProps }) => {
   const fullClassName = cx(className, styles.header, {
     [styles.showLogo]: showLogo,
   });
