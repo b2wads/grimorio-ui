@@ -1,10 +1,11 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs, number } from '@storybook/addon-knobs';
 
 import Pager from './pager-component';
 
-const stories = storiesOf('Pager', module);
+export default {
+  title: 'Pager',
+  component: Pager,
+};
 
 const data = [];
 
@@ -19,9 +20,8 @@ const meta = {
 };
 
 const limitList = [10, 15, 20, 50];
-stories.addDecorator(withKnobs);
 
-stories.add('Normal', () => {
+export const Normal = () => {
   return (
     <Pager
       {...meta}
@@ -33,9 +33,9 @@ stories.add('Normal', () => {
       hasPagination
     />
   );
-});
+};
 
-stories.add('Mobile', () => {
+export const Mobile = () => {
   return (
     <Pager
       {...meta}
@@ -48,4 +48,4 @@ stories.add('Mobile', () => {
       isMobile
     />
   );
-});
+};

@@ -1,16 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import moment from 'moment';
 
 import DatePicker from './date-picker-component';
 
-const stories = storiesOf('DatePicker', module);
+export default {
+  title: 'DatePicker',
+  component: DatePicker,
+};
 
-stories.addDecorator(withKnobs);
+const action = (name) => (...params) => {
+  console.log(name, params);
+};
 
-stories.add('Normal', () => {
+export const Normal = () => {
   return (
     <div>
       <DatePicker
@@ -20,33 +22,25 @@ stories.add('Normal', () => {
       />
     </div>
   );
-});
+};
 
-stories.add('Single Date', () => {
+export const SingleDate = () => {
   return (
     <div>
-      <DatePicker
-        monthsToShow={1}
-        onChange={action('onChange: dates object')}
-      />
+      <DatePicker monthsToShow={1} onChange={action('onChange: dates object')} />
     </div>
   );
-});
+};
 
-stories.add('Mobile', () => {
+export const Mobile = () => {
   return (
     <div>
-      <DatePicker
-        isRangeDate
-        isMobile
-        onChange={action('onChange: dates object')}
-      />
+      <DatePicker isRangeDate isMobile onChange={action('onChange: dates object')} />
     </div>
   );
-});
+};
 
-
-stories.add('Default Values', () => {
+export const DefaultValues = () => {
   return (
     <div>
       <DatePicker
@@ -56,8 +50,8 @@ stories.add('Default Values', () => {
         onChange={action('onChange: dates object')}
       />
 
-      <br/>
-      <br/>
+      <br />
+      <br />
 
       <DatePicker
         defaultSingleDate={moment().subtract(7, 'days')}
@@ -67,9 +61,9 @@ stories.add('Default Values', () => {
       />
     </div>
   );
-});
+};
 
-stories.add('Align', () => {
+export const Align = () => {
   return (
     <div>
       <DatePicker
@@ -79,8 +73,8 @@ stories.add('Align', () => {
         onChange={action('onChange: dates object')}
       />
 
-      <br/>
-      <br/>
+      <br />
+      <br />
 
       <DatePicker
         isRangeDate
@@ -90,4 +84,4 @@ stories.add('Align', () => {
       />
     </div>
   );
-});
+};

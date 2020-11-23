@@ -1,16 +1,15 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import EditableValue from './editable-value-component';
 import Button from '../button';
 
-const stories = storiesOf('EditableValue', module);
+export default {
+  title: 'EditableValue',
+  component: EditableValue,
+};
 
-stories.addDecorator(withKnobs);
-
-stories.add('Default', () => (
+export const Default = () => (
   <EditableValue
     initialValue="Default"
     onSubmit={(value, toggleFn) => {
@@ -18,9 +17,9 @@ stories.add('Default', () => (
       toggleFn();
     }}
   />
-));
+);
 
-stories.add('Outline', () => (
+export const Outline = () => (
   <EditableValue
     outline
     initialValue="Outline"
@@ -28,12 +27,12 @@ stories.add('Outline', () => (
       console.log('onSubmit', value);
       toggleFn();
     }}
-    validation={value => `${value}`.length >= 4}
+    validation={(value) => `${value}`.length >= 4}
     errorMessage="Favor inserir 4 caracteres"
   />
-));
+);
 
-stories.add('Label', () => (
+export const Label = () => (
   <div>
     <EditableValue
       outline
@@ -43,13 +42,13 @@ stories.add('Label', () => (
         console.log('onSubmit', value);
         toggleFn();
       }}
-      validation={value => `${value}`.length >= 4}
+      validation={(value) => `${value}`.length >= 4}
       errorMessage="Favor inserir 4 caracteres"
     />
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
+    <br />
     <EditableValue
       label="Teste"
       initialValue="No Outline"
@@ -57,13 +56,13 @@ stories.add('Label', () => (
         console.log('onSubmit', value);
         toggleFn();
       }}
-      validation={value => `${value}`.length >= 4}
+      validation={(value) => `${value}`.length >= 4}
       errorMessage="Favor inserir 4 caracteres"
     />
   </div>
-));
+);
 
-stories.add('Uncontrolled', () => (
+export const Uncontrolled = () => (
   <EditableValue
     label="Uncontrolled"
     initialValue="Valor interno"
@@ -71,14 +70,13 @@ stories.add('Uncontrolled', () => (
       console.log('onSubmit', value);
       toggleFn();
     }}
-    validation={value => `${value}`.length >= 4}
+    validation={(value) => `${value}`.length >= 4}
     errorMessage="Favor inserir 4 caracteres"
   />
-));
+);
 
-stories.add(
-  'Controlled',
-  withState({ loading: false, value: 'Valor no estado (externo)' })(({ store }) => {
+export const Controlled = withState({ loading: false, value: 'Valor no estado (externo)' })(
+  ({ store }) => {
     const setVal = (value, toggle) => {
       store.set({ loading: true });
       setTimeout(() => {
@@ -97,13 +95,13 @@ stories.add(
           loading={store.state.loading}
           value={store.state.value}
           onSubmit={setVal}
-          validation={value => `${value}`.length > 4}
+          validation={(value) => `${value}`.length > 4}
           errorMessage="Favor inserir mais que 4 caracteres"
         />
-        <br/>
-        <br/>
+        <br />
+        <br />
         <Button onClick={changeVal}>Change State Value</Button>
       </div>
     );
-  })
+  }
 );

@@ -1,51 +1,32 @@
 {
   "env": {
     "testing": {
-      "presets": [
-        ["@babel/preset-env", {
-          "targets": {
-            "browsers": ["last 2 versions", "safari >= 7"]
-          }
-        }],
-        "@babel/preset-react"
-      ],
+      "presets": ["@babel/preset-env", "@babel/preset-react"],
       "plugins": [
-        "@babel/plugin-proposal-class-properties",
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
         "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
         "@babel/plugin-proposal-export-namespace-from",
         "@babel/plugin-transform-modules-commonjs",
-        ["@babel/plugin-transform-runtime", { "regenerator": true }]
+        ["@babel/plugin-transform-runtime", { "regenerator": true }],
+        "react-docgen"
       ]
     },
     "development": {
-      "presets": [
-        ["@babel/preset-env", {
-          "targets": {
-            "browsers": ["last 2 versions", "safari >= 7"]
-          }
-        }],
-        "@babel/preset-react"
-      ],
+      "presets": ["@babel/preset-env", "@babel/preset-react"],
       "plugins": [
-        "@babel/plugin-proposal-class-properties",
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
         "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
         "@babel/plugin-proposal-export-namespace-from",
-        ["@babel/plugin-transform-runtime", { "regenerator": true }]
+        ["@babel/plugin-transform-runtime", { "regenerator": true }],
+        "react-docgen"
       ]
     },
     "production": {
-      "presets": [
-        ["@babel/preset-env", {
-          "targets": {
-            "browsers": ["last 2 versions", "safari >= 7"]
-          }
-        }],
-        "@babel/preset-react"
-      ],
+      "presets": ["@babel/preset-env", "@babel/preset-react"],
       "plugins": [
-        "@babel/plugin-proposal-class-properties",
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
         "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
         "@babel/plugin-proposal-export-namespace-from",
@@ -55,7 +36,8 @@
           "extensions": [".styl"],
           "extractCss": "./lib/css/modules/components.css"
         }],
-        ["@babel/plugin-transform-runtime", { "regenerator": true }]
+        ["@babel/plugin-transform-runtime", { "regenerator": true }],
+        "react-docgen"
       ],
       "ignore": ["./internals/css-modules-transform.js"]
     }

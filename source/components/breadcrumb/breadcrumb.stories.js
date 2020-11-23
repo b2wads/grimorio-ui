@@ -1,35 +1,31 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Breadcrumb from './breadcrumb-component';
 
-const stories = storiesOf('Breadcrumb', module);
+export default {
+  title: 'Breadcrumb',
+  component: Breadcrumb,
+};
 
-stories.addDecorator(withKnobs);
-
-stories.add('Normal', () => {
+export const Normal = () => {
   return (
     <Breadcrumb
       home="Dashboard"
-      onItemClick={path => console.log(path)}
+      onItemClick={(path) => console.log(path)}
       path="department/category/my-amazing-category"
     />
   );
-});
+};
 
-stories.add('No Home', () => {
+export const NoHome = () => {
   return (
     <div>
       <Breadcrumb
-        onItemClick={path => console.log(path)}
+        onItemClick={(path) => console.log(path)}
         path="department/category/my-amazing-category"
       />
 
-      <Breadcrumb
-        onItemClick={path => console.log(path)}
-        path="department"
-      />
+      <Breadcrumb onItemClick={(path) => console.log(path)} path="department" />
     </div>
   );
-});
+};

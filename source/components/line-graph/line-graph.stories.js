@@ -1,7 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 import moment from 'moment';
 
 moment.locale('pt-br');
@@ -10,9 +8,10 @@ import LineGraph from './line-graph-component';
 import Button from '../button';
 import Panel from '../panel';
 
-const stories = storiesOf('LineGraph', module);
-
-stories.addDecorator(withKnobs);
+export default {
+  title: 'LineGraph',
+  component: LineGraph,
+};
 
 const data = [
   {
@@ -148,8 +147,8 @@ const otherTranformed = [
   },
 ];
 
-const transformData = data => {
-  return data.map(info => ({
+const transformData = (data) => {
+  return data.map((info) => ({
     x: moment(`${info.date}T00:00:00`),
     y: info.revenue,
   }));
@@ -172,7 +171,7 @@ const options = {
   },
 };
 
-stories.add('Normal', () =>
+export const Normal = () => (
   <Panel title="Normal">
     <LineGraph
       title="Pedidos!"
@@ -199,7 +198,7 @@ stories.add('Normal', () =>
   </Panel>
 );
 
-stories.add('No Legend', () =>
+export const NoLegend = () => (
   <Panel title="Normal" accordion>
     <LineGraph
       title="Pedidos!"
@@ -227,21 +226,24 @@ stories.add('No Legend', () =>
   </Panel>
 );
 
-stories.add('Error', () => (
+export const Error = () => (
   <LineGraph
     title="Pedidos!"
     error
     onErrorClick={() => alert('try again!')}
     style={{ height: '400px' }}
-    actions={<Button color="variant" modifier="outline">Export</Button>}
+    actions={
+      <Button color="variant" modifier="outline">
+        Export
+      </Button>
+    }
     datasets={[]}
     options={options}
   />
-));
+);
 
-stories.add(
-  'With changing data',
-  withState({ loading: false, data: other, label: 'teste 1' })(({ store }) => {
+export const WithChangingData = withState({ loading: false, data: other, label: 'teste 1' })(
+  ({ store }) => {
     const change = () => {
       store.set({ loading: true });
       setTimeout(() => {
@@ -251,9 +253,7 @@ stories.add(
 
     return (
       <div>
-        <Button onClick={change}>
-          Change
-        </Button>
+        <Button onClick={change}>Change</Button>
         <br />
         <br />
         <br />
@@ -277,10 +277,12 @@ stories.add(
         </Panel>
       </div>
     );
-  })
+  }
 );
 
-stories.add('With custom tooltip label', () =>
+
+
+export const WithCustomTooltipLabel = () => (
   <Panel title="Normal" accordion>
     <LineGraph
       title="Pedidos!"
@@ -304,8 +306,12 @@ stories.add('With custom tooltip label', () =>
       ]}
       options={options}
       tooltipFormatLabel={(tooltipItem, data) => {
-        return `customizado! ${data.datasets[tooltipItem.datasetIndex].label}: ${tooltipItem.yLabel}`
+        return `customizado! ${data.datasets[tooltipItem.datasetIndex].label}: ${
+          tooltipItem.yLabel
+        }`;
       }}
     />
   </Panel>
 );
+
+

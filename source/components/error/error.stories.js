@@ -1,22 +1,23 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Error from './error-component';
 
-const stories = storiesOf('Error', module);
+export default {
+  title: 'Error',
+  component: Error,
+};
 
-stories.addDecorator(withKnobs);
-
-stories.add('Normal', () => {
+export const Normal = () => {
   return (
     <div>
       <Error hasButton onErrorClick={() => alert('error!')} />
-      <br/>
-      <br/>
+      <br />
+      <br />
       <Error errorMessage="Parece que algo deu errado, por favor, tente mais tarde." />
-      <br/><br/><br/>
-      <Error hasButton outline errorBtnText="Sair"/>
+      <br />
+      <br />
+      <br />
+      <Error hasButton outline errorBtnText="Sair" />
     </div>
   );
-});
+};
