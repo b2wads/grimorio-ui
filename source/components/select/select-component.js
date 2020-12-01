@@ -19,12 +19,15 @@ class Select extends Component {
       menuOpen: false,
       activeLabel: !!props.value || !!props.defaultValue,
       childItems: [],
+      filteredItems: props.items,
     };
 
     this.onSelectItem = this.onSelectItem.bind(this);
     this.verifyClickOutside = this.verifyClickOutside.bind(this);
     this.closeSelect = this.closeSelect.bind(this);
+    this.filterInput = this.filterInput.bind(this);
     this.selectWrap = null;
+    this.inputFilter = null;
   }
 
   static propTypes = {
@@ -47,6 +50,7 @@ class Select extends Component {
     isMobile: PropTypes.bool,
     active: PropTypes.bool,
     noCurrentValue: PropTypes.bool,
+    hasFilter: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -60,6 +64,7 @@ class Select extends Component {
     value: false,
     sortItems: true,
     isMobile: false,
+    hasFilter: false,
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -67,6 +72,7 @@ class Select extends Component {
       nextState.activeLabel !== this.state.activeLabel ||
       nextState.menuOpen !== this.state.menuOpen ||
       nextState.selectedValue !== this.state.selectedValue ||
+      nextState.filteredItems !== this.state.filteredItems ||
       nextProps.value !== this.props.value ||
       nextProps.items.length !== this.props.items.length ||
       nextProps.open !== this.props.open ||
@@ -103,6 +109,7 @@ class Select extends Component {
         selectedName: this.getSelectedValue(value) ? this.getSelectedValue(value)['name'] : null,
         selectedValue: this.getSelectedValue(value) ? this.getSelectedValue(value)['value'] : null,
       });
+      this.clearFilterInput();
     }
   }
 
@@ -117,10 +124,18 @@ class Select extends Component {
     return currentOption.length ? currentOptionValues : false;
   }
 
+  clearFilterInput() {
+    if (this.inputFilter) {
+      this.inputFilter.value = null;
+      this.setState({ filteredItems: this.props.items });
+    }
+  }
+
   verifyClickOutside(e) {
     if (this.selectWrap && !this.selectWrap.contains(e.target)) {
       this.closeSelect();
       this.props.onClickOutside && this.props.onClickOutside(this.state.menuOpen);
+      this.clearFilterInput();
     }
   }
 
@@ -146,6 +161,7 @@ class Select extends Component {
       }
 
       this.setState(selectedState, this.props.onSelect({ name, value }, false));
+      this.inputFilter.value = null;
     };
   }
 
@@ -183,9 +199,18 @@ class Select extends Component {
     }, []);
   }
 
+  filterInput(event) {
+    const { items } = this.props;
+    const { value } = event.target;
+
+    const newItems = items.filter(item => item.name.includes(value));
+    const filteredItems = this.sortItems(newItems, newItems[0]);
+    this.setState({ filteredItems });
+  }
+
   renderInput() {
     const { selectedName } = this.state;
-    const { placeholder, disabled, inputClassName, active } = this.props;
+    const { placeholder, disabled, inputClassName, active, hasFilter } = this.props;
     const fieldClasses = cx(styles.input, inputClassName, {
       [styles.isPlaceholder]: selectedName === null,
       [styles.isActive]: active,
@@ -194,6 +219,9 @@ class Select extends Component {
 
     return (
       <div onClick={this.toggleOptions()} className={fieldClasses}>
+        {hasFilter
+          ? <input ref={el => (this.inputFilter = el)} className={styles.filterInput} onChange={this.filterInput} />
+          : null}
         {selectedName || placeholder}
       </div>
     );
@@ -229,7 +257,6 @@ class Select extends Component {
 
   render() {
     const {
-      items,
       position,
       open,
       height,
@@ -243,9 +270,9 @@ class Select extends Component {
       noCurrentValue,
       ...elementProps
     } = this.props;
-    const { selectedValue, menuOpen, childItems } = this.state;
+    const { selectedValue, menuOpen, childItems, filteredItems } = this.state;
     const isOpen = open !== null ? open : menuOpen;
-    const renderItems = items.length ? items : childItems;
+    const renderItems = filteredItems.length ? filteredItems : childItems;
     const sortedItems = sortItems ? this.sortItems(renderItems, selectedValue) : renderItems;
 
     const menuStyle = cx(styles.menu, {

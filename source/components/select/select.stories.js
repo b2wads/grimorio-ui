@@ -165,3 +165,17 @@ stories.add(
     );
   })
 );
+
+stories.add(
+  'Select with Filter',
+  () => {
+    return (
+    <Select
+      label="Select com Filtro"
+      items={items}
+      onSelect={(data) => console.log(data)}
+      hasFilter
+    />)
+  }
+ );
+ 

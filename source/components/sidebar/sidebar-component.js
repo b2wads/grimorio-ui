@@ -81,7 +81,13 @@ const Sidebar = ({
         data-testid={id}
         key={id}
       >
-        <AccordionTitle data-testid={id} active={getActiveSection(id)} index={index} onClick={toggleSection(id)} icon={icon}>
+        <AccordionTitle
+          data-testid={id}
+          active={getActiveSection(id)}
+          index={index}
+          onClick={toggleSection(id)}
+          icon={icon}
+        >
           {name}
         </AccordionTitle>
         <AccordionContent active={getActiveSection(id)}>
@@ -91,7 +97,7 @@ const Sidebar = ({
         </AccordionContent>
       </li>
     );
-  }
+  };
 
   const allClassNames = cx(styles.sidebar, className, {
     [styles.closed]: !openNav,
@@ -100,7 +106,7 @@ const Sidebar = ({
   });
 
   return (
-    <>
+    <div>
       <div className={allClassNames}>
         {hasToggle &&
           <button className={styles.toggle} type="button" onClick={handleToggle}>
@@ -122,9 +128,8 @@ const Sidebar = ({
         </nav>
       </div>
 
-      {isMobile &&
-        <div onClick={handleToggle} className={cx(styles.overlay, { [styles.isOpen]: openNav })} />}
-    </>
+      {isMobile && <div onClick={handleToggle} className={cx(styles.overlay, { [styles.isOpen]: openNav })} />}
+    </div>
   );
 };
 
