@@ -1,0 +1,118 @@
+import { Sidebar } from './sidebar-component';
+import { State, action } from '../../helpers/storybook';
+import { Meta, Story, Preview, ArgsTable } from "@storybook/addon-docs/blocks";
+
+import Svg from '../svg';
+import styles from './sidebar.styl';
+
+export const schema = [
+  {
+    render: () => <h3 className="teste-element">Um Elemento qualquer</h3>,
+  },
+  {
+    name: 'Home',
+    link: '/home',
+    icon: 'person',
+    id: 'home-link',
+    className: 'classe-teste',
+  },
+  {
+    name: 'Página 1',
+    link: '/pag1',
+    icon: 'desktop_mac',
+    id: 'pag1',
+  },
+  {
+    name: 'Um Accordion',
+    icon: 'filter',
+    id: 'acc',
+    submenu: [
+      {
+        name: 'Item 1',
+        link: '/acc/item1',
+        id: 'acc-item1',
+        className: 'classe-subitem-1'
+      },
+     {
+        name: 'Item 2',
+        link: '/acc/item2',
+        id: 'acc-item2',
+      },
+    ],
+   },
+   {
+    name: 'Outro Accordion',
+    icon: 'filter',
+    id: 'acc2',
+    submenu: [
+      {
+        name: 'Item 1',
+        link: '/acc2/item1',
+        id: 'acc2-item1',
+      },
+     {
+        name: 'Item 2',
+        link: '/acc2/item2',
+        id: 'acc2-item2',
+      },
+    ],
+   },
+   {
+    name: 'Ajuda!',
+    icon: 'help',
+    id: 'help',
+    action: () => alert('wake me up!'),
+  },
+];
+
+
+<Meta title="Sidebar" component={Sidebar} />
+
+# Sidebar
+
+Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
+
+<ArgsTable of={Sidebar} />
+
+### Default
+<Preview>
+  <Story name="Default">
+    <State initialState={{ open: true }}>
+      {store => (
+        <Sidebar
+          isFixed={false}
+          open={store.state.open}
+          onLogoClick={() => alert('logo!')}
+          onToggle={() => store.set({ open: !store.state.open })}
+          onClickItem={(link) => alert(`Clicou no link ${link}`)}
+          logo={<Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />}
+          logoSmall={<Svg className={styles.logo} width={24} src="logo/afiliados-icon" />}
+          schema={schema}
+          initialSection="acc2"
+          initialItem="acc2-item2"
+        />
+      )}
+    </State>
+  </Story>
+</Preview>
+
+### Mobile
+<Preview>
+  <Story name="Mobile">
+    <State
+      initialState={{ open: false }}
+      render={store => (
+         <Sidebar
+          isFixed={false}
+          open={store.state.open}
+          isMobile
+          onLogoClick={() => alert('logo!')}
+          onToggle={() => store.set({ open: !store.state.open })}
+          logo={<Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />}
+          logoSmall={<Svg className={styles.logo} width={24} src="logo/afiliados-icon" />}
+          schema={schema}
+        />
+      )}
+    />
+  </Story>
+</Preview>

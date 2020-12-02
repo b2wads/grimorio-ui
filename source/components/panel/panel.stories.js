@@ -1,20 +1,16 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { boolean } from '@storybook/addon-knobs';
 
 import Panel from './panel-component';
 import Button from '../button';
 
-const stories = storiesOf('Panel', module);
+export default {
+  title: 'Panel',
+  component: Panel,
+};
 
-stories.addDecorator(withKnobs);
-
-stories.add('Default', () => (
+export const Default = () => (
   <div style={{ width: '25%' }}>
-    <Panel accordion>
-      Simple Panel
-    </Panel>
+    <Panel accordion>Simple Panel</Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <Panel title="Title">
       <p>Content</p>
@@ -25,9 +21,9 @@ stories.add('Default', () => (
       <p>Valor</p>
     </Panel>
   </div>
-));
+);
 
-stories.add('Padding Size', () => (
+export const PaddingSize = () => (
   <div style={{ width: '25%' }}>
     <Panel title="Small" size="small">
       <p>Content</p>
@@ -46,9 +42,9 @@ stories.add('Padding Size', () => (
     </Panel>
     &nbsp;&nbsp;&nbsp;&nbsp;
   </div>
-));
+);
 
-stories.add('Highlight types', () => (
+export const HighlightTypes = () => (
   <div style={{ width: '25%' }}>
     <Panel highlight="line" title="Highlight">
       <p>Line</p>
@@ -58,63 +54,65 @@ stories.add('Highlight types', () => (
       <p>Shadow</p>
     </Panel>
   </div>
-));
+);
 
-stories.add('With Footer', () => (
+
+
+export const WithFooter = () => (
   <div style={{ width: '25%' }}>
     <Panel title="Title" footer={<Button size="large">Cadastrar Site</Button>}>
       <p>Content</p>
     </Panel>
   </div>
-));
+);
 
-stories.add('Title Variations', () => (
+export const TitleVariations = () => (
   <div>
     <Panel style={{ width: '35%' }} title="Normal Title">
       <p>Content</p>
       <Button>Send</Button>
     </Panel>
-    <br/>
-    <br/>
+    <br />
+    <br />
     <Panel title="Title Border" titleBorder style={{ width: '35%' }}>
       <p>Content</p>
     </Panel>
-    <br/>
-    <br/>
-    <Panel 
+    <br />
+    <br />
+    <Panel
       style={{ width: '35%' }}
       title="Title"
       titleBorder
       titleSideComponent={<Button style={{ marginLeft: '10px' }}>Side Component</Button>}
-      accordion>
+      accordion
+    >
       <p>titleSideComponent</p>
     </Panel>
   </div>
-));
+);
 
-
-stories.add('Accordion', () => (
+export const Accordion = () => (
   <div style={{ width: '25%' }}>
     <Panel
       title="Title"
       titleBorder
       footer={<Button size="large">Cadastrar Site</Button>}
       accordion
-      open={boolean('Open', true, 'accordion')}
+      open={true}
     >
       <p>Content</p>
     </Panel>
-    <br/>
+    <br />
     <Panel highlight="line" title="Highlight" accordion>
       <p>Line</p>
     </Panel>
   </div>
-));
+);
 
-stories.add('Loading', () => (
+export const Loading = () => (
   <div style={{ width: '25%' }}>
     <Panel title="Title" loading={true} footer={<Button size="large">Cadastrar Site</Button>}>
       <p>Content</p>
     </Panel>
   </div>
-));
+);

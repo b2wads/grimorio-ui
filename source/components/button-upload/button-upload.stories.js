@@ -1,48 +1,41 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import ButtonUpload from './index';
-import Button from '../button'
+import Button from '../button';
 import styles from './button-upload.styl';
 
-const stories = storiesOf('Button Upload', module);
+export default {
+  title: 'Button Upload',
+  component: ButtonUpload,
+};
 
 const printRes = (data, list, error, size) => {
   console.log('images: ', data, 'list:', list, 'error:', error, 'size', size);
 };
 
-stories.add('Normal', () => (
+export const Normal = () => (
   <div>
-    <ButtonUpload onChange={printRes} showTags/>
-    <ButtonUpload onChange={printRes} withDrop showTags/>
+    <ButtonUpload onChange={printRes} showTags />
+    <ButtonUpload onChange={printRes} withDrop showTags />
   </div>
-));
-
-stories.add(
-  'With image Dimensions',
-  () => (
-    <ButtonUpload
-      allowedDimensions={['300x250']}
-      formatWhiteList={['.jpg', '.jpeg', '.png']}
-      btnText="Apenas 300x250"
-      onChange={printRes}
-      showTags
-    />
-  )
 );
 
-stories.add('With Limit', () =>
+export const WithImageDimensions = () => (
   <ButtonUpload
-    btnText="Apenas 2 imagens"
-    limit={2}
+    allowedDimensions={['300x250']}
+    formatWhiteList={['.jpg', '.jpeg', '.png']}
+    btnText="Apenas 300x250"
     onChange={printRes}
     showTags
-    withDrop
   />
 );
 
-stories.add('With Extension Whitelist', () =>
+export const WithLimit = () => (
+  <ButtonUpload btnText="Apenas 2 imagens" limit={2} onChange={printRes} showTags />
+);
+
+export const WithExtensionWhitelist = () => (
   <ButtonUpload
     formatWhiteList={['.jpg', '.jpeg']}
     btnText="Apenas JPG e JPEG"
@@ -51,63 +44,46 @@ stories.add('With Extension Whitelist', () =>
   />
 );
 
-stories.add('With MaxFileSize', () =>
-  <ButtonUpload
-    maxFileSize={100000}
-    btnText="Até 100KB"
-    onChange={printRes}
-    showTags
-  />
+export const WithMaxFileSize = () => (
+  <ButtonUpload maxFileSize={100000} btnText="Até 100KB" onChange={printRes} showTags />
 );
 
-stories.add('With Drop Area', () =>
-  <ButtonUpload
-    onChange={printRes}
-    showTags
-    withDrop
-    dropText="Texto custom de drop"
-  />
+export const WithDropArea = () => (
+  <ButtonUpload onChange={printRes} showTags withDrop dropText="Texto custom de drop" />
 );
 
-stories.add(
-  'Without Tags',
-  withState({ data: [], list: [] })(({ store }) => {
-    const change = (data, list) => {
-      store.set({ data, list });
-    };
+export const WithoutTags = withState({ data: [], list: [] }, store => {
+  const change = (data, list) => {
+    store.set({ data, list });
+  };
 
-    const removeImage = (index) => {
-      const listFiles = store.state.list.filter((_,i) => i !== index)
-      const listData = store.state.data.filter((_,i) => i !== index)
-      store.set({list: listFiles, data: listData})
+  const removeImage = (index) => {
+    const listFiles = store.state.list.filter((_, i) => i !== index);
+    const listData = store.state.data.filter((_, i) => i !== index);
+    store.set({ list: listFiles, data: listData });
+  };
 
-    }
-
-    return (
-      <div>
-        <div className={styles.contentList}>
-          {store.state.data.map((base64, index) =>
-            <div className={styles.wrapperImg}>
-              <img width="150px" src={base64}/>
-              <div>
-                <Button className={styles.buttonRemove} onClick={() => removeImage(index)}>Remover</Button>
-              </div>
-              <br/>
-              <br/>
-            </div>
-          )}
+  return (
+    <div className={styles.contentList}>
+      {store.state.data.map((base64, index) => (
+        <div className={styles.wrapperImg}>
+          <img width="150px" src={base64} />
+          <div>
+            <Button className={styles.buttonRemove} onClick={() => removeImage(index)}>
+              Remover
+            </Button>
+          </div>
         </div>
-        <br/>
-        <ButtonUpload withDrop files={store.state.list} onChange={change} showTags={false} />
-      </div>
-    );
-  })
-);
+      ))}
+      <br />
+      <ButtonUpload withDrop files={store.state.list} onChange={change} showTags={false} />
+    </div>
+  );
+});
 
-stories.add('Disabled', () => (
+export const Disabled = () => (
   <div>
-    <ButtonUpload disabled onChange={printRes} showTags/>
-    <ButtonUpload disabled onChange={printRes} withDrop showTags/>
+    <ButtonUpload disabled onChange={printRes} showTags />
+    <ButtonUpload disabled onChange={printRes} withDrop showTags />
   </div>
-));
-
+);

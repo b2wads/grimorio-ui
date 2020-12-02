@@ -1,40 +1,41 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-
 
 import Toggle from './toggle-component';
 
-const stories = storiesOf('Toggle', module);
+export default {
+  title: 'Toggle',
+  component: Toggle,
+};
 
-stories.addDecorator(withKnobs);
+const action = (name) => (...params) => {
+  console.log(name, params);
+};
 
-stories.add('Normal', () =>
+export const Normal = () => (
   <Toggle
     id="my-toggle"
     value="10"
-    onChange={e => action('value, checked')(e.target.value, e.target.checked)}
+    onChange={(e) => action('value, checked')(e.target.value, e.target.checked)}
   />
 );
 
-stories.add('Disabled', () =>
+export const Disabled = () => (
   <div>
     <Toggle
       id="my-toggle-1"
       disabled
       value="10"
-      onChange={e => action('value, checked')(e.target.value, e.target.checked)}
+      onChange={(e) => action('value, checked')(e.target.value, e.target.checked)}
     />
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
     <Toggle
       id="my-toggle"
       disabled
       value="10"
       checked={true}
-      onChange={e => action('value, checked')(e.target.value, e.target.checked)}
+      onChange={(e) => action('value, checked')(e.target.value, e.target.checked)}
     />
   </div>
 );

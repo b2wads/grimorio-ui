@@ -2780,11 +2780,14 @@ Form Control Component
  ================ */
 .grm-sidebar__sidebar {
   background-color: var(--c-support-dark);
+  transition: width 0.3s ease;
+  position: relative;
+  width: 290px;
+}
+.grm-sidebar__sidebar.grm-sidebar__isFixed {
   height: 100%;
   position: fixed;
   top: 0;
-  transition: width 0.3s ease;
-  width: 290px;
 }
 .grm-sidebar__sidebar.grm-sidebar__isMobile {
   left: -290px;

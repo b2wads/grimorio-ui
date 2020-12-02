@@ -1,12 +1,11 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Slider from './slider-component';
 
-const stories = storiesOf('Slider', module);
-
-stories.addDecorator(withKnobs);
+export default {
+  title: 'Slider',
+  component: Slider,
+};
 
 const style = {
   width: '100%',
@@ -17,7 +16,7 @@ const style = {
   padding: '50px 0',
 };
 
-stories.add('Arrow Dots', () => (
+export const ArrowDots = () => (
   <div>
     <Slider arrows dots>
       <div style={style}>1</div>
@@ -25,9 +24,9 @@ stories.add('Arrow Dots', () => (
       <div style={style}>3</div>
     </Slider>
   </div>
-));
+);
 
-stories.add('Dots Back', () => (
+export const DotsBack = () => (
   <div>
     <Slider dots dotsBackground>
       <div style={style}>1</div>
@@ -37,9 +36,9 @@ stories.add('Dots Back', () => (
       <div style={style}>5</div>
     </Slider>
   </div>
-));
+);
 
-stories.add('Autoplay', () => (
+export const Autoplay = () => (
   <div>
     <Slider dots autoplay delay={2500}>
       <img style={{ width: '100%', height: 'auto' }} src="https://picsum.photos/1020/420" />
@@ -47,9 +46,9 @@ stories.add('Autoplay', () => (
       <img style={{ width: '100%', height: 'auto' }} src="https://picsum.photos/1020/420?random" />
     </Slider>
   </div>
-));
+);
 
-stories.add('Slides To Show', () => (
+export const SlidesToShow = () => (
   <div>
     <Slider dots autoplay delay={2500} slidesToShow={2}>
       <div style={style}>1</div>
@@ -60,12 +59,12 @@ stories.add('Slides To Show', () => (
       <div style={style}>6</div>
     </Slider>
   </div>
-));
+);
 
-stories.add('Single Slide', () => (
+export const SingleSlide = () => (
   <div>
     <Slider>
       <div style={style}>Single</div>
     </Slider>
   </div>
-));
+);

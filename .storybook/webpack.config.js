@@ -9,7 +9,7 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
     exclude: /node_modules/,
     use: {
       loader: 'babel-loader'
-    }
+    },
   },
   // STYLUS LOADER
   {
@@ -37,7 +37,7 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
           import: path.resolve(__dirname, `../source/styl/config.styl`),
         },
       },
-    ]
+    ],
   },
   {
     test: /\.styl$/,
@@ -54,7 +54,7 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
           import: path.resolve(__dirname, `../source/styl/config.styl`),
         },
       },
-    ]
+    ],
   },
   // CSS LOADER
   {
@@ -64,15 +64,7 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
     use: [
       mode === 'PRODUCTION' ? MiniCssExtractPlugin.loader : 'style-loader',
       'css-loader',
-      // {
-      //   loader: 'postcss-loader',
-      //   options: {
-      //     ident: 'postcss',
-      //     plugins: postCSSPlugins,
-      //   },
-      // },
-    ]
-    // path.resolve(__dirname, `../lib/css`)
+    ],
   },
   // IMG LOADER
   {
@@ -85,7 +77,7 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
       {
         loader: 'file-loader'
       }
-    ]
+    ],
   },
   // SVG LOADER
   {
@@ -93,12 +85,6 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
     exclude: /node_modules/,
     loader: 'svg-react-loader',
   },
-  // STORIES
-  {
-    test: /\.stories\.js?$/,
-    loaders: [require.resolve('@storybook/addon-storysource/loader')],
-    enforce: 'pre',
-  }
 ];
 
 // Export a function. Accept the base config as the only param.

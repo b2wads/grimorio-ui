@@ -1,19 +1,20 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withState } from '@dump247/storybook-state';
+import { withState } from '../../helpers/storybook';
 
 import Select, { SelectOption } from './index';
 import Button from '../button';
 
-const stories = storiesOf('Select', module);
+export default {
+  title: 'Select',
+  component: Select,
+};
 
-stories.addDecorator(withKnobs);
-
-const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(item => ({
-  name: `Opção ${item}`,
-  value: `value-${item}`,
-}));
+const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(
+  (item) => ({
+    name: `Opção ${item}`,
+    value: `value-${item}`,
+  })
+);
 
 const itemsIcon = [
   {
@@ -28,76 +29,128 @@ const itemsIcon = [
   },
 ];
 
-stories.add('Select with Label', () => {
-  return <Select label="Opções" onSelect={data => console.log(data)} items={items} height="200px" sortItems={false} />;
-});
+export const SelectWithLabel = () => {
+  return (
+    <Select
+      label="Opções"
+      onSelect={(data) => console.log(data)}
+      items={items}
+      height="200px"
+      sortItems={false}
+    />
+  );
+};
 
-stories.add('Select outline', () => {
+
+
+export const SelectOutline = () => {
   return (
     <div>
       <Select
         outline
         label="Opções"
         position="bottom"
-        onSelect={data => console.log(data)}
+        onSelect={(data) => console.log(data)}
         height="150px"
         items={items}
       />
     </div>
   );
-});
+};
 
-stories.add('Select Mobile', () => {
-  return <Select isMobile label="Opções" onSelect={data => console.log(data)} items={items} sortItems={false} />;
-});
 
-stories.add(
-  'Controled',
-  withState({ value: 'value-1' })(({ store }) => {
-    const changeValue = ({ value }) => {
-      store.set({ value });
-    };
-    return <Select label="Opções" onSelect={changeValue} items={items} height="200px" value={store.state.value} />;
-  })
-);
 
-stories.add('Select with defaultValue', () => {
-  return <Select label="Opções" onSelect={data => console.log(data)} defaultValue="value-7" items={items} />;
-});
-
-stories.add('Select without Label', () => {
-  return <Select placeholder="Opções" onSelect={data => console.log(data)} items={items} />;
-});
-
-stories.add('Select disabled', () => {
+export const SelectMobile = () => {
   return (
-    <div>
-      <Select disabled placeholder="Opções" onSelect={data => console.log(data)} items={items} />
-      <br />
-      <Select disabled label="Opções" onSelect={data => console.log(data)} items={items} />
-      <br />
-      <Select disabled placeholder="Opções" defaultValue="value-4" onSelect={data => console.log(data)} items={items} />
-      <br />
-      <br />
-      <Select disabled label="Opções" onSelect={data => console.log(data)} defaultValue="value-7" items={items} />
-    </div>
+    <Select
+      isMobile
+      label="Opções"
+      onSelect={(data) => console.log(data)}
+      items={items}
+      sortItems={false}
+    />
   );
-});
+};
 
-stories.add('Select - No Current Value', () => {
+export const Controled = withState({ value: 'value-1' }, store => {
+  const changeValue = ({ value }) => {
+    store.set({ value });
+  };
   return (
     <Select
       label="Opções"
-      onSelect={data => console.log(data)}
+      onSelect={changeValue}
+      items={items}
+      height="200px"
+      value={store.state.value}
+    />
+  );
+});
+
+export const SelectWithDefaultValue = () => {
+  return (
+    <Select
+      label="Opções"
+      onSelect={(data) => console.log(data)}
+      defaultValue="value-7"
+      items={items}
+    />
+  );
+};
+
+
+
+export const SelectWithoutLabel = () => {
+  return <Select placeholder="Opções" onSelect={(data) => console.log(data)} items={items} />;
+};
+
+
+
+export const SelectDisabled = () => {
+  return (
+    <div>
+      <Select disabled placeholder="Opções" onSelect={(data) => console.log(data)} items={items} />
+      <br />
+      <Select disabled label="Opções" onSelect={(data) => console.log(data)} items={items} />
+      <br />
+      <Select
+        disabled
+        placeholder="Opções"
+        defaultValue="value-4"
+        onSelect={(data) => console.log(data)}
+        items={items}
+      />
+      <br />
+      <br />
+      <Select
+        disabled
+        label="Opções"
+        onSelect={(data) => console.log(data)}
+        defaultValue="value-7"
+        items={items}
+      />
+    </div>
+  );
+};
+
+
+
+export const SelectNoCurrentValue = () => {
+  return (
+    <Select
+      label="Opções"
+      onSelect={(data) => console.log(data)}
       items={items}
       height="200px"
       noCurrentValue
       sortItems={false}
     />
   );
-});
+};
 
-stories.add('Select - Options Bottom', () => {
+
+
+export const SelectOptionsBottom = () => {
   return (
     <div>
       <br />
@@ -107,15 +160,17 @@ stories.add('Select - Options Bottom', () => {
         isMobile
         label="Opções"
         position="bottom"
-        onSelect={data => console.log(data)}
+        onSelect={(data) => console.log(data)}
         height="150px"
         items={items}
       />
     </div>
   );
-});
+};
 
-stories.add('Menu', () => {
+
+
+export const Menu = () => {
   return (
     <Select
       type="menu"
@@ -125,46 +180,45 @@ stories.add('Menu', () => {
       items={itemsIcon}
     />
   );
-});
+};
 
 const manualState = {
   manualOpen: false,
   value: 'val2',
 };
 
-stories.add(
-  'Manual',
-  withState(manualState)(({ store }) => {
-    const updateMenu = menuState => {
-      store.set({ manualOpen: menuState });
-    };
+export const Manual = withState(manualState, store => {
+  const updateMenu = (menuState) => {
+    store.set({ manualOpen: menuState });
+  };
 
-    const updateValue = value => {
-      store.set({ value });
-    };
+  const updateValue = (value) => {
+    store.set({ value });
+  };
 
-    return (
-      <Select
-        label="Opções Manuais"
-        onSelect={(data, menu) => {
-          console.log(data, menu);
-          updateMenu(menu);
-          updateValue(data.value);
-        }}
-        onClickOutside={menu => {
-          console.log('click outside');
-          updateMenu(menu);
-        }}
-        open={store.manualOpen}
-        defaultValue="val2"
-        style={{ width: '170px' }}
-      >
-        <SelectOption value="val1">Manual Option One xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxx</SelectOption>
-        <SelectOption value="val2">Manual Option Two</SelectOption>
-      </Select>
-    );
-  })
-);
+  return (
+    <Select
+      label="Opções Manuais"
+      onSelect={(data, menu) => {
+        console.log(data, menu);
+        updateMenu(menu);
+        updateValue(data.value);
+      }}
+      onClickOutside={(menu) => {
+        console.log('click outside');
+        updateMenu(menu);
+      }}
+      open={store.manualOpen}
+      defaultValue="val2"
+      style={{ width: '170px' }}
+    >
+      <SelectOption value="val1">
+        Manual Option One xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxx
+      </SelectOption>
+      <SelectOption value="val2">Manual Option Two</SelectOption>
+    </Select>
+  );
+});
 
 const itemsToFilter = [
   ...items,
@@ -174,16 +228,12 @@ const itemsToFilter = [
   }
 ]
 
-stories.add(
-  'Select with Filter',
-  () => {
-    return (
+export const SelectWithFilter = () => {
+  return (
     <Select
       label="Select com Filtro"
       items={itemsToFilter}
       onSelect={(data) => console.log(data)}
       hasFilter
     />)
-  }
- );
- 
+}

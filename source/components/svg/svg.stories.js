@@ -1,14 +1,13 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import Svg from './index';
 
-const stories = storiesOf('Svg', module);
+export default {
+  title: 'Svg',
+  component: Svg,
+};
 
-stories.addDecorator(withKnobs);
-
-stories.add('All', () => (
+export const All = () => (
   <div>
     <Svg width={48} height={48} />
     <Svg src="555555555555555" />
@@ -19,14 +18,22 @@ stories.add('All', () => (
     <Svg width={50} height={50} src="cupom" />
     <br />
     <br />
-    <Svg width={48} height={48} src="logo/acom" />&nbsp;
-    <Svg width={48} height={48} src="logo/suba" />&nbsp;
-    <Svg width={48} height={48} src="logo/shop" />&nbsp;
-    <Svg width={48} height={48} src="logo/soub" />&nbsp;
+    <Svg width={48} height={48} src="logo/acom" />
+    &nbsp;
+    <Svg width={48} height={48} src="logo/suba" />
+    &nbsp;
+    <Svg width={48} height={48} src="logo/shop" />
+    &nbsp;
+    <Svg width={48} height={48} src="logo/soub" />
+    &nbsp;
     <br />
-    <Svg width={150} height={70} src="logo/suba-full-color" />&nbsp;
-    <Svg width={150} height={70} src="logo/shop-full-color" />&nbsp;
-    <Svg width={150} height={70} src="logo/acom-full-color" />&nbsp;
-    <Svg width={150} height={70} src="logo/soub-full-color" />&nbsp;
+    <Svg width={150} height={70} src="logo/suba-full-color" />
+    &nbsp;
+    <Svg width={150} height={70} src="logo/shop-full-color" />
+    &nbsp;
+    <Svg width={150} height={70} src="logo/acom-full-color" />
+    &nbsp;
+    <Svg width={150} height={70} src="logo/soub-full-color" />
+    &nbsp;
   </div>
-));
+);
