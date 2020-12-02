@@ -106,7 +106,7 @@ const Sidebar = ({
   });
 
   return (
-    <div>
+    <React.Fragment>
       <div className={allClassNames}>
         {hasToggle &&
           <button className={styles.toggle} type="button" onClick={handleToggle}>
@@ -129,7 +129,7 @@ const Sidebar = ({
       </div>
 
       {isMobile && <div onClick={handleToggle} className={cx(styles.overlay, { [styles.isOpen]: openNav })} />}
-    </div>
+    </React.Fragment>
   );
 };
 

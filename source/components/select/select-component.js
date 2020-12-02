@@ -126,16 +126,16 @@ class Select extends Component {
 
   clearFilterInput() {
     if (this.inputFilter) {
-      this.inputFilter.value = null;
       this.setState({ filteredItems: this.props.items });
+      this.inputFilter.value = null;
     }
   }
 
   verifyClickOutside(e) {
     if (this.selectWrap && !this.selectWrap.contains(e.target)) {
       this.closeSelect();
-      this.props.onClickOutside && this.props.onClickOutside(this.state.menuOpen);
       this.clearFilterInput();
+      this.props.onClickOutside && this.props.onClickOutside(this.state.menuOpen);
     }
   }
 
@@ -166,13 +166,14 @@ class Select extends Component {
   }
 
   toggleOptions() {
-    const { disabled } = this.props;
+    const { disabled, items } = this.props;
     this.list && (this.list.scrollTop = 0);
     return () =>
       !disabled &&
       this.setState({
         activeLabel: true,
         menuOpen: true,
+        filteredItems: items,
       });
   }
 
@@ -203,13 +204,19 @@ class Select extends Component {
     const { items } = this.props;
     const { value } = event.target;
 
-    const newItems = items.filter(item => item.name.includes(value));
+    const newItems = items.filter(item => {
+      const itemToCheck = item.name.toLowerCase();
+
+      return item.name.includes(value) || itemToCheck.includes(value);
+    });
+
     const filteredItems = this.sortItems(newItems, newItems[0]);
+
     this.setState({ filteredItems });
   }
 
   renderInput() {
-    const { selectedName } = this.state;
+    const { selectedName, menuOpen } = this.state;
     const { placeholder, disabled, inputClassName, active, hasFilter } = this.props;
     const fieldClasses = cx(styles.input, inputClassName, {
       [styles.isPlaceholder]: selectedName === null,
@@ -219,10 +226,15 @@ class Select extends Component {
 
     return (
       <div onClick={this.toggleOptions()} className={fieldClasses}>
-        {hasFilter
-          ? <input ref={el => (this.inputFilter = el)} className={styles.filterInput} onChange={this.filterInput} />
-          : null}
-        {selectedName || placeholder}
+        {hasFilter && menuOpen
+          ? <input
+              ref={el => (this.inputFilter = el)}
+              className={styles.filterInput}
+              onChange={this.filterInput}
+              placeholder="Filtrar"
+              autoFocus
+            />
+          : selectedName || placeholder}
       </div>
     );
   }
@@ -268,6 +280,7 @@ class Select extends Component {
       isMobile,
       outline,
       noCurrentValue,
+      hasFilter,
       ...elementProps
     } = this.props;
     const { selectedValue, menuOpen, childItems, filteredItems } = this.state;
@@ -281,6 +294,7 @@ class Select extends Component {
       [styles.isUnder]: position === 'under',
       [styles.isScroll]: height !== 'auto',
       [styles.isMobile]: isMobile,
+      [styles.hasFilter]: hasFilter,
     });
 
     const selectStyles = cx(styles.selectWrap, className, {

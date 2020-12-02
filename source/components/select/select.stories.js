@@ -166,13 +166,21 @@ stories.add(
   })
 );
 
+const itemsToFilter = [
+  ...items,
+  { 
+    name: 'Teste de filtro',
+    value: 'teste-filter',
+  }
+]
+
 stories.add(
   'Select with Filter',
   () => {
     return (
     <Select
       label="Select com Filtro"
-      items={items}
+      items={itemsToFilter}
       onSelect={(data) => console.log(data)}
       hasFilter
     />)

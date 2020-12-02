@@ -3,7 +3,7 @@
 exports[`Pager component #render change start and end pages when currentPage + 4 >= maxPages 1`] = `
 "<div className=\\"holdPager\\">
   <div className=\\"perpage\\">
-    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false} hasFilter={false}>
       <SelectOption value={10}>
         10 por página
       </SelectOption>
@@ -68,7 +68,7 @@ exports[`Pager component #render change start and end pages when currentPage + 4
 exports[`Pager component #render change start and end pages when currentPage <= 6 1`] = `
 "<div className=\\"holdPager\\">
   <div className=\\"perpage\\">
-    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false} hasFilter={false}>
       <SelectOption value={10}>
         10 por página
       </SelectOption>
@@ -133,7 +133,7 @@ exports[`Pager component #render change start and end pages when currentPage <= 
 exports[`Pager component #render change start and end pages when is a default value 1`] = `
 "<div className=\\"holdPager\\">
   <div className=\\"perpage\\">
-    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false} hasFilter={false}>
       <SelectOption value={10}>
         10 por página
       </SelectOption>
@@ -198,7 +198,7 @@ exports[`Pager component #render change start and end pages when is a default va
 exports[`Pager component #render render correctly 1`] = `
 "<div className=\\"holdPager\\">
   <div className=\\"perpage\\">
-    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false} hasFilter={false}>
       <SelectOption value={10}>
         10 por página
       </SelectOption>
@@ -231,7 +231,7 @@ exports[`Pager component #render render correctly 1`] = `
 exports[`Pager component #render render correctly with hasFirstLast 1`] = `
 "<div className=\\"holdPager\\">
   <div className=\\"perpage\\">
-    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false} hasFilter={false}>
       <SelectOption value={10}>
         10 por página
       </SelectOption>
@@ -270,7 +270,7 @@ exports[`Pager component #render render correctly with hasFirstLast 1`] = `
 exports[`Pager component #render render correctly with hasPagination 1`] = `
 "<div className=\\"holdPager\\">
   <div className=\\"perpage\\">
-    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false}>
+    <Select sortItems={false} className=\\"select\\" onSelect={[Function: onSelect]} defaultValue={15} position=\\"bottom\\" items={{...}} type=\\"select\\" open={{...}} closeOnClickOutside={true} disabled={false} height=\\"auto\\" value={false} isMobile={false} hasFilter={false}>
       <SelectOption value={10}>
         10 por página
       </SelectOption>

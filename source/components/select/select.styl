@@ -132,7 +132,6 @@ $field {
   }
 
   &.isOpen {
-    top: 100%;
     opacity: 1;
     transform: scaleY(1);
     transition: opacity 0.5s ease;
@@ -148,6 +147,10 @@ $field {
     top: 70px;
     transform: translate(-50%, 0);
     width: 90%;
+  }
+
+  &.hasFilter {
+      top: 100%;
   }
 }
 
@@ -213,6 +216,10 @@ $field {
 .filterInput {
   border: none;
   background-color: transparent;
-  width: 80%;
+  width: 99%;
   height: 100%;
+
+  &:focus {
+    outline: none;
+  }
 }
