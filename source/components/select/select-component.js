@@ -109,7 +109,6 @@ class Select extends Component {
         selectedName: this.getSelectedValue(value) ? this.getSelectedValue(value)['name'] : null,
         selectedValue: this.getSelectedValue(value) ? this.getSelectedValue(value)['value'] : null,
       });
-      this.clearFilterInput();
     }
   }
 
@@ -142,6 +141,7 @@ class Select extends Component {
   closeSelect() {
     const { selectedName } = this.state;
 
+    this.clearFilterInput();
     this.setState({
       menuOpen: false,
       activeLabel: selectedName ? true : false,
@@ -161,19 +161,18 @@ class Select extends Component {
       }
 
       this.setState(selectedState, this.props.onSelect({ name, value }, false));
-      this.inputFilter.value = null;
+      this.clearFilterInput();
     };
   }
 
   toggleOptions() {
-    const { disabled, items } = this.props;
+    const { disabled } = this.props;
     this.list && (this.list.scrollTop = 0);
     return () =>
       !disabled &&
       this.setState({
         activeLabel: true,
         menuOpen: true,
-        filteredItems: items,
       });
   }
 
@@ -205,9 +204,9 @@ class Select extends Component {
     const { value } = event.target;
 
     const newItems = items.filter(item => {
-      const itemToCheck = item.name.toLowerCase();
+      const itemLowercase = item.name.toLowerCase();
 
-      return item.name.includes(value) || itemToCheck.includes(value);
+      return item.name.includes(value) || itemLowercase.includes(value);
     });
 
     const filteredItems = this.sortItems(newItems, newItems[0]);
