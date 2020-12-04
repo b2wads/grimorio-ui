@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 
 import SelectOption from './elements/select-option';
@@ -19,12 +18,15 @@ class Select extends Component {
       menuOpen: false,
       activeLabel: !!props.value || !!props.defaultValue,
       childItems: [],
+      filteredItems: [],
     };
 
     this.onSelectItem = this.onSelectItem.bind(this);
     this.verifyClickOutside = this.verifyClickOutside.bind(this);
     this.closeSelect = this.closeSelect.bind(this);
+    this.filterInput = this.filterInput.bind(this);
     this.selectWrap = null;
+    this.inputFilter = null;
   }
 
   static propTypes = {
@@ -47,6 +49,7 @@ class Select extends Component {
     isMobile: PropTypes.bool,
     active: PropTypes.bool,
     noCurrentValue: PropTypes.bool,
+    hasFilter: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -60,6 +63,7 @@ class Select extends Component {
     value: false,
     sortItems: true,
     isMobile: false,
+    hasFilter: false,
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -67,6 +71,7 @@ class Select extends Component {
       nextState.activeLabel !== this.state.activeLabel ||
       nextState.menuOpen !== this.state.menuOpen ||
       nextState.selectedValue !== this.state.selectedValue ||
+      nextState.filteredItems !== this.state.filteredItems ||
       nextProps.value !== this.props.value ||
       nextProps.items.length !== this.props.items.length ||
       nextProps.open !== this.props.open ||
@@ -117,9 +122,20 @@ class Select extends Component {
     return currentOption.length ? currentOptionValues : false;
   }
 
+  clearFilterInput() {
+    const { items } = this.props;
+    const { childItems } = this.state;
+
+    if (this.inputFilter) {
+      this.setState({ filteredItems: items.length ? items : childItems });
+      this.inputFilter.value = null;
+    }
+  }
+
   verifyClickOutside(e) {
     if (this.selectWrap && !this.selectWrap.contains(e.target)) {
       this.closeSelect();
+      this.clearFilterInput();
       this.props.onClickOutside && this.props.onClickOutside(this.state.menuOpen);
     }
   }
@@ -127,6 +143,7 @@ class Select extends Component {
   closeSelect() {
     const { selectedName } = this.state;
 
+    this.clearFilterInput();
     this.setState({
       menuOpen: false,
       activeLabel: selectedName ? true : false,
@@ -146,6 +163,7 @@ class Select extends Component {
       }
 
       this.setState(selectedState, this.props.onSelect({ name, value }, false));
+      this.clearFilterInput();
     };
   }
 
@@ -171,7 +189,7 @@ class Select extends Component {
       });
     });
 
-    !this.state.childItems.length && this.setState({ childItems });
+    !this.state.childItems.length && this.setState({ childItems, filteredItems: childItems });
   }
 
   sortItems(items, value) {
@@ -183,9 +201,25 @@ class Select extends Component {
     }, []);
   }
 
+  filterInput(event) {
+    const { items } = this.props;
+    const { childItems } = this.state;
+    const { value } = event.target;
+
+    const itemsToFilter = items.length ? items : childItems;
+
+    const filteredItems = itemsToFilter.filter(item => {
+      const itemLowercase = item.name.toLowerCase();
+
+      return item.name.includes(value) || itemLowercase.includes(value);
+    });
+
+    this.setState({ filteredItems });
+  }
+
   renderInput() {
-    const { selectedName } = this.state;
-    const { placeholder, disabled, inputClassName, active } = this.props;
+    const { selectedName, menuOpen } = this.state;
+    const { placeholder, disabled, inputClassName, active, hasFilter } = this.props;
     const fieldClasses = cx(styles.input, inputClassName, {
       [styles.isPlaceholder]: selectedName === null,
       [styles.isActive]: active,
@@ -194,7 +228,15 @@ class Select extends Component {
 
     return (
       <div onClick={this.toggleOptions()} className={fieldClasses}>
-        {selectedName || placeholder}
+        {hasFilter && menuOpen
+          ? <input
+              ref={el => (this.inputFilter = el)}
+              className={styles.filterInput}
+              onChange={this.filterInput}
+              placeholder="Filtrar"
+              autoFocus
+            />
+          : selectedName || placeholder}
       </div>
     );
   }
@@ -229,7 +271,6 @@ class Select extends Component {
 
   render() {
     const {
-      items,
       position,
       open,
       height,
@@ -241,11 +282,12 @@ class Select extends Component {
       isMobile,
       outline,
       noCurrentValue,
+      hasFilter,
       ...elementProps
     } = this.props;
-    const { selectedValue, menuOpen, childItems } = this.state;
+    const { selectedValue, menuOpen, filteredItems } = this.state;
     const isOpen = open !== null ? open : menuOpen;
-    const renderItems = items.length ? items : childItems;
+    const renderItems = filteredItems;
     const sortedItems = sortItems ? this.sortItems(renderItems, selectedValue) : renderItems;
 
     const menuStyle = cx(styles.menu, {
@@ -254,6 +296,7 @@ class Select extends Component {
       [styles.isUnder]: position === 'under',
       [styles.isScroll]: height !== 'auto',
       [styles.isMobile]: isMobile,
+      [styles.hasFilter]: hasFilter,
     });
 
     const selectStyles = cx(styles.selectWrap, className, {
@@ -291,4 +334,4 @@ class Select extends Component {
   }
 }
 
-export default CSSModules(Select, styles);
+export default Select;

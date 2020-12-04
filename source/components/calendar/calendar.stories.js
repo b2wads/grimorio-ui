@@ -25,6 +25,7 @@ export const RangeDate = withState({ startDate: undefined, endDate: undefined },
   );
 });
 
+
 export const SingleDate = withState({ singleDate: undefined }, store => {
   const handleChange = ({ date }) => {
     store.set({ singleDate: date });
@@ -48,15 +49,15 @@ export const BlockDays = withState({ singleDate: undefined }, store => {
 export const StartingWithValues = withState({
   startDate: moment().subtract(7, 'days'),
   endDate: moment(),
-})(({ store }) => {
+}, store => {
   const handleChange = (dates) => {
     store.set(dates);
-  };
+  }
   return (
     <Calendar
       startDate={store.state.startDate}
       endDate={store.state.endDate}
-      onChange={(dates) => handleChange(dates)}
+      onChange={handleChange}
       isRangeDate
     />
   );

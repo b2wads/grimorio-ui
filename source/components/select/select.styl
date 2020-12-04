@@ -148,6 +148,10 @@ $field {
     transform: translate(-50%, 0);
     width: 90%;
   }
+
+  &.hasFilter {
+      top: 100%;
+  }
 }
 
 .option {
@@ -206,5 +210,16 @@ $field {
 
   .menu {
     top: 10px;
+  }
+}
+
+.filterInput {
+  border: none;
+  background-color: transparent;
+  width: 99%;
+  height: 100%;
+
+  &:focus {
+    outline: none;
   }
 }
