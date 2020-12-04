@@ -237,3 +237,14 @@ export const SelectWithFilter = () => {
       hasFilter
     />)
 }
+
+export const ManualWithFilter = () => {
+  return(
+    <Select label="Select Manual com Filtro" onSelect={(data) => console.log(data)} hasFilter>
+      <SelectOption value="val1">Manual Option One</SelectOption>
+      <SelectOption value="val2">Manual Opzione Due</SelectOption>
+      <SelectOption value="val3">Manual Opção Três</SelectOption>
+      <SelectOption value="val4">Manual Opción Cuatro</SelectOption>
+    </Select>
+  )
+}

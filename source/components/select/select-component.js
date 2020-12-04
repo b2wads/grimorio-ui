@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 
 import SelectOption from './elements/select-option';
@@ -19,7 +18,7 @@ class Select extends Component {
       menuOpen: false,
       activeLabel: !!props.value || !!props.defaultValue,
       childItems: [],
-      filteredItems: props.items,
+      filteredItems: [],
     };
 
     this.onSelectItem = this.onSelectItem.bind(this);
@@ -124,8 +123,11 @@ class Select extends Component {
   }
 
   clearFilterInput() {
+    const { items } = this.props;
+    const { childItems } = this.state;
+
     if (this.inputFilter) {
-      this.setState({ filteredItems: this.props.items });
+      this.setState({ filteredItems: items.length ? items : childItems });
       this.inputFilter.value = null;
     }
   }
@@ -187,7 +189,7 @@ class Select extends Component {
       });
     });
 
-    !this.state.childItems.length && this.setState({ childItems });
+    !this.state.childItems.length && this.setState({ childItems, filteredItems: childItems });
   }
 
   sortItems(items, value) {
@@ -201,15 +203,16 @@ class Select extends Component {
 
   filterInput(event) {
     const { items } = this.props;
+    const { childItems } = this.state;
     const { value } = event.target;
 
-    const newItems = items.filter(item => {
+    const itemsToFilter = items.length ? items : childItems;
+
+    const filteredItems = itemsToFilter.filter(item => {
       const itemLowercase = item.name.toLowerCase();
 
       return item.name.includes(value) || itemLowercase.includes(value);
     });
-
-    const filteredItems = this.sortItems(newItems, newItems[0]);
 
     this.setState({ filteredItems });
   }
@@ -282,9 +285,9 @@ class Select extends Component {
       hasFilter,
       ...elementProps
     } = this.props;
-    const { selectedValue, menuOpen, childItems, filteredItems } = this.state;
+    const { selectedValue, menuOpen, filteredItems } = this.state;
     const isOpen = open !== null ? open : menuOpen;
-    const renderItems = filteredItems.length ? filteredItems : childItems;
+    const renderItems = filteredItems;
     const sortedItems = sortItems ? this.sortItems(renderItems, selectedValue) : renderItems;
 
     const menuStyle = cx(styles.menu, {
@@ -331,4 +334,4 @@ class Select extends Component {
   }
 }
 
-export default CSSModules(Select, styles);
+export default Select;
