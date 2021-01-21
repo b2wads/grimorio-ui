@@ -50,7 +50,7 @@ export const WithChangingData = withState({
   data: [10, 20, 30],
   label: ['Verde', 'Rosa', 'Roxo'],
   color: ['#2D898B', '#CF1259', '#3772FF'],
-})(({ store }) => {
+}, store => {
   const change = () => {
     store.set({ loading: true });
     setTimeout(() => {

@@ -242,8 +242,7 @@ export const Error = () => (
   />
 );
 
-export const WithChangingData = withState({ loading: false, data: other, label: 'teste 1' })(
-  ({ store }) => {
+export const WithChangingData = withState({ loading: false, data: other, label: 'teste 1' }, store => {
     const change = () => {
       store.set({ loading: true });
       setTimeout(() => {
