@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import classNames from 'classnames';
 
 import Loader from '../loader';
@@ -87,4 +87,4 @@ class Button extends PureComponent {
   }
 }
 
-export default CSSModules(Button, styles);
+export default Button;

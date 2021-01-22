@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 
 import Icon from '../icon';
@@ -152,4 +152,4 @@ class Panel extends PureComponent {
   }
 }
 
-export default CSSModules(Panel, styles);
+export default Panel;

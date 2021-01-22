@@ -75,8 +75,7 @@ export const Uncontrolled = () => (
   />
 );
 
-export const Controlled = withState({ loading: false, value: 'Valor no estado (externo)' })(
-  ({ store }) => {
+export const Controlled = withState({ loading: false, value: 'Valor no estado (externo)' }, store => {
     const setVal = (value, toggle) => {
       store.set({ loading: true });
       setTimeout(() => {

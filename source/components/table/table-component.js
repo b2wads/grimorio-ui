@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 import ResizeObserver from '../../polyfills/resize-observer-polyfill';
 
@@ -321,4 +321,4 @@ class Table extends PureComponent {
   }
 }
 
-export default CSSModules(Table, styles);
+export default Table;

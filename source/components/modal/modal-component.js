@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import classNames from 'classnames';
 
 import Icon from '../icon';
@@ -135,4 +135,4 @@ class Modal extends PureComponent {
   }
 }
 
-export default CSSModules(Modal, styles);
+export default Modal;
