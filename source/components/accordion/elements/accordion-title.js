@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import classNames from 'classnames';
 
 import Icon from '../../icon';
@@ -49,4 +49,4 @@ class AccordionTitle extends PureComponent {
   }
 }
 
-export default CSSModules(AccordionTitle, styles);
+export default AccordionTitle;

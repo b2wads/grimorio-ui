@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import Popover from '../popover';
 import Button from '../button';
@@ -197,4 +197,4 @@ class SelectPopover extends React.Component {
   }
 }
 
-export default CSSModules(SelectPopover, styles);
+export default SelectPopover;

@@ -1,5 +1,5 @@
 import React from 'react';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { omit } from '../../helpers';
@@ -67,4 +67,4 @@ class Popover extends React.PureComponent {
   }
 }
 
-export default CSSModules(Popover, styles);
+export default Popover;

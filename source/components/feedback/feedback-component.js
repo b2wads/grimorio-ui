@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import CSSModules from 'react-css-modules';
+
 import Icon from '../icon';
 import styles from './feedback.styl';
 import Button from '../button';
@@ -79,4 +79,4 @@ class Feedback extends Component {
   }
 }
 
-export default CSSModules(Feedback, styles);
+export default Feedback;

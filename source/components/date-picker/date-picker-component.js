@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment';
 import isInclusivelyAfterDay from 'react-dates/lib/utils/isInclusivelyAfterDay';
-import CSSModules from 'react-css-modules';
+
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -143,4 +143,4 @@ class DatePicker extends PureComponent {
   }
 }
 
-export default CSSModules(DatePicker, styles);
+export default DatePicker;
