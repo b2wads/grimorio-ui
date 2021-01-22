@@ -107,7 +107,6 @@
     "prop-types": "15.5.10",
     "react": "16.8.6",
     "react-beautiful-dnd": "13.0.0",
-    "react-css-modules": "4.7.11",
     "react-dates": "18.2.2",
     "react-dom": "16.8.6",
     "svg-react-loader": "0.4.6"

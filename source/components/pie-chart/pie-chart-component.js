@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 
 import { omit } from '../../helpers';
@@ -176,4 +176,4 @@ class PieChart extends PureComponent {
   }
 }
 
-export default CSSModules(PieChart, styles);
+export default PieChart;

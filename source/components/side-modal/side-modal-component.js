@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import classNames from 'classnames';
 import styles from './side-modal.styl';
 
@@ -65,4 +65,4 @@ class SideModal extends PureComponent {
   }
 }
 
-export default CSSModules(SideModal, styles);
+export default SideModal;

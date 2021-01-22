@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import classNames from 'classnames';
 
 import Icon from '../icon';
@@ -82,4 +82,4 @@ class Alert extends PureComponent {
   }
 }
 
-export default CSSModules(Alert, styles);
+export default Alert;

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import CSSModules from 'react-css-modules';
+
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
@@ -139,4 +139,4 @@ class TooltipSticky extends PureComponent {
   }
 }
 
-export default CSSModules(TooltipSticky, styles);
+export default TooltipSticky;

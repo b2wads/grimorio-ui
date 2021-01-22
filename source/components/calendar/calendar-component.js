@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import 'react-dates/initialize';
@@ -113,4 +113,4 @@ class Calendar extends PureComponent {
   }
 }
 
-export default CSSModules(Calendar, styles);
+export default Calendar;

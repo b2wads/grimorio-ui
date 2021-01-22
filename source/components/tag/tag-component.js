@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 
 import styles from './tag.styl';
@@ -37,4 +37,4 @@ class Tag extends PureComponent {
   }
 }
 
-export default CSSModules(Tag, styles);
+export default Tag;

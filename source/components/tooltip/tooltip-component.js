@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import classNames from 'classnames';
 
 import styles from './tooltip.styl';
@@ -42,4 +42,4 @@ class Tooltip extends PureComponent {
   }
 }
 
-export default CSSModules(Tooltip, styles);
+export default Tooltip;
