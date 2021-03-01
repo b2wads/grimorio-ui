@@ -82,7 +82,6 @@ export const Sidebar = ({
       <li
         className={cx(className, styles.accordeonListItem, {
           [styles.isActive]: getActiveSection(id),
-          [styles.isClosed]: !openNav,
         })}
         data-testid={id}
         data-testidgen="menu-item"

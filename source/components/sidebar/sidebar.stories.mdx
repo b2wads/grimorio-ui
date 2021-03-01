@@ -120,23 +120,3 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
     </State>
   </Story>
 </Preview>
-
-### Scrollbar
-<Preview> 
-  <Story name="Scrollbar">
-    <State initialState={{ open: true }}>
-      {store => (
-         <Sidebar
-          isFixed={false}
-          open={store.state.open}
-          onLogoClick={() => alert('logo!')}
-          onClickItem={(link) => alert(`Clicou no link ${link}`)}
-          onToggle={() => store.set({ open: !store.state.open })}
-          logo={<Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />}
-          logoSmall={<Svg className={styles.logo} width={24} src="logo/afiliados-icon" />}
-          schema={schema}
-        />
-      )}
-    </State>
-  </Story>
-</Preview>
