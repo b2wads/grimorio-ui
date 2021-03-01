@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 
 import Icon from '../icon';
@@ -128,4 +128,4 @@ class EditableValue extends PureComponent {
   }
 }
 
-export default CSSModules(EditableValue, styles);
+export default EditableValue;

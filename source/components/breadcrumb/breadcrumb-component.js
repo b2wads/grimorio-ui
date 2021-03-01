@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import classNames from 'classnames';
 
 import styles from './breadcrumb.styl';
@@ -89,4 +89,4 @@ class Breadcrumb extends PureComponent {
   }
 }
 
-export default CSSModules(Breadcrumb, styles);
+export default Breadcrumb;

@@ -1,7 +1,7 @@
 import React, { PureComponent, Fragment } from 'react';
 import Chart from 'chart.js';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 
 import { omit } from '../../helpers';
@@ -157,4 +157,4 @@ class LineGraph extends PureComponent {
   }
 }
 
-export default CSSModules(LineGraph, styles);
+export default LineGraph;

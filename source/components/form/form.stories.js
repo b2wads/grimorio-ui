@@ -13,6 +13,7 @@ import Form, {
   FormHelpText,
   FormControlLabel,
 } from './index';
+
 import { SelectOption } from '../select';
 
 export default {
@@ -246,8 +247,6 @@ export const AddonText = () => (
   </FormGroup>
 );
 
-
-
 export const AddonLink = () => (
   <FormGroup>
     <br />
@@ -257,16 +256,12 @@ export const AddonLink = () => (
   </FormGroup>
 );
 
-
-
 export const WithId = () => (
   <FormGroup controlId="test">
     <FormLabel>Nome:</FormLabel>
     <FormControl placeholder="Form group with input" />
   </FormGroup>
 );
-
-
 
 export const WithValidation = () => (
   <div>
@@ -285,8 +280,6 @@ export const WithValidation = () => (
     </FormGroup>
   </div>
 );
-
-
 
 export const Disabled = () => (
   <div>
@@ -322,8 +315,6 @@ export const OnFocus = () => (
   </div>
 );
 
-
-
 export const OnChange = () => (
   <div>
     <FormControl placeholder="Digite um nome" onChange={action('change')} />
@@ -337,8 +328,6 @@ export const OnChange = () => (
     <FormControl type="textarea" onChange={action('change')} />
   </div>
 );
-
-
 
 export const OnBlur = () => (
   <div>
@@ -354,8 +343,6 @@ export const OnBlur = () => (
   </div>
 );
 
-
-
 export const OnMask = () => {
   const handleMask = (value) => {
     return fieldsMask({ type: 'number' }, value);
@@ -368,7 +355,7 @@ export const OnValidation = withState({
   message: undefined,
   status2: undefined,
   message2: undefined,
-})(({ store }) => {
+}, store => {
   const handleValidate = (validation) => {
     store.set({ status: validation.validationState, message: validation.errorMessage });
   };

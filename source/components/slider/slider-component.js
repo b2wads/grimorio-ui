@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 
 import { uniqueId, omit } from '../../helpers';
@@ -205,4 +205,4 @@ class Slider extends PureComponent {
   }
 }
 
-export default CSSModules(Slider, styles);
+export default Slider;

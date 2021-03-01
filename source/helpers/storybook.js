@@ -16,7 +16,7 @@ export const State = ({ initialState, children = () => {} }) => {
     return null;
   }
 
-return <>{children(store)}</>;
+  return <React.Fragment>{children(store)}</React.Fragment>;
 };
 
 export const withState = (initialState, renderComp) => {

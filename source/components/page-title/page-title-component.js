@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 
 import styles from './page-title.styl';
@@ -30,4 +30,4 @@ class PageTitle extends PureComponent {
   }
 }
 
-export default CSSModules(PageTitle, styles);
+export default PageTitle;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import cx from 'classnames';
 
 import SelectOption from './elements/select-option';
@@ -291,4 +291,4 @@ class Select extends Component {
   }
 }
 
-export default CSSModules(Select, styles);
+export default Select;

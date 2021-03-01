@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import classNames from 'classnames';
 // styles
 import styles from '../accordion.styl';
@@ -29,4 +29,4 @@ class AccordionContent extends PureComponent {
   }
 }
 
-export default CSSModules(AccordionContent, styles);
+export default AccordionContent;
