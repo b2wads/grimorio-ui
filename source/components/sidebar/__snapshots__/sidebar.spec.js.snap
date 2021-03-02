@@ -18,7 +18,7 @@ exports[`Sidebar component render default 1`] = `
           <Icon size={16} name=\\"desktop_mac\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Página 1
         </li>
-        <li className=\\"accordeonListItem isClosed\\" data-testid=\\"acc\\" data-testidgen=\\"menu-item\\">
+        <li className=\\"accordeonListItem\\" data-testid=\\"acc\\" data-testidgen=\\"menu-item\\">
           <AccordionTitle data-testid=\\"acc\\" active={false} index={3} onClick={[Function]} icon=\\"filter\\">
             Um Accordion
           </AccordionTitle>
@@ -33,7 +33,7 @@ exports[`Sidebar component render default 1`] = `
             </ul>
           </AccordionContent>
         </li>
-        <li className=\\"accordeonListItem isActive isClosed\\" data-testid=\\"acc2\\" data-testidgen=\\"menu-item\\">
+        <li className=\\"accordeonListItem isActive\\" data-testid=\\"acc2\\" data-testidgen=\\"menu-item\\">
           <AccordionTitle data-testid=\\"acc2\\" active={true} index={4} onClick={[Function]} icon=\\"filter\\">
             Outro Accordion
           </AccordionTitle>

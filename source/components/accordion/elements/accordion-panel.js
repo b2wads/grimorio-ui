@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-// styles
-import styles from '../accordion.styl';
-
 import AccordionTitle from './accordion-title';
 import AccordionContent from './accordion-content';
 

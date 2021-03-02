@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -36,6 +36,9 @@ export const Sidebar = ({
   const toggleSection = id => {
     return () => {
       const openedSubmenu = currentSection === id ? null : id;
+      if (!openNav) {
+        handleToggle();
+      }
       setCurrentSection(openedSubmenu);
     };
   };
@@ -79,13 +82,18 @@ export const Sidebar = ({
       <li
         className={cx(className, styles.accordeonListItem, {
           [styles.isActive]: getActiveSection(id),
-          [styles.isClosed]: !openNav,
         })}
         data-testid={id}
         data-testidgen="menu-item"
         key={id}
       >
-        <AccordionTitle data-testid={id} active={getActiveSection(id)} index={index} onClick={toggleSection(id)} icon={icon}>
+        <AccordionTitle
+          data-testid={id}
+          active={getActiveSection(id)}
+          index={index}
+          onClick={toggleSection(id)}
+          icon={icon}
+        >
           {name}
         </AccordionTitle>
         <AccordionContent active={getActiveSection(id)}>
@@ -95,7 +103,7 @@ export const Sidebar = ({
         </AccordionContent>
       </li>
     );
-  }
+  };
 
   const allClassNames = cx(styles.sidebar, className, {
     [styles.isFixed]: isFixed,
@@ -105,7 +113,7 @@ export const Sidebar = ({
   });
 
   return (
-    <>
+    <Fragment>
       <div className={allClassNames}>
         {hasToggle &&
           <button className={styles.toggle} type="button" onClick={handleToggle}>
@@ -120,22 +128,19 @@ export const Sidebar = ({
         <nav className={styles.content}>
           <span className={cx(styles.contentTitle, { [styles.isNavClosed]: !openNav })}>Menu</span>
           <Accordion type="accordionMenu" exclusive={false} as={'ul'} open={openNav}>
-            {schema.map(
-              (item, index) => {
-                if (item.render) {
-                  return item.render(item);
-                }
-
-                return item.submenu ? renderMenuWithAccordion(item, index) : renderMenuSimple(item, index)
+            {schema.map((item, index) => {
+              if (item.render) {
+                return item.render(item);
               }
-            )}
+
+              return item.submenu ? renderMenuWithAccordion(item, index) : renderMenuSimple(item, index);
+            })}
           </Accordion>
         </nav>
       </div>
 
-      {isMobile &&
-        <div onClick={handleToggle} className={cx(styles.overlay, { [styles.isOpen]: openNav })} />}
-    </>
+      {isMobile && <div onClick={handleToggle} className={cx(styles.overlay, { [styles.isOpen]: openNav })} />}
+    </Fragment>
   );
 };
 
@@ -151,16 +156,18 @@ Sidebar.propTypes = {
   onClickItem: PropTypes.func,
   initialSection: PropTypes.string,
   initialItem: PropTypes.string,
-  schema: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    link: PropTypes.string,
-    action: PropTypes.func,
-    icon: PropTypes.string,
-    id: PropTypes.string,
-    submenu: PropTypes.array,
-    render: PropTypes.func,
-    className: PropTypes.string,
-  })).isRequired,
+  schema: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      link: PropTypes.string,
+      action: PropTypes.func,
+      icon: PropTypes.string,
+      id: PropTypes.string,
+      submenu: PropTypes.array,
+      render: PropTypes.func,
+      className: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 Sidebar.defaultProps = {

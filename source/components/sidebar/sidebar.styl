@@ -9,10 +9,13 @@ $c-text = #a4a3a3;
 /* Default
  ================ */
 .sidebar {
+  display: flex;
+  flex-direction: column;
   background-color: var(--c-support-dark);
   transition: width 0.3s ease;
   position: relative;
   width: 290px;
+  height: 100%;
 
   &.isFixed {
     height: 100%;
@@ -44,7 +47,11 @@ $c-text = #a4a3a3;
   overflow: hidden;
 }
 
-.content { padding-top: 20px; }
+.content {
+  padding-top: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 .contentTitle {
   color: var(--c-menu-text);
@@ -115,11 +122,6 @@ $c-text = #a4a3a3;
 
   &.isClosed {
     transition: width 0.1s ease;
-  }
-
-  &.isActive.isClosed {
-    transition: width 0.3s ease-in-out;
-    width: 290px;
   }
 }
 

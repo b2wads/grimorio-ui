@@ -23,6 +23,12 @@ export const schema = [
     id: 'pag1',
   },
   {
+    name: 'Página 2',
+    link: '/pag2',
+    icon: 'desktop_mac',
+    id: 'pag2',
+  },
+  {
     name: 'Um Accordion',
     icon: 'filter',
     id: 'acc',
@@ -39,8 +45,8 @@ export const schema = [
         id: 'acc-item2',
       },
     ],
-   },
-   {
+  },
+  {
     name: 'Outro Accordion',
     icon: 'filter',
     id: 'acc2',
@@ -54,17 +60,16 @@ export const schema = [
         name: 'Item 2',
         link: '/acc2/item2',
         id: 'acc2-item2',
-      },
+     },
     ],
-   },
-   {
+  },
+  {
     name: 'Ajuda!',
     icon: 'help',
     id: 'help',
     action: () => alert('wake me up!'),
   },
 ];
-
 
 <Meta title="Sidebar" component={Sidebar} />
 
@@ -99,9 +104,8 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
 ### Mobile
 <Preview>
   <Story name="Mobile">
-    <State
-      initialState={{ open: false }}
-      render={store => (
+    <State initialState={{ open: false }}>
+      {store => (
          <Sidebar
           isFixed={false}
           open={store.state.open}
@@ -113,6 +117,6 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
           schema={schema}
         />
       )}
-    />
+    </State>
   </Story>
 </Preview>

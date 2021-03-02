@@ -6,8 +6,6 @@ import 'moment/locale/pt-br';
 import 'react-dates/initialize';
 import DayPickerRangeController from 'react-dates/lib/components/DayPickerRangeController';
 
-import styles from './calendar.styl';
-
 class Calendar extends PureComponent {
   constructor(props) {
     super();
