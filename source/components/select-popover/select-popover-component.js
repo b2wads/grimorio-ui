@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import Popover from '../popover';
 import Button from '../button';
 import styles from './select-popover.styl';
