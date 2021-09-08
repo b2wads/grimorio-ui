@@ -80,6 +80,17 @@
     color: var(--c-status-danger);
   }
 }
+
+.danger.isOutlined {
+  .icon {
+    background: $white;
+    border: 2px solid var(--c-status-danger);
+    i {
+      color: var(--c-status-danger);
+    }
+  }
+}
+
 .warning {
   .icon {
     background: var(--c-status-alert);
@@ -89,6 +100,17 @@
     color: var(--c-status-alert);
   }
 }
+
+.warning.isOutlined {
+  .icon {
+    background: $white;
+    border: 2px solid var(--c-status-alert);
+    i {
+      color: var(--c-status-alert);
+    }
+  }
+}
+
 .success {
   .icon {
     background: var(--c-feedback-success);
@@ -98,6 +120,17 @@
     color: var(--c-feedback-success);
   }
 }
+
+.success.isOutlined {
+  .icon {
+    background: $white;
+    border: 2px solid var(--c-feedback-success);
+    i {
+      color: var(--c-feedback-success);
+    }
+  }
+}
+
 .info {
   .icon {
     background: var(--c-status-info);
@@ -105,5 +138,15 @@
 
   .title {
     color: var(--c-status-info);
+  }
+}
+
+.info.isOutlined {
+  .icon {
+    background: $white;
+    border: 2px solid var(--c-status-info);
+    i {
+      color: var(--c-status-info);
+    }
   }
 }
