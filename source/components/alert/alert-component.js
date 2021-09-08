@@ -18,6 +18,7 @@ class Alert extends PureComponent {
     actionText: PropTypes.string,
     onClick: PropTypes.func,
     overlay: PropTypes.bool,
+    outlined: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -25,15 +26,16 @@ class Alert extends PureComponent {
     action: true,
     close: false,
     overlay: false,
+    outlined: false,
     actionText: 'Okay',
   };
 
   renderIcon(type) {
     const icons = {
       danger: 'warning',
-      warning: 'error_outline',
+      warning: this.props.outlined ? 'error' : 'error_outline',
       info: 'info',
-      success: 'check',
+      success: this.props.outlined ? 'check_circle' : 'check',
     };
 
     return <Icon size="28px" name={icons[type]} />;
@@ -49,6 +51,7 @@ class Alert extends PureComponent {
       close,
       actionText,
       overlay,
+      outlined,
       onClick,
       className,
       ...rest
@@ -57,6 +60,7 @@ class Alert extends PureComponent {
     const alertClassName = classNames(styles.alertWrap, className, {
       [styles[type]]: type,
       [styles.isOverlay]: overlay,
+      [styles.isOutlined]: outlined,
     });
 
     return (

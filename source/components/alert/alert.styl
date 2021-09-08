@@ -5,13 +5,6 @@
 // 'danger', 'warning', 'success', 'info'
 
 /* ==========================================================================
-   Placeholders
-========================================================================== */
-$c-warning = #F1B200;
-$c-danger = #ff5144;
-$c-info = #666;
-
-/* ==========================================================================
    Alerts Elements
 ========================================================================== */
 .alertWrap {
@@ -80,39 +73,80 @@ $c-info = #666;
 ========================================================================== */
 .danger {
   .icon {
-    background: $c-danger;
+    background: var(--c-status-danger);
   }
 
   .title {
-    color: $c-danger;
+    color: var(--c-status-danger);
   }
 }
+
+.danger.isOutlined {
+  .icon {
+    background: $white;
+    border: 2px solid var(--c-status-danger);
+    i {
+      color: var(--c-status-danger);
+    }
+  }
+}
+
 .warning {
   .icon {
-    background: $c-warning;
+    background: var(--c-status-alert);
   }
 
   .title {
-    color: $c-warning;
+    color: var(--c-status-alert);
   }
 }
+
+.warning.isOutlined {
+  .icon {
+    background: $white;
+    border: 2px solid var(--c-status-alert);
+    i {
+      color: var(--c-status-alert);
+    }
+  }
+}
+
 .success {
   .icon {
-    background: $c-success;
+    background: var(--c-feedback-success);
   }
 
   .title {
-    color: $c-success;
+    color: var(--c-feedback-success);
+  }
+}
+
+.success.isOutlined {
+  .icon {
+    background: $white;
+    border: 2px solid var(--c-feedback-success);
+    i {
+      color: var(--c-feedback-success);
+    }
   }
 }
 
 .info {
   .icon {
-    background: $c-info;
+    background: var(--c-status-info);
   }
 
   .title {
-    color: $c-info;
+    color: var(--c-status-info);
   }
 }
 
+.info.isOutlined {
+  .icon {
+    background: $white;
+    border: 2px solid var(--c-status-info);
+    i {
+      color: var(--c-status-info);
+    }
+  }
+}

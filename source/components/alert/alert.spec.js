@@ -87,6 +87,59 @@ describe('Alert component', () => {
     });
   })
 
+  describe('should render personalized alert when it has outlined prop', () => {
+
+    it('should add isOutlined class when outlined prop is true', () => {
+      const props = {
+        outlined: true,
+      }
+      const wrapper = shallow(
+        <Alert {...props} />
+      );
+      expect(wrapper.find('.isOutlined')).toHaveLength(1)
+    })
+
+    it('should render personalized warning icon with outlined prop', () => {
+      let wrapper
+      const props = {
+        type: 'warning',
+        outlined: true,
+      }
+      wrapper = shallow(
+        <Alert {...props} />
+      );
+      expect(wrapper.find({name: 'error'})).toHaveLength(1)
+      expect(wrapper.find({name: 'error_outline'})).toHaveLength(0)
+
+      wrapper = shallow(
+        <Alert {...{...props, outlined: false}} />
+      );
+
+      expect(wrapper.find({name: 'error'})).toHaveLength(0)
+      expect(wrapper.find({name: 'error_outline'})).toHaveLength(1)
+    });
+
+    it('should render personalized success icon with outlined prop', () => {
+      let wrapper
+      const props = {
+        type: 'success',
+        outlined: true,
+      }
+      wrapper = shallow(
+        <Alert {...props} />
+      );
+      expect(wrapper.find({name: 'check_circle'})).toHaveLength(1)
+      expect(wrapper.find({name: 'check'})).toHaveLength(0)
+
+      wrapper = shallow(
+        <Alert {...{...props, outlined: false}} />
+      );
+
+      expect(wrapper.find({name: 'check_circle'})).toHaveLength(0)
+      expect(wrapper.find({name: 'check'})).toHaveLength(1)
+    });
+  })
+
   it('should render overlay when overlay props is true', () => {
     const props = {
       overlay: true,
@@ -128,5 +181,4 @@ describe('Alert component', () => {
     );
     expect(wrapper.find({name: 'warning'})).toHaveLength(1)
   });
-
 });
