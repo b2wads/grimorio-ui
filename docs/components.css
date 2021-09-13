@@ -107,9 +107,6 @@
    Variables
 ========================================================================== */
 /* ==========================================================================
-   Placeholders
-========================================================================== */
-/* ==========================================================================
    Alerts Elements
 ========================================================================== */
 .grm-alert__alertWrap {
@@ -144,7 +141,7 @@
   min-width: 160px;
 }
 .grm-alert__close {
-  color: #666;
+  color: $c-info;
   cursor: pointer;
 }
 .grm-alert__title {
@@ -167,28 +164,56 @@
    Alerts Props
 ========================================================================== */
 .grm-alert__danger .grm-alert__icon {
-  background: #ff5144;
+  background: var(--c-status-danger);
 }
 .grm-alert__danger .grm-alert__title {
-  color: #ff5144;
+  color: var(--c-status-danger);
+}
+.grm-alert__danger.grm-alert__isOutlined .grm-alert__icon {
+  background: #fff;
+  border: 2px solid var(--c-status-danger);
+}
+.grm-alert__danger.grm-alert__isOutlined .grm-alert__icon i {
+  color: var(--c-status-danger);
 }
 .grm-alert__warning .grm-alert__icon {
-  background: #f1b200;
+  background: var(--c-status-alert);
 }
 .grm-alert__warning .grm-alert__title {
-  color: #f1b200;
+  color: var(--c-status-alert);
+}
+.grm-alert__warning.grm-alert__isOutlined .grm-alert__icon {
+  background: #fff;
+  border: 2px solid var(--c-status-alert);
+}
+.grm-alert__warning.grm-alert__isOutlined .grm-alert__icon i {
+  color: var(--c-status-alert);
 }
 .grm-alert__success .grm-alert__icon {
-  background: #00b8ad;
+  background: var(--c-feedback-success);
 }
 .grm-alert__success .grm-alert__title {
-  color: #00b8ad;
+  color: var(--c-feedback-success);
+}
+.grm-alert__success.grm-alert__isOutlined .grm-alert__icon {
+  background: #fff;
+  border: 2px solid var(--c-feedback-success);
+}
+.grm-alert__success.grm-alert__isOutlined .grm-alert__icon i {
+  color: var(--c-feedback-success);
 }
 .grm-alert__info .grm-alert__icon {
-  background: #666;
+  background: var(--c-status-info);
 }
 .grm-alert__info .grm-alert__title {
-  color: #666;
+  color: var(--c-status-info);
+}
+.grm-alert__info.grm-alert__isOutlined .grm-alert__icon {
+  background: #fff;
+  border: 2px solid var(--c-status-info);
+}
+.grm-alert__info.grm-alert__isOutlined .grm-alert__icon i {
+  color: var(--c-status-info);
 }
 
 .grm-beacon__beacon {
@@ -2779,10 +2804,13 @@ Form Control Component
 /* Default
  ================ */
 .grm-sidebar__sidebar {
+  display: flex;
+  flex-direction: column;
   background-color: var(--c-support-dark);
   transition: width 0.3s ease;
   position: relative;
   width: 290px;
+  height: 100%;
 }
 .grm-sidebar__sidebar.grm-sidebar__isFixed {
   height: 100%;
@@ -2811,6 +2839,8 @@ Form Control Component
 }
 .grm-sidebar__content {
   padding-top: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .grm-sidebar__contentTitle {
   color: var(--c-menu-text);
@@ -2876,10 +2906,6 @@ Form Control Component
 }
 .grm-sidebar__accordeonListItem.grm-sidebar__isClosed {
   transition: width 0.1s ease;
-}
-.grm-sidebar__accordeonListItem.grm-sidebar__isActive.grm-sidebar__isClosed {
-  transition: width 0.3s ease-in-out;
-  width: 290px;
 }
 .grm-sidebar__listItem {
   border-left: 2px solid transparent;

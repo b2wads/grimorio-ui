@@ -19,6 +19,10 @@
 /* Feedback */
   --c-feedback-success: #00b8ad;
   --c-feedback-error: #de4e4e;
+/* Status */
+  --c-status-danger: #ff5144;
+  --c-status-alert: #f1b200;
+  --c-status-info: #666;
 /* Other */
   --c-menu-text: #3f5d79;
   --c-beacon-color: #de4e4e;
@@ -278,10 +282,13 @@ h5 {
 /* Default
  ================ */
 .grm-sidebar__sidebar {
+  display: flex;
+  flex-direction: column;
   background-color: var(--c-support-dark);
   transition: width 0.3s ease;
   position: relative;
   width: 290px;
+  height: 100%;
 }
 .grm-sidebar__sidebar.grm-sidebar__isFixed {
   height: 100%;
@@ -310,6 +317,8 @@ h5 {
 }
 .grm-sidebar__content {
   padding-top: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .grm-sidebar__contentTitle {
   color: var(--c-menu-text);
@@ -375,10 +384,6 @@ h5 {
 }
 .grm-sidebar__accordeonListItem.grm-sidebar__isClosed {
   transition: width 0.1s ease;
-}
-.grm-sidebar__accordeonListItem.grm-sidebar__isActive.grm-sidebar__isClosed {
-  transition: width 0.3s ease-in-out;
-  width: 290px;
 }
 .grm-sidebar__listItem {
   border-left: 2px solid transparent;

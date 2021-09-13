@@ -50,6 +50,50 @@ export const Normal = () => (
   </div>
 );
 
+export const Outlined = () => (
+  <div>
+    <Alert
+      type="danger"
+      title="Granger Danger"
+      content="Nullam iaculis laoreet felis et dapibus. Nunc convallis purus ac arcu pharetra faucibus."
+      actionText="Resolva já"
+      onClick={() => window.open('https://youtu.be/OwLVKIMamhA?t=115', '_blank')}
+      outlined
+    />
+    <br />
+    <Alert
+      type="warning"
+      title="Warning"
+      action={false}
+      content="Nullam iaculis laoreet felis et dapibus. Nunc convallis purus ac arcu pharetra faucibus."
+      onClick={() => alert('é')}
+      outlined
+    />
+    <br />
+    <Alert
+      type="success"
+      title="Só Sucesso"
+      content="Nullam iaculis laoreet felis et dapibus. Nunc convallis purus ac arcu pharetra faucibus."
+      onClick={() => alert(':)')}
+      outlined
+    />
+    <br />
+    <Alert
+      type="info"
+      title="Aqui tem informação!!!!"
+      action={false}
+      close
+      onClick={() => alert('Solta vinheta, Simone!')}
+      outlined
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget lacus congue, blandit
+      ex vel, malesuada nulla. Pellentesque consequat accumsan velit, sit amet porttitor nibh tempor
+      non. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam interdum laoreet
+      viverra.
+    </Alert>
+  </div>
+);
+
 export const Overlay = () => (
   <div>
     <Alert type="danger" title="Granger Danger" onClick={() => alert('resolvido')} overlay>
