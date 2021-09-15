@@ -124,7 +124,11 @@ $logotype {
 $accordeonListItem {
   color: $white;
 
-  &:hover, &.isActive {
+  &:hover {
+    background: var(--c-support-light);
+  }
+
+  &.isActive {
     background: var(--c-support);
   }
 
@@ -161,7 +165,12 @@ $listItem {
   transition: font-size 0.3s ease;
   cursor: pointer;
 
-  &:hover, &.isActive {
+  &:hover {
+    border-left-color: var(--c-primary-dark);
+    background: var(--c-support-light);
+  }
+
+  &.isActive {
     background: var(--c-support);
     border-left-color: var(--c-primary-dark);
   }
