@@ -62,7 +62,7 @@ $button {
 ================ */
 .secondary {
   @extend $button;
-  background: var(--c-primary-dark);
+  background: var(--c-secondary);
   color: $white;
 
   &:active {
@@ -70,7 +70,7 @@ $button {
   }
 
   &:hover, &.isActive {
-    background: var(--c-primary-dark-hover);
+    background: var(--c-secondary-dark);
   }
 }
 
@@ -124,8 +124,8 @@ $button {
   background: none;
   border: 0;
 
-  &.outline, 
-  &:hover, 
+  &.outline,
+  &:hover,
   &:disabled,
   &:disabled:not(.isLoading),
   &:hover:disabled,
@@ -167,7 +167,7 @@ $button {
   }
 }
 
-/* Large  
+/* Large
 ================ */
 .large {
   font-size: 15px;

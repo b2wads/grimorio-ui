@@ -4,8 +4,18 @@ import cx from 'classnames';
 
 import styles from './header.styl';
 
-export const Header = ({ className, contentClassName, showLogo, logo, onLogoClick, children, ...elementProps }) => {
+export const Header = ({
+  className,
+  color,
+  contentClassName,
+  showLogo,
+  logo,
+  onLogoClick,
+  children,
+  ...elementProps
+}) => {
   const fullClassName = cx(className, styles.header, {
+    [styles[color]]: color,
     [styles.showLogo]: showLogo,
   });
 
@@ -29,6 +39,7 @@ export const Header = ({ className, contentClassName, showLogo, logo, onLogoClic
 
 Header.propTypes = {
   className: PropTypes.string,
+  color: PropTypes.oneOf(['primary', 'secondary']),
   contentClassName: PropTypes.string,
   showLogo: PropTypes.bool,
   logo: PropTypes.node,
@@ -36,6 +47,7 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
+  color: 'primary',
   showLogo: false,
 };
 
