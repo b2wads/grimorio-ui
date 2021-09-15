@@ -3,21 +3,27 @@
 .CalendarDay__selected,
 .CalendarDay__selected:active,
 .CalendarDay__selected:hover {
-  background: var(--c-primary);
-  border-color: var(--c-primary);
+  background: var(--c-primary-dark);
+  border-color: var(--c-primary-dark);
 }
 
 .CalendarDay__selected_span {
   background: var(--c-primary-light);
   border-color: var(--c-primary-light);
-  color: var(--c-primary-dark);
+  color: $white;
+}
+
+.CalendarDay__selected_span:hover {
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+  color: $white;
 }
 
 .CalendarDay__hovered_span,
 .CalendarDay__hovered_span:hover {
-  background: var(--c-secondary-light);
-  border-color: var(--c-secondary-light);
-  color: $c-text;
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+  color: $white;
 }
 
 // .CalendarDay__today {
