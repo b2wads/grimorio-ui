@@ -36,7 +36,7 @@ $c-text = #a4a3a3;
   }
 }
 
-.logotype {
+$logotype {
 	align-items: center;
   box-shadow: 0 1px 4px 0 $c-shadow;
   cursor: pointer;
@@ -45,6 +45,20 @@ $c-text = #a4a3a3;
   height: 74px;
   justify-content: center;
   overflow: hidden;
+}
+
+.logotype.default {
+  @extend $logotype;
+}
+
+.logotype.primary {
+  @extend $logotype;
+  background: var(--c-primary);
+}
+
+.logotype.secondary {
+  @extend $logotype;
+  background: var(--c-secondary);
 }
 
 .content {
@@ -107,12 +121,11 @@ $c-text = #a4a3a3;
    MENU
 ========================================================================== */
 
-.accordeonListItem {
+$accordeonListItem {
   color: $white;
 
   &:hover, &.isActive {
     background: var(--c-support);
-    border-left-color: var(--c-primary-dark);
   }
 
   .iconLeft {
@@ -125,8 +138,24 @@ $c-text = #a4a3a3;
   }
 }
 
-.listItem {
-  border-left: 2px solid transparent;
+.accordeonListItem.support_primary {
+  @extend $accordeonListItem;
+
+  &:hover, &.isActive {
+    border-left-color: var(--c-primary);
+  }
+}
+
+.accordeonListItem.support_secondary {
+  @extend $accordeonListItem;
+
+  &:hover, &.isActive {
+    border-left-color: var(--c-secondary);
+  }
+}
+
+$listItem {
+  border-left: 6px solid transparent;
   color: $white;
   padding: 15px 26px 15px 24px;
   transition: font-size 0.3s ease;
@@ -146,6 +175,48 @@ $c-text = #a4a3a3;
     transition: width 0.1s ease;
     font-size: 0;
     padding: 15px 10px;
+  }
+}
+
+.listItem.content_default {
+  @extend $listItem;
+}
+
+.listItem.content_primary {
+  @extend $listItem;
+
+  &.isActive {
+    color: var(--c-primary);
+    .iconLeft {
+      color: var(--c-primary);
+    }
+  }
+}
+
+.listItem.content_secondary {
+  @extend $listItem;
+
+  &.isActive {
+    color: var(--c-secondary);
+    .iconLeft {
+      color: var(--c-secondary);
+    }
+  }
+}
+
+.listItem.support_primary {
+  @extend $listItem;
+
+  &:hover, &.isActive {
+    border-left-color: var(--c-primary);
+  }
+}
+
+.listItem.support_secondary {
+  @extend $listItem;
+
+  &:hover, &.isActive {
+    border-left-color: var(--c-secondary);
   }
 }
 
