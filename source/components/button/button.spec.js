@@ -47,8 +47,10 @@ describe('Button component', () => {
       expect(wrapper.find(Loader).prop('color')).toEqual('secondary');
     })
 
-    it('Loader should have color primary when modifier === outline', () => {
+    it('Loader should have color primary when modifier === outline or modifier === outline-light', () => {
       wrapper.setProps({modifier: 'outline'})
+      expect(wrapper.find(Loader).prop('color')).toEqual('primary');
+      wrapper.setProps({modifier: 'outline-light'})
       expect(wrapper.find(Loader).prop('color')).toEqual('primary');
     })
 
