@@ -6,11 +6,12 @@ Variables
 
 /* Border color
 ========================================================================== */
-$c-border = #ccc;
+$c-border = #a1a1a1;
 $c-check-border = #7F7F7F;
 /* Field
 ========================================================================== */
 $default-background = #fff;
+$c-text-focus = #878786;
 $c-text-default = #333;
 /* Addon
 ========================================================================== */
@@ -35,8 +36,20 @@ $field {
   text-indent: 5px;
   width: 100%;
 
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--c-support-dark);
+    color: var(--c-support-dark);
+  }
+
   &:focus {
     border-color: var(--c-active-input);
+    color: var(--c-support-dark);
+  }
+
+  &:not([value=""]) {
+    border-color: $c-text-focus;
   }
 
   &.isActive {
