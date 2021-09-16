@@ -38,6 +38,10 @@ $field {
 
   transition: all 0.2s ease;
 
+  &:not([value=""]) {
+    border-color: $c-text-focus;
+  }
+
   &:hover {
     border-color: var(--c-support-dark);
     color: var(--c-support-dark);
@@ -46,10 +50,6 @@ $field {
   &:focus {
     border-color: var(--c-active-input);
     color: var(--c-support-dark);
-  }
-
-  &:not([value=""]) {
-    border-color: $c-text-focus;
   }
 
   &.isActive {
