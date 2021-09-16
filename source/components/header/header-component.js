@@ -39,7 +39,7 @@ export const Header = ({
 
 Header.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'support']),
   contentClassName: PropTypes.string,
   showLogo: PropTypes.bool,
   logo: PropTypes.node,

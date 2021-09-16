@@ -23,10 +23,6 @@ $header {
   padding: 0 $spacing;
   position: relative;
   width: 100%;
-
-  &.showLogo {
-    background-color: var(--c-support-dark);
-  }
 }
 
 .content.showLogo {
@@ -50,6 +46,12 @@ $header {
 .secondary {
   @extend $header;
   background: var(--c-secondary);
+  color: $white;
+}
+
+.support {
+  @extend $header;
+  background-color: var(--c-support-dark);
   color: $white;
 }
 
