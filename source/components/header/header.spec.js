@@ -5,6 +5,7 @@ import Header from './header-component';
 /** @test {Header} */
 describe('Header component', () => {
   const emptyProps = {
+    color: 'primary',
     children: undefined,
     showLogo: undefined,
     onLogoClick: undefined,
@@ -31,6 +32,11 @@ describe('Header component', () => {
 
     it('Showing Logo', () => {
       wrapper.setProps({ ...emptyProps, showLogo: true })
+      expect(wrapper.debug()).toMatchSnapshot();
+    });
+
+    it('Secondary color', () => {
+      wrapper.setProps({ ...emptyProps, color: 'secondary' })
       expect(wrapper.debug()).toMatchSnapshot();
     });
   });

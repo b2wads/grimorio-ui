@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header component render Basic 1`] = `
-"<header className=\\"header\\">
+"<header className=\\"header primary\\">
   <div className=\\"content\\">
     <div>
       teste com filho
@@ -11,13 +11,19 @@ exports[`Header component render Basic 1`] = `
 `;
 
 exports[`Header component render No logo version 1`] = `
-"<header className=\\"header\\">
+"<header className=\\"header primary\\">
+  <div className=\\"content\\" />
+</header>"
+`;
+
+exports[`Header component render Secondary color 1`] = `
+"<header className=\\"header secondary\\">
   <div className=\\"content\\" />
 </header>"
 `;
 
 exports[`Header component render Showing Logo 1`] = `
-"<header className=\\"header showLogo\\">
+"<header className=\\"header primary showLogo\\">
   <div className=\\"logo\\" onClick={[undefined]} />
   <div className=\\"content showLogo\\" />
 </header>"
