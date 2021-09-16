@@ -16,7 +16,7 @@ class Button extends PureComponent {
     block: PropTypes.bool,
     type: PropTypes.oneOf(['button', 'reset', 'submit']),
     color: PropTypes.oneOf(['primary', 'secondary', 'variant', 'clean', 'transparent']),
-    modifier: PropTypes.oneOf(['inverted', 'outline']),
+    modifier: PropTypes.oneOf(['inverted', 'outline', 'outline-light']),
     size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large', 'none']),
     onClick: PropTypes.func,
     children: PropTypes.any.isRequired,
@@ -38,7 +38,7 @@ class Button extends PureComponent {
 
   getLoaderColor() {
     const { color, modifier } = this.props;
-    if (modifier === 'outline' || ['clean', 'transparent'].includes(color)) {
+    if (/^outline/.test(modifier) || ['clean', 'transparent'].includes(color)) {
       return 'primary';
     } else {
       return 'secondary';
