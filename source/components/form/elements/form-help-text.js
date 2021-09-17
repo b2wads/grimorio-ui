@@ -6,7 +6,7 @@ import styles from '../form.styl';
 
 import { withContext } from '../form-context';
 
-const HelpText = ({ children, className, context }) => {
+export const HelpText = ({ children, className, context }) => {
   if (!children) {
     return null;
   }
