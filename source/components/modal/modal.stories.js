@@ -56,6 +56,18 @@ export const Types = withState({ success: false, fail: false, confirm: false }, 
       </div>
       <br />
       <div>
+        <Button onClick={openModal('success_ads')}>Sucesso ADS</Button>
+        <Modal
+          type="success_ads"
+          message="Você abriu o modal com sucesso do tipo ads!"
+          open={store.state.success_ads}
+          showButton
+          confirmButtonText="Yaaay"
+          onClose={closeModal('success_ads')}
+        />
+      </div>
+      <br />
+      <div>
         <Button onClick={openModal('fail')}>Fail</Button>
         <Modal
           type="fail"
