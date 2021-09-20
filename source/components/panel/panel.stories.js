@@ -74,7 +74,15 @@ export const TitleVariations = () => (
     </Panel>
     <br />
     <br />
-    <Panel title="Title Border" titleBorder style={{ width: '35%' }}>
+    <Panel title="Title Border Primary" titleBorder="primary" style={{ width: '35%' }}>
+      <p>Content</p>
+    </Panel>
+
+    <Panel title="Title Border Secondary" titleBorder="secondary" style={{ width: '35%' }}>
+      <p>Content</p>
+    </Panel>
+
+    <Panel title="Title Border Support" titleBorder="support" style={{ width: '35%' }}>
       <p>Content</p>
     </Panel>
     <br />

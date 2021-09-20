@@ -23,7 +23,7 @@ class Panel extends PureComponent {
     size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
     title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.element]),
     titleClassName: PropTypes.string,
-    titleBorder: PropTypes.bool,
+    titleBorder: PropTypes.oneOf(['primary', 'secondary', 'support']),
     titleSideComponent: PropTypes.element,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
     contentClassName: PropTypes.string,
@@ -70,6 +70,7 @@ class Panel extends PureComponent {
         className={cx(styles.header, styles.titleWrap, {
           [styles.isAccordion]: accordion,
           [styles.titleBorder]: titleBorder && open,
+          [styles[`border_${titleBorder}`]]: titleBorder,
           [styles[size]]: size,
           [styles.isClosed]: !open,
         })}
