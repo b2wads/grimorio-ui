@@ -8,7 +8,7 @@ import styles from './loader.styl';
 class Loader extends PureComponent {
   static propTypes = {
     type: PropTypes.oneOf(['default', 'full', 'full-page']),
-    style: PropTypes.oneOf(['primary', 'secondary']),
+    style: PropTypes.oneOf(['default', 'secondary']),
     spinColor: PropTypes.oneOf(['primary', 'secondary']),
     ellipseColor: PropTypes.oneOf(['primary', 'secondary', 'support']),
     background: PropTypes.oneOf(['white', 'black']),
@@ -17,7 +17,7 @@ class Loader extends PureComponent {
 
   static defaultProps = {
     type: 'default',
-    style: 'primary',
+    style: 'default',
     spinColor: 'primary',
     ellipseColor: 'secondary',
     background: 'white',

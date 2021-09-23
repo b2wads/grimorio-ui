@@ -39,4 +39,4 @@ export const Full = () => (
   </Panel>
 );
 
-export const FullPage = () => <Loader background="black" color="secondary" type="full-page" />;
+export const FullPage = () => <Loader background="black" style="secondary" type="full-page" />;
