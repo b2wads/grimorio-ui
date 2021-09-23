@@ -15,6 +15,8 @@ export const Normal = () => (
     <div style={{ background: 'gray', display: 'inline-block', padding: '10px' }}>
       <Loader color="secondary" />
     </div>
+    <Loader ellipseColor="support"/>
+    <Loader ellipseColor="primary"/>
   </div>
 );
 
