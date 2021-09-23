@@ -39,7 +39,7 @@ class Button extends PureComponent {
   getLoaderColor() {
     const { color, modifier } = this.props;
     if (/^outline/.test(modifier) || ['clean', 'transparent'].includes(color)) {
-      return 'primary';
+      return 'default';
     } else {
       return 'secondary';
     }
@@ -80,7 +80,7 @@ class Button extends PureComponent {
       <button {...elementProps} type={type} className={fullClassName} onClick={onClick} disabled={loading || disabled}>
         {iconLeft && <Icon className={styles.iconLeft} size={15} name={iconLeft} />}
         {children}
-        {loading && <Loader className={styles.btnLoad} size="15px" color={this.getLoaderColor()} />}
+        {loading && <Loader className={styles.btnLoad} size="15px" style={this.getLoaderColor()} />}
         {iconRight && <Icon className={styles.iconRight} size={15} name={iconRight} />}
       </button>
     );
