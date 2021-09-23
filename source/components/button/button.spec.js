@@ -43,25 +43,25 @@ describe('Button component', () => {
       expect(wrapper.find(Loader).length).toEqual(1);
     });
 
-    it('Loader should have color default (secondary)', () => {
-      expect(wrapper.find(Loader).prop('color')).toEqual('secondary');
+    it('Loader should have style default (secondary)', () => {
+      expect(wrapper.find(Loader).prop('style')).toEqual('secondary');
     })
 
-    it('Loader should have color primary when modifier === outline or modifier === outline-light', () => {
+    it('Loader should have style default when modifier === outline or modifier === outline-light', () => {
       wrapper.setProps({modifier: 'outline'})
-      expect(wrapper.find(Loader).prop('color')).toEqual('primary');
+      expect(wrapper.find(Loader).prop('style')).toEqual('default');
       wrapper.setProps({modifier: 'outline-light'})
-      expect(wrapper.find(Loader).prop('color')).toEqual('primary');
+      expect(wrapper.find(Loader).prop('style')).toEqual('default');
     })
 
-    it('Loader should have color primary when color === clean', () => {
+    it('Loader should have style default when color === clean', () => {
       wrapper.setProps({color: 'clean', modifier: null})
-      expect(wrapper.find(Loader).prop('color')).toEqual('primary');
+      expect(wrapper.find(Loader).prop('style')).toEqual('default');
     })
 
-    it('Loader should have color primary when color === transparent', () => {
+    it('Loader should have style default when color === transparent', () => {
       wrapper.setProps({color: 'transparent', modifier: null})
-      expect(wrapper.find(Loader).prop('color')).toEqual('primary');
+      expect(wrapper.find(Loader).prop('style')).toEqual('default');
     })
   })
 
