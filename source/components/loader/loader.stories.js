@@ -13,10 +13,12 @@ export const Normal = () => (
   <div>
     <Loader />
     <div style={{ background: 'gray', display: 'inline-block', padding: '10px' }}>
-      <Loader color="secondary" />
+      <Loader style="secondary" />
     </div>
     <Loader ellipseColor="support"/>
     <Loader ellipseColor="primary"/>
+    <Loader spinColor="secondary" ellipseColor="support"/>
+    <Loader spinColor="secondary" ellipseColor="primary"/>
   </div>
 );
 

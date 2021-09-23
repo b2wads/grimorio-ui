@@ -8,7 +8,8 @@ import styles from './loader.styl';
 class Loader extends PureComponent {
   static propTypes = {
     type: PropTypes.oneOf(['default', 'full', 'full-page']),
-    color: PropTypes.oneOf(['primary', 'secondary']),
+    style: PropTypes.oneOf(['primary', 'secondary']),
+    spinColor: PropTypes.oneOf(['primary', 'secondary']),
     ellipseColor: PropTypes.oneOf(['primary', 'secondary', 'support']),
     background: PropTypes.oneOf(['white', 'black']),
     size: PropTypes.string,
@@ -16,14 +17,15 @@ class Loader extends PureComponent {
 
   static defaultProps = {
     type: 'default',
-    color: 'primary',
+    style: 'primary',
+    spinColor: 'primary',
     ellipseColor: 'secondary',
     background: 'white',
     size: '40px',
   };
 
   render() {
-    const { type, color, ellipseColor, background, size, className, ...rest } = this.props;
+    const { type, style, spinColor, ellipseColor, background, size, className, ...rest } = this.props;
     const wrapClass = classNames(styles.wrap, className, {
       [styles.isFull]: type === 'full',
       [styles.isFullPage]: type === 'full-page',
@@ -32,7 +34,8 @@ class Loader extends PureComponent {
     });
 
     const spinnerClass = classNames(styles.spinner, {
-      [styles[`spin-${color}`]]: color,
+      [styles[`spin-style-${style}`]]: style,
+      [styles[`spin-${spinColor}`]]: spinColor,
       [styles[`ellipse-${ellipseColor}`]]: ellipseColor,
     });
 
