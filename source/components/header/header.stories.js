@@ -13,8 +13,9 @@ export const Normal = () => <Header>Conteúdo qualquer que vai entrar aqui!</Hea
 export const WithLogo = () => (
   <Header
   showLogo
+  color="support"
   onLogoClick={() => alert('logo!')}
-  logo={<Svg width={188} height={58} src="logo/afiliados" />}
+  logo={<Svg width={288} height={108} src="logo/americanas-advertising" />}
   >
     Conteúdo qualquer que vai entrar aqui!
   </Header>
