@@ -64,7 +64,12 @@ const schema = [
   },
 ];
 
-const initialProps = { schema, onClickItem: jest.fn(), initialSection: 'acc2', initialItem: 'acc2-item2' };
+const initialProps = {
+  schema,
+  onClickItem: jest.fn(),
+  initialSection: 'acc2',
+  initialItem: 'acc2-item2',
+ };
 
 describe('Sidebar component', () => {
   let wrapper
@@ -95,6 +100,11 @@ describe('Sidebar component', () => {
       wrapper.find('.toggle').simulate('click');
       expect(props.onToggle).toHaveBeenCalled();
     })
+
+    it('Should render correctly with toggleIconColor', () => {
+      wrapper.setProps({toggleIconColor: '#ffff99'});
+      expect(wrapper.debug()).toMatchSnapshot();
+    });
   })
 
   describe('with overlay', () => {
@@ -140,6 +150,14 @@ describe('Sidebar component', () => {
       wrapper.find('.logotype').simulate('click')
       expect(props.onLogoClick).toHaveBeenCalled();
     });
+
+    it('Should have proper container logo color when passing logoContainerColor prop', () => {
+      wrapper.setProps({ logoContainerColor: 'primary' });
+      expect(wrapper.find('.logotype').hasClass('primary')).toBeTruthy();
+
+      wrapper.setProps({ logoContainerColor: 'secondary' });
+      expect(wrapper.find('.logotype').hasClass('secondary')).toBeTruthy();
+    })
   });
 
   describe('items', () => {
@@ -160,6 +178,20 @@ describe('Sidebar component', () => {
       wrapper.find(`[data-testid="${schema[5].id}"]`).simulate('click');
       expect(initialProps.onClickItem).not.toHaveBeenCalled();
       expect(schema[5].action).toHaveBeenCalled();
+    });
+
+    it('Item should change contentColor', () => {
+      expect(wrapper.find('.content_default')).toBeTruthy();
+      wrapper.setProps({ contentColor: 'primary' })
+      expect(wrapper.find('.content_primary')).toBeTruthy();
+      wrapper.setProps({ contentColor: 'secondary' })
+      expect(wrapper.find('.content_secondary')).toBeTruthy();
+    });
+
+    it('Item should change supportColor', () => {
+      expect(wrapper.find('.support_primary')).toBeTruthy();
+      wrapper.setProps({ supportColor: 'secondary' })
+      expect(wrapper.find('.support_secondary')).toBeTruthy();
     });
   });
 });

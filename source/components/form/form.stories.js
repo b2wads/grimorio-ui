@@ -95,6 +95,17 @@ export const InputText = withState({ input: 'Campo com valor default', check: []
         <br />
         <FormGroup>
           <FormControlLabel
+            outline
+            labelHighLight={false}
+            label="Nome"
+            placeholder="Form, FormGroup and input"
+            defaultValue="Valor default"
+          />
+          <FormHelpText>Versão outline sem labelHighLight!</FormHelpText>
+        </FormGroup>
+        <br />
+        <FormGroup>
+          <FormControlLabel
             iconRight="link"
             iconRightClick={() => console.log('clicou no ícone!')}
             outline

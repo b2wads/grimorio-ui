@@ -33,8 +33,8 @@ class Calendar extends PureComponent {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    defaultStartDate: PropTypes.instanceOf(moment),
-    defaultEndDate: PropTypes.instanceOf(moment),
+    startDate: PropTypes.instanceOf(moment),
+    endDate: PropTypes.instanceOf(moment),
     defaultSingleDate: PropTypes.instanceOf(moment),
     label: PropTypes.string,
     align: PropTypes.oneOf(['left', 'right']),

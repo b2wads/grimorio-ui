@@ -10,12 +10,16 @@ import styles from './sidebar.styl';
 export const Sidebar = ({
   schema,
   className,
+  supportColor,
+  contentColor,
   isFixed,
   onToggle,
   hasToggle,
+  toggleIconColor,
   isMobile,
   logo,
   logoSmall,
+  logoContainerColor,
   onClickItem,
   onLogoClick,
   initialSection,
@@ -62,6 +66,8 @@ export const Sidebar = ({
         className={cx(className, {
           [styles.listItem]: type === 'list',
           [styles.nestedItem]: type === 'nested',
+          [styles[`support_${supportColor}`]]: supportColor,
+          [styles[`content_${contentColor}`]]: contentColor,
           [styles.isClosed]: !openNav,
           [styles.isActive]: getActiveItem(id),
           [styles.sectionActive]: getActiveSection(sectionId),
@@ -81,6 +87,7 @@ export const Sidebar = ({
     return (
       <li
         className={cx(className, styles.accordeonListItem, {
+          [styles[supportColor]]: supportColor,
           [styles.isActive]: getActiveSection(id),
         })}
         data-testid={id}
@@ -117,11 +124,16 @@ export const Sidebar = ({
       <div className={allClassNames}>
         {hasToggle &&
           <button className={styles.toggle} type="button" onClick={handleToggle}>
-            <Icon className={styles.toggleIcon} name="menu" />
+            <Icon className={styles.toggleIcon} name="menu" color={toggleIconColor} />
           </button>}
 
         {!isMobile &&
-          <div onClick={onLogoClick} className={styles.logotype}>
+          <div
+            onClick={onLogoClick}
+            className={cx(styles.logotype, {
+              [styles[logoContainerColor]]: logoContainerColor,
+            })}
+          >
             {openNav ? logo : logoSmall}
           </div>}
 
@@ -146,13 +158,17 @@ export const Sidebar = ({
 
 Sidebar.propTypes = {
   className: PropTypes.string,
+  contentColor: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  supportColor: PropTypes.oneOf(['primary', 'secondary']),
   hasToggle: PropTypes.bool,
+  toggleIconColor: PropTypes.string,
   onToggle: PropTypes.func,
   onLogoClick: PropTypes.func,
   isMobile: PropTypes.bool,
   open: PropTypes.bool,
   logo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   logoSmall: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  logoContainerColor: PropTypes.oneOf(['default', 'primary', 'secondary']),
   onClickItem: PropTypes.func,
   initialSection: PropTypes.string,
   initialItem: PropTypes.string,
@@ -171,6 +187,9 @@ Sidebar.propTypes = {
 };
 
 Sidebar.defaultProps = {
+  contentColor: 'default',
+  supportColor: 'primary',
+  logoContainerColor: 'default',
   hasToggle: true,
   open: null,
   isMobile: false,

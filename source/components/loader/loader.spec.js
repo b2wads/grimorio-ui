@@ -10,7 +10,7 @@ describe('Loader component', () => {
       const wrapper = shallow(
         <Loader
           type='full'
-          color='secondary'
+          style='secondary'
           background='black'
           size='18'
         />

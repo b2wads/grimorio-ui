@@ -3,7 +3,8 @@ Variables
 ========================================================================== */
 /* Color
 ========================================================================== */
-$c-label = #999;
+$c-label = #A1A1A1;
+$c-label-active = #878786;
 $c-text-default = #333;
 
 /* ==========================================================================
@@ -26,15 +27,23 @@ Form Label Component
 }
 
 .isActive {
-  color: var(--c-active-input);
   font-size: 12px;
   left: 0;
   top: -1.5rem;
   transition: all 0.125s ease;
+  color: $c-label-active;
+
+  &.isHovered {
+    color: var(--c-support-dark);
+  }
+
+  &.labelHighLight {
+    color: var(--c-active-input);
+  }
 }
 
 .formControl {
-  color: $c-text-default;
+  color: $c-label-active;
   font-size: 16px;
   margin-top: 5px;
 }

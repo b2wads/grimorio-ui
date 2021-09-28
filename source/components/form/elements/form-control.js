@@ -31,6 +31,7 @@ class FormControl extends PureComponent {
     disabled: false,
     onChange: () => {},
     onFocus: () => {},
+    onHover: () => {},
     onBlur: () => {},
     feedback: false,
     type: 'text',
@@ -48,6 +49,7 @@ class FormControl extends PureComponent {
     getRef: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
+    onHover: PropTypes.func,
     onBlur: PropTypes.func,
     checked: PropTypes.bool,
     feedback: PropTypes.bool,
@@ -119,6 +121,7 @@ class FormControl extends PureComponent {
       getRef,
       onChange,
       onFocus,
+      onHover,
       onBlur,
       disabled,
       children,
@@ -174,6 +177,8 @@ class FormControl extends PureComponent {
             id={id}
             onChange={handleChange}
             onFocus={onFocus}
+            onMouseEnter={onHover}
+            onMouseLeave={onHover}
             onBlur={onBlur}
             disabled={disabled}
             name={name}
@@ -207,6 +212,8 @@ class FormControl extends PureComponent {
           id={controlId}
           onChange={handleChange}
           onFocus={onFocus}
+          onMouseEnter={onHover}
+          onMouseLeave={onHover}
           onBlur={onBlur}
           disabled={disabled}
           name={name}

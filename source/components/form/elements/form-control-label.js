@@ -18,22 +18,26 @@ class FormControlLabel extends Component {
     super(props, context);
 
     this.state = {
+      hovered: false,
       focused: false,
       active: this.verifyPropsValue(props),
     };
 
     this.onFocusLabel = this.onFocusLabel.bind(this);
+    this.onHoverLabel = this.onHoverLabel.bind(this);
     this.onBlurLabel = this.onBlurLabel.bind(this);
   }
 
   static propTypes = {
     label: PropTypes.string,
+    labelHighLight: PropTypes.bool,
     placeholder: PropTypes.string,
     activeLabel: PropTypes.bool,
     onBlur: PropTypes.func,
   };
 
   static defaultProps = {
+    labelHighLight: true,
     activeLabel: null,
   };
 
@@ -57,6 +61,11 @@ class FormControlLabel extends Component {
     this.props.onFocus && this.props.onFocus(event);
   }
 
+  onHoverLabel(event) {
+    this.setState({ hovered: !this.state.hovered });
+    this.props.onHover && this.props.onHover(event);
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.value !== this.props.value && !this.state.focused) {
       this.setState({ active: this.hasValue(this.props.value) });
@@ -66,6 +75,7 @@ class FormControlLabel extends Component {
   render() {
     const {
       label,
+      labelHighLight,
       placeholder,
       activeLabel,
       onChange,
@@ -89,6 +99,8 @@ class FormControlLabel extends Component {
 
     const labelClasses = classNames(styles.controlledLabel, {
       [styles.isActive]: activeLabel === null ? this.state.active : activeLabel,
+      [styles.labelHighLight]: this.state.focused || labelHighLight,
+      [styles.isHovered]: this.state.hovered,
       [styles[`has-${validationState}`]]: validationState,
       [styles.isOutline]: this.props.outline,
     });
@@ -123,6 +135,7 @@ class FormControlLabel extends Component {
             type={type}
             {...rest}
             onFocus={this.onFocusLabel}
+            onHover={this.onHoverLabel}
             onBlur={this.onBlurLabel}
           />
           {iconRight && <Icon className={iconRightClasses} name={iconRight} size={18} onClick={iconRightClick} />}
