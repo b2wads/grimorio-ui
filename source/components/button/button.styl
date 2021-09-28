@@ -37,20 +37,24 @@ $button {
   background: var(--c-primary);
   color: $white;
 
-  &:active {
-    box-shadow: inset 0 3px 5px $shadow-color;
-  }
-
   &:hover, &.isActive {
     background: var(--c-primary-dark);
     color: $white;
   }
+
+  &:active {
+    background: var(--c-primary-darker);
+  }
 }
 
-.primary.outline {
+$primaryOutline {
   background: none;
   border: 1px solid var(--c-primary);
   color: var(--c-primary);
+}
+
+.primary.outline {
+  @extend $primaryOutline;
 
   &:hover, &.isActive {
     background: var(--c-primary);
@@ -58,19 +62,35 @@ $button {
   }
 }
 
+.primary.outline-light {
+  @extend $primaryOutline;
+
+  &:hover, &.isActive {
+    background: lighten($color-light-1, 50%);
+    color: var(--c-primary-dark);
+    border-color: var(--c-primary-dark);
+  }
+
+  &:active {
+    background: lighten($color-light-1, 20%);
+    border-color: var(--c-primary-darker);
+    color: var(--c-primary-darker);
+  }
+}
+
 /* Dark
 ================ */
 .secondary {
   @extend $button;
-  background: var(--c-primary-dark);
+  background: var(--c-secondary);
   color: $white;
 
-  &:active {
-    box-shadow: inset 0 3px 5px $shadow-color;
+  &:hover, &.isActive {
+    background: var(--c-secondary-dark);
   }
 
-  &:hover, &.isActive {
-    background: var(--c-primary-dark-hover);
+  &:active {
+    background: var(--c-secondary-darker);
   }
 }
 
@@ -79,26 +99,48 @@ $button {
   background: $c-gray-1;
   color: $white;
 
-  &:active {
-    box-shadow: inset 0 3px 5px $shadow-color;
-  }
 
   &:hover, &.isActive {
     background: darken($c-gray-1, 5%);
     color: $white;
   }
+
+  &:active {
+    background: $c-gray-2;
+  }
 }
 
-.variant.outline {
+$variantOutline {
   background: none;
   border: 1px solid $c-gray-1;
   color: $c-text;
+}
+
+.variant.outline {
+  @extend $variantOutline;
 
   &:hover, &.isActive {
     background: $c-gray-1;
     color: $white;
   }
 }
+
+.variant.outline-light {
+  @extend $variantOutline;
+
+  &:hover, &.isActive {
+    background: lighten($color-light-1, 50%);
+    color: $c-gray-2;
+    border-color: $c-gray-2;
+  }
+
+  &:active {
+    background: lighten($color-light-1, 20%);
+    border-color: $c-gray-3;
+    color: $c-gray-3;
+  }
+}
+
 
 /* Clean
 ================ */
@@ -124,8 +166,8 @@ $button {
   background: none;
   border: 0;
 
-  &.outline, 
-  &:hover, 
+  &.outline,
+  &:hover,
   &:disabled,
   &:disabled:not(.isLoading),
   &:hover:disabled,
@@ -167,7 +209,7 @@ $button {
   }
 }
 
-/* Large  
+/* Large
 ================ */
 .large {
   font-size: 15px;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormActions component #render render correctly 1`] = `
+"<div className=\\"test form-group-actions\\">
+  <span>
+    test
+  </span>
+</div>"
+`;

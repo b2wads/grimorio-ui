@@ -16,7 +16,7 @@ class Button extends PureComponent {
     block: PropTypes.bool,
     type: PropTypes.oneOf(['button', 'reset', 'submit']),
     color: PropTypes.oneOf(['primary', 'secondary', 'variant', 'clean', 'transparent']),
-    modifier: PropTypes.oneOf(['inverted', 'outline']),
+    modifier: PropTypes.oneOf(['inverted', 'outline', 'outline-light']),
     size: PropTypes.oneOf(['tiny', 'small', 'medium', 'large', 'none']),
     onClick: PropTypes.func,
     children: PropTypes.any.isRequired,
@@ -38,8 +38,8 @@ class Button extends PureComponent {
 
   getLoaderColor() {
     const { color, modifier } = this.props;
-    if (modifier === 'outline' || ['clean', 'transparent'].includes(color)) {
-      return 'primary';
+    if (/^outline/.test(modifier) || ['clean', 'transparent'].includes(color)) {
+      return 'default';
     } else {
       return 'secondary';
     }
@@ -80,7 +80,7 @@ class Button extends PureComponent {
       <button {...elementProps} type={type} className={fullClassName} onClick={onClick} disabled={loading || disabled}>
         {iconLeft && <Icon className={styles.iconLeft} size={15} name={iconLeft} />}
         {children}
-        {loading && <Loader className={styles.btnLoad} size="15px" color={this.getLoaderColor()} />}
+        {loading && <Loader className={styles.btnLoad} size="15px" style={this.getLoaderColor()} />}
         {iconRight && <Icon className={styles.iconRight} size={15} name={iconRight} />}
       </button>
     );

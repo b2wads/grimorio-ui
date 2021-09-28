@@ -2,13 +2,15 @@
 :root {
 /* Base Colors */
   --c-primary: #00b8ad;
-  --c-primary-light: #1bfff1;
+  --c-primary-light: #5cfff5;
   --c-primary-dark: #008179;
+  --c-primary-darker: #005c57;
   --c-primary-dark-hover: #006e68;
   --c-secondary: #dcdcdc;
   --c-secondary-light: #e7e7e7;
   --c-secondary-medium: #bbb;
   --c-secondary-dark: #9a9a9a;
+  --c-secondary-darker: #6e6e6e;
   --c-support: #2c3b4d;
   --c-support-light: #48617f;
   --c-support-dark: #1a293c;
@@ -261,19 +263,24 @@ h5 {
 .CalendarDay__selected,
 .CalendarDay__selected:active,
 .CalendarDay__selected:hover {
-  background: var(--c-primary);
-  border-color: var(--c-primary);
+  background: var(--c-primary-dark);
+  border-color: var(--c-primary-dark);
 }
 .CalendarDay__selected_span {
   background: var(--c-primary-light);
   border-color: var(--c-primary-light);
-  color: var(--c-primary-dark);
+  color: #fff;
+}
+.CalendarDay__selected_span:hover {
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+  color: #fff;
 }
 .CalendarDay__hovered_span,
 .CalendarDay__hovered_span:hover {
-  background: var(--c-secondary-light);
-  border-color: var(--c-secondary-light);
-  color: #777;
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+  color: #fff;
 }
 
 

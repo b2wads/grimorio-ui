@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormActions component #render render correctly 1`] = `
+"<label className=\\"test label has-success\\" htmlFor=\\"123\\">
+  Test Label
+  <span className=\\"label-addon\\">
+    <span>
+      test
+    </span>
+  </span>
+</label>"
+`;

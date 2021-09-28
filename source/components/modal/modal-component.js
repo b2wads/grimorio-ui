@@ -19,7 +19,7 @@ class Modal extends PureComponent {
     open: PropTypes.bool.isRequired,
     showClose: PropTypes.bool,
     closeOnOverlay: PropTypes.bool,
-    type: PropTypes.oneOf(['custom', 'confirm', 'success', 'fail']),
+    type: PropTypes.oneOf(['custom', 'confirm', 'success', 'success_ads', 'fail']),
     confirmInverted: PropTypes.bool,
     showButton: PropTypes.bool,
     innerPadding: PropTypes.bool,
@@ -49,6 +49,7 @@ class Modal extends PureComponent {
       confirm: 'renderConfirm',
       fail: 'renderAlert',
       success: 'renderAlert',
+      success_ads: 'renderAlert',
     };
     return modalTypes[type] ? this[modalTypes[type]]() : children;
   }
@@ -59,8 +60,8 @@ class Modal extends PureComponent {
       <div className={styles.base}>
         <div className={styles.imageWrap}>
           {type === 'success'
-            ? <Svg src="success" width="70px" height="70px" />
-            : <Svg src="fail" width="50px" height="50px" />}
+            ? <Svg src={type} width="70px" height="70px" />
+            : <Svg src={type} width="50px" height="50px" />}
         </div>
 
         <div className={styles.message}>

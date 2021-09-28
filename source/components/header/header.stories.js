@@ -12,10 +12,13 @@ export const Normal = () => <Header>Conteúdo qualquer que vai entrar aqui!</Hea
 
 export const WithLogo = () => (
   <Header
-    showLogo
-    onLogoClick={() => alert('logo!')}
-    logo={<Svg width={188} height={58} src="logo/afiliados" />}
+  showLogo
+  color="support"
+  onLogoClick={() => alert('logo!')}
+  logo={<Svg width={288} height={108} src="logo/americanas-advertising" />}
   >
     Conteúdo qualquer que vai entrar aqui!
   </Header>
 );
+
+export const SecondaryColor = () => <Header color="secondary">Conteúdo qualquer que vai entrar aqui!</Header>;

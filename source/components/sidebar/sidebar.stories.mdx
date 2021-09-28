@@ -95,6 +95,7 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
           schema={schema}
           initialSection="acc2"
           initialItem="acc2-item2"
+          toggleIconColor="#000"
         />
       )}
     </State>
@@ -115,6 +116,34 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
           logo={<Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />}
           logoSmall={<Svg className={styles.logo} width={24} src="logo/afiliados-icon" />}
           schema={schema}
+          toggleIconColor="#000"
+        />
+      )}
+    </State>
+  </Story>
+</Preview>
+
+
+### With Color Config
+<Preview>
+  <Story name="Color">
+    <State initialState={{ open: true }}>
+      {store => (
+        <Sidebar
+          isFixed={false}
+          open={store.state.open}
+          onLogoClick={() => alert('logo!')}
+          onToggle={() => store.set({ open: !store.state.open })}
+          onClickItem={(link) => alert(`Clicou no link ${link}`)}
+          logo={<Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />}
+          logoSmall={<Svg className={styles.logo} width={24} src="logo/afiliados-icon" />}
+          schema={schema}
+          initialSection="acc2"
+          initialItem="acc2-item2"
+          toggleIconColor="#ff33ff"
+          contentColor="primary"
+          supportColor="secondary"
+          logoContainerColor="secondary"
         />
       )}
     </State>

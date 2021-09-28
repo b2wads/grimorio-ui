@@ -100,7 +100,7 @@ class EditableValue extends PureComponent {
           {validationStatus === 'error' && errorMessage && <FormHelpText>{errorMessage}</FormHelpText>}
         </FormGroup>
         <Button className={cx(styles.submit, buttonClassName)} size="none" onClick={this.onSubmit}>
-          {!loading ? <Icon name="check" size={16} /> : <Loader size="20px" color="secondary" />}
+          {!loading ? <Icon name="check" size={16} /> : <Loader size="20px" style="secondary" />}
         </Button>
       </Fragment>
     );

@@ -7,7 +7,7 @@ import { withContext } from '../form-context';
 // styles
 import styles from '../form.styl';
 
-class FormLabel extends Component {
+export class FormLabel extends Component {
   constructor(props, context) {
     super(props, context);
   }

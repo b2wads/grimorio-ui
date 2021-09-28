@@ -37,7 +37,7 @@ Form Label Component
   position: relative;
 }
 .grm-form-control-label__controlledLabel {
-  color: #999;
+  color: #a1a1a1;
   font-size: 16px;
   font-weight: 400;
   left: 0;
@@ -48,14 +48,20 @@ Form Label Component
   transition: all 0.25s ease;
 }
 .grm-form-control-label__isActive {
-  color: var(--c-active-input);
   font-size: 12px;
   left: 0;
   top: -1.5rem;
   transition: all 0.125s ease;
+  color: #878786;
+}
+.grm-form-control-label__isActive.grm-form-control-label__isHovered {
+  color: var(--c-support-dark);
+}
+.grm-form-control-label__isActive.grm-form-control-label__labelHighLight {
+  color: var(--c-active-input);
 }
 .grm-form-control-label__formControl {
-  color: #333;
+  color: #878786;
   font-size: 16px;
   margin-top: 5px;
 }
@@ -123,7 +129,7 @@ Placeholders
 .grm-form-control__form-field--select,
 .grm-form-control__form-field--textarea {
   border: 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #a1a1a1;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   display: block;
@@ -133,12 +139,27 @@ Placeholders
   padding-top: 3px;
   text-indent: 5px;
   width: 100%;
+  transition: all 0.2s ease;
+}
+.grm-form-control__form-field:not([value=""]),
+.grm-form-control__form-field--outline:not([value=""]),
+.grm-form-control__form-field--select:not([value=""]),
+.grm-form-control__form-field--textarea:not([value=""]) {
+  border-color: #878786;
+}
+.grm-form-control__form-field:hover,
+.grm-form-control__form-field--outline:hover,
+.grm-form-control__form-field--select:hover,
+.grm-form-control__form-field--textarea:hover {
+  border-color: var(--c-support-dark);
+  color: var(--c-support-dark);
 }
 .grm-form-control__form-field:focus,
 .grm-form-control__form-field--outline:focus,
 .grm-form-control__form-field--select:focus,
 .grm-form-control__form-field--textarea:focus {
   border-color: var(--c-active-input);
+  color: var(--c-support-dark);
 }
 .grm-form-control__form-field.grm-form-control__isActive,
 .grm-form-control__form-field--outline.grm-form-control__isActive,
@@ -236,7 +257,7 @@ Form Control Component
   color: #333;
 }
 .grm-form-control__form-field--outline {
-  border: 1px solid #ccc;
+  border: 1px solid #a1a1a1;
   border-radius: 3px;
   margin-top: 0;
   padding: 24px 10px 22px;

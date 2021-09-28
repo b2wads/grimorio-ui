@@ -2,6 +2,6 @@
 
 exports[`Loader component #render render correctly 1`] = `
 "<div className=\\"wrap isFull isBlack\\">
-  <span style={{...}} className=\\"spinner secondary\\" />
+  <span style={{...}} className=\\"spinner spin-style-secondary spin-primary ellipse-secondary\\" />
 </div>"
 `;
