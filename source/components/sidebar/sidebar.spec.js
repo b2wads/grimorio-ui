@@ -14,6 +14,11 @@ const schema = [
     icon: 'person',
     id: 'home-link',
     className: 'classe-teste',
+    GAConfig: {
+      category: 'categoria',
+      action: 'ação',
+      label: 'rótulo'
+    }
   },
   {
     name: 'Página 1',
@@ -86,7 +91,11 @@ describe('Sidebar component', () => {
 
   describe('with toggle button', () => {
     beforeAll(() => {
-      wrapper.setProps({ hasToggle: true })
+      wrapper.setProps({ hasToggle: true , toggleGAConfig: {
+        category: 'categoria',
+        action: 'ação',
+        label: 'rótulo'
+      }})
     })
 
     it('render with button when hasToggle is true', () => {

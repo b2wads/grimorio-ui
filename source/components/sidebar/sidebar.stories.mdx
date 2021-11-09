@@ -15,6 +15,11 @@ export const schema = [
     icon: 'person',
     id: 'home-link',
     className: 'classe-teste',
+    GAConfig: {
+      category: 'categoria',
+      action: 'ação',
+      label: 'rótulo'
+    }
   },
   {
     name: 'Página 1',
@@ -96,6 +101,11 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
           initialSection="acc2"
           initialItem="acc2-item2"
           toggleIconColor="#000"
+          toggleGAConfig={{
+            category: 'categoria',
+            action: 'ação',
+            label: 'rótulo'
+          }}
         />
       )}
     </State>

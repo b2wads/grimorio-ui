@@ -18,7 +18,15 @@ const style = {
 
 export const ArrowDots = () => (
   <div>
-    <Slider arrows dots>
+    <Slider
+      arrows
+      dots
+      arrowsGAConfig={{
+        category: 'categoria',
+        action: 'ação',
+        label: 'rótulo'
+      }}
+    >
       <div style={style}>1</div>
       <div style={style}>2</div>
       <div style={style}>3</div>
@@ -28,7 +36,15 @@ export const ArrowDots = () => (
 
 export const DotsBack = () => (
   <div>
-    <Slider dots dotsBackground>
+    <Slider
+      dots
+      dotsBackground
+      dotsGAConfig={{
+        category: 'categoria',
+        action: 'ação',
+        label: 'rótulo'
+      }}
+    >
       <div style={style}>1</div>
       <div style={style}>2</div>
       <div style={style}>3</div>

@@ -16,6 +16,7 @@ export const Sidebar = ({
   onToggle,
   hasToggle,
   toggleIconColor,
+  toggleGAConfig,
   isMobile,
   logo,
   logoSmall,
@@ -26,6 +27,7 @@ export const Sidebar = ({
   initialItem,
   open: openProp,
 }) => {
+  const hasToggleGAConfig = Object.keys(toggleGAConfig || {}).length !== 0;
   const [open, setOpen] = useState(true);
   const [currentSection, setCurrentSection] = useState(initialSection);
   const [currentItem, setCurrentItem] = useState(initialItem);
@@ -59,7 +61,8 @@ export const Sidebar = ({
     };
   };
 
-  const renderMenuSimple = ({ className, name, icon, link, action, id, sectionId = null, type = 'list' }) => {
+  const renderMenuSimple = ({ className, name, icon, link, action, id, sectionId = null, type = 'list', GAConfig }) => {
+    const hasGaConfig = Object.keys(GAConfig || {}).length !== 0;
     return (
       <li
         title={name}
@@ -71,11 +74,15 @@ export const Sidebar = ({
           [styles.isClosed]: !openNav,
           [styles.isActive]: getActiveItem(id),
           [styles.sectionActive]: getActiveSection(sectionId),
+          gatrack: hasGaConfig,
         })}
         onClick={onItemClick(id, link, action, sectionId)}
         data-testid={id}
         data-testidgen={sectionId ? 'submenu-item' : 'menu-item'}
         key={id}
+        data-gacategory={hasGaConfig ? GAConfig.category : ''}
+        data-gaaction={hasGaConfig ? GAConfig.action : ''}
+        data-galabel={hasGaConfig ? GAConfig.label : ''}
       >
         {icon && <Icon size={16} name={icon} className={styles.iconLeft} />}
         {name}
@@ -83,16 +90,21 @@ export const Sidebar = ({
     );
   };
 
-  const renderMenuWithAccordion = ({ className, icon, name, submenu, id }, index) => {
+  const renderMenuWithAccordion = ({ className, icon, name, submenu, id, GAConfig }, index) => {
+    const hasGaConfig = Object.keys(GAConfig || {}).length !== 0;
     return (
       <li
         className={cx(className, styles.accordeonListItem, {
           [styles[supportColor]]: supportColor,
           [styles.isActive]: getActiveSection(id),
+          gatrack: hasGaConfig,
         })}
         data-testid={id}
         data-testidgen="menu-item"
         key={id}
+        data-gacategory={hasGaConfig ? GAConfig.category : ''}
+        data-gaaction={hasGaConfig ? GAConfig.action : ''}
+        data-galabel={hasGaConfig ? GAConfig.label : ''}
       >
         <AccordionTitle
           data-testid={id}
@@ -123,7 +135,16 @@ export const Sidebar = ({
     <Fragment>
       <div className={allClassNames}>
         {hasToggle &&
-          <button className={styles.toggle} type="button" onClick={handleToggle}>
+          <button
+            className={cx(styles.toggle, {
+              gatrack: hasToggleGAConfig,
+            })}
+            type="button"
+            onClick={handleToggle}
+            data-gacategory={hasToggleGAConfig ? toggleGAConfig.category : ''}
+            data-gaaction={hasToggleGAConfig ? toggleGAConfig.action : ''}
+            data-galabel={hasToggleGAConfig ? toggleGAConfig.label : ''}
+          >
             <Icon className={styles.toggleIcon} name="menu" color={toggleIconColor} />
           </button>}
 
@@ -162,6 +183,11 @@ Sidebar.propTypes = {
   supportColor: PropTypes.oneOf(['primary', 'secondary']),
   hasToggle: PropTypes.bool,
   toggleIconColor: PropTypes.string,
+  toggleGAConfig: PropTypes.shape({
+    category: PropTypes.string,
+    action: PropTypes.string,
+    label: PropTypes.string,
+  }),
   onToggle: PropTypes.func,
   onLogoClick: PropTypes.func,
   isMobile: PropTypes.bool,
@@ -182,6 +208,11 @@ Sidebar.propTypes = {
       submenu: PropTypes.array,
       render: PropTypes.func,
       className: PropTypes.string,
+      GAConfig: PropTypes.shape({
+        category: PropTypes.string,
+        action: PropTypes.string,
+        label: PropTypes.string,
+      }),
     })
   ).isRequired,
 };
