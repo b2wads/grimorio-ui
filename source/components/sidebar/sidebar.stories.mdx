@@ -97,6 +97,11 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
           onClickItem={(link) => alert(`Clicou no link ${link}`)}
           logo={<Svg className={styles.logo} width={188} height={58} src="logo/afiliados" />}
           logoSmall={<Svg className={styles.logo} width={24} src="logo/afiliados-icon" />}
+          logoContainerGAConfig={{
+            category: 'categoria',
+            action: 'ação',
+            label: 'rótulo'
+          }}
           schema={schema}
           initialSection="acc2"
           initialItem="acc2-item2"

@@ -3,7 +3,7 @@
 exports[`Sidebar component render default 1`] = `
 "<Symbol(react.fragment)>
   <div className=\\"sidebar closed\\">
-    <div onClick={[undefined]} className=\\"logotype\\" />
+    <div onClick={[undefined]} className=\\"logotype\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\" />
     <nav className=\\"content\\">
       <span className=\\"contentTitle isNavClosed\\">
         Menu
@@ -64,7 +64,7 @@ exports[`Sidebar component with toggle button Should render correctly with toggl
     <button className=\\"toggle gatrack\\" type=\\"button\\" onClick={[Function: handleToggle]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo\\">
       <Icon className=\\"toggleIcon\\" name=\\"menu\\" color=\\"#ffff99\\" size={24} align=\\"middle\\" />
     </button>
-    <div onClick={[undefined]} className=\\"logotype\\" />
+    <div onClick={[undefined]} className=\\"logotype\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\" />
     <nav className=\\"content\\">
       <span className=\\"contentTitle isNavClosed\\">
         Menu

@@ -139,7 +139,16 @@ describe('Sidebar component', () => {
     const logoSmall = <span className="logo-small-teste">logoSmall</span>;
 
     beforeEach(() => {
-      wrapper.setProps({ isMobile: false, logo, logoSmall})
+      wrapper.setProps({
+        isMobile: false,
+        logo,
+        logoSmall,
+        logoContainerGAConfig: {
+          category: 'categoria',
+          action: 'ação',
+          label: 'rótulo'
+        }
+      })
     })
 
     it('render default logo when open is true', () => {
