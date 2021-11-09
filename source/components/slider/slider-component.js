@@ -25,7 +25,7 @@ class Slider extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    dotsClassName: PropTypes.string,
+    arrows: PropTypes.bool,
     arrowClassName: PropTypes.string,
     arrowsGAConfig: PropTypes.shape({
       category: PropTypes.string,
@@ -33,13 +33,13 @@ class Slider extends PureComponent {
       label: PropTypes.string,
     }),
     dots: PropTypes.bool,
+    dotsClassName: PropTypes.string,
     dotsBackground: PropTypes.bool,
     dotsGAConfig: PropTypes.shape({
       category: PropTypes.string,
       action: PropTypes.string,
       label: PropTypes.string,
     }),
-    arrows: PropTypes.bool,
     autoplay: PropTypes.bool,
     delay: PropTypes.number,
     slidesToShow: PropTypes.number,
