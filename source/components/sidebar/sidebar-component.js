@@ -21,6 +21,7 @@ export const Sidebar = ({
   logo,
   logoSmall,
   logoContainerColor,
+  logoContainerGAConfig,
   onClickItem,
   onLogoClick,
   initialSection,
@@ -28,6 +29,8 @@ export const Sidebar = ({
   open: openProp,
 }) => {
   const hasToggleGAConfig = Object.keys(toggleGAConfig || {}).length !== 0;
+  const hasLogoContainerGAConfig = Object.keys(logoContainerGAConfig || {}).length !== 0;
+
   const [open, setOpen] = useState(true);
   const [currentSection, setCurrentSection] = useState(initialSection);
   const [currentItem, setCurrentItem] = useState(initialItem);
@@ -152,8 +155,12 @@ export const Sidebar = ({
           <div
             onClick={onLogoClick}
             className={cx(styles.logotype, {
+              gatrack: hasLogoContainerGAConfig,
               [styles[logoContainerColor]]: logoContainerColor,
             })}
+            data-gacategory={hasLogoContainerGAConfig ? logoContainerGAConfig.category : ''}
+            data-gaaction={hasLogoContainerGAConfig ? logoContainerGAConfig.action : ''}
+            data-galabel={hasLogoContainerGAConfig ? logoContainerGAConfig.label : ''}
           >
             {openNav ? logo : logoSmall}
           </div>}
@@ -195,6 +202,11 @@ Sidebar.propTypes = {
   logo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   logoSmall: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   logoContainerColor: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  logoContainerGAConfig: PropTypes.shape({
+    category: PropTypes.string,
+    action: PropTypes.string,
+    label: PropTypes.string,
+  }),
   onClickItem: PropTypes.func,
   initialSection: PropTypes.string,
   initialItem: PropTypes.string,
