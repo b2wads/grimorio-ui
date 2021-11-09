@@ -1,0 +1,368 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider component #render render default 1`] = `
+"<div className=\\"content classnameslider\\" slideClassName=\\"slideclassname\\" delay={5000}>
+  <div className=\\"wrapper wrapperclassname\\">
+    <div className=\\"currentSlide next slide slideclassname\\">
+      <div>
+        1
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        2
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        3
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        4
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        5
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        6
+      </div>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`Slider component #render render with arrow Should render correctly with arrows 1`] = `
+"<div className=\\"content classnameslider withArrow\\" slideClassName=\\"slideclassname\\" delay={5000}>
+  <div className=\\"wrapper wrapperclassname\\">
+    <div className=\\"currentSlide next slide slideclassname\\">
+      <div>
+        1
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        2
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        3
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        4
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        5
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        6
+      </div>
+    </div>
+  </div>
+  <div className=\\"arrow arrowclassname\\">
+    <button className=\\"arrowLeft gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Anterior\\">
+      <Icon size=\\"32px\\" name=\\"navigate_before\\" align=\\"middle\\" />
+    </button>
+    <button className=\\"arrowRight gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Próximo\\">
+      <Icon size=\\"32px\\" name=\\"navigate_next\\" align=\\"middle\\" />
+    </button>
+  </div>
+</div>"
+`;
+
+exports[`Slider component #render render with arrow should call nextSlide when click on right arrow 1`] = `
+"<div className=\\"content classnameslider withArrow\\" slideClassName=\\"slideclassname\\" delay={5000}>
+  <div className=\\"wrapper wrapperclassname\\">
+    <div className=\\"currentSlide next slide slideclassname\\">
+      <div>
+        1
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        2
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        3
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        4
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        5
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        6
+      </div>
+    </div>
+  </div>
+  <div className=\\"arrow arrowclassname\\">
+    <button className=\\"arrowLeft gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Anterior\\">
+      <Icon size=\\"32px\\" name=\\"navigate_before\\" align=\\"middle\\" />
+    </button>
+    <button className=\\"arrowRight gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Próximo\\">
+      <Icon size=\\"32px\\" name=\\"navigate_next\\" align=\\"middle\\" />
+    </button>
+  </div>
+</div>"
+`;
+
+exports[`Slider component #render render with arrow should call prevSlide when click on left arrow 1`] = `
+"<div className=\\"content classnameslider withArrow\\" slideClassName=\\"slideclassname\\" delay={5000}>
+  <div className=\\"wrapper wrapperclassname\\">
+    <div className=\\"prev slide slideclassname\\">
+      <div>
+        1
+      </div>
+    </div>
+    <div className=\\"prev slide slideclassname\\">
+      <div>
+        2
+      </div>
+    </div>
+    <div className=\\"prev slide slideclassname\\">
+      <div>
+        3
+      </div>
+    </div>
+    <div className=\\"prev slide slideclassname\\">
+      <div>
+        4
+      </div>
+    </div>
+    <div className=\\"prev slide slideclassname\\">
+      <div>
+        5
+      </div>
+    </div>
+    <div className=\\"currentSlide prev slide slideclassname\\">
+      <div>
+        6
+      </div>
+    </div>
+  </div>
+  <div className=\\"arrow arrowclassname\\">
+    <button className=\\"arrowLeft gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Anterior\\">
+      <Icon size=\\"32px\\" name=\\"navigate_before\\" align=\\"middle\\" />
+    </button>
+    <button className=\\"arrowRight gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Próximo\\">
+      <Icon size=\\"32px\\" name=\\"navigate_next\\" align=\\"middle\\" />
+    </button>
+  </div>
+</div>"
+`;
+
+exports[`Slider component #render render with dots Should render correctly with dots 1`] = `
+"<div className=\\"content classnameslider withArrow\\" slideClassName=\\"slideclassname\\" delay={5000}>
+  <div className=\\"wrapper wrapperclassname\\">
+    <div className=\\"currentSlide next slide slideclassname\\">
+      <div>
+        1
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        2
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        3
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        4
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        5
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        6
+      </div>
+    </div>
+  </div>
+  <ul className=\\"dots dotsclassname hasDotsBackground\\">
+    <li className=\\"dotsBtn gatrack isActive\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 1\\">
+      1
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 2\\">
+      2
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 3\\">
+      3
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 4\\">
+      4
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 5\\">
+      5
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 6\\">
+      6
+    </li>
+  </ul>
+  <div className=\\"arrow arrowclassname\\">
+    <button className=\\"arrowLeft gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Anterior\\">
+      <Icon size=\\"32px\\" name=\\"navigate_before\\" align=\\"middle\\" />
+    </button>
+    <button className=\\"arrowRight gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Próximo\\">
+      <Icon size=\\"32px\\" name=\\"navigate_next\\" align=\\"middle\\" />
+    </button>
+  </div>
+</div>"
+`;
+
+exports[`Slider component #render render with dots should call goTo with correct param when click on specific dot 1`] = `
+"<div className=\\"content classnameslider withArrow\\" slideClassName=\\"slideclassname\\" delay={5000}>
+  <div className=\\"wrapper wrapperclassname\\">
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        1
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        2
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        3
+      </div>
+    </div>
+    <div className=\\"currentSlide next slide slideclassname\\">
+      <div>
+        4
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        5
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        6
+      </div>
+    </div>
+  </div>
+  <ul className=\\"dots dotsclassname hasDotsBackground\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 1\\">
+      1
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 2\\">
+      2
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 3\\">
+      3
+    </li>
+    <li className=\\"dotsBtn gatrack isActive\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 4\\">
+      4
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 5\\">
+      5
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 6\\">
+      6
+    </li>
+  </ul>
+  <div className=\\"arrow arrowclassname\\">
+    <button className=\\"arrowLeft gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Anterior\\">
+      <Icon size=\\"32px\\" name=\\"navigate_before\\" align=\\"middle\\" />
+    </button>
+    <button className=\\"arrowRight gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Próximo\\">
+      <Icon size=\\"32px\\" name=\\"navigate_next\\" align=\\"middle\\" />
+    </button>
+  </div>
+</div>"
+`;
+
+exports[`Slider component #render render with dots should call goTo with correct param when click on specific dot 2`] = `
+"<div className=\\"content classnameslider withArrow\\" slideClassName=\\"slideclassname\\" delay={5000}>
+  <div className=\\"wrapper wrapperclassname\\">
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        1
+      </div>
+    </div>
+    <div className=\\"currentSlide next slide slideclassname\\">
+      <div>
+        2
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        3
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        4
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        5
+      </div>
+    </div>
+    <div className=\\"next slide slideclassname\\">
+      <div>
+        6
+      </div>
+    </div>
+  </div>
+  <ul className=\\"dots dotsclassname hasDotsBackground\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 1\\">
+      1
+    </li>
+    <li className=\\"dotsBtn gatrack isActive\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 2\\">
+      2
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 3\\">
+      3
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 4\\">
+      4
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 5\\">
+      5
+    </li>
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 6\\">
+      6
+    </li>
+  </ul>
+  <div className=\\"arrow arrowclassname\\">
+    <button className=\\"arrowLeft gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Anterior\\">
+      <Icon size=\\"32px\\" name=\\"navigate_before\\" align=\\"middle\\" />
+    </button>
+    <button className=\\"arrowRight gatrack\\" onClick={[Function: onClick]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Próximo\\">
+      <Icon size=\\"32px\\" name=\\"navigate_next\\" align=\\"middle\\" />
+    </button>
+  </div>
+</div>"
+`;

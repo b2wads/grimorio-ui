@@ -25,11 +25,21 @@ class Slider extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    dotsClassName: PropTypes.string,
-    arrowClassName: PropTypes.string,
-    dots: PropTypes.bool,
-    dotsBackground: PropTypes.bool,
     arrows: PropTypes.bool,
+    arrowClassName: PropTypes.string,
+    arrowsGAConfig: PropTypes.shape({
+      category: PropTypes.string,
+      action: PropTypes.string,
+      label: PropTypes.string,
+    }),
+    dots: PropTypes.bool,
+    dotsClassName: PropTypes.string,
+    dotsBackground: PropTypes.bool,
+    dotsGAConfig: PropTypes.shape({
+      category: PropTypes.string,
+      action: PropTypes.string,
+      label: PropTypes.string,
+    }),
     autoplay: PropTypes.bool,
     delay: PropTypes.number,
     slidesToShow: PropTypes.number,
@@ -144,29 +154,47 @@ class Slider extends PureComponent {
     }
   }
 
-  renderArrows(arrowClassName) {
+  renderArrows(arrowClassName, arrowsGAConfig) {
+    const hasArrowsGAConfig = Object.keys(arrowsGAConfig || {}).length !== 0;
     return (
       <div className={cx(styles.arrow, arrowClassName)}>
-        <button className={styles.arrowLeft} onClick={() => this.prevSlide()}>
+        <button
+          className={cx(styles.arrowLeft, { gatrack: hasArrowsGAConfig })}
+          onClick={() => this.prevSlide()}
+          data-gacategory={hasArrowsGAConfig ? arrowsGAConfig.category : ''}
+          data-gaaction={hasArrowsGAConfig ? arrowsGAConfig.action : ''}
+          data-galabel={hasArrowsGAConfig ? `${arrowsGAConfig.label} - Anterior` : ''}
+        >
           <Icon size="32px" name="navigate_before" />
         </button>
 
-        <button className={styles.arrowRight} onClick={() => this.nextSlide(true)}>
+        <button
+          className={cx(styles.arrowRight, { gatrack: hasArrowsGAConfig })}
+          onClick={() => this.nextSlide(true)}
+          data-gacategory={hasArrowsGAConfig ? arrowsGAConfig.category : ''}
+          data-gaaction={hasArrowsGAConfig ? arrowsGAConfig.action : ''}
+          data-galabel={hasArrowsGAConfig ? `${arrowsGAConfig.label} - Próximo` : ''}
+        >
           <Icon size="32px" name="navigate_next" />
         </button>
       </div>
     );
   }
 
-  renderDots(children, dotsClassName, dotsBackground) {
+  renderDots(children, dotsClassName, dotsGAConfig, dotsBackground) {
+    const hasDotsGAConfig = Object.keys(dotsGAConfig || {}).length !== 0;
     const { current } = this.state;
+
     return (
       <ul className={cx(styles.dots, dotsClassName, { [styles.hasDotsBackground]: dotsBackground })}>
         {this.divideChildContent(children).map((_, index) => (
           <li
-            className={cx(styles.dotsBtn, { [styles.isActive]: current === index })}
+            className={cx(styles.dotsBtn, { gatrack: hasDotsGAConfig, [styles.isActive]: current === index })}
             onClick={this.goTo(index)}
             key={uniqueId()}
+            data-gacategory={hasDotsGAConfig ? dotsGAConfig.category : ''}
+            data-gaaction={hasDotsGAConfig ? dotsGAConfig.action : ''}
+            data-galabel={hasDotsGAConfig ? `${dotsGAConfig.label} - Posição: ${index + 1}` : ''}
           >
             {index + 1}
           </li>
@@ -181,8 +209,10 @@ class Slider extends PureComponent {
       children,
       dots,
       arrows,
+      arrowsGAConfig,
       className,
       dotsClassName,
+      dotsGAConfig,
       arrowClassName,
       dotsBackground,
       wrapperClassName,
@@ -198,8 +228,8 @@ class Slider extends PureComponent {
           {this.renderChildren(current)}
         </div>
 
-        {dots && children.length > 1 && this.renderDots(children, dotsClassName, dotsBackground)}
-        {arrows && children.length > 1 && this.renderArrows(arrowClassName)}
+        {dots && children.length > 1 && this.renderDots(children, dotsClassName, dotsGAConfig, dotsBackground)}
+        {arrows && children.length > 1 && this.renderArrows(arrowClassName, arrowsGAConfig)}
       </div>
     );
   }
