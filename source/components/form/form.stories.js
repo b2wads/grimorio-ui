@@ -2,6 +2,7 @@ import React from 'react';
 import { withState } from '../../helpers/storybook';
 
 import Button from '../button';
+import Svg from '../svg';
 
 import { fieldsMask } from '../../helpers/mask';
 
@@ -118,6 +119,17 @@ export const InputText = withState({ input: 'Campo com valor default', check: []
         <br />
         <FormGroup>
           <FormControlLabel
+            iconRight={<Svg width={18} height={18} src="logo/acom" style={{borderRadius: '50%'}}/>}
+            outline
+            label="Nome"
+            placeholder="Form, FormGroup and input"
+            defaultValue="Valor default"
+          />
+          <FormHelpText>Com ícone personalizado à direita</FormHelpText>
+        </FormGroup>
+        <br />
+        <FormGroup>
+          <FormControlLabel
             iconLeft="link"
             iconLeftClick={() => console.log('clicou no ícone!')}
             outline
@@ -126,6 +138,17 @@ export const InputText = withState({ input: 'Campo com valor default', check: []
             defaultValue="Valor default"
           />
           <FormHelpText>Com ícone à esquerda</FormHelpText>
+        </FormGroup>
+        <br />
+        <FormGroup>
+          <FormControlLabel
+            iconLeft={<Svg width={18} height={18} src="logo/suba" style={{borderRadius: '50%'}}/>}
+            outline
+            label="Nome"
+            placeholder="Form, FormGroup and input"
+            defaultValue="Valor default"
+          />
+          <FormHelpText>Com ícone personalizado à esquerda</FormHelpText>
         </FormGroup>
       </Form>
     </div>
