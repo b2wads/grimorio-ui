@@ -127,7 +127,9 @@ class FormControlLabel extends Component {
       return (
         <div className={labelWrapperClasses}>
           <FormLabel className={labelClasses}>{label}</FormLabel>
-          {iconLeft && <Icon className={iconLeftClasses} name={iconLeft} size={18} onClick={iconLeftClick} />}
+          {typeof iconLeft === 'string'
+            ? <Icon className={iconLeftClasses} name={iconLeft} size={18} onClick={iconLeftClick} />
+            : <div className={iconLeftClasses}>{iconLeft}</div>}
           <FormControl
             placeholder={this.state.active ? placeholder : ''}
             inputClassName={inputClasses}
@@ -138,7 +140,9 @@ class FormControlLabel extends Component {
             onHover={this.onHoverLabel}
             onBlur={this.onBlurLabel}
           />
-          {iconRight && <Icon className={iconRightClasses} name={iconRight} size={18} onClick={iconRightClick} />}
+          {typeof iconRight === 'string'
+            ? <Icon className={iconRightClasses} name={iconRight} size={18} onClick={iconRightClick} />
+            : <div className={iconRightClasses}>{iconRight}</div>}
         </div>
       );
     }
