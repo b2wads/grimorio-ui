@@ -3,10 +3,11 @@
 ========================================================================== */
 .default {
   align-items: center;
-  border-radius: 4px;
+  border-radius: 10px;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2);
   display: flex;
-  height: 72px;
+  min-height: 72px;
+  max-height: 150px;
 }
 
 .success {
@@ -22,6 +23,8 @@
   font-size: 14px;
   letter-spacing: 0.4px;
   line-height: 16px;
+  width: 100%;
+  padding: 16px 0;
   margin-left: 15px;
 }
 
@@ -61,11 +64,15 @@
 .buttonClick {
   background-color: transparent;
   flex-grow: 1;
+  align-self: flex-start;
+
   padding: 0;
+  margin-top: 12px;
+
+  cursor: pointer;
 
   &:hover {
     background-color: transparent;
-    cursor: default;
   }
 
   &:active {
@@ -89,17 +96,40 @@
   top: 190px;
 }
 
+@keyframes slideUpwards {
+  0% { bottom: -35%; }
+  100% { bottom: 10px; }
+}
+
 .mobilePosition {
-  bottom: 10px;
+  bottom: -35%;
+  animation: slideUpwards 0.5s forwards;
   left: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
   width: 317px;
+
+  &.isAboutToClose {
+    bottom: 10px;
+    animation: slideUpwards, slideUpwards 0.5s reverse forwards;
+  }
+}
+
+@keyframes slideForwards {
+  0% { right: -35%; }
+  100% { right: 40px; }
 }
 
 .defaultPosition {
   position: fixed;
-  right: 40px;
+  right: -35%;
   top: 200px;
   width: 30%;
+
+  animation: slideForwards 0.5s forwards;
+
+  &.isAboutToClose {
+    right: 40px;
+    animation: slideForwards, slideForwards 0.5s reverse forwards;
+  }
 }

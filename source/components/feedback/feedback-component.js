@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -6,77 +6,85 @@ import Icon from '../icon';
 import styles from './feedback.styl';
 import Button from '../button';
 
-class Feedback extends Component {
-  static propTypes = {
-    message: PropTypes.string,
-    type: PropTypes.oneOf(['success', 'fail']),
-    isMobile: PropTypes.bool,
-    timeToClose: PropTypes.number,
-  };
+const animationTimespan = 500;
 
-  static defaultProps = {
-    onDismiss: () => '',
-    isMobile: false,
-    isOpen: true,
-    timeToClose: 5000,
-  };
+export const Feedback = ({
+  message,
+  className,
+  type = 'success',
+  isOpen = true,
+  isMobile = false,
+  timeToClose = 5000,
+  onDismiss = () => {},
+}) => {
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(isOpen);
+  const [isAboutToClose, setIsAboutToClose] = useState(false);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: true,
-    };
-    this.handleClick = this.handleClick.bind(this);
-    this.timer = this.timer.bind(this);
+  useEffect(() => {
+    setTimeout(() => setIsAboutToClose(true), timeToClose + animationTimespan);
+
+    // para considerar o tempo de entrada e saida, multiplica-se por 2 o tempo
+    setTimeout(handleEndTimer, timeToClose + 2 * animationTimespan);
+  }, []);
+
+  function handleEndTimer() {
+    setIsFeedbackOpen(false);
+    onDismiss();
   }
 
-  handleClick() {
-    this.props.onDismiss();
+  function handleClose() {
+    setIsAboutToClose(true);
+
+    setTimeout(handleEndTimer, animationTimespan);
   }
 
-  componentDidMount() {
-    const { timeToClose } = this.props;
-    setTimeout(this.timer, timeToClose);
-  }
+  const typeFeedback = cx(styles.default, {
+    [styles[type]]: type,
+  });
 
-  timer() {
-    this.setState({ isOpen: false });
-    this.handleClick();
-  }
+  const iconType = cx({
+    [styles.icon]: type === 'success',
+    [styles.iconError]: type === 'fail',
+  });
 
-  render() {
-    const { message, type, isMobile, className } = this.props;
+  const positionFeedback = cx(className, {
+    [styles.isAboutToClose]: isAboutToClose,
+    [styles.mobilePosition]: isMobile,
+    [styles.defaultPosition]: !isMobile,
+  });
+  const nameIcon = type === 'success' ? 'check' : 'error';
 
-    const typeFeedback = cx(styles.default, {
-      [styles[type]]: type,
-    });
+  return (
+    <Fragment>
+      {isFeedbackOpen === true &&
+        <div className={positionFeedback}>
+          <div className={typeFeedback}>
+            <Icon className={iconType} size={26} name={nameIcon} />
+            <span className={styles.message}>{message}</span>
+            <Button className={styles.buttonClick} onClick={handleClose}>
+              <Icon className={styles.iconCleanError} size="20" name="clear" />
+            </Button>
+          </div>
+        </div>}
+    </Fragment>
+  );
+};
 
-    const iconType = cx({
-      [styles.icon]: type === 'success',
-      [styles.iconError]: type === 'fail',
-    });
+Feedback.propTypes = {
+  message: PropTypes.string,
+  className: PropTypes.string,
+  type: PropTypes.oneOf(['success', 'fail']),
+  isOpen: PropTypes.bool,
+  isMobile: PropTypes.bool,
+  timeToClose: PropTypes.number,
+  onDismiss: PropTypes.func,
+};
 
-    const positionFeedback = cx(className, {
-      [styles.mobilePosition]: isMobile,
-      [styles.defaultPosition]: !isMobile,
-    });
-    const nameIcon = type === 'success' ? 'check' : 'error';
-
-    return (
-      <Fragment>
-        {this.state.isOpen === true &&
-          <div className={positionFeedback}>
-            <div className={typeFeedback}>
-              <Icon className={iconType} size="20" name={nameIcon} />
-              <span className={styles.message}>{message}</span>
-              <Button className={styles.buttonClick} onClick={this.handleClick}>
-                <Icon className={styles.iconCleanError} size="22" name="clear" />
-              </Button>
-            </div>
-          </div>}
-      </Fragment>
-    );
-  }
-}
-
+Feedback.defaultProps = {
+  onDismiss: () => {},
+  type: 'success',
+  isOpen: true,
+  isMobile: false,
+  timeToClose: 5000,
+};
 export default Feedback;
