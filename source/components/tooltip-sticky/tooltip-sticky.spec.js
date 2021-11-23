@@ -14,6 +14,7 @@ describe('TooltipSticky component', () => {
 
     beforeEach(() => {
       jest.spyOn(TooltipSticky.prototype, 'onMouseOver');
+      jest.spyOn(TooltipSticky.prototype, 'getTooltipPosition');
       jest.spyOn(TooltipSticky.prototype, 'hideTooltip');
       jest.spyOn(TooltipSticky.prototype, 'clearTimeout');
 
@@ -43,11 +44,37 @@ describe('TooltipSticky component', () => {
       wrapper.find('span').at(1).simulate('mouseover');
       expect(TooltipSticky.prototype.clearTimeout).toHaveBeenCalled();
       expect(TooltipSticky.prototype.onMouseOver).toHaveBeenCalled();
+      expect(TooltipSticky.prototype.getTooltipPosition).toHaveBeenCalled();
+
+      const expectedState = {
+        classPosition: '',
+        show: true ,
+        position: {
+          left: '85px',
+          top: '215px'
+        },
+        posX: 'left',
+        posY: 'bottom'
+      }
+      expect(wrapper.state()).toEqual(expectedState);
+
+      expect(wrapper.find('.tooltip')).toBeTruthy();
     });
 
     it('should call hideTooltip on mouseout', () => {
       wrapper.find('span').at(1).simulate('mouseout');
       expect(TooltipSticky.prototype.hideTooltip).toHaveBeenCalled();
+
+      const expectedState = {
+        classPosition: '',
+        show: false,
+        position: {},
+        posX: undefined,
+        posY: undefined
+      }
+      expect(wrapper.state()).toEqual(expectedState);
+
+      expect(wrapper.find('.tooltip').exists()).toBe(false);
     });
 
     it('should call cleatTimeOut on componentWillUnmount', () => {

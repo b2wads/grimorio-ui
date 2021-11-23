@@ -12,6 +12,22 @@ const initialState = {
   show: true,
 };
 
+export const Fail = withState(initialState, store => {
+  const onDismiss = () => {
+    store.set({ show: false });
+  };
+
+  return (
+    <Feedback
+      type="fail"
+      message="Ocorreu um erro inesperado, entre em contato por favor!"
+      isOpen={store.state.show}
+      onDismiss={onDismiss}
+      timeToClose={10000}
+    />
+  );
+});
+
 export const Success = withState(initialState, store => {
   const onDismiss = () => {
     store.set({ show: false });
@@ -23,20 +39,7 @@ export const Success = withState(initialState, store => {
       message="Sua campanha foi criada com sucesso!"
       isOpen={store.state.show}
       onDismiss={onDismiss}
-    />
-  );
-});
-
-export const FailWithTopDistance = withState(initialState, store => {
-  const onDismiss = () => {
-    store.set({ show: false });
-  };
-  return (
-    <Feedback
-      type="fail"
-      message="Alguma coisa aconteceu, por favor tente novamente ou entre em contato conosco"
-      isOpen={store.state.show}
-      onDismiss={onDismiss}
+      timeToClose={7000}
     />
   );
 });
@@ -53,7 +56,6 @@ export const FailBottomMobile = withState(initialState, store => {
       message="Alguma coisa aconteceu, por favor tente novamente ou entre em contato conosco"
       isOpen={store.state.isPopoverOpen}
       onDismiss={onDismiss}
-      timeToClose={3000}
     />
   );
 });

@@ -64,3 +64,33 @@ export const WithShowOnSide = () => (
     </TooltipSticky>
   </div>
 );
+
+export const Disabled = () => (
+  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <TooltipSticky
+      body={
+        <div>
+          <span>Suas campanhas estão paradas por falta de saldo.</span>
+          Insira novos créditos e volte a anunciar.
+        </div>
+      }
+      showOnSide
+      disabled
+    >
+      <Button color="clean">Passe o mouse aqui também!</Button>
+    </TooltipSticky>
+
+    <TooltipSticky
+      body={
+        <div>
+          <span>Suas campanhas estão paradas por falta de saldo.</span>
+          Insira novos créditos e volte a anunciar.
+        </div>
+      }
+      title="Meu tooltip com título"
+      disabled={true}
+    >
+      <Button color="clean">Passe o mouse aqui também!</Button>
+    </TooltipSticky>
+  </div>
+);

@@ -122,6 +122,7 @@ class TooltipSticky extends PureComponent {
     );
   }
   render() {
+    const { disabled } = this.props;
     const { show } = this.state;
     return (
       <span>
@@ -133,7 +134,7 @@ class TooltipSticky extends PureComponent {
         >
           {this.props.children}
         </span>
-        {show && this.renderTooltip()}
+        {show && !disabled && this.renderTooltip()}
       </span>
     );
   }
