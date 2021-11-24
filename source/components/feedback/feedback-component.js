@@ -21,10 +21,15 @@ export const Feedback = ({
   const [isAboutToClose, setIsAboutToClose] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setIsAboutToClose(true), timeToClose + animationTimespan);
+    const triggerCloseAnimation = setTimeout(() => setIsAboutToClose(true), timeToClose + animationTimespan);
 
     // para considerar o tempo de entrada e saida, multiplica-se por 2 o tempo
-    setTimeout(handleEndTimer, timeToClose + 2 * animationTimespan);
+    const triggerComponentRemoval = setTimeout(handleEndTimer, timeToClose + 2 * animationTimespan);
+
+    return function cleanUp() {
+      clearTimeout(triggerCloseAnimation);
+      clearTimeout(triggerComponentRemoval);
+    };
   }, []);
 
   function handleEndTimer() {
