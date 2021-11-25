@@ -1,14 +1,14 @@
 {
   "env": {
     "testing": {
-      "presets": [["@babel/preset-env", { "loose": true }], "@babel/preset-react"],
+      "presets": [
+        ["@babel/preset-env", { "loose": true, "modules": "commonjs" }],
+        "@babel/preset-react"
+      ],
       "plugins": [
         ["@babel/plugin-proposal-class-properties", { "loose": true }],
         ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
-        "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
-        "@babel/plugin-proposal-export-namespace-from",
-        "@babel/plugin-transform-modules-commonjs",
         ["@babel/plugin-transform-runtime", { "regenerator": true }],
         "react-docgen"
       ]
@@ -18,9 +18,7 @@
       "plugins": [
         ["@babel/plugin-proposal-class-properties", { "loose": true }],
         ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
-        "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
-        "@babel/plugin-proposal-export-namespace-from",
         ["@babel/plugin-transform-runtime", { "regenerator": true }],
         "react-docgen"
       ]
@@ -30,9 +28,7 @@
       "plugins": [
         ["@babel/plugin-proposal-class-properties", { "loose": true }],
         ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
-        "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
-        "@babel/plugin-proposal-export-namespace-from",
         "react-docgen"
       ]
     },
@@ -41,9 +37,7 @@
       "plugins": [
         ["@babel/plugin-proposal-class-properties", { "loose": true }],
         ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
-        "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
-        "@babel/plugin-proposal-export-namespace-from",
         ["css-modules-transform", {
           "preprocessCss": "./internals/css-modules-transform.js",
           "generateScopedName": "grm-[name]__[local]",
