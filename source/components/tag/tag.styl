@@ -23,11 +23,26 @@
   }
 }
 
+/* Outlined
+ ================ */
+.isOutlined{
+  border-style: solid;
+  border-width: 1px;
+  &:hover{
+    background: transparent;
+  }
+}
+
 /* Primary
  ================ */
 .primary {
   background: var(--c-primary);
   color: $white;
+  &.isOutlined {
+    background: transparent;
+    color: var(--c-primary);
+    border-color: var(--c-primary);
+  }
 }
 
 /* Secondary
@@ -35,4 +50,9 @@
 .secondary {
   background: var(--c-secondary);
   color: $white;
+    &.isOutlined {
+    background: transparent;
+    color: $c-text;
+    border-color: var(--c-secondary);
+  }
 }
