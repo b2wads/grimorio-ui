@@ -3205,17 +3205,36 @@
 .grm-tag__tag > .grm-tag__icon:hover {
   opacity: 0.54;
 }
+/* Outlined
+ ================ */
+.grm-tag__isOutlined {
+  border-style: solid;
+  border-width: 1px;
+}
+.grm-tag__isOutlined:hover {
+  background: transparent;
+}
 /* Primary
  ================ */
 .grm-tag__primary {
   background: var(--c-primary);
   color: #fff;
 }
+.grm-tag__primary.grm-tag__isOutlined {
+  background: transparent;
+  color: var(--c-primary);
+  border-color: var(--c-primary);
+}
 /* Secondary
  ================ */
 .grm-tag__secondary {
   background: var(--c-secondary);
   color: #fff;
+}
+.grm-tag__secondary.grm-tag__isOutlined {
+  background: transparent;
+  color: #777;
+  border-color: var(--c-secondary);
 }
 
 /* ==========================================================================
