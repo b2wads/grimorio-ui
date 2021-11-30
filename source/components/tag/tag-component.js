@@ -12,21 +12,24 @@ class Tag extends PureComponent {
     className: PropTypes.string,
     color: PropTypes.oneOf(['primary', 'secondary']),
     fixed: PropTypes.bool,
+    outlined: PropTypes.bool,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    onClose: PropTypes.func,
+    onClose: PropTypes.func
   };
 
   static defaultProps = {
     color: 'primary',
     className: '',
     fixed: false,
+    outlined: false
   };
 
   render() {
-    const { children, className, color, fixed, onClose, ...rest } = this.props;
+    const { children, className, color, fixed, outlined, onClose, ...rest } = this.props;
     const fullClassName = cx(className, styles.tag, {
       [styles.fixed]: fixed,
       [styles[color]]: color,
+      [styles.isOutlined]: outlined
     });
     return (
       <div className={fullClassName} {...rest}>
