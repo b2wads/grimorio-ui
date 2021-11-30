@@ -14,14 +14,14 @@ class Tag extends PureComponent {
     fixed: PropTypes.bool,
     outlined: PropTypes.bool,
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
   };
 
   static defaultProps = {
     color: 'primary',
     className: '',
     fixed: false,
-    outlined: false
+    outlined: false,
   };
 
   render() {
@@ -29,7 +29,7 @@ class Tag extends PureComponent {
     const fullClassName = cx(className, styles.tag, {
       [styles.fixed]: fixed,
       [styles[color]]: color,
-      [styles.isOutlined]: outlined
+      [styles.isOutlined]: outlined,
     });
     return (
       <div className={fullClassName} {...rest}>
