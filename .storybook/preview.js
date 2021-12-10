@@ -1,6 +1,6 @@
 // import React from 'react';
 // import { addParameters } from '@storybook/react';
-import { parameters as reactParams } from "@storybook/addon-docs/dist/frameworks/react/config";
+import { parameters as reactParams } from '@storybook/addon-docs/dist/cjs/frameworks/react/config'
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
 import "../source/styl/variables.styl";

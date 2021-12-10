@@ -15,19 +15,19 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
   {
     test: /\.styl$/,
     sideEffects: true,
-    exclude : /(node_modules)/,
+    exclude: /(node_modules)/,
     include: [path.resolve(__dirname, './'), path.resolve(__dirname, '../source/components')],
     use: [
       mode === 'PRODUCTION' ? MiniCssExtractPlugin.loader : 'style-loader',
       {
         loader: 'css-loader',
         options: {
-          importLoaders: true,
+          importLoaders: 1,
           sourceMap: true,
           modules: {
             mode: 'local',
             localIdentName: 'grm-[name]__[local]',
-            context: path.resolve(__dirname, '../source/'),
+            localIdentContext: path.resolve(__dirname, '../source/'),
           },
         }
       },
@@ -42,7 +42,7 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
   {
     test: /\.styl$/,
     sideEffects: true,
-    exclude : /(node_modules)/,
+    exclude: /(node_modules)/,
     include: [path.resolve(__dirname, '../source')],
     exclude: [path.resolve(__dirname, '../source/components')],
     use: [
@@ -83,12 +83,30 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
   {
     test: /\.svg$/,
     exclude: /node_modules/,
-    loader: 'svg-react-loader',
+    use: [
+      {
+        loader: 'svg-url-loader',
+        options: {
+          limit: 10000,
+        },
+      },
+    ],
   },
 ];
 
 // Export a function. Accept the base config as the only param.
 module.exports = async ({ config, mode }) => {
+  // Replaces the webpack rule that loads SVGs as static files to leave out SVG files for our own preferences
+  const indexOfRuleToRemove = config.module.rules.findIndex(rule => rule.test.toString().includes('svg'))
+  config.module.rules.splice(indexOfRuleToRemove, 1, {
+    test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/,
+    loader: require.resolve('file-loader'),
+    options: {
+      name: 'static/media/[name].[hash:8].[ext]',
+      esModule: false
+    }
+  })
+
   // `mode` has a value of 'DEVELOPMENT' or 'PRODUCTION'
   // You can change the configuration based on that.
   // 'PRODUCTION' is used when building the static version of storybook.

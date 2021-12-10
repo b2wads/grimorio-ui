@@ -1,4 +1,7 @@
 module.exports = {
+  core: {
+    builder: "webpack5"
+  },
   stories: ['../source/pages/*.stories.mdx', '../source/components/**/*.stories.@(js|mdx)'],
   addons: [
     '@storybook/addon-storysource',
@@ -10,7 +13,3 @@ module.exports = {
     }
   ],
 };
-
-
-
-
