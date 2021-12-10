@@ -33,6 +33,11 @@ describe('Tag component', () => {
     expect(wrapper.find(Icon)).toHaveLength(1);
   })
 
+  it('should have isOutlined class when outlined props is true', () => {
+    wrapper.setProps({ ...emptyProps , outlined: true})
+    expect(wrapper.find(".isOutlined")).toHaveLength(1);
+  })
+
   it('should call onClose props when clicks on icon', () => {
     const onClose = jest.fn()
     const props = { ...emptyProps , fixed: false, onClose }
