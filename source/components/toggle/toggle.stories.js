@@ -11,7 +11,7 @@ const action = (name) => (...params) => {
   console.log(name, params);
 };
 
-export const Normal = () => (
+export const AA_Normal = () => (
   <Toggle
     id="my-toggle"
     value="10"

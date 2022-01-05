@@ -14,7 +14,7 @@ const printRes = (data, list, error, size) => {
   console.log('images: ', data, 'list:', list, 'error:', error, 'size', size);
 };
 
-export const Normal = () => (
+export const AA_Normal = () => (
   <div>
     <ButtonUpload onChange={printRes} showTags />
     <ButtonUpload onChange={printRes} withDrop showTags />
