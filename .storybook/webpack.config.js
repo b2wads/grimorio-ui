@@ -1,7 +1,5 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const glob = require("glob");
-
 const webpackConfigRules = mode => [// rules for modules (configure loaders, parser options, etc.)
   // JS LOADER
   {
@@ -119,12 +117,6 @@ module.exports = async ({ config, mode }) => {
   config.plugins = (config.plugins || []).concat([new MiniCssExtractPlugin({
     filename: '[name].css',
   })]);
-
-  config.entry = {
-    storybook: config.entry,
-    components: glob.sync('./source/components/**/*.styl'),
-    page: path.resolve(__dirname, './storybook.styl'),
-  };
 
   // Return the altered config
   return config;
