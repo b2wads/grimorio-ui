@@ -32,7 +32,10 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
       {
         loader: 'stylus-loader',
         options: {
-          import: path.resolve(__dirname, `../source/styl/config.styl`),
+          stylusOptions: {
+            import: [path.resolve(__dirname, `../source/styl/config.styl`)],
+            includeCSS: true,
+          }
         },
       },
     ],
@@ -49,7 +52,10 @@ const webpackConfigRules = mode => [// rules for modules (configure loaders, par
       {
         loader: 'stylus-loader',
         options: {
-          import: path.resolve(__dirname, `../source/styl/config.styl`),
+          stylusOptions: {
+            import: [path.resolve(__dirname, `../source/styl/config.styl`)],
+            includeCSS: true,
+          }
         },
       },
     ],
