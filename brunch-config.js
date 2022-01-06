@@ -1,12 +1,6 @@
+const autoprefixer = require('autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
-const postcssNano = require('cssnano');
-
-const postCSSPlugins = [
-  postcssPresetEnv({
-    browsers: ['> 0.05%', 'IE 9'],
-  }),
-  postcssNano({ preset: 'default' }),
-];
+const cssnano = require('cssnano');
 
 const cssFileList = ['source/styl/style.styl', 'lib/css/modules/components.css', 'source/styl/vendor/react-dates.styl'];
 
@@ -23,7 +17,11 @@ module.exports = {
       imports: ['./source/styl/config.styl'],
     },
     postcss: {
-      processors: postCSSPlugins,
+      processors: [
+        autoprefixer(['last 8 versions']),
+        postcssPresetEnv({ browsers: ['> 0.05%', 'IE 9'] }),
+        cssnano({ preset: 'default' }),
+      ],
     },
   },
 
