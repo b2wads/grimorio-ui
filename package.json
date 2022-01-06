@@ -68,7 +68,7 @@
     "brunch": "4.0.0",
     "cross-env": "5.2.0",
     "css-loader": "6.5.1",
-    "cssnano": "4.1.10",
+    "cssnano": "5.0.14",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.2.0",
     "enzyme-to-json": "3.3.5",
