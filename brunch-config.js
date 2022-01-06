@@ -1,7 +1,3 @@
-const autoprefixer = require('autoprefixer');
-const postcssPresetEnv = require('postcss-preset-env');
-const cssnano = require('cssnano');
-
 const cssFileList = ['source/styl/style.styl', 'lib/css/modules/components.css', 'source/styl/vendor/react-dates.styl'];
 
 module.exports = {
@@ -18,9 +14,8 @@ module.exports = {
     },
     postcss: {
       processors: [
-        autoprefixer(['last 8 versions']),
-        postcssPresetEnv({ browsers: ['> 0.05%', 'IE 9'] }),
-        cssnano({ preset: 'default' }),
+        require('postcss-preset-env')({ browsers: 'last 8 versions' }),
+        require('cssnano')({ preset: 'default' }),
       ],
     },
   },
