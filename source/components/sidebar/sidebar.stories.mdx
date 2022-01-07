@@ -1,6 +1,6 @@
 import { Sidebar } from './sidebar-component';
 import { State, action } from '../../helpers/storybook';
-import { Meta, Story, Preview, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs";
 
 import Svg from '../svg';
 import styles from './sidebar.styl';
@@ -85,7 +85,7 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
 <ArgsTable of={Sidebar} />
 
 ### Default
-<Preview>
+<Canvas>
   <Story name="Default">
     <State initialState={{ open: true }}>
       {store => (
@@ -115,10 +115,10 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
       )}
     </State>
   </Story>
-</Preview>
+</Canvas>
 
 ### Mobile
-<Preview>
+<Canvas>
   <Story name="Mobile">
     <State initialState={{ open: false }}>
       {store => (
@@ -136,11 +136,11 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
       )}
     </State>
   </Story>
-</Preview>
+</Canvas>
 
 
 ### With Color Config
-<Preview>
+<Canvas>
   <Story name="Color">
     <State initialState={{ open: true }}>
       {store => (
@@ -163,4 +163,4 @@ Esse é a Sidebar do Grimório✨, feita para ser usada com o Header!
       )}
     </State>
   </Story>
-</Preview>
+</Canvas>

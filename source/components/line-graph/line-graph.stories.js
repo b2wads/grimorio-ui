@@ -171,7 +171,7 @@ const options = {
   },
 };
 
-export const Normal = () => (
+export const AA_Normal = () => (
   <Panel title="Normal">
     <LineGraph
       title="Pedidos!"

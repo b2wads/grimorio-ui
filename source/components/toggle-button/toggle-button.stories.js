@@ -8,7 +8,7 @@ export default {
   component: ToggleButton,
 };
 
-export const Normal = withState({ value: false }, store => {
+export const AA_Normal = withState({ value: false }, store => {
   const handleChange = (value) => {
     store.set({ value });
   };

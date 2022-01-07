@@ -25,6 +25,22 @@ export const Fixed = () => (
   </div>
 );
 
+export const Outlined = () => (
+  <>
+  <div>
+    <Tag color="primary" outlined>
+      3º Ranking
+    </Tag>
+  </div>
+  <br/>
+  <div>
+    <Tag color="secondary" outlined>
+      4º Ranking
+    </Tag>
+  </div>
+  </>
+);
+
 export const OnClick = () => (
   <div>
     <Tag color="primary" onClick={action('onClick!')}>

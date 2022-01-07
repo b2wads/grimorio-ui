@@ -67,7 +67,7 @@ const meta = {
   offset: 20,
 };
 
-export const Normal = () => {
+export const AA_Normal = () => {
   return (
     <TablePanel
       title="Jogo da Idade"

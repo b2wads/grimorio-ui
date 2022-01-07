@@ -1,5 +1,5 @@
 import Button from './button-component.js';
-import { Meta, Story, Preview, ArgsTable } from "@storybook/addon-docs/blocks";
+import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs";
 
 <Meta title="Button" component={Button} args={{ color: 'primary' }} />
 
@@ -10,7 +10,7 @@ Esse é o componente de Botão do Grimório✨
 <ArgsTable of={Button} />
 
 ### Color
-<Preview>
+<Canvas>
   <Story name="Color">
    <Button color="primary" className="teste">Primary</Button>
     <Button color="secondary">Secondary</Button>
@@ -18,10 +18,10 @@ Esse é o componente de Botão do Grimório✨
     <Button color="clean" size="small">Clean</Button>
     <Button color="transparent">Transparent</Button>
   </Story>
-</Preview>
+</Canvas>
 
 ### Modifier
-<Preview>
+<Canvas>
   <Story name="Modifier">
     <div>
       <Button color="variant" modifier="outline">Variant --Outline</Button>
@@ -31,10 +31,10 @@ Esse é o componente de Botão do Grimório✨
       <Button color="clean" modifier="inverted" size="small">Clean --Inverted</Button>
     </div>
   </Story>
-</Preview>
+</Canvas>
 
 ### Size
-<Preview>
+<Canvas>
   <Story name="Size">
     <Button size="none">None</Button>
     <Button size="tiny">Tiny</Button>
@@ -63,10 +63,10 @@ Esse é o componente de Botão do Grimório✨
     <Button iconRight="person">Medium</Button>
     <Button iconRight="person" size="large">Large</Button>
   </Story>
-</Preview>
+</Canvas>
 
 ### Loading
-<Preview>
+<Canvas>
   <Story name="Loading">
     <Button
       onClick={() => alert("btn is disabled while loading")}
@@ -76,10 +76,10 @@ Esse é o componente de Botão do Grimório✨
     <Button color="variant" modifier="outline" loading>Variant --Outline</Button>
     <Button color="primary" modifier="outline-light" loading>Primary --Outline-light</Button>
   </Story>
-</Preview>
+</Canvas>
 
 ### With Icon
-<Preview>
+<Canvas>
   <Story name="With icon">
     <Button iconLeft="person" color="primary">Primary Medium</Button>
     <Button color="secondary" size="small" iconRight="insert_link">Secondary Small</Button>
@@ -90,24 +90,24 @@ Esse é o componente de Botão do Grimório✨
       size="small">Clean Small</Button>
     <Button iconLeft="person" color="primary" modifier="outline">Outline</Button>
   </Story>
-</Preview>
+</Canvas>
 
 ### States
-<Preview>
+<Canvas>
   <Story name="States">
     <Button color="primary">Normal</Button>
     <Button color="primary" disabled>Disabled</Button>
     <Button color="primary" active>Active</Button>
     <Button color="variant" modifier="outline" active>Variant Active</Button>
   </Story>
-</Preview>
+</Canvas>
 
 ### Disabled
-<Preview>
+<Canvas>
   <Story name="Disabled">
     <Button color="primary" disabled>Primary</Button>
     <Button color="secondary" disabled>Secondary</Button>
     <Button color="clean" size="small" disabled>Clean</Button>
     <Button color="variant" modifier="outline" disabled>Variant Outline</Button>
   </Story>
-</Preview>
+</Canvas>
