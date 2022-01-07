@@ -26,7 +26,7 @@ const action = (name) => (...params) => {
   console.log(name, params);
 };
 
-export const InputText = withState({ input: 'Campo com valor default', check: [] }, store => {
+export const AA_InputText = withState({ input: 'Campo com valor default', check: [] }, store => {
   const handleChange = (event) => {
     store.set({ input: event.target.value });
   };

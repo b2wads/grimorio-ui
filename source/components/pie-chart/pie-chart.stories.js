@@ -10,7 +10,7 @@ export default {
   component: PieChart,
 };
 
-export const Normal = () => (
+export const AA_Normal = () => (
   <PieChart
     chartData={{
       labels: ['Verde', 'Rosa', 'Roxo'],

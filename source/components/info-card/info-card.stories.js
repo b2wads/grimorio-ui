@@ -7,7 +7,7 @@ export default {
   component: InfoCard,
 };
 
-export const Normal = () => (
+export const AA_Normal = () => (
   <div style={{ display: 'flex' }}>
     <InfoCard title="Pedidos Faturados" type="money" value={666999000} tagline="fevereiro" />
     <InfoCard title="Pedidos Colocados" tagline="fevereiro" value={50} />
