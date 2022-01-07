@@ -91,6 +91,7 @@ export const ActiveStyle = () => {
         <Tab id="3" value="value 3">
           Style
         </Tab>
+        <Tab color="primary" className="teste gatrack" data-gacategory="teste categoria" data-gaaction="teste ação" data-galabel="teste rotulo" >Tab Trackeada</Tab>
       </TabMenu>
       <br />
       <br />
