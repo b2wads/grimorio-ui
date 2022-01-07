@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{2031:function(module,exports,__webpack_require__){module.exports={title:"grm-storybook__title",subtitle:"grm-storybook__subtitle",body:"grm-storybook__body",footer:"grm-storybook__footer"}}},[[2031,4]]]);
+//# sourceMappingURL=page.b0baff977a3a27b22878.bundle.js.map
