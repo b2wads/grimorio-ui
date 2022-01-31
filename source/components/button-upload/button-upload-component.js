@@ -147,7 +147,7 @@ class ButtonUpload extends PureComponent {
   }
 
   async handleChange(files) {
-    let fileArr = [...files];
+    let fileArr = Object.values(files);
     let fileError = {};
 
     if (this.props.limit) {
