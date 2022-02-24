@@ -41,6 +41,9 @@ class TooltipSticky extends PureComponent {
     );
   }
   getTooltipPosition() {
+    const MINIMUM_HORIZONTAL_POSITION_VALUE = 10;
+    const MINIMUM_RESOLUTION_TO_SHOW_ON_SIDE = 480;
+
     const { x, y, width, height } = this.elemShowTooltip.current.getBoundingClientRect();
     const arrowWidth = 15;
     const arrowHeight = 15;
@@ -50,20 +53,45 @@ class TooltipSticky extends PureComponent {
     const tooltipWidth = this.holdTooltip.current && this.holdTooltip.current.offsetWidth;
     const tooltipHeight = this.holdTooltip.current && this.holdTooltip.current.offsetHeight;
 
-    let style = {
-      left: posX === 'right' ? `${x - tooltipWidth + width + arrowWidth}px` : `${x - arrowWidth}px`,
-      top: posY === 'top'
-        ? `${pageScroll + y - tooltipHeight - arrowHeight}px`
-        : `${pageScroll + y + height + arrowHeight}px`,
-    };
+    function fitHorizontalPosition(horizontalPosition, windowWidth) {
+      if (horizontalPosition <= MINIMUM_HORIZONTAL_POSITION_VALUE) {
+        return MINIMUM_HORIZONTAL_POSITION_VALUE;
+      }
 
-    if (this.props.showOnSide) {
-      style = {
-        left: posX === 'left' ? `${x + width}px` : `${x - tooltipWidth - arrowWidth}px`,
-        top: `${pageScroll + y - arrowHeight}px`,
-      };
-      posY = 'top';
+      if (horizontalPosition + tooltipWidth > windowWidth) {
+        return windowWidth - tooltipWidth - MINIMUM_HORIZONTAL_POSITION_VALUE;
+      }
+
+      return horizontalPosition;
     }
+
+    function retrieveHorizontalPosition(context) {
+      if (context.props.showOnSide && context.windowWidth > MINIMUM_RESOLUTION_TO_SHOW_ON_SIDE) {
+        const horizontalPosition = posX === 'left' ? x + width : x - tooltipWidth - arrowWidth;
+
+        return `${horizontalPosition}px`;
+      } else {
+        const horizontalPosition = posX === 'right' ? x - tooltipWidth + width + arrowWidth : x - arrowWidth;
+
+        return `${fitHorizontalPosition(horizontalPosition, context.windowWidth)}px`;
+      }
+    }
+
+    function retrieveVerticalPosition(context) {
+      if (context.props.showOnSide && context.windowWidth > MINIMUM_RESOLUTION_TO_SHOW_ON_SIDE) {
+        posY = 'top';
+        return `${pageScroll + y - arrowHeight}px`;
+      } else {
+        return posY === 'top'
+          ? `${pageScroll + y - tooltipHeight - arrowHeight}px`
+          : `${pageScroll + y + height + arrowHeight}px`;
+      }
+    }
+
+    const style = {
+      left: retrieveHorizontalPosition(this),
+      top: retrieveVerticalPosition(this),
+    };
 
     this.setState({
       position: style,
