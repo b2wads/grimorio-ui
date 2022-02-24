@@ -8,7 +8,7 @@ export default {
   component: TooltipSticky,
 };
 
-export const Normal = () => (
+export const AA_Normal = () => (
   <TooltipSticky
     body={
       <div>
