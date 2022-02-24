@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -6,6 +7,20 @@ import classNames from 'classnames';
 import styles from './tooltip-sticky.styl';
 
 class TooltipSticky extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    title: PropTypes.string,
+    body: PropTypes.element,
+    children: PropTypes.element,
+    showOnSide: PropTypes.bool,
+    disabled: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    showOnSide: false,
+    disabled: false,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
