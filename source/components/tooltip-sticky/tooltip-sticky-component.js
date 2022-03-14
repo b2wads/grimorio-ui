@@ -73,7 +73,7 @@ class TooltipSticky extends PureComponent {
         return MINIMUM_HORIZONTAL_POSITION_VALUE;
       }
 
-      if (horizontalPosition + tooltipWidth > windowWidth) {
+      if (horizontalPosition + tooltipWidth + MINIMUM_HORIZONTAL_POSITION_VALUE > windowWidth) {
         return windowWidth - tooltipWidth - MINIMUM_HORIZONTAL_POSITION_VALUE;
       }
 
