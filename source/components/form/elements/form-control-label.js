@@ -105,10 +105,10 @@ class FormControlLabel extends Component {
     });
 
     const labelClasses = classNames(styles.controlledLabel, {
-      [styles.isAutofilled]: this.state.isAutofilled,
       [styles.isActive]: activeLabel === null ? this.state.active : activeLabel,
       [styles.labelHighLight]: this.state.focused || labelHighLight,
       [styles.isHovered]: this.state.hovered,
+      [styles.isAutofilled]: this.state.isAutofilled,
       [styles[`has-${validationState}`]]: validationState,
       [styles.isOutline]: this.props.outline,
     });
