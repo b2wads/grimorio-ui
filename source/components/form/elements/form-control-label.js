@@ -21,11 +21,13 @@ class FormControlLabel extends Component {
       hovered: false,
       focused: false,
       active: this.verifyPropsValue(props),
+      isAutofilled: false,
     };
 
     this.onFocusLabel = this.onFocusLabel.bind(this);
     this.onHoverLabel = this.onHoverLabel.bind(this);
     this.onBlurLabel = this.onBlurLabel.bind(this);
+    this.checkIsAutofilled = this.checkIsAutofilled.bind(this);
   }
 
   static propTypes = {
@@ -40,6 +42,10 @@ class FormControlLabel extends Component {
     labelHighLight: true,
     activeLabel: null,
   };
+
+  checkIsAutofilled(isAutofilled) {
+    this.setState({ isAutofilled });
+  }
 
   verifyPropsValue(props) {
     return this.hasValue(props.value) || this.hasValue(props.defaultValue);
@@ -67,8 +73,9 @@ class FormControlLabel extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.value !== this.props.value && !this.state.focused) {
-      this.setState({ active: this.hasValue(this.props.value) });
+    if (prevProps.value !== this.props.value) {
+      this.setState({ isAutofilled: false });
+      if (!this.state.focused) this.setState({ active: this.hasValue(this.props.value) });
     }
   }
 
@@ -101,6 +108,7 @@ class FormControlLabel extends Component {
       [styles.isActive]: activeLabel === null ? this.state.active : activeLabel,
       [styles.labelHighLight]: this.state.focused || labelHighLight,
       [styles.isHovered]: this.state.hovered,
+      [styles.isAutofilled]: this.state.isAutofilled,
       [styles[`has-${validationState}`]]: validationState,
       [styles.isOutline]: this.props.outline,
     });
@@ -139,6 +147,7 @@ class FormControlLabel extends Component {
             onFocus={this.onFocusLabel}
             onHover={this.onHoverLabel}
             onBlur={this.onBlurLabel}
+            checkIsAutofilled={this.checkIsAutofilled}
           />
           {typeof iconRight === 'string'
             ? <Icon className={iconRightClasses} name={iconRight} size={18} onClick={iconRightClick} />
