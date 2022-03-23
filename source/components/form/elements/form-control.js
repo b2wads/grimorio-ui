@@ -33,6 +33,7 @@ class FormControl extends PureComponent {
     onFocus: () => {},
     onHover: () => {},
     onBlur: () => {},
+    checkIsAutofilled: () => {},
     feedback: false,
     type: 'text',
     outline: false,
@@ -51,6 +52,7 @@ class FormControl extends PureComponent {
     onFocus: PropTypes.func,
     onHover: PropTypes.func,
     onBlur: PropTypes.func,
+    checkIsAutofilled: PropTypes.func,
     checked: PropTypes.bool,
     feedback: PropTypes.bool,
     outline: PropTypes.bool,
@@ -78,6 +80,16 @@ class FormControl extends PureComponent {
       'select',
     ]),
   };
+
+  onAnimationStart(event) {
+    const { onAnimationStart, checkIsAutofilled } = this.props;
+    onAnimationStart && onAnimationStart(event);
+
+    // on autofill animation
+    if (event.animationName === 'onAutoFillStart') {
+      checkIsAutofilled(true);
+    }
+  }
 
   static feedbackRender(validationState, feedback, addonAfter) {
     if ((!validationState && !feedback && addonAfter) || !feedback || !validationState) {
@@ -219,6 +231,7 @@ class FormControl extends PureComponent {
           name={name}
           value={this.state.value}
           {...omit(rest, ['feedback', 'className', 'context'])}
+          onAnimationStart={e => this.onAnimationStart(e)}
         >
           {children}
         </Component>
