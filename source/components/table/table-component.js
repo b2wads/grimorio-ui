@@ -80,7 +80,7 @@ class Table extends PureComponent {
     const { numberFixedColumns } = this.props;
 
     const nodesWidth = this.headerTable.current && this.headerTable.current.children
-      ? [...this.headerTable.current.children].map(el => el.clientWidth)
+      ? Object.values(this.headerTable.current.children).map(el => el.clientWidth)
       : [];
 
     const fixedColumnOffset = [];
