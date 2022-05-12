@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { useEffect, useState, useRef, Fragment } from 'react';
 import Chart from 'chart.js';
 import PropTypes from 'prop-types';
 
@@ -10,54 +10,29 @@ import Loader from '../loader';
 
 import styles from './line-graph.styl';
 
-class LineGraph extends PureComponent {
-  constructor() {
-    super();
-
-    this.state = {
-      legend: null,
-    };
-
-    this.canvas = React.createRef();
-  }
-
-  static propTypes = {
-    options: PropTypes.object,
-    datasets: PropTypes.array,
-    loading: PropTypes.bool,
-    error: PropTypes.bool,
-    errorMessage: PropTypes.string,
-    onErrorClick: PropTypes.func,
-    errorBtnText: PropTypes.string,
-    tooltipFormatLabel: PropTypes.func,
-    noLegend: PropTypes.bool,
-  };
-
-  static chart = null;
-
-  componentWillMount() {
-    Chart.defaults.global.legend.display = false;
-    Chart.defaults.global.elements.point = {
-      ...Chart.defaults.global.elements.point,
-      radius: 5,
-      backgroundColor: '#fff',
-      borderWidth: 2,
-      hoverRadius: 5,
-      hoverBorderWidth: 2,
-      hoverBackgroundColor: '#fff',
-    };
-  }
-
-  componentDidMount() {
-    const { options, datasets, error, noLegend, tooltipFormatLabel } = this.props;
-
-    if (!this.canvas || !this.canvas.current) {
+function LineGraph({
+  options,
+  datasets,
+  className,
+  loading,
+  noLegend,
+  error,
+  errorMessage,
+  errorBtnText,
+  onErrorClick,
+  tooltipFormatLabel,
+  ...rest
+}) {
+  const [legendState, setLegendState] = useState(null);
+  const [chartState, setChartState] = useState(mountChart());
+  function mountChart() {
+    if (!canvas || !canvas.current) {
       return null;
     }
 
-    this.chart =
+    const chart =
       !error &&
-      new Chart(this.canvas.current, {
+      new Chart(canvas.current, {
         type: 'line',
         data: {
           datasets,
@@ -103,27 +78,50 @@ class LineGraph extends PureComponent {
       });
 
     if (!error) {
-      const legend = this.chart.generateLegend();
-      !this.state.legend && this.setState({ legend });
+      const legend = chart.generateLegend();
+      !legendState && setLegendState(legend);
     }
+
+    return chart;
   }
 
-  componentDidUpdate(prevProps) {
-    const { datasets, error } = this.props;
+  const canvas = useRef();
 
-    if (prevProps.datasets !== datasets && !error && this.chart) {
-      this.chart.data.datasets = datasets;
+  useEffect(
+    () => {
+      setChartState(mountChart());
+    },
+    [canvas]
+  );
 
-      const legend = this.chart.generateLegend();
-      this.setState({ legend });
+  useEffect(() => {
+    Chart.defaults.global.legend.display = false;
+    Chart.defaults.global.elements.point = {
+      ...Chart.defaults.global.elements.point,
+      radius: 5,
+      backgroundColor: '#fff',
+      borderWidth: 2,
+      hoverRadius: 5,
+      hoverBorderWidth: 2,
+      hoverBackgroundColor: '#fff',
+    };
+  }, []);
 
-      this.chart.update();
-    }
-  }
+  useEffect(
+    () => {
+      if (!error && chartState) {
+        chartState.data.datasets = datasets;
 
-  renderError() {
-    const { onErrorClick, errorMessage, errorBtnText } = this.props;
+        const legend = chartState.generateLegend();
+        setLegendState(legend);
 
+        chartState.update();
+      }
+    },
+    [datasets]
+  );
+
+  function renderError() {
     return (
       <Error
         hasButton
@@ -135,26 +133,36 @@ class LineGraph extends PureComponent {
     );
   }
 
-  render() {
-    const { className, error, loading, ...rest } = this.props;
-    const chartClass = cx(className, styles.chart);
+  const chartClass = cx(className, styles.chart);
 
-    return (
-      <div className={styles.chartWrap}>
-        {loading && <Loader type="full" />}
-        {error
-          ? this.renderError()
-          : <Fragment>
-              <div className={chartClass} {...omit(rest, ['accordion', 'noLegend', 'tooltipFormatLabel'])}>
-                <canvas ref={this.canvas} />
-              </div>
-              <div className={styles.legend}>
-                {this.state.legend}
-              </div>
-            </Fragment>}
-      </div>
-    );
-  }
+  return (
+    <div className={styles.chartWrap}>
+      {loading && <Loader type="full" />}
+      {error
+        ? renderError()
+        : <Fragment>
+            <div className={chartClass} {...omit(rest, ['accordion', 'noLegend', 'tooltipFormatLabel'])}>
+              <canvas ref={canvas} />
+            </div>
+            <div className={styles.legend}>
+              {legendState}
+            </div>
+          </Fragment>}
+    </div>
+  );
 }
+
+LineGraph.propTypes = {
+  options: PropTypes.object,
+  datasets: PropTypes.array,
+  className: PropTypes.string,
+  loading: PropTypes.bool,
+  noLegend: PropTypes.bool,
+  error: PropTypes.bool,
+  errorMessage: PropTypes.string,
+  errorBtnText: PropTypes.string,
+  onErrorClick: PropTypes.func,
+  tooltipFormatLabel: PropTypes.func,
+};
 
 export default LineGraph;
