@@ -5,6 +5,9 @@ import AccordionContent from './elements/accordion-content';
 import AccordionPanel from './elements/accordion-panel';
 import AccordionTitle from './elements/accordion-title';
 
+import { uniqueId } from '../../helpers';
+jest.mock('../../helpers')
+
 /** @test {Accordion} */
 describe('Accordion component', () => {
   /** @test {Accordion#render} */
@@ -23,6 +26,8 @@ describe('Accordion component', () => {
   ]
 
   beforeAll(() => {
+    uniqueId.mockImplementation(() => 'my-unique-key')
+
     wrapper = shallow(
       <Accordion {...emptyProps} />
     );
@@ -32,47 +37,34 @@ describe('Accordion component', () => {
     it('with children', () => {
       wrapper.setProps({ ...emptyProps, children: <li>teste com filho</li> })
 
-      expect(wrapper.debug()).toMatchSnapshot();
+      expect(toJson(wrapper)).toMatchSnapshot();
     });
 
     it('without children', () => {
       wrapper.setProps({ ...emptyProps, panels })
 
-      expect(wrapper.debug()).toMatchSnapshot();
+      expect(toJson(wrapper)).toMatchSnapshot();
     });
 
     it('with different html element', () => {
       wrapper.setProps({ ...emptyProps, children: 'oi', as: 'div' })
-      expect(wrapper.debug()).toMatchSnapshot();
-    })
-
-    it('with exclusive props false', () => {
-      wrapper.setProps({ ...emptyProps, exclusive: false })
-      expect(wrapper.instance().state.activeIndex).toEqual([]);
-    })
-
-    it('with exclusive props true', () => {
-      wrapper.setProps({ ...emptyProps, exclusive: true })
-      expect(wrapper.instance().state.activeIndex).toEqual(-1);
+      expect(toJson(wrapper)).toMatchSnapshot();
     })
   });
 
   describe('call handleTitleClick', () => {
-    const titleProps = { index: 2 }
+    const titleProps = { index: 1 }
 
-    it('should call handleTitleClick with right params', () => {
-      const spy = jest.spyOn(wrapper.instance(), 'handleTitleClick')
+    it('should call handleTitleClick and add active index to list', () => {
+      wrapper.setProps({ ...emptyProps, exclusive: false, panels })
 
-      wrapper.setProps({ ...emptyProps, panels })
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(false);
+
       wrapper.find(AccordionPanel).at(0).props().onTitleClick('', titleProps)
-      expect(spy).toHaveBeenCalledWith('', titleProps);
-    })
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(false);
 
-    it('should call computeNewIndex', () => {
-      const spy = jest.spyOn(wrapper.instance(), 'computeNewIndex')
-      wrapper.setProps({ ...emptyProps, panels })
-      wrapper.find(AccordionPanel).at(0).props().onTitleClick('', titleProps)
-      expect(spy).toHaveBeenCalledWith(titleProps.index);
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
     })
 
     it('if contains onTitleClick props, call onTitleClick', () => {
@@ -90,77 +82,132 @@ describe('Accordion component', () => {
 
   describe('call computeNewIndex', () => {
     it('when exclusive props is true and index is equal activeIndex', () => {
-      const index = 2
-      wrapper.setProps({ ...emptyProps, exclusive: true })
-      wrapper.setState({ activeIndex: index })
-      const resp = wrapper.instance().computeNewIndex(index)
+      const titleProps = { index: 1 }
+      wrapper.setProps({ ...emptyProps, exclusive: true, panels })
 
-      expect(resp).toEqual(-1)
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(false);
+      wrapper.find(AccordionPanel).at(1).props().onTitleClick('', titleProps)
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
     })
 
     it('when exclusive props is true and index is different of activeIndex', () => {
-      const index = 2
-      wrapper.setProps({ ...emptyProps, exclusive: true })
-      wrapper.setState({ activeIndex: 1 })
-      const resp = wrapper.instance().computeNewIndex(index)
+      const titleProps = { index: 1 }
+      wrapper.setProps({ ...emptyProps, exclusive: true, panels })
 
-      expect(resp).toEqual(index)
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(false);
+      wrapper.find(AccordionPanel).at(0).props().onTitleClick('', titleProps)
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(false);
     })
 
     it('when is NOT exclusive props and activeIndex contains index', () => {
-      const index = 2
-      const activeIndex = [1, 2, 3, 4]
-      wrapper.setProps({ ...emptyProps, exclusive: false })
-      wrapper.setState({ activeIndex: [1, 2, 3, 4] })
-      const resp = wrapper.instance().computeNewIndex(index)
+      wrapper.setProps({ ...emptyProps, exclusive: false, panels })
 
-      expect(resp).toEqual(activeIndex.filter(item => item !== index))
+      wrapper.find(AccordionPanel).at(0).props().onTitleClick('', { index: 0 });
+      wrapper.update();
+      wrapper.find(AccordionPanel).at(1).props().onTitleClick('', { index: 1 });
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(true);
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
+
+      wrapper.find(AccordionPanel).at(0).props().onTitleClick('', { index: 0 })
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(false);
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
     })
 
     it('when is NOT exclusive props and activeIndex DONT contains index', () => {
-      const index = 5
-      const activeIndex = [1, 2, 3, 4]
-      wrapper.setProps({ ...emptyProps, exclusive: false })
-      wrapper.setState({ activeIndex: [1, 2, 3, 4] })
-      const resp = wrapper.instance().computeNewIndex(index)
+      const newPanel = { icon: 'search', title: 'Insights', content: 'olhe aqui' }
+      wrapper.setProps({
+        ...emptyProps,
+        exclusive: false,
+        panels: [...panels, newPanel]
+      })
 
-      expect(resp).toEqual([...activeIndex, index])
+      wrapper.find(AccordionPanel).at(0).props().onTitleClick('', { index: 0 });
+      wrapper.update();
+      wrapper.find(AccordionPanel).at(1).props().onTitleClick('', { index: 1 });
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(true);
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
+
+      wrapper.find(AccordionPanel).at(2).props().onTitleClick('', { index: 2 })
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(2).props().active).toEqual(true);
     })
   })
 
   describe('call isIndexActive', () => {
-    const index = 2
 
     it('when is exclusive props and activeIndex is equal index', () => {
-      wrapper.setProps({ ...emptyProps, exclusive: true })
-      wrapper.setState({ activeIndex: index })
-      const resp = wrapper.instance().isIndexActive(index)
+      const titleProps = { index: 1 }
+      wrapper.setProps({ ...emptyProps, exclusive: true, panels })
 
-      expect(resp).toEqual(true)
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(false);
+      wrapper.find(AccordionPanel).at(1).props().onTitleClick('', titleProps)
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
     })
 
     it('when is exclusive props and activeIndex is different of index', () => {
-      wrapper.setProps({ ...emptyProps, exclusive: true })
-      wrapper.setState({ activeIndex: 3 })
-      const resp = wrapper.instance().isIndexActive(index)
+      const titleProps = { index: 3 }
+      wrapper.setProps({ ...emptyProps, exclusive: true, panels })
 
-      expect(resp).toEqual(false)
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(false);
+      wrapper.find(AccordionPanel).at(1).props().onTitleClick('', titleProps)
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(false);
     })
 
     it('when is not exclusive and activeIndex includes index', () => {
-      wrapper.setProps({ ...emptyProps, exclusive: false })
-      wrapper.setState({ activeIndex: [1, 2, 3] })
-      const resp = wrapper.instance().isIndexActive(index)
+      wrapper.setProps({ ...emptyProps, exclusive: false, panels })
 
-      expect(resp).toEqual(true)
+      wrapper.find(AccordionPanel).at(0).props().onTitleClick('', { index: 0 });
+      wrapper.update();
+      wrapper.find(AccordionPanel).at(1).props().onTitleClick('', { index: 1 });
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(true);
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
+
+      wrapper.find(AccordionPanel).at(0).props().onTitleClick('', { index: 0 })
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(false);
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
     })
 
     it('when is not exclusive and activeIndex DONT includes index', () => {
-      wrapper.setProps({ ...emptyProps, exclusive: false })
-      wrapper.setState({ activeIndex: [1, 3] })
-      const resp = wrapper.instance().isIndexActive(index)
+      const newPanel = { icon: 'search', title: 'Insights', content: 'olhe aqui' }
+      wrapper.setProps({
+        ...emptyProps,
+        exclusive: false,
+        panels: [...panels, newPanel]
+      })
 
-      expect(resp).toEqual(false)
+      wrapper.find(AccordionPanel).at(0).props().onTitleClick('', { index: 0 });
+      wrapper.update();
+      wrapper.find(AccordionPanel).at(1).props().onTitleClick('', { index: 1 });
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(true);
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
+
+      wrapper.find(AccordionPanel).at(2).props().onTitleClick('', { index: 2 })
+
+      wrapper.update();
+      expect(wrapper.find(AccordionPanel).at(0).props().active).toEqual(true);
+      expect(wrapper.find(AccordionPanel).at(1).props().active).toEqual(true);
+      expect(wrapper.find(AccordionPanel).at(2).props().active).toEqual(true);
     })
   })
 });

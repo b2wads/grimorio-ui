@@ -1,22 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Accordion component should render with children 1`] = `
-"<ul className=\\"accordion default\\" onTitleClick={[undefined]} theme=\\"default\\">
+<ul
+  className="accordion default"
+>
   <li>
     teste com filho
   </li>
-</ul>"
+</ul>
 `;
 
 exports[`Accordion component should render with different html element 1`] = `
-"<div className=\\"accordion default\\" onTitleClick={[undefined]} theme=\\"default\\">
+<div
+  className="accordion default"
+>
   oi
-</div>"
+</div>
 `;
 
 exports[`Accordion component should render without children 1`] = `
-"<ul className=\\"accordion default\\" onTitleClick={[undefined]} theme=\\"default\\">
-  <AccordionPanel active={false} index={0} onTitleClick={[Function: bound handleTitleClick]} content={{...}} />
-  <AccordionPanel active={false} index={1} onTitleClick={[Function: bound handleTitleClick]} content={{...}} />
-</ul>"
+<ul
+  className="accordion default"
+>
+  <AccordionPanel
+    active={false}
+    content={
+      Object {
+        "content": "primeiro conteudo",
+        "icon": "insert_chart",
+        "title": "Dashboard",
+      }
+    }
+    index={0}
+    key="my-unique-key"
+    onTitleClick={[Function]}
+  />
+  <AccordionPanel
+    active={false}
+    content={
+      Object {
+        "content": "segundo conteudo",
+        "icon": "dashboard",
+        "title": "Charts",
+      }
+    }
+    index={1}
+    key="my-unique-key"
+    onTitleClick={[Function]}
+  />
+</ul>
 `;
