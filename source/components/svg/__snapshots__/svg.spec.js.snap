@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button component render correctly 1`] = `"<Svg width={150} height={50} src=\\"mock\\" align=\\"middle\\" />"`;
+exports[`SVG component render correctly 1`] = `
+<Component
+  style={
+    Object {
+      "height": 50,
+      "verticalAlign": "middle",
+      "width": 150,
+    }
+  }
+/>
+`;
