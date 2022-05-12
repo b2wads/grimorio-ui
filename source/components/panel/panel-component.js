@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import cx from 'classnames';
@@ -8,86 +8,71 @@ import Loader from '../loader';
 
 import styles from './panel.styl';
 
-class Panel extends PureComponent {
-  constructor(props) {
-    super();
-    this.state = {
-      open: props.open,
-    };
+function Panel({
+  highlight,
+  size,
+  title,
+  titleClassName,
+  titleBorder,
+  titleSideComponent,
+  children,
+  contentClassName,
+  footer,
+  footerClassName,
+  loading,
+  accordion,
+  open,
+  className,
+  noPadding,
+  header,
+  brand,
+  onAccordionClick,
+  ...rest
+}) {
+  const [isOpen, setIsOpen] = useState(open);
 
-    this.toggleTitle = this.toggleTitle.bind(this);
+  useEffect(
+    () => {
+      setIsOpen(open);
+    },
+    [open]
+  );
+
+  function toggleTitle() {
+    setIsOpen(prev => !prev);
+
+    onAccordionClick && onAccordionClick();
   }
-
-  static propTypes = {
-    highlight: PropTypes.oneOf(['shadow', 'line']),
-    size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
-    title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.element]),
-    titleClassName: PropTypes.string,
-    titleBorder: PropTypes.oneOf(['primary', 'secondary', 'support']),
-    titleSideComponent: PropTypes.element,
-    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-    contentClassName: PropTypes.string,
-    footer: PropTypes.element,
-    footerClassName: PropTypes.string,
-    loading: PropTypes.bool,
-    accordion: PropTypes.bool,
-    open: PropTypes.bool,
-    noPadding: PropTypes.bool,
-    onAccordionClick: PropTypes.func,
-  };
-
-  static defaultProps = {
-    title: false,
-    size: 'medium',
-    loading: false,
-    accordion: false,
-    open: true,
-    highlight: 'shadow',
-  };
-
-  componentDidUpdate(prevProps) {
-    if (this.props.open !== prevProps.open) {
-      this.setState({ open: this.props.open });
-    }
-  }
-
-  renderIcon(open) {
+  function renderIcon(open) {
     return (
-      <Icon
-        onClick={this.toggleTitle}
-        className={styles.arrow}
-        name={open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
-      />
+      <Icon onClick={toggleTitle} className={styles.arrow} name={open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'} />
     );
   }
 
-  renderHeader() {
-    const { open } = this.state;
-    const { title, titleClassName, accordion, titleBorder, size, titleSideComponent } = this.props;
-
+  function renderHeader() {
     return (
       <header
         className={cx(styles.header, styles.titleWrap, {
           [styles.isAccordion]: accordion,
-          [styles.titleBorder]: titleBorder && open,
+          [styles.titleBorder]: titleBorder && isOpen,
           [styles[`border_${titleBorder}`]]: titleBorder,
           [styles[size]]: size,
-          [styles.isClosed]: !open,
+          [styles.isClosed]: !isOpen,
         })}
       >
         <span className={cx(styles.title, titleClassName)}>
           {title}
           {titleSideComponent}
         </span>
-        {accordion && this.renderIcon(open)}
+        {accordion && renderIcon(isOpen)}
       </header>
     );
   }
 
-  renderFooter(footer, size, footerClassName) {
+  function renderFooter(footer, size, footerClassName) {
     const className = cx(styles.footer, footerClassName, {
-      [styles[size]]: size && this.state.open,
-      [styles.isClosed]: !this.state.open,
+      [styles[size]]: size && isOpen,
+      [styles.isClosed]: !isOpen,
     });
 
     if (footer) {
@@ -99,58 +84,59 @@ class Panel extends PureComponent {
     }
   }
 
-  toggleTitle() {
-    const { onAccordionClick } = this.props;
-    this.setState({
-      open: !this.state.open,
-    });
+  const fullClassName = cx(className, {
+    [styles.default]: true,
+    [styles[highlight]]: highlight,
+  });
 
-    onAccordionClick && onAccordionClick();
-  }
+  const contentClass = cx(styles.content, contentClassName, {
+    [styles[size]]: size && isOpen,
+    [styles.isBrand]: brand,
+    [styles.noPadding]: noPadding,
+    [styles.isClosed]: !isOpen,
+  });
 
-  render() {
-    const { open } = this.state;
-    const {
-      title,
-      header,
-      children,
-      className,
-      brand,
-      noPadding,
-      size,
-      footer,
-      contentClassName,
-      footerClassName,
-      loading,
-      highlight,
-      ...rest
-    } = this.props;
+  return (
+    <article {...rest} className={fullClassName}>
+      {(title || header) && renderHeader()}
 
-    const fullClassName = cx(className, {
-      [styles.default]: true,
-      [styles[highlight]]: highlight,
-    });
+      <div className={contentClass}>
+        {loading && <Loader size="32px" className={styles.loader} />}
+        {!loading && children}
+      </div>
 
-    const contentClass = cx(styles.content, contentClassName, {
-      [styles[size]]: size && open,
-      [styles.isBrand]: brand,
-      [styles.noPadding]: noPadding,
-      [styles.isClosed]: !open,
-    });
-
-    return (
-      <article {...rest} className={fullClassName}>
-        {(title || header) && this.renderHeader()}
-
-        <div className={contentClass}>
-          {loading && <Loader size="32px" className={styles.loader} />}
-          {!loading && children}
-        </div>
-
-        {this.renderFooter(footer, size, footerClassName)}
-      </article>
-    );
-  }
+      {renderFooter(footer, size, footerClassName)}
+    </article>
+  );
 }
+
+Panel.propTypes = {
+  highlight: PropTypes.oneOf(['shadow', 'line']),
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'no-padding']),
+  title: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.element]),
+  titleClassName: PropTypes.string,
+  titleBorder: PropTypes.oneOf(['primary', 'secondary', 'support']),
+  titleSideComponent: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  contentClassName: PropTypes.string,
+  footer: PropTypes.element,
+  footerClassName: PropTypes.string,
+  loading: PropTypes.bool,
+  accordion: PropTypes.bool,
+  open: PropTypes.bool,
+  noPadding: PropTypes.bool,
+  header: PropTypes.bool,
+  brand: PropTypes.bool,
+  onAccordionClick: PropTypes.func,
+};
+
+Panel.defaultProps = {
+  title: false,
+  size: 'medium',
+  loading: false,
+  accordion: false,
+  open: true,
+  highlight: 'shadow',
+};
 
 export default Panel;
