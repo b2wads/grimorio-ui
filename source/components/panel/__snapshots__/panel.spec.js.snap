@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Panel component #render render correctly 1`] = `
+<article
+  className="default shadow"
+>
+  <header
+    className="header titleWrap medium"
+  >
+    <span
+      className="title"
+    >
+      Title
+    </span>
+  </header>
+  <div
+    className="content medium"
+  >
+    <p>
+      Content
+    </p>
+  </div>
+</article>
+`;

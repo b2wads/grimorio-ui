@@ -7,12 +7,12 @@ describe('Panel component', () => {
 /** @test {Panel#render} */
   describe('#render', () => {
     it('render correctly', () => {
-      const wrapper = mount(
-        <Panel header="Title">
+      const wrapper = shallow(
+        <Panel title="Title">
           <p>Content</p>
         </Panel>
       );
-      expect(wrapper.length).toEqual(1);
+      expect(toJson(wrapper)).toMatchSnapshot();
     });
   });
 });
