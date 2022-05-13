@@ -36,7 +36,7 @@ export const SelectWithLabel = () => {
       onSelect={(data) => console.log(data)}
       items={items}
       height="200px"
-      sortItems={false}
+      shouldSortItems={false}
     />
   );
 };
@@ -67,7 +67,7 @@ export const SelectMobile = () => {
       label="Opções"
       onSelect={(data) => console.log(data)}
       items={items}
-      sortItems={false}
+      shouldSortItems={false}
     />
   );
 };
@@ -143,7 +143,7 @@ export const SelectNoCurrentValue = () => {
       items={items}
       height="200px"
       noCurrentValue
-      sortItems={false}
+      shouldSortItems={false}
     />
   );
 };

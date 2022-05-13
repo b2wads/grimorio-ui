@@ -15,7 +15,7 @@ class Pager extends PureComponent {
     return (
       <div className={cx(styles.perpage, { [styles.isMobile]: isMobile })}>
         <Select
-          sortItems={false}
+          shouldSortItems={false}
           className={styles.select}
           onSelect={({ value }) => onLimitChange(value)}
           defaultValue={limit}
