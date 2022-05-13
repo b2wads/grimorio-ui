@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, useRef, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import cx from 'classnames';
@@ -10,105 +10,69 @@ import { omit } from '../../helpers';
 
 import styles from './select.styl';
 
-class Select extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedName: null,
-      selectedValue: null,
-      menuOpen: false,
-      activeLabel: !!props.value || !!props.defaultValue,
-      childItems: [],
+function Select({
+  className,
+  items,
+  label,
+  placeholder,
+  onSelect,
+  type,
+  menuButton,
+  position,
+  height,
+  open,
+  closeOnClickOutside,
+  children,
+  onClickOutside,
+  disabled,
+  defaultValue,
+  value,
+  inputClassName,
+  shouldSortItems,
+  isMobile,
+  active,
+  outline,
+  noCurrentValue,
+  ...elementProps
+}) {
+  const [selectedName, _setSelectedName] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeLabel, setActiveLabel] = useState(!!value || !!defaultValue);
+  const [childItems, setChildItems] = useState([]);
+
+  const selectWrap = useRef();
+  const selectedNameRef = useRef();
+
+  function setSelectedName(value) {
+    selectedNameRef.current = value;
+    _setSelectedName(value);
+  }
+
+  function getChildren() {
+    const newChildItems = [];
+
+    React.Children.forEach(children, child => {
+      newChildItems.push({
+        value: child.props.value,
+        icon: child.props.icon,
+        name: child.props.children,
+      });
+    });
+
+    !childItems.length && setChildItems(newChildItems);
+  }
+
+  useEffect(() => {
+    !items.length && getChildren();
+    closeOnClickOutside && document.addEventListener('click', verifyClickOutside, false);
+
+    return function cleanUp() {
+      closeOnClickOutside && document.removeEventListener('click', verifyClickOutside, false);
     };
+  }, []);
 
-    this.onSelectItem = this.onSelectItem.bind(this);
-    this.verifyClickOutside = this.verifyClickOutside.bind(this);
-    this.closeSelect = this.closeSelect.bind(this);
-    this.selectWrap = null;
-  }
-
-  static propTypes = {
-    items: PropTypes.array,
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-    onSelect: PropTypes.func,
-    type: PropTypes.oneOf(['select', 'menu']),
-    menuButton: PropTypes.element,
-    position: PropTypes.oneOf(['top', 'bottom', 'under']),
-    height: PropTypes.string,
-    open: PropTypes.bool,
-    closeOnClickOutside: PropTypes.bool,
-    onClickOutside: PropTypes.func,
-    disabled: PropTypes.bool,
-    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
-    inputClassName: PropTypes.string,
-    sortItems: PropTypes.bool,
-    isMobile: PropTypes.bool,
-    active: PropTypes.bool,
-    noCurrentValue: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    items: [],
-    type: 'select',
-    position: 'top',
-    open: null,
-    closeOnClickOutside: true,
-    disabled: false,
-    height: 'auto',
-    value: false,
-    sortItems: true,
-    isMobile: false,
-  };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextState.activeLabel !== this.state.activeLabel ||
-      nextState.menuOpen !== this.state.menuOpen ||
-      nextState.selectedValue !== this.state.selectedValue ||
-      nextProps.value !== this.props.value ||
-      nextProps.items.length !== this.props.items.length ||
-      nextProps.open !== this.props.open ||
-      nextProps.disabled !== this.props.disabled
-    );
-  }
-
-  componentWillMount() {
-    const { closeOnClickOutside, items } = this.props;
-    !items.length && this.getChildren();
-    closeOnClickOutside && document.addEventListener('click', this.verifyClickOutside, false);
-  }
-
-  componentWillUnmount() {
-    const { closeOnClickOutside } = this.props;
-    closeOnClickOutside && document.removeEventListener('click', this.verifyClickOutside, false);
-  }
-
-  componentDidMount() {
-    const { defaultValue, value } = this.props;
-    const initialValue = value || defaultValue;
-    this.getSelectedValue(initialValue) &&
-      this.setState({
-        selectedName: this.getSelectedValue(initialValue)['name'],
-        selectedValue: this.getSelectedValue(initialValue)['value'],
-      });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { value } = this.props;
-    if (this.props.value !== prevProps.value) {
-      this.setState({
-        activeLabel: true,
-        selectedName: this.getSelectedValue(value) ? this.getSelectedValue(value)['name'] : null,
-        selectedValue: this.getSelectedValue(value) ? this.getSelectedValue(value)['value'] : null,
-      });
-    }
-  }
-
-  getSelectedValue(selectedValue) {
-    const { items } = this.props;
-    const { childItems } = this.state;
+  function getSelectedValue(selectedValue) {
     const selectItems = items.length ? items : childItems;
 
     const currentOption = selectItems.filter(option => option.value === selectedValue);
@@ -117,64 +81,66 @@ class Select extends Component {
     return currentOption.length ? currentOptionValues : false;
   }
 
-  verifyClickOutside(e) {
-    if (this.selectWrap && !this.selectWrap.contains(e.target)) {
-      this.closeSelect();
-      this.props.onClickOutside && this.props.onClickOutside(this.state.menuOpen);
+  useEffect(() => {
+    const initialValue = value || defaultValue;
+
+    const selectedValue = getSelectedValue(initialValue);
+    if (selectedValue) {
+      setSelectedName(selectedValue['name']);
+      setSelectedValue(selectedValue['value']);
+    }
+  }, []);
+
+  useEffect(
+    () => {
+      value && setActiveLabel(true);
+
+      const selectedValue = getSelectedValue(value);
+      if (selectedValue) {
+        setSelectedName(selectedValue['name']);
+        setSelectedValue(selectedValue['value']);
+      }
+    },
+    [value]
+  );
+
+  function verifyClickOutside(e) {
+    if (selectWrap.current && !selectWrap.current.contains(e.target)) {
+      closeSelect();
+      typeof onClickOutside === 'function' && onClickOutside(isMenuOpen);
     }
   }
 
-  closeSelect() {
-    const { selectedName } = this.state;
+  function closeSelect() {
+    setIsMenuOpen(false);
+    console.log('closeSelect', selectedName);
+    console.log('selectedNameRef', selectedNameRef.current);
 
-    this.setState({
-      menuOpen: false,
-      activeLabel: selectedName ? true : false,
-    });
+    setActiveLabel(!!selectedNameRef.current);
   }
 
-  onSelectItem({ name, value }) {
+  function onSelectItem({ name, value }) {
     return () => {
-      const selectedState = {
-        menuOpen: false,
-      };
+      setIsMenuOpen(false);
 
-      if (this.props.type === 'select' && this.props.value === false) {
-        selectedState.activeLabel = true;
-        selectedState.selectedName = name;
-        selectedState.selectedValue = value;
+      if (type === 'select') {
+        setActiveLabel(true);
+        setSelectedName(name);
+        setSelectedValue(value);
       }
 
-      this.setState(selectedState, this.props.onSelect({ name, value }, false));
+      onSelect({ name, value }, false);
     };
   }
 
-  toggleOptions() {
-    const { disabled } = this.props;
-    this.list && (this.list.scrollTop = 0);
-    return () =>
-      !disabled &&
-      this.setState({
-        activeLabel: true,
-        menuOpen: true,
-      });
+  function toggleOptions() {
+    if (!disabled) {
+      setActiveLabel(true);
+      setIsMenuOpen(true);
+    }
   }
 
-  getChildren() {
-    let childItems = [];
-
-    React.Children.forEach(this.props.children, child => {
-      childItems.push({
-        value: child.props.value,
-        icon: child.props.icon,
-        name: child.props.children,
-      });
-    });
-
-    !this.state.childItems.length && this.setState({ childItems });
-  }
-
-  sortItems(items, value) {
+  function sortItems(items, value) {
     return items.reduce((acc, item) => {
       if (item.value === value) {
         return [item, ...acc];
@@ -183,112 +149,127 @@ class Select extends Component {
     }, []);
   }
 
-  renderInput() {
-    const { selectedName } = this.state;
-    const { placeholder, disabled, inputClassName, active } = this.props;
+  function renderInput() {
     const fieldClasses = cx(styles.input, inputClassName, {
       [styles.isPlaceholder]: selectedName === null,
       [styles.isActive]: active,
       [styles.isDisabled]: disabled,
     });
 
+    console.log('renderInput', selectedName);
+
     return (
-      <div onClick={this.toggleOptions()} className={fieldClasses}>
+      <div onClick={toggleOptions} className={fieldClasses}>
         {selectedName || placeholder}
       </div>
     );
   }
 
-  renderButton(type, label, menuButton) {
-    const { activeLabel } = this.state;
+  function renderButton(type, label, menuButton) {
     const labelClasses = cx(styles.label, {
       [styles.isActive]: activeLabel,
     });
 
     if (type === 'select' && label) {
       return (
-        <React.Fragment>
+        <Fragment>
           <div className={styles.labelWrapper}>
             <span className={labelClasses}>{label}</span>
-            {this.renderInput()}
+            {renderInput()}
           </div>
           <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
-        </React.Fragment>
+        </Fragment>
       );
     } else if (type === 'select') {
       return (
-        <React.Fragment>
-          {this.renderInput()}
+        <Fragment>
+          {renderInput()}
           <Icon className={styles.arrow} name="arrow_drop_down" size={20} />
-        </React.Fragment>
+        </Fragment>
       );
     } else if (type === 'menu') {
       return menuButton;
     }
   }
 
-  render() {
-    const {
-      items,
-      position,
-      open,
-      height,
-      className,
-      type,
-      label,
-      menuButton,
-      sortItems,
-      isMobile,
-      outline,
-      noCurrentValue,
-      ...elementProps
-    } = this.props;
-    const { selectedValue, menuOpen, childItems } = this.state;
-    const isOpen = open !== null ? open : menuOpen;
-    const renderItems = items.length ? items : childItems;
-    const sortedItems = sortItems ? this.sortItems(renderItems, selectedValue) : renderItems;
+  const isOpen = open !== null ? open : isMenuOpen;
+  const renderItems = items.length ? items : childItems;
+  const sortedItems = shouldSortItems ? sortItems(renderItems, selectedValue) : renderItems;
 
-    const menuStyle = cx(styles.menu, {
-      [styles.isOpen]: isOpen,
-      [styles.isBottom]: position === 'bottom',
-      [styles.isUnder]: position === 'under',
-      [styles.isScroll]: height !== 'auto',
-      [styles.isMobile]: isMobile,
-    });
+  const menuStyle = cx(styles.menu, {
+    [styles.isOpen]: isOpen,
+    [styles.isBottom]: position === 'bottom',
+    [styles.isUnder]: position === 'under',
+    [styles.isScroll]: height !== 'auto',
+    [styles.isMobile]: isMobile,
+  });
 
-    const selectStyles = cx(styles.selectWrap, className, {
-      [styles.isOutline]: outline,
-    });
+  const selectStyles = cx(styles.selectWrap, className, {
+    [styles.isOutline]: outline,
+  });
 
-    return (
-      <div
-        ref={el => (this.selectWrap = el)}
-        className={selectStyles}
-        {...omit(elementProps, ['closeOnClickOutside', 'onClickOutside'])}
-      >
-        <span onClick={this.toggleOptions()} className={styles.button}>
-          {this.renderButton(type, label, menuButton)}
-        </span>
+  return (
+    <div ref={selectWrap} className={selectStyles} {...omit(elementProps, ['closeOnClickOutside', 'onClickOutside'])}>
+      <span onClick={toggleOptions} className={styles.button}>
+        {renderButton(type, label, menuButton)}
+      </span>
 
-        <ul ref={list => (this.list = list)} style={{ height }} className={menuStyle}>
-          {sortedItems.map(option => (
-            <SelectOption
-              key={option.value}
-              icon={option.icon}
-              selected={selectedValue === option.value}
-              onSelect={this.onSelectItem}
-              value={option.value}
-              noCurrentValue={noCurrentValue && selectedValue === option.value}
-            >
-              {option.name}
-            </SelectOption>
-          ))}
-        </ul>
+      <ul style={{ height }} className={menuStyle}>
+        {sortedItems.map(option => (
+          <SelectOption
+            key={option.value}
+            icon={option.icon}
+            selected={selectedValue === option.value}
+            onSelect={onSelectItem}
+            value={option.value}
+            noCurrentValue={noCurrentValue && selectedValue === option.value}
+          >
+            {option.name}
+          </SelectOption>
+        ))}
+      </ul>
 
-        {isMobile && <div onClick={this.closeSelect} className={cx(styles.overlay, { [styles.isOpen]: isOpen })} />}
-      </div>
-    );
-  }
+      {isMobile && <div onClick={closeSelect} className={cx(styles.overlay, { [styles.isOpen]: isOpen })} />}
+    </div>
+  );
 }
+
+Select.propTypes = {
+  className: PropTypes.string,
+  items: PropTypes.array,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  onSelect: PropTypes.func,
+  type: PropTypes.oneOf(['select', 'menu']),
+  menuButton: PropTypes.element,
+  position: PropTypes.oneOf(['top', 'bottom', 'under']),
+  height: PropTypes.string,
+  open: PropTypes.bool,
+  closeOnClickOutside: PropTypes.bool,
+  onClickOutside: PropTypes.func,
+  children: PropTypes.node,
+  disabled: PropTypes.bool,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  inputClassName: PropTypes.string,
+  shouldSortItems: PropTypes.bool,
+  isMobile: PropTypes.bool,
+  active: PropTypes.bool,
+  outline: PropTypes.bool,
+  noCurrentValue: PropTypes.bool,
+};
+
+Select.defaultProps = {
+  items: [],
+  type: 'select',
+  position: 'top',
+  open: null,
+  closeOnClickOutside: true,
+  disabled: false,
+  height: 'auto',
+  value: false,
+  shouldSortItems: true,
+  isMobile: false,
+};
 
 export default Select;
