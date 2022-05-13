@@ -113,9 +113,6 @@ function Select({
 
   function closeSelect() {
     setIsMenuOpen(false);
-    console.log('closeSelect', selectedName);
-    console.log('selectedNameRef', selectedNameRef.current);
-
     setActiveLabel(!!selectedNameRef.current);
   }
 
@@ -155,8 +152,6 @@ function Select({
       [styles.isActive]: active,
       [styles.isDisabled]: disabled,
     });
-
-    console.log('renderInput', selectedName);
 
     return (
       <div onClick={toggleOptions} className={fieldClasses}>
