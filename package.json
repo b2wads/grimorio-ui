@@ -102,15 +102,15 @@
     "webpack-cli": "4.9.1"
   },
   "dependencies": {
-    "chart.js": "2.7.3",
-    "chartjs-plugin-datalabels": "0.5.0",
-    "classnames": "2.2.5",
-    "moment": "2.22.1",
-    "prop-types": "15.5.10",
-    "react": "16.8.6",
-    "react-beautiful-dnd": "13.0.0",
-    "react-dates": "18.2.2",
-    "react-dom": "16.8.6",
+    "chart.js": "4.0.1",
+    "chartjs-plugin-datalabels": "2.1.0",
+    "classnames": "2.3.2",
+    "moment": "2.29.4",
+    "prop-types": "15.8.1",
+    "react": "18.2.0",
+    "react-beautiful-dnd": "13.1.1",
+    "react-dates": "21.8.0",
+    "react-dom": "18.2.0",
     "svg-react-loader": "0.4.6"
   },
   "resolutions": {
