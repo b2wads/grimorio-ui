@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DragAndDrop component #render render correctly 1`] = `
-"<DragDropContext onDragEnd={[Function]}>
+"<DragDropContext onDragEnd={[Function (anonymous)]}>
   <[object Object] droppableId=\\"droppable-default\\" mode=\\"standard\\" type=\\"DEFAULT\\" direction=\\"vertical\\" isDropDisabled={false} isCombineEnabled={false} ignoreContainerClipping={false} renderClone={{...}} getContainerForClone={[Function: getBody]}>
     <undefined />
   </[object Object]>

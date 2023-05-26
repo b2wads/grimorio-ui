@@ -207,22 +207,22 @@ exports[`Slider component #render render with dots Should render correctly with 
     </div>
   </div>
   <ul className=\\"dots dotsclassname hasDotsBackground\\">
-    <li className=\\"dotsBtn gatrack isActive\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 1\\">
+    <li className=\\"dotsBtn gatrack isActive\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 1\\">
       1
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 2\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 2\\">
       2
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 3\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 3\\">
       3
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 4\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 4\\">
       4
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 5\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 5\\">
       5
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 6\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 6\\">
       6
     </li>
   </ul>
@@ -272,22 +272,22 @@ exports[`Slider component #render render with dots should call goTo with correct
     </div>
   </div>
   <ul className=\\"dots dotsclassname hasDotsBackground\\">
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 1\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 1\\">
       1
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 2\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 2\\">
       2
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 3\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 3\\">
       3
     </li>
-    <li className=\\"dotsBtn gatrack isActive\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 4\\">
+    <li className=\\"dotsBtn gatrack isActive\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 4\\">
       4
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 5\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 5\\">
       5
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 6\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 6\\">
       6
     </li>
   </ul>
@@ -337,22 +337,22 @@ exports[`Slider component #render render with dots should call goTo with correct
     </div>
   </div>
   <ul className=\\"dots dotsclassname hasDotsBackground\\">
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 1\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 1\\">
       1
     </li>
-    <li className=\\"dotsBtn gatrack isActive\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 2\\">
+    <li className=\\"dotsBtn gatrack isActive\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 2\\">
       2
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 3\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 3\\">
       3
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 4\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 4\\">
       4
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 5\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 5\\">
       5
     </li>
-    <li className=\\"dotsBtn gatrack\\" onClick={[Function]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 6\\">
+    <li className=\\"dotsBtn gatrack\\" onClick={[Function (anonymous)]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo - Posição: 6\\">
       6
     </li>
   </ul>
