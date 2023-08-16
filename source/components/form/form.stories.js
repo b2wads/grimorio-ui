@@ -93,6 +93,16 @@ export const AA_InputText = withState({ input: 'Campo com valor default', check:
           />
           <FormHelpText>Versão outline!</FormHelpText>
         </FormGroup>
+        <FormGroup>
+          <FormControlLabel
+            outline
+            label="Nome"
+            placeholder="Form, FormGroup and input"
+            defaultValue="Valor default"
+            disabled
+          />
+          <FormHelpText>Versão disabled!</FormHelpText>
+        </FormGroup>
         <br />
         <FormGroup>
           <FormControlLabel
