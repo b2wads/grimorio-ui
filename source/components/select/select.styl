@@ -5,6 +5,9 @@ $c-input = #333;
 $placeholder = #999;
 $c-border = #ccc;
 $c-label = #999;
+$c-disabled = #c7c7c7;
+$c-blue-1 = #00A0b2;
+
 
 /* ==========================================================================
    Placeholders
@@ -72,9 +75,10 @@ $field {
   line-height: 1;
   overflow: hidden;
   padding-right: 15px;
-  padding-top: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 10px 16px 0 16px;
+  font-size: 14px;
 
   &.isPlaceholder {
     color: $placeholder;
@@ -85,33 +89,51 @@ $field {
   }
 
   &.isDisabled {
-    background: var(--c-back-disabled);
-    border-color: $c-border;
-    color: var(--c-text-disabled);
+    background: white;
+    border-color: $c-disabled;
+    color: $c-disabled;
     cursor: not-allowed;
   }
 }
 
 .labelWrapper {
-  position: relative;
+  // position: relative;
+  // border: 1px solid pink;
+  // max-height: 48px;
+  // padding-bottom: -32px;
+  // z-index: 2;
 }
 
 .label {
-  color: $c-label;
-  font-size: 16px;
-  font-weight: 400;
-  left: 5px;
-  line-height: 1;
-  pointer-events: none;
-  position: absolute;
-  top: 10px;
-  transition: all 0.25s ease;
+  // color: $c-label;
+  // font-size: 16px;
+  // font-weight: 400;
+  // left: 5px;
+  // line-height: 1;
+  // pointer-events: none;
+  // position: absolute;
+  // top: 10px;
+  // transition: all 0.25s ease;
 
-  &.isActive {
+
+    // border: 1px solid red;
     color: var(--c-active-input);
     font-size: 12px;
-    top: -1.5rem;
-    transition: all 0.125s ease;
+    // margin-bottom: -5px;
+    margin-left: 16px;
+    padding: 0 4px;
+    margin-top: -7px!important;
+    display: block;
+    z-index: 2;
+    background-color: white;
+    position: relative;
+    width: max-content;
+
+    // transition: all 0.125s ease;
+
+  &.isActive {
+    // padding: 0 16px;
+    // margin-left: 24px;
   }
 }
 
@@ -161,6 +183,9 @@ $field {
 
   &.isSelected {
     background: $c-secondary;
+    border: 1px solid red;
+    color: $c-blue-1;
+
   }
 }
 
@@ -183,7 +208,7 @@ $field {
     border: 1px solid $c-border;
     border-radius: 3px;
     line-height: 5px;
-    padding: 24px 10px 22px;
+    padding: 24px 14px 22px;
   }
 
   .arrow {
@@ -192,15 +217,15 @@ $field {
   }
 
   .label {
-    padding-left: 10px;
-    top: 17px;
+    // padding-left: 10px;
+    margin-bottom: -8px;
+
 
     &.isActive {
       background: $white;
-      left: 10px;
-      padding: 0 5px;
-      top: -6px;
-      width: auto;
+      // left: 10px;
+      // padding: 0 5px;
+      // top: -6px;
     }
   }
 
