@@ -14,6 +14,7 @@ class Select extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isFocus: false,
       selectedName: null,
       selectedValue: null,
       menuOpen: false,
@@ -25,6 +26,7 @@ class Select extends Component {
     this.verifyClickOutside = this.verifyClickOutside.bind(this);
     this.closeSelect = this.closeSelect.bind(this);
     this.selectWrap = null;
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   static propTypes = {
@@ -70,7 +72,8 @@ class Select extends Component {
       nextProps.value !== this.props.value ||
       nextProps.items.length !== this.props.items.length ||
       nextProps.open !== this.props.open ||
-      nextProps.disabled !== this.props.disabled
+      nextProps.disabled !== this.props.disabled ||
+      nextProps.isFocus !== this.props.isFocus
     );
   }
 
@@ -130,6 +133,7 @@ class Select extends Component {
     this.setState({
       menuOpen: false,
       activeLabel: selectedName ? true : false,
+      isFocus: false,
     });
   }
 
@@ -143,8 +147,9 @@ class Select extends Component {
         selectedState.activeLabel = true;
         selectedState.selectedName = name;
         selectedState.selectedValue = value;
+        this.setState({ isFocus: false });
       }
-
+      this.setState({ isFocus: false });
       this.setState(selectedState, this.props.onSelect({ name, value }, false));
     };
   }
@@ -183,26 +188,36 @@ class Select extends Component {
     }, []);
   }
 
+  handleFocus() {
+    const { isFocus } = this.state;
+
+    if (isFocus) return;
+    this.setState({ isFocus: true });
+  }
+
   renderInput() {
-    const { selectedName } = this.state;
+    const { selectedName, isFocus } = this.state;
     const { placeholder, disabled, inputClassName, active } = this.props;
     const fieldClasses = cx(styles.input, inputClassName, {
       [styles.isPlaceholder]: selectedName === null,
       [styles.isActive]: active,
       [styles.isDisabled]: disabled,
+      [styles.isFocus]: isFocus,
     });
 
     return (
-      <div onClick={this.toggleOptions()} className={fieldClasses}>
+      <div onClick={this.handleFocus} className={fieldClasses}>
         {selectedName || placeholder}
       </div>
     );
   }
 
   renderButton(type, label, menuButton) {
+    const { disabled } = this.props;
     const { activeLabel } = this.state;
     const labelClasses = cx(styles.label, {
       [styles.isActive]: activeLabel,
+      [styles.isDisabled]: disabled,
     });
 
     if (type === 'select' && label) {
