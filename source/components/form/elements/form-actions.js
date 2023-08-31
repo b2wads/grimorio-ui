@@ -1,34 +1,26 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// styles
 import styles from '../form.styl';
 
-class FormActions extends PureComponent {
-  constructor(props, context) {
-    super(props, context);
-  }
+const FormActions = ({ children, className }) => {
+  const fullClassName = classNames(className, styles['form-group-actions']);
 
-  static defaultProps = {
-    children: undefined,
-    className: undefined,
-  };
+  return (
+    <div className={fullClassName}>
+      {children}
+    </div>
+  );
+};
 
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  };
+FormActions.defaultProps = {
+  children: undefined,
+  className: undefined,
+};
 
-  render() {
-    const { children, className } = this.props;
-    const fullClassName = classNames(className, styles['form-group-actions']);
-
-    return (
-      <div className={fullClassName}>
-        {children}
-      </div>
-    );
-  }
-}
+FormActions.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
 
 export default FormActions;

@@ -6,7 +6,7 @@ Variables
 
 /* Border color
 ========================================================================== */
-$c-border = #a1a1a1;
+$c-border = #60605f;
 $c-check-border = #7F7F7F;
 /* Field
 ========================================================================== */
@@ -17,7 +17,9 @@ $c-text-default = #333;
 ========================================================================== */
 $c-addon-background = #18a689;
 $c-addon-border = $c-border;
-
+$c-border-hover = #3B3B3A;
+$c-label = #00A0b2;
+$c-disabled = #c7c7c7;
 /* ==========================================================================
 Placeholders
 ========================================================================== */
@@ -26,8 +28,8 @@ Placeholders
 $field {
   border: 0;
   border-bottom: 1px solid $c-border;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
   display: block;
   font-size: inherit;
   height: 35px;
@@ -43,34 +45,36 @@ $field {
   }
 
   &:hover {
-    border-color: var(--c-support-dark);
-    color: var(--c-support-dark);
+    border-color: $c-border-hover;
+    color: $c-border-hover;
   }
 
   &:focus {
-    border-color: var(--c-active-input);
+    border-bottom: 1px solid $c-label;
     color: var(--c-support-dark);
   }
 
   &.isActive {
-    border-color: var(--c-active-input);
+    border-color: $c-gray-2 ;
   }
 
   &:disabled {
-    background: var(--c-back-disabled);
-    color: var(--c-text-disabled);
+    cursor: not-allowed;
+    background: white;
+    color: $c-disabled;
+    border-color: $c-disabled;
   }
 
   &:disabled::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: var(--c-text-disabled);
+    color: $c-disabled;
   }
 
   &:disabled:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: var(--c-text-disabled);
+    color: $c-disabled;
   }
 
   &:disabled::-ms-input-placeholder { /* Microsoft Edge */
-    color: var(--c-text-disabled);
+    color: $c-disabled;
   }
 }
 
@@ -78,7 +82,7 @@ $field {
 ========================================================================== */
 $radioCheckbox {
   align-items: center;
-  border: 2px solid $c-check-border;
+  border: 2px solid $c-border;
   cursor: pointer;
   display: flex;
   height: 20px;
@@ -87,12 +91,12 @@ $radioCheckbox {
   width: 20px;
 
   &.isDisabled, &.isDisabled.isActive {
-    background:  var(--c-back-disabled);
-    border-color: var(--c-text-disabled);
+    background:  white;
+    border-color:$c-disabled;
     cursor: not-allowed;
 
     i {
-      color: var(--c-text-disabled);
+      color: $c-disabled;
     }
   }
 }
@@ -139,6 +143,12 @@ Form Control Component
   border-radius: 3px;
   margin-top: 0;
   padding: 24px 10px 22px;
+
+    &:focus {
+    outline: 1px solid $c-label;
+    border-color: $c-label;
+    color: var(--c-support-dark);
+  }
 }
 
 .form-field--select {
@@ -177,13 +187,13 @@ Form Control Component
 
   input[type='radio']:disabled {
     &:checked ~ .fakeInput {
-      background: var(--c-back-disabled);
-      border-color: var(--c-text-disabled);
+      background: white;
+      border-color: $c-disabled;
       cursor: not-allowed;
     }
 
     &:checked ~ .fakeInput:before {
-      background: var(--c-back-disabled);
+      background: white;
     }
   }
 }
@@ -268,9 +278,9 @@ Form Control Component
 }
 
 .form-addon--disabled {
-  background: var(--c-back-disabled);
-  border-color: var(--c-back-disabled);
-  color: var(--c-text-disabled);
+  background: white;
+  border-color: $c-disabled;
+  color: $c-disabled;
 }
 
 /* Feedback

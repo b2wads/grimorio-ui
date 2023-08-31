@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -10,58 +10,51 @@ import { Provider } from '../form-context';
 
 const { randomId } = property;
 
-class FormGroup extends PureComponent {
-  constructor(props, context) {
-    super(props, context);
+function FormGroup(props) {
+  const [formGroup, setFormGroup] = useState({
+    controlId: props.controlId,
+    validationState: props.validationState,
+  });
 
-    this.state = {
-      formGroup: {
-        controlId: props.controlId,
-        validationState: props.validationState,
-      },
-    };
-  }
+  useEffect(
+    () => {
+      if (props.validationState !== formGroup.validationState) {
+        setFormGroup(prevFormGroup => ({
+          ...prevFormGroup,
+          validationState: props.validationState,
+        }));
+      }
+    },
+    [props.validationState]
+  );
 
-  static defaultProps = {
-    controlId: randomId(),
-    validationState: undefined,
-  };
+  const { validationState, children, className } = props;
 
-  static propTypes = {
-    controlId: PropTypes.string,
-    validationState: PropTypes.oneOf(['success', 'warning', 'error']),
-    children: PropTypes.node,
-    className: PropTypes.string,
-  };
+  const validationStateClass = `has-${validationState}`;
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.validationState !== this.props.validationState) {
-      this.setState({
-        formGroup: {
-          ...this.state.formGroup,
-          validationState: this.props.validationState,
-        },
-      });
-    }
-  }
+  const formGroupClass = classNames(className, styles['form-group'], styles['form-group--horizontal'], {
+    [styles[validationStateClass]]: validationState,
+  });
 
-  render() {
-    const { validationState, children, className } = this.props;
-
-    const validationStateClass = `has-${validationState}`;
-
-    const formGroupClass = classNames(className, styles['form-group'], styles['form-group--horizontal'], {
-      [styles[validationStateClass]]: validationState,
-    });
-
-    return (
-      <Provider value={this.state}>
-        <div className={formGroupClass}>
-          {children}
-        </div>
-      </Provider>
-    );
-  }
+  return (
+    <Provider value={{ formGroup }}>
+      <div className={formGroupClass}>
+        {children}
+      </div>
+    </Provider>
+  );
 }
+
+FormGroup.defaultProps = {
+  controlId: randomId(),
+  validationState: undefined,
+};
+
+FormGroup.propTypes = {
+  controlId: PropTypes.string,
+  validationState: PropTypes.oneOf(['success', 'warning', 'error']),
+  children: PropTypes.node,
+  className: PropTypes.string,
+};
 
 export default FormGroup;

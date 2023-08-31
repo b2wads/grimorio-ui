@@ -3,9 +3,11 @@ Variables
 ========================================================================== */
 /* Color
 ========================================================================== */
-$c-label = #A1A1A1;
+$c-label = #00A0b2;
 $c-label-active = #878786;
 $c-text-default = #333;
+$c-border-input = #60605f;
+$c-disabled = #c7c7c7;
 
 /* ==========================================================================
 Form Label Component
@@ -15,36 +17,27 @@ Form Label Component
 }
 
 .controlledLabel {
-  color: $c-label;
-  font-size: 16px;
-  font-weight: 400;
-  left: 0;
-  line-height: 1;
+  position: relative;
+  left: 6px;
+
   pointer-events: none;
-  position: absolute;
-  top: 10px;
-  transition: all 0.25s ease;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+
+  background: white;
+  color: $c-label;
 }
 
 .isActive, .isAutofilled {
   font-size: 12px;
-  left: 0;
-  top: -1.5rem;
-  transition: all 0.125s ease;
-  color: $c-label-active;
-
-  &.isHovered {
-    color: var(--c-support-dark);
-  }
-
-  &.labelHighLight {
-    color: var(--c-active-input);
-  }
+  color: $c-label;
 }
 
 .formControl {
-  color: $c-label-active;
-  font-size: 16px;
+  color: $c-border-input;
+  font-size: 14px;
   margin-top: 5px;
 }
 
@@ -61,28 +54,19 @@ Form Label Component
 }
 
 .isOutline {
-  padding-left: 10px;
+  padding: 0 4px;
   top: 17px;
-}
-
-.isActive.isOutline, .isAutofilled.isOutline {
-  background: $white;
-  left: 5px;
-  padding: 0 5px;
-  top: -6px;
-  width: auto;
-}
-
-.has-iconRight {
-  label, input {
-    padding-right: 35px;
-  }
+  display: math;
 }
 
 .has-iconLeft {
-  label, input {
+  input {
     padding-left: 35px;
   }
+}
+
+.disabled {
+  color: $c-disabled;
 }
 
 .iconRight, .iconLeft {
@@ -93,10 +77,12 @@ Form Label Component
 
 .iconRight {
   right: 12px;
+  top: 38px;
 }
 
 .iconLeft {
-  left: 12px;
+  left: 16px;
+  top: 38px;
 }
 
 .isClickable {

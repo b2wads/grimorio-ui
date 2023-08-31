@@ -15,8 +15,11 @@ class SelectOption extends PureComponent {
             className={classNames(styles.option, { [styles.isSelected]: selected })}
             onClick={onSelect({ name: children, value })}
           >
-            {icon && <Icon className={styles.optionIcon} size="18" name={icon} />}
-            <span className={styles.optionContent}>{children}</span>
+            <div>
+              {icon && <Icon className={styles.optionIcon} size="18" name={icon} />}
+              <span className={styles.optionContent}>{children}</span>
+            </div>
+            {selected && <Icon className={styles.selectedIcon} size="18" name="check" />}
           </li>}
       </Fragment>
     );
