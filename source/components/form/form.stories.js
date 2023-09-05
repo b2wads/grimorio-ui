@@ -451,3 +451,33 @@ export const OnValidation = withState({
     </div>
   );
 });
+
+export const OnError = withState({
+  status: undefined,
+  message: undefined,
+}, store => {
+  const handleValidate = (validation) => {
+    store.set({ status: validation.validationState, message: validation.errorMessage });
+  };
+
+  return(
+    <div>
+      <FormGroup>
+      <FormControlLabel
+        outline
+        label="Nome"
+        placeholder="Form, FormGroup and input"
+        defaultValue="Valor default"
+        onValidate={handleValidate}
+        validate={[
+          {
+            rule: 'required',
+            message: 'Campo obrigatório',
+          }
+        ]}
+      />
+      <FormHelpText>Versão outline!</FormHelpText>
+      </FormGroup>
+    </div>
+  )
+})
