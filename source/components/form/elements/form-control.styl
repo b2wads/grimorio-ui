@@ -144,7 +144,7 @@ Form Control Component
   margin-top: 0;
   padding: 24px 10px 22px;
 
-    &:focus {
+    &:focus:not(.isDisabled, .has-error, .has-warning)  {
     outline: 1px solid $c-label;
     border-color: $c-label;
     color: var(--c-support-dark);
