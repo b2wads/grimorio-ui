@@ -130,7 +130,7 @@ class FormControlLabel extends Component {
 
     if (type === 'select') {
       return (
-        <Select className={inputClasses} label={label} onSelect={onChange} {...rest}>
+        <Select className={inputClasses} label={label} onSelect={onChange} {...rest} disabled={disabled}>
           {children}
         </Select>
       );
