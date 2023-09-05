@@ -60,21 +60,21 @@ $field {
 
   &:disabled {
     cursor: not-allowed;
-    background: white;
-    color: $c-disabled;
-    border-color: $c-disabled;
+    background: white!important;
+    color: $c-disabled!important;
+    border-color: $c-disabled!important;
   }
 
   &:disabled::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: $c-disabled;
+    color: $c-disabled!important;
   }
 
   &:disabled:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: $c-disabled;
+    color: $c-disabled!important;
   }
 
   &:disabled::-ms-input-placeholder { /* Microsoft Edge */
-    color: $c-disabled;
+    color: $c-disabled!important;
   }
 }
 
@@ -91,12 +91,12 @@ $radioCheckbox {
   width: 20px;
 
   &.isDisabled, &.isDisabled.isActive {
-    background:  white;
-    border-color:$c-disabled;
-    cursor: not-allowed;
+    background:  white!important;
+    border-color:$c-disabled!important;
+    cursor: not-allowed!important;
 
     i {
-      color: $c-disabled;
+      color: $c-disabled!important;
     }
   }
 }
@@ -187,13 +187,13 @@ Form Control Component
 
   input[type='radio']:disabled {
     &:checked ~ .fakeInput {
-      background: white;
-      border-color: $c-disabled;
-      cursor: not-allowed;
+      background: white!important;
+      border-color: $c-disabled!important;
+      cursor: not-allowed!important;
     }
 
     &:checked ~ .fakeInput:before {
-      background: white;
+      background: white!important;
     }
   }
 }
@@ -278,9 +278,9 @@ Form Control Component
 }
 
 .form-addon--disabled {
-  background: white;
-  border-color: $c-disabled;
-  color: $c-disabled;
+  background: white!important;
+  border-color: $c-disabled!important;
+  color: $c-disabled!important;
 }
 
 /* Feedback
