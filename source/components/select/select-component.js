@@ -157,12 +157,19 @@ class Select extends Component {
   toggleOptions() {
     const { disabled } = this.props;
     this.list && (this.list.scrollTop = 0);
-    return () =>
-      !disabled &&
-      this.setState({
-        activeLabel: true,
-        menuOpen: true,
-      });
+    if (disabled === false) {
+      return () =>
+        this.setState({
+          activeLabel: true,
+          menuOpen: true,
+        });
+    } else {
+      return () =>
+        this.setState({
+          activeLabel: false,
+          menuOpen: false,
+        });
+    }
   }
 
   getChildren() {
