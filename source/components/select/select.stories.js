@@ -109,6 +109,16 @@ export const SelectWithoutLabel = () => {
 export const SelectDisabled = () => {
   return (
     <div>
+      <Select
+        disabled
+        outline
+        label="Opções"
+        position="bottom"
+        onSelect={(data) => console.log(data)}
+        height="150px"
+        items={items}
+      />
+      <br/>
       <Select disabled placeholder="Opções" onSelect={(data) => console.log(data)} items={items} />
       <br />
       <Select disabled label="Opções" onSelect={(data) => console.log(data)} items={items} />

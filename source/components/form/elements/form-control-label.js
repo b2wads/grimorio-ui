@@ -33,6 +33,7 @@ class FormControlLabel extends Component {
   static propTypes = {
     label: PropTypes.string,
     labelHighLight: PropTypes.bool,
+    disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     activeLabel: PropTypes.bool,
     onBlur: PropTypes.func,
@@ -93,6 +94,7 @@ class FormControlLabel extends Component {
       iconLeft,
       iconLeftClick,
       context,
+      disabled,
       ...rest
     } = this.props;
 
@@ -111,6 +113,7 @@ class FormControlLabel extends Component {
       [styles.isAutofilled]: this.state.isAutofilled,
       [styles[`has-${validationState}`]]: validationState,
       [styles.isOutline]: this.props.outline,
+      [styles.disabled]: disabled,
     });
 
     const inputClasses = classNames(styles.formControl, {
@@ -127,7 +130,7 @@ class FormControlLabel extends Component {
 
     if (type === 'select') {
       return (
-        <Select className={inputClasses} label={label} onSelect={onChange} {...rest}>
+        <Select className={inputClasses} label={label} onSelect={onChange} {...rest} disabled={disabled}>
           {children}
         </Select>
       );
@@ -148,6 +151,7 @@ class FormControlLabel extends Component {
             onHover={this.onHoverLabel}
             onBlur={this.onBlurLabel}
             checkIsAutofilled={this.checkIsAutofilled}
+            disabled={disabled}
           />
           {typeof iconRight === 'string'
             ? <Icon className={iconRightClasses} name={iconRight} size={18} onClick={iconRightClick} />

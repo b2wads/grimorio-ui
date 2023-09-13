@@ -3,8 +3,12 @@
 ========================================================================== */
 $c-input = #333;
 $placeholder = #999;
-$c-border = #ccc;
+$c-grey-1 = #60605f;
+$c-hover = #3B3B3A;
 $c-label = #999;
+$c-disabled = #c7c7c7;
+$c-blue-1 = #00A0b2;
+
 
 /* ==========================================================================
    Placeholders
@@ -27,10 +31,10 @@ $menu {
 
 $field {
   border: 0;
-  border-bottom: 1px solid $c-border;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  color: inherit;
+  border-bottom: 1px solid $c-grey-1;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  color: $c-grey-1;
   display: block;
   font-size: inherit;
   height: 35px;
@@ -38,6 +42,11 @@ $field {
   text-indent: 5px;
   user-select: none;
   width: 100%;
+
+  &:hover {
+  border-color: $c-hover;
+  color: $c-hover;
+  }
 }
 
 /* ==========================================================================
@@ -59,7 +68,7 @@ $field {
 }
 
 .arrow {
-  color: $c-text;
+  color: $c-grey-1;
   position: absolute;
   right: 0;
   top: 8px;
@@ -72,9 +81,12 @@ $field {
   line-height: 1;
   overflow: hidden;
   padding-right: 15px;
-  padding-top: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 10px 16px 0 16px;
+  font-size: 14px;
+
+  transition: all 0.25s ease;
 
   &.isPlaceholder {
     color: $placeholder;
@@ -85,33 +97,30 @@ $field {
   }
 
   &.isDisabled {
-    background: var(--c-back-disabled);
-    border-color: $c-border;
-    color: var(--c-text-disabled);
-    cursor: not-allowed;
+    background: white!important;
+    border-color: $c-disabled!important;
+    color: $c-disabled!important;
+    cursor: not-allowed!important;
   }
 }
 
-.labelWrapper {
-  position: relative;
-}
 
 .label {
-  color: $c-label;
-  font-size: 16px;
-  font-weight: 400;
-  left: 5px;
-  line-height: 1;
-  pointer-events: none;
-  position: absolute;
-  top: 10px;
-  transition: all 0.25s ease;
+  color: var(--c-active-input);
+  font-size: 12px;
+  margin-left: 16px;
+  padding: 0 4px;
+  display: block;
+  z-index: 2;
+  background-color: white;
+  position: relative;
+  width: max-content;
 
-  &.isActive {
-    color: var(--c-active-input);
-    font-size: 12px;
-    top: -1.5rem;
-    transition: all 0.125s ease;
+  &.isDisabled {
+    background: white!important;
+    border-color: $c-disabled!important;
+    color: $c-disabled!important;
+    cursor: not-allowed!important;
   }
 }
 
@@ -136,6 +145,7 @@ $field {
     transform: scaleY(1);
     transition: opacity 0.5s ease;
     z-index: $z-upmax;
+    margin-top: 50px;
   }
 
   &.isMobile {
@@ -151,16 +161,23 @@ $field {
 }
 
 .option {
-  color: $c-text;
+  color: $c-grey-1;
+  font-size: 14px;
   cursor: pointer;
   padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
 
   &:hover {
-    background: $c-secondary-light;
+    background: $color-light-1;
   }
 
   &.isSelected {
-    background: $c-secondary;
+    color: $c-blue-1;
+  }
+
+  .selectedIcon {
+    align-items: right;
   }
 }
 
@@ -180,31 +197,32 @@ $field {
 
 .isOutline {
   .input {
-    border: 1px solid $c-border;
-    border-radius: 3px;
+    border: 1px solid $c-grey-1;
+    color: $c-grey-1;
+    border-radius: 2px;
     line-height: 5px;
-    padding: 24px 10px 22px;
+    padding: 24px 14px 22px;
+
+    &:hover {
+      border-color: $c-hover;
+    }
   }
 
   .arrow {
     right: 5px;
-    top: 16px;
+    top: 22px;
   }
 
   .label {
-    padding-left: 10px;
-    top: 17px;
-
-    &.isActive {
-      background: $white;
-      left: 10px;
-      padding: 0 5px;
-      top: -6px;
-      width: auto;
-    }
+    margin-bottom: -9px;
   }
 
   .menu {
     top: 10px;
+  }
+
+  .isFocus:not(.isDisabled, .has-error, .has-warning) {
+    border-color: $c-blue-1!important;
+    outline: 1px solid $c-blue-1;
   }
 }
