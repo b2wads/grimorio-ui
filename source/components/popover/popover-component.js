@@ -29,11 +29,11 @@ class Popover extends React.PureComponent {
   }
 
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
+    document.addEventListener('mousedown', this.handleClickOutside), { capture: true };
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
+    document.removeEventListener('mousedown', this.handleClickOutside), { capture: true };
   }
 
   setWrapperRef(node) {

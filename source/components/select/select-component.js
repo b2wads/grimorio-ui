@@ -80,12 +80,12 @@ class Select extends Component {
   componentWillMount() {
     const { closeOnClickOutside, items } = this.props;
     !items.length && this.getChildren();
-    closeOnClickOutside && document.addEventListener('click', this.verifyClickOutside, false);
+    closeOnClickOutside && document.addEventListener('click', this.verifyClickOutside, false), { capture: true };
   }
 
   componentWillUnmount() {
     const { closeOnClickOutside } = this.props;
-    closeOnClickOutside && document.removeEventListener('click', this.verifyClickOutside, false);
+    closeOnClickOutside && document.removeEventListener('click', this.verifyClickOutside, false), { capture: true };
   }
 
   componentDidMount() {
