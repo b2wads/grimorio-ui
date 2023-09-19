@@ -107,10 +107,10 @@
     "classnames": "2.2.5",
     "moment": "2.29.4",
     "prop-types": "15.5.10",
-    "react": "16.14.0",
+    "react": "17.0.2",
     "react-beautiful-dnd": "13.0.0",
     "react-dates": "18.2.2",
-    "react-dom": "16.14.0",
+    "react-dom": "17.0.2",
     "svg-react-loader": "0.4.6"
   },
   "resolutions": {
