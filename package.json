@@ -65,7 +65,7 @@
     "babel-loader": "8.2.3",
     "babel-plugin-css-modules-transform": "1.6.2",
     "babel-plugin-react-docgen": "4.2.1",
-    "brunch": "4.0.0",
+    "brunch": "4.0.2",
     "cross-env": "5.2.0",
     "css-loader": "6.5.1",
     "cssnano": "4.1.11",
