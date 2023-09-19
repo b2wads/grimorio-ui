@@ -2,28 +2,24 @@
 
 exports[`InfoCard component should render card type money 1`] = `
 "<Panel title={false} className=\\"default\\" titleClassName={[undefined]} size=\\"medium\\" loading={false} accordion={false} open={true} highlight=\\"shadow\\">
-  <Symbol(react.fragment)>
-    <span className=\\"info\\">
-      <span className=\\"symbol\\">
-        R$
-      </span>
-      20,00
+  <span className=\\"info\\">
+    <span className=\\"symbol\\">
+      R$
     </span>
-    <span className=\\"tagline\\" />
-  </Symbol(react.fragment)>
+    20,00
+  </span>
+  <span className=\\"tagline\\" />
 </Panel>"
 `;
 
 exports[`InfoCard component should render card with tagline 1`] = `
 "<Panel title={false} className=\\"default\\" titleClassName={[undefined]} size=\\"medium\\" loading={false} accordion={false} open={true} highlight=\\"shadow\\">
-  <Symbol(react.fragment)>
-    <span className=\\"info\\" />
-    <span className=\\"tagline\\">
-      <span>
-        fevereiro
-      </span>
+  <span className=\\"info\\" />
+  <span className=\\"tagline\\">
+    <span>
+      fevereiro
     </span>
-  </Symbol(react.fragment)>
+  </span>
 </Panel>"
 `;
 

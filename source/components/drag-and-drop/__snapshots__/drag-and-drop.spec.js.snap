@@ -2,8 +2,8 @@
 
 exports[`DragAndDrop component #render render correctly 1`] = `
 "<DragDropContext onDragEnd={[Function (anonymous)]}>
-  <[object Object] droppableId=\\"droppable-default\\" mode=\\"standard\\" type=\\"DEFAULT\\" direction=\\"vertical\\" isDropDisabled={false} isCombineEnabled={false} ignoreContainerClipping={false} renderClone={{...}} getContainerForClone={[Function: getBody]}>
-    <undefined />
-  </[object Object]>
+  <Connect(Droppable) droppableId=\\"droppable-default\\" mode=\\"standard\\" type=\\"DEFAULT\\" direction=\\"vertical\\" isDropDisabled={false} isCombineEnabled={false} ignoreContainerClipping={false} renderClone={{...}} getContainerForClone={[Function: getBody]}>
+    [function]
+  </Connect(Droppable)>
 </DragDropContext>"
 `;

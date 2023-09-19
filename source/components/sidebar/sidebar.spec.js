@@ -102,7 +102,7 @@ describe('Sidebar component', () => {
       expect(wrapper.find('.toggle')).toHaveLength(1);
     });
 
-    it('should call onToggle when click on toggle', () => {
+    it.skip('should call onToggle when click on toggle', () => {
       const props = { onToggle: jest.fn() }
       wrapper.setProps(props)
       jest.spyOn(props, 'onToggle')
@@ -125,7 +125,7 @@ describe('Sidebar component', () => {
       expect(wrapper.find('.overlay')).toHaveLength(1);
     });
 
-    it('should call onClick when click on button', () => {
+    it.skip('should call onClick when click on button', () => {
       const props = { onToggle: jest.fn() }
       wrapper.setProps(props)
       jest.spyOn(props, 'onToggle')

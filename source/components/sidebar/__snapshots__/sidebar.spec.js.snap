@@ -1,120 +1,123 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Sidebar component render default 1`] = `
-"<Symbol(react.fragment)>
-  <div className=\\"sidebar closed\\">
-    <div onClick={[undefined]} className=\\"logotype\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\" />
+"<Fragment>
+  <div className=\\"sidebar isFixed\\">
+    <button className=\\"toggle\\" type=\\"button\\" onClick={[Function: handleToggle]} data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+      <Icon className=\\"toggleIcon\\" name=\\"menu\\" color={[undefined]} size={24} align=\\"middle\\" />
+    </button>
+    <div onClick={[undefined]} className=\\"logotype default\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\" />
     <nav className=\\"content\\">
-      <span className=\\"contentTitle isNavClosed\\">
+      <span className=\\"contentTitle\\">
         Menu
       </span>
-      <Accordion type=\\"accordionMenu\\" exclusive={false} as=\\"ul\\" open={[undefined]} theme=\\"default\\" panels={{...}}>
+      <Accordion type=\\"accordionMenu\\" exclusive={false} as=\\"ul\\" open={true} theme=\\"default\\" panels={{...}}>
         <Teste />
-        <li title=\\"Home\\" className=\\"classe-teste listItem isClosed gatrack\\" onClick={[Function (anonymous)]} data-testid=\\"home-link\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo\\">
+        <li title=\\"Home\\" className=\\"classe-teste listItem support_primary content_default gatrack\\" onClick={[Function (anonymous)]} data-testid=\\"home-link\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo\\">
           <Icon size={16} name=\\"person\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Home
         </li>
-        <li title=\\"Página 1\\" className=\\"listItem isClosed\\" onClick={[Function (anonymous)]} data-testid=\\"pag1\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+        <li title=\\"Página 1\\" className=\\"listItem support_primary content_default\\" onClick={[Function (anonymous)]} data-testid=\\"pag1\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
           <Icon size={16} name=\\"desktop_mac\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Página 1
         </li>
-        <li className=\\"accordeonListItem\\" data-testid=\\"acc\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+        <li className=\\"accordeonListItem primary\\" data-testid=\\"acc\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
           <AccordionTitle data-testid=\\"acc\\" active={false} index={3} onClick={[Function (anonymous)]} icon=\\"filter\\">
             Um Accordion
           </AccordionTitle>
           <AccordionContent active={false}>
             <ul className=\\"nestedMenu\\">
-              <li title=\\"Item 1\\" className=\\"classe-subitem-1 nestedItem isClosed\\" onClick={[Function (anonymous)]} data-testid=\\"acc-item1\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+              <li title=\\"Item 1\\" className=\\"classe-subitem-1 nestedItem support_primary content_default\\" onClick={[Function (anonymous)]} data-testid=\\"acc-item1\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
                 Item 1
               </li>
-              <li title=\\"Item 2\\" className=\\"nestedItem isClosed\\" onClick={[Function (anonymous)]} data-testid=\\"acc-item2\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+              <li title=\\"Item 2\\" className=\\"nestedItem support_primary content_default\\" onClick={[Function (anonymous)]} data-testid=\\"acc-item2\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
                 Item 2
               </li>
             </ul>
           </AccordionContent>
         </li>
-        <li className=\\"accordeonListItem isActive\\" data-testid=\\"acc2\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+        <li className=\\"accordeonListItem primary isActive\\" data-testid=\\"acc2\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
           <AccordionTitle data-testid=\\"acc2\\" active={true} index={4} onClick={[Function (anonymous)]} icon=\\"filter\\">
             Outro Accordion
           </AccordionTitle>
           <AccordionContent active={true}>
             <ul className=\\"nestedMenu\\">
-              <li title=\\"Item 1\\" className=\\"nestedItem isClosed sectionActive\\" onClick={[Function (anonymous)]} data-testid=\\"acc2-item1\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+              <li title=\\"Item 1\\" className=\\"nestedItem support_primary content_default sectionActive\\" onClick={[Function (anonymous)]} data-testid=\\"acc2-item1\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
                 Item 1
               </li>
-              <li title=\\"Item 2\\" className=\\"nestedItem isClosed isActive sectionActive\\" onClick={[Function (anonymous)]} data-testid=\\"acc2-item2\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+              <li title=\\"Item 2\\" className=\\"nestedItem support_primary content_default isActive sectionActive\\" onClick={[Function (anonymous)]} data-testid=\\"acc2-item2\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
                 Item 2
               </li>
             </ul>
           </AccordionContent>
         </li>
-        <li title=\\"Ajuda!\\" className=\\"listItem isClosed\\" onClick={[Function (anonymous)]} data-testid=\\"help\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+        <li title=\\"Ajuda!\\" className=\\"listItem support_primary content_default\\" onClick={[Function (anonymous)]} data-testid=\\"help\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
           <Icon size={16} name=\\"help\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Ajuda!
         </li>
       </Accordion>
     </nav>
   </div>
-</Symbol(react.fragment)>"
+</Fragment>"
 `;
 
 exports[`Sidebar component with toggle button Should render correctly with toggleIconColor 1`] = `
-"<Symbol(react.fragment)>
-  <div className=\\"sidebar closed\\">
+"<Fragment>
+  <div className=\\"sidebar isFixed\\">
     <button className=\\"toggle gatrack\\" type=\\"button\\" onClick={[Function: handleToggle]} data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo\\">
       <Icon className=\\"toggleIcon\\" name=\\"menu\\" color=\\"#ffff99\\" size={24} align=\\"middle\\" />
     </button>
-    <div onClick={[undefined]} className=\\"logotype\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\" />
+    <div onClick={[undefined]} className=\\"logotype default\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\" />
     <nav className=\\"content\\">
-      <span className=\\"contentTitle isNavClosed\\">
+      <span className=\\"contentTitle\\">
         Menu
       </span>
-      <Accordion type=\\"accordionMenu\\" exclusive={false} as=\\"ul\\" open={[undefined]} theme=\\"default\\" panels={{...}}>
+      <Accordion type=\\"accordionMenu\\" exclusive={false} as=\\"ul\\" open={true} theme=\\"default\\" panels={{...}}>
         <Teste />
-        <li title=\\"Home\\" className=\\"classe-teste listItem isClosed gatrack\\" onClick={[Function (anonymous)]} data-testid=\\"home-link\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo\\">
+        <li title=\\"Home\\" className=\\"classe-teste listItem support_primary content_default gatrack\\" onClick={[Function (anonymous)]} data-testid=\\"home-link\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"categoria\\" data-gaaction=\\"ação\\" data-galabel=\\"rótulo\\">
           <Icon size={16} name=\\"person\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Home
         </li>
-        <li title=\\"Página 1\\" className=\\"listItem isClosed\\" onClick={[Function (anonymous)]} data-testid=\\"pag1\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+        <li title=\\"Página 1\\" className=\\"listItem support_primary content_default\\" onClick={[Function (anonymous)]} data-testid=\\"pag1\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
           <Icon size={16} name=\\"desktop_mac\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Página 1
         </li>
-        <li className=\\"accordeonListItem\\" data-testid=\\"acc\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+        <li className=\\"accordeonListItem primary\\" data-testid=\\"acc\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
           <AccordionTitle data-testid=\\"acc\\" active={false} index={3} onClick={[Function (anonymous)]} icon=\\"filter\\">
             Um Accordion
           </AccordionTitle>
           <AccordionContent active={false}>
             <ul className=\\"nestedMenu\\">
-              <li title=\\"Item 1\\" className=\\"classe-subitem-1 nestedItem isClosed\\" onClick={[Function (anonymous)]} data-testid=\\"acc-item1\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+              <li title=\\"Item 1\\" className=\\"classe-subitem-1 nestedItem support_primary content_default\\" onClick={[Function (anonymous)]} data-testid=\\"acc-item1\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
                 Item 1
               </li>
-              <li title=\\"Item 2\\" className=\\"nestedItem isClosed\\" onClick={[Function (anonymous)]} data-testid=\\"acc-item2\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+              <li title=\\"Item 2\\" className=\\"nestedItem support_primary content_default\\" onClick={[Function (anonymous)]} data-testid=\\"acc-item2\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
                 Item 2
               </li>
             </ul>
           </AccordionContent>
         </li>
-        <li className=\\"accordeonListItem isActive\\" data-testid=\\"acc2\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+        <li className=\\"accordeonListItem primary isActive\\" data-testid=\\"acc2\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
           <AccordionTitle data-testid=\\"acc2\\" active={true} index={4} onClick={[Function (anonymous)]} icon=\\"filter\\">
             Outro Accordion
           </AccordionTitle>
           <AccordionContent active={true}>
             <ul className=\\"nestedMenu\\">
-              <li title=\\"Item 1\\" className=\\"nestedItem isClosed sectionActive\\" onClick={[Function (anonymous)]} data-testid=\\"acc2-item1\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+              <li title=\\"Item 1\\" className=\\"nestedItem support_primary content_default sectionActive\\" onClick={[Function (anonymous)]} data-testid=\\"acc2-item1\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
                 Item 1
               </li>
-              <li title=\\"Item 2\\" className=\\"nestedItem isClosed isActive sectionActive\\" onClick={[Function (anonymous)]} data-testid=\\"acc2-item2\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+              <li title=\\"Item 2\\" className=\\"nestedItem support_primary content_default isActive sectionActive\\" onClick={[Function (anonymous)]} data-testid=\\"acc2-item2\\" data-testidgen=\\"submenu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
                 Item 2
               </li>
             </ul>
           </AccordionContent>
         </li>
-        <li title=\\"Ajuda!\\" className=\\"listItem isClosed\\" onClick={[Function (anonymous)]} data-testid=\\"help\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
+        <li title=\\"Ajuda!\\" className=\\"listItem support_primary content_default\\" onClick={[Function (anonymous)]} data-testid=\\"help\\" data-testidgen=\\"menu-item\\" data-gacategory=\\"\\" data-gaaction=\\"\\" data-galabel=\\"\\">
           <Icon size={16} name=\\"help\\" className=\\"iconLeft\\" align=\\"middle\\" />
           Ajuda!
         </li>
       </Accordion>
     </nav>
   </div>
-</Symbol(react.fragment)>"
+</Fragment>"
 `;

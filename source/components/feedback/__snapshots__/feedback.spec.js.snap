@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Feedback component #render render when isOpen is false 1`] = `"<Symbol(react.fragment) />"`;
-
-exports[`Feedback component #render render when isOpen is true 1`] = `
-"<Symbol(react.fragment)>
+exports[`Feedback component #render render when isOpen is false 1`] = `
+"<Fragment>
   <div className=\\"defaultPosition\\">
     <div className=\\"default success\\">
       <Icon className=\\"icon\\" size={26} name=\\"check\\" align=\\"middle\\" />
@@ -15,11 +13,27 @@ exports[`Feedback component #render render when isOpen is true 1`] = `
       </Button>
     </div>
   </div>
-</Symbol(react.fragment)>"
+</Fragment>"
+`;
+
+exports[`Feedback component #render render when isOpen is true 1`] = `
+"<Fragment>
+  <div className=\\"defaultPosition\\">
+    <div className=\\"default success\\">
+      <Icon className=\\"icon\\" size={26} name=\\"check\\" align=\\"middle\\" />
+      <span className=\\"message\\">
+        test message loucura
+      </span>
+      <Button className=\\"buttonClick\\" onClick={[Function: handleClose]} disabled={false} color=\\"primary\\" size=\\"medium\\" type=\\"button\\" active={false}>
+        <Icon className=\\"iconCleanError\\" size=\\"20\\" name=\\"clear\\" align=\\"middle\\" />
+      </Button>
+    </div>
+  </div>
+</Fragment>"
 `;
 
 exports[`Feedback component #render should render correctly with classname 1`] = `
-"<Symbol(react.fragment)>
+"<Fragment>
   <div className=\\"testclass defaultPosition\\">
     <div className=\\"default success\\">
       <Icon className=\\"icon\\" size={26} name=\\"check\\" align=\\"middle\\" />
@@ -31,5 +45,5 @@ exports[`Feedback component #render should render correctly with classname 1`] =
       </Button>
     </div>
   </div>
-</Symbol(react.fragment)>"
+</Fragment>"
 `;
