@@ -68,7 +68,7 @@
     "brunch": "4.0.2",
     "cross-env": "5.2.0",
     "css-loader": "6.8.1",
-    "cssnano": "4.1.11",
+    "cssnano": "6.0.1",
     "enzyme": "3.11.0",
     "enzyme-to-json": "3.6.2",
     "eslint": "4.19.0",
