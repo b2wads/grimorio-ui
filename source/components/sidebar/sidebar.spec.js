@@ -102,14 +102,6 @@ describe('Sidebar component', () => {
       expect(wrapper.find('.toggle')).toHaveLength(1);
     });
 
-    it.skip('should call onToggle when click on toggle', () => {
-      const props = { onToggle: jest.fn() }
-      wrapper.setProps(props)
-      jest.spyOn(props, 'onToggle')
-      wrapper.find('.toggle').simulate('click');
-      expect(props.onToggle).toHaveBeenCalled();
-    })
-
     it('Should render correctly with toggleIconColor', () => {
       wrapper.setProps({toggleIconColor: '#ffff99'});
       expect(wrapper.debug()).toMatchSnapshot();
@@ -124,14 +116,6 @@ describe('Sidebar component', () => {
     it('render with overlay when isMobile is true', () => {
       expect(wrapper.find('.overlay')).toHaveLength(1);
     });
-
-    it.skip('should call onClick when click on button', () => {
-      const props = { onToggle: jest.fn() }
-      wrapper.setProps(props)
-      jest.spyOn(props, 'onToggle')
-      wrapper.find('.overlay').simulate('click');
-      expect(props.onToggle).toHaveBeenCalled();
-    })
   })
 
   describe('with logo', () => {
