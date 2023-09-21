@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Alert component render correctly with default values 1`] = `
-"<Symbol(react.fragment)>
+"<Fragment>
   <div className=\\"alertWrap info\\">
     <div className=\\"icon\\">
       <Icon size=\\"28px\\" name=\\"info\\" align=\\"middle\\" />
@@ -15,5 +15,5 @@ exports[`Alert component render correctly with default values 1`] = `
       </Button>
     </div>
   </div>
-</Symbol(react.fragment)>"
+</Fragment>"
 `;
