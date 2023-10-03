@@ -19,18 +19,31 @@
   [![Jest Tests](https://github.com/b2wads/grimorio-ui/workflows/Jest%20Tests/badge.svg)](https://github.com/b2wads/grimorio-ui/actions?query=workflow%3A%22Jest+Tests%22) 
 </div>
 
+
+# Versão estável X versão BETA
+
+Para manter o nosso projeto compatível com novas versões do React nós lançamentos a versão **13.x.x-beta**. Essa versão será a responsável por tratar das atualizações referentes ao [React 18](https://github.com/facebook/react/blob/main/CHANGELOG.md#1820-june-14-2022) e suas atualizações.
+
+Caso você esteja buscando por uma versão **estável**, utilize a nossa versão **LTS** que deve se manter na versão [16.14](https://github.com/facebook/react/blob/main/CHANGELOG.md#16140-october-14-2020) do React. 
+
+#### NOTA
+A versão **13.x.x-beta** trata apenas de atualização do **React**, para ter **atualização de componentes** utilize a versão com a tag **-lts**.
+
+Para ver todas as versões disponíveis acesse o [NPM](https://www.npmjs.com/package/@b2wads/grimorio-ui/v/12.0.0-beta?activeTab=versions).
+
 # 📦 Instalação
+
+Importe o CSS do Grimório✨ no seu arquivo de entrada ou na lista de entrypoints do seu Webpack:
 
 Primeiro, instale o pacote vindo do npm:
 
 ```bash
-yarn add @b2wads/grimorio-ui
+yarn add @b2wads/grimorio-ui@<versão desejada>
 ```
 ```bash
-npm i @b2wads/grimorio-ui
+npm i @b2wads/grimorio-ui<versão desejada>
 ```
 
-Importe o CSS do Grimório✨ no seu arquivo de entrada ou na lista de entrypoints do seu Webpack:
 
 ```js
 // import the CSS on js
@@ -124,4 +137,3 @@ Esse comando será capaz de criar as pastas e arquivos corretamente para iniciar
 ### 📜 Docs
 
 Mais informações sobre deploy, code style e referências pode ser encontrado nas [docs a wiki](https://github.com/b2wads/grimorio-ui/wiki/Docs)
-
